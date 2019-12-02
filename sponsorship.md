@@ -18,6 +18,3 @@ so that eople who find value in my work can sponsor me and allow me to spend mor
 Prefer Github over Patreon if you're willing to sponsor me and haven't yet.
 If you are already a sponsor on Patreon and don't mind switching to Github,
 it will double your contribution at no cost for you.
-
-If you know of companies that could [make use of my skills](https://github.com/poolpOrg/resume/blob/master/resume.en.pdf),
-feel free to point them to my [contracting page](/contracting/).

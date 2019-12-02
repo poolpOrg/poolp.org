@@ -12,4 +12,4 @@ related to my own projects or not,
 don't hesitate to [contact me](mailto:gilles@poolp.org).
 
 My average rate is either **150EUR** per hour or **650EUR** per day (~= 8 hours),
-and may be readjusted based on the project and ability to opensource parts or entire work.
+and **may be readjusted** based on the project and ability to opensource parts or entire work.

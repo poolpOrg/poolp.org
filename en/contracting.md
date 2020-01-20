@@ -17,6 +17,7 @@ I can assist in finding **pragmatic** change paths that will help increase robus
 
 I can also help with:
 
+* evaluating third-party solutions in your architectures
 * setting up good development practices with proper tooling
 * leading software developers
 * training teams in software and architecture design

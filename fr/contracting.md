@@ -17,6 +17,7 @@ je peux vous assister pour améliorer **pragmatiquement** la robustesse d'un pro
 
 Je peux également aider avec:
 
+* l'évaluation de solutions externes dans votre architecture
 * la mise en place de bonnes pratiques de développement avec outillage
 * le lead sur des équipe de développeurs
 * le training de développeurs sur les sujets de conception logicielle et d'architecture

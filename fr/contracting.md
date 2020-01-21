@@ -1,7 +1,7 @@
 ---
 title: "Recrutez moi (en freelance) !"
 ---
-Je suis un développeur "**most-stack**" senior avec un gros bagage en dévelopement et administration système Unix,
+Je suis un développeur "**most-stack**" senior avec un gros bagage en développement et administration système Unix,
 ainsi qu'en architecture système et logicielle.
 J'ai dans ma carrière une expérience significative dans la conception,
 la réalisation,

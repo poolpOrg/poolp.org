@@ -3,7 +3,9 @@ title: "Sponsor me !"
 ---
 
 In February 2019,
-I switched to a **75% part-time schedule** so that I could spend **one week each month** working on my own stuff at the cost of **slashing a quarter of my wage**.
+I switched to a **75% part-time schedule** so that I could spend
+**one day each week + one additional day each month** working on my own stuff at the cost of
+**slashing a quarter of my wage**.
 
 I spend **all of these weeks** working on opensource software and writing articles,
 however I **depend on sponsorship** from the community to maintain that planning.

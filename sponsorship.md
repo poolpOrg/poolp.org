@@ -7,10 +7,10 @@ I switched to a **75% part-time schedule** so that I could spend
 **one day each week + one additional day each month** working on my own stuff at the cost of
 **slashing a quarter of my wage**.
 
-I spend **all of these weeks** working on opensource software and writing articles,
+I spend **all of these days** working on opensource software and writing articles,
 however I **depend on sponsorship** from the community to maintain that planning.
 Without enough sponsors,
-I need to **skip some weeks** and take contracts and sponsored developments to cover my expenses.
+I need to **skip some days** and take contracts and sponsored developments to cover my expenses.
 
 I opened a [patreon](https://www.patreon.com/gilles)
 and registered to the [github sponsoring program](https://github.com/sponsors/poolpOrg)

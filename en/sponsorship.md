@@ -12,11 +12,12 @@ however I **depend on sponsorship** from the community to maintain that planning
 Without enough sponsors,
 I need to **skip some days** and take contracts and sponsored developments to cover my expenses.
 
-I opened a [patreon](https://www.patreon.com/gilles)
-and registered to the [github sponsoring program](https://github.com/sponsors/poolpOrg)
-so that eople who find value in my work can sponsor me and allow me to spend more time publishing stuff for the community.
+I opened a **[Patreon](https://www.patreon.com/gilles)**,
+a **[LiberaPay](https://www.liberapay.com/poolpOrg)**
+and registered to the **[Github sponsoring program](https://github.com/sponsors/poolpOrg)**
+so that people who find value in my work can sponsor me and allow me to spend more time publishing stuff for the community.
 
-**<font color="red">For a year, [github](https://github.com/sponsors/poolpOrg) will match your funding.</font>**
+**<font color="red">For a year, **[Github](https://github.com/sponsors/poolpOrg)** will match your funding.</font>**
 Prefer Github over Patreon if you're willing to sponsor me and haven't yet.
 If you are already a sponsor on Patreon and don't mind switching to Github,
 it will double your contribution at no cost for you.

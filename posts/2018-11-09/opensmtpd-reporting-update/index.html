@@ -1,0 +1,153 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>OpenSMTPD reporting update - poolp.org</title><meta property="og:title" content="OpenSMTPD reporting update"><meta name=twitter:title content="OpenSMTPD reporting update"><meta name=description content="TL;DR: The reporting mechanism has been described shortly in my previous article about both reporting and filters. Let's focus a bit more on the reporting bits this time. The format is improving further and has extended to outgoing trafic reporting.  Reporting In previous article, I described the events reporting mechanism that has been introduced in the development branch of OpenSMTPD.
+To sum it up, you could now write an event processor as simple as a shell script reading its stdin on a loop:"><meta property="og:description" content="TL;DR: The reporting mechanism has been described shortly in my previous article about both reporting and filters. Let's focus a bit more on the reporting bits this time. The format is improving further and has extended to outgoing trafic reporting.  Reporting In previous article, I described the events reporting mechanism that has been introduced in the development branch of OpenSMTPD.
+To sum it up, you could now write an event processor as simple as a shell script reading its stdin on a loop:"><meta name=twitter:description content="TL;DR: The reporting mechanism has been described shortly in my previous article about both reporting and filters. Let's focus a bit more on the reporting bits this time. The format is improving …"><meta name=author content="Gilles Chehade"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"poolp.org","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/poolp.org\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/poolp.org\/posts\/2018-11-09\/opensmtpd-reporting-update\/","name":"Open s m t p d reporting update"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Gilles Chehade"},"headline":"OpenSMTPD reporting update","description":"TL;DR: The reporting mechanism has been described shortly in my previous article about both reporting and filters. Let\u0027s focus a bit more on the reporting bits this time. The format is improving further and has extended to outgoing trafic reporting.  Reporting In previous article, I described the events reporting mechanism that has been introduced in the development branch of OpenSMTPD.\nTo sum it up, you could now write an event processor as simple as a shell script reading its stdin on a loop:","inLanguage":"en","wordCount":1264,"datePublished":"2018-11-09T08:27:00","dateModified":"2018-11-09T08:27:00","image":"https:\/\/poolp.org\/images\/me.jpg","keywords":[""],"mainEntityOfPage":"https:\/\/poolp.org\/posts\/2018-11-09\/opensmtpd-reporting-update\/","publisher":{"@type":"Organization","name":"https:\/\/poolp.org\/","logo":{"@type":"ImageObject","url":"https:\/\/poolp.org\/images\/me.jpg","height":60,"width":60}}}</script><meta property="og:title" content="OpenSMTPD reporting update"><meta property="og:description" content="TL;DR: The reporting mechanism has been described shortly in my previous article about both reporting and filters. Let's focus a bit more on the reporting bits this time. The format is improving further and has extended to outgoing trafic reporting.  Reporting In previous article, I described the events reporting mechanism that has been introduced in the development branch of OpenSMTPD.
+To sum it up, you could now write an event processor as simple as a shell script reading its stdin on a loop:"><meta property="og:image" content="https://poolp.org/images/me.jpg"><meta property="og:url" content="https://poolp.org/posts/2018-11-09/opensmtpd-reporting-update/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=twitter:title content="OpenSMTPD reporting update"><meta name=twitter:description content="TL;DR: The reporting mechanism has been described shortly in my previous article about both reporting and filters. Let's focus a bit more on the reporting bits this time. The format is improving …"><meta name=twitter:image content="https://poolp.org/images/me.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:image" content="https://poolp.org/images/me.jpg"><meta name=twitter:image content="https://poolp.org/images/me.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:url" content="https://poolp.org/posts/2018-11-09/opensmtpd-reporting-update/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=generator content="Hugo 0.78.1"><link rel=alternate href=https://poolp.org/index.xml type=application/rss+xml title=poolp.org><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://poolp.org/css/main.css><link rel=stylesheet href=https://poolp.org/css/highlight.min.css><link rel=stylesheet href=https://poolp.org/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous><link rel=stylesheet href=/css/latex.style.css></head><body><div class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<a class=navbar-brand href=https://poolp.org/>poolp.org</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li class=navlinks-container><a class=navlinks-parent>Freelance</a><div class=navlinks-children><a href=/en/contracting/>[en] Hire me !</a>
+<a href=/fr/contracting/>[fr] Recrutez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Sponsorship</a><div class=navlinks-children><a href=/en/sponsorship/>[en] Sponsor me !</a>
+<a href=/fr/sponsorship/>[fr] Sponsorisez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Social</a><div class=navlinks-children><a href=https://patreon.com/gilles>Patreon</a>
+<a href=https://www.linkedin.com/in/gilleschehade>LinkedIn</a>
+<a href=https://github.com/poolpOrg>Github</a>
+<a href=https://twitter.com/poolpOrg>Twitter</a></div></li><li class=navlinks-container><a class=navlinks-parent>Curriculum</a><div class=navlinks-children><a href=https://github.com/poolpOrg/resume/blob/master/resume.en.pdf>EN</a>
+<a href=https://github.com/poolpOrg/resume/blob/master/resume.fr.pdf>FR</a></div></li></ul></div><div class=avatar-container><div class=avatar-img-border><a title=poolp.org href=https://poolp.org/><img class=avatar-img src=https://poolp.org/images/me.jpg alt=poolp.org></a></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-heading><h1 style=text-align:left>OpenSMTPD reporting update</h1></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><pre><code>TL;DR:
+The reporting mechanism has been described shortly in my previous article about both reporting and filters.
+Let's focus a bit more on the reporting bits this time.
+The format is improving further and has extended to outgoing trafic reporting.
+</code></pre><h2 id=reporting>Reporting</h2><p>In <a href=https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/>previous article</a>,
+I described the events reporting mechanism that has been introduced in the development branch of OpenSMTPD.</p><p>To sum it up,
+you could now write an event processor as simple as a shell script reading its stdin on a loop:</p><pre><code>$ cat  /tmp/reporting.sh
+#! /bin/sh
+#
+
+while read line; do
+        echo $line &gt;&gt; /tmp/reporting.log
+done
+</code></pre><p>and configure your OpenSMTPD so it would report all incoming SMTP events:</p><pre><code>$ grep report /etc/mail/smtpd.conf                                                                                                                                                                                   
+proc reporting &quot;/tmp/reporting.sh&quot;
+report smtp on reporting
+</code></pre><p>which would then produce an events report log in /tmp/reporting.log containing entries similar to these:</p><pre><code>report|smtp-in|link-connect|1541271219|3189ac6874354895|localhost|127.0.0.1:41564|127.0.0.1:25
+report|smtp-in|protocol-server|1541271219|3189ac6874354895|220 poolp.org ESMTP OpenSMTPD
+report|smtp-in|protocol-client|1541271222|3189ac6874354895|helo localhost
+report|smtp-in|protocol-server|1541271222|3189ac6874354895|250 poolp.org Hello localhost [127.0.0.1], pleased to meet you
+report|smtp-in|link-disconnect|1541271224|3189ac6874354895
+</code></pre><h2 id=improvements-on-the-reports-format>Improvements on the reports format</h2><p>I made several improvements to the format described in the previous article.</p><p>The first improvement is that there is now a version embedded in each report.
+This allows event processors to be able to check if they know how to parse an event report,
+it allows them to easily support backward-compatible versions should we make changes to the format of an event report,
+but most importantly it allows you to just store these events somewhere then have tools post-process them months later without ambiguity with regard to the format of entries,
+even if there were OpenSMTPD updates in between.</p><p>The second improvement is that the timestamp which was appearing after the event type was moved in front of it.
+This doesn&rsquo;t seem like an improvement but it eases reading and allows me to simplify some of the code :-)</p><p>The third improvement comes from adding some new events and adding information to some existing events.
+For instance,
+OpenSMTPD reported these transaction events:</p><pre><code>report|smtp-in|tx-begin|1541271225|3189ac6874354895
+report|smtp-in|tx-commit|1541271225|3189ac6874354895
+report|smtp-in|tx-rollback|1541271225|3189ac6874354895
+</code></pre><p>But reading from these,
+you could only obtain the session identifier,
+there was no way to find out the transaction identifier,
+how many envelopes were generated in the transaction or even the size of the message.</p><p>To solve these issues,
+the format of the events above has been extended so it would contain the transation identifier (aka. msgid),
+a <code>tx-envelope</code> event was introduced to report the generation of a new envelope in the transaction along with its envelope identifier (aka. evpid),
+and finally the size of the DATA part is reported on a <code>tx-commit</code> event.</p><p>Last but not least,
+the DATA part begins with a <code>DATA</code> command issued by the client and ends with a single <code>.</code> on a line by itself.
+Despite the single <code>.</code> being sent within the DATA phase,
+it is not really part of the DATA itself and must be considered as a <em>commit request</em>.</p><p>This doesn&rsquo;t seem like much but the devil is in the details.
+Not reporting that commit request as a <code>protocol-client</code> command means that we go straight from <code>DATA</code> command to a <code>tx-commit</code> event,
+without allowing a filter to actually refuse the commit request.
+If we generate this commit request event,
+a filter may decide that it wants to reject it which will then produce a <code>tx-rollback</code> that was not possible before.</p><p>A pattern emerges that <code>tx-*</code> events should appear in between <code>protocol-*</code> events otherwise they cannot be filtered.</p><p>Here is a sample curated event report log from my own server as of today:</p><pre><code>$ cat /tmp/reporting.log     
+report|1|1541750432|smtp-in|link-connect|c73c0aff0dfb6250|poolp.org|local:0|local:0
+report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|220 poolp.org ESMTP OpenSMTPD
+report|1|1541750432|smtp-in|protocol-client|c73c0aff0dfb6250|EHLO localhost
+report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|250-poolp.org Hello localhost [local], pleased to meet you
+report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|250-8BITMIME
+report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|250-ENHANCEDSTATUSCODES
+report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|250-SIZE 36700160
+report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|250 HELP
+report|1|1541750432|smtp-in|protocol-client|c73c0aff0dfb6250|MAIL FROM:&lt;gilles@poolp.org&gt;
+report|1|1541750432|smtp-in|tx-begin|c73c0aff0dfb6250|f84306b3
+report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|250 2.0.0: Ok
+report|1|1541750432|smtp-in|protocol-client|c73c0aff0dfb6250|RCPT TO:&lt;gilles@poolp.org&gt;
+report|1|1541750432|smtp-in|tx-envelope|c73c0aff0dfb6250|f84306b3|f84306b34f388082
+report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|250 2.1.5 Destination address valid: Recipient ok
+report|1|1541750432|smtp-in|protocol-client|c73c0aff0dfb6250|DATA
+report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|354 Enter mail, end with &quot;.&quot; on a line by itself
+report|1|1541750432|smtp-in|protocol-client|c73c0aff0dfb6250|.
+report|1|1541750432|smtp-in|tx-commit|c73c0aff0dfb6250|f84306b3|301
+report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|250 2.0.0: f84306b3 Message accepted for delivery
+report|1|1541750432|smtp-in|protocol-client|c73c0aff0dfb6250|QUIT
+report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|221 2.0.0: Bye
+report|1|1541750432|smtp-in|link-disconnect|c73c0aff0dfb6250
+</code></pre><h2 id=introducing-smtp-out>Introducing smtp-out</h2><p>Obviously my plan is to be able to report and create dashboard for ALL trafic,
+not just incoming.</p><p>I have worked on generating reports for smtp-out and I actually have something working in a branch,
+which I intend to commit next week.</p><p>The format is <em>identical</em> with the sole difference that <code>smtp-in</code> is replaced with <code>smtp-out</code>,
+the event types are the same,
+the parameters are the same,
+you just need to get your head around the fact that <code>protocol-client</code> is your peer when in <code>smtp-in</code>,
+whereas <code>protocol-server</code> is your peer when in <code>smtp-out</code>:</p><pre><code>report|1|1541750707|smtp-out|link-connect|c73c0b206ad6c41c||:0|64.233.167.26:25
+report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|220 mx.google.com ESMTP k132-v6si807155wma.16 - gsmtp
+report|1|1541750707|smtp-out|protocol-client|c73c0b206ad6c41c|EHLO out.mailbrix.mx
+report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|250-mx.google.com at your service, [212.83.129.132]
+report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|250-SIZE 157286400
+report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|250-8BITMIME
+report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|250-STARTTLS
+report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|250-ENHANCEDSTATUSCODES
+report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|250-PIPELINING
+report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|250-CHUNKING
+report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|250 SMTPUTF8
+report|1|1541750707|smtp-out|protocol-client|c73c0b206ad6c41c|STARTTLS
+report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|220 2.0.0 Ready to start TLS
+report|1|1541750707|smtp-out|link-tls|c73c0b206ad6c41c|version=TLSv1.2, cipher=ECDHE-RSA-CHACHA20-POLY1305, bits=256
+report|1|1541750708|smtp-out|protocol-client|c73c0b206ad6c41c|EHLO out.mailbrix.mx
+report|1|1541750708|smtp-out|protocol-server|c73c0b206ad6c41c|250-mx.google.com at your service, [212.83.129.132]
+report|1|1541750708|smtp-out|protocol-server|c73c0b206ad6c41c|250-SIZE 157286400
+report|1|1541750708|smtp-out|protocol-server|c73c0b206ad6c41c|250-8BITMIME
+report|1|1541750708|smtp-out|protocol-server|c73c0b206ad6c41c|250-ENHANCEDSTATUSCODES
+report|1|1541750708|smtp-out|protocol-server|c73c0b206ad6c41c|250-PIPELINING
+report|1|1541750708|smtp-out|protocol-server|c73c0b206ad6c41c|250-CHUNKING
+report|1|1541750708|smtp-out|protocol-server|c73c0b206ad6c41c|250 SMTPUTF8
+report|1|1541750708|smtp-out|protocol-client|c73c0b206ad6c41c|MAIL FROM:&lt;gilles@poolp.org&gt;
+report|1|1541750708|smtp-out|protocol-server|c73c0b206ad6c41c|250 2.1.0 OK k132-v6si807155wma.16 - gsmtp
+report|1|1541750708|smtp-out|tx-begin|c73c0b206ad6c41c|8ea46ad1
+report|1|1541750708|smtp-out|protocol-client|c73c0b206ad6c41c|RCPT TO:&lt;gilles.chehade@gmail.com&gt;
+report|1|1541750708|smtp-out|protocol-server|c73c0b206ad6c41c|250 2.1.5 OK k132-v6si807155wma.16 - gsmtp
+report|1|1541750708|smtp-out|tx-envelope|c73c0b206ad6c41c|8ea46ad1|8ea46ad1ccae4934
+report|1|1541750708|smtp-out|protocol-client|c73c0b206ad6c41c|DATA
+report|1|1541750708|smtp-out|protocol-server|c73c0b206ad6c41c|354 Go ahead k132-v6si807155wma.16 - gsmtp
+report|1|1541750708|smtp-out|protocol-client|c73c0b206ad6c41c|.
+report|1|1541750708|smtp-out|protocol-server|c73c0b206ad6c41c|250 2.0.0 OK 1541750708 k132-v6si807155wma.16 - gsmtp
+report|1|1541750708|smtp-out|tx-commit|c73c0b206ad6c41c|8ea46ad1|818
+report|1|1541750718|smtp-out|protocol-client|c73c0b206ad6c41c|QUIT
+report|1|1541750718|smtp-out|protocol-server|c73c0b206ad6c41c|221 2.0.0 closing connection k132-v6si807155wma.16 - gsmtp
+report|1|1541750718|smtp-out|link-disconnect|c73c0b206ad6c41c
+</code></pre><p>Because not everyone needs reporting and not everyone needs <em>both</em> incoming and outgoing reporting,
+I have added the smtp-in and smtp-out keywords to the grammar so that you can:</p><pre><code>$ grep report /etc/mail/smtpd.conf                                                                                                                                                                                   
+proc reporting &quot;/tmp/reporting.sh&quot;
+report smtp-in on reporting
+report smtp-out on reporting
+</code></pre><p>I&rsquo;ll probably make <code>report smtp on</code> a shortcut for both <code>smtp-in</code> and <code>smtp-out</code>.</p><p>There is still work to be done on the smtp-out path because the SMTP engine is more complex than for the smtp-in path.
+For instance,
+it is currently not possible to have any of the transaction events generated between the <code>protocol-client</code> and <code>protocol-server</code> events due to how the state machine is written.
+Not really as much of a big deal as for smtp-in since smtp-out isn&rsquo;t filtered and the order issues are less annoying,
+but to be really clean and consistent,
+the smtp-in and smtp-out reports should be very parallel in terms of order events.
+I should be able to look at the smtp-out reports from my laptop and the smtp-in reports from my server and see them appear in the same order.</p><p>Finally,
+there is also an rDNS lookup that needs to be added so the report is identical to smtp-in,
+and we should be fine.</p><h2 id=whats-so-good-about-this->What&rsquo;s so good about this ?</h2><p>Reporting is not JUST about being able to write dashboards,
+it is not just about being able to generate state for filters eithers.</p><p>Generating event reports logs that can be parsed by external tools open the way for many side applications ranging from tools to replay sessions when tracking issues,
+tools to analyze behavior of peers and feedback into <code>pf</code> or OpenSMTPD tables,
+and more interestingly for people who will developer filters&mldr;
+it brings the ability to write and test a filter without a running OpenSMTPD instance,
+piping the event log directly into the filter.</p><p>To be very honest,
+I&rsquo;m personally more excited by this new feature than the filters feature which might be more visible but would be far less powerful without the event logs.</p><h2 id=what-next->What next ?</h2><p>More changes should happen to the format of entries in the next few weeks and months,
+this is a moving target as I wrote in previous article.</p><p>Builtin filters already require some of these lines to provide more informations and this is being worked on.</p><p>My next focus is the filtering of the DATA phase which is the requirement for us to provide support for dkim and antispam stuff without the need of proxies and reenqueuing.
+Work has already started but I will probably not commit any code related to this before the end of November.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org_posts/issues/7>https://github.com/poolpOrg/poolp.org_posts/issues/7</a></p><hr><section id=social-share><div class="list-inline footer-links"><div class=share-box aria-hidden=true><ul class=share><li><a href="//twitter.com/share?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-09%2fopensmtpd-reporting-update%2f&text=OpenSMTPD%20reporting%20update&via=poolpOrg" target=_blank title="Share on Twitter"><i class="fab fa-twitter"></i></a></li><li><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-09%2fopensmtpd-reporting-update%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook"></i></a></li><li><a href="//reddit.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-09%2fopensmtpd-reporting-update%2f&title=OpenSMTPD%20reporting%20update" target=_blank title="Share on Reddit"><i class="fab fa-reddit"></i></a></li><li><a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-09%2fopensmtpd-reporting-update%2f&title=OpenSMTPD%20reporting%20update" target=_blank title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a></li><li><a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-09%2fopensmtpd-reporting-update%2f&title=OpenSMTPD%20reporting%20update" target=_blank title="Share on StumbleUpon"><i class="fab fa-stumbleupon"></i></a></li><li><a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-09%2fopensmtpd-reporting-update%2f&description=OpenSMTPD%20reporting%20update" target=_blank title="Share on Pinterest"><i class="fab fa-pinterest"></i></a></li></ul></div></div></section></article><ul class="pager blog-pager"><li class=previous><a href=https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/ data-toggle=tooltip data-placement=top title="OpenSMTPD released and upcoming filters preview">&larr; Previous Post</a></li><li class=next><a href=https://poolp.org/posts/2018-12-06/opensmtpd-proc-filters-fc-rdns/ data-toggle=tooltip data-placement=top title="OpenSMTPD proc filters & fc-rDNS">Next Post &rarr;</a></li></ul></div></div></div><footer style=text-align:justify><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><h2>Like my work and want to help me ?</h2><br><ul><li>Consider <b>tipping me</b> on <b><a target=_blank href=https://paypal.me/poolpOrg>PayPal</a></b>,
+<b>supporting me</b> through one of the <b><a href=/en/sponsorship>sponsorship</a></b> platforms at <b><a href=https://github.com/sponsors/poolpOrg>Github</a></b>, <b><a href=https://patreon.com/gilles>Patreon</a></b> or
+<b><a href=https://liberapay.com/poolpOrg>LiberaPay</a></b>,
+or even <b>getting me something</b> from my wishlist on <b><a target=_blank href=http://amzn.eu/3MwH6CX>Amazon</a></b>
+for positive <b><a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a></b> :-)<br><br></li><li>You can also help me by <b>commenting articles</b> to spark discussions,
+and by <b>sharing them</b> so they reach a bigger audience,
+they all contain a comment link and icons that will let you share to popular social networks.</li></ul><br></div></div><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><p class="credits copyright text-muted"><a href=https://poolp.org>Gilles Chehade</a>
+-&nbsp;&copy;
+2020
+-
+<a href=https://poolp.org/>poolp.org</a></p><p class="credits theme-by text-muted"><a href=http://gohugo.io>Hugo v0.78.1</a> powered - Theme adapted from <a href=http://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://poolp.org/js/main.js></script><script src=https://poolp.org/js/highlight.min.js></script><script>hljs.initHighlightingOnLoad();</script><script>$(document).ready(function(){$("pre.chroma").css("padding","0");});</script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://poolp.org/js/load-photoswipe.js></script></body></html>

@@ -1,0 +1,329 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>Install OpenBSD on dedibox with full-disk encryption - poolp.org</title><meta property="og:title" content="Install OpenBSD on dedibox with full-disk encryption"><meta name=twitter:title content="Install OpenBSD on dedibox with full-disk encryption"><meta name=description content="TL;DR: I run several &#34;dedibox&#34; servers at online.net, all powered by OpenBSD. OpenBSD is not officially supported so you have to work-around. Running full-disk encrypted OpenBSD there is a piece of cake. As a bonus, my first steps within a brand new booted machine ;-)  Step #0: choosing your server OpenBSD is not officially supported, I can&rsquo;t guarantee that this will work for you on any kind of server online."><meta property="og:description" content="TL;DR: I run several &#34;dedibox&#34; servers at online.net, all powered by OpenBSD. OpenBSD is not officially supported so you have to work-around. Running full-disk encrypted OpenBSD there is a piece of cake. As a bonus, my first steps within a brand new booted machine ;-)  Step #0: choosing your server OpenBSD is not officially supported, I can&rsquo;t guarantee that this will work for you on any kind of server online."><meta name=twitter:description content="TL;DR: I run several &#34;dedibox&#34; servers at online.net, all powered by OpenBSD. OpenBSD is not officially supported so you have to work-around. Running full-disk encrypted OpenBSD there is a …"><meta name=author content="Gilles Chehade"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"poolp.org","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/poolp.org\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/poolp.org\/posts\/2018-01-29\/install-openbsd-on-dedibox-with-full-disk-encryption\/","name":"Install open b s d on dedibox with full disk encryption"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Gilles Chehade"},"headline":"Install OpenBSD on dedibox with full-disk encryption","description":"TL;DR: I run several \u0026quot;dedibox\u0026quot; servers at online.net, all powered by OpenBSD. OpenBSD is not officially supported so you have to work-around. Running full-disk encrypted OpenBSD there is a piece of cake. As a bonus, my first steps within a brand new booted machine ;-)  Step #0: choosing your server OpenBSD is not officially supported, I can\u0026rsquo;t guarantee that this will work for you on any kind of server online.","inLanguage":"en","wordCount":2289,"datePublished":"2018-01-29T23:28:00","dateModified":"2018-01-29T23:28:00","image":"https:\/\/poolp.org\/images\/me.jpg","keywords":[""],"mainEntityOfPage":"https:\/\/poolp.org\/posts\/2018-01-29\/install-openbsd-on-dedibox-with-full-disk-encryption\/","publisher":{"@type":"Organization","name":"https:\/\/poolp.org\/","logo":{"@type":"ImageObject","url":"https:\/\/poolp.org\/images\/me.jpg","height":60,"width":60}}}</script><meta property="og:title" content="Install OpenBSD on dedibox with full-disk encryption"><meta property="og:description" content="TL;DR: I run several &#34;dedibox&#34; servers at online.net, all powered by OpenBSD. OpenBSD is not officially supported so you have to work-around. Running full-disk encrypted OpenBSD there is a piece of cake. As a bonus, my first steps within a brand new booted machine ;-)  Step #0: choosing your server OpenBSD is not officially supported, I can&rsquo;t guarantee that this will work for you on any kind of server online."><meta property="og:image" content="https://poolp.org/images/me.jpg"><meta property="og:url" content="https://poolp.org/posts/2018-01-29/install-openbsd-on-dedibox-with-full-disk-encryption/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=twitter:title content="Install OpenBSD on dedibox with full-disk encryption"><meta name=twitter:description content="TL;DR: I run several &#34;dedibox&#34; servers at online.net, all powered by OpenBSD. OpenBSD is not officially supported so you have to work-around. Running full-disk encrypted OpenBSD there is a …"><meta name=twitter:image content="https://poolp.org/images/me.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:image" content="https://poolp.org/images/me.jpg"><meta name=twitter:image content="https://poolp.org/images/me.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:url" content="https://poolp.org/posts/2018-01-29/install-openbsd-on-dedibox-with-full-disk-encryption/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=generator content="Hugo 0.78.1"><link rel=alternate href=https://poolp.org/index.xml type=application/rss+xml title=poolp.org><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://poolp.org/css/main.css><link rel=stylesheet href=https://poolp.org/css/highlight.min.css><link rel=stylesheet href=https://poolp.org/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous><link rel=stylesheet href=/css/latex.style.css></head><body><div class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<a class=navbar-brand href=https://poolp.org/>poolp.org</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li class=navlinks-container><a class=navlinks-parent>Freelance</a><div class=navlinks-children><a href=/en/contracting/>[en] Hire me !</a>
+<a href=/fr/contracting/>[fr] Recrutez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Sponsorship</a><div class=navlinks-children><a href=/en/sponsorship/>[en] Sponsor me !</a>
+<a href=/fr/sponsorship/>[fr] Sponsorisez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Social</a><div class=navlinks-children><a href=https://patreon.com/gilles>Patreon</a>
+<a href=https://www.linkedin.com/in/gilleschehade>LinkedIn</a>
+<a href=https://github.com/poolpOrg>Github</a>
+<a href=https://twitter.com/poolpOrg>Twitter</a></div></li><li class=navlinks-container><a class=navlinks-parent>Curriculum</a><div class=navlinks-children><a href=https://github.com/poolpOrg/resume/blob/master/resume.en.pdf>EN</a>
+<a href=https://github.com/poolpOrg/resume/blob/master/resume.fr.pdf>FR</a></div></li></ul></div><div class=avatar-container><div class=avatar-img-border><a title=poolp.org href=https://poolp.org/><img class=avatar-img src=https://poolp.org/images/me.jpg alt=poolp.org></a></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-heading><h1 style=text-align:left>Install OpenBSD on dedibox with full-disk encryption</h1></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><pre><code>TL;DR:
+I run several &quot;dedibox&quot; servers at online.net, all powered by OpenBSD.
+OpenBSD is not officially supported so you have to work-around.
+Running full-disk encrypted OpenBSD there is a piece of cake.
+As a bonus, my first steps within a brand new booted machine ;-)
+</code></pre><h2 id=step-0-choosing-your-server>Step #0: choosing your server</h2><p>OpenBSD is not officially supported,
+I can&rsquo;t guarantee that this will work for you on any kind of server online.net provides,
+however I&rsquo;ve been running <a href=https://poolp.org>https://poolp.org</a> on OpenBSD there since 2008,
+only switching machines as they were getting a bit old and new offers came up.</p><p>Currently,
+I&rsquo;m running two SC 2016 (SATA) and one XC 2016 (SSD) boxes,
+all three running OpenBSD reliably ever since I installed them.</p><p>Recently I&rsquo;ve been willing to reinstall the XC one after I did some experiments that turned it into a FrankenBSD,
+so this was the right occasion to document how I do it for future references.</p><p><a href=https://poolp.org/posts/2013-05-08/installer-openbsd-sur-une-dedibox-classic-gen2/>I wrote an article similar to this a few years ago relying on <code>qemu</code> to install to the disk</a>,
+since then online.net provided access to a virtual serial console accessed within the browser,
+making it much more convenient to install without the <code>qemu</code> indirection which hid the NIC devices and disks duid and required tricks.</p><p>The method I currently use is a mix and adaptation from the techniques described in
+<a href=https://www.2f30.org/guides/openbsd-dedibox.html>https://www.2f30.org/guides/openbsd-dedibox.html</a>
+to boot the installer,
+and the technique described in
+<a href=https://geekyschmidt.com/2011/01/19/configuring-openbsd-softraid-fo-encryption.html>https://geekyschmidt.com/2011/01/19/configuring-openbsd-softraid-fo-encryption.html</a>
+to setup the crypto slice.</p><h2 id=step-1-boot-to-rescue-mode>Step #1: boot to rescue mode</h2><p>The web console has a rescue mode which will essentially boot the server on a system running in RAM.</p><p>This usually allows you to unfuck a broken system by booting a Linux or FreBSD system,
+mounting disks,
+making appropriate changes to the disk,
+then rebooting back to the original system.</p><p>We will actually make use of this rescue mode to write an OpenBSD boot disk image at the beginning of the real disk,
+allowing us to reboot the server right into the OpenBSD intaller.</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text>laptop$ ssh gilles@163.172.61.249
+[...]
+gilles@163-172-61-249:~$ wget https://ftp.fr.openbsd.org/pub/OpenBSD/6.2/amd64/miniroot62.fs
+[...]
+gilles@163-172-61-249:~$ sudo dd if=miniroot62.fs of=/dev/sda
+[sudo] password for gilles:
+9600+0 records in
+9600+0 records out
+4915200 bytes (4,9 MB, 4,7 MiB) copied, 0,116668 s, 42,1 MB/s
+gilles@163-172-61-249:~$
+</code></pre></div><p>You can then reboot back to normal mode and activate the serial console from the web console.</p><h2 id=step-2-boot-to-the-installer>Step #2: boot to the installer</h2><p>On the serial console, you will be greeted by the bootloader prompt.
+For some reason,
+every couple seconds a keystroke gets triggered by the interface causing the &lsquo;n&rsquo; character to be inserted.
+It takes a bit of synchronization but you should be able to set tty to com1,
+getting rid of the keystroke and allowing proper output to the terminal:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text>boot&gt; set tty com1
+&gt;&gt; OpenBSD/amd64 BOOT 3.33
+boot&gt; boot
+</code></pre></div><p>The bootloader will load a ramdisk kernel and drop you into the installer,
+which is our next step.</p><h2 id=step-3-prepare-softraid>Step #3: prepare softraid</h2><p>Once the installer is started,
+drop immediately into a shell:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text>Welcome to the OpenBSD/amd64 6.2 installation program.
+(I)nstall, (U)pgrade, (A)utoinstall or (S)hell? s
+#
+</code></pre></div><p>First of all, we need to rewrite the MBR after we messed it up with our miniroot trick:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text># fdisk -iy sd0
+Writing MBR at offset 0.
+#
+</code></pre></div><p>Then, we can enter the disklabel to setup a RAID slice and a swap slice,
+keeping in mind that swap is already encrypted by default on OpenBSD.
+The RAID slice will be used to setup softraid with the crypto discipline.</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text># disklabel -E sd0
+Label editor (enter &#39;?&#39; for help at any prompt)
+&gt; p M
+OpenBSD area: 64-500103450; size: 244191.1M; free: 244191.1M
+#                size           offset  fstype [fsize bsize   cpg]
+  c:        244198.3M                0  unused
+&gt; a
+partition: [a] 
+offset: [64]
+size: [500103386] 240000M
+Rounding size to cylinder (16065 sectors): 491524676
+FS type: [4.2BSD] RAID
+&gt; a
+partition: [b]
+offset: [491524740]
+size: [8578710]
+FS type: [swap]
+&gt; w
+&gt; q
+No label changes.
+#
+</code></pre></div><p>Once this is done, we can use bioctl to setup the encrypted slice:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text># bioctl -c C -r auto -l /dev/sd0a softraid0
+New passphrase:
+Re-type passphrase:
+sd1 at scsibus1 targ 1 lun 0: &lt;OPENBSD, SR CRYPTO, 006&gt; SCSI2 0/direct fixed
+sd1: 240002MB, 512 bytes/sector, 491524148 sectors  
+softraid0: CRYPTO volume attached as sd1
+#
+</code></pre></div><p>At this point, we&rsquo;re ready to perform a regular install&mldr; <strong>on sd1, not sd0, beware</strong>,:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text># install
+At any prompt except password prompts you can escape to a shell by
+typing &#39;!&#39;. Default answers are shown in []&#39;s and are selected by
+pressing RETURN.  You can exit this program at any time by pressing
+Control-C, but this can leave your system in an inconsistent state.
+
+Terminal type? [vt220]
+System hostname? (short form, e.g. &#39;foo&#39;) pocs
+
+Available network interfaces are: em0 em1 vlan0.
+Which network interface do you wish to configure? (or &#39;done&#39;) [em0]
+IPv4 address for em0? (or &#39;dhcp&#39; or &#39;none&#39;) [dhcp]
+em0: DHCPDISCOVER - interval 1
+em0: DHCPOFFER from 163.172.61.1 (00:81:c4:f6:e9:17)
+em0: DHCPREQUEST to 255.255.255.255
+em0: DHCPACK from 163.172.61.1 (00:81:c4:f6:e9:17)
+em0: bound to 163.172.61.249 -- renewal in 2147483647 seconds
+IPv6 address for em0? (or &#39;autoconf&#39; or &#39;none&#39;) [none]
+Available network interfaces are: em0 em1 vlan0.
+Which network interface do you wish to configure? (or &#39;done&#39;) [done]
+Default IPv4 route? (IPv4 address or none) [163.172.61.1]
+add net default: gateway 163.172.61.1
+Using DNS domainname online.net
+Using DNS nameservers at 62.210.16.6 62.210.16.7
+
+Password for root account? (will not echo)
+Password for root account? (again)
+Start sshd(8) by default? [yes]
+Change the default console to com1? [yes]
+Available speeds are: 9600 19200 38400 57600 115200.
+Which speed should com1 use? (or &#39;done&#39;) [9600]
+Setup a user? (enter a lower-case loginname, or &#39;no&#39;) [no] gilles
+Full name for user gilles? [gilles]
+Password for user gilles? (will not echo)
+Password for user gilles? (again)
+WARNING: root is targeted by password guessing attacks, pubkeys are safer.
+Allow root ssh login? (yes, no, prohibit-password) [no]
+What timezone are you in? (&#39;?&#39; for list) [Europe/Paris]
+</code></pre></div><p>I insist again, you want to write to the new softraid-backed disk:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text>Available disks are: sd0 sd1.
+Which disk is the root disk? (&#39;?&#39; for details) [sd0] sd1
+No valid MBR or GPT.
+Use (W)hole disk MBR, whole disk (G)PT or (E)dit? [whole]
+Setting OpenBSD MBR partition to whole sd1...done.
+The auto-allocated layout for sd1 is:
+#                size           offset  fstype [fsize bsize   cpg]
+  a:             1.0G               64  4.2BSD   2048 16384     1 # /
+  b:            16.2G          2097216    swap
+  c:           234.4G                0  unused
+  d:             4.0G         36067392  4.2BSD   2048 16384     1 # /tmp
+  e:            29.5G         44455968  4.2BSD   2048 16384     1 # /var
+  f:             2.0G        106342848  4.2BSD   2048 16384     1 # /usr
+  g:             1.0G        110537152  4.2BSD   2048 16384     1 # /usr/X11R6
+  h:            10.0G        112634304  4.2BSD   2048 16384     1 # /usr/local
+  i:             2.0G        133605824  4.2BSD   2048 16384     1 # /usr/src
+  j:             6.0G        137800128  4.2BSD   2048 16384     1 # /usr/obj
+  k:           162.7G        150383040  4.2BSD   4096 32768     1 # /home
+Use (A)uto layout, (E)dit auto layout, or create (C)ustom layout? [a]
+</code></pre></div><p>Just for the purpose of simplifying, I will create a custom layout with only a root slice,
+note that this is insecure and,
+unless you know what you&rsquo;re doing you should avoid that as it exposes your system to a denial of service.</p><p>The swap slice is redundant with the one we already create along the RAID slice in sd0,
+so the options are either to stick with the auto layout or to create a custom layout that&rsquo;s similar but without swap.</p><p>At the very very least,
+you want to isolate / from /tmp, /var, /usr and /home,
+though isolating it from /usr/local is not a bad idea.</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text>Use (A)uto layout, (E)dit auto layout, or create (C)ustom layout? [a] C
+Label editor (enter &#39;?&#39; for help at any prompt)
+&gt; p
+OpenBSD area: 64-491508675; size: 491508611; free: 491508611
+#                size           offset  fstype [fsize bsize   cpg]
+  c:        491524148                0  unused
+&gt; a
+partition: [a]
+offset: [64]
+size: [491508611]
+FS type: [4.2BSD]
+mount point: [none] /
+Rounding size to bsize (64 sectors): 491508608
+&gt; w
+&gt; q
+No label changes.
+/dev/rsd1a: 239994.4MB in 491508608 sectors of 512 bytes
+295 cylinder groups of 814.44MB, 26062 blocks, 52224 inodes each
+Available disks are: sd0.
+Which disk do you wish to initialize? (or &#39;done&#39;) [done]
+/dev/sd1a (448be85498897147.a) on /mnt type ffs (rw, asynchronous, local)
+
+Let&#39;s install the sets!
+Location of sets? (disk http or &#39;done&#39;) [http]
+HTTP proxy URL? (e.g. &#39;http://proxy:8080&#39;, or &#39;none&#39;) [none]
+HTTP Server? (hostname, list#, &#39;done&#39; or &#39;?&#39;) [ftp.fr.openbsd.org]
+Server directory? [pub/OpenBSD/6.2/amd64]
+
+Select sets by entering a set name, a file name pattern or &#39;all&#39;. De-select
+sets by prepending a &#39;-&#39;, e.g.: &#39;-game*&#39;. Selected sets are labelled &#39;[X]&#39;.
+    [X] bsd           [X] base62.tgz    [X] game62.tgz    [X] xfont62.tgz
+    [X] bsd.mp        [X] comp62.tgz    [X] xbase62.tgz   [X] xserv62.tgz
+    [X] bsd.rd        [X] man62.tgz     [X] xshare62.tgz
+Set name(s)? (or &#39;abort&#39; or &#39;done&#39;) [done]
+Get/Verify SHA256.sig   100% |**************************|  2152       00:00
+Signature Verified
+Get/Verify bsd          100% |**************************| 12777 KB    00:08
+Get/Verify bsd.mp       100% |**************************| 12858 KB    09:46
+Get/Verify bsd.rd       100% |**************************|  9565 KB    00:05
+Get/Verify base62.tgz   100% |**************************|   139 MB    01:24
+Get/Verify comp62.tgz   100% |**************************| 75525 KB    50:08
+Get/Verify man62.tgz    100% |**************************|  7008 KB    00:03 
+Get/Verify game62.tgz   100% |**************************|  2718 KB    01:56
+Get/Verify xbase62.tgz  100% |**************************| 17964 KB    12:29    
+Get/Verify xshare62.tgz 100% |**************************|  4417 KB    02:43    
+Get/Verify xfont62.tgz  100% |**************************| 39342 KB    00:20    
+Get/Verify xserv62.tgz  100% |**************************| 12572 KB    00:06    
+Installing bsd          100% |**************************| 12777 KB    00:00    
+Installing bsd.mp       100% |**************************| 12858 KB    00:00    
+Installing bsd.rd       100% |**************************|  9565 KB    00:00    
+Installing base62.tgz   100% |**************************|   139 MB    00:10    
+Extracting etc.tgz      100% |**************************|   189 KB    00:00    
+Installing comp62.tgz   100% |**************************| 75525 KB    00:08    
+Installing man62.tgz    100% |**************************|  7008 KB    00:01    
+Installing game62.tgz   100% |**************************|  2718 KB    00:00    
+Installing xbase62.tgz  100% |**************************| 17964 KB    00:01    
+Extracting xetc.tgz     100% |**************************|  7036       00:00    
+Installing xshare62.tgz 100% |**************************|  4417 KB    00:01    
+Installing xfont62.tgz  100% |**************************| 39342 KB    00:02    
+Installing xserv62.tgz  100% |**************************| 12572 KB    00:01    
+Location of sets? (disk http or &#39;done&#39;) [done] Location of sets? (disk http or &#39;done&#39;) [done] 
+Saving configuration files...done.
+Making all device nodes...done.
+Multiprocessor machine; using bsd.mp instead of bsd.
+Relinking to create unique kernel...done.
+
+CONGRATULATIONS! Your OpenBSD install has been successfully completed!
+To boot the new system, enter &#39;reboot&#39; at the command prompt.
+When you login to your new system the first time, please read your mail
+using the &#39;mail&#39; command.
+
+# 
+</code></pre></div><h2 id=step-4-reboot-to-encrypted-openbsd-system>Step #4: reboot to encrypted OpenBSD system</h2><p>The root slice being encrypted, you&rsquo;ll need to type your password every time you reboot.</p><p>Connect to the serial console,
+you should see the boot prompt asking for a password.
+The &lsquo;n&rsquo; glitch is still around,
+so either you break out of password by typing enter so you can do the &lsquo;set tty com1&rsquo; trick,
+or you do as I do and synchronize with the &lsquo;n&rsquo; keystroke to delete it and type password really fast.</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text># reboot
+syncing disks... done
+sd1 detached
+rebooting...
+[...]
+Using drive 0, partition 3.                                                     
+Loading......                                                                   
+probing: pc0 com0 com1 mem[632K 2009M 14336M a20=on]                            
+disk: hd0+ sr0*                                                                 
+&gt;&gt; OpenBSD/amd64 BOOT 3.33                                                      
+Passphrase: 
+boot&gt; set tty com1
+&gt;&gt; OpenBSD/amd64 BOOT 3.33
+boot&gt; boot
+Passphrase: 
+[...]
+
+OpenBSD/amd64 (pocs.online.net) (tty01)
+
+login: gilles
+Password:
+OpenBSD 6.2 (GENERIC.MP) #134: Tue Oct  3 21:22:29 MDT 2017
+
+Welcome to OpenBSD: The proactively secure Unix-like operating system.
+
+Please use the sendbug(1) utility to report bugs in the system.
+Before reporting a bug, please try to reproduce it with the latest
+version of the code.  With bug reports, please try to ensure that
+enough information to reproduce the problem is enclosed, and if a
+known fix for it exists, include that as well.
+
+You have new mail.
+$
+</code></pre></div><p>As suggested by <code>semarie@</code>,
+once logged in you can take opportunity to fix the &lsquo;n&rsquo; glitch by setting tty in boot.conf:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text>$ su
+Password:
+# echo set tty com1 &gt; /etc/boot.conf
+</code></pre></div><h2 id=bonus-further-tightening-your-system>Bonus: further tightening your system</h2><p>These are the few steps I immediately do to tighten up my systems furthers:</p><h1 id=enable-doas>enable doas</h1><p>The &lsquo;gilles&rsquo; account I created at install is part of the &lsquo;wheel&rsquo; group,
+which turns out to be exactly what the example doas.conf allows:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text>$ su
+Password:
+# cat /etc/examples/doas.conf |tail -1
+permit keepenv :wheel
+# cp /etc/examples/doas.conf /etc
+# exit
+$ doas sh
+doas (gilles@pocs.online.net) password:
+#
+</code></pre></div><h1 id=disable-the-root-account>disable the root account</h1><p>Now that &lsquo;gilles&rsquo; can use <code>doas</code> we no longer ever need to authenticate as root,
+so disable it by setting the password to &lsquo;*&rsquo;.
+This will prevent &lsquo;root&rsquo; from being usable directly or through <code>su</code>,
+yet if really needed &lsquo;gilles&rsquo; can still <code>doas su</code> to obtain a shell running as user &lsquo;root&rsquo;:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text># usermod -p&#39;*&#39; root
+#
+</code></pre></div><h1 id=update-system-with-syspatch>update system with syspatch</h1><p>The brand new system may require some patches to be applied,
+the <code>syspatch</code> command written by ajacoutot@ performs a binary patching of the system,
+then causes the kernel to be relinked using the KARL mechanism to shuffle objects order:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text># syspatch
+Get/Verify syspatch62-001_tcb_inv... 100% |*************|   465 KB    00:00    
+Installing patch 001_tcb_invalid
+Get/Verify syspatch62-002_fktrace... 100% |*************|   785 KB    00:21    
+Installing patch 002_fktrace
+Get/Verify syspatch62-003_mpls.tgz 100% |***************|   837 KB    00:00    
+Installing patch 003_mpls
+Get/Verify syspatch62-004_libssl.tgz 100% |*************|  2515 KB    00:01    
+Installing patch 004_libssl
+Relinking to create unique kernel... done.
+</code></pre></div><h1 id=add-my-ssh-public-key-to-my-sshauthorized_keys>add my ssh public key to my ~/.ssh/authorized_keys</h1><p>Password for accessing SSH are bad,
+copy the SSH public key generated on my laptop with <code>ssh-keygen</code> to the authorized_keys file of my account on the server:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text># echo &#39;ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII19dxt4hf1t4Lo05TaPZQqrtwtszHHyAF7ctPYPRIvp gilles@debug.poolp.org&#39;&gt;&gt;~gilles/.ssh/authorized_keys
+#
+</code></pre></div><h1 id=disable-password-authentication-within-ssh>disable password authentication within ssh</h1><p>No reason to allow PasswordAuthentication anymore,
+disable in sshd_config and restart sshd:</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text># echo PasswordAuthentication no &gt;&gt; /etc/ssh/sshd_config
+# /etc/rc.d/sshd restart                                                       
+sshd(ok)
+sshd(ok)
+#
+</code></pre></div><h1 id=reboot-so-you-boot-on-a-brand-new-up-to-date-system-with-latest-stable-kernel>reboot so you boot on a brand new up-to-date system with latest stable kernel</h1><div class=highlight><pre class=chroma><code class=language-text data-lang=text># reboot
+syncing disks... done
+sd1 detached
+rebooting...
+[...]
+Using drive 0, partition 3.                                                     
+Loading......                                                                   
+probing: pc0 com0 com1 mem[632K 2009M 14336M a20=on]                            
+disk: hd0+ sr0*                                                                 
+&gt;&gt; OpenBSD/amd64 BOOT 3.33                                                      
+Passphrase: 
+boot&gt; set tty com1
+&gt;&gt; OpenBSD/amd64 BOOT 3.33
+boot&gt; boot
+Passphrase: 
+[...]
+
+OpenBSD/amd64 (pocs.online.net) (tty01)
+
+login:
+Password:
+</code></pre></div><p>VOILA !</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolpOrg.github.io/issues/3>https://github.com/poolpOrg/poolpOrg.github.io/issues/3</a></p><hr><section id=social-share><div class="list-inline footer-links"><div class=share-box aria-hidden=true><ul class=share><li><a href="//twitter.com/share?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-01-29%2finstall-openbsd-on-dedibox-with-full-disk-encryption%2f&text=Install%20OpenBSD%20on%20dedibox%20with%20full-disk%20encryption&via=poolpOrg" target=_blank title="Share on Twitter"><i class="fab fa-twitter"></i></a></li><li><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2018-01-29%2finstall-openbsd-on-dedibox-with-full-disk-encryption%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook"></i></a></li><li><a href="//reddit.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-01-29%2finstall-openbsd-on-dedibox-with-full-disk-encryption%2f&title=Install%20OpenBSD%20on%20dedibox%20with%20full-disk%20encryption" target=_blank title="Share on Reddit"><i class="fab fa-reddit"></i></a></li><li><a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-01-29%2finstall-openbsd-on-dedibox-with-full-disk-encryption%2f&title=Install%20OpenBSD%20on%20dedibox%20with%20full-disk%20encryption" target=_blank title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a></li><li><a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-01-29%2finstall-openbsd-on-dedibox-with-full-disk-encryption%2f&title=Install%20OpenBSD%20on%20dedibox%20with%20full-disk%20encryption" target=_blank title="Share on StumbleUpon"><i class="fab fa-stumbleupon"></i></a></li><li><a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-01-29%2finstall-openbsd-on-dedibox-with-full-disk-encryption%2f&description=Install%20OpenBSD%20on%20dedibox%20with%20full-disk%20encryption" target=_blank title="Share on Pinterest"><i class="fab fa-pinterest"></i></a></li></ul></div></div></section></article><ul class="pager blog-pager"><li class=previous><a href=https://poolp.org/posts/2018-01-08/spfwalk/ data-toggle=tooltip data-placement=top title=spfwalk>&larr; Previous Post</a></li><li class=next><a href=https://poolp.org/posts/2018-04-30/opensmtpd-new-config/ data-toggle=tooltip data-placement=top title="OpenSMTPD new config">Next Post &rarr;</a></li></ul></div></div></div><footer style=text-align:justify><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><h2>Like my work and want to help me ?</h2><br><ul><li>Consider <b>tipping me</b> on <b><a target=_blank href=https://paypal.me/poolpOrg>PayPal</a></b>,
+<b>supporting me</b> through one of the <b><a href=/en/sponsorship>sponsorship</a></b> platforms at <b><a href=https://github.com/sponsors/poolpOrg>Github</a></b>, <b><a href=https://patreon.com/gilles>Patreon</a></b> or
+<b><a href=https://liberapay.com/poolpOrg>LiberaPay</a></b>,
+or even <b>getting me something</b> from my wishlist on <b><a target=_blank href=http://amzn.eu/3MwH6CX>Amazon</a></b>
+for positive <b><a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a></b> :-)<br><br></li><li>You can also help me by <b>commenting articles</b> to spark discussions,
+and by <b>sharing them</b> so they reach a bigger audience,
+they all contain a comment link and icons that will let you share to popular social networks.</li></ul><br></div></div><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><p class="credits copyright text-muted"><a href=https://poolp.org>Gilles Chehade</a>
+-&nbsp;&copy;
+2020
+-
+<a href=https://poolp.org/>poolp.org</a></p><p class="credits theme-by text-muted"><a href=http://gohugo.io>Hugo v0.78.1</a> powered - Theme adapted from <a href=http://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://poolp.org/js/main.js></script><script src=https://poolp.org/js/highlight.min.js></script><script>hljs.initHighlightingOnLoad();</script><script>$(document).ready(function(){$("pre.chroma").css("padding","0");});</script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://poolp.org/js/load-photoswipe.js></script></body></html>

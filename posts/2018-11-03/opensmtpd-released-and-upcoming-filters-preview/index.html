@@ -1,0 +1,195 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>OpenSMTPD released and upcoming filters preview - poolp.org</title><meta property="og:title" content="OpenSMTPD released and upcoming filters preview"><meta name=twitter:title content="OpenSMTPD released and upcoming filters preview"><meta name=description content="TL;DR: Filters have been a (the most ?) long awaited feature in OpenSMTPD. I finally committed most of the filters code to OpenBSD. There is still a bit of work required but the trickiest parts are done. This article describes how filters are implemented and what to expect.  OpenSMTPD 6.4.0 was released ! We have released OpenSMTPD 6.4.0 last week without filters.
+I won&rsquo;t expand on the features in the 6."><meta property="og:description" content="TL;DR: Filters have been a (the most ?) long awaited feature in OpenSMTPD. I finally committed most of the filters code to OpenBSD. There is still a bit of work required but the trickiest parts are done. This article describes how filters are implemented and what to expect.  OpenSMTPD 6.4.0 was released ! We have released OpenSMTPD 6.4.0 last week without filters.
+I won&rsquo;t expand on the features in the 6."><meta name=twitter:description content="TL;DR: Filters have been a (the most ?) long awaited feature in OpenSMTPD. I finally committed most of the filters code to OpenBSD. There is still a bit of work required but the trickiest parts are …"><meta name=author content="Gilles Chehade"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"poolp.org","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/poolp.org\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/poolp.org\/posts\/2018-11-03\/opensmtpd-released-and-upcoming-filters-preview\/","name":"Open s m t p d released and upcoming filters preview"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Gilles Chehade"},"headline":"OpenSMTPD released and upcoming filters preview","description":"TL;DR: Filters have been a (the most ?) long awaited feature in OpenSMTPD. I finally committed most of the filters code to OpenBSD. There is still a bit of work required but the trickiest parts are done. This article describes how filters are implemented and what to expect.  OpenSMTPD 6.4.0 was released ! We have released OpenSMTPD 6.4.0 last week without filters.\nI won\u0026rsquo;t expand on the features in the 6.","inLanguage":"en","wordCount":2246,"datePublished":"2018-11-03T17:27:00","dateModified":"2018-11-03T17:27:00","image":"https:\/\/poolp.org\/images\/me.jpg","keywords":[""],"mainEntityOfPage":"https:\/\/poolp.org\/posts\/2018-11-03\/opensmtpd-released-and-upcoming-filters-preview\/","publisher":{"@type":"Organization","name":"https:\/\/poolp.org\/","logo":{"@type":"ImageObject","url":"https:\/\/poolp.org\/images\/me.jpg","height":60,"width":60}}}</script><meta property="og:title" content="OpenSMTPD released and upcoming filters preview"><meta property="og:description" content="TL;DR: Filters have been a (the most ?) long awaited feature in OpenSMTPD. I finally committed most of the filters code to OpenBSD. There is still a bit of work required but the trickiest parts are done. This article describes how filters are implemented and what to expect.  OpenSMTPD 6.4.0 was released ! We have released OpenSMTPD 6.4.0 last week without filters.
+I won&rsquo;t expand on the features in the 6."><meta property="og:image" content="https://poolp.org/images/me.jpg"><meta property="og:url" content="https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=twitter:title content="OpenSMTPD released and upcoming filters preview"><meta name=twitter:description content="TL;DR: Filters have been a (the most ?) long awaited feature in OpenSMTPD. I finally committed most of the filters code to OpenBSD. There is still a bit of work required but the trickiest parts are …"><meta name=twitter:image content="https://poolp.org/images/me.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:image" content="https://poolp.org/images/me.jpg"><meta name=twitter:image content="https://poolp.org/images/me.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:url" content="https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=generator content="Hugo 0.78.1"><link rel=alternate href=https://poolp.org/index.xml type=application/rss+xml title=poolp.org><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://poolp.org/css/main.css><link rel=stylesheet href=https://poolp.org/css/highlight.min.css><link rel=stylesheet href=https://poolp.org/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous><link rel=stylesheet href=/css/latex.style.css></head><body><div class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<a class=navbar-brand href=https://poolp.org/>poolp.org</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li class=navlinks-container><a class=navlinks-parent>Freelance</a><div class=navlinks-children><a href=/en/contracting/>[en] Hire me !</a>
+<a href=/fr/contracting/>[fr] Recrutez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Sponsorship</a><div class=navlinks-children><a href=/en/sponsorship/>[en] Sponsor me !</a>
+<a href=/fr/sponsorship/>[fr] Sponsorisez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Social</a><div class=navlinks-children><a href=https://patreon.com/gilles>Patreon</a>
+<a href=https://www.linkedin.com/in/gilleschehade>LinkedIn</a>
+<a href=https://github.com/poolpOrg>Github</a>
+<a href=https://twitter.com/poolpOrg>Twitter</a></div></li><li class=navlinks-container><a class=navlinks-parent>Curriculum</a><div class=navlinks-children><a href=https://github.com/poolpOrg/resume/blob/master/resume.en.pdf>EN</a>
+<a href=https://github.com/poolpOrg/resume/blob/master/resume.fr.pdf>FR</a></div></li></ul></div><div class=avatar-container><div class=avatar-img-border><a title=poolp.org href=https://poolp.org/><img class=avatar-img src=https://poolp.org/images/me.jpg alt=poolp.org></a></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-heading><h1 style=text-align:left>OpenSMTPD released and upcoming filters preview</h1></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><pre><code>TL;DR:
+Filters have been a (the most ?) long awaited feature in OpenSMTPD.
+I finally committed most of the filters code to OpenBSD.
+There is still a bit of work required but the trickiest parts are done.
+This article describes how filters are implemented and what to expect.
+</code></pre><p><img src=https://brillianceinsight.files.wordpress.com/2014/02/card-2-24-2014-1_thumb.jpg alt="Good news, everyone!"></p><h2 id=opensmtpd-640-was-released->OpenSMTPD 6.4.0 was released !</h2><p>We have <a href=https://opensmtpd.org/announces/release-6.4.0.txt>released OpenSMTPD 6.4.0 last week</a> <strong>without</strong> filters.</p><p>I won&rsquo;t expand on the features in the 6.4 release as I already wrote about the configuration file changes,
+the issues that required it and the refactors involved,
+this was the one true major feature of the release.</p><p>One notable aspect though is that we dropped our support for OpenSSL in favor of LibreSSL,
+and THAT I should expand upon ;-)</p><h2 id=libressl-ftw->LibreSSL FTW !</h2><p>OpenSMTPD was started long before LibreSSL and from the very first portable version,
+we had to include ifdefs to accomodate the differences between the different OpenSSL versions across Linux distros:
+some had SNI, others don&rsquo;t, some had GCM, others don&rsquo;t.</p><p>When LibreSSL was forked from OpenSSL after a large cleanup of the code,
+we thought we&rsquo;d just depend on that because it was cleaner and also we knew that this version had all the features we relied on.
+Also, there was this plan for a libtls wrapper which would be much simpler to use and less error-prone than libssl.</p><p>It turned out that it wasn&rsquo;t possible because OpenSSL and LibreSSL couldn&rsquo;t coexist on many systems.
+The fact that they shared the same library names (libssl, libcrypto),
+and shared object versionning,
+caused issues with the confused runtime link editor.
+We decided to accomodate both,
+keeping checks in the configure layer to detect what was being used, etc&mldr;
+It was horrible.
+It kept breaking every now and then due to either one making changes.
+I had to deal with these breakages.
+It was horrible.</p><p>Before the 6.4 release,
+I did the portability build passes and yet again it broke on new OpenSSL conflicts with our grammar.
+Three different people using different distros had sent me three different diffs which fixed the issues for them,
+but which I couldn&rsquo;t merge without creating a delta with the native branch which was not acceptable for us.
+The more I tried fixing and the more I was irritated by this OpenSSL/LibreSSL hacks.</p><p>I did a bit of investigation and it turns out the issues that prevented them from coexisting were no longer relevant.
+I verified by building, linking and running OpenSMTPD against LibreSSL on FreeBSD, Ubuntu, Debian, CentOS, ArchLinux and Fedora.
+It is technically possible to make OpenSMTPD depend on LibreSSL without forcing distros to switch from OpenSSL to LibreSSL,
+so there&rsquo;s no reason for us not to depend on LibreSSL anymore.</p><p>This allowed me to start removing ifdefs from our code,
+removing useless tests from the configure.ac and assume that we have the features we need for all systems.</p><p>This doesn&rsquo;t mean that people can&rsquo;t link OpenSMTPD against OpenSSL,
+it just means that they get to handle the diffs to their own version,
+the extra work of maintaining OpenSSL goes out of our hands.</p><h2 id=filters>Filters</h2><p>We started working on filters years ago,
+I even <a href=https://poolp.org/posts/2014-12-12/the-state-of-filters/>wrote an article about them in 2014</a>.</p><p>A first implementation was written.
+After a while, it became clear that the design was wrong and causing unfixable bugs in some filters.
+I decided to pull the plug on that attempt and we removed all of the code.</p><p>A year ago,
+<a href="https://youtu.be/wnhvn1rsXR8?t=3056">during EuroBSDCon 2017</a>,
+I mentionned the filtering daemon we had worked on and which solved these limitations.
+But as OpenBSD 6.4 release was getting closer,
+I started to dislike that idea because I believed it was not addressing the proper problem:
+we had came up with a working solution, not the best solution to the problem.
+The more I spent thinking about this,
+the more the problem looked different from what we initially modeled.</p><p>I discussed my concerns with Eric,
+told him that I thought we had made a mistake in modeling filters,
+that by thinking them differently we could come up with a much simpler solution,
+and somehow managed to convince him I was right :-)</p><p>Given we took so much time already,
+it made sense delaying for a release so we would be confident about our technical choice.</p><p>I worked on a proof of concept for the new model and a week later I had filters working on my laptop,
+a convinced eric and&mldr;
+many months to make it bright and shiny because it was obviously not going to make it into 6.4</p><h2 id=event-reports-and-filter-request>Event reports and filter request</h2><p>The new filters are modeled around the notions of event reports and filter requests.</p><p>During the lifetime of a session,
+an SMTP engine will report various events such as the beginning of a new connection,
+the negotiation of ciphers during the TLS handshake or even the beginning of an SMTP transaction with MAIL FROM.
+These events help the SMTP engine build a state for a session and determine what is acceptable or not from a client at a given time.</p><p>Some filters may not need a state, they may operate on the parameter to a command and that&rsquo;s all.
+Other filters however may need to build a state for a session,
+not necessarily the same exact and complete state as the SMTP engine,
+but a state that makes sense given the work the filter will do.</p><p>The event reports are <em>informative</em> messages,
+which a filter may decide to process or not,
+and that encompass ALL of the SMTP events a session goes through.
+It is possible to replay an entire SMTP session based on these reports.</p><p>The filter requests however are not informative.
+A filter will be configured to handle a particular filtering phase and will receive filter requests for that phase,
+containing the phase and the parameter to filter,
+it will then be REQUIRED to answer the request with an action to take.</p><p>Again,
+simple filters may only deal with filter requests,
+more complex filters may process the event reports to learn about sessions before dealing with filter requests.</p><h2 id=event-processors>Event processors</h2><p>Event processors are standalone executables which &mldr; process event reports and filter requests in an infinite loop.</p><p>OpenSMTPD executes them at startup and sets up an environment so they behave like traditional Unix-filters:
+they read input from stdin and write output to stdout.</p><p>Both event reports and filter requests will consist of single lines,
+each consisting of multiple fields separated by a pipe symbol <code>|</code>.
+All lines will hold a generic set of fields such as event type and session identifier,
+as well as a set of event-specific fields such as an ip address for connection event,
+an email address for mail-from event, etc&mldr;</p><p>Event reports will expect no response,
+meaning that for a line read on stdin there will be no line written on stdout,
+whereas filter requests will expect a response,
+meaning that for a line read on stdin there will be one line written to stdout.</p><p>The simplest processor to write is one reading events to log them:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh><span class=cp>#! /bin/sh
+</span><span class=cp></span><span class=c1>#</span>
+
+<span class=k>while</span> <span class=nb>read</span> line<span class=p>;</span>
+<span class=k>do</span>
+	<span class=nb>echo</span> <span class=nv>$line</span> &gt;&gt; /tmp/output.log
+<span class=k>done</span>
+</code></pre></div><p>If you have ever parsed OpenSMTPD logs to inject them into an ELK or similar,
+you should now be in love with the events reporting feature.</p><p>Filters are not much more complex,
+the only difference is that <code>$line</code> needs to be split to extract the session identifier,
+and the processor needs to write back its decision.</p><p>The simplest filtering processor to write is one that accepts every filter-request:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh><span class=cp>#! /bin/sh
+</span><span class=cp></span><span class=c1>#</span>
+
+<span class=k>while</span> <span class=nb>read</span> line<span class=p>;</span>
+<span class=k>do</span>
+        <span class=k>if</span> <span class=nb>echo</span> <span class=nv>$line</span> <span class=p>|</span> grep <span class=s1>&#39;^filter-request|&#39;</span><span class=p>;</span> <span class=k>then</span>
+		<span class=nv>SESSION</span><span class=o>=</span><span class=sb>`</span><span class=nb>echo</span> <span class=nv>$line</span> <span class=p>|</span> cut -d<span class=se>\|</span> -f4<span class=sb>`</span>
+		<span class=nb>echo</span> <span class=s2>&#34;filter-response|</span><span class=si>${</span><span class=nv>SESSION</span><span class=si>}</span><span class=s2>|proceed&#34;</span>
+	<span class=k>fi</span>
+						
+<span class=k>done</span>
+</code></pre></div><p>Note that while this example shows a synchronous protocol where a filter-request gets an immediate answer,
+the implementation does not impose that limitation.
+There should be a filter-response for each filter-request,
+but they do not need to happen right away and they do not need to happen in the same sequence order.</p><p>Now that you&rsquo;re all sold on this solution, here are the bonus advantages:</p><p>OpenSMTPD only knows that it has to execute the processor and write to its stdin.
+There are no dependencies and no limitations to what language a processor is written in,
+a postmaster does not have to learn C to write a filter but can effectively hack something fast with a few lines of shell or python.</p><p>The events processors are forked:
+they do not share the same memory space as OpenSMTPD,
+they do not share the same memory space as each other,
+and on systems that provide randomized memory layout they do not even share the same memory layout.
+On OpenBSD, each processor could benefit from its own <code>pledge()</code> and its own <code>unveil()</code>.
+A compromise of either one does not imply the compromission of the others or of the daemon.</p><p>In addition, they can be executed with different privileges and including chrooted() to a particular directory:</p><pre><code>proc filter1 &quot;/tmp/filter1.sh&quot; user _filter1
+proc filter2 &quot;/tmp/filter2.sh&quot; group _filter2
+proc filter3 &quot;/tmp/filter3.sh&quot; user _filter3 group gilles
+proc filter4 &quot;/filter4&quot; user _filter4 chroot &quot;/tmp&quot;
+</code></pre><h2 id=event-proc>Event proc</h2><p>Event processors can receive event reports for each events generated by the SMTP engine (for now).</p><p>This allows two things.
+First,
+it allows fine-grained reporting to specialized software that can extract metrics,
+generate fancy dashboards and such.</p><p>Until now,
+people had to try and extract this information from our log files which were meant to be consumed by humans primarily.
+The event logs provides all of the useful informations in a format that can be easily parsed by scripts.
+Converting these entries to the proper format for injecting in a timeseries database or similar becomes trivial.</p><p>Then,
+some filters may be able to work without any context by looking solely at the current command,
+but in many cases a decision at a particular phase may be the consequence of decisions at earlier phases,
+and filters can consume these event reports to build their own view of the state of sessions.</p><p>Here is a sample of event reports:</p><pre><code>report|smtp-in|link-connect|1541271219|3189ac6874354895|localhost|127.0.0.1:41564|127.0.0.1:25
+report|smtp-in|protocol-server|1541271219|3189ac6874354895|220 poolp.org ESMTP OpenSMTPD
+report|smtp-in|protocol-client|1541271222|3189ac6874354895|helo localhost
+report|smtp-in|protocol-server|1541271222|3189ac6874354895|250 poolp.org Hello localhost [127.0.0.1], pleased to meet you
+report|smtp-in|link-disconnect|1541271224|3189ac6874354895
+</code></pre><p>And this is how you define an event proc in smtpd.conf:</p><pre><code>proc my_event_proc &quot;/usr/local/bin/script.sh&quot;
+
+report smtp on my_event_proc
+
+</code></pre><p>This gets OpenSMTPD to run the script at startup and to pipe the event reports to its stdin.</p><h2 id=filter-proc>Filter proc</h2><p>Filter processors are very similar to event processors in how they work,
+excepted that they are registered for specific filtering phases:</p><pre><code>proc my_filter_proc &quot;/usr/local/bin/script.sh&quot;
+
+# line below can be uncommented if filters needs event reports to build a state
+# report smtp on my_filter_proc
+filter smtp helo on my_filter_proc
+filter smtp ehlo on my_filter_proc
+filter smtp mail-from on my_filter_proc
+filter smtp rcpt-to on my_filter_proc
+
+</code></pre><p>The filters will receive phase-specific parameters:</p><pre><code>filter-request|smtp-in|ehlo|e68808ff61812a6f|laptop.home|localhost
+filter-request|smtp-in|mail-from|e68808ff61812a6f|&lt;gilles@laptop.home&gt;
+filter-request|smtp-in|rcpt-to|e68808ff61812a6f|&lt;gilles@laptop.home&gt;
+filter-request|smtp-in|ehlo|e688090368c275a3|laptop.home|localhost
+filter-request|smtp-in|mail-from|e688090368c275a3|&lt;gilles@laptop.home&gt;
+filter-request|smtp-in|rcpt-to|e688090368c275a3|&lt;gilles@laptop.home&gt;
+
+</code></pre><p>To which they will have to reply with a decision:</p><pre><code>filter-response|e68808ff61812a6f|proceed
+filter-response|e68808ff61812a6f|rewrite|BLEH
+filter-response|e68808ff61812a6f|reject|550 go away
+filter-response|e68808ff61812a6f|disconnect|550 go away
+</code></pre><p>The only possible decisions are <code>proceed</code>, <code>rewrite</code>, <code>reject</code> or <code>disconnect</code>.</p><h2 id=builtin-filters>Builtin filters</h2><p>Filter proc are very useful when a decision relies on anything else than the parameter to the command being filtered,
+when it depends on information gathered from previous events,
+or even when it depends on complex logic involving multiple lookups.</p><p>In many cases though,
+a decision to filter may rely solely on the current command and a simple table lookup.
+For instance,
+one may want to reject a HELO hostname that&rsquo;s not part of a table,
+or reject a MAIL FROM that matches a regular expression.</p><p>For these cases,
+OpenSMTPD provides a small set of builtin filters which are fairly generic to be applied to all phases.</p><pre><code>table helo-reject { &quot;foobar&quot;, &quot;barbaz&quot;, &quot;bazqux&quot; }
+table helo-reject-regex { &quot;^f[oO]o[bB]ar$&quot; }
+
+filter smtp helo check-table &lt;helo-reject&gt; reject &quot;550 go away&quot;
+filter smtp helo check-regex &quot;^go\-away$&quot; reject &quot;550 go away&quot;
+filter smtp helo check-regex &lt;helo-reject-regex&gt; reject &quot;550 go away&quot;
+</code></pre><p>We will also implement some very limited additional phase-specific builtin filters that cover common use-cases.
+OpenSMTPD performs a reverse DNS lookup on connect,
+both connect and helo/ehlo filter phases commonly check reverse DNS,
+so we already provided a <code>check-rdns</code> for these phases:</p><pre><code>filter smtp connect check-rdns reject &quot;550 you need a reverse DNS&quot;
+filter smtp ehlo check-rdns reject &quot;550 your HELO hostname and rDNS mismatch&quot;
+</code></pre><p>There shouldn&rsquo;t be many builtin filters,
+we don&rsquo;t expect more than a handful of them,
+but they do exist so there&rsquo;s that ;-)</p><h2 id=what-next->What next ?</h2><p>This code has been committed to OpenBSD and will be available in OpenSMTPD 6.5.0,
+which should happen sometime around April 2019.</p><p>I haven&rsquo;t documented anything yet because both configuration grammar and protocol are still going through lots of changes,
+I would strongly suggest against playing with event reports and filter procs before March,
+unless you&rsquo;re a developer and happy with having to make changes to your code every few days.</p><p>The only part that I have not committed yet is the filtering of DATA,
+which still requires a bit of work but will be working and committed sometime in November.</p><p>Once I have this part done,
+I&rsquo;ll implement a few filters for the use-cases I have such as filter-spf and filter-rspamd,
+then it will be ok as far as I&rsquo;m concerned.</p><p>My main work for the release cycle to come is finishing and polishing filters,
+fixing the portable layer which has grown a monster,
+and ultimately doing a full release cycle of&mldr;
+cosmethic cleanup so code is pleasing to read ;-)</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org_posts/issues/6>https://github.com/poolpOrg/poolp.org_posts/issues/6</a></p><hr><section id=social-share><div class="list-inline footer-links"><div class=share-box aria-hidden=true><ul class=share><li><a href="//twitter.com/share?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-03%2fopensmtpd-released-and-upcoming-filters-preview%2f&text=OpenSMTPD%20released%20and%20upcoming%20filters%20preview&via=poolpOrg" target=_blank title="Share on Twitter"><i class="fab fa-twitter"></i></a></li><li><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-03%2fopensmtpd-released-and-upcoming-filters-preview%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook"></i></a></li><li><a href="//reddit.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-03%2fopensmtpd-released-and-upcoming-filters-preview%2f&title=OpenSMTPD%20released%20and%20upcoming%20filters%20preview" target=_blank title="Share on Reddit"><i class="fab fa-reddit"></i></a></li><li><a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-03%2fopensmtpd-released-and-upcoming-filters-preview%2f&title=OpenSMTPD%20released%20and%20upcoming%20filters%20preview" target=_blank title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a></li><li><a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-03%2fopensmtpd-released-and-upcoming-filters-preview%2f&title=OpenSMTPD%20released%20and%20upcoming%20filters%20preview" target=_blank title="Share on StumbleUpon"><i class="fab fa-stumbleupon"></i></a></li><li><a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-11-03%2fopensmtpd-released-and-upcoming-filters-preview%2f&description=OpenSMTPD%20released%20and%20upcoming%20filters%20preview" target=_blank title="Share on Pinterest"><i class="fab fa-pinterest"></i></a></li></ul></div></div></section></article><ul class="pager blog-pager"><li class=previous><a href=https://poolp.org/posts/2018-05-21/switching-to-opensmtpd-new-config/ data-toggle=tooltip data-placement=top title="switching to OpenSMTPD new config">&larr; Previous Post</a></li><li class=next><a href=https://poolp.org/posts/2018-11-09/opensmtpd-reporting-update/ data-toggle=tooltip data-placement=top title="OpenSMTPD reporting update">Next Post &rarr;</a></li></ul></div></div></div><footer style=text-align:justify><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><h2>Like my work and want to help me ?</h2><br><ul><li>Consider <b>tipping me</b> on <b><a target=_blank href=https://paypal.me/poolpOrg>PayPal</a></b>,
+<b>supporting me</b> through one of the <b><a href=/en/sponsorship>sponsorship</a></b> platforms at <b><a href=https://github.com/sponsors/poolpOrg>Github</a></b>, <b><a href=https://patreon.com/gilles>Patreon</a></b> or
+<b><a href=https://liberapay.com/poolpOrg>LiberaPay</a></b>,
+or even <b>getting me something</b> from my wishlist on <b><a target=_blank href=http://amzn.eu/3MwH6CX>Amazon</a></b>
+for positive <b><a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a></b> :-)<br><br></li><li>You can also help me by <b>commenting articles</b> to spark discussions,
+and by <b>sharing them</b> so they reach a bigger audience,
+they all contain a comment link and icons that will let you share to popular social networks.</li></ul><br></div></div><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><p class="credits copyright text-muted"><a href=https://poolp.org>Gilles Chehade</a>
+-&nbsp;&copy;
+2020
+-
+<a href=https://poolp.org/>poolp.org</a></p><p class="credits theme-by text-muted"><a href=http://gohugo.io>Hugo v0.78.1</a> powered - Theme adapted from <a href=http://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://poolp.org/js/main.js></script><script src=https://poolp.org/js/highlight.min.js></script><script>hljs.initHighlightingOnLoad();</script><script>$(document).ready(function(){$("pre.chroma").css("padding","0");});</script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://poolp.org/js/load-photoswipe.js></script></body></html>

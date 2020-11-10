@@ -1,0 +1,172 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>August 2019 report: Fion, Plakar and OpenSMTPD - poolp.org</title><meta property="og:title" content="August 2019 report: Fion, Plakar and OpenSMTPD"><meta name=twitter:title content="August 2019 report: Fion, Plakar and OpenSMTPD"><meta name=description content="Tl;DR: - small inprovements to the fion window manager - plakar is a backup utility I wrote a long time ago that I will share - tons of opensmtpd stuff, mostly filters and issues handling  Shout outs to my patrons ! As has become the habit, this report begins with a big thank you to my patrons, cited by contribution then alphabetical order.
+This month has been sponsored by:"><meta property="og:description" content="Tl;DR: - small inprovements to the fion window manager - plakar is a backup utility I wrote a long time ago that I will share - tons of opensmtpd stuff, mostly filters and issues handling  Shout outs to my patrons ! As has become the habit, this report begins with a big thank you to my patrons, cited by contribution then alphabetical order.
+This month has been sponsored by:"><meta name=twitter:description content="Tl;DR: - small inprovements to the fion window manager - plakar is a backup utility I wrote a long time ago that I will share - tons of opensmtpd stuff, mostly filters and issues handling  Shout outs …"><meta name=author content="Gilles Chehade"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"poolp.org","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/poolp.org\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/poolp.org\/posts\/2019-08-25\/august-2019-report-fion-plakar-and-opensmtpd\/","name":"August 2019 report fion, plakar and open s m t p d"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Gilles Chehade"},"headline":"August 2019 report: Fion, Plakar and OpenSMTPD","description":"Tl;DR: - small inprovements to the fion window manager - plakar is a backup utility I wrote a long time ago that I will share - tons of opensmtpd stuff, mostly filters and issues handling  Shout outs to my patrons ! As has become the habit, this report begins with a big thank you to my patrons, cited by contribution then alphabetical order.\nThis month has been sponsored by:","inLanguage":"en","wordCount":2083,"datePublished":"2019-08-25T04:00:00","dateModified":"2019-08-25T04:00:00","image":"https:\/\/poolp.org\/images\/me.jpg","keywords":[""],"mainEntityOfPage":"https:\/\/poolp.org\/posts\/2019-08-25\/august-2019-report-fion-plakar-and-opensmtpd\/","publisher":{"@type":"Organization","name":"https:\/\/poolp.org\/","logo":{"@type":"ImageObject","url":"https:\/\/poolp.org\/images\/me.jpg","height":60,"width":60}}}</script><meta property="og:title" content="August 2019 report: Fion, Plakar and OpenSMTPD"><meta property="og:description" content="Tl;DR: - small inprovements to the fion window manager - plakar is a backup utility I wrote a long time ago that I will share - tons of opensmtpd stuff, mostly filters and issues handling  Shout outs to my patrons ! As has become the habit, this report begins with a big thank you to my patrons, cited by contribution then alphabetical order.
+This month has been sponsored by:"><meta property="og:image" content="https://poolp.org/images/me.jpg"><meta property="og:url" content="https://poolp.org/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=twitter:title content="August 2019 report: Fion, Plakar and OpenSMTPD"><meta name=twitter:description content="Tl;DR: - small inprovements to the fion window manager - plakar is a backup utility I wrote a long time ago that I will share - tons of opensmtpd stuff, mostly filters and issues handling  Shout outs …"><meta name=twitter:image content="https://poolp.org/images/me.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:image" content="https://poolp.org/images/me.jpg"><meta name=twitter:image content="https://poolp.org/images/me.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:url" content="https://poolp.org/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=generator content="Hugo 0.78.1"><link rel=alternate href=https://poolp.org/index.xml type=application/rss+xml title=poolp.org><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://poolp.org/css/main.css><link rel=stylesheet href=https://poolp.org/css/highlight.min.css><link rel=stylesheet href=https://poolp.org/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous><link rel=stylesheet href=/css/latex.style.css></head><body><div class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<a class=navbar-brand href=https://poolp.org/>poolp.org</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li class=navlinks-container><a class=navlinks-parent>Freelance</a><div class=navlinks-children><a href=/en/contracting/>[en] Hire me !</a>
+<a href=/fr/contracting/>[fr] Recrutez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Sponsorship</a><div class=navlinks-children><a href=/en/sponsorship/>[en] Sponsor me !</a>
+<a href=/fr/sponsorship/>[fr] Sponsorisez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Social</a><div class=navlinks-children><a href=https://patreon.com/gilles>Patreon</a>
+<a href=https://www.linkedin.com/in/gilleschehade>LinkedIn</a>
+<a href=https://github.com/poolpOrg>Github</a>
+<a href=https://twitter.com/poolpOrg>Twitter</a></div></li><li class=navlinks-container><a class=navlinks-parent>Curriculum</a><div class=navlinks-children><a href=https://github.com/poolpOrg/resume/blob/master/resume.en.pdf>EN</a>
+<a href=https://github.com/poolpOrg/resume/blob/master/resume.fr.pdf>FR</a></div></li></ul></div><div class=avatar-container><div class=avatar-img-border><a title=poolp.org href=https://poolp.org/><img class=avatar-img src=https://poolp.org/images/me.jpg alt=poolp.org></a></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-heading><h1 style=text-align:left>August 2019 report: Fion, Plakar and OpenSMTPD</h1></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><pre><code>Tl;DR:
+- small inprovements to the fion window manager
+- plakar is a backup utility I wrote a long time ago that I will share
+- tons of opensmtpd stuff, mostly filters and issues handling
+</code></pre><h2 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h2><p>As has become the habit,
+this report begins with a big thank you to my patrons,
+cited by contribution then alphabetical order.</p><p>This month has been sponsored by:</p><ul><li>J. Derrick</li><li>Wesley Mouedine Assaby</li><li>Mischa Peters</li><li>Diego Meseguer</li><li>Edgar Pettijohn</li><li>Jdelic</li><li>Sean</li><li>Geoff Hill</li><li>Thomas</li><li>Bleader Raton</li><li>Nick Ryan</li><li>Vegar Linge Halaand</li><li>Igor Zinovik</li><li>Paul Kelly</li><li>Jan J</li><li>C</li></ul><p>I have recently switched to a 75% part-time schedule at work so that I can spend
+a &ldquo;free&rdquo; week each month working on my own stuff, mostly opensource, without any
+kind of pressure: no one knows what I&rsquo;ll be working on and no one but me gets to
+decide how I&rsquo;ll spend this time.
+This comes at the cost of slashing a quarter of my wage, which is sustainable but
+not ideal, so while most of my &ldquo;free&rdquo; weeks will be spent on opensource, I&rsquo;ll be
+doing some sponsored development or short contracts to cover some of the loss if
+needed.</p><p>I opened a patreon account so that people who care about my work can sponsor it,
+allowing me to spend most (if not all) of these &ldquo;free&rdquo; weeks publishing code for
+the community. If you want me to spend more time doing this then you know what
+to do: <a href=https://www.patreon.com/gilles>become my patron</a> !</p><p>So thanks again to my patrons who make this possible, I will list them in all of
+my monthly reports, they are the sponsors of the work I describe below.</p><h2 id=floss-weekly-543>FLOSS Weekly #543</h2><p>This week, hosts Randal Schwartz and Jonathan Bennett
+<a href=https://twit.tv/shows/floss-weekly/episodes/543>invited me to discuss SMTP and OpenSMTPD in their show</a>,
+FLOSS Weekly.</p><p>There&rsquo;s not much to say besides that it was a pleasant experience,
+that I really enjoyed talking to them about OpenBSD and OpenSMTPD,
+and that you should go watch that episode and subscribe to the show :-)</p><h2 id=fion>Fion</h2><p>I didn&rsquo;t work much on the <a href=https://github.com/poolpOrg/fion>fion window manager</a>,
+it&rsquo;s obviously less of a priority to me than upcoming&rsquo;s October OpenSMTPD release.
+Yet, I still managed to get a couple things in.</p><p>I started by introducing a notion of &ldquo;keyboard&rdquo; mode to ease interactions with the window manager:</p><p>For debugging purposes,
+I had hardcoded a few keys as triggers for window management actions:
+<code>w</code> would create a workspace, <code>d</code> would destroy it, <code>n</code> and <code>p</code> would switch to next and previous ones.
+Then I worked on tiles,
+so I reassigned the <code>n</code> and <code>p</code> keys to switch between tiles.
+You get the idea,
+at some point you have to be able to use both workspaces and tiles at the same time :-)</p><p>Keyboard modes allow some combinations of keys <code>win</code>+X to enter a mode specific to a fion concept.
+For instance, <code>win+w</code> enters workspace mode so the next key pressed applies to workspaces,
+<code>win+t</code> enters tile mode so the next key pressed applies to tiles.
+This makes it easier for me to remember the shortcuts because <code>n</code> becomes <code>next</code> in whatever mode you are,
+<code>p</code> becomes <code>previous</code> in whatever mode you are,
+etc&mldr;</p><p>Then,
+I worked on fixing one of the issues on the TODO because if I fix at least one issue each month,
+I might just be able to switch to fion by the end of the year :-p</p><p>Fion displays a status bar at the top of the screen which provides informations regarding the time,
+the current workspace and active tile.
+The status bar is updated by a call to a function called <code>layout_update()</code> which&mldr;
+updates the layout on all screens.
+However, because I was learning XCB, I used the function <code>xcb_wait_for_event()</code> in my event loop,
+which caused fion to block between events and the <code>layout_update()</code> function to only be called when an event wakes up the loop.
+This meant that seconds in the displayed time would hang, then jump by several, it made things look laggy.</p><p>I needed to switch to a multiplexed model and luckily,
+for once,
+it was not tricky to find how to do it as there&rsquo;s a <code>xcb_get_file_descriptor()</code> function providing a descriptor to the connection.
+All it took was some rearranging of the event loop,
+using <code>poll()</code> to wake up on events happening on the connection,
+and a timeout to act as a &lsquo;tick&rsquo; so the layout can be updated disregarding if events occured or not.</p><p>I committed these improvements,
+my next task will be to handle the superposition of tabs inside tiles so we can have multiple X clients sharing the same tile,
+then I&rsquo;ll deal with killing tiles and resizing siblings,
+which is the main show stopper for switching to fion as far as i&rsquo;m concerned.</p><h2 id=plakar>Plakar</h2><p>I wasn&rsquo;t sure if I was going to mention this yet but it&rsquo;s useful enough.</p><p>I&rsquo;ve been self-hosted since ~1999 and along the years I&rsquo;ve dealt with backups in various ways.
+I went from tar, to dump/restore, to incremental dump/restore, to rsync, to incremental rsync,
+and started writing my own tools for different use-cases I had.</p><p>As I&rsquo;m doing some cleanup of my private repositories I found the following ones:</p><pre><code>drwxr-xr-x   2 gilles  gilles   512 Aug  3  2012 backup
+drwxr-xr-x   2 gilles  gilles   512 Jul 23  2012 backuptool
+drwxr-xr-x   6 gilles  gilles   512 Apr  1  2015 plakar
+</code></pre><p>Both <code>backup</code> and <code>backuptool</code> are going to bite the dust,
+they were basically experiments to come up with a one-file backup format,
+providing dedup and versionning of content.
+I won&rsquo;t enter much details as they did work but were not that interesting and I didn&rsquo;t use them for long,
+proof that they weren&rsquo;t itching my scratch.</p><p>On another hand, <code>plakar</code> is far more interesting.</p><p>It is a utility that created a repository in <code>~/.plakar</code>,
+and would then let you snapshot a filesystem,
+splitting each file into content-defined chunks and storing them into the repository.
+The chunks would be compressed and encrypted,
+hard-link games would ensure that the repository can maintain multiple snapshots of the same directories at virtually no cost,
+encryption would allow the repository to be pushed to a remote server since I tend to keep backups at two sites and on my google drive.</p><p>At this point,
+some of you will ask &ldquo;Isn&rsquo;t that what <a href=https://tarsnap.com>tarsnap</a> do ?&rdquo;,
+to which I&rsquo;ll answer &ldquo;It seems to but I don&rsquo;t really know as I haven&rsquo;t used it and tarsnap seems not to allow self-hosting&rdquo;.</p><p>Anyways,
+that repository contains a version written in Python which supports various operations:
+<code>push</code> to save a snapshot into the repository,
+<code>pull</code> to restore a snapshot,
+<code>remove</code> to kill a snapshot,
+<code>list</code> to list snapshots,
+<code>diff</code> to diff two snapshots and <code>search</code> to search for files and directories inside snapshots.
+In addition,
+operations can be done on portions of a snapshot,
+not requiring the extraction of an entire snapshot when only a few files or directories are needed.
+I had started an UI which allowed <code>plakar</code> to display a randomized password and launch a local webserver expecting that password,
+a web interface would then allow visualizing the snapshots and their contents.</p><pre><code>laptop$ plakar list
+laptop$ plakar push ~/wip/OpenSMTPD
+snapshot ee30bf0b4a4f44b5bfe71c632424c4d3: dirs=47, files=426, errors=0
+laptop$ plakar list
+2019-08-25-05:34:01 ee30bf0b4a4f44b5bfe71c632424c4d3 dcnt=47 fcnt=426 size=28.4MB
+laptop$ plakar pull ee30
+laptop$ ls ee30bf0b4a4f44b5bfe71c632424c4d3/home/gilles/wip/OpenSMTPD/
+README     THANKS     regress    smtpd      smtpscript
+laptop$ ls /home/gilles/.plakar
+chunks    pending   purge     resources snapshots
+laptop$ plakar ui
+
+To use UI, go to http://127.0.0.1:8080, and use password: 2f1f1b61350fdfbb
+
+Bottle v0.12.17 server starting up (using WSGIRefServer())...
+Listening on http://127.0.0.1:8080/
+Hit Ctrl-C to quit.
+</code></pre><img alt="FION on my laptop screen" src=/images/2019-08-25-plakar_1.png width=100%>
+[full screen](/images/2019-08-25-plakar_1.png)
+<img alt="FION on my laptop screen" src=/images/2019-08-25-plakar_2.png width=100%>
+[full screen](/images/2019-08-25-plakar_2.png)
+<img alt="FION on my laptop screen" src=/images/2019-08-25-plakar_3.png width=100%>
+[full screen](/images/2019-08-25-plakar_3.png)
+<img alt="FION on my laptop screen" src=/images/2019-08-25-plakar_4.png width=100%>
+[full screen](/images/2019-08-25-plakar_4.png)<p>I don&rsquo;t intend to release the Python code as I will not maintain it,
+however to learn Golang I rewrote <code>plakar</code> in Go this week-end and I have a version that works.
+It&rsquo;s not yet finished but the push/pull/list/trash commands are working,
+I&rsquo;m going to start using it on my machines and see how it goes for the next few weeks before I publish the code on Github.</p><pre><code>laptop$ plakar list
+laptop$ plakar push ~/wip/OpenSMTPD
+2b5bec66-1799-48a1-8418-42509347eac1
+laptop$ plakar list
+2b5bec66-1799-48a1-8418-42509347eac1 2019-08-25 05:38:58.912591955 +0200 CEST
+laptop$ plakar pull 2b5
+Restoring directories: 48/48
+Restoring files: 426/426
+laptop$ plakar trash 2b5
+laptop$ plakar list
+laptop$
+laptop$ ls 2b5bec66-1799-48a1-8418-42509347eac1/home/gilles/wip/OpenSMTPD/
+README     THANKS     regress    smtpd      smtpscript
+laptop$ ls /home/gilles/.plakar
+chunks       objects      purge        snapshots    transactions
+laptop$
+</code></pre><h2 id=opensmtpd>OpenSMTPD</h2><p>On the OpenSMTPD front,
+I&rsquo;ve done quite a lot of work so I will only mention the big stuff.</p><h2 id=errata-published>Errata published</h2><p>A user reported a bug in OpenSMTPD causing the daemon to hit one of its own sanity checks and call <code>fatal()</code>,
+resulting in a denial of service.</p><p>The bug affected OpenSMTPD 6.5 and prior,
+so I had to investigate and prepare patches for OpenBSD 6.5, OpenBSD 6.4 as well as OpenSMTPD-portable.</p><h2 id=proxy-v2-support>Proxy-v2 support</h2><p>I committed experimental support for proxy-v2 protocol,
+based on a diff contributed by Antoine Kaufmann and reworked a bit.</p><p>What this does is allow OpenSMTPD to work with SMTP sessions proxied by haproxy, for example.
+The session begins with a header which contains informations regarding the source address,
+the proxy layer in OpenSMTPD will use that information to rewrite a <code>struct sockaddr_storage</code> for the SMTP engine.</p><p>I have ran the code for my own testing but it is experimental because I have only done light testing,
+we need feedback from power users.</p><h2 id=handled-a-ton-of-github-issues>Handled a ton of Github issues</h2><p>We had been lagging a bit behind issues on Github,
+many of them being either easily fixable,
+already resolved or user mistakes.</p><p>I took the time to go through about twenty of them,
+resolving half in a way or another and ensuring the other half is on the right track.</p><p>Several issues are actually dependant of some projects we have,
+so they are stuck until we&rsquo;re done with a project and will be closed in batches once this is done.
+This is for example the case for several tickets related to TLS which will not be handled until we complete the switch to libtls&mldr;
+which provides out of the box support for these features or makes them trivial.</p><h2 id=filter-rspamd>filter-rspamd</h2><p>I have pre-released version 0.1.0 of my <code>filter-rspamd</code> on <a href=https://github.com/poolpOrg/filter-rspamd>Github</a>.</p><p>It has been running since last month on my machines without a single issue,
+so I guess it is fairly usable.</p><p>I also committed a port to OpenBSD so that it&rsquo;ll be possible to <code>pkg_add filter-rspamd</code>.</p><h2 id=filter-senderscore>filter-senderscore</h2><p>I have also pre-released version 0.1.0 of my <code>filter-senderscore</code> on <a href=https://github.com/poolpOrg/filter-senderscore>Github</a>.</p><p>What it does is query the SenderScore DNS to obtain the reputation of a sender IP address,
+then allow blocking, flagging as Spam and/or applying a reputation-dependant delay to sessions.</p><p>I committed a port to OpenBSD for that one too so it&rsquo;ll be possible to <code>pkg_add filter-senderscore</code>.</p><h2 id=filter-checksenderdomain>filter-checksenderdomain</h2><p>This one I don&rsquo;t think I&rsquo;ll release, but it&rsquo;s available on <a href=https://github.com/poolpOrg/filter-checksenderdomain>Github</a>.</p><p>The name should be quite obvious,
+it simply performs a DNS lookup on the MAIL FROM domain to check if it resolves.
+I wrote it to prove that some of our issues don&rsquo;t belong in OpenSMTPD but can be solved as easily in a filter.</p><h2 id=smtp-out-reporting>smtp-out reporting</h2><p>I decided to postpone the smtp-out reporting because it requires a bit of rework on the IPC between SMTP engine and filtering layer,
+something not visible to people writing filters,
+but which I&rsquo;m not comfortable doing at this point knowing that I may not be very available in September in case I break things.</p><p>I will continue working on smtp-out reporting so it can get committed when OpenBSD 6.6 is out,
+until then I&rsquo;ll work on stuff that are risk-free :-)</p><h2 id=what-next->What next ?</h2><p>I will take next few weeks to stress test OpenSMTPD and ensure our next release is rock-solid,
+then I will enter some kind of code freeze until 6.6 is out because the changeset is already significant.</p><p>When I write my next report in late September,
+I may or may not yet have <code>fork()</code>-ed a little human in my house,
+no guarantees that the September report will be on time !</p><p>That being said,
+I&rsquo;m curious if the format of these reports is readable,
+if you have suggestions feel free to let me know.
+Should I provide more/less details, be more/less technical ?</p><p>I intend to write some technical articles regarding the internals of Plakar,
+since there may be bits of interest to other projects,
+including a noSQL private repo I still have sleeping out there ;-)</p><p>Am I readable ?
+Let me know.</p><p>If you like my work, <a href=https://patreon.com/gilles>support me on patreon</a> !</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org_posts/issues/15>https://github.com/poolpOrg/poolp.org_posts/issues/15</a></p><hr><section id=social-share><div class="list-inline footer-links"><div class=share-box aria-hidden=true><ul class=share><li><a href="//twitter.com/share?url=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-25%2faugust-2019-report-fion-plakar-and-opensmtpd%2f&text=August%202019%20report%3a%20Fion%2c%20Plakar%20and%20OpenSMTPD&via=poolpOrg" target=_blank title="Share on Twitter"><i class="fab fa-twitter"></i></a></li><li><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-25%2faugust-2019-report-fion-plakar-and-opensmtpd%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook"></i></a></li><li><a href="//reddit.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-25%2faugust-2019-report-fion-plakar-and-opensmtpd%2f&title=August%202019%20report%3a%20Fion%2c%20Plakar%20and%20OpenSMTPD" target=_blank title="Share on Reddit"><i class="fab fa-reddit"></i></a></li><li><a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-25%2faugust-2019-report-fion-plakar-and-opensmtpd%2f&title=August%202019%20report%3a%20Fion%2c%20Plakar%20and%20OpenSMTPD" target=_blank title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a></li><li><a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-25%2faugust-2019-report-fion-plakar-and-opensmtpd%2f&title=August%202019%20report%3a%20Fion%2c%20Plakar%20and%20OpenSMTPD" target=_blank title="Share on StumbleUpon"><i class="fab fa-stumbleupon"></i></a></li><li><a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-25%2faugust-2019-report-fion-plakar-and-opensmtpd%2f&description=August%202019%20report%3a%20Fion%2c%20Plakar%20and%20OpenSMTPD" target=_blank title="Share on Pinterest"><i class="fab fa-pinterest"></i></a></li></ul></div></div></section></article><ul class="pager blog-pager"><li class=previous><a href=https://poolp.org/posts/2019-07-27/july-2019-report-tons-of-smtpd-work-mostly/ data-toggle=tooltip data-placement=top title="July 2019 report: tons of smtpd work mostly">&larr; Previous Post</a></li><li class=next><a href=https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/ data-toggle=tooltip data-placement=top title="You should not run your mail server because mail is hard">Next Post &rarr;</a></li></ul></div></div></div><footer style=text-align:justify><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><h2>Like my work and want to help me ?</h2><br><ul><li>Consider <b>tipping me</b> on <b><a target=_blank href=https://paypal.me/poolpOrg>PayPal</a></b>,
+<b>supporting me</b> through one of the <b><a href=/en/sponsorship>sponsorship</a></b> platforms at <b><a href=https://github.com/sponsors/poolpOrg>Github</a></b>, <b><a href=https://patreon.com/gilles>Patreon</a></b> or
+<b><a href=https://liberapay.com/poolpOrg>LiberaPay</a></b>,
+or even <b>getting me something</b> from my wishlist on <b><a target=_blank href=http://amzn.eu/3MwH6CX>Amazon</a></b>
+for positive <b><a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a></b> :-)<br><br></li><li>You can also help me by <b>commenting articles</b> to spark discussions,
+and by <b>sharing them</b> so they reach a bigger audience,
+they all contain a comment link and icons that will let you share to popular social networks.</li></ul><br></div></div><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><p class="credits copyright text-muted"><a href=https://poolp.org>Gilles Chehade</a>
+-&nbsp;&copy;
+2020
+-
+<a href=https://poolp.org/>poolp.org</a></p><p class="credits theme-by text-muted"><a href=http://gohugo.io>Hugo v0.78.1</a> powered - Theme adapted from <a href=http://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://poolp.org/js/main.js></script><script src=https://poolp.org/js/highlight.min.js></script><script>hljs.initHighlightingOnLoad();</script><script>$(document).ready(function(){$("pre.chroma").css("padding","0");});</script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://poolp.org/js/load-photoswipe.js></script></body></html>

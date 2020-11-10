@@ -1,0 +1,172 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>OpenSMTPD 6.0.0 is released ! - poolp.org</title><meta property="og:title" content="OpenSMTPD 6.0.0 is released !"><meta name=twitter:title content="OpenSMTPD 6.0.0 is released !"><meta name=description content="TL;DR: We just released OpenSMTPD 6.0.0 and it's quite different from former releases. Turns out most of the changes are not visible.  A featureless release I managed to wrap the 6.0.0 release yesterday.
+Unlike most of our releases, it comes out with almost no new feature.
+The changelog fits in less than 10 lines as follows:
+- new fork+reexec model so each process has its own randomized memory space - logging format has been reworked - a &#34;multi-line response&#34; bug in the LMTP delivery backend has been fixed - connections concurrency limits have been bumped - artificial delaying in remote sessions have been reduced - dhparams option has been removed - dhe option has been added, supporting auto and legacy modes - smtp engine has been simplified - various cosmethic changes, code cleanup and documentation improvement  Seems like a very productive slacking, however some of these changes turn out to be very interesting in terms of code simplification and security."><meta property="og:description" content="TL;DR: We just released OpenSMTPD 6.0.0 and it's quite different from former releases. Turns out most of the changes are not visible.  A featureless release I managed to wrap the 6.0.0 release yesterday.
+Unlike most of our releases, it comes out with almost no new feature.
+The changelog fits in less than 10 lines as follows:
+- new fork+reexec model so each process has its own randomized memory space - logging format has been reworked - a &#34;multi-line response&#34; bug in the LMTP delivery backend has been fixed - connections concurrency limits have been bumped - artificial delaying in remote sessions have been reduced - dhparams option has been removed - dhe option has been added, supporting auto and legacy modes - smtp engine has been simplified - various cosmethic changes, code cleanup and documentation improvement  Seems like a very productive slacking, however some of these changes turn out to be very interesting in terms of code simplification and security."><meta name=twitter:description content="TL;DR: We just released OpenSMTPD 6.0.0 and it's quite different from former releases. Turns out most of the changes are not visible.  A featureless release I managed to wrap the 6.0.0 release …"><meta name=author content="Gilles Chehade"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"poolp.org","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/poolp.org\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/poolp.org\/posts\/2016-09-12\/opensmtpd-6.0.0-is-released\/","name":"Open s m t p d 6.0.0 is released !"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Gilles Chehade"},"headline":"OpenSMTPD 6.0.0 is released !","description":"TL;DR: We just released OpenSMTPD 6.0.0 and it\u0027s quite different from former releases. Turns out most of the changes are not visible.  A featureless release I managed to wrap the 6.0.0 release yesterday.\nUnlike most of our releases, it comes out with almost no new feature.\nThe changelog fits in less than 10 lines as follows:\n- new fork\u002breexec model so each process has its own randomized memory space - logging format has been reworked - a \u0026quot;multi-line response\u0026quot; bug in the LMTP delivery backend has been fixed - connections concurrency limits have been bumped - artificial delaying in remote sessions have been reduced - dhparams option has been removed - dhe option has been added, supporting auto and legacy modes - smtp engine has been simplified - various cosmethic changes, code cleanup and documentation improvement  Seems like a very productive slacking, however some of these changes turn out to be very interesting in terms of code simplification and security.","inLanguage":"en","wordCount":1400,"datePublished":"2016-09-12T08:00:00","dateModified":"2016-09-12T08:00:00","image":"https:\/\/poolp.org\/images\/me.jpg","keywords":[""],"mainEntityOfPage":"https:\/\/poolp.org\/posts\/2016-09-12\/opensmtpd-6.0.0-is-released\/","publisher":{"@type":"Organization","name":"https:\/\/poolp.org\/","logo":{"@type":"ImageObject","url":"https:\/\/poolp.org\/images\/me.jpg","height":60,"width":60}}}</script><meta property="og:title" content="OpenSMTPD 6.0.0 is released !"><meta property="og:description" content="TL;DR: We just released OpenSMTPD 6.0.0 and it's quite different from former releases. Turns out most of the changes are not visible.  A featureless release I managed to wrap the 6.0.0 release yesterday.
+Unlike most of our releases, it comes out with almost no new feature.
+The changelog fits in less than 10 lines as follows:
+- new fork+reexec model so each process has its own randomized memory space - logging format has been reworked - a &#34;multi-line response&#34; bug in the LMTP delivery backend has been fixed - connections concurrency limits have been bumped - artificial delaying in remote sessions have been reduced - dhparams option has been removed - dhe option has been added, supporting auto and legacy modes - smtp engine has been simplified - various cosmethic changes, code cleanup and documentation improvement  Seems like a very productive slacking, however some of these changes turn out to be very interesting in terms of code simplification and security."><meta property="og:image" content="https://poolp.org/images/me.jpg"><meta property="og:url" content="https://poolp.org/posts/2016-09-12/opensmtpd-6.0.0-is-released/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=twitter:title content="OpenSMTPD 6.0.0 is released !"><meta name=twitter:description content="TL;DR: We just released OpenSMTPD 6.0.0 and it's quite different from former releases. Turns out most of the changes are not visible.  A featureless release I managed to wrap the 6.0.0 release …"><meta name=twitter:image content="https://poolp.org/images/me.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:image" content="https://poolp.org/images/me.jpg"><meta name=twitter:image content="https://poolp.org/images/me.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:url" content="https://poolp.org/posts/2016-09-12/opensmtpd-6.0.0-is-released/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=generator content="Hugo 0.78.1"><link rel=alternate href=https://poolp.org/index.xml type=application/rss+xml title=poolp.org><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://poolp.org/css/main.css><link rel=stylesheet href=https://poolp.org/css/highlight.min.css><link rel=stylesheet href=https://poolp.org/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous><link rel=stylesheet href=/css/latex.style.css></head><body><div class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<a class=navbar-brand href=https://poolp.org/>poolp.org</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li class=navlinks-container><a class=navlinks-parent>Freelance</a><div class=navlinks-children><a href=/en/contracting/>[en] Hire me !</a>
+<a href=/fr/contracting/>[fr] Recrutez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Sponsorship</a><div class=navlinks-children><a href=/en/sponsorship/>[en] Sponsor me !</a>
+<a href=/fr/sponsorship/>[fr] Sponsorisez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Social</a><div class=navlinks-children><a href=https://patreon.com/gilles>Patreon</a>
+<a href=https://www.linkedin.com/in/gilleschehade>LinkedIn</a>
+<a href=https://github.com/poolpOrg>Github</a>
+<a href=https://twitter.com/poolpOrg>Twitter</a></div></li><li class=navlinks-container><a class=navlinks-parent>Curriculum</a><div class=navlinks-children><a href=https://github.com/poolpOrg/resume/blob/master/resume.en.pdf>EN</a>
+<a href=https://github.com/poolpOrg/resume/blob/master/resume.fr.pdf>FR</a></div></li></ul></div><div class=avatar-container><div class=avatar-img-border><a title=poolp.org href=https://poolp.org/><img class=avatar-img src=https://poolp.org/images/me.jpg alt=poolp.org></a></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-heading><h1 style=text-align:left>OpenSMTPD 6.0.0 is released !</h1></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><pre><code>TL;DR:
+We just released OpenSMTPD 6.0.0 and it's quite different from former releases.
+Turns out most of the changes are not visible.
+</code></pre><h2 id=a-featureless-release>A featureless release</h2><p>I managed to wrap the 6.0.0 release yesterday.</p><p>Unlike most of our releases, it comes out with almost no new feature.</p><p>The changelog fits in less than 10 lines as follows:</p><pre><code>- new fork+reexec model so each process has its own randomized memory space
+- logging format has been reworked
+- a &quot;multi-line response&quot; bug in the LMTP delivery backend has been fixed
+- connections concurrency limits have been bumped
+- artificial delaying in remote sessions have been reduced
+- dhparams option has been removed
+- dhe option has been added, supporting auto and legacy modes
+- smtp engine has been simplified
+- various cosmethic changes, code cleanup and documentation improvement
+</code></pre><p>Seems like a very productive slacking, however some of these changes turn out
+to be very interesting in terms of code simplification and security.</p><p>In this article I&rsquo;ll focus on the fork+(re)exec model change.</p><h2 id=memory-space-randomization>Memory space randomization</h2><p>OpenBSD provides each process with a randomized memory space where pretty much
+everything ending up in memory is going to have different locations each time
+you run a new instance. All memory allocations using either <code>malloc()</code> or
+<code>mmap()</code> are randomized, the dynamic loader is randomized and recent work was
+committed so that libc gets randomized at each and every system start, the
+goal being that not only the place where the symbols are mapped in memory
+changes at every run, but that the symbols themselves get shuffled so that
+they are randomized one relative to another.</p><p>This basically means that if we both run the same program, there&rsquo;s about zero
+chances that we will have a similar memory layout and that functions will be
+sitting at the same addresses.</p><p>In terms of security this makes exploitation particularly hard as there aren&rsquo;t
+so many things an attacker can guess regarding the memory layout. She can&rsquo;t
+study her own system to determine where things are located on yours, and every
+time the instance is restarted, former knowledge has gone away so that anything
+learnt will no longer be true once the program restarts.</p><p>This coupled with the fact that OpenBSD daemons tend to exit rather than attempt
+to rexecute a crashed process, level up the barrier quite a bit.</p><p>Here, a program will simply print &ldquo;the same&rdquo; addresses every time it is
+executed:</p><pre><code> $ ./a.out
+ 0x7f7ffffd4514  address of a stack variable
+ 0x1061902ffe40  address of a malloc() allocation
+ 0x105eeb000a64  address of a function within the program
+ 0x105eeb000a6a  address of the main function
+ 0x1060fcf67a90  address of a libc function
+ 
+ $ ./a.out
+ 0x7f7ffffbb714  address of a stack variable
+ 0xf7cbac277c0   address of a malloc() allocation
+ 0xf7a05d00a64   address of a function within the program
+ 0xf7a05d00a6a   address of the main function
+ 0xf7c34ba9a90   address of a libc function
+ 
+ $ ./a.out
+ 0x7f7ffffeab74  address of a stack variable
+ 0x15b5c11cc5c0  address of a malloc() allocation
+ 0x15b354800a64  address of a function within the program
+ 0x15b354800a6a  address of the main function
+ 0x15b5ab116a90  address of a libc function
+ $
+</code></pre><h2 id=the-opensmtpd-bootstrap>The OpenSMTPD bootstrap</h2><p>The idea for fork+exec in OpenSMTPD came from a discussion between <code>deraadt@</code>
+and <code>eric@</code> during a hackathon I hosted in Nantes mid-May this year.</p><p>The OpenSMTPD bootstrap process was quite simple:</p><p>Upon executation, the parent process would read configuration, build a memory
+representation of it and would then create a bunch of <code>socketpair()</code> before
+<code>fork()</code>-ing all of its child processes.</p><p>By the virtue of <code>fork()</code>, all children would inherit the configuration as well
+as all the sockets necessary for IPC. They would only have to zero and free the
+bits of configuration they don&rsquo;t need and close sockets meant to be used by the
+other children and be set.</p><p>This was nice and all, but could be improved.</p><p>When a process <code>fork()</code>s, the child process gets an exact copy of the parent
+memory space. Any symbol in the parent address space is present at the same
+address in the child and only new allocations will cause the parent and child
+to diverge.</p><p>So everytime you run OpenSMTPD, the processes in your instance are different
+from the last time you ran it, however within a single instance the processes
+share a lot of addresses together. In the following example, note how all of
+the symbols share the same address in parent and child, except for the
+<code>malloc()</code> call that happened after <code>fork()</code>:</p><pre><code>$ ./a.out
+=== in parent
+0x7f7ffffd3c44  address of a stack variable
+0x8e8a457c040   address of a malloc() allocation BEFORE fork
+0x8e8181631c0   address of a malloc() allocation AFTER fork
+0x8e5ce100b34   address of a function within the program
+0x8e5ce100c20   address of the main function
+0x8e88231aa90   address of a libc function
+=== in child
+0x7f7ffffd3c44  address of a stack variable
+0x8e8a457c040   address of a malloc() allocation BEFORE fork
+0x8e8ad0311c0   address of a malloc() allocation AFTER fork
+0x8e5ce100b34   address of a function within the program
+0x8e5ce100c20   address of the main function
+0x8e88231aa90   address of a libc function
+
+$ ./a.out
+=== in parent
+0x7f7ffffc0684  address of a stack variable
+0x1fc99fc64100  address of a malloc() allocation BEFORE fork
+0x1fc9443a6280  address of a malloc() allocation AFTER fork
+0x1fc704400b34  address of a function within the program
+0x1fc704400c20  address of the main function
+0x1fc97c85aa90  address of a libc function
+=== in child
+0x7f7ffffc0684  address of a stack variable
+0x1fc99fc64100  address of a malloc() allocation BEFORE fork
+0x1fc90bb1e280  address of a malloc() allocation AFTER fork
+0x1fc704400b34  address of a function within the program
+0x1fc704400c20  address of the main function
+0x1fc97c85aa90  address of a libc function
+$
+</code></pre><p>While all the OpenSMTPD processes end up diverging by a great lot when
+it comes to locally allocated addresses, the problem is that if a process
+is compromised then it gives immediate information regarding all of the
+other processes.</p><p>Knowing the memory address of the configuration in a child process will
+immediately tell an attacker where the configuration is located in all
+of the other processes, and if the proper amount of bugs is found this
+can prove useful.</p><h2 id=the-new-forkreexec-model>The new <code>fork()</code>+(re)exec model</h2><p>The exec family function will transform an existing process into a new
+process by basically reconstructing it from the new program.</p><p>This is what happens when your shell stops being a shell and becomes
+a <code>ls</code> instance for example. It forgets (pretty much) everything it
+knew about the former process and starts with its own brand new
+randomized memory space.</p><p>So <code>deraadt@</code> suggested that if OpenSMTPD would not just <code>fork()</code> children
+but instead <code>fork()</code> them and reexecute the <code>smtpd</code> binary, then each of
+the children would have its own randomized memory space.</p><p>The idea itself is neat, however not so trivial to implement because when
+we reexec the whole &ldquo;inherit configuration and descriptors&rdquo; part goes away.
+It&rsquo;s not just fork and exec, it&rsquo;s fork and exec and figure a way for the
+parent to pass back all the information and descriptors back to the new
+post-fork instance so it is the new instance that allocates memory and
+decides where the information goes.</p><pre><code>$ ./a.out
+=== in parent
+0x7f7fffff6984  address of a stack variable
+0x10a78e9cdc0   address of a malloc() allocation
+0x10873500b84   address of a function within the program
+0x10873500c57   address of the main function
+0x10b6b748a90   address of a libc function
+=== in child
+0x7f7fffff8bc4  address of a stack variable
+0x142a9fe228c0  address of a malloc() allocation
+0x14289e900b84  address of a function within the program
+0x14289e900c57  address of the main function
+0x142ad94e0a90  address of a libc function
+
+$ ./a.out
+=== in parent
+0x7f7ffffbdee4  address of a stack variable
+0x1f673b59d700  address of a malloc() allocation
+0x1f6482500b84  address of a function within the program
+0x1f6482500c57  address of the main function
+0x1f66b1b71a90  address of a libc function
+=== in child
+0x7f7ffffdcc74  address of a stack variable
+0xe10ddc66e40   address of a malloc() allocation
+0xe0ec9f00b84   address of a function within the program
+0xe0ec9f00c57   address of the main function
+0xe10d3a5fa90   address of a libc function
+$
+</code></pre><p>Eric reworked the entire bootstrap process so the parent reads configuration,
+creates all of the sockets, forks & execs all children in a special mode&mldr;</p><p>&mldr; then have the parent pass each children only the bit of configuration
+they need and the descriptors they require for IPC.</p><p>This was really hard work and I&rsquo;m amazed he managed to wrap it between the
+hackathon and the release freeze, this makes OpenSMTPD far more resistant to
+a whole lot new range of attacks.</p><p>I&rsquo;ll write about the smtp engine improvements in a further article, stay tuned.</p><hr><section id=social-share><div class="list-inline footer-links"><div class=share-box aria-hidden=true><ul class=share><li><a href="//twitter.com/share?url=https%3a%2f%2fpoolp.org%2fposts%2f2016-09-12%2fopensmtpd-6.0.0-is-released%2f&text=OpenSMTPD%206.0.0%20is%20released%20%21&via=poolpOrg" target=_blank title="Share on Twitter"><i class="fab fa-twitter"></i></a></li><li><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2016-09-12%2fopensmtpd-6.0.0-is-released%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook"></i></a></li><li><a href="//reddit.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2016-09-12%2fopensmtpd-6.0.0-is-released%2f&title=OpenSMTPD%206.0.0%20is%20released%20%21" target=_blank title="Share on Reddit"><i class="fab fa-reddit"></i></a></li><li><a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fpoolp.org%2fposts%2f2016-09-12%2fopensmtpd-6.0.0-is-released%2f&title=OpenSMTPD%206.0.0%20is%20released%20%21" target=_blank title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a></li><li><a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2016-09-12%2fopensmtpd-6.0.0-is-released%2f&title=OpenSMTPD%206.0.0%20is%20released%20%21" target=_blank title="Share on StumbleUpon"><i class="fab fa-stumbleupon"></i></a></li><li><a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fpoolp.org%2fposts%2f2016-09-12%2fopensmtpd-6.0.0-is-released%2f&description=OpenSMTPD%206.0.0%20is%20released%20%21" target=_blank title="Share on Pinterest"><i class="fab fa-pinterest"></i></a></li></ul></div></div></section></article><ul class="pager blog-pager"><li class=previous><a href=https://poolp.org/posts/2015-12-22/home-sweet-home/ data-toggle=tooltip data-placement=top title="Home, sweet home">&larr; Previous Post</a></li><li class=next><a href=https://poolp.org/posts/2018-01-08/news-from-the-front/ data-toggle=tooltip data-placement=top title="News from the front !">Next Post &rarr;</a></li></ul></div></div></div><footer style=text-align:justify><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><h2>Like my work and want to help me ?</h2><br><ul><li>Consider <b>tipping me</b> on <b><a target=_blank href=https://paypal.me/poolpOrg>PayPal</a></b>,
+<b>supporting me</b> through one of the <b><a href=/en/sponsorship>sponsorship</a></b> platforms at <b><a href=https://github.com/sponsors/poolpOrg>Github</a></b>, <b><a href=https://patreon.com/gilles>Patreon</a></b> or
+<b><a href=https://liberapay.com/poolpOrg>LiberaPay</a></b>,
+or even <b>getting me something</b> from my wishlist on <b><a target=_blank href=http://amzn.eu/3MwH6CX>Amazon</a></b>
+for positive <b><a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a></b> :-)<br><br></li><li>You can also help me by <b>commenting articles</b> to spark discussions,
+and by <b>sharing them</b> so they reach a bigger audience,
+they all contain a comment link and icons that will let you share to popular social networks.</li></ul><br></div></div><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><p class="credits copyright text-muted"><a href=https://poolp.org>Gilles Chehade</a>
+-&nbsp;&copy;
+2020
+-
+<a href=https://poolp.org/>poolp.org</a></p><p class="credits theme-by text-muted"><a href=http://gohugo.io>Hugo v0.78.1</a> powered - Theme adapted from <a href=http://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://poolp.org/js/main.js></script><script src=https://poolp.org/js/highlight.min.js></script><script>hljs.initHighlightingOnLoad();</script><script>$(document).ready(function(){$("pre.chroma").css("padding","0");});</script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://poolp.org/js/load-photoswipe.js></script></body></html>

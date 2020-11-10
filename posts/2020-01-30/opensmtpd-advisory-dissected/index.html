@@ -1,0 +1,412 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>OpenSMTPD advisory dissected - poolp.org</title><meta property="og:title" content="OpenSMTPD advisory dissected"><meta name=twitter:title content="OpenSMTPD advisory dissected"><meta name=description content="TL;DR: - Qualys released an advisory for a bad, bad vulnerability - an MTA is a very bad software to have a vulnerability in - hole was plugged but that's not enough, similar bugs should be mitigated in the future - article discusses what could have prevented escalation despite the bug  What happened ? Qualys contacted by e-mail to tell me they found a vulnerability in OpenSMTPD and would send me the encrypted draft for advisory."><meta property="og:description" content="TL;DR: - Qualys released an advisory for a bad, bad vulnerability - an MTA is a very bad software to have a vulnerability in - hole was plugged but that's not enough, similar bugs should be mitigated in the future - article discusses what could have prevented escalation despite the bug  What happened ? Qualys contacted by e-mail to tell me they found a vulnerability in OpenSMTPD and would send me the encrypted draft for advisory."><meta name=twitter:description content="TL;DR: - Qualys released an advisory for a bad, bad vulnerability - an MTA is a very bad software to have a vulnerability in - hole was plugged but that's not enough, similar bugs should be mitigated …"><meta name=author content="Gilles Chehade"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"poolp.org","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/poolp.org\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/poolp.org\/posts\/2020-01-30\/opensmtpd-advisory-dissected\/","name":"Open s m t p d advisory dissected"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Gilles Chehade"},"headline":"OpenSMTPD advisory dissected","description":"TL;DR: - Qualys released an advisory for a bad, bad vulnerability - an MTA is a very bad software to have a vulnerability in - hole was plugged but that\u0027s not enough, similar bugs should be mitigated in the future - article discusses what could have prevented escalation despite the bug  What happened ? Qualys contacted by e-mail to tell me they found a vulnerability in OpenSMTPD and would send me the encrypted draft for advisory.","inLanguage":"en","wordCount":4739,"datePublished":"2020-01-30T23:36:00","dateModified":"2020-01-30T23:36:00","image":"https:\/\/poolp.org\/images\/me.jpg","keywords":[""],"mainEntityOfPage":"https:\/\/poolp.org\/posts\/2020-01-30\/opensmtpd-advisory-dissected\/","publisher":{"@type":"Organization","name":"https:\/\/poolp.org\/","logo":{"@type":"ImageObject","url":"https:\/\/poolp.org\/images\/me.jpg","height":60,"width":60}}}</script><meta property="og:title" content="OpenSMTPD advisory dissected"><meta property="og:description" content="TL;DR: - Qualys released an advisory for a bad, bad vulnerability - an MTA is a very bad software to have a vulnerability in - hole was plugged but that's not enough, similar bugs should be mitigated in the future - article discusses what could have prevented escalation despite the bug  What happened ? Qualys contacted by e-mail to tell me they found a vulnerability in OpenSMTPD and would send me the encrypted draft for advisory."><meta property="og:image" content="https://poolp.org/images/2020-01-29-mma.jpg"><meta property="og:url" content="https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=twitter:title content="OpenSMTPD advisory dissected"><meta name=twitter:description content="TL;DR: - Qualys released an advisory for a bad, bad vulnerability - an MTA is a very bad software to have a vulnerability in - hole was plugged but that's not enough, similar bugs should be mitigated …"><meta name=twitter:image content="https://poolp.org/images/2020-01-29-mma.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:image" content="https://poolp.org/images/2020-01-29-mma.jpg"><meta name=twitter:image content="https://poolp.org/images/2020-01-29-mma.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:url" content="https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=generator content="Hugo 0.78.1"><link rel=alternate href=https://poolp.org/index.xml type=application/rss+xml title=poolp.org><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://poolp.org/css/main.css><link rel=stylesheet href=https://poolp.org/css/highlight.min.css><link rel=stylesheet href=https://poolp.org/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous><link rel=stylesheet href=/css/latex.style.css></head><body><div class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<a class=navbar-brand href=https://poolp.org/>poolp.org</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li class=navlinks-container><a class=navlinks-parent>Freelance</a><div class=navlinks-children><a href=/en/contracting/>[en] Hire me !</a>
+<a href=/fr/contracting/>[fr] Recrutez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Sponsorship</a><div class=navlinks-children><a href=/en/sponsorship/>[en] Sponsor me !</a>
+<a href=/fr/sponsorship/>[fr] Sponsorisez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Social</a><div class=navlinks-children><a href=https://patreon.com/gilles>Patreon</a>
+<a href=https://www.linkedin.com/in/gilleschehade>LinkedIn</a>
+<a href=https://github.com/poolpOrg>Github</a>
+<a href=https://twitter.com/poolpOrg>Twitter</a></div></li><li class=navlinks-container><a class=navlinks-parent>Curriculum</a><div class=navlinks-children><a href=https://github.com/poolpOrg/resume/blob/master/resume.en.pdf>EN</a>
+<a href=https://github.com/poolpOrg/resume/blob/master/resume.fr.pdf>FR</a></div></li></ul></div><div class=avatar-container><div class=avatar-img-border><a title=poolp.org href=https://poolp.org/><img class=avatar-img src=https://poolp.org/images/me.jpg alt=poolp.org></a></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-heading><h1 style=text-align:left>OpenSMTPD advisory dissected</h1></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><pre><code>TL;DR:
+- Qualys released an advisory for a bad, bad vulnerability
+- an MTA is a very bad software to have a vulnerability in
+- hole was plugged but that's not enough, similar bugs should be mitigated in the future
+- article discusses what could have prevented escalation despite the bug
+</code></pre><h2 id=what-happened->What happened ?</h2><p>Qualys contacted by e-mail to tell me they found a vulnerability in OpenSMTPD and would send me the encrypted draft for advisory.</p><p>Receiving this kind of e-mail when working on a daemon that <strong>can&rsquo;t revoke completely privileges</strong> is not a thing you want to read,
+particularly when you know how efficient they are at spotting a small bug and leveraging into a full-fledged clusterfuck.</p><p>While I was waiting for them to mail me back the draft,
+I immediately jumped to the privileged process which is what worries me the most,
+and started reading all the entry points to that process at runtime.</p><p>This isn&rsquo;t a big task,
+the privileged process doesn&rsquo;t do many operations at runtime:</p><ul><li>it opens <code>~/.forward</code> files located in home directories</li><li>it authenticates username/password pair against <code>bsd_auth(3)</code></li><li>it creates user-owned mda processes for mail delivery agents</li></ul><p>In the case of <code>~/.forward</code> files,
+it checks if the user has a <code>~/.forward</code> file with correct permissions and mode,
+opens it then passes the file descriptor back to an unprivileged process without doing anything with it.
+I didn&rsquo;t see a way this could be exploited.</p><p>In the case of authentication,
+which was my main worry given the <a href=https://www.qualys.com/2019/12/04/cve-2019-19521/authentication-vulnerabilities-openbsd.txt>recent vulnerabilities they found in the <code>bsd_auth(3)</code> layer</a>,
+it received a username and password and passed them directly to <code>auth_userokay(3)</code>,
+returning the result to unprivileged process.
+I was highly suspicious of a bug here but given how simple the code is,
+I didn&rsquo;t see a way this could be exploited either.</p><p>Finally,
+the user-owned mda processes creation became my main worry.
+It doesn&rsquo;t do much as it basically calls <code>fork()</code> and executes the mda command <strong>using recipient user privileges</strong>,
+but it also has a special case for <code>mbox</code> which <strong>can&rsquo;t work without privileges</strong>.</p><p>I had hope that the bug they found would be elsewhere and not so bad as the privileged process is fairly isolated.
+It can only be reached by going through another unprivileged process and its input validation.
+The <strong>worst-case scenario</strong> would be finding an exploitable bug either in the <code>mbox</code> delivery special case,
+or in the small portion of code before privileges dropping for other mail delivery agents.
+I focused efforts on reading the code path again and again but didn&rsquo;t find a bug.
+I gave up after a few hours and decided to wait for the draft.</p><p>I woke up to an advisory draft <strong>exploiting the worst-case scenario</strong>&mldr;
+through a <strong>logic bug in the input validation code of an unprivileged process</strong>.</p><p>Perfect, just perfect.</p><center><img src=/images/2020-01-29-mma.jpg></center><h2 id=the-problem>The problem</h2><p>OpenSMTPD uses an input validation function,
+<code>smtp_mailaddr()</code>,
+to ensure that e-mail addresses that enter the queue are valid.</p><p>What the function does is that it checks that the e-mail address parses into a <code>struct mailaddr</code>,
+then validates the local part with <code>valid_localpart()</code> and the domain part with <code>valid_domainpart()</code>.
+The <code>valid_localpart()</code> function checks that the local part only contains characters from an allowed set.
+The <code>valid_domainpart()</code> either checks that the domain is a valid IP address using <code>inet_pton()</code>,
+or that it is a valid hostname using <code>res_hnok()</code>.</p><p>The <code>smtp_mailaddr()</code> function also has to handle <strong>two cases</strong> where an invalid address is still acceptable and has to go through:</p><p><strong>The first one</strong> is that of bounces (MAILER-DAEMON) with empty local and domain parts,
+<code>MAIL FROM:&lt;></code>,
+which is only acceptable during the MAIL FROM phase of SMTP.</p><p><strong>The second one</strong> is that of addresses with empty domains,
+<code>MAIL FROM:&lt;gilles></code>,
+which is generated by some MUA when used locally and which will use the local domain attached to the listener,
+<code>MAIL FROM:&lt;gilles@laptop.poolp.org></code> on my machine.
+This was initially not accepted by the daemon but had to be implemented for interoperability,
+which is when the bug was introduced.</p><p>Unfortunately for us,
+Qualys identified a <strong>logic error</strong> in <code>smtp_mailaddr()</code>.
+If one of the checks on local or domain parts fails,
+<code>smtp_mailaddr()</code> checks if it is due to one of the two cases above.
+In the case of failed domain,
+it mistakenly does an erroneous check that cancels out the previous call <code>valid_localpart()</code> and,
+as a result,
+an address that was rejected due to an invalid local part gets accepted again if there is no domain.</p><pre><code>MAIL FROM:&lt;gilles;test@laptop.poolp.org&gt;
+553 5.1.0 Sender address syntax error
+
+MAIL FROM:&lt;gilles;test&gt;
+250 2.0.0 Ok
+</code></pre><p>This mistake was introduced five years ago with the following diff:</p><div class=highlight><pre class=chroma><code class=language-diff data-lang=diff><span class=gh>===================================================================
+</span><span class=gh></span>RCS file: /cvs/src/usr.sbin/smtpd/smtp_session.c,v
+retrieving revision 1.215
+retrieving revision 1.216
+<span class=gh>diff -u -r1.215 -r1.216
+</span><span class=gh></span><span class=gd>--- src/usr.sbin/smtpd/smtp_session.c	2014/07/09 12:44:54	1.215
+</span><span class=gd></span><span class=gi>+++ src/usr.sbin/smtpd/smtp_session.c	2014/10/02 21:27:54	1.216
+</span><span class=gi></span><span class=gu>@@ -1,4 +1,4 @@
+</span><span class=gu></span><span class=gd>-/*	$OpenBSD: smtp_session.c,v 1.215 2014/07/09 12:44:54 eric Exp $	*/
+</span><span class=gd></span><span class=gi>+/*	$OpenBSD: smtp_session.c,v 1.216 2014/10/02 21:27:54 gilles Exp $	*/
+</span><span class=gi></span> 
+ /*
+  * Copyright (c) 2008 Gilles Chehade &lt;gilles@poolp.org&gt;
+<span class=gu>@@ -1758,21 +1758,20 @@
+</span><span class=gu></span> 
+ 	if (!valid_localpart(maddr-&gt;user) ||
+ 	    !valid_domainpart(maddr-&gt;domain)) {
+<span class=gd>-		/* We accept empty sender for MAIL FROM */
+</span><span class=gd>-		if (mailfrom &amp;&amp;
+</span><span class=gd>-		    maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp;
+</span><span class=gd>-		    maddr-&gt;domain[0] == &#39;\0&#39;)
+</span><span class=gd></span><span class=gi>+		/* accept empty return-path in MAIL FROM, required for bounces */
+</span><span class=gi>+		if (mailfrom &amp;&amp; maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;)
+</span><span class=gi></span> 			return (1);
+ 
+<span class=gd>-		/* We accept empty domain for RCPT TO if user is postmaster */
+</span><span class=gd>-		if (!mailfrom &amp;&amp;
+</span><span class=gd>-		    strcasecmp(maddr-&gt;user, &#34;postmaster&#34;) == 0 &amp;&amp;
+</span><span class=gd>-		    maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span><span class=gd></span><span class=gi>+		/* no user-part, reject */
+</span><span class=gi>+		if (maddr-&gt;user[0] == &#39;\0&#39;)
+</span><span class=gi>+			return (0);
+</span><span class=gi>+
+</span><span class=gi>+		/* no domain, local user */
+</span><span class=gi>+		if (maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span><span class=gi></span> 			(void)strlcpy(maddr-&gt;domain, domain,
+ 			    sizeof(maddr-&gt;domain));
+ 			return (1);
+ 		}
+<span class=gd>-			
+</span><span class=gd></span> 		return (0);
+ 	}
+</code></pre></div><p>Back then,
+the mistake had no consequences as OpenSMTPD had a very different implementation for delivery.
+It didn&rsquo;t handle MDA through external utilities,
+like is done in other MTA,
+but used builtin implementations for all methods (<code>maildir</code>, <code>lmtp</code>, <code>file</code>, <code>mda</code>, &mldr;).
+The <code>mbox</code> delivery was handled as a special case through a simple <code>execle()</code>.</p><p>With this way of dealing with MDA,
+there was no shell involved and the incorrectly validated e-mail address wasn&rsquo;t in the path of delivery,
+the bug had no consequences despite being there.
+<strong>This way of dealing with MDA wasn&rsquo;t right though</strong>.
+It came with its share of complexity and short-comings,
+most notably a very complex mda layer handling all methods differently with many special cases,
+and a more complex <code>forkmda()</code> function which is code running in the privileged process and that we want as simple as possible.</p><p>The bug became exploitable with another unrelated commit <strong>three years and a half later</strong>,
+in a different area,
+when OpenSMTPD switched to the new grammar and brought support for MDA through external utilities,
+ditching its builtin delivery methods.</p><p>Basically,
+instead of each delivery method coming with its own structure and custom checks in the entire code path,
+they were reimplemented as standalone executables that could be used by any MTA.
+From this point,
+OpenSMTPD didn&rsquo;t know the difference between <code>maildir</code> and <code>lmtp</code>,
+they were just regular mail delivery agents.
+The MDA execution code path got simplified by removing all delivery-specific cases and unified so it would craft a command line,
+<strong>using what we assumed to be correctly validated input</strong>,
+that could be executed after the <code>forkmda()</code>function dropped its privileges.</p><p>Because the delivery agents are standalone executables that expect their options on the command line with quoting and escaping support,
+we decided to use the shell to execute the command rather than rewriting our own command-line parser that might contain parsing bugs.
+<strong>This is something done in other MTA, we didn&rsquo;t invent a clever way to be lazy</strong>.
+The shell is executed with the recipient privileges and passed the mda command,
+similarly to if the recipient had executed the command themselves in their own shell.
+Since the command is either crafted from <code>smtpd.conf</code> which is controlled by postmaster,
+or <code>.forward</code> which is controlled by the recipient,
+there is supposedly no problem <strong>as long as the input is properly validated</strong>.</p><p>We could jump to the conclusion that using <code>system()</code> instead of <code>execle()</code> is what allowed the escalation but this is inaccurate.
+Incorrectly validated input and <code>system()</code> made the <strong>exploit</strong> possible,
+<strong>not the escalation</strong>.
+All delivery methods use the <strong>exact same code path</strong> and they are not all subject to the escalation.
+For instance,
+<code>lmtp</code> allowed <strong>unprivileged</strong> execution of commands whereas <code>maildir</code> is <strong>unimpacted</strong>.</p><p>What made the escalation possible is a special case that OpenSMTPD has to handle <strong>specifically</strong> for <code>mbox</code>,
+and which opens the door to escalation if a bug manages to be exploited in that (relatively small) code path.</p><h2 id=the-fix>The fix</h2><p>When I received the advisory draft,
+I hurried to produce a fix as soon as possible then ended with two diffs that I showed Qualys:
+a quick fix that just plugged the hole,
+and a better fix that plugged the hole by rewriting the <code>smtp_mailaddr()</code> function differently.</p><p>The quick fix is straightforward and can be implemented as a one-liner,
+it just tested <code>valid_localpart()</code> again when handling the missing domain case:</p><div class=highlight><pre class=chroma><code class=language-diff data-lang=diff><span class=gd>--- src/usr.sbin/smtpd/smtp_session.c	2019/10/04 08:34:29	1.415
+</span><span class=gd></span><span class=gi>+++ smtp_session.c	2020-01-30 08:51:31.000000000 +0100
+</span><span class=gi></span><span class=gu>@@ -2247,7 +2247,7 @@ smtp_mailaddr(struct mailaddr *maddr, ch
+</span><span class=gu></span> 			return (0);
+ 
+ 		/* no domain, local user */
+<span class=gd>-		if (maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span><span class=gd></span><span class=gi>+		if (valid_localpart(maddr-&gt;user) &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span><span class=gi></span> 			(void)strlcpy(maddr-&gt;domain, domain,
+ 			    sizeof(maddr-&gt;domain));
+ 			return (1);
+
+</code></pre></div><p>The better fix however rearranged the function in a different way that is less error-prone,
+and less likely to reintroduce similar mistakes.
+It did so by not grouping validators into a common block,
+but handling each case separately:</p><div class=highlight><pre class=chroma><code class=language-diff data-lang=diff><span class=gh>===================================================================
+</span><span class=gh></span>RCS file: /cvs/src/usr.sbin/smtpd/smtp_session.c,v
+retrieving revision 1.415
+retrieving revision 1.415.2.1
+<span class=gh>diff -u -r1.415 -r1.415.2.1
+</span><span class=gh></span><span class=gd>--- src/usr.sbin/smtpd/smtp_session.c	2019/10/04 08:34:29	1.415
+</span><span class=gd></span><span class=gi>+++ src/usr.sbin/smtpd/smtp_session.c	2020/01/28 21:39:20	1.415.2.1
+</span><span class=gi></span><span class=gu>@@ -1,4 +1,4 @@
+</span><span class=gu></span><span class=gd>-/*	$OpenBSD: smtp_session.c,v 1.415 2019/10/04 08:34:29 gilles Exp $	*/
+</span><span class=gd></span><span class=gi>+/*	$OpenBSD: smtp_session.c,v 1.415.2.1 2020/01/28 21:39:20 gilles Exp $	*/
+</span><span class=gi></span> 
+ /*
+  * Copyright (c) 2008 Gilles Chehade &lt;gilles@poolp.org&gt;
+<span class=gu>@@ -2215,24 +2215,22 @@
+</span><span class=gu></span> 		memmove(maddr-&gt;user, p, strlen(p) + 1);
+ 	}
+ 
+<span class=gd>-	if (!valid_localpart(maddr-&gt;user) ||
+</span><span class=gd>-	    !valid_domainpart(maddr-&gt;domain)) {
+</span><span class=gd>-		/* accept empty return-path in MAIL FROM, required for bounces */
+</span><span class=gd>-		if (mailfrom &amp;&amp; maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;)
+</span><span class=gd>-			return (1);
+</span><span class=gd></span><span class=gi>+	/* accept empty return-path in MAIL FROM, required for bounces */
+</span><span class=gi>+	if (mailfrom &amp;&amp; maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;)
+</span><span class=gi>+		return (1);
+</span><span class=gi></span> 
+<span class=gd>-		/* no user-part, reject */
+</span><span class=gd>-		if (maddr-&gt;user[0] == &#39;\0&#39;)
+</span><span class=gd>-			return (0);
+</span><span class=gd>-
+</span><span class=gd>-		/* no domain, local user */
+</span><span class=gd>-		if (maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span><span class=gd>-			(void)strlcpy(maddr-&gt;domain, domain,
+</span><span class=gd>-			    sizeof(maddr-&gt;domain));
+</span><span class=gd>-			return (1);
+</span><span class=gd>-		}
+</span><span class=gd></span><span class=gi>+	/* no or invalid user-part, reject */
+</span><span class=gi>+	if (maddr-&gt;user[0] == &#39;\0&#39; || !valid_localpart(maddr-&gt;user))
+</span><span class=gi></span> 		return (0);
+<span class=gi>+
+</span><span class=gi>+	/* no domain part, local user */
+</span><span class=gi>+	if (maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span><span class=gi>+		(void)strlcpy(maddr-&gt;domain, domain,
+</span><span class=gi>+			sizeof(maddr-&gt;domain));
+</span><span class=gi></span> 	}
+<span class=gi>+
+</span><span class=gi>+	if (!valid_domainpart(maddr-&gt;domain))
+</span><span class=gi>+		return (0);
+</span><span class=gi></span> 
+ 	return (1);
+ }
+</code></pre></div><p>There is room for improvement and I think this function should be rewritten in a different style to make it harder to introduce bugs.
+But this version works,
+it was tested,
+proof-read by multiple people (including the auditors),
+and since it is unlikely to change before a long time (last change was in 2014),
+I will tackle it with a clear mind, not right now while still stressed.</p><p>Fixing the bug like I did plugs the hole,
+but that&rsquo;s not enough for me to be relaxed,
+it closes the door to the escalation but doesn&rsquo;t <strong>build a wall of concrete in front of it</strong>.
+Today, there&rsquo;s no known bug that affects this code path and we may be fine,
+but unless we actually kill the <strong>potential</strong> for escalation,
+we&rsquo;ll never be sure that researches won&rsquo;t find another bug and another creative way to exploit it.</p><p>In this article,
+I&rsquo;ll discuss mitigation mechanisms that I think should be put in place to avoid this from happening again,
+regardless of what bugs are found in processes exposed to attackers.
+Their goal is to deal with the <strong>potential</strong> for escalation, not with specific bugs.</p><h2 id=my-post-mortem-thoughts>My post-mortem thoughts</h2><p>Even though fixing <code>smtp_mailaddr()</code> plugs the hole,
+<strong>a bug in the smtp layer should not have been able to result in such a catastrophic outcome</strong>,
+<strong>regardless of the bug</strong>.
+Today, with the combination of <code>pledge()</code>,
+privileges separation (smtp engine runs as unprivileged user <code>_smtpd</code>),
+filesystem isolation (smtp engine is <code>chroot()</code>-ed to <code>/var/empty</code>),
+and several internal consistency checks that will <code>fatal()</code> if something fishy is detected,
+misbehaving code is constrained and we expect limited consequences.
+My take has always been that I can&rsquo;t code bug-free so I <strong>expect that bugs will be found</strong>,
+and I want OpenSMTPD to <strong>crash</strong> in such cases so that I can fix the bug and roll a release.
+A crash in SMTP land is really not a big deal,
+protocol is fault-tolerant and other mail exchangers have retry logic,
+I can live with that.</p><p>The incident here was <strong>not caused by misbehaving code</strong>,
+it was caused by a <strong>logic error</strong> and <strong>the code did what it was written to do</strong>:
+it didn&rsquo;t corrupt memory and dodged sanitisation to craft an IPC message all the way to an exploit in another process.
+This is not a problem caused by the language,
+likes some people imply,
+and not a problem caused by a memory corruption of some sort.
+The sanitisation function <strong>incorrectly validated the input</strong> and from that point,
+<strong>the input followed the exact same code path as any other valid input</strong> until it reached the mda layer.
+<strong>This is not a failure of the mechanisms put in place to mitigate misbehaving code</strong>,
+and I think it is important to consider it for what it is:
+a correct implementation of an incorrect logic.</p><p>Seeing it as such isn&rsquo;t a way to shrug it off,
+quite the opposite.
+If we consider the incident without the human factor and try to address this with misbehaving code detection,
+it is bound to fail because&mldr; <strong>the code did exactly what it was written to do</strong>.
+We may slap a few sanity checks here and there but if they&rsquo;re supposed to check the same thing,
+they will have the same mistake.
+We can&rsquo;t fix my stupid with checks.</p><p>We can&rsquo;t prevent human mistakes,
+they will happen because tools won&rsquo;t help spot that a human-described logic is flawed.
+What we need is to make changes so that <strong>OpenSMTPD becomes more resistant to human errors</strong>.
+In other words,
+we need safe-guards that are not dependant on sanity checks and input,
+we need safe-guards that will guarantee that <strong>even</strong> if OpenSMTPD lets completely untrusted input pass through,
+this will have the most limited consequences&mldr;
+<strong>then</strong> we ensure that it doesn&rsquo;t let untrusted input pass through.</p><p>What made the exploit possible is the logic mistake in validation code and the use of <code>system()</code> with that invalid input,
+but what made the <strong>escalation</strong> possible is the <code>mbox</code> delivery method.</p><h2 id=the-problems-with-mbox-delivery>The problem(s) with <code>mbox</code> delivery</h2><p>When a delivery takes places,
+OpenSMTPD does the delivery on behalf of a recipient user.
+Regardless of the delivery method,
+it will create a new mda process that will handle the delivery and drop its privileges to that of the recipient user.
+This is meant to ensure that a user adding a dangerous command in their <code>.forward</code> files can only impact themselves.</p><p>Furthermore,
+OpenSMTPD strictly <strong>forbids</strong> execution of an mda command with a privileged account:
+<strong>root is not allowed to receive mail with <code>maildir</code> or <code>lmtp</code></strong>,
+the delivery will be aborted with an error message that <strong>delivery to root is forbidden without an alias to an unprivileged user</strong>.
+The mda command is not processed.
+This is what saves <code>maildir</code> and <code>lmtp</code> from being subjected to the escalation:
+<strong>they cannot be ran from a privileged process</strong>,
+bugs will <strong>at most</strong> impact the recipient user which <strong>can never be root</strong>.
+Not that it&rsquo;s good, but it&rsquo;s an order of magnitude less bad.</p><p>In the case of <code>mbox</code> however we can&rsquo;t do that.</p><p>First of all,
+if we take a fresh install,
+we can&rsquo;t assume that an unprivileged user exists since a user might not have created one at install.
+In this situation,
+if <code>mbox</code> refuses delivery to root then mails regarding <code>security</code> or <code>daily/weekly/monthly</code> will not be deliverable.
+Forbidding delivery to root implies requiring the creation of a user that root can be aliased to.
+For this reason,
+we can&rsquo;t easily switch from <code>mbox</code> to another delivery method either since they would enforce the restriction,
+breaking mail out of the box.</p><p>Then,
+unlike <code>maildir</code> which writes to a subdirectory of the recipient user and can therefore do it with the recipient user privileges,
+<code>mbox</code> writes to a common directory,
+usually <code>/var/mail</code> or <code>/var/spool/mail</code>.
+The mailbox is user-owned,
+so that <code>/var/mail/gilles</code> can be written or read by <code>gilles</code>,
+but since <code>gilles</code> cannot be allowed to create his own mailbox in the common directory,
+the creation has to be done by a privileged process that can both create the mailbox AND change its ownership.</p><p>Since the <code>mbox</code> format doesn&rsquo;t support concurrent deliveries,
+it also requires some locking to avoid concurrent writes.
+This locking is historically done by creating a <code>gilles.lock</code> file in the common directory.
+Mail user agents expect this.
+This whole delivery logic is handled outside of the daemon by <code>mail.local</code>,
+a delivery agent that preexists OpenSMTPD and which we inherited from the previous era.
+The downside is that <code>mail.local</code> <strong>requires being called with privileges</strong> to do the work and handle privileges dropping itself.</p><p><strong>This is where the potential for escalation resides.</strong></p><p>When <code>mbox</code> delivery is set,
+OpenSMTPD <strong>HAS</strong> to create a privileged process to execute <code>mail.local</code> no matter what user will receive the mail.
+It therefore has an explicit special case that forking a privileged mda is forbidden&mldr; <strong>except</strong> for <code>mbox</code>.
+Even if root had a <code>~/.forward</code> explicitely calling <code>mail.local</code>, it would be be forbidden.</p><p>The code path is relatively small:
+the mda process is created with privileges,
+<code>mail.local</code> is executed and will <strong>internally lower its privileges</strong>.
+Unfortunately for us,
+the exploit basically managed to replace the execution of <code>mail.local</code> with the execution of an arbitrary command,
+sitting in between the privileged process being <code>fork()</code>-ed and <code>mail.local</code> dropping privileges.</p><p>The <strong>source of the problem</strong> is that unlike other delivery methods,
+when using the <code>mbox</code> delivery method OpenSMTPD is <strong>required</strong> to create this privileged process.
+In this case the exploit <strong>targeted</strong> the way we executed the mail delivery agent but,
+thinking further,
+if an exploit was found that managed to abuse anything between the <code>fork()</code> and the execution of <code>mail.local</code>,
+we <strong>could</strong> be in a similar situation using a different attack vector:
+during a small period of time,
+we have a <strong>privileged process</strong> with a <strong>potential</strong> for being exploited somehow.</p><p>This is why I believe plugging the hole is <strong>not enough</strong>.
+It solves the <strong>immediate problem</strong> but not the <strong>underlying issue</strong>,
+it doesn&rsquo;t kill the <strong>potential</strong> for escalation:
+<strong>if root is allowed to receive mail in a root-owned mailbox</strong> then at some point a privileged process had to do the delivery.</p><p>The <strong>only</strong> way to kill this potential for escalation is to get rid of the privileged mda process.
+No special case, no nothing.
+If we don&rsquo;t have a privileged mda process,
+then a bug may exist and an exploit may find its way into the process,
+but it won&rsquo;t allow escalation.</p><p>This is where we must be heading towards and it&rsquo;ll require some creative solutions to work around <code>mbox</code> limitations.</p><h2 id=several-ideas>Several ideas</h2><p>Since this blew up to my face,
+I had several ideas to tackle this.
+Some were already discussed and not retained because they had potential for other issues.
+The current ideas are these:</p><ul><li>switching back mail delivery agents to <code>execle()</code></li><li>disallowing delivery to root</li><li>managing to somehow run <code>mail.local</code> without privileges</li><li>mbox creation and locking in OpenSMTPD to allow user execution of <code>mail.local</code></li></ul><p>Not each of them is straight-forward but each of them would have avoided the escalation,
+regardless of the bug being present,
+so I think these are critical to implement in order to avoid future bugs from having the kind of impact we experienced.</p><h2 id=switching-back-mail-delivery-agents-to-execle>Switching back mail delivery agents to <code>execle()</code></h2><p>This doesn&rsquo;t solve the underlying issue of having a privileged process for <code>mbox</code>,
+but it would have prevented this specific attack.</p><p>Moving <strong>all</strong> mail delivery agents to <code>execle()</code> is tricky but we&rsquo;re going to got that way.
+I have already written a diff to switch <code>mbox</code> and it will be committed shortly.
+The <code>maildir</code> and <code>lmtp</code> will be similarly converted.</p><p>The only issue with that move is that some mail delivery agents expect a command-line interface that&rsquo;s more complex than ours:</p><div class=highlight><pre class=chroma><code class=language-cfg data-lang=cfg><span class=na>action foobar mda &#34;/usr/local/bin/procmail -a -ton -of -options \&#34;with quotes and escaping\&#34;&#34;</span>
+</code></pre></div><p>or it&rsquo;s <code>~/.forward</code> variant:</p><div class=highlight><pre class=chroma><code class=language-cfg data-lang=cfg><span class=na>|/usr/local/bin/procmail -a -ton -of -options &#34;with quotes and \&#34;escaping\&#34;&#34;</span>
+</code></pre></div><p>or even it&rsquo;s <code>/etc/mail/aliases</code> variant:</p><div class=highlight><pre class=chroma><code class=language-cfg data-lang=cfg><span class=na>lists:		|/usr/local/bin/mailing-list.py -a -ton -of -options</span>
+</code></pre></div><p>I doubt anyone wants to see these go away,
+and switching them to <code>execle()</code> implies reimplementing a command-line parser with shell-like semantics,
+then using the parsed command line to call the <code>execle()</code> function.
+This is the literal definition of rewriting a shell and I&rsquo;d rather rely on a standard shell than rewriting my dumbed-down one.</p><p>Since these commands can <strong>never run with privileges</strong>,
+what I suggest is that we use a wrapping mail delivery agent with a simple interface that we can easily plug through <code>execle()</code>,
+then let THAT mail delivery agent run the mda command through a shell.
+This allows us to have a single code path through <code>execle()</code> for all mail delivery agents in the daemon,
+and restrict the <code>system()</code> call to specific use-cases handled by a specific mail delivery agent outside the daemon.</p><h2 id=disallowing-delivery-to-root>Disallowing delivery to root</h2><p>No need for much explanations here:
+this would have effectively prevented the privileges escalation despite the logic bug.</p><p>I think we should <strong>disallow deliveries to privileged users unconditionally</strong>.
+I never thought it was a good idea to accept doing it and this is why I disallowed it for everything but <code>mbox</code>.
+This is going to be inconvenient to many because it means that root <strong>HAS</strong> to be an alias,
+but everyone using <code>maildir</code> or <code>lmtp</code> has been in this mode for years now and I never had a complaint about it.
+We can&rsquo;t tell people not to log in as root and use <code>doas</code> or <code>sudo</code>,
+then ensure that everything is convenient for them to log in as root and have their mails delivered knowing the risks.
+It doesn&rsquo;t make sense.</p><p>This will put us at odds with other MTA implementations that accept delivering mail to root,
+and every time I suggested doing something differently from other MTA people got angry at me for not being able to keep their habits.
+But now that this blew to my face I don&rsquo;t think there&rsquo;s an excuse for keeping a time-bomb that we know can blow hard.
+I hope there will be no resistance to this change,
+but at some point, if we refuse to diverge from dangerous practices it means we are knowingly leaving potential for escalation.
+Someone else will have to defend why this is a good idea.</p><p>While at it&mldr;</p><p>On the somewhat related side-note of doing something I dislike because other MTA do it and we shouldn&rsquo;t diverge,
+supporting commands in aliases is also a bad idea from a security point of view.
+It doesn&rsquo;t come with the same level of risks,
+but it also opens the potential for abuse and I&rsquo;ve been willing to get rid of that for years.
+I don&rsquo;t know of ANY use-case of executing a command from aliases that can&rsquo;t be solved from a <code>~/.forward</code> file in a safer way.
+It&rsquo;s less convenient and it requires a dedicated user, but it&rsquo;s safer.</p><div class=highlight><pre class=chroma><code class=language-c data-lang=c>			<span class=cm>/* this battle needs to be fought ... */</span>
+			<span class=k>if</span> <span class=p>(</span><span class=n>xn</span><span class=o>-&gt;</span><span class=n>type</span> <span class=o>==</span> <span class=n>EXPAND_FILTER</span> <span class=o>&amp;&amp;</span>
+			    <span class=n>strcmp</span><span class=p>(</span><span class=n>ep</span><span class=o>-&gt;</span><span class=n>mda_user</span><span class=p>,</span> <span class=n>SMTPD_USER</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span>
+				<span class=n>log_warnx</span><span class=p>(</span><span class=s>&#34;commands executed from aliases &#34;</span>
+				    <span class=s>&#34;run with %s privileges&#34;</span><span class=p>,</span> <span class=n>SMTPD_USER</span><span class=p>);</span>
+</code></pre></div><h2 id=managing-to-somehow-run-maillocal-without-privileges>managing to somehow run <code>mail.local</code> without privileges</h2><p>Disabling deliveries to privileged users is the right thing to do,
+however this is not sufficient if <code>mail.local</code> still requires privileges to deliver to <code>gilles</code>.
+The problem is the requirement for privileges during delivery,
+not the fact that a user itself is privileged.</p><p>I&rsquo;ve already explained the problem with <code>mail.local</code> and why it requires privileges.
+We&rsquo;re discussing with other OpenBSD hackers the option to change permissions of <code>/var/mail</code>,
+the option to use a <em>setgid</em> <code>mail.local</code> and we&rsquo;ll continue exploring similar options.</p><p>The idea for a group-writeable mail spool was apparently rejected in the past but it may be time to reassess.
+I don&rsquo;t really have a good intuition about doing this,
+I don&rsquo;t know why but I&rsquo;ve been wrong before so it&rsquo;s worth investigating this option with the help of other developers.</p><p>The bottom line is that <strong>unless <code>mail.local</code> can be started without privileges</strong>,
+no effort to reduce the potential for escalation will succeed.
+At the same time,
+we need to keep in mind that <code>mail.local</code> is not an OpenSMTPD specific component,
+and changing it must be done with care to avoid breaking other software.
+If managing to use <code>mail.local</code> without privileges requires making changes to it,
+we may have to implement an OpenSMTPD specific implementation.</p><h2 id=mbox-creation-and-locking-in-opensmtpd-to-allow-user-execution-of-maillocal>mbox creation and locking in OpenSMTPD to allow user execution of <code>mail.local</code></h2><p>Finally,
+a proposal I discussed with other hackers was to have OpenSMTPD handle the mailbox creation and locking.</p><p>We already consider <code>mbox</code> as a special case and we could convert that special case from &ldquo;needs privileges&rdquo; to &ldquo;needs locking&rdquo;.
+In this scenario,
+when a delivery uses <code>mbox</code>,
+the daemon can do the locking and mailbox creation <strong>itself</strong> before dropping privileges and executing <code>mail.local</code> unprivileged,
+like any other mail delivery agent.
+The lock would be removed upon <em>SIGCHLD</em> of the mail delivery agent.
+This would effectively allow removing the reasons for which <code>mail.local</code> requires privileges.</p><p>As for <code>mail.local</code>,
+all it would need to do is allow execution from unprivileged user by removing the <strong>explicit check for root</strong> it has today.
+This would still allow to use it with other MTA that expect it to be privileged,
+while allowing it to run unprivileged with OpenSMTPD.
+As for locking,
+no changes would be required since already supports skipping locking through the <code>-L</code> option.</p><p>Some people see this as doing part of the delivery in OpenSMTPD and part in <code>mail.local</code>.
+I disagree and see this as executing a mail delivery agent in locking barriers:
+the daemon sets a locked environement around mail delivery agent execution,
+the mail delivery agent doesn&rsquo;t know or care about the locks.
+This is word plays but seeing it this way makes more sense to me and doesn&rsquo;t sound hackish at all.</p><p>This coupled with preventing delivery to root would effectively remove the potential for escalation in <code>mbox</code>.</p><h2 id=closing-words>Closing words</h2><p>I don&rsquo;t know where to start,
+this section will not be as structured as previous ones.</p><p>First of all,
+I&rsquo;d like to <strong>thank the people at Qualys</strong>.
+They found a critical bug that could have remained out of sight until exploited by less friendly people.
+I won&rsquo;t say it is a pleasure to be on my side of the advisory but as unpleasant as it is,
+<strong>it makes the software safer on the long run</strong>.
+I hope they don&rsquo;t find something else,
+and if they do I hope it&rsquo;s not something as big,
+but it is a <strong>good thing for users</strong> to have such competent people studying the code,
+as painful as it is for the developers when they find something.</p><p>Then,
+people should use this as a reminder not to put <strong>too much</strong> trust in it.
+An MTA is a piece of software that can&rsquo;t drop all privileges,
+otherwise it would already be done,
+and at the same time a software that is highly exposed to user-supplied data from untrusted sources.
+Having an MTA, whichever it is, exposed to the wild and not running on its very own machine will always be a risk.
+As careful as I can be,
+I&rsquo;ll make errors and some of these errors will slip in.
+The only thing I can promise is that I always handle them the way I handled this one,
+not just fixing the issue but trying to kill the potential.</p><p>That being said,
+I will continue discussing the ideas from this article and possibly others to start implementing them as soon as possible.
+My goal is to kill the potential for escalation in <code>forkmda()</code> <strong>before the next major release</strong>.
+I have a few weeks in front of me and there may be some very quick wins to do here that would remove the existing risks.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org_posts/issues/37>https://github.com/poolpOrg/poolp.org_posts/issues/37</a></p><hr><section id=social-share><div class="list-inline footer-links"><div class=share-box aria-hidden=true><ul class=share><li><a href="//twitter.com/share?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-30%2fopensmtpd-advisory-dissected%2f&text=OpenSMTPD%20advisory%20dissected&via=poolpOrg" target=_blank title="Share on Twitter"><i class="fab fa-twitter"></i></a></li><li><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-30%2fopensmtpd-advisory-dissected%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook"></i></a></li><li><a href="//reddit.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-30%2fopensmtpd-advisory-dissected%2f&title=OpenSMTPD%20advisory%20dissected" target=_blank title="Share on Reddit"><i class="fab fa-reddit"></i></a></li><li><a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-30%2fopensmtpd-advisory-dissected%2f&title=OpenSMTPD%20advisory%20dissected" target=_blank title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a></li><li><a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-30%2fopensmtpd-advisory-dissected%2f&title=OpenSMTPD%20advisory%20dissected" target=_blank title="Share on StumbleUpon"><i class="fab fa-stumbleupon"></i></a></li><li><a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-30%2fopensmtpd-advisory-dissected%2f&description=OpenSMTPD%20advisory%20dissected" target=_blank title="Share on Pinterest"><i class="fab fa-pinterest"></i></a></li></ul></div></div></section></article><ul class="pager blog-pager"><li class=previous><a href=https://poolp.org/posts/2020-01-22/january-2020-opensmtpd-work-libasr-and-libtls/ data-toggle=tooltip data-placement=top title="January 2020: OpenSMTPD work - libasr and libtls">&larr; Previous Post</a></li><li class=next><a href=https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/ data-toggle=tooltip data-placement=top title="Anxiety, OpenBSD break, COVID-19 and resuming work">Next Post &rarr;</a></li></ul></div></div></div><footer style=text-align:justify><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><h2>Like my work and want to help me ?</h2><br><ul><li>Consider <b>tipping me</b> on <b><a target=_blank href=https://paypal.me/poolpOrg>PayPal</a></b>,
+<b>supporting me</b> through one of the <b><a href=/en/sponsorship>sponsorship</a></b> platforms at <b><a href=https://github.com/sponsors/poolpOrg>Github</a></b>, <b><a href=https://patreon.com/gilles>Patreon</a></b> or
+<b><a href=https://liberapay.com/poolpOrg>LiberaPay</a></b>,
+or even <b>getting me something</b> from my wishlist on <b><a target=_blank href=http://amzn.eu/3MwH6CX>Amazon</a></b>
+for positive <b><a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a></b> :-)<br><br></li><li>You can also help me by <b>commenting articles</b> to spark discussions,
+and by <b>sharing them</b> so they reach a bigger audience,
+they all contain a comment link and icons that will let you share to popular social networks.</li></ul><br></div></div><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><p class="credits copyright text-muted"><a href=https://poolp.org>Gilles Chehade</a>
+-&nbsp;&copy;
+2020
+-
+<a href=https://poolp.org/>poolp.org</a></p><p class="credits theme-by text-muted"><a href=http://gohugo.io>Hugo v0.78.1</a> powered - Theme adapted from <a href=http://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://poolp.org/js/main.js></script><script src=https://poolp.org/js/highlight.min.js></script><script>hljs.initHighlightingOnLoad();</script><script>$(document).ready(function(){$("pre.chroma").css("padding","0");});</script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://poolp.org/js/load-photoswipe.js></script></body></html>

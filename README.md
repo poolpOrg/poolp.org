@@ -1,3 +1,3 @@
-# poolp.org_posts
+# poolp.org
 
-THIS REPOSITORY HAS MOVED TO poolpOrg/poolp.org
+This repository holds all content for the https://poolp.org website

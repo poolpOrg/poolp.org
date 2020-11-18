@@ -78,6 +78,7 @@ html {
 body {
   font-family: 'Latin Modern', Georgia, Cambria, 'Times New Roman', Times, serif;
   line-height: 1.8;
+  font-size: 1.2rem;
 
   /*max-width: 80ch;*/
   min-height: 100vh;

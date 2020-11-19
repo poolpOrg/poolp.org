@@ -33,3 +33,7 @@ en fonction de mes contrats en cours et de mon emploi du temps.
 N'hésitez pas à [me contacter](mailto:gilles@poolp.org) pour plus d'informations,
 ou [consulter mon CV](https://github.com/poolpOrg/resume/blob/master/resume.fr.pdf)
 et [mes expériences et recommandations sur linkedin](https://www.linkedin.com/in/gilleschehade).
+
+<hr />
+
+**SIRET:** 515 053 908 00031

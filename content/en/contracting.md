@@ -32,3 +32,7 @@ this is only limited by my pending contracts and schedule.
 Feel free to [contact me](mailto:gilles@poolp.org) for more informations,
 or [reviewing my resume](https://github.com/poolpOrg/resume/blob/master/resume.en.pdf)
 as well as my [experience and recommandations on linkedin](https://www.linkedin.com/in/gilleschehade).
+
+<hr />
+
+**SIRET:** 515 053 908 00031

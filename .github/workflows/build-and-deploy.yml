@@ -15,5 +15,3 @@ jobs:
         uses: chabad360/hugo-gh-pages@master
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish to poolp.org
-        run: ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_MACHINE }} "(cd ${{ secrets.SSH_DIRECTORY}} && git pull)"

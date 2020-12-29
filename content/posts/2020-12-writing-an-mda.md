@@ -90,7 +90,7 @@ If `gilles@poolp.org` receives a mail and `jules@poolp.org` receives a mail, and
 
 Therefore, the MDA must not assume access to resources that require specific privileges. It must access resources that are available to the recipient user it was executed for. In other words, the MDA for `gilles` may access resources that `gilles` could access using a shell if he had one.
 
-The example MDA above was bad because the `/tmp/mail-archives` must be shared between all users for it to work and this implies open permissions (`770` if users share the same groupe, `777` otherwise). A simple change to create a recipient-specific file would have been enough to avoid this issue and allow a more restrictive permission of `700`:
+The example MDA above was bad because the `/tmp/mail-archives` must be shared between all users for it to work and this implies open permissions (`770` if users share the same group, `777` otherwise). A simple change to create a recipient-specific file would have been enough to avoid this issue and allow a more restrictive permission of `700`:
 
 ```sh
 #! /bin/sh

@@ -197,7 +197,7 @@ This could be handled with a lock, as is done for `mbox`-style mailboxes that us
 
 By writing to a temporary directory, the file is not yet visible by the user until it is finished being written, at which point the atomic rename makes it visible. If any error happens in between, the file remains in the temporary directory and can be purged after a while, but there is no risk of exposing a partial file.
 
-We'll adapt the MDA to save a copy of the mail from `stdin` to a temporary file with a unique name. To construct the name, I decided to go with a unix timestamp, followed by a 64-bits random value and the local hostname. This ensures that there can't be collisions if generated on two machines sharing the same network storage due to the hostname, and that collisions are unlikely on the same host as they would require a 64-bits collision of a random value happening within a second:
+We'll adapt the MDA to save a copy of the mail from `stdin` to a temporary file with a unique name. To construct the name, I decided to go with a unix timestamp, followed by a 64-bits random value and the local hostname. This ensures that there can't be collisions if generated on two machines sharing the same network storage due to the hostname, and that collisions are unlikely on the same host as they would require a 64-bits collision of a random value happening within a second. Once the temporary file has been written and `cat` reported success, it is moved to the `~/Maildir/new` which makes it visible to clients:
 
 ```sh
 #! /bin/sh

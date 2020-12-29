@@ -206,7 +206,6 @@ MAILDIR=${HOME}/Maildir
 
 umask 077 
 test -d ${MAILDIR} || mkdir ${MAILDIR}
-test -d ${MAILDIR}/cur || mkdir ${MAILDIR}/cur
 test -d ${MAILDIR}/new || mkdir ${MAILDIR}/new
 test -d ${MAILDIR}/tmp || mkdir ${MAILDIR}/tmp
 

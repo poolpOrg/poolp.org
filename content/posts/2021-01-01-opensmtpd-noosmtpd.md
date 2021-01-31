@@ -1,5 +1,5 @@
 ---
-title: "January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support"
+title: "January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support, nooSMTPD"
 date: 2021-01-31 00:18:00 +0200
 category: opensource
 share_img: "/images/2021-01-01-nothing-can-make-you-awake.jpg"

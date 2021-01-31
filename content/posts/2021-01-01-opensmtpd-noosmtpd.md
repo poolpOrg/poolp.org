@@ -287,7 +287,7 @@ the following construct was found in multiple places,
 and led compilers not knowing that `fatal()` never returned into assuming that `p` might be uninitialized in the call to `barbaz()`:
 
 ```c
-int
+void
 foobar(x)
 {
     char *p;

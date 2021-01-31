@@ -142,7 +142,7 @@ the only way <code>root</code> can receive a mail is through an alias to an unpr
 including the safety net that detects injection of a custom MDA for dispatchers not allowing <code>exec</code>.</p><h1 id=assorted-portability-improvements-and-cleanups-in-noosmtpd>assorted portability improvements and cleanups in nooSMTPD</h1><p>I reworked some code patterns confused compilers and led to false positives in warnings.
 For example,
 the following construct was found in multiple places,
-and led compilers not knowing that <code>fatal()</code> never returned into assuming that <code>p</code> might be uninitialized in the call to <code>barbaz()</code>:</p><div class=highlight><pre class=chroma><code class=language-c data-lang=c><span class=kt>int</span>
+and led compilers not knowing that <code>fatal()</code> never returned into assuming that <code>p</code> might be uninitialized in the call to <code>barbaz()</code>:</p><div class=highlight><pre class=chroma><code class=language-c data-lang=c><span class=kt>void</span>
 <span class=nf>foobar</span><span class=p>(</span><span class=n>x</span><span class=p>)</span>
 <span class=p>{</span>
     <span class=kt>char</span> <span class=o>*</span><span class=n>p</span><span class=p>;</span>

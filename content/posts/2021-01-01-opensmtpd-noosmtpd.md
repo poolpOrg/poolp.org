@@ -10,7 +10,8 @@ author: Gilles Chehade
 <b>TL;DR:</b>
 I do LoFi now,
 eric@ revived some libtls conversion work I did a while back,
-I worked on UNIX-domain sockets support in OpenSMTPD
+I worked on UNIX-domain sockets support in OpenSMTPD,
+a few words about nooSMTPD
 </blockquote>
 
 
@@ -31,7 +32,7 @@ Relax.
 
 I have a [youtube channel](https://www.youtube.com/c/GillesChehade) (subscribe ! now !) with a playlist of LoFi tracks that I mix.
 
-I'll try to insert a new one in every monthly report if time allows ;-)
+I'll try to insert a new one in every monthly report... if time allows ;-)
 
 
 # libtls-enabled OpenSMTPD
@@ -77,27 +78,27 @@ I'll resume working on these once eric@ commits the libtls conversion.
 # `smtpd(8)` now binds UNIX-domain sockets
 
 At the exception of the local enqueuer,
-OpenSMTPD only supports SMTP sessions over network connections.
+OpenSMTPD **only supports SMTP sessions over network connections**.
 This shows in the configuration file as it is only possible to use `listen` directives with a network interface parameter...
-or with the `socket` keyword which is handled as a special case for the local enqueuer.
+or with the `socket` keyword which is handled as a **special case** for the local enqueuer.
 
 When the daemon starts,
-it creates a UNIX-domain socket to use as its control socket for the `smtpctl(8)` utility.
+it creates a UNIX-domain socket to use as its **control socket** for the `smtpctl(8)` utility.
 This was initially meant to accept control requests from root to interact with `smtpd(8)` at runtime,
 but later came the need for local enqueueing and the control socket was used for that purpose too.
 
 A special "enqueue" control command was implemented in `smtpd(8)`.
 That command allows `smtpctl(8)` to request from `smtpd(8)` that it establishes an internal SMTP session and returns the file descriptor.
 The `smtpctl(8)` utility then uses that descriptor to pretend that the socket was actually connected directly to the SMTP server,
-and it toggles into an enqueue mode where it operates as an SMTP client.
+and it **toggles into an enqueue mode** where it operates as an SMTP client.
 
 
 This has three side-effects:
 
-Because everyone is supposed to be able to enqueue a local mail,
-the control socket cannot have strict permissions and has to be world-writeable.
+Because **everyone** is supposed to be able to enqueue a local mail,
+the control socket cannot have strict permissions and **has to be world-writeable**.
 Since it is also used for privileged control commands,
-the daemon needs to explicitly check that the client is only allowed to access the enqueue mode if the user is not privileged:
+the daemon needs to **explicitly** check that the client is only allowed to access the enqueue mode if the user is not privileged:
 
 ```sh
 $ ls -l /var/run/smtpd.sock                                                
@@ -122,8 +123,8 @@ $
 
 Finally,
 users expect to be able to enqueue mail even if the daemon is not available.
-This requires the local enqueuer to support an offline queue,
-which itself relies on having an executable setgid to the same group as the offline directory.
+This requires the local enqueuer to support an **offline queue**,
+which itself relies on having an executable **setgid** to the same group as the offline directory.
 Because `smtpctl(8)` is used for both control and enqueuing,
 it ends up having the setgid bit itself:
 
@@ -137,7 +138,7 @@ I told eric@ that I believed this was a poor decision made in the early days.
 Both the control and the enqueuing code could be made simpler and stricter if they were split apart.
 
 If local enqueuing had its own dedicated socket which established a connection to an SMTP session,
-then any SMTP client that knew how to connect to a UNIX-domain socket could be used as the local enqueuer.
+then **any** SMTP client that knew how to connect to a UNIX-domain socket could be used as the local enqueuer.
 OpenSMTPD even ships with one... `smtp(1)`.
 
 This would simplify `smtpctl(8)` as it would no longer need an enqueue mode and a builtin SMTP client.
@@ -148,9 +149,9 @@ The control socket and `smtpctl(8)` could both be restricted to root as they wou
 If you don't see the benefit behind this,
 many years ago there were two bugs that allowed local users to crash `smtpd(8)` from `smtpctl(8)`.
 One affected the control command counter,
-which a user could not have messed up with if control commands were restricted to root,
+which a user could not have messed up with **if control commands were restricted to root**,
 and the other affected the fd passing for the enqueue mode,
-which would not even exist if enqueuing had its own dedicated socket instead of being a control command.
+which would **not even exist** if enqueuing had its own dedicated socket instead of being a control command.
 
 
 This sounds nice but converting local enqueuing to use its own dedicated UNIX-domain socket is trickier than it seems.
@@ -217,10 +218,10 @@ $
 This allowed me to test my diff on the server side,
 but it also made me realize that it could be used as the base for a new local enqueuer outside of `smtpctl(8)`.
 
-The current local enqueuer is based on the femail MUA,
+The current local enqueuer is based on the **femail** MUA,
 which was kind of hacked here and there to fit in `smtpctl(8)` and work with its enqueue mode.
 It reads the mail from its standard input,
-does some sanitizing and crafting,
+does some **sanitizing and crafting**,
 then submits it using the SMTP protocol on a file descriptor which points to an SMTP session.
 
 In a world where local enqueuing doesn't require `smtpctl(8)` entering a special enqueue mode,
@@ -240,15 +241,15 @@ I need to explain what that is.
 
 In December, I started working on an MTA.
 It is based on OpenSMTPD,
-but it takes a different direction and has different goals.
+but it takes a **different direction** and has **different goals**.
 
-OpenSMTPD is a general purpose MTA,
+OpenSMTPD is a **general purpose MTA**,
 written primarily for OpenBSD,
-which needs to fit the base system and care about legacy and how changes affect the user base.
+which needs to fit the base system and care about **legacy** and how changes affect the user base.
 
 nooSMTPD doesn't have these constraints.
-I'm writing it primarily for myself and will happily break legacy behaviors and change the configuration file every two months if it makes things easier for me.
-I intend to support some advanced features found in commercial MTA and that are unlikely to be accepted in OpenBSD because...
+I'm writing it **primarily for myself** and will happily break legacy behaviors and change the configuration file every two months if it makes things easier for me.
+I intend to support some **advanced features** found in commercial MTA and that are unlikely to be accepted in OpenBSD because...
 OpenSMTPD is a general purpose MTA.
 
 OpenSMTPD benefits from the work I do there as I share all diffs,
@@ -263,16 +264,15 @@ and I continue to talk about OpenSMTPD changes with eric@ every week.
 I just have ideas for a different project :-)
 
 
-
 # breaking changes in nooSMTPD
 
-I have killed the `dead.letter` feature which allows OpenSMTPD to save a copy of a mail when it fails to submit it to the enqueuer.
+I have **killed the `dead.letter`** feature which allows OpenSMTPD to save a copy of a mail when it fails to submit it to the enqueuer.
 Modern MUA do not make use of it,
 it is solely used by legacy MUA,
 and I always thought this was not the job of the MTA to handle it.
 It was also a vector of attack in the past.
 
-I have killed delivery to the `root` user for all mail delivery agents,
+I have **killed delivery to the `root` user** for all mail delivery agents,
 the only way `root` can receive a mail is through an alias to an unprivileged account.
 
 I have merged all of the diffs from [last month](https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/),

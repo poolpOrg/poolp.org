@@ -1,0 +1,180 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support - poolp.org</title><meta property="og:title" content="January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support"><meta name=twitter:title content="January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets …"><meta name=description content="TL;DR: I do LoFi now, eric@ revived some libtls conversion work I did a while back, I worked on UNIX-domain sockets support in OpenSMTPD  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
+Let&rsquo;s start with some LoFi Relax.
+   I have a youtube channel (subscribe !"><meta property="og:description" content="TL;DR: I do LoFi now, eric@ revived some libtls conversion work I did a while back, I worked on UNIX-domain sockets support in OpenSMTPD  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
+Let&rsquo;s start with some LoFi Relax.
+   I have a youtube channel (subscribe !"><meta name=twitter:description content="TL;DR: I do LoFi now, eric@ revived some libtls conversion work I did a while back, I worked on UNIX-domain sockets support in OpenSMTPD  Shout outs to my patrons ! As usual, a huge thanks goes to the …"><meta name=author content="Gilles Chehade"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"poolp.org","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/poolp.org\/"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/poolp.org\/","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/poolp.org\/posts\/2021-01-31\/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support\/","name":"January 2021 open s m t p d libtls conversion and u n i x domain sockets support"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Gilles Chehade"},"headline":"January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support","description":"TL;DR: I do LoFi now, eric@ revived some libtls conversion work I did a while back, I worked on UNIX-domain sockets support in OpenSMTPD  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.\nLet\u0026rsquo;s start with some LoFi Relax.\n   I have a youtube channel (subscribe !","inLanguage":"en","wordCount":2164,"datePublished":"2021-01-31T00:18:00","dateModified":"2021-01-31T00:18:00","image":"https:\/\/poolp.org\/","keywords":[""],"mainEntityOfPage":"https:\/\/poolp.org\/posts\/2021-01-31\/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support\/","publisher":{"@type":"Organization","name":"https:\/\/poolp.org\/","logo":{"@type":"ImageObject","url":"https:\/\/poolp.org\/","height":60,"width":60}}}</script><meta property="og:title" content="January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support"><meta property="og:description" content="TL;DR: I do LoFi now, eric@ revived some libtls conversion work I did a while back, I worked on UNIX-domain sockets support in OpenSMTPD  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
+Let&rsquo;s start with some LoFi Relax.
+   I have a youtube channel (subscribe !"><meta property="og:image" content="https://poolp.org/images/2021-01-01-nothing-can-make-you-awake.jpg"><meta property="og:url" content="https://poolp.org/posts/2021-01-31/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=twitter:title content="January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets …"><meta name=twitter:description content="TL;DR: I do LoFi now, eric@ revived some libtls conversion work I did a while back, I worked on UNIX-domain sockets support in OpenSMTPD  Shout outs to my patrons ! As usual, a huge thanks goes to the …"><meta name=twitter:image content="https://poolp.org/images/2021-01-01-nothing-can-make-you-awake.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:image" content="https://poolp.org/images/2021-01-01-nothing-can-make-you-awake.jpg"><meta name=twitter:image content="https://poolp.org/images/2021-01-01-nothing-can-make-you-awake.jpg"><meta name=twitter:card content="summary"><meta name=twitter:site content="@poolpOrg"><meta name=twitter:creator content="@poolpOrg"><meta property="og:url" content="https://poolp.org/posts/2021-01-31/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support/"><meta property="og:type" content="website"><meta property="og:site_name" content="poolp.org"><meta name=generator content="Hugo 0.80.0"><link rel=alternate href=https://poolp.org/index.xml type=application/rss+xml title=poolp.org><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://poolp.org/css/main.css><link rel=stylesheet href=https://poolp.org/css/highlight.min.css><link rel=stylesheet href=https://poolp.org/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous><link rel=stylesheet href=/css/latex.style.css></head><body><div class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<a class=navbar-brand href=https://poolp.org/ target=_blank><img src=/images/poolp_org.png alt=poolp.org height=55px></a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li class=navlinks-container><a class=navlinks-parent>Freelance</a><div class=navlinks-children><a href=/en/contracting/>[en] Hire me !</a>
+<a href=/fr/contracting/>[fr] Recrutez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Sponsorship</a><div class=navlinks-children><a href=/en/sponsorship/>[en] Sponsor me !</a>
+<a href=/fr/sponsorship/>[fr] Sponsorisez moi !</a></div></li><li class=navlinks-container><a class=navlinks-parent>Social</a><div class=navlinks-children><a href=https://patreon.com/gilles>Patreon</a>
+<a href=https://www.linkedin.com/in/gilleschehade>LinkedIn</a>
+<a href=https://github.com/poolpOrg>Github</a>
+<a href=https://twitter.com/poolpOrg>Twitter</a></div></li><li class=navlinks-container><a class=navlinks-parent>Curriculum</a><div class=navlinks-children><a href=https://github.com/poolpOrg/resume/blob/master/resume.en.pdf>EN</a>
+<a href=https://github.com/poolpOrg/resume/blob/master/resume.fr.pdf>FR</a></div></li><li><a title=Hypnose href=https://hypno.cat>Hypnose</a></li></ul></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=posts-heading><h1 style=text-align:left>January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support</h1></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><blockquote><b>TL;DR:</b>
+I do LoFi now,
+eric@ revived some libtls conversion work I did a while back,
+I worked on UNIX-domain sockets support in OpenSMTPD</blockquote><h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1><p>As usual, a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong>,
+<strong><a href=https://github.com/sponsors/poolpOrg>github</a></strong> or <strong><a href=https://liberapay.com/poolpOrg>liberaPay</a></strong>,
+the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p><h1 id=lets-start-with-some-lofi>Let&rsquo;s start with some LoFi</h1><p>Relax.</p><center><iframe width=560 height=315 src=https://www.youtube.com/embed/n18RH8XWqL4 frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center><p>I have a <a href=https://www.youtube.com/c/GillesChehade>youtube channel</a> (subscribe ! now !) with a playlist of LoFi tracks that I mix.</p><p>I&rsquo;ll try to insert a new one in every monthly report if time allows ;-)</p><h1 id=libtls-enabled-opensmtpd>libtls-enabled OpenSMTPD</h1><p>In <a href=https://poolp.org/posts/2020-01-22/january-2020-opensmtpd-work-libasr-and-libtls/>January 2020</a>,
+I worked on converting OpenSMTPD to the libtls API so that I could simplify TLS support and bring new features that I didn&rsquo;t want to implement with the libssl API.</p><p>The diff was never merged into OpenBSD and <strong>ended up rotting in a private branch</strong>.
+This was unfortunate because I spent time making this work for portable too,
+building an OpenSSL-enabled libtls that would allow distributions not shipping LibreSSL to still benefit from this TLS simplification.</p><p>Eric Faurot (eric@) has recently picked up my work and pushed it even further,
+<strong>managing to make OpenSMTPD completely libssl-agnostic while I still needed bits for the privsep crypto engines</strong>.
+He <a href="https://marc.info/?l=openbsd-tech&m=161173678114145&w=2">submitted a diff to tech@</a> which is pending review.
+Once his diff gets committed in OpenBSD,
+I&rsquo;ll rework the portable code to make it work again so this benefits users on other systems.</p><p>I&rsquo;ve been suggested by eric@ and a tech@ reader to look at <a href=https://git.causal.agency/libretls/about/>libretls</a>.
+The problem is that libretls is not yet available in the package repositories of all distributions supported by OpenSMTPD,
+and eric@ also brought changes in LibreSSL that libretls will need to catch up with before I can rely on it.
+I think the best approach is to rely on the standalone code I already wrote and which is shipped with OpenSMTPD,
+then once libretls is widely available I can reassess the situation.</p><h1 id=libtls-related-features>libtls-related features</h1><p>I have three features related to the libtls change that are already written,
+rotting in their own branches,
+and that I will submit once the TLS diff is committed.
+They make it possible to <strong>configure the ciphers, curves and TLS versions supported for each listeners</strong>.</p><p>The rationale behind this is that some setups require stronger (or specific) crypto constraints for specific networks.
+This change would allow declaring that a specific interface requires use of a different set of ciphers or TLS version,
+and allow for example to have an interface with the default settings for Internet and one with extra-paranoid settings for a specific MX.</p><p>I also had started working on other features,
+like <strong>certificates fingerprinting or OCSP stapling</strong>,
+but I stopped as I didn&rsquo;t want to have too much code building upon an uncommitted diff.</p><p>I&rsquo;ll resume working on these once eric@ commits the libtls conversion.</p><h1 id=smtpd8-now-binds-unix-domain-sockets><code>smtpd(8)</code> now binds UNIX-domain sockets</h1><p>At the exception of the local enqueuer,
+OpenSMTPD only supports SMTP sessions over network connections.
+This shows in the configuration file as it is only possible to use <code>listen</code> directives with a network interface parameter&mldr;
+or with the <code>socket</code> keyword which is handled as a special case for the local enqueuer.</p><p>When the daemon starts,
+it creates a UNIX-domain socket to use as its control socket for the <code>smtpctl(8)</code> utility.
+This was initially meant to accept control requests from root to interact with <code>smtpd(8)</code> at runtime,
+but later came the need for local enqueueing and the control socket was used for that purpose too.</p><p>A special &ldquo;enqueue&rdquo; control command was implemented in <code>smtpd(8)</code>.
+That command allows <code>smtpctl(8)</code> to request from <code>smtpd(8)</code> that it establishes an internal SMTP session and returns the file descriptor.
+The <code>smtpctl(8)</code> utility then uses that descriptor to pretend that the socket was actually connected directly to the SMTP server,
+and it toggles into an enqueue mode where it operates as an SMTP client.</p><p>This has three side-effects:</p><p>Because everyone is supposed to be able to enqueue a local mail,
+the control socket cannot have strict permissions and has to be world-writeable.
+Since it is also used for privileged control commands,
+the daemon needs to explicitly check that the client is only allowed to access the enqueue mode if the user is not privileged:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ ls -l /var/run/smtpd.sock                                                
+srw-rw-rw-  <span class=m>1</span> root  wheel  <span class=m>0</span> Dec <span class=m>28</span> 06:38 /var/run/smtpd.sock
+$ smtpctl show queue
+smtpctl: need root privileges
+</code></pre></div><p>Then,
+because there is some magic involved to request the file descriptor and toggle in enqueue mode,
+the control socket is not <em>really</em> connected directly to the SMTP server.
+It is not possible to connect to it with <code>netcat</code> and talk SMTP as it expects a control command sent with the <code>imsg(3)</code> framework.
+The server will just ignore the client as it doesn&rsquo;t speak its protocol,
+and the connection must be established by <code>smtpctl(8)</code> requesting the enqueue mode (or a clone that knows how to do so):</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ nc -U /var/run/smtpd.sock  
+HELO ??????
+^C
+$
+</code></pre></div><p>Finally,
+users expect to be able to enqueue mail even if the daemon is not available.
+This requires the local enqueuer to support an offline queue,
+which itself relies on having an executable setgid to the same group as the offline directory.
+Because <code>smtpctl(8)</code> is used for both control and enqueuing,
+it ends up having the setgid bit itself:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>-r-xr-sr-x  <span class=m>1</span> root  _smtpq  <span class=m>217696</span> Dec <span class=m>23</span> 06:42 /usr/sbin/smtpctl
+</code></pre></div><p>A year ago,
+I told eric@ that I believed this was a poor decision made in the early days.
+Both the control and the enqueuing code could be made simpler and stricter if they were split apart.</p><p>If local enqueuing had its own dedicated socket which established a connection to an SMTP session,
+then any SMTP client that knew how to connect to a UNIX-domain socket could be used as the local enqueuer.
+OpenSMTPD even ships with one&mldr; <code>smtp(1)</code>.</p><p>This would simplify <code>smtpctl(8)</code> as it would no longer need an enqueue mode and a builtin SMTP client.
+It would also simplify <code>smtpd(8)</code> as it would no longer need to implement the internal SMTP session and fd passing logic,
+but would also no longer need to check if a user can or can&rsquo;t run a command: if it&rsquo;s not root, it can&rsquo;t.
+The control socket and <code>smtpctl(8)</code> could both be restricted to root as they would only be used for control requests.</p><p>If you don&rsquo;t see the benefit behind this,
+many years ago there were two bugs that allowed local users to crash <code>smtpd(8)</code> from <code>smtpctl(8)</code>.
+One affected the control command counter,
+which a user could not have messed up with if control commands were restricted to root,
+and the other affected the fd passing for the enqueue mode,
+which would not even exist if enqueuing had its own dedicated socket instead of being a control command.</p><p>This sounds nice but converting local enqueuing to use its own dedicated UNIX-domain socket is trickier than it seems.
+The technical aspect is simple,
+you just bind a UNIX-domain socket instead of a TCP socket,
+but it raises a lot of other questions regarding the behavior of the daemon.
+I will discuss that in a future post as this is still being sorted out.</p><p>What could be done right now and that wouldn&rsquo;t raise questions was to teach <code>smtpd(8)</code> how to bind a UNIX-domain listener.
+It makes it possible to declare listeners that have UNIX-domain sockets as their endpoints and which plain SMTP clients can connect to:</p><pre><code>$ cat /etc/mail/smtpd.conf |grep listen
+listen on socket &quot;/tmp/foobar.sock&quot;
+listen on socket &quot;/tmp/barbaz.sock&quot;
+$ nc -U /tmp/foobar.sock
+220 debug.poolp.org ESMTP OpenSMTPD
+^C
+$ printf &quot;subject: test\n\ntest&quot; | smtp -s /tmp/barbaz.sock gilles@poolp.org 
+gilles@poolp.org: EOM: 250 2.0.0 593c830c Message accepted for delivery
+$ 
+</code></pre><p>It doesn&rsquo;t solve the local enqueuer issues as it still uses the control socket,
+but it allows regular SMTP clients to submit mail over a UNIX-domain socket without relying on control commands.
+Moving forward in this direction,
+a new local enqueuer can be written that doesn&rsquo;t rely on the enqueue control command,
+which ultimately leads to enqueuing being removed from <code>smtpctl(8)</code> and more restrictive permissions on the control socket.</p><p>I already showed the diff to eric@ but I will send it to OpenBSD next week.</p><h1 id=smtp1-now-talks-unix-domain-socket><code>smtp(1)</code> now talks Unix-domain socket</h1><p>Following the UNIX-domain sockets listeners idea,
+I thought it would be nice to do the client side too.</p><p>A while back,
+eric@ wrote <code>smtp(1)</code> which is a simple utility to submit mail to SMTP servers on the command line:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ cat<span class=s>&lt;&lt;EOF | smtp -s localhost gilles@poolp.org
+</span><span class=s>Subject: foo
+</span><span class=s>
+</span><span class=s>bar
+</span><span class=s>EOF</span>
+gilles@poolp.org: EOM: <span class=m>250</span> 2.0.0 5cc0b0d8 Message accepted <span class=k>for</span> delivery
+$
+</code></pre></div><p>The <code>smtp(1)</code> client didn&rsquo;t know how to connect to a UNIX-domain socket so I fixed that:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ cat<span class=s>&lt;&lt;EOF | smtp -s /tmp/smtpd.sock gilles@poolp.org
+</span><span class=s>Subject: foo
+</span><span class=s>
+</span><span class=s>bar
+</span><span class=s>EOF</span>
+gilles@poolp.org: EOM: <span class=m>250</span> 2.0.0 d73542e2 Message accepted <span class=k>for</span> delivery
+$
+</code></pre></div><p>This allowed me to test my diff on the server side,
+but it also made me realize that it could be used as the base for a new local enqueuer outside of <code>smtpctl(8)</code>.</p><p>The current local enqueuer is based on the femail MUA,
+which was kind of hacked here and there to fit in <code>smtpctl(8)</code> and work with its enqueue mode.
+It reads the mail from its standard input,
+does some sanitizing and crafting,
+then submits it using the SMTP protocol on a file descriptor which points to an SMTP session.</p><p>In a world where local enqueuing doesn&rsquo;t require <code>smtpctl(8)</code> entering a special enqueue mode,
+it would be fairly easy to use <code>smtp(1)</code> as a base to write a new enqueuer.
+It already reads mail from standard input,
+it already knows how to speak SMTP and with my diff it knows how to connect to a UNIX-domain socket.
+All that would be missing is adding the sanitizing and crafting bits which we already have.</p><p>I also already showed the diff to eric@ and will send it to OpenBSD next week with the listeners one.</p><h1 id=noosmtpd-not-openbsds-opensmtpd>nooSMTPD: Not OpenBSD&rsquo;s OpenSMTPD</h1><p>I didn&rsquo;t want to talk about this yet but since people have spotted the repository and are making assumptions,
+I need to explain what that is.</p><p>In December, I started working on an MTA.
+It is based on OpenSMTPD,
+but it takes a different direction and has different goals.</p><p>OpenSMTPD is a general purpose MTA,
+written primarily for OpenBSD,
+which needs to fit the base system and care about legacy and how changes affect the user base.</p><p>nooSMTPD doesn&rsquo;t have these constraints.
+I&rsquo;m writing it primarily for myself and will happily break legacy behaviors and change the configuration file every two months if it makes things easier for me.
+I intend to support some advanced features found in commercial MTA and that are unlikely to be accepted in OpenBSD because&mldr;
+OpenSMTPD is a general purpose MTA.</p><p>OpenSMTPD benefits from the work I do there as I share all diffs,
+but in some cases they are unsuitable for OpenBSD and this is where things diverge between the two,
+it will contain diffs that don&rsquo;t make it into OpenSMTPD.</p><p>I&rsquo;ll write about it more in details in the future,
+I just wanted to clarify that this isn&rsquo;t the fork some people think it is.
+I have exchanged multiple diffs with eric@, millert@, martijn@ and even tech@ since December,
+and I continue to talk about OpenSMTPD changes with eric@ every week.</p><p>I just have ideas for a different project :-)</p><h1 id=breaking-changes-in-noosmtpd>breaking changes in nooSMTPD</h1><p>I have killed the <code>dead.letter</code> feature which allows OpenSMTPD to save a copy of a mail when it fails to submit it to the enqueuer.
+Modern MUA do not make use of it,
+it is solely used by legacy MUA,
+and I always thought this was not the job of the MTA to handle it.
+It was also a vector of attack in the past.</p><p>I have killed delivery to the <code>root</code> user for all mail delivery agents,
+the only way <code>root</code> can receive a mail is through an alias to an unprivileged account.</p><p>I have merged all of the diffs from <a href=https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/>last month</a>,
+including the safety net that detects injection of a custom MDA for dispatchers not allowing <code>exec</code>.</p><h1 id=assorted-portability-improvements-and-cleanups-in-noosmtpd>assorted portability improvements and cleanups in nooSMTPD</h1><p>I reworked some code patterns confused compilers and led to false positives in warnings.
+For example,
+the following construct was found in multiple places,
+and led compilers not knowing that <code>fatal()</code> never returned into assuming that <code>p</code> might be uninitialized in the call to <code>barbaz()</code>:</p><div class=highlight><pre class=chroma><code class=language-c data-lang=c><span class=kt>int</span>
+<span class=nf>foobar</span><span class=p>(</span><span class=n>x</span><span class=p>)</span>
+<span class=p>{</span>
+    <span class=kt>char</span> <span class=o>*</span><span class=n>p</span><span class=p>;</span>
+
+    <span class=k>switch</span> <span class=p>(</span><span class=n>x</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>case</span> <span class=mi>0</span><span class=o>:</span>
+            <span class=n>p</span> <span class=o>=</span> <span class=s>&#34;a&#34;</span><span class=p>;</span>
+            <span class=k>break</span><span class=p>;</span>
+        <span class=k>case</span> <span class=mi>1</span><span class=o>:</span>
+            <span class=n>p</span> <span class=o>=</span> <span class=s>&#34;b&#34;</span><span class=p>;</span>
+            <span class=k>break</span><span class=p>;</span>
+        <span class=k>default</span><span class=o>:</span>
+            <span class=n>fatal</span><span class=p>(</span><span class=s>&#34;die.&#34;</span><span class=p>)</span>
+    <span class=p>}</span>
+
+    <span class=n>barbaz</span><span class=p>(</span><span class=n>p</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></div><p>I also replaced some functions,
+such as <code>ctime()</code> and <code>localtime()</code>,
+with their reentrant versions <code>ctime_r()</code> and <code>localtime_r()</code>.
+nooSMTPD is not threaded but this raises alerts from analysis tools and,
+while doing something just so a tool would shut up is not a good rationale,
+in this case there&rsquo;s no real downside and it saves me from having to keep flagging stuff as false positives.</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>Moving forward with all of the above.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/issues/84>https://github.com/poolpOrg/poolp.org/issues/84</a></p><hr><section id=social-share><div class="list-inline footer-links"><div class=share-box aria-hidden=true><ul class=share><li><a href="//twitter.com/share?url=https%3a%2f%2fpoolp.org%2fposts%2f2021-01-31%2fjanuary-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support%2f&text=January%202021%3a%20OpenSMTPD%20libtls%20conversion%20and%20UNIX-domain%20sockets%20support&via=poolpOrg" target=_blank title="Share on Twitter"><i class="fab fa-twitter"></i></a></li><li><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2021-01-31%2fjanuary-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook"></i></a></li><li><a href="//reddit.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2021-01-31%2fjanuary-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support%2f&title=January%202021%3a%20OpenSMTPD%20libtls%20conversion%20and%20UNIX-domain%20sockets%20support" target=_blank title="Share on Reddit"><i class="fab fa-reddit"></i></a></li><li><a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fpoolp.org%2fposts%2f2021-01-31%2fjanuary-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support%2f&title=January%202021%3a%20OpenSMTPD%20libtls%20conversion%20and%20UNIX-domain%20sockets%20support" target=_blank title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a></li><li><a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fpoolp.org%2fposts%2f2021-01-31%2fjanuary-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support%2f&title=January%202021%3a%20OpenSMTPD%20libtls%20conversion%20and%20UNIX-domain%20sockets%20support" target=_blank title="Share on StumbleUpon"><i class="fab fa-stumbleupon"></i></a></li><li><a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fpoolp.org%2fposts%2f2021-01-31%2fjanuary-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support%2f&description=January%202021%3a%20OpenSMTPD%20libtls%20conversion%20and%20UNIX-domain%20sockets%20support" target=_blank title="Share on Pinterest"><i class="fab fa-pinterest"></i></a></li></ul></div></div></section></article><ul class="pager blog-pager"><li class=previous><a href=https://poolp.org/posts/2020-12-29/writing-a-custom-mail-delivery-agent/ data-toggle=tooltip data-placement=top title="Writing a custom Mail Delivery Agent">&larr; Previous Post</a></li></ul></div></div></div><footer style=text-align:justify><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><h2>Like my work and want to help me ?</h2><br><ul><li>Consider <b>tipping me</b> on <b><a target=_blank href=https://paypal.me/poolpOrg>PayPal</a></b>,
+<b>supporting me</b> through one of the <b><a href=/en/sponsorship>sponsorship</a></b> platforms at <b><a href=https://github.com/sponsors/poolpOrg>Github</a></b>, <b><a href=https://patreon.com/gilles>Patreon</a></b> or
+<b><a href=https://liberapay.com/poolpOrg>LiberaPay</a></b>,
+or even <b>getting me something</b> from my wishlist on <b><a target=_blank href=http://amzn.eu/3MwH6CX>Amazon</a></b>
+for positive <b><a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a></b> :-)<br><br></li><li>You can also help me by <b>commenting articles</b> to spark discussions,
+and by <b>sharing them</b> so they reach a bigger audience,
+they all contain a comment link and icons that will let you share to popular social networks.</li></ul><br></div></div><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><p class="credits copyright text-muted"><a href=https://poolp.org>Gilles Chehade</a>
+-&nbsp;&copy;
+2021
+-
+<a href=https://poolp.org/>poolp.org</a></p><p class="credits theme-by text-muted"><a href=http://gohugo.io>Hugo v0.80.0</a> powered - Theme adapted from <a href=http://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://poolp.org/js/main.js></script><script src=https://poolp.org/js/highlight.min.js></script><script>hljs.initHighlightingOnLoad();</script><script>$(document).ready(function(){$("pre.chroma").css("padding","0");});</script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://poolp.org/js/load-photoswipe.js></script></body></html>

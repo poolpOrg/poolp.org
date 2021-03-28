@@ -5,6 +5,7 @@
  * Licensed under MIT (https://github.com/vincentdoerig/latex-css/blob/master/LICENSE)
 */
 
+/*
 @font-face {
   font-family: 'Latin Modern';
   font-style: normal;
@@ -44,6 +45,7 @@
     url('/fonts/LM-bold-italic.woff') format('woff'),
     url('/fonts/LM-bold-italic.ttf') format('truetype');
 }
+*/
 
 /* Box sizing rules */
 *,

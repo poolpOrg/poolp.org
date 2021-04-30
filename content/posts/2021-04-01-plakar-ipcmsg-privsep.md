@@ -39,7 +39,7 @@ I did a bit of **review and test** for diffs sent to me,
 helped test a diff for a **reproducible crash** in the **new libtls code** on my machines,
 and shared some of my nooSMTPD diffs with `eric@` so he could decide to reuse them or not in OpenSMTPD.
 
-With OpenBSD 6.9 coming out soon,
+With OpenBSD 6.9 coming out,
 **OpenSMTPD 6.9.0 was tagged** and `eric@` asked me if I could **synchronize the OpenSMTPD portable repository** so it matches OpenBSD.
 I spent a few hours bringing back **every individual commit**,
 **fixing conflicts** and ended up with a **libtls-powered** OpenSMTPD-portable which ... didn't build anywhere because **the world still uses OpenSSL**.

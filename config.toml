@@ -2,6 +2,7 @@ baseURL = "https://poolp.org/"
 languageCode = "en-us"
 title = "poolp.org"
 theme = "poolp.org_theme"
+#theme = "papercss-hugo-theme"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 publishDir = "docs"
@@ -46,11 +47,6 @@ publishDir = "docs"
     weight = 1
 
 [[menu.main]]
-    name = "Sponsorship"
-    url = "/sponsorship/"
-    weight = 2
-
-[[menu.main]]
     name = "Social"
     url = ""
     weight = 3
@@ -76,18 +72,6 @@ publishDir = "docs"
     parent = "Freelance"
     name = "[fr] Recrutez moi !"
     url = "/fr/contracting/"
-    weight = 2
-
-[[menu.main]]
-    parent = "Sponsorship"
-    name = "[en] Sponsor me !"
-    url = "/en/sponsorship/"
-    weight = 1
-
-[[menu.main]]
-    parent = "Sponsorship"
-    name = "[fr] Sponsorisez moi !"
-    url = "/fr/sponsorship/"
     weight = 2
 
 [[menu.main]]

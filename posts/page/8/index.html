@@ -3,42 +3,54 @@
 <a href=https://www.linkedin.com/in/gilleschehade>LinkedIn</a>
 <a href=https://github.com/poolpOrg>Github</a>
 <a href=https://twitter.com/poolpOrg>Twitter</a></div></li><li class=navlinks-container><a class=navlinks-parent>Curriculum</a><div class=navlinks-children><a href=https://github.com/poolpOrg/resume/blob/master/resume.en.pdf>EN</a>
-<a href=https://github.com/poolpOrg/resume/blob/master/resume.fr.pdf>FR</a></div></li><li><a title=Hypnose href=https://hypno.cat>Hypnose</a></li></ul></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div><div class=posts-heading><h1 style=text-align:left>Posts</h1></div></div></div></div></div></header><div class=container role=main><div class=row><div><div class=posts-list><article class=post-preview><a href=https://poolp.org/posts/2012-05-17/opensmtpd-src-address-maps-and-spamhaus/><h2 class=post-title>OpenSMTPD: src-address maps and spamhaus</h2></a><p class=post-meta><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;
-&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;385&nbsp;words
-&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Gilles Chehade</span></p><div class=post-entry>First of all, I&rsquo;d like to &ldquo;thank&rdquo; The Spamhaus project which forced me into hacking this feature in a hurry.
+<a href=https://github.com/poolpOrg/resume/blob/master/resume.fr.pdf>FR</a></div></li><li><a title=Hypnose href=https://hypno.cat>Hypnose</a></li></ul></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div><div class=posts-heading><h1 style=text-align:left>Posts</h1></div></div></div></div></div></header><div class=container role=main><div class=row><div><div class=posts-list><article class=post-preview><a href=https://poolp.org/posts/2012-05-17/opensmtpd-src-address-maps-and-spamhaus/><h2 class=post-title>OpenSMTPD: src-address maps and spamhaus</h2></a><p class=post-meta><span class=post-meta>posted on the <b>2012-05-17 17:23:09 +0000 UTC</b>
+by <b>Gilles Chehade</b>
+[
+<b>385</b>&nbsp;words,
+<b>~2</b>&nbsp;minutes read
+]</span></p><div class=post-entry>First of all, I&rsquo;d like to &ldquo;thank&rdquo; The Spamhaus project which forced me into hacking this feature in a hurry.
 See, I rent a server at online.net which I use for OpenSMTPD live testing and to run some experimental code before it hits the OpenBSD tree.
 Yesterday I received a mail from a user complaining that he couldn&rsquo;t send mail to a friend because we were listed on spamhaus. That was very strange because ALL users at poolp.
-<a href=https://poolp.org/posts/2012-05-17/opensmtpd-src-address-maps-and-spamhaus/ class=post-read-more>[Read More]</a></div></article><article class=post-preview><a href=https://poolp.org/posts/2012-05-14/opensmtpd-relay-maps-new-url-syntax/><h2 class=post-title>OpenSMTPD relay maps & new url syntax</h2></a><p class=post-meta><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;
-&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;462&nbsp;words
-&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Gilles Chehade</span></p><div class=post-entry>When we first started working on OpenSMTPD, we planned for future features but we did not necessarily start integrating them right away as the goal was to bootstrap the project first with basic features.
+<a href=https://poolp.org/posts/2012-05-17/opensmtpd-src-address-maps-and-spamhaus/ class=post-read-more>[Read More]</a></div></article><article class=post-preview><a href=https://poolp.org/posts/2012-05-14/opensmtpd-relay-maps-new-url-syntax/><h2 class=post-title>OpenSMTPD relay maps & new url syntax</h2></a><p class=post-meta><span class=post-meta>posted on the <b>2012-05-14 09:55:52 +0000 UTC</b>
+by <b>Gilles Chehade</b>
+[
+<b>462</b>&nbsp;words,
+<b>~3</b>&nbsp;minutes read
+]</span></p><div class=post-entry>When we first started working on OpenSMTPD, we planned for future features but we did not necessarily start integrating them right away as the goal was to bootstrap the project first with basic features.
 Amongst these features was the ability to use mappings for outgoing MX servers. Currently, OpenSMTPD knows two ways of going out:
 Using the DNS system to find MX records: accept for [&mldr;] relay
 Using the provided mail exchanger: accept for [&mldr;] relay via &ldquo;my-mx.
-<a href=https://poolp.org/posts/2012-05-14/opensmtpd-relay-maps-new-url-syntax/ class=post-read-more>[Read More]</a></div></article><article class=post-preview><a href=https://poolp.org/posts/2012-05-13/opensmtpd-map_compare-and-k_netaddr/><h2 class=post-title>OpenSMTPD, map_compare() and K_NETADDR</h2></a><p class=post-meta><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;
-&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;557&nbsp;words
-&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Gilles Chehade</span></p><div class=post-entry>Ok, I already posted about the new SQLite map_backend earlier today but it turns out that I&rsquo;ve been very productive, and it was worth another post ;-)
+<a href=https://poolp.org/posts/2012-05-14/opensmtpd-relay-maps-new-url-syntax/ class=post-read-more>[Read More]</a></div></article><article class=post-preview><a href=https://poolp.org/posts/2012-05-13/opensmtpd-map_compare-and-k_netaddr/><h2 class=post-title>OpenSMTPD, map_compare() and K_NETADDR</h2></a><p class=post-meta><span class=post-meta>posted on the <b>2012-05-13 03:09:16 +0000 UTC</b>
+by <b>Gilles Chehade</b>
+[
+<b>557</b>&nbsp;words,
+<b>~3</b>&nbsp;minutes read
+]</span></p><div class=post-entry>Ok, I already posted about the new SQLite map_backend earlier today but it turns out that I&rsquo;ve been very productive, and it was worth another post ;-)
 So I decided to start improving our maps support and make them usable from places where they weren&rsquo;t.
 primary domains
 OpenSMTPD supports two kinds of domains: primary domains and virtual domains. The primary domains do not require providing a list of recipients as it will use system accounts; whereas virtual domains require a list of recipients and/or a fallback address to be provided within a map.
-<a href=https://poolp.org/posts/2012-05-13/opensmtpd-map_compare-and-k_netaddr/ class=post-read-more>[Read More]</a></div></article><article class=post-preview><a href=https://poolp.org/posts/2012-05-12/opensmtpd-meets-sqlite/><h2 class=post-title>OpenSMTPD meets SQLite</h2></a><p class=post-meta><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;
-&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;332&nbsp;words
-&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Gilles Chehade</span></p><div class=post-entry>During the r2k12 hackathon in Paris, Marc Espie committed SQLite to OpenBSD&rsquo;s base system.
+<a href=https://poolp.org/posts/2012-05-13/opensmtpd-map_compare-and-k_netaddr/ class=post-read-more>[Read More]</a></div></article><article class=post-preview><a href=https://poolp.org/posts/2012-05-12/opensmtpd-meets-sqlite/><h2 class=post-title>OpenSMTPD meets SQLite</h2></a><p class=post-meta><span class=post-meta>posted on the <b>2012-05-12 14:23:54 +0000 UTC</b>
+by <b>Gilles Chehade</b>
+[
+<b>332</b>&nbsp;words,
+<b>~2</b>&nbsp;minutes read
+]</span></p><div class=post-entry>During the r2k12 hackathon in Paris, Marc Espie committed SQLite to OpenBSD&rsquo;s base system.
 This has the side effect that OpenSMTPD can start using it and while we agreed that we did not want it as a strong dependency, the various backends API allow us to make it a soft dependency that can be removed without breaking the daemon if someone really does not want SQLite linked.
 Today I decided to give it a try and implement a SQLite backend to the map API.
-<a href=https://poolp.org/posts/2012-05-12/opensmtpd-meets-sqlite/ class=post-read-more>[Read More]</a></div></article><article class=post-preview><a href=https://poolp.org/posts/2012-05-09/some-opensmtpd-news/><h2 class=post-title>Some OpenSMTPD news</h2></a><p class=post-meta><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;
-&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;391&nbsp;words
-&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Gilles Chehade</span></p><div class=post-entry>It&rsquo;s been a whiiiiiiile since my last OpenSMTPD related post. Time to break the slacking, blog-wise.
+<a href=https://poolp.org/posts/2012-05-12/opensmtpd-meets-sqlite/ class=post-read-more>[Read More]</a></div></article><article class=post-preview><a href=https://poolp.org/posts/2012-05-09/some-opensmtpd-news/><h2 class=post-title>Some OpenSMTPD news</h2></a><p class=post-meta><span class=post-meta>posted on the <b>2012-05-09 23:03:36 +0000 UTC</b>
+by <b>Gilles Chehade</b>
+[
+<b>391</b>&nbsp;words,
+<b>~2</b>&nbsp;minutes read
+]</span></p><div class=post-entry>It&rsquo;s been a whiiiiiiile since my last OpenSMTPD related post. Time to break the slacking, blog-wise.
 Unlike what would appear from the outside, there&rsquo;s been a lot of activity, discussions and planning, I&rsquo;ll address some here and will discuss it further soon.
 First of all, chl@ has committed to a private branch a major improvement to the filter API: async DNS lookups. Due to the design of OpenSMTPD, it is not acceptable for a filter to perform a blocking call as it will prevent it from processing other sessions.
-<a href=https://poolp.org/posts/2012-05-09/some-opensmtpd-news/ class=post-read-more>[Read More]</a></div></article><article class=post-preview><a href=https://poolp.org/posts/2005-05-21/fatigue-et-envie-de-vacances.../><h2 class=post-title>fatigue et envie de vacances...</h2></a><p class=post-meta><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;
-&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
-&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;793&nbsp;words
-&nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Gilles Chehade</span></p><div class=post-entry>Je sais pas pourquoi, mais je suis epuise alors que j&rsquo;ai dormi pres de 14h cette nuit. J&rsquo;ai envie de faire une pause, de me prendre une annee de vacances au bord de la plage les doigts de pieds dans le sable fin blanc pendant qu&rsquo;on me sert du sorbet a la noix de coco sur fond de Gojira alors que le soleil me rechauffe le visage mais juste un peu, pas trop, voila, comme ca, merci.
+<a href=https://poolp.org/posts/2012-05-09/some-opensmtpd-news/ class=post-read-more>[Read More]</a></div></article><article class=post-preview><a href=https://poolp.org/posts/2005-05-21/fatigue-et-envie-de-vacances.../><h2 class=post-title>fatigue et envie de vacances...</h2></a><p class=post-meta><span class=post-meta>posted on the <b>2005-05-21 00:00:00 +0000 UTC</b>
+by <b>Gilles Chehade</b>
+[
+<b>793</b>&nbsp;words,
+<b>~4</b>&nbsp;minutes read
+]</span></p><div class=post-entry>Je sais pas pourquoi, mais je suis epuise alors que j&rsquo;ai dormi pres de 14h cette nuit. J&rsquo;ai envie de faire une pause, de me prendre une annee de vacances au bord de la plage les doigts de pieds dans le sable fin blanc pendant qu&rsquo;on me sert du sorbet a la noix de coco sur fond de Gojira alors que le soleil me rechauffe le visage mais juste un peu, pas trop, voila, comme ca, merci.
 <a href=https://poolp.org/posts/2005-05-21/fatigue-et-envie-de-vacances.../ class=post-read-more>[Read More]</a></div></article></div><ul class="pager main-pager"><li class=previous><a href=https://poolp.org/posts/page/7/>&larr; Newer Posts</a></li></ul></div></div></div><footer><p><h2>Like my work and want to help me ?</h2><ul><li>Consider <b>tipping me</b> on <b><a target=_blank href=https://paypal.me/poolpOrg>PayPal</a></b>,
 <b>supporting me</b> through one of the <b>sponsoring</b> platforms at <b><a href=https://github.com/sponsors/poolpOrg>Github</a></b>, <b><a href=https://patreon.com/gilles>Patreon</a></b> or
 <b><a href=https://liberapay.com/poolpOrg>LiberaPay</a></b>,

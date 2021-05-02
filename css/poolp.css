@@ -2684,3 +2684,7 @@ blockquote {
   margin: 20px;
   font-size: 4rem;
 }
+
+.header-section {
+  margin-top: 100px;
+}

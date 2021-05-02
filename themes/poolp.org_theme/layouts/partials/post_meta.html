@@ -1,9 +1,9 @@
 <span class="post-meta">
-  posted on the <b>{{.Params.Date}}</b>
-  by <b>{{ .Params.author | safeHTML }}</b>
-  [
+  by <b>{{ .Params.author | safeHTML }}</b>,
+  <b>{{.Params.Date}}</b>,
+  <!--<br />Info:
     <b>{{ .WordCount }}</b>&nbsp;{{ i18n "words" }},
     <b>~{{ i18n "readingTime"}}{{ .ReadingTime }}</b>&nbsp;{{ i18n "readTime" }} read
-  ]
+  ]-->
 </span>
 

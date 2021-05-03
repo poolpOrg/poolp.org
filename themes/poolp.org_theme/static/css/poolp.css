@@ -629,6 +629,14 @@ hr::after {
   max-width: 960px;
   position: relative;
 }
+
+.container-fluid {
+  margin: 0 auto;
+  max-width: 960px;
+  position: relative;
+}
+
+
 @media only screen and (max-width:992px) {
   .container {
     width: 85%

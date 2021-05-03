@@ -667,14 +667,20 @@ pre {
   word-wrap: break-word
 }
 pre code {
-  border: 1px solid #000000;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border: 2px solid #41403e;
+  display: block;
+  height: auto;
+  max-width: inherit;
+
   background: 0 0;
   color: inherit;
-  display: block;
   font-size: inherit;
   padding: initial;
   white-space: pre;
-  max-width: inherit;
 }
 html {
   color: #41403e;

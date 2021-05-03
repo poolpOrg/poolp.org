@@ -1,5 +1,4 @@
 <footer>
-  <div class="container-fluid">
   <p>
   <h2>Like my work and want to help me ?</h2>
   <ul>
@@ -13,6 +12,7 @@
           href="http://amzn.eu/3MwH6CX">Amazon</a></b>
       for positive <b><a href="https://en.wikipedia.org/wiki/Reinforcement">reinforcement</a></b> :-)
       <br />
+      <br />
     </li>
     <li>
       You can also help me by <b>commenting articles</b> to spark discussions,
@@ -21,6 +21,9 @@
     </li>
   </ul>
   </p>
+
+  <hr />
+
   <p class="credits copyright text-muted">
     {{ if .Site.Author.name }}
     {{ if .Site.Author.website }}
@@ -49,7 +52,6 @@
     {{ if $.GitInfo }}&nbsp;&bull;&nbsp;[<a href="{{ .Site.Params.commit }}{{ .GitInfo.Hash }}">{{ substr .GitInfo.Hash
       0 8 }}</a>]{{ end }}
   </p>
-  </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"

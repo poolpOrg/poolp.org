@@ -28,7 +28,6 @@
     {{ if $bigimg }}
       <div class="intro-header big-img">
         {{ $subtitle := $.Scratch.Get "subtitle" }}
-        <div class="container">
           <div class="row">
             <div>
               <div class="{{ .Type }}-heading">
@@ -47,12 +46,10 @@
               </div>
             </div>
           </div>
-        </div>
         <span class="img-desc" style="display: inline;"></span>
       </div>
     {{end}}
     <div class="intro-header no-img">
-      <div class="container">
         <div class="row">
           <div>
             <div class="{{ .Type }}-heading">
@@ -77,7 +74,6 @@
             </div>
           </div>
         </div>
-      </div>
     </div>
   </header>
 {{ else }}

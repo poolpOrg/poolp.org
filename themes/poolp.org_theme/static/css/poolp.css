@@ -297,17 +297,9 @@ html {
   text-align: center
 }
 hr {
-  border: 0
+  border: 1
 }
-hr::after {
-  color: #8f8d89;
-  content: '~~~';
-  display: block;
-  font-size: 1.5rem;
-  position: relative;
-  text-align: center;
-  top: -.75rem
-}
+
 .paper {
   background-color: #fff;
   border: 1px solid #c1c0bd;
@@ -1588,7 +1580,7 @@ fieldset.form-group {
 .modal .btn-close:active,
 .modal .btn-close:focus,
 .modal .btn-close:hover {
-  color: #41403e
+color: #41403e
 }
 .modal .modal-title,
 .modal h4 {

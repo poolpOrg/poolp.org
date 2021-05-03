@@ -1,4 +1,5 @@
 <footer>
+  <div class="container-fluid">
   <p>
   <h2>Like my work and want to help me ?</h2>
   <ul>
@@ -48,6 +49,7 @@
     {{ if $.GitInfo }}&nbsp;&bull;&nbsp;[<a href="{{ .Site.Params.commit }}{{ .GitInfo.Hash }}">{{ substr .GitInfo.Hash
       0 8 }}</a>]{{ end }}
   </p>
+  </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"

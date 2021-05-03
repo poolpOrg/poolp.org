@@ -4,10 +4,12 @@
     {{ partial "head.html" . }}
   </head>
   <body>
+    <div class="container-fluid">
     {{ partial "nav.html" . }}
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
     {{ block "main" . }}{{ end }}
     {{ partial "footer.html" . }}
+    </div>
   </body>
 </html>
 

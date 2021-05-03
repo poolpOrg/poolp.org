@@ -17,14 +17,14 @@
 
 .navbar-custom .navbar-brand,
 .navbar-custom .nav li a {
-  color: #d0d0d0;
+  color: #ffffff;
 }
 
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus ,
 .navbar-custom .nav li a:hover,
 .navbar-custom .nav li a:focus {
-  color: #ff0000;
+  text-decoration: underline;
 }
 
 .navbar-custom .navbar-brand-logo {

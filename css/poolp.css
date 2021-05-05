@@ -2495,6 +2495,7 @@ p {
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   margin-top: 1rem;
+  font-family: Neucha,sans-serif;
 }
 
 /* Make images easier to work with */
@@ -2664,6 +2665,7 @@ dl dd {
   line-height: 1.5;
   font-size: 85%;
   margin-bottom: 0.4rem;
+  font-family: Neucha,sans-serif;
 }
 .footnotes {
   border-top: 1px solid hsl(0, 0%, 39%);

@@ -127,8 +127,9 @@ strong {
 }
 b,
 strong {
-  font-weight: 1000;
+  font-weight: bolder;
   color: #000000;
+  background-color: #fff170;
 }
 kbd,
 samp {

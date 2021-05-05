@@ -28,6 +28,7 @@
               </a>
 
               {{ partial "post_meta.html" . }}
+
               <div class="post-entry">
                 {{ if .Truncated }}
                   {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Summary }}{{ end }}

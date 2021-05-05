@@ -1,6 +1,6 @@
 <span class="post-meta">
   by <b>{{ .Params.author | safeHTML }}</b>,
-  <b>{{.Params.Date}}</b>,
+  <b>{{.Params.Date.Format "Monday, 02 January 2006 15:04:05 -0700"}}</b>,
   <!--<br />Info:
     <b>{{ .WordCount }}</b>&nbsp;{{ i18n "words" }},
     <b>~{{ i18n "readingTime"}}{{ .ReadingTime }}</b>&nbsp;{{ i18n "readTime" }} read

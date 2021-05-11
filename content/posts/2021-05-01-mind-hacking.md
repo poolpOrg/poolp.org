@@ -234,7 +234,7 @@ you should have seen more or less the same thing as you should only interpret,
 not transform,
 the objective reality.
 If that wasn't the case,
-the bet industry would fall apart.
+the gambling industry would fall apart.
 
 An alternate reality is one that is **incompatible with the objective reality** and,
 by extension,

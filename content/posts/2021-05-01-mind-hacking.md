@@ -215,7 +215,7 @@ rather than actual perceptions.
 
 Further in this article,
 whenever I use the term reality without more precisions then it means subjective reality,
-as it is the one we're tend to refer to when we talk about reality.
+as it is the one we tend to refer to when we talk about reality.
 
 
 ## Alternate realities

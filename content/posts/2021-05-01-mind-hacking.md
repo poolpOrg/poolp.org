@@ -422,7 +422,7 @@ and would disappear when we wake up and enter our OSC again with our main person
 # Stages of sleep
 Out of all ASC,
 stages of sleep are particularly interesting because we all experience them daily,
-and we can all **relate to them.
+and we can all relate to them.
 No one doubts falling asleep or that when they're asleep,
 they're no longer in the same state as when they're awake.
 It is a set of ASC that we **undisputedly all share in common**.

@@ -1,17 +1,18 @@
-name = "Beautiful Hugo"
+name = "mediumish"
 license = "MIT"
-licenselink = "https://github.com/halogenica/Hugo-BeautifulHugo/blob/master/LICENSE"
-description = "A port of Beautiful Jekyll theme"
-tags = ["blog", "company", "portfolio", "projects", "minimal", "responsive", "seo"]
-features = ["blog", "themes", "disqus", "minimal", "responsive", "staticman"]
-min_version = 0.48
+licenselink = "https://github.com/lgaida/mediumish-theme-gohugo/blob/master/LICENSE"
+description = "An elegant, mediumish theme for gohugo"
+homepage = "http://lgaida.de"
+tags = ["Blog", "Responsive", "Personal", "Minimal", "Clean", "Disqus", "Google Analytics"]
+features = []
+min_version = "0.41"
 
 [author]
-    name = "halogenica"
-    homepage = "http://halogenica.net"
+  name = "lgaida"
+  homepage = "http://lgaida.de"
 
-# If Porting existing theme
+# If porting an existing theme
 [original]
-    author =  "dattali"
-    homepage = "http://deanattali.com/beautiful-jekyll/"
-    repo = "https://github.com/daattali/beautiful-jekyll"
+  name = "wowthemesnet"
+  homepage = "https://www.wowthemes.net/"
+  repo = "https://github.com/wowthemesnet/mediumish-theme-jekyll"

@@ -1,63 +1,42 @@
+{{ define "header"}}
+    {{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
 {{ define "main" }}
-  <div role="main">
-    <div class="row">
-      <div>
-        {{ with .Content }}
-          <div class="well">
-            {{.}}
-          </div>
-        {{ end }}
-        <div class="posts-list">
-          {{ range .Paginator.Pages }}
-            <article class="post-preview">
-              <a href="{{ .Permalink }}">
-                <h2 class="post-title">{{ .Title }}</h2>
-
-                {{ if .Params.subtitle }}
-                  <h3 class="post-subtitle">
-                    {{ .Params.subtitle }}
-                  </h3>
-                {{ end }}
-              </a>
-
-              <p class="post-meta">
-                {{ partial "post_meta.html" . }}
-              </p>
-              <div class="post-entry">
-                {{ if .Truncated }}
-                  {{ .Summary }}
-                  <a href="{{ .Permalink }}" class="post-read-more">[{{ i18n "readMore" }}]</a>
-                {{ else }}
-                  {{ .Content }}
-                {{ end }}
-              </div>
-
-              {{ if .Params.tags }}
-                <div class="blog-tags">
-                  {{ range .Params.tags }}
-                    <a href="{{ $.Site.LanguagePrefix | absURL }}/tags/{{ . | urlize }}/">{{ . }}</a>&nbsp;
-                  {{ end }}
-                </div>
-              {{ end }}
-
-            </article>
-          {{ end }}
-        </div>
-        {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
-          <ul class="pager main-pager">
-            {{ if .Paginator.HasPrev }}
-              <li class="previous">
-                <a href="{{ .Permalink }}page/{{ .Paginator.Prev.PageNumber }}/">&larr; {{ i18n "newerPosts" }}</a>
-              </li>
-            {{ end }}
-            {{ if .Paginator.HasNext }}
-              <li class="next">
-                <a href="{{ .Permalink }}page/{{ .Paginator.Next.PageNumber }}/">{{ i18n "olderPosts" }} &rarr;</a>
-              </li>
-            {{ end }}
-          </ul>
-        {{ end }}
-      </div>
+    {{- partial "_shared/title.html" . -}}
+    <div class="main-content">
+        <!-- Posts Index
+        ================================================== -->
+        <section class="recent-posts">            
+            <div class="section-title">
+                <!--
+                <h2><span>All Posts</span></h2>
+                -->
+            </div>            
+            <div class="row listrecent">
+                {{ $post_paginator := .Paginate (.Pages) 6 }}
+                {{ range $post_paginator.Pages }}
+                    {{- partial "list-partials/postbox.html" . -}}
+                {{end}}
+            </div>
+        </section>
+        {{- partial "list-partials/pagination.html" $post_paginator -}}
     </div>
-  </div>
+{{ end }}
+
+{{ define "footer"}}
+<hr />
+<div class="text-center">
+    <h2>Like my work ?</h2>
+    <p>
+    Consider tipping me on <a href="https://paypal.me/poolpOrg">PayPal</a>,
+    supporting me through one of the sponsoring platforms at <a href="https://github.com/sponsors/poolpOrg">Github</a>,
+    <a href="https://patreon.com/gilles">Patreon</a> or
+    <a href="https://liberapay.com/poolpOrg">LiberaPay</a>,
+    or even getting me something from my wishlist on <a href="http://amzn.eu/3MwH6CX">Amazon</a> for positive <a href="https://en.wikipedia.org/wiki/Reinforcement">reinforcement</a> :-)
+    </p>
+</div>
+<hr />
+    {{- partial "_shared/jumbotron.html" . -}}
+    {{- partial "_shared/footer.html" . -}}
 {{ end }}

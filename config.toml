@@ -1,26 +1,64 @@
 baseURL = "https://poolp.org/"
 languageCode = "en-us"
 title = "poolp.org"
-theme = "poolp.org_theme"
+#theme = "poolp.org_theme"
 #theme = "papercss-hugo-theme"
+theme = "mediumish-gohugo-theme"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 publishDir = "docs"
+copyright = "Gilles Chehade - All rights reserved"
+enableEmoji = true
 
 [markup.goldmark.renderer]
-    unsafe= true
+  unsafe= true
+
+[params]
+  logo = "/images/logo.png"
+  description = "the clean blog!"
+
 
 [Params]
-	mainSections = ["post", "posts"]
-	#logo = "/images/me.jpg"
+	mainSections = ["posts"]
+	logo = "/images/poolp_org.png"
 	commit = false
 	rss = true
-	#comments = true
+	comments = false
 	readingTime = true
 	wordCount = true
 	useHLJS = true
 	socialShare = true
 	showRelatedPosts = true
+
+[Params.author]
+  name = "Gilles Chehade"
+  thumbnail = "/images/me.jpg"
+  description = ""
+  website = "https://poolp.org"
+  email = "gilles@poolp.org"
+  facebook = "gilles.chehade"
+  github = "poolpOrg"
+  twitter = "poolpOrg"
+  reddit = "poolpOrg"
+  linkedin = "gilleschehade"
+  paypal = "poolpOrg"
+
+[Params.index]
+  picture = "/images/me.jpg"
+  title = "Gilles Chehade"
+  subtitle = "foobarbazing since 1981"
+  mdtext = '''
+Currently trying to get this blog running,\
+**Be patient.**
+### This is a markdown heading
+'''
+  alertbar = false
+
+[Params.social]
+  github = "poolpOrg"
+  linkedin = "gilleschehade"
+  twitter = "poolpOrg"
+
 
 [Author]
 	name = "Gilles Chehade"
@@ -42,71 +80,16 @@ publishDir = "docs"
 	page = ["HTML"]
 
 [[menu.main]]
-    name = "Freelance"
-    url = ""
+    name = "Articles"
+    url = "/posts"
     weight = 1
 
 [[menu.main]]
-    name = "Social"
-    url = ""
-    weight = 3
-
-[[menu.main]]
-    name = "Curriculum"
-    url = ""
-    weight = 4
+    name = "Freelance"
+    url = "/fr/contracting/"
+    weight = 2
 
 [[menu.main]]
     name = "Hypnose"
     url = "https://hypno.cat"
     weight = 5
-
-
-[[menu.main]]
-    parent = "Freelance"
-    name = "[en] Hire me !"
-    url = "/en/contracting/"
-    weight = 1
-
-[[menu.main]]
-    parent = "Freelance"
-    name = "[fr] Recrutez moi !"
-    url = "/fr/contracting/"
-    weight = 2
-
-[[menu.main]]
-    parent = "Social"
-    name = "Patreon"
-    url = "https://patreon.com/gilles"
-    weight = 1
-
-[[menu.main]]
-    parent = "Social"
-    name = "LinkedIn"
-    url = "https://www.linkedin.com/in/gilleschehade"
-    weight = 2
-
-[[menu.main]]
-    parent = "Social"
-    name = "Github"
-    url = "https://github.com/poolpOrg"
-    weight = 3
-
-[[menu.main]]
-    parent = "Social"
-    name = "Twitter"
-    url = "https://twitter.com/poolpOrg"
-    weight = 4
-
-
-[[menu.main]]
-    parent = "Curriculum"
-    name = "EN"
-    url = "https://github.com/poolpOrg/resume/blob/master/resume.en.pdf"
-    weight = 1
-
-[[menu.main]]
-    parent = "Curriculum"
-    name = "FR"
-    url = "https://github.com/poolpOrg/resume/blob/master/resume.fr.pdf"
-    weight = 2

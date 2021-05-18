@@ -1,10 +1,16 @@
 ---
 title: "Mind hacking: comprendre comment fonctionne notre esprit"
 date: 2021-05-17 22:52:00 +0200
-category: psychologie
+categories:
+ - psychologie
+ - hypnose
 share_img: "/images/2021-05-01/felix.png"
 author: Gilles Chehade
 language: fr
+tags:
+ - hypnose
+ - rêves
+ - rêves lucide
 ---
 
 <blockquote>

@@ -2,7 +2,6 @@
 title: "September 2019 report: Jules, OpenSMTPD 6.6.0 upcoming release and related things"
 date: 2019-09-21 07:08:00 +0200
 category: opensource
-share_img: "/images/2019-09-21-baby2.jpg"
 author: Gilles Chehade
 ---
     TL;DR:

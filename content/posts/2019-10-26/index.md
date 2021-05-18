@@ -2,7 +2,6 @@
 title: "October 2019 report: OpenSMTPD 6.6.0 release mostly"
 date: 2019-10-26 16:13:00 +0200
 category: opensource
-share_img: "/images/2019-10-26-book.pmg"
 author: Gilles Chehade
 ---
     TL;DR:

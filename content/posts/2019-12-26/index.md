@@ -2,7 +2,6 @@
 title: "SPF-aware greylisting et filter-greylist"
 date: 2019-12-26 14:15:00 +0200
 category: opensource
-share_img: "/images/2019-12-01-spam.jpg"
 author: Gilles Chehade
 ---
     TL;DR:

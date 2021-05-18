@@ -2,7 +2,6 @@
 title: "OpenSMTPD advisory dissected"
 date: 2020-01-30 23:36:00 +0200
 category: opensource
-share_img: "/images/2020-01-29-mma.jpg"
 author: Gilles Chehade
 ---
     TL;DR:

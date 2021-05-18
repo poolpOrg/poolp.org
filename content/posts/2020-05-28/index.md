@@ -2,7 +2,6 @@
 title: "May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs"
 date: 2020-05-28 01:57:00 +0200
 category: opensource
-share_img: "/images/2020-05-28-filter-prometheus.png"
 author: Gilles Chehade
 ---
 <blockquote>

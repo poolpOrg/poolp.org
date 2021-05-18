@@ -2,7 +2,6 @@
 title: "December 2019: OpenSMTPD and filters work, articles and goodies"
 date: 2019-12-24 09:31:00 +0200
 category: opensource
-share_img: "/images/2019-12-24-plan.gif"
 author: Gilles Chehade
 ---
     TL;DR:

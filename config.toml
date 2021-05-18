@@ -1,4 +1,4 @@
-baseURL = "https://poolp.org/"
+baseURL = "https://poolp.org"
 languageCode = "en-us"
 title = "poolp.org"
 theme = "poolp.org_theme"
@@ -9,12 +9,7 @@ copyright = "Gilles Chehade - All rights reserved"
 enableEmoji = true
 
 [markup.goldmark.renderer]
-  unsafe= true
-
-[params]
-  logo = "/images/logo.png"
-  description = "the clean blog!"
-
+  unsafe = true
 
 [Params]
 	mainSections = ["posts"]

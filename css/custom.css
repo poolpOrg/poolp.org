@@ -34,6 +34,7 @@ blockquote {
 
 .article-post {
     font-family: Neucha, Merriweather;
+    font-size: 1.2rem;
 }
 
 .mainheading h1.sitetitle {
@@ -57,7 +58,7 @@ h6 {
 
 .layout-page .article-post {
     font-family: Neucha, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .mediumnavigation .navbar-brand img {
@@ -70,5 +71,5 @@ h6 {
 
 .nav-item {
     font-family: Neucha, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 1rem;
+    font-size: 1.2rem;
 }

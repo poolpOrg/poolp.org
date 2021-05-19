@@ -73,3 +73,9 @@ h6 {
     font-family: Neucha, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 1.2rem;
 }
+
+.chroma {
+    border-radius: 25px;
+    border: 2px solid #a00;
+    padding: 20px;
+}

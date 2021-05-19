@@ -22,6 +22,7 @@ enableEmoji = true
 	useHLJS = true
 	socialShare = true
 	showRelatedPosts = true
+  alertbar = true
 
 [Params.author]
   name = "Gilles Chehade"
@@ -45,7 +46,7 @@ Currently trying to get this blog running,\
 **Be patient.**
 ### This is a markdown heading
 '''
-  alertbar = false
+  alertbar = true
 
 [Params.social]
   github = "poolpOrg"
@@ -71,11 +72,6 @@ Currently trying to get this blog running,\
 	home = ["HTML", "RSS"]
 	section = ["HTML", "RSS"]
 	page = ["HTML"]
-
-[[menu.main]]
-    name = "Articles"
-    url = "/posts"
-    weight = 1
 
 [[menu.main]]
     name = "Freelance"

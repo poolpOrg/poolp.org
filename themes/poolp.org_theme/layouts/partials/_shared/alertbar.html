@@ -1,24 +1,18 @@
 <!-- Bottom Alert Bar
 ================================================== -->
-{{ if isset .Site.Params "mailchimp" }}
 <div class="alertbar">
 	<div class="container text-center">
         <span>
             {{ if isset .Site.Params "logo" }}
-                <img src="{{ .Site.Params.logo | urlize | relURL }}" alt="logo">
+                <img src="{{ .Site.Params.logo | urlize | relURL }}" alt="logo" height="0px">
             {{ else }}
                 <span style="font-family:Righteous;">{{.Site.Title}}</span>
             {{ end }}
-            &nbsp; Never miss a <b>story</b>, subscribe to our newsletter
+            Consider tipping me on <a href="https://paypal.me/poolpOrg">PayPal</a>,
+            supporting me through <a href="https://github.com/sponsors/poolpOrg">Github</a>,
+            <a href="https://patreon.com/gilles">Patreon</a> or
+            <a href="https://liberapay.com/poolpOrg">LiberaPay</a>,
+            or getting me something from <a href="http://amzn.eu/3MwH6CX">Amazon</a> for positive <a href="https://en.wikipedia.org/wiki/Reinforcement">reinforcement</a> :-)
         </span>
-
-        <form action="{{ with .Site.Params.mailchimp }}{{.}}{{end}}" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
-		<input type="email" placeholder="Email" name="EMAIL" autocomplete="on" required>
-	    	<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-	    	<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="{{ with .Site.Params.mailprotect }}{{.}}{{end}}" tabindex="-1" value=""></div>
-		<input type="submit" value="Subscribe" name="subscribe" >
-        </form>
-
 	</div>
 </div>
-{{ end }}

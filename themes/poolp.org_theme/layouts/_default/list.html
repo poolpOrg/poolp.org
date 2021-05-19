@@ -22,21 +22,10 @@
         </section>
         {{- partial "list-partials/pagination.html" $post_paginator -}}
     </div>
+    {{- partial "_shared/alertbar.html" . -}}
 {{ end }}
 
 {{ define "footer"}}
-<hr />
-<div class="text-center">
-    <h2>Like my work ?</h2>
-    <p>
-    Consider tipping me on <a href="https://paypal.me/poolpOrg">PayPal</a>,
-    supporting me through one of the sponsoring platforms at <a href="https://github.com/sponsors/poolpOrg">Github</a>,
-    <a href="https://patreon.com/gilles">Patreon</a> or
-    <a href="https://liberapay.com/poolpOrg">LiberaPay</a>,
-    or even getting me something from my wishlist on <a href="http://amzn.eu/3MwH6CX">Amazon</a> for positive <a href="https://en.wikipedia.org/wiki/Reinforcement">reinforcement</a> :-)
-    </p>
-</div>
-<hr />
     {{- partial "_shared/jumbotron.html" . -}}
     {{- partial "_shared/footer.html" . -}}
 {{ end }}

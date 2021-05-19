@@ -24,6 +24,10 @@ préparant le terrain pour un article à venir.
 </blockquote>
 
 
+<center>
+    <img src="cover.png" height="300px">
+</center>
+
 # Avertissement
 Mon intérêt pour les rêves lucides a débuté aux alentours de 2013,
 j'ai étudié seul puis suivi différentes formations de différent type d'hypnose entre 2015 et 2020,

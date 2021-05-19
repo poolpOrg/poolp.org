@@ -16,6 +16,9 @@ I dive briefly into dreams and hypnosis,
 paving the road for a future article.
 </blockquote>
 
+<center>
+    <img src="cover.png" height="300px">
+</center>
 
 # Disclaimer
 I've started taking an interest in lucid dreaming around 2013,

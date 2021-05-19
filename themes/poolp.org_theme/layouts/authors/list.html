@@ -1,0 +1,39 @@
+{{ define "header"}}
+    {{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+    <div class="main-content">
+        <header class="text-center">
+            {{ with .Params.photo }}
+                <img src="{{ . | urlize | relURL }}" class="rounded-circle text-center index-image">
+            {{ end }}
+            <h1 class="index-title">{{ .Params.name }}</h1>
+        </header>
+
+        <section class="text-center">
+            {{ with .Params.subtitle }}
+            <h3 class="index-sub">{{ . }}</h3>
+            {{ end }}
+            {{ with .Content }}
+            <h6 class="index-text">{{ . | markdownify }}</h6>
+            {{ end }}
+        </section>
+    </div>
+    <section class="text-center">
+        {{ with .Params.github }}
+        <a href="https://github.com/{{.}}"><i class="fab fa-github social-icon" aria-hidden="true"></i></a>
+        {{ end }}
+        {{ with .Params.linkedin }}
+        <a href="https://linkedin.com/in/{{.}}"><i class="fab fa-linkedin social-icon" aria-hidden="true"></i></a>
+        {{ end }}
+        {{ with .Params.twitter }}
+        <a href="https://twitter.com/{{.}}"><i class="fab fa-twitter social-icon" aria-hidden="true"></i></a>
+        {{ end }}
+    </section>
+    {{- partial "_shared/alertbar.html" . -}}
+{{end}}
+
+{{ define "footer" }}
+    {{- partial "_shared/footer.html" . -}}
+{{end}}

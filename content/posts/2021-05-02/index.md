@@ -4,7 +4,8 @@ date: 2021-05-17 22:52:00 +0200
 categories:
  - psychologie
  - hypnose
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 language: fr
 tags:
  - hypnose

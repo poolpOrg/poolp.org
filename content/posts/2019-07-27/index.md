@@ -2,7 +2,8 @@
 title: "July 2019 report: tons of smtpd work mostly"
 date: 2019-07-27 07:27:00
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
     TL;DR:

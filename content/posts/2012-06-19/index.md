@@ -2,7 +2,8 @@
 title: "OpenSMTPD: development, bug tracker & GitHub"
 date: 2012-06-19 19:57:37
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 It's been a while since my last post about OpenSMTPD.

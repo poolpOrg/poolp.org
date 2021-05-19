@@ -2,7 +2,8 @@
 title: "December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github"
 date: 2020-12-24 02:38:00 +0200
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 <blockquote>

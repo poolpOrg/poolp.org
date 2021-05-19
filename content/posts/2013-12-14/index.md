@@ -2,7 +2,8 @@
 title: "News-from-the-front"
 date: 2013-12-14 21:36:40
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 EHLO readers,

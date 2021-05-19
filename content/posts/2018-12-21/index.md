@@ -2,7 +2,8 @@
 title: "OpenSMTPD now supports regex in match rules"
 date: 2018-12-21 22:36:00
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
     TL;DR:

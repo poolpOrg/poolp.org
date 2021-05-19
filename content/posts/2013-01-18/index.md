@@ -2,7 +2,8 @@
 title: "OpenSMTPD: stress and features"
 date: 2013-01-18 22:11:07
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 	<p>Hey,</p>

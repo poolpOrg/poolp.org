@@ -2,7 +2,8 @@
 title: "fatigue et envie de vacances..."
 date: 2005-05-21 00:00:00
 category: ["myLife"]
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 draft: false
 ---
 

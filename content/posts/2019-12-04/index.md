@@ -2,7 +2,8 @@
 title: "Decentralised SMTP is for the greater good"
 date: 2019-12-15 07:29:00 +0200
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
     TL;DR:

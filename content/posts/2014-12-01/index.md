@@ -2,7 +2,8 @@
 title: "Some OpenSMTPD overview, part 2"
 date: 2014-12-01 09:04:11
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 Why we killed the MFA (filter) process

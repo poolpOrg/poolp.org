@@ -2,7 +2,8 @@
 title: "February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols"
 date: 2021-02-28 23:00:00 +0200
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 <blockquote>

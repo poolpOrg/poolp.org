@@ -2,7 +2,8 @@
 title: "OpenSMTPD: I have no idea for that title, sorry"
 date: 2012-08-26 22:53:03
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 Howdie,

@@ -2,7 +2,8 @@
 title: "SPF-aware greylisting and filter-greylist"
 date: 2019-12-01 10:11:00 +0200
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
     TL;DR:
     - greylisting is a sound idea

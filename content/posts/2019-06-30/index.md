@@ -2,7 +2,8 @@
 title: "June 2019 report: fion, bpg and smtpd"
 date: 2019-06-30 07:42:00
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
     TL;DR:

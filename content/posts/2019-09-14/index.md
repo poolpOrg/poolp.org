@@ -2,7 +2,8 @@
 title: "Setting up a mail server with OpenSMTPD, Dovecot and Rspamd"
 date: 2019-09-14 05:37:00
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
     TL;DR:
     - NO TL;DR: this time, I spent hours writing, you should spend minutes reading.

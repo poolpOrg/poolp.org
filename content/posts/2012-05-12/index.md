@@ -2,7 +2,8 @@
 title: "OpenSMTPD meets SQLite"
 date: 2012-05-12 14:23:54
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 During the r2k12 hackathon in Paris, Marc Espie committed SQLite to OpenBSD's base system.

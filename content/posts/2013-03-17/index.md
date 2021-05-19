@@ -2,7 +2,8 @@
 title: "OpenSMTPD 5.3 released"
 date: 2013-03-17 19:08:55
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 OHAI !

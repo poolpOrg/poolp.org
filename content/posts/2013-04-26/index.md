@@ -2,7 +2,8 @@
 title: "OpenSMTPD: table_proc, queue_proc, crypto queue and other stuff"
 date: 2013-04-26 18:42:36
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 Yop,

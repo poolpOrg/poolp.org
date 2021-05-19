@@ -2,7 +2,8 @@
 title: "OpenSMTPD: minor fixes + preparing release"
 date: 2013-02-02 12:54:36
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 OHAI,

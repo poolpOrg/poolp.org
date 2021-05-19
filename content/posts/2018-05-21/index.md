@@ -2,7 +2,8 @@
 title: "switching to OpenSMTPD new config"
 date: 2018-05-21 18:32:00
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
     TL;DR:

@@ -2,7 +2,8 @@
 title: "January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support, nooSMTPD"
 date: 2021-01-31 00:18:00 +0200
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 <blockquote>

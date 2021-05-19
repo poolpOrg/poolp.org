@@ -2,7 +2,8 @@
 title: "OpenSMTPD: crypto_backend and encrypted queue"
 date: 2012-08-29 10:21:59
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 A few days ago, Charles committed the compress_backend API which allowed transparent deflation/inflation of envelopes and messages as they hit the queue.

@@ -2,7 +2,8 @@
 title: "Welcome to you, 2013"
 date: 2013-01-08 23:16:43
 category: myLife
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 YO!

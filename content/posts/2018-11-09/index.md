@@ -2,7 +2,8 @@
 title: "OpenSMTPD reporting update"
 date: 2018-11-09 08:27:00
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
     TL;DR:

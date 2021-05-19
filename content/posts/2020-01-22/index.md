@@ -2,7 +2,8 @@
 title: "January 2020: OpenSMTPD work - libasr and libtls"
 date: 2020-01-22 06:51:00 +0200
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
     TL;DR:
     - brought back libasr to OpenSMTPD, it is no longer an external dependency

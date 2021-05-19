@@ -2,7 +2,8 @@
 title: "more on OpenSMTPD filters"
 date: 2018-12-19 18:21:00
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
     TL;DR:

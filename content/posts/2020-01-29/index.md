@@ -2,7 +2,8 @@
 title: "OpenSMTPD advisory dissected"
 date: 2020-01-30 23:36:00 +0200
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
     TL;DR:
     - Qualys released an advisory for a bad, bad vulnerability

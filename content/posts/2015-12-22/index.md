@@ -2,7 +2,8 @@
 title: "Home, sweet home"
 date: 2015-12-22 09:53:01
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 	TL;DR:

@@ -2,7 +2,8 @@
 title: "OpenSMTPD: fully virtual setups, updated DNS & MTA code, SQLite support"
 date: 2012-12-07 21:17:57
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 OHAI,

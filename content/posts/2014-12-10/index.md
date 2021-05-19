@@ -2,7 +2,8 @@
 title: "Some OpenSMTPD overview, part 3"
 date: 2014-12-10 12:38:26
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 EHLO,

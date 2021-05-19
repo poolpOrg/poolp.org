@@ -2,7 +2,8 @@
 title: "what the fsck did just happen"
 date: 2014-11-24 18:01:51
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 Good news everyone !

@@ -2,7 +2,8 @@
 title: "November 2020: I wasn't slacking but no opensource work"
 date: 2020-11-22 21:26:00 +0200
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 <blockquote>

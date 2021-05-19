@@ -5,7 +5,7 @@ theme = "poolp.org_theme"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 publishDir = "docs"
-copyright = "Gilles Chehade - All rights reserved"
+copyright = "poolp.org - All rights reserved"
 enableEmoji = true
 
 [markup.goldmark.renderer]
@@ -37,34 +37,6 @@ enableEmoji = true
   linkedin = "gilleschehade"
   paypal = "poolpOrg"
 
-[Params.index]
-  picture = "/images/me.jpg"
-  title = "Gilles Chehade"
-  subtitle = "foobarbazing since 1981"
-  mdtext = '''
-Currently trying to get this blog running,\
-**Be patient.**
-### This is a markdown heading
-'''
-  alertbar = true
-
-[Params.social]
-  github = "poolpOrg"
-  linkedin = "gilleschehade"
-  twitter = "poolpOrg"
-
-
-[Author]
-	name = "Gilles Chehade"
-	website = "https://poolp.org"
-	email = "gilles@poolp.org"
-    facebook = "gilles.chehade"
-	github = "poolpOrg"
-	twitter = "poolpOrg"
-	reddit = "poolpOrg"
-	linkedin = "gilles.chehade"
-	paypal = "poolpOrg"
-
 [permalinks]
 	posts = "/posts/:year-:month-:day/:slug"
 
@@ -82,3 +54,14 @@ Currently trying to get this blog running,\
     name = "Hypnose"
     url = "https://hypno.cat"
     weight = 5
+
+[[menu.main]]
+  name = "About me"
+  url = "/authors/gilles-chehade"
+  weight = 10
+
+
+[taxonomies]
+  author = "authors"
+  tag = "tags"
+  category = "categories"

@@ -2,7 +2,8 @@
 title: "Install OpenBSD on dedibox with full-disk encryption"
 date: 2018-01-29 23:28:00
 category: OpenBSD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 	TL;DR:

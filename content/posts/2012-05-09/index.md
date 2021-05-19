@@ -2,7 +2,8 @@
 title: "Some OpenSMTPD news"
 date: 2012-05-09 23:03:36
 category: ["OpenSMTPD"]
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 It's been a whiiiiiiile since my last OpenSMTPD related post. Time to break the slacking, blog-wise.

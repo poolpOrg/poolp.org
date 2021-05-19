@@ -2,7 +2,8 @@
 title: "October 2019 report: OpenSMTPD 6.6.0 release mostly"
 date: 2019-10-26 16:13:00 +0200
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
     TL;DR:
     - yay, surprise emergency hand surgery...

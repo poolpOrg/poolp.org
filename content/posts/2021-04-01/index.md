@@ -2,7 +2,8 @@
 title: "April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk"
 date: 2021-04-30 21:12:00 +0200
 category: opensource
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 <blockquote>

@@ -2,7 +2,8 @@
 title: "OpenSMTPD: src-address maps and spamhaus"
 date: 2012-05-17 17:23:09
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 First of all, I'd like to "thank" The Spamhaus project which forced me into hacking this feature in a hurry.

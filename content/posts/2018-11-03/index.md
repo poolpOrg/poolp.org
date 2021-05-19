@@ -2,7 +2,8 @@
 title: "OpenSMTPD released and upcoming filters preview"
 date: 2018-11-03 17:27:00
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
     TL;DR:

@@ -2,7 +2,8 @@
 title: "The state of filters"
 date: 2014-12-12 16:56:24
 category: OpenSMTPD
-author: Gilles Chehade
+authors:
+ - Gilles Chehade
 ---
 
 	TL;DR:

@@ -76,6 +76,7 @@ h6 {
 
 .chroma {
     border-radius: 10px;
+    border: 2px solid #a00;
     padding: 20px;
     overflow: auto;
 }

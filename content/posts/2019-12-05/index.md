@@ -3,7 +3,6 @@ title: "Décentralisons SMTP pour le bien commun"
 slug: decentralisons-smtp-pour-le-bien-commun
 date: 2019-12-15 13:05:00 +0200
 category: opensource
-share_img: "/images/2019-09-01-portal.jpg"
 author: Gilles Chehade
 ---
 
@@ -109,7 +108,7 @@ ni jamais,
 ni dans aucune dimension alternative _(insérer "sliiiiiiders" en chuchotement mental ici)_.
 
 <center>
-<img src="/images/2019-09-01-portal.jpg">
+<img src="cover.jpg">
 </center>
 
 Prenez un moment pour bien enregistrer ce qui suit : 

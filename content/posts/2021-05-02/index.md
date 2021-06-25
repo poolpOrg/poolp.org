@@ -115,14 +115,14 @@ soit parce que nous avons interagis avec notre environnement et reçus des signa
 La plupart des signaux sont ignorés,
 sauf si l'on y prête attention,
 parce qu'ils sont sans importances pour nos activités courantes,
-comme c'est le cas pour le bruit d'une horloge que l'on entends mais oublie comme si elle n'était plus là...
+comme c'est le cas pour le bruit d'une horloge que l'on entend mais oublie comme si elle n'était plus là...
 alors qu'elle l'est toujours.
 Beaucoup de signaux sont traités à un bas-niveau inconscient et enregistrés pour un usage ultérieur,
 comme la pensée passée d'une tablette de chocolat blanc dont on a un peu envie là maintenant.
 Quelques signaux sont traités et rendus disponibles immédiatement à notre conscience pour que nous puissions agir dessus,
-comme ce **texte surlignée** qui attire immédiatement notre attention.
+comme ce **texte surligné** qui attire immédiatement notre attention.
 
-Ces récepteurs sont ce qui nous aide à déveloper et customiser notre système.
+Ces récepteurs sont ce qui nous aide à développer et customiser notre système.
 Ils nous rendent disponible de l'information concernant notre réalité,
 ce qui change la façon dont on traite notre environnement et interprète de nouveaux signaux.
 Notre système construit une compréhension du monde au travers d'une boucle de rétroaction sensorielle.
@@ -133,16 +133,16 @@ Il peut sembler étrange de discuter du concept de réalité dans un article sur
 Nous vivons dans une réalité et tout ce nous faisons lui est relative:
 on y vient à la vie,
 on en apprend les règles au travers d'essais et d'erreurs,
-puis on dévelope des pensées et des comportements qui nous semblent y être adaptés.
-On ne peut pas commencer à comprendre comment notre esprit fonctionne sans comprendre comment il est perçoit la réalité...
+puis on développe des pensées et des comportements qui nous semblent y être adaptés.
+On ne peut pas commencer à comprendre comment notre esprit fonctionne sans comprendre comment il perçoit la réalité...
 parce que la façon dont fonctionne notre esprit est dérivé de cette perception.
 
 Quand on pense à la réalité,
-on pense généralement a une réalité unique,
+on pense généralement à une réalité unique,
 LA réalité,
 et on sépare ensuite le monde en deux:
-d'un côté se trouve ceux qui partagent la même réalité et que l'on considère sains,
-et de l'autre se trouve ceux qui ne la partagent pas et qui sont fous.
+d'un côté se trouvent ceux qui partagent la même réalité et que l'on considère sains,
+et de l'autre se trouvent ceux qui ne la partagent pas et qui sont fous.
 Si quelqu'un nous confie voir des cochons volants au dessus de nos têtes et qu'on ne les voit pas en levant les yeux,
 on reconnaît que sa perception de la réalité est inexacte parce que les cochons volants ne sont pas là.
 On s'attend à ce que les personnes autour de nous fassent l'expérience de la réalité de la même manière que nous parce que,
@@ -204,7 +204,7 @@ ce qui nous empêche d'en faire l'expérience telle qu'elle est réellement.
 À sa place,
 nous faisons l'expérience d'une version dégradée qui ne contient que ce à quoi nous sommes exposés,
 et ce que nos sens parviennent à y percevoir...
-une version **différente pour tous**.
+une version **différente pour chacun**.
 
 C'est la réalité subjective,
 une **représentation interne** de la réalité objective qui est affectée par nos perceptions,
@@ -215,7 +215,7 @@ ce n'est **pas une réalité factuelle**.
 
 Si je vous disais que j'ai mangé 1kg de chocolat blanc,
 peut être me croiriez vous parce que vous l'avez aussi fait une fois,
-et peut être quelqu'un d'autre ne me croirais pas parce que ça semble beaucoup.
+et peut être quelqu'un d'autre ne me croirait pas parce que ça semble beaucoup.
 Dans la réalité objective,
 je l'ai fait ou non,
 mais il y a deux réalités subjectives pour deux personnes différentes:
@@ -231,7 +231,7 @@ nous recevons les mêmes signaux.
 Si l'on regarde la même série,
 nous verrons les mêmes images et nous entendrons les mêmes dialogues,
 nous aurons peut être des différences parce que l'on prête plus ou moins attention aux mêmes détails,
-que les signaux auront été traduits un peu différemment ou même qu'une partie des signaux sera inaccessibles à l'un ou l'autre,
+que les signaux auront été traduits un peu différemment ou même qu'une partie des signaux sera inaccessible à l'un ou l'autre,
 mais nous aurons à peu près la même expérience.
 Les **divergences apparaissent lors qu'il manque de l'information** et que l'on est forcé de remplir les trous avec des interprétations, des suppositions et des extrapolations,
 plutôt qu'avec nos perceptions.
@@ -246,7 +246,7 @@ Bien que les réalités peuvent varier d'une personne à une autre,
 on peut avoir des attentes raisonnables concernant les réalités des autres parce que nous partageons la réalité objective et sommes soumis à ses règles.
 
 Si une autre personne et vous me regardiez jeter une pierre,
-je peux m'attendre à ce que vous ayez tous les deux vus la pierre tomber et non disparaître en l'air,
+je peux m'attendre à ce que vous ayez tous les deux vu la pierre tomber et non disparaître en l'air,
 flotter au dessus de ma tête ou décoller vers la Lune.
 Peut être n'avez-vous pas vu tous les détails,
 peut être vous pensez m'avoir vu jeter une canette et l'autre personne m'a vu jeter une pièce.
@@ -262,7 +262,7 @@ Une réalité alternative est une réalité qui est **incompatible avec la réal
 par extension,
 la réalité de la plupart des personnes.
 Si quelqu'un perçoit réellement des images d'une pierre en train de léviter lors de mon jet,
-alors sa réalité serait incompatible avec la réalité objective car elle défierai les lois de la physique,
+alors sa réalité serait incompatible avec la réalité objective car elle défierait les lois de la physique,
 mais aussi avec celle des autres personnes qui ont tous vu quelque chose tomber.
 
 Les réalités alternatives ~~ont leurs origines dans les autres dimensions de la physique quan~~...
@@ -289,7 +289,7 @@ tels que les Platistes ou une partie des anti-vax,
 ont des réalités compatibles avec la réalité objective...
 sauf dans les parties qui tournent autour de la conspiration.
 C'est seulement lorsque ces sujets sont évoqués que les conflits et incompatibilités émergent,
-les contraignants à travailler dur pour préserver leurs réalités et empêcher qu'elles ne s'effondrent.
+les contraignant à travailler dur pour préserver leurs réalités et empêcher qu'elles ne s'effondrent.
 
 Les réalités alternatives ne sont pas que l'expérience d'une pathologie,
 nous **en faisons tous l'expérience** fréquemment.
@@ -322,8 +322,8 @@ nous nous réveillons et commençons à reprendre contact avec notre réalité.
 
 En nous y reconnectant,
 nous entrons dans notre état de conscience ordinaire (ECO),
-un état dans lequel nous sommes conscients de l'environnement et capable d'interagir avec lui de manière compréhensible.
-l'ECO est un état dans lequel on se sent... normal,
+un état dans lequel nous sommes conscients de l'environnement et capables d'interagir avec lui de manière compréhensible.
+L'ECO est un état dans lequel on se sent... normal,
 ou du moins familier.
 C'est l'état dans lequel nous fonctionnons le plus souvent pour interagir avec l'environnement,
 celui dans lequel nous passons le plus de temps lors que nous sommes éveillés.
@@ -352,10 +352,10 @@ rien d'autre.
 
 Certains de ces états sont **déclenchés volontairement** par nos actions,
 comme se saouler en absorbant de l'alcool ou se défoncer en consommant des drogues.
-L'expression "sous influence" implique elle même que notre état de conscience est altéré,
+L'expression "sous influence" implique elle-même que notre état de conscience est altéré,
 les actions faites "sous influence" ne sont pas celles de quelqu'un en ECO.
 
-Les ECM peuvent aussi **déclenchés par des évènements** qui provoquent une courte sortie de notre normalité,
+Les ECM peuvent aussi être **déclenchés par des évènements** qui provoquent une courte sortie de notre normalité,
 comme par exemple lorsque l'on entre en état de choc après avoir été impliqué dans un accident,
 ou que l'on est euphorique après avoir accompli quelque chose d'extraordinaire.
 Ces évènements nous font temporairement basculer dans un ECM plus ou moins éloigné de notre ECO.
@@ -385,7 +385,7 @@ on ressent des choses plaisantes et déplaisantes,
 et tout ça affecte la manière dont on fait face à des situations similaires et celle dont on approche les nouvelles.
 
 Ces expériences sont **internalisées** et deviennent partie de notre identité,
-on construit un personnalité dont les traits en sont hérités,
+on construit une personnalité dont les traits en sont hérités,
 une personnalité qui est celle associée à notre ECO,
 notre **personnalité principale**.
 Il s'agit de celle qui nous décrit,
@@ -394,7 +394,7 @@ cette feinte fait partie de ses traits:
 on sait lorsque l'on fait semblant d'être quelqu'un d'autre.
 
 Cette personnalité principale est ce qui nous caractérise,
-ce qui nous décrit en tant que personne si l'on exclue les traits physiques.
+ce qui nous décrit en tant que personne si l'on exclut les traits physiques.
 On peut être timides ou extravertis,
 joyeux,
 pessimistes,
@@ -404,7 +404,7 @@ et les personnes qui la connaissent peuvent inférer certains de nos comportemen
 Si vous connaissez ma personnalité et reconnaissez une angoisse générale,
 vous inférerez probablement qu'il y a peu de chances que je prenne une décision impulsive sans la réfléchir.
 
-Cette personnalité principale est **ce qui rends notre réalité subjective**:
+Cette personnalité principale est **ce qui rend notre réalité subjective**:
 les interprétations de notre réalité sont influencées par notre personnalité.
 C'est parce qu'elle a certains traits que l'on interprète les évènements d'une certaine façon,
 que l'on fait peu attention à certains détails et beaucoup plus à d'autres.
@@ -482,7 +482,7 @@ on bascule vers un ECM différent dans lequel nous avons perdu connaissance et s
 mais toujours sujets à certaines perceptions qui peuvent **facilement nous ramener à l'éveil**,
 comme le bruit, les changements lumineux ou quelqu'un qui nous touche.
 
-C'est un ECM différent parce qu'il y a des changements visibles de la physiologiques,
+C'est un ECM différent parce qu'il y a des changements visibles de la physiologie,
 et que l'on peut mesurer des ondes cérébrales spécifiques à cette phase.
 
 
@@ -530,8 +530,8 @@ ils partagent ÉNORMÉMENT de **similarités avec les états hypnotiques** que j
 tellement en fait que l'on pourrait dire que ce sont essentiellement **les mêmes états déclenchés par des chemins différents**.
 
 C'est important parce que la porte la plus efficace vers le subconscient est l'hypnose,
-et lorsque l'on comprends qu'elle fonctionne au travers de mécanismes similaires au sommeil,
-on comprends également que ne pas être réceptif à l'hypnose est aussi dénué de sens que de ne pas être réceptif au sommeil.
+et lorsque l'on comprend qu'elle fonctionne au travers de mécanismes similaires au sommeil,
+on comprend également que ne pas être réceptif à l'hypnose est aussi dénué de sens que de ne pas être réceptif au sommeil.
 La résistance à l'hypnose n'est pas une question de réceptivité mais trouve sa cause ailleurs.
 
 
@@ -564,7 +564,7 @@ Elles peuvent être enregistrées et affecter nos décisions et pensées ultéri
 Si j'entends une publicité pour acheter des barres de chocolat pendant que je suis en rêverie,
 je suis plus suggestible à cette idée que si je prête attention et ai conscience que l'on tente de m'en faire acheter.
 Ce petit surcroît de suggestibilité peut jouer un rôle dans ma décision plus tard,
-et peut être me faire basculer vers l'achat si je n'était pas opposé à l'idée,
+et peut être me faire basculer vers l'achat si je n'étais pas opposé à l'idée,
 même si je n'en avait pas l'intention à l'origine.
 
 
@@ -590,7 +590,7 @@ La transe peut s'approfondir jusqu'au sommeil ou coma hypnotique,
 un état dans lequel nous perdons temporairement tout intérêt pour la réalité,
 complètement absorbés dans notre réalité alternative intérieure.
 
-Lorsque l'on lit ou entends parler de chirurgie sous hypnose,
+Lorsque l'on lit ou entend parler de chirurgie sous hypnose,
 de dentistes utilisant l'hypnose,
 ou encore lorsque l'on voit un hypnotiseur endormir quelqu'un dans un spectacle,
 il s'agit de cette transe approfondie à différents degrés.
@@ -696,7 +696,7 @@ seulement des recettes pour augmenter les probabilités d'y arriver.
 Quand un rêve lucide est déclenché,
 notre personnalité principale est réveillée dans **une réalité alternative** construite par des personnalités secondaires...
 mais elle est **consciente** que ce n'est **pas sa réalité**,
-et que **le corps physique dors à l'extérieur** du monde du rêve.
+et que **le corps physique dort à l'extérieur** du monde du rêve.
 Les personnalités alternatives tentent de préserver leur ascendant,
 et leur réalité,
 en tentant de faire perdre cette conscience par l'effondrement du rêve courant pour provoquer un réveil,
@@ -761,7 +761,7 @@ l'aventure s'arrête jusqu'à la prochaine tentative fructueuse de rêve lucide.
 Avec l'hypnose,
 nous faisons entrer les personnalités alternatives dans la réalité de notre personnalité principale,
 une réalité qu'elles ne peuvent pas interrompre.
-Si l'on sors de l'état d'hypnose pour une raison ou une autre,
+Si l'on sort de l'état d'hypnose pour une raison ou une autre,
 il est possible de le **ré-induire** autant de fois que souhaité.
 
 

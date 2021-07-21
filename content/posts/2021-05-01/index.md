@@ -739,4 +739,4 @@ and I will apply it to various states of consciousness to compare what we observ
 
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/88](https://github.com/poolpOrg/poolp.org/issues/88)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/92](https://github.com/poolpOrg/poolp.org/discussions/92)

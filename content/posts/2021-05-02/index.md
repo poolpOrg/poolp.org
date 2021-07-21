@@ -779,4 +779,4 @@ et je l'appliquerai à différents états de conscience pour comparer ce que l'o
 
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/89](https://github.com/poolpOrg/poolp.org/issues/89)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/91](https://github.com/poolpOrg/poolp.org/discussions/91)

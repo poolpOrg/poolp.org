@@ -328,4 +328,4 @@ Let me know.
 If you like my work, [support me on patreon](https://patreon.com/gilles) !
 
 --- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/60](https://github.com/poolpOrg/poolp.org/issues/60)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/104](https://github.com/poolpOrg/poolp.org/discussions/104)

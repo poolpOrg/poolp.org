@@ -1,5 +1,5 @@
 ---
-title: "Recrutez moi (en freelance) !"
+title: "Recrutez moi en freelance !"
 date: 2021-05-18T20:36:19+02:00
 ---
 Je suis un développeur "**most-stack**" senior avec un gros bagage en développement et administration système Unix,

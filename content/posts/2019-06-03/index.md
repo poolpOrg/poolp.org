@@ -271,4 +271,4 @@ See you in a month for the June report,
 very likely focusing around OpenSMTPD filters !
 
 --- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/57](https://github.com/poolpOrg/poolp.org/issues/57)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/101](https://github.com/poolpOrg/poolp.org/discussions/101)

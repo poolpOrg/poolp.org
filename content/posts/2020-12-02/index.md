@@ -246,4 +246,4 @@ I wrote this because many people have had questions regarding custom MDA, how to
 I might have missed stuff, if you have questions feel free to ask and I will expand this article.
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/83](https://github.com/poolpOrg/poolp.org/issues/83)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/125](https://github.com/poolpOrg/poolp.org/discussions/125)

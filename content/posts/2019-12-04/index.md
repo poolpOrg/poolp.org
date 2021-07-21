@@ -142,4 +142,4 @@ Many, many, many key points are also valid for mail services.
 
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/68](https://github.com/poolpOrg/poolp.org/issues/68)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/111](https://github.com/poolpOrg/poolp.org/discussions/111)

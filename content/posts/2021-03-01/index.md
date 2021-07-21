@@ -796,4 +796,4 @@ At this point,
 I also have other private plans with this which I'll discuss later ;-)
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/86](https://github.com/poolpOrg/poolp.org/issues/86)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/128](https://github.com/poolpOrg/poolp.org/discussions/128)

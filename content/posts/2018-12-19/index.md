@@ -279,4 +279,4 @@ Stay tuned !
 OH AND MERRY X-MAS BECAUSE I WONT BE POSTING BEFORE THEN ;-)
 
 --- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/54](https://github.com/poolpOrg/poolp.org/issues/54)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/98](https://github.com/poolpOrg/poolp.org/discussions/98)

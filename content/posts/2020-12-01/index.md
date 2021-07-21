@@ -326,4 +326,4 @@ Have a merry Xmas, a happy new year, and see you in January !
 
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/82](https://github.com/poolpOrg/poolp.org/issues/82)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/124](https://github.com/poolpOrg/poolp.org/discussions/124)

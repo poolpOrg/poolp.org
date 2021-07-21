@@ -234,4 +234,4 @@ If you're interested in my work,
 consider supporting me on [patreon](https://www.patreon.com/gilles) or [github](https://github.com/sponsors/poolpOrg).
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/76](https://github.com/poolpOrg/poolp.org/issues/76)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/119](https://github.com/poolpOrg/poolp.org/discussions/119)

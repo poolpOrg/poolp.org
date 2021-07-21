@@ -149,4 +149,4 @@ I intend to write some tutorials too.
 See you in December !
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/81](https://github.com/poolpOrg/poolp.org/issues/81)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/123](https://github.com/poolpOrg/poolp.org/discussions/123)

@@ -813,4 +813,4 @@ I will have a look at some of my other private repositories to see what can be r
 If you like my work, [support me on patreon](https://patreon.com/gilles) !
 
 --- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/58](https://github.com/poolpOrg/poolp.org/issues/58)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/102](https://github.com/poolpOrg/poolp.org/discussions/102)

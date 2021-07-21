@@ -144,4 +144,4 @@ API stabilization and writing filters to spot improvements required in the API.
 Stay tuned !
 
 --- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/53](https://github.com/poolpOrg/poolp.org/issues/53)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/97](https://github.com/poolpOrg/poolp.org/discussions/97)

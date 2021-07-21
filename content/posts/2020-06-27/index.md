@@ -215,4 +215,4 @@ I'll continue exploring how to make mail management nicer.
 I have some pending work for OpenSMTPD, both on the filter side and on the queue side.
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/78](https://github.com/poolpOrg/poolp.org/issues/78)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/121](https://github.com/poolpOrg/poolp.org/discussions/121)

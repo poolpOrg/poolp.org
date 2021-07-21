@@ -228,4 +228,4 @@ Work has already started but I will probably not commit any code related to this
 
 
 --- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/52](https://github.com/poolpOrg/poolp.org/issues/52)
+Comments: [https://github.com/poolpOrg/poolp.org/discussions/96](https://github.com/poolpOrg/poolp.org/discussions/96)

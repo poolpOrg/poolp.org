@@ -80,4 +80,4 @@ Cheers,
 Gilles
 
 --- 
-Comments: [https://github.com/poolpOrg/poolp.org/issues/56](https://github.com/poolpOrg/poolp.org/issues/56)
+Comments: https://github.com/poolpOrg/poolp.org/discussions/100](https://github.com/poolpOrg/poolp.org/discussions/100)

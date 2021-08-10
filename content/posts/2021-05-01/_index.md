@@ -737,6 +737,5 @@ I will explain how it was built,
 what was the rationale behind each component of the model,
 and I will apply it to various states of consciousness to compare what we observe to what the model predicts.
 
-
 ---- 
 Comments: [https://github.com/poolpOrg/poolp.org/discussions/92](https://github.com/poolpOrg/poolp.org/discussions/92)

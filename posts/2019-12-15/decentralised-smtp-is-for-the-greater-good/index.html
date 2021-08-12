@@ -1,49 +1,164 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.83.1"><link rel=icon href=/images/poolp_org.png><title>Decentralised SMTP is for the greater good | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/cover.jpg"><meta name=twitter:title content="Decentralised SMTP is for the greater good"><meta name=twitter:description content="TL;DR: - SMTP is the way computers exchange e-mails - it is a decentralised protocol meaning that ANYONE can run a node and be independant - it is being centralised at companies that have a history of abuse - it is being centralised in a country that has a history of abuse  Where did you read this already ? In August, I published a small article titled &ldquo;You should not run your mail server because mail is hard&rdquo; which was basically my opinion on why people keep saying it is hard to run a mail server."><meta property="og:title" content="Decentralised SMTP is for the greater good"><meta property="og:description" content="TL;DR: - SMTP is the way computers exchange e-mails - it is a decentralised protocol meaning that ANYONE can run a node and be independant - it is being centralised at companies that have a history of abuse - it is being centralised in a country that has a history of abuse  Where did you read this already ? In August, I published a small article titled &ldquo;You should not run your mail server because mail is hard&rdquo; which was basically my opinion on why people keep saying it is hard to run a mail server."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/"><meta property="og:image" content="https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/cover.jpg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-12-15T07:29:00+02:00"><meta property="article:modified_time" content="2019-12-15T07:29:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<!doctype html><html lang=en-us><head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=icon href=/images/poolp_org.png>
+<title>Decentralised SMTP is for the greater good | poolp.org</title>
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/cover.jpg">
+<meta name=twitter:title content="Decentralised SMTP is for the greater good">
+<meta name=twitter:description content="TL;DR: - SMTP is the way computers exchange e-mails - it is a decentralised protocol meaning that ANYONE can run a node and be independant - it is being centralised at companies that have a history of abuse - it is being centralised in a country that has a history of abuse  Where did you read this already ? In August, I published a small article titled &ldquo;You should not run your mail server because mail is hard&rdquo; which was basically my opinion on why people keep saying it is hard to run a mail server.">
+<meta property="og:title" content="Decentralised SMTP is for the greater good">
+<meta property="og:description" content="TL;DR: - SMTP is the way computers exchange e-mails - it is a decentralised protocol meaning that ANYONE can run a node and be independant - it is being centralised at companies that have a history of abuse - it is being centralised in a country that has a history of abuse  Where did you read this already ? In August, I published a small article titled &ldquo;You should not run your mail server because mail is hard&rdquo; which was basically my opinion on why people keep saying it is hard to run a mail server.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/"><meta property="og:image" content="https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/cover.jpg"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2019-12-15T07:29:00+00:00">
+<meta property="article:modified_time" content="2019-12-15T07:29:00+00:00">
+<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
+<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
+<link href=/css/medium.css rel=stylesheet>
+<link href=/css/additional.css rel=stylesheet>
+<link href=/css/syntax.css rel=stylesheet>
+<link href=/css/custom.css rel=stylesheet>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<div class="container pr-0">
+<a class=navbar-brand href=https://poolp.org/>
+<img src=/images/poolp_org.png alt=logo>
+</a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=Decentralised%20SMTP%20is%20for%20the%20greater%20good&url=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-15%2fdecentralised-smtp-is-for-the-greater-good%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1"><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-15%2fdecentralised-smtp-is-for-the-greater-good%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1"><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-15%2fdecentralised-smtp-is-for-the-greater-good%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1"><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarMediumish>
+<ul class="navbar-nav ml-auto">
+<li class=nav-item>
+<a class=nav-link href=/fr/contracting/>Freelance</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hypno.cat>Hypnose</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/authors/gilles-chehade>About Me</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class=site-content>
+<div class=container>
+<div class=mainheading>
+</div><div class=main-content>
+<div class=container>
+<div class=row>
+<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+<p>Share</p>
+<ul>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://twitter.com/intent/tweet?text=Decentralised%20SMTP%20is%20for%20the%20greater%20good&url=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-15%2fdecentralised-smtp-is-for-the-greater-good%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-15%2fdecentralised-smtp-is-for-the-greater-good%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
+<i class="fab fa-facebook-f"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-15%2fdecentralised-smtp-is-for-the-greater-good%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
+<i class="fab fa-xing"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-md-9 flex-first flex-md-unordered">
+<div class=mainheading>
+<div class="row post-top-meta">
+<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+</div>
+<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<span class=author-description>
+foobarbaz-ing since 1981<br>
+</span>
+<br>
+<span class=author-description>
+<i class="far fa-star"></i>
 Dec 15, 2019
 <i class="far fa-clock clock"></i>
-6 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>Decentralised SMTP is for the greater good</h1></div><div class=article-post><pre><code>TL;DR:
+6 min read
+</span>
+</div>
+</div>
+<div class=after-post-tags>
+<ul class=tags>
+</ul>
+</div>
+<h1 class=posttitle>Decentralised SMTP is for the greater good</h1>
+</div>
+<div class=article-post>
+<pre><code>TL;DR:
 - SMTP is the way computers exchange e-mails
 - it is a decentralised protocol meaning that ANYONE can run a node and be independant
 - it is being centralised at companies that have a history of abuse
 - it is being centralised in a country that has a history of abuse
-</code></pre><h2 id=where-did-you-read-this-already->Where did you read this already ?</h2><p>In August,
+</code></pre>
+<h2 id=where-did-you-read-this-already->Where did you read this already ?</h2>
+<p>In August,
 I published a small article titled &ldquo;<a href=https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/>You should not run your mail server because mail is hard</a>&rdquo; which was basically my opinion on why people keep saying it is hard to run a mail server.
 Unexpectedly,
 the article became very popular,
-reached 100K reads and still gets hits and comments several months after publishing.</p><p>As a follow up to that article,
+reached 100K reads and still gets hits and comments several months after publishing.</p>
+<p>As a follow up to that article,
 I published in September a much lenghtier article titled &ldquo;<a href=https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/>Setting up a mail server with OpenSMTPD, Dovecot and Rspamd</a>&rdquo; which described how you could setup a complete mail server.
 I went from scratch and up to inboxing at various Big Mailer Corps using an unused domain of mine with a neutral reputation and describing precisely for each step what was done and why it was done.
 The article became fairly popular,
 nowhere near the first one which wasn&rsquo;t so technical,
-but reached 40K reads and also still gets hits and comments several months after publishing.</p><p>The content you&rsquo;re about to read was part of the second article but it didn&rsquo;t belong there,
+but reached 40K reads and also still gets hits and comments several months after publishing.</p>
+<p>The content you&rsquo;re about to read was part of the second article but it didn&rsquo;t belong there,
 it was too (geo-)political to be part of a technical article,
 so I decided to remove it from there and make it a dedicated one.
-I don&rsquo;t want the tech stack to go in the way of the message, <strong>this is not about OpenSMTPD</strong>.</p><h2 id=self-hosting-and-encouraging-smaller-providers-is-for-the-greater-good>Self-hosting and encouraging smaller providers is for the greater good</h2><p>There are <strong>political consequences</strong> to centralizing mail services at Big Mailer Corps.</p><p>It doesn&rsquo;t make sense for Random Joe,
+I don&rsquo;t want the tech stack to go in the way of the message, <strong>this is not about OpenSMTPD</strong>.</p>
+<h2 id=self-hosting-and-encouraging-smaller-providers-is-for-the-greater-good>Self-hosting and encouraging smaller providers is for the greater good</h2>
+<p>There are <strong>political consequences</strong> to centralizing mail services at Big Mailer Corps.</p>
+<p>It doesn&rsquo;t make sense for Random Joe,
 sharing kitten pictures with his family and friends,
 to build a personal mail infrastructure when multiple Big Mailer Corps offer &ldquo;for free&rdquo; an amazing quality of service.
 They provide him with an e-mail address that is immediately available and which will generally work reliably.
 It really doesn&rsquo;t make sense for Random Joe not to go there,
 and particularly if <strong>even techies</strong> go there without hesitation,
-proving it is a sound choice.</p><p>There is nothing wrong with Random Joes using a service that works.</p><p>What is <strong>terribly wrong</strong> though is the centralization of a <strong>communication</strong> protocol in the hands of a few commercial companies,
+proving it is a sound choice.</p>
+<p>There is nothing wrong with Random Joes using a service that works.</p>
+<p>What is <strong>terribly wrong</strong> though is the centralization of a <strong>communication</strong> protocol in the hands of a few commercial companies,
 <strong>EVERY SINGLE ONE OF THEM</strong> coming from the same country (currently led by a lunatic who abuses power and <a href=https://psychcentral.com/blog/the-psychology-of-donald-trump-how-he-speaks/>probably suffers from NPD</a>),
 <strong>EVERY SINGLE ONE OF THEM</strong> having been in the news and/or in a court for random/assorted &ldquo;unpleasant&rdquo; behaviors
 (privacy abuses, eavesdropping, monopoly abuse, sexual or professional harassment, you just name it&mldr;),
-and <strong>EVERY SINGLE ONE OF THEM</strong> growing user bases that far exceeds the total population of multiple countries combined.</p><p>Let&rsquo;s put a bit of perspective.
+and <strong>EVERY SINGLE ONE OF THEM</strong> growing user bases that far exceeds the total population of multiple countries combined.</p>
+<p>Let&rsquo;s put a bit of perspective.
 The biggest one of them reports a user base that exceeds <strong>1.4 BILLION</strong> users (April 2018),
 roughly the entire population of either one of China or India,
 exceeding by four the population of United States by itself,
 or by over twenty the population of my own country.
 If you counted its users at the rate of one each second,
-<strong>it would take you over 44 years to go through</strong>.</p><p>Then,
+<strong>it would take you over 44 years to go through</strong>.</p>
+<p>Then,
 <strong>very far below</strong>,
 it is followed by the next one which reported 400 million active users (2018 too),
 also exceeds the population of the United States,
 being four times the population of Egypt,
-and five times the population of my own country.</p><p>In many of the mailings I have monitored,
+and five times the population of my own country.</p>
+<p>In many of the mailings I have monitored,
 the very first one covered approximately half the recipients e-mail address space&mldr;
-before the other half was even split in large parts between the <em>other</em> Big Mailer Corps.</p><p>This is <strong>NOT</strong> sane, not here, not anywhere, not in any alternate dimension <em>(insert &ldquo;sliiiiiiders&rdquo; whisper here)</em>.</p><center><img src=/images/2019-09-01-portal.jpg></center><p>Take a moment to let this sink in:</p><p>If these companies were somehow required to cut communications with a country for sanctions,
+before the other half was even split in large parts between the <em>other</em> Big Mailer Corps.</p>
+<p>This is <strong>NOT</strong> sane, not here, not anywhere, not in any alternate dimension <em>(insert &ldquo;sliiiiiiders&rdquo; whisper here)</em>.</p>
+<center>
+<img src=/images/2019-09-01-portal.jpg>
+</center>
+<p>Take a moment to let this sink in:</p>
+<p>If these companies were somehow required to cut communications with a country for sanctions,
 well over a <strong>BILLION</strong> people could be out of reach for the targeted country.
 If you think that this is far-fetched,
 the users from Iran, Syria, Cuba or Crimea could surely provide you with an alternate point of view after
@@ -54,7 +169,8 @@ a minority of human beings&mldr;
 and it is also decentralized.
 Even if Github services are stopped,
 the users can move to another platform or self-host easily,
-there&rsquo;s no need for interoperability with the punishing country if it wants to cut ties.</p><p>E-mails are much different:
+there&rsquo;s no need for interoperability with the punishing country if it wants to cut ties.</p>
+<p>E-mails are much different:
 they affect everyone,
 from all age and all backgrounds,
 the consequences of a similar block if it was done by Big Mailer Corps are orders of magnitude harsher.
@@ -62,29 +178,76 @@ The people of <a href=https://www.washingtonpost.com/politics/trump-attacks-prot
 they are people who <strong>NEED</strong> interoperability to communicate with the billion and more of people hosted at Big Mailer Corps.
 Mail is good for connecting people worldwide in a reliable way,
 but this only works if you keep it decentralized,
-<strong>NOT</strong> when you centralize it in the hands of a few companies all geolocalized in the same country.</p><p>Now that might never happen,
+<strong>NOT</strong> when you centralize it in the hands of a few companies all geolocalized in the same country.</p>
+<p>Now that might never happen,
 and I would bet heavy money it won&rsquo;t because
 <a href=https://en.wikipedia.org/wiki/PRISM_(surveillance_program)>a country known for intercepting communications and spying on the whole world</a>
 has far more interest in keeping communications flowing,
 but the sole fact that it is <strong><em>TECHNICALLY</em></strong> possible should be enough to make us all uneasy.
 I&rsquo;m even voluntarily looking away from the reason why I think they won&rsquo;t do it as if it didn&rsquo;t matter.
 If Big Mailer Corps were hosted in China we&rsquo;d be dead worried and already considering a plan out,
-but the only reason we&rsquo;re not is because we <em>think</em> we&rsquo;re currently on the &ldquo;right side&rdquo; of the fence.</p><p>But that&rsquo;s until we&rsquo;re screwed.</p><p>So <strong>YES</strong>, I&rsquo;d rather see a lot more people self-host or <strong>rely on smaller geolocalized providers</strong>,
+but the only reason we&rsquo;re not is because we <em>think</em> we&rsquo;re currently on the &ldquo;right side&rdquo; of the fence.</p>
+<p>But that&rsquo;s until we&rsquo;re screwed.</p>
+<p>So <strong>YES</strong>, I&rsquo;d rather see a lot more people self-host or <strong>rely on smaller geolocalized providers</strong>,
 spreading the SMTP network as much as possible across multiple operators in multiple countries.
 I don&rsquo;t think everyone should self-host,
 I just think <strong>MORE</strong> people should self-host or move away from Big Mailer Corps into <strong>ANY</strong> other provider&mldr;
 so there is at least a bit of constraint for them to interoperate with operators outside their gang,
-as well as a financial risk for them <strong>IF</strong> they suddenly went rogue.</p><p>I&rsquo;ll say it again:</p><p>I don&rsquo;t think that either one of the Big Mailer Corps are evil or bad,
+as well as a financial risk for them <strong>IF</strong> they suddenly went rogue.</p>
+<p>I&rsquo;ll say it again:</p>
+<p>I don&rsquo;t think that either one of the Big Mailer Corps are evil or bad,
 <strong>I use some of their services on a daily basis</strong>,
 and most of the people operating them are genuinely seeking the greater good&mldr;
 however they have grown too big and there needs to be a balance in power because who knows how they&rsquo;ll evolve in the next ten years,
 who knows how the politics of their home country will evolve in the next ten years,
-and recent news doesn&rsquo;t paint them as heading in the right direction.</p><p>I&rsquo;ll conclude by recommending that you see this <strong>excellent</strong> presentation by Bert Hubert (<a href=https://twitter.com/PowerDNS_Bert>@PowerDNS_Bert</a>) from PowerDNS,
+and recent news doesn&rsquo;t paint them as heading in the right direction.</p>
+<p>I&rsquo;ll conclude by recommending that you see this <strong>excellent</strong> presentation by Bert Hubert (<a href=https://twitter.com/PowerDNS_Bert>@PowerDNS_Bert</a>) from PowerDNS,
 about how a similar problem is starting to happen with DNS and the privacy and tracking concerns that arise from this.
-Many, many, many key points are also valid for mail services.</p><center><iframe width=560 height=315 src=https://www.youtube.com/embed/pjin3nv8jAo frameborder=0 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/111>https://github.com/poolpOrg/poolp.org/discussions/111</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2019-12-15/decentralisons-smtp-pour-le-bien-commun/>&#171; Décentralisons SMTP pour le bien commun</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/>SPF-aware greylisting and filter-greylist &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
+Many, many, many key points are also valid for mail services.</p>
+<center>
+<iframe width=560 height=315 src=https://www.youtube.com/embed/pjin3nv8jAo frameborder=0 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</center>
+<hr>
+<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/111>https://github.com/poolpOrg/poolp.org/discussions/111</a></p>
+</div>
+<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+<a class="d-block col-md-6" href=https://poolp.org/posts/2019-12-15/decentralisons-smtp-pour-le-bien-commun/> &#171; Décentralisons SMTP pour le bien commun</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/>SPF-aware greylisting and filter-greylist &#187;</a>
+<div class=clearfix></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=alertbar>
+<div class="container text-center">
+<span>
+<img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script><script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script><script src=/js/mediumish.js></script></body></html>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
+</span>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=row>
+<div class="col-md-6 col-sm-6 text-center text-lg-left">
+&copy; Copyright poolp.org - All rights reserved
+</div>
+<div class="col-md-6 col-sm-6 text-center text-lg-right">
+<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=/js/mediumish.js></script>
+</body>
+</html>

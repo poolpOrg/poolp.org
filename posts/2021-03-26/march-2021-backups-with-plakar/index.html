@@ -1,40 +1,162 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.83.1"><link rel=icon href=/images/poolp_org.png><title>March 2021: backups with Plakar | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/cover.png"><meta name=twitter:title content="March 2021: backups with Plakar"><meta name=twitter:description content="TL;DR: I wrote a backup utility called plakar.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
+<!doctype html><html lang=en-us><head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=icon href=/images/poolp_org.png>
+<title>March 2021: backups with Plakar | poolp.org</title>
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/cover.png">
+<meta name=twitter:title content="March 2021: backups with Plakar">
+<meta name=twitter:description content="TL;DR: I wrote a backup utility called plakar.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
 Let&rsquo;s start with some LoFi Relax.
    I have a youtube channel (subscribe ! now !)
-Plakar: Yet another backup utility ? Yes, I wrote another backup utility."><meta property="og:title" content="March 2021: backups with Plakar"><meta property="og:description" content="TL;DR: I wrote a backup utility called plakar.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
+Plakar: Yet another backup utility ? Yes, I wrote another backup utility.">
+<meta property="og:title" content="March 2021: backups with Plakar">
+<meta property="og:description" content="TL;DR: I wrote a backup utility called plakar.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
 Let&rsquo;s start with some LoFi Relax.
    I have a youtube channel (subscribe ! now !)
-Plakar: Yet another backup utility ? Yes, I wrote another backup utility."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/"><meta property="og:image" content="https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/cover.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-03-26T16:52:00+02:00"><meta property="article:modified_time" content="2021-03-26T16:52:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+Plakar: Yet another backup utility ? Yes, I wrote another backup utility.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/"><meta property="og:image" content="https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/cover.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-03-26T16:52:00+00:00">
+<meta property="article:modified_time" content="2021-03-26T16:52:00+00:00">
+<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
+<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
+<link href=/css/medium.css rel=stylesheet>
+<link href=/css/additional.css rel=stylesheet>
+<link href=/css/syntax.css rel=stylesheet>
+<link href=/css/custom.css rel=stylesheet>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<div class="container pr-0">
+<a class=navbar-brand href=https://poolp.org/>
+<img src=/images/poolp_org.png alt=logo>
+</a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=March%202021%3a%20backups%20with%20Plakar&url=https%3a%2f%2fpoolp.org%2fposts%2f2021-03-26%2fmarch-2021-backups-with-plakar%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1"><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2021-03-26%2fmarch-2021-backups-with-plakar%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1"><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2021-03-26%2fmarch-2021-backups-with-plakar%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1"><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarMediumish>
+<ul class="navbar-nav ml-auto">
+<li class=nav-item>
+<a class=nav-link href=/fr/contracting/>Freelance</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hypno.cat>Hypnose</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/authors/gilles-chehade>About Me</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class=site-content>
+<div class=container>
+<div class=mainheading>
+</div><div class=main-content>
+<div class=container>
+<div class=row>
+<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+<p>Share</p>
+<ul>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://twitter.com/intent/tweet?text=March%202021%3a%20backups%20with%20Plakar&url=https%3a%2f%2fpoolp.org%2fposts%2f2021-03-26%2fmarch-2021-backups-with-plakar%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2021-03-26%2fmarch-2021-backups-with-plakar%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
+<i class="fab fa-facebook-f"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2021-03-26%2fmarch-2021-backups-with-plakar%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
+<i class="fab fa-xing"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-md-9 flex-first flex-md-unordered">
+<div class=mainheading>
+<div class="row post-top-meta">
+<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+</div>
+<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<span class=author-description>
+foobarbaz-ing since 1981<br>
+</span>
+<br>
+<span class=author-description>
+<i class="far fa-star"></i>
 Mar 26, 2021
 <i class="far fa-clock clock"></i>
-21 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>March 2021: backups with Plakar</h1></div><div class=article-post><blockquote><b>TL;DR:</b>
-I wrote a backup utility called plakar.</blockquote><h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1><p>As usual, a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong>,
+21 min read
+</span>
+</div>
+</div>
+<div class=after-post-tags>
+<ul class=tags>
+</ul>
+</div>
+<h1 class=posttitle>March 2021: backups with Plakar</h1>
+</div>
+<div class=article-post>
+<blockquote>
+<b>TL;DR:</b>
+I wrote a backup utility called plakar.
+</blockquote>
+<h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1>
+<p>As usual, a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong>,
 <strong><a href=https://github.com/sponsors/poolpOrg>github</a></strong> or <strong><a href=https://liberapay.com/poolpOrg>liberaPay</a></strong>,
-the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p><h1 id=lets-start-with-some-lofi>Let&rsquo;s start with some LoFi</h1><p>Relax.</p><center><iframe width=560 height=315 src=https://www.youtube.com/embed/3t0dxu6FkXk title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center><p>I have a <a href=https://www.youtube.com/c/GillesChehade>youtube channel</a> (subscribe ! now !)</p><h1 id=plakar-yet-another-backup-utility->Plakar: Yet another backup utility ?</h1><p>Yes, I wrote another backup utility.</p><p>I backup many hosts on a daily basis and while there are many different tools,
+the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p>
+<h1 id=lets-start-with-some-lofi>Let&rsquo;s start with some LoFi</h1>
+<p>Relax.</p>
+<center>
+<iframe width=560 height=315 src=https://www.youtube.com/embed/3t0dxu6FkXk title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</center>
+<p>I have a <a href=https://www.youtube.com/c/GillesChehade>youtube channel</a> (subscribe ! now !)</p>
+<h1 id=plakar-yet-another-backup-utility->Plakar: Yet another backup utility ?</h1>
+<p>Yes, I wrote another backup utility.</p>
+<p>I backup many hosts on a daily basis and while there are many different tools,
 I always fallback to using scripts built on top of <code>rsync</code> to do incremental backups,
-which <strong>always results in customization</strong> for this or that host.</p><p>I want backups that are <strong>easy to perform and restore</strong>,
+which <strong>always results in customization</strong> for this or that host.</p>
+<p>I want backups that are <strong>easy to perform and restore</strong>,
 that <strong>do not require me to remember a ton of options</strong>,
 that lets me work with snapshots <strong>independant one of another</strong> instead of increments,
 that allow me to <strong>browse the content easily</strong> and <strong>compare snapshots</strong> without restoring them,
 that <strong>store data efficiently</strong> (compressed and deduped),
-and finally that lets me back things up locally or remotely to machines I own.</p><p>I&rsquo;ve looked into various solutions and I figured that the best option <strong>for me</strong> was to write a tool that did exactly what I wanted.
-Also, it&rsquo;s fun to write code.</p><h1 id=what-is-plakar->What is <code>plakar</code> ?</h1><p>The <code>plakar</code> utility is a tool that performs backups as <strong>snapshots of a tree structure</strong>,
+and finally that lets me back things up locally or remotely to machines I own.</p>
+<p>I&rsquo;ve looked into various solutions and I figured that the best option <strong>for me</strong> was to write a tool that did exactly what I wanted.
+Also, it&rsquo;s fun to write code.</p>
+<h1 id=what-is-plakar->What is <code>plakar</code> ?</h1>
+<p>The <code>plakar</code> utility is a tool that performs backups as <strong>snapshots of a tree structure</strong>,
 scanning subdirectories and files,
 and storing them efficiently in a repository while deduplicating redundant data.
 Once a snapshot has been taken of a directory,
-it can be inspected and restored at will.</p><center><img src=/images/2021-03-01-plakar.png></center><h1 id=how-does-it-work->How does it work ?</h1><p>To perform a backup,
+it can be inspected and restored at will.</p>
+<center>
+<img src=/images/2021-03-01-plakar.png>
+</center>
+<h1 id=how-does-it-work->How does it work ?</h1>
+<p>To perform a backup,
 you only need to call <code>plakar</code> with the <code>push</code> subcommand and a set of directories that should be part of the snapshot.
 This will cause <code>plakar</code> to scan the directories,
 collect inode information regarding every subdirectory and files,
-split files into chunks and <strong>push them to the repository</strong>.</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar push /bin
+split files into chunks and <strong>push them to the repository</strong>.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar push /bin
 82711aee-6485-445b-98f4-6cae51c83035: OK
 $
-</code></pre></div><p>The <code>ls</code> subcommand allows <strong>listing snapshots</strong> present in the repository:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar ls
+</code></pre></div><p>The <code>ls</code> subcommand allows <strong>listing snapshots</strong> present in the repository:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar ls
 82711aee-6485-445b-98f4-6cae51c83035 <span class=o>[</span>2021-03-27T22:05:00Z<span class=o>]</span> <span class=o>(</span>size: <span class=m>10</span> MB, files: 36, dirs: 1<span class=o>)</span>
 $
-</code></pre></div><p>The <code>pull</code> subcommand allows <strong>restoring a particular snapshot</strong>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar pull 82711aee-6485-445b-98f4-6cae51c83035
+</code></pre></div><p>The <code>pull</code> subcommand allows <strong>restoring a particular snapshot</strong>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar pull 82711aee-6485-445b-98f4-6cae51c83035
 82711aee-6485-445b-98f4-6cae51c83035: OK
 
 $ ls -l bin
@@ -76,18 +198,22 @@ total <span class=m>9336</span>
 -rwxr-xr-x  <span class=m>1</span> root  wheel   <span class=m>120752</span>  <span class=m>1</span> Jan  <span class=m>2020</span> wait4path
 -rwxr-xr-x  <span class=m>1</span> root  wheel  <span class=m>1331248</span>  <span class=m>1</span> Jan  <span class=m>2020</span> zsh
 $ 
-</code></pre></div><h1 id=compression-and-deduplication>Compression and deduplication</h1><p>When <code>plakar</code> performs a snapshot,
+</code></pre></div><h1 id=compression-and-deduplication>Compression and deduplication</h1>
+<p>When <code>plakar</code> performs a snapshot,
 it <strong>splits every file into content-defined chunks</strong> and <strong>checks if they are available</strong> in the repository before pushing them,
-in a way similar to what <code>rsync</code> does.</p><p>Each chunk is <strong>compressed</strong> before being written to the repository,
+in a way similar to what <code>rsync</code> does.</p>
+<p>Each chunk is <strong>compressed</strong> before being written to the repository,
 so that between compression and deduplication,
-<strong>a saved snapshot may take less space than the original directory</strong>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ du -sh /bin
+<strong>a saved snapshot may take less space than the original directory</strong>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ du -sh /bin
 4.6M    /bin
 
 $ du -sh ~/.plakar
 3.8M    /Users/gilles/.plakar
 </code></pre></div><p>Furthermore,
 since this deduplication takes place globally in the repository,
-pushing multiple times the same content doesn&rsquo;t cause the plakar to grow much as <strong>it only grows by the size of the snapshot index</strong>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar push /bin
+pushing multiple times the same content doesn&rsquo;t cause the plakar to grow much as <strong>it only grows by the size of the snapshot index</strong>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar push /bin
 f2645591-4b06-4512-89e2-dae8ad1e2360: OK
 
 $ plakar push /bin
@@ -112,11 +238,14 @@ a83fe7bb-341f-4cf1-bad6-c2b1933422f8 <span class=o>[</span>2021-03-27T22:06:19Z<
 
 $ du -sh ~/.plakar
 3.8M    /Users/gilles/.plakar
-</code></pre></div><h1 id=snapshots-uuid-prefix-based-lookup>Snapshots UUID prefix-based lookup</h1><p>Because using an UUID as parameter to subcommands is painful,
-<code>plakar</code> performs <strong>prefix-based lookup</strong> and allows using the beginning of an UUID as long as <strong>it is not ambiguous</strong>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar pull <span class=m>3</span>
+</code></pre></div><h1 id=snapshots-uuid-prefix-based-lookup>Snapshots UUID prefix-based lookup</h1>
+<p>Because using an UUID as parameter to subcommands is painful,
+<code>plakar</code> performs <strong>prefix-based lookup</strong> and allows using the beginning of an UUID as long as <strong>it is not ambiguous</strong>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar pull <span class=m>3</span>
 3630358c-c634-4ad9-960d-f864d1eb56f5: OK
 </code></pre></div><p>In case of ambiguity,
-it warns so that a less ambiguous prefix can be provided:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar ls<span class=p>|</span>grep ^4
+it warns so that a less ambiguous prefix can be provided:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar ls<span class=p>|</span>grep ^4
 45de4fd3-d177-4378-84cb-077b2ef297fb <span class=o>[</span>2021-03-27T23:09:11Z<span class=o>]</span> <span class=o>(</span>size: <span class=m>10</span> MB, files: 36, dirs: 1<span class=o>)</span>
 4c467893-f959-43cb-858f-c50b8c46a86d <span class=o>[</span>2021-03-27T23:17:05Z<span class=o>]</span> <span class=o>(</span>size: <span class=m>10</span> MB, files: 36, dirs: 1<span class=o>)</span>
 
@@ -125,27 +254,34 @@ $ plakar pull <span class=m>4</span>
 
 $ plakar pull <span class=m>45</span>
 45de4fd3-d177-4378-84cb-077b2ef297fb: OK
-</code></pre></div><h1 id=snapshots-health-check>Snapshots health check</h1><p>Backups are not useful <strong>if they can&rsquo;t be restored</strong>,
+</code></pre></div><h1 id=snapshots-health-check>Snapshots health check</h1>
+<p>Backups are not useful <strong>if they can&rsquo;t be restored</strong>,
 but it&rsquo;s also painful to create a backup and <strong>try restoring just to know if it would work</strong>.
 To cope with this,
-<code>plakar</code> supports health checking snapshots without actually restoring them:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar check <span class=m>3</span>
+<code>plakar</code> supports health checking snapshots without actually restoring them:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar check <span class=m>3</span>
 3630358c-c634-4ad9-960d-f864d1eb56f5: OK
 </code></pre></div><p>What it does is that <strong>it fetches the snapshot index</strong>,
 checks that <strong>everything referenced in the snapshot exists</strong> in the repository,
-and does <strong>a few sanity checks</strong> to verify if <strong>it could restore the entirety of the snapshot</strong> if requested.</p><h1 id=snapshots-restoration>Snapshots restoration</h1><p>As shown in the example above,
-restoring a snapshot is <strong>as simple as typing</strong>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar pull <span class=m>3</span>
+and does <strong>a few sanity checks</strong> to verify if <strong>it could restore the entirety of the snapshot</strong> if requested.</p>
+<h1 id=snapshots-restoration>Snapshots restoration</h1>
+<p>As shown in the example above,
+restoring a snapshot is <strong>as simple as typing</strong>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar pull <span class=m>3</span>
 3630358c-c634-4ad9-960d-f864d1eb56f5: OK
 </code></pre></div><p>But this performs a full snapshot restore,
 whereas sometimes what you really want is a <strong>partial restore</strong>.
 For this,
-<code>plakar</code> supports <strong>providing a path within a snapshot</strong> pointing either <strong>to a subdirectory or to a file</strong>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar pull 3:/bin/ls
+<code>plakar</code> supports <strong>providing a path within a snapshot</strong> pointing either <strong>to a subdirectory or to a file</strong>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar pull 3:/bin/ls
 3630358c-c634-4ad9-960d-f864d1eb56f5:/bin/ls: OK
 
 $ ls -l bin     
 total <span class=m>312</span>
 -rwxr-xr-x  <span class=m>1</span> gilles  staff  <span class=m>157360</span> <span class=m>27</span> Mar 23:18 ls
 </code></pre></div><p>While doing the restore,
-<code>plakar</code> will <strong>check every chunk</strong> and their checksums to <strong>detect any corruption</strong>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ rm -rf ~/.plakar/default/chunks/00/008d4087e3e99c8f8c2c1ad76e9c6bc3d614e580e30ed45da06f93f912995538 
+<code>plakar</code> will <strong>check every chunk</strong> and their checksums to <strong>detect any corruption</strong>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ rm -rf ~/.plakar/default/chunks/00/008d4087e3e99c8f8c2c1ad76e9c6bc3d614e580e30ed45da06f93f912995538 
 
 $ plakar pull <span class=m>3</span>
 /bin/ksh: missing chunk 008d4087e3e99c8f8c2c1ad76e9c6bc3d614e580e30ed45da06f93f912995538
@@ -193,11 +329,16 @@ total <span class=m>19504</span>
 </code></pre></div><p>The snapshot is still restored as a <em>&ldquo;best effort&rdquo;</em>,
 but here a warning informs that <code>ksh</code> is <strong>not the same as the one that was initially backed up</strong>.
 This is <strong>not supposed to happen in practice</strong> as long as I don&rsquo;t fiddle with the repository,
-but it is a nice sanity check.</p><p>One that <strong>would be caught</strong> by <code>plakar check</code>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar check <span class=m>3</span>
+but it is a nice sanity check.</p>
+<p>One that <strong>would be caught</strong> by <code>plakar check</code>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar check <span class=m>3</span>
 3630358c-c634-4ad9-960d-f864d1eb56f5: KO
-</code></pre></div><h1 id=other-plakar-subcommands>Other <code>plakar</code> subcommands</h1><p>In addition to <code>pull</code>, <code>push</code>, <code>ls</code> and <code>check</code>,
-<code>plakar</code> supports various other subcommands.</p><p>They are more interesting when playing with text files,
-so let&rsquo;s push <code>/private/etc</code>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar push /private/etc
+</code></pre></div><h1 id=other-plakar-subcommands>Other <code>plakar</code> subcommands</h1>
+<p>In addition to <code>pull</code>, <code>push</code>, <code>ls</code> and <code>check</code>,
+<code>plakar</code> supports various other subcommands.</p>
+<p>They are more interesting when playing with text files,
+so let&rsquo;s push <code>/private/etc</code>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar push /private/etc
 open /private/etc/krb5.keytab: permission denied
 open /private/etc/aliases.db: permission denied
 open /private/etc/racoon/psk.txt: permission denied
@@ -210,7 +351,8 @@ open /private/etc/openldap/slapd.conf.default: permission denied
 open /private/etc/openldap/DB_CONFIG.example: permission denied
 98b6658b-a975-47c4-a38f-f958d8d7359f: OK
 </code></pre></div><p>Here <code>plakar</code> has warned about <strong>files that couldn&rsquo;t make it into the snapshot</strong>,
-but lets inspect <strong>what files are part of the snapshot</strong> with <code>ls</code>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar ls 9:/
+but lets inspect <strong>what files are part of the snapshot</strong> with <code>ls</code>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar ls 9:/
 acc57694b78a1ea669535547ac310e7682f141b75f6ba23658078b9000dbd9ac -rw-r--r--     root    wheel    <span class=m>20</span> kB /private/etc/php-fpm.d/www.conf.default
 a4dda57401575878b78c5b0bc4a6bc020675d7f285dc8a836d07f1fda0938715 -rw-r--r--     root    wheel    <span class=m>12</span> kB /private/etc/postfix/LICENSE
 863f779b43680f81799688e91c18a164047a1a8e9dfff650881e50ba35530ed1 -r--r--r--     root    wheel    <span class=m>141</span> B /private/etc/uucp/port
@@ -441,12 +583,14 @@ cc58ac4627390ef04037b7b77ed0359b267a8e8ceb99bdc3aa156dae6367094a -rw-r--r--     
 7ed4a5bae35e87e8815cb79dd3be70ac34a3056cb91216a22224a3c99b4c9720 -rw-r--r--     root    wheel    <span class=m>350</span> B /private/etc/asl/com.apple.mkb
 125333636796ce03bacf4b079a93b90d3d458a81159c9593339183be5bf51080 -r--r--r--     root    wheel   6.9 kB /private/etc/openldap/schema/pmi.ldif
 8a8b640738d46484ecc24c689f70702c5ca35dcd4868f7f413bd8727cd474f10 -rw-r--r--     root    wheel     <span class=m>36</span> B /private/etc/manpaths
-</code></pre></div><p>Or list files <strong>within a specific subdirectory</strong>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar ls 9:/private/etc/uucp            
+</code></pre></div><p>Or list files <strong>within a specific subdirectory</strong>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar ls 9:/private/etc/uucp            
 b86ff58053e9e930a0324f7fb5e0458213567feca9e97de92da20bff82f17e06 -r--r--r--     root    wheel   2.4 kB /private/etc/uucp/sys
 17294d602f2d28944e6517a6a8a432548351d1eaf468062b8da6d84bbf7c5440 -r--r--r--     root    wheel    <span class=m>133</span> B /private/etc/uucp/passwd
 863f779b43680f81799688e91c18a164047a1a8e9dfff650881e50ba35530ed1 -r--r--r--     root    wheel    <span class=m>141</span> B /private/etc/uucp/port
 </code></pre></div><p>These listings <strong>rely on the snapshot index</strong> and <strong>do not fetch chunks</strong> from the repository,
-however it is possible to actually look at the file content with the <code>cat</code> subcommand:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar cat 9:/etc/uucp/passwd
+however it is possible to actually look at the file content with the <code>cat</code> subcommand:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar cat 9:/etc/uucp/passwd
 <span class=c1>#</span>
 <span class=c1># The passwd configuration file</span>
 <span class=c1>#</span>
@@ -456,7 +600,8 @@ however it is possible to actually look at the file content with the <code>cat</
 <span class=c1>#</span>
 
 uucp_tst sekret
-</code></pre></div><p>Now let&rsquo;s make a change to that file and push it again:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ sudo sed -i <span class=s1>&#39;&#39;</span> -e <span class=s1>&#39;s/sekret/notsosecret/&#39;</span> /etc/uucp/passwd
+</code></pre></div><p>Now let&rsquo;s make a change to that file and push it again:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ sudo sed -i <span class=s1>&#39;&#39;</span> -e <span class=s1>&#39;s/sekret/notsosecret/&#39;</span> /etc/uucp/passwd
 
 $ plakar push /private/etc                                  
 open /private/etc/krb5.keytab: permission denied
@@ -471,14 +616,16 @@ open /private/etc/openldap/slapd.conf.default: permission denied
 open /private/etc/openldap/DB_CONFIG.example: permission denied
 b41802cb-9424-47eb-8186-2847678a8646: OK
 </code></pre></div><p>From there,
-it is possible to perform an <strong>inode diff</strong>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar diff <span class=m>9</span> b
+it is possible to perform an <strong>inode diff</strong>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar diff <span class=m>9</span> b
 -  drwxr-xr-x     root    wheel    <span class=m>160</span> B 2020-01-01 08:00:00 +0000 UTC /private/etc/uucp
 +  drwxr-xr-x     root    wheel    <span class=m>160</span> B 2021-03-27 22:38:17.685871971 +0000 UTC /private/etc/uucp
 -  -r--r--r--     root    wheel    <span class=m>133</span> B 2020-01-01 08:00:00 +0000 UTC /private/etc/uucp/passwd
 +  -r--r--r--     root    wheel    <span class=m>138</span> B 2021-03-27 22:38:17.685791098 +0000 UTC /private/etc/uucp/passwd
 </code></pre></div><p>This shows that the <code>/private/etc/uucp</code> directory has had its <strong>date</strong> change,
 and that <code>/private/etc/uccp/passwd</code> has had its <strong>date</strong> and <strong>size</strong> change,
-and from there it is possible to <strong>request a diff of the file</strong> with the <code>diff</code> subcommand:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar diff <span class=m>9</span> b /private/etc/uucp/passwd
+and from there it is possible to <strong>request a diff of the file</strong> with the <code>diff</code> subcommand:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar diff <span class=m>9</span> b /private/etc/uucp/passwd
 --- 98b6658b-a975-47c4-a38f-f958d8d7359f:/private/etc/uucp/passwd
 +++ b41802cb-9424-47eb-8186-2847678a8646:/private/etc/uucp/passwd
 @@ -6,5 +6,5 @@
@@ -487,9 +634,12 @@ and from there it is possible to <strong>request a diff of the file</strong> wit
  
 -uucp_tst sekret
 +uucp_tst notsosecret
-</code></pre></div><p>The snapshots are <strong>not incremental</strong> so it is possible to <strong>generate diffs between any of them</strong>.</p><h1 id=removing-old-snapshots>Removing old snapshots</h1><p>Even though snapshots of similar content do not consume much space,
+</code></pre></div><p>The snapshots are <strong>not incremental</strong> so it is possible to <strong>generate diffs between any of them</strong>.</p>
+<h1 id=removing-old-snapshots>Removing old snapshots</h1>
+<p>Even though snapshots of similar content do not consume much space,
 there&rsquo;s no use in keeping a lot of old snapshots hanging around.
-Snapshots can be removed from the repository with the <code>rm</code> subcommand:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar ls       
+Snapshots can be removed from the repository with the <code>rm</code> subcommand:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar ls       
 98b6658b-a975-47c4-a38f-f958d8d7359f <span class=o>[</span>2021-03-27T22:29:09Z<span class=o>]</span> <span class=o>(</span>size: 3.0 MB, files: 230, dirs: 39<span class=o>)</span>
 b41802cb-9424-47eb-8186-2847678a8646 <span class=o>[</span>2021-03-27T22:38:22Z<span class=o>]</span> <span class=o>(</span>size: 3.0 MB, files: 230, dirs: 39<span class=o>)</span>
 
@@ -508,10 +658,14 @@ b41802cb-9424-47eb-8186-2847678a8646: OK
 $ du -sh ~/.plakar
   0B    /Users/gilles/.plakar 
 </code></pre></div><p>The repository <strong>keeps chunks as long as they are referenced</strong> by at least one snapshot,
-but <strong>removes them when they become orphans</strong> which is why the <strong>repository becomes empty after the last snapshot is removed</strong>.</p><h1 id=namespaces>Namespaces</h1><p>Sometimes I want to make sure that my backups are <strong>fully disjoint one from another</strong>,
+but <strong>removes them when they become orphans</strong> which is why the <strong>repository becomes empty after the last snapshot is removed</strong>.</p>
+<h1 id=namespaces>Namespaces</h1>
+<p>Sometimes I want to make sure that my backups are <strong>fully disjoint one from another</strong>,
 not sharing their snapshots and deduplication.
-The <code>plakar</code> repository supports <strong>namespaces</strong> so that I can keep related snapshots together and apart from others.</p><p>For example,
-I have backups for <code>poolp.org</code> and for <code>hypno.cat</code> and I want to manage the snapshots separately:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar -namespace poolp.org push data
+The <code>plakar</code> repository supports <strong>namespaces</strong> so that I can keep related snapshots together and apart from others.</p>
+<p>For example,
+I have backups for <code>poolp.org</code> and for <code>hypno.cat</code> and I want to manage the snapshots separately:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar -namespace poolp.org push data
 351348b3-8dc3-4caa-b0be-334c43f4fd13: OK
 
 $ plakar -namespace hypno.cat push data
@@ -523,25 +677,34 @@ $ plakar -namespace poolp.org ls
 $ plakar -namespace hypno.cat ls            
 1fa2dac2-8096-483a-a2d3-2a78ce3706ce <span class=o>[</span>2021-03-27T22:50:40Z<span class=o>]</span> <span class=o>(</span>size: <span class=m>896</span> kB, files: 79, dirs: 4<span class=o>)</span>
 $
-</code></pre></div><h1 id=stores>Stores</h1><p>In addition,
+</code></pre></div><h1 id=stores>Stores</h1>
+<p>In addition,
 I may want to provide an <strong>alternate path</strong> to the repository because <code>~/.plakar</code> is not ideal,
-<code>plakar</code> supports providing alternate repository path with the <code>-store</code> option:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar -store /var/backups/gilles push data
+<code>plakar</code> supports providing alternate repository path with the <code>-store</code> option:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar -store /var/backups/gilles push data
 f6cc2508-ea59-4552-aa4b-27900f0a9781: OK
 
 $ plakar -store /var/backups/gilles ls
 f6cc2508-ea59-4552-aa4b-27900f0a9781 <span class=o>[</span>2021-03-27T22:52:47Z<span class=o>]</span> <span class=o>(</span>size: <span class=m>896</span> kB, files: 79, dirs: 4<span class=o>)</span>
-</code></pre></div><p>But this doesn&rsquo;t stop here &mldr;</p><h1 id=plakar-server><code>plakar</code> server</h1><p>So far I only showed <code>plakar</code> working on a <strong>local repository</strong>,
-it however supports a network mode.</p><p>It is possible to start a <code>plakar</code> server on a machine with:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar server 192.168.0.1:2222    
+</code></pre></div><p>But this doesn&rsquo;t stop here &mldr;</p>
+<h1 id=plakar-server><code>plakar</code> server</h1>
+<p>So far I only showed <code>plakar</code> working on a <strong>local repository</strong>,
+it however supports a network mode.</p>
+<p>It is possible to start a <code>plakar</code> server on a machine with:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar server 192.168.0.1:2222    
 $
-</code></pre></div><p>and on another machine, point the repository to that server:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar -store plakar://192.168.0.1:2222 push /bin
+</code></pre></div><p>and on another machine, point the repository to that server:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar -store plakar://192.168.0.1:2222 push /bin
 3ac8f3ff-e723-46c3-9ae7-4b11bb27f3b2: OK
 $
 </code></pre></div><p>The plakar server can use <code>-store</code> itself,
-so it is possible to configure it to store at at particular location:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>$ plakar -store /var/backups server 192.168.0.1:2222
+so it is possible to configure it to store at at particular location:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar -store /var/backups server 192.168.0.1:2222
 $
 </code></pre></div><p>and because <strong>I made a monster</strong>,
 it is possible that this location is <strong>a different plakar server</strong>,
-effectively turning a plakar instance <strong>into a proxy</strong>:</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>box1$ plakar server 192.168.0.1:2222
+effectively turning a plakar instance <strong>into a proxy</strong>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>box1$ plakar server 192.168.0.1:2222
 box1$
 
 box2$ plakar -store plakar://192.168.0.1:2222 server 192.168.0.2:2222
@@ -553,21 +716,70 @@ $
 </code></pre></div><p>From the local user point of view,
 pushing to a local plakar,
 to a remote plakar,
-or even to a remote plakar proxying to another plakar <strong>work the same</strong>.</p><h1 id=is-it-released->Is it released ?</h1><p>Nope, <strong>not yet</strong>.</p><p>This is a PoC and <strong>my first real project</strong> in Golang,
-so I need a bit of time to make sure it is in a state that I&rsquo;m not ashamed to release.</p><p>If you are a sponsor and want to give it a try,
-just mail me and I&rsquo;ll arrange that.</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>A lot of things really&mldr;</p><p>First of all,
-every single command needs <strong>a bit of polishing</strong> to have a nice feel because <strong>the output is not always the best</strong> to work with.</p><p>Then,
+or even to a remote plakar proxying to another plakar <strong>work the same</strong>.</p>
+<h1 id=is-it-released->Is it released ?</h1>
+<p>Nope, <strong>not yet</strong>.</p>
+<p>This is a PoC and <strong>my first real project</strong> in Golang,
+so I need a bit of time to make sure it is in a state that I&rsquo;m not ashamed to release.</p>
+<p>If you are a sponsor and want to give it a try,
+just mail me and I&rsquo;ll arrange that.</p>
+<h1 id=whats-next->What&rsquo;s next ?</h1>
+<p>A lot of things really&mldr;</p>
+<p>First of all,
+every single command needs <strong>a bit of polishing</strong> to have a nice feel because <strong>the output is not always the best</strong> to work with.</p>
+<p>Then,
 I have <strong>not implemented any caching whatsoever</strong> so even though it&rsquo;s not dead slow,
-a lot of operations <strong>that could be skipped</strong> are <strong>always performed</strong> making it slower than it should.</p><p>Also,
+a lot of operations <strong>that could be skipped</strong> are <strong>always performed</strong> making it slower than it should.</p>
+<p>Also,
 the server mode <strong>doesn&rsquo;t use encryption at this point</strong> and while it is ok on a personal network,
-I want to be able to deploy a <code>plakar</code> server on a dedicated server at some provider and use it safely.</p><p>Finally,
+I want to be able to deploy a <code>plakar</code> server on a dedicated server at some provider and use it safely.</p>
+<p>Finally,
 I began <strong>building an UI to browse snapshots</strong> and this requires building a global index of snapshots,
 which is something I haven&rsquo;t tackled yet.
 At this point,
-<strong>each snapshot has its own index</strong> but I&rsquo;d like to be able to have a search box which <strong>looks up for stuff through all snapshots</strong>.</p><p>I also have other private plans with this which I&rsquo;ll discuss later ;-)</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/128>https://github.com/poolpOrg/poolp.org/discussions/128</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/>&#171; April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/>February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
+<strong>each snapshot has its own index</strong> but I&rsquo;d like to be able to have a search box which <strong>looks up for stuff through all snapshots</strong>.</p>
+<p>I also have other private plans with this which I&rsquo;ll discuss later ;-)</p>
+<hr>
+<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/128>https://github.com/poolpOrg/poolp.org/discussions/128</a></p>
+</div>
+<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+<a class="d-block col-md-6" href=https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/> &#171; April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/>February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols &#187;</a>
+<div class=clearfix></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=alertbar>
+<div class="container text-center">
+<span>
+<img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script><script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script><script src=/js/mediumish.js></script></body></html>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
+</span>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=row>
+<div class="col-md-6 col-sm-6 text-center text-lg-left">
+&copy; Copyright poolp.org - All rights reserved
+</div>
+<div class="col-md-6 col-sm-6 text-center text-lg-right">
+<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=/js/mediumish.js></script>
+</body>
+</html>

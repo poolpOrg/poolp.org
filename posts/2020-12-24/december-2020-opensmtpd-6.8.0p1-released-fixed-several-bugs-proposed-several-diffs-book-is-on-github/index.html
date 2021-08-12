@@ -1,126 +1,361 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.83.1"><link rel=icon href=/images/poolp_org.png><title>December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/cover.jpg"><meta name=twitter:title content="December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github"><meta name=twitter:description content="TL;DR: - Crafted the OpenSMTPD 6.8.0p1 release - Fixed several bugs in the way - Proposed a few OpenSMTPD improvements to OpenBSD - Working on my OpenSMTPD book  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
+<!doctype html><html lang=en-us><head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=icon href=/images/poolp_org.png>
+<title>December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github | poolp.org</title>
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/cover.jpg">
+<meta name=twitter:title content="December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github">
+<meta name=twitter:description content="TL;DR: - Crafted the OpenSMTPD 6.8.0p1 release - Fixed several bugs in the way - Proposed a few OpenSMTPD improvements to OpenBSD - Working on my OpenSMTPD book  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
 Let&rsquo;s start with some LoFi Relax.
-   About sponsorship First of all, I must say how grateful and happy I am that people value my work enough to trust and sponsor me, I appreciate it a lot and it is a huge motivation booster."><meta property="og:title" content="December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github"><meta property="og:description" content="TL;DR: - Crafted the OpenSMTPD 6.8.0p1 release - Fixed several bugs in the way - Proposed a few OpenSMTPD improvements to OpenBSD - Working on my OpenSMTPD book  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
+   About sponsorship First of all, I must say how grateful and happy I am that people value my work enough to trust and sponsor me, I appreciate it a lot and it is a huge motivation booster.">
+<meta property="og:title" content="December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github">
+<meta property="og:description" content="TL;DR: - Crafted the OpenSMTPD 6.8.0p1 release - Fixed several bugs in the way - Proposed a few OpenSMTPD improvements to OpenBSD - Working on my OpenSMTPD book  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
 Let&rsquo;s start with some LoFi Relax.
-   About sponsorship First of all, I must say how grateful and happy I am that people value my work enough to trust and sponsor me, I appreciate it a lot and it is a huge motivation booster."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/"><meta property="og:image" content="https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/cover.jpg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-12-24T02:38:00+02:00"><meta property="article:modified_time" content="2020-12-24T02:38:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+   About sponsorship First of all, I must say how grateful and happy I am that people value my work enough to trust and sponsor me, I appreciate it a lot and it is a huge motivation booster.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/"><meta property="og:image" content="https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/cover.jpg"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-12-24T02:38:00+00:00">
+<meta property="article:modified_time" content="2020-12-24T02:38:00+00:00">
+<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
+<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
+<link href=/css/medium.css rel=stylesheet>
+<link href=/css/additional.css rel=stylesheet>
+<link href=/css/syntax.css rel=stylesheet>
+<link href=/css/custom.css rel=stylesheet>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<div class="container pr-0">
+<a class=navbar-brand href=https://poolp.org/>
+<img src=/images/poolp_org.png alt=logo>
+</a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=December%202020%3a%20OpenSMTPD%206.8.0p1%20released%2c%20fixed%20several%20bugs%2c%20proposed%20several%20diffs%2c%20book%20is%20on%20Github&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-12-24%2fdecember-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1"><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-12-24%2fdecember-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1"><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-12-24%2fdecember-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1"><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarMediumish>
+<ul class="navbar-nav ml-auto">
+<li class=nav-item>
+<a class=nav-link href=/fr/contracting/>Freelance</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hypno.cat>Hypnose</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/authors/gilles-chehade>About Me</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class=site-content>
+<div class=container>
+<div class=mainheading>
+</div><div class=main-content>
+<div class=container>
+<div class=row>
+<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+<p>Share</p>
+<ul>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://twitter.com/intent/tweet?text=December%202020%3a%20OpenSMTPD%206.8.0p1%20released%2c%20fixed%20several%20bugs%2c%20proposed%20several%20diffs%2c%20book%20is%20on%20Github&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-12-24%2fdecember-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-12-24%2fdecember-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
+<i class="fab fa-facebook-f"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-12-24%2fdecember-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
+<i class="fab fa-xing"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-md-9 flex-first flex-md-unordered">
+<div class=mainheading>
+<div class="row post-top-meta">
+<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+</div>
+<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<span class=author-description>
+foobarbaz-ing since 1981<br>
+</span>
+<br>
+<span class=author-description>
+<i class="far fa-star"></i>
 Dec 24, 2020
 <i class="far fa-clock clock"></i>
-13 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github</h1></div><div class=article-post><blockquote><b>TL;DR:</b>
+13 min read
+</span>
+</div>
+</div>
+<div class=after-post-tags>
+<ul class=tags>
+</ul>
+</div>
+<h1 class=posttitle>December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github</h1>
+</div>
+<div class=article-post>
+<blockquote>
+<b>TL;DR:</b>
 - Crafted the OpenSMTPD 6.8.0p1 release
 - Fixed several bugs in the way
 - Proposed a few OpenSMTPD improvements to OpenBSD
-- Working on my OpenSMTPD book</blockquote><h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1><p>As usual, a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong>, <strong><a href=https://github.com/sponsors/poolpOrg>github</a></strong> or <strong><a href=https://liberapay.com/poolpOrg>liberaPay</a></strong>, the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p><h1 id=lets-start-with-some-lofi>Let&rsquo;s start with some LoFi</h1><p>Relax.</p><center><iframe width=560 height=315 src=https://www.youtube.com/embed/EK2cYxNmUDE frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center><h1 id=about-sponsorship>About sponsorship</h1><p>First of all,
+- Working on my OpenSMTPD book
+</blockquote>
+<h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1>
+<p>As usual, a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong>, <strong><a href=https://github.com/sponsors/poolpOrg>github</a></strong> or <strong><a href=https://liberapay.com/poolpOrg>liberaPay</a></strong>, the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p>
+<h1 id=lets-start-with-some-lofi>Let&rsquo;s start with some LoFi</h1>
+<p>Relax.</p>
+<center>
+<iframe width=560 height=315 src=https://www.youtube.com/embed/EK2cYxNmUDE frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</center>
+<h1 id=about-sponsorship>About sponsorship</h1>
+<p>First of all,
 I must say how <strong>grateful and happy</strong> I am that people <strong>value my work enough to trust and sponsor me</strong>,
-I appreciate it a lot and it is a <strong>huge motivation booster</strong>.</p><p>I initially thought that after a few months I might have about 10 sponsors,
-but here we are after a year or so with <strong>over 50 sponsors</strong> !</p><p>Please let me know what you want me to work on,
-I may or may not do it (based on my interest and skills) but at least I&rsquo;ll have an idea how to attract more sponsors as I&rsquo;m clueless.</p><p>Thank you all and hopefully when December 2021 hits, I can give a three-digits number and spend more time on coding and writing for a hobby :-)</p><h1 id=preparing-the-opensmtpd-680p1-release>Preparing the OpenSMTPD 6.8.0p1 release</h1><p>I spent a lot of time preparing the <strong>OpenSMTPD 6.8.0p1 release</strong> that SHOULD have been released in November shortly after OpenBSD 6.8 was out,
-but which <strong>I couldn&rsquo;t find time to work</strong> on as I was contracted for some private work.</p><p>As I prepared the release,
+I appreciate it a lot and it is a <strong>huge motivation booster</strong>.</p>
+<p>I initially thought that after a few months I might have about 10 sponsors,
+but here we are after a year or so with <strong>over 50 sponsors</strong> !</p>
+<p>Please let me know what you want me to work on,
+I may or may not do it (based on my interest and skills) but at least I&rsquo;ll have an idea how to attract more sponsors as I&rsquo;m clueless.</p>
+<p>Thank you all and hopefully when December 2021 hits, I can give a three-digits number and spend more time on coding and writing for a hobby :-)</p>
+<h1 id=preparing-the-opensmtpd-680p1-release>Preparing the OpenSMTPD 6.8.0p1 release</h1>
+<p>I spent a lot of time preparing the <strong>OpenSMTPD 6.8.0p1 release</strong> that SHOULD have been released in November shortly after OpenBSD 6.8 was out,
+but which <strong>I couldn&rsquo;t find time to work</strong> on as I was contracted for some private work.</p>
+<p>As I prepared the release,
 I had to fix several issues,
-some specific to the portable version and some that have been fixed upstream at OpenBSD.</p><p>The <strong><a href=https://www.mail-archive.com/misc@opensmtpd.org/msg05188.html>6.8.0p1 release was published today</a></strong> and <strong>contains the fixes</strong> for the issues mentioned below.</p><h2 id=fixed-macos-build>Fixed macOS build</h2><p>The build on macOS was broken due to a missing OpenSSL include.</p><p>A user submitted a pull request that fixed the build but another user reported that this was <strong>not enough for older macOS</strong> that lack the <code>clock_gettime()</code> call which we use in the profiling code.</p><p>I&rsquo;m not familiar enough (at all) with macOS to figure out which versions are &ldquo;old&rdquo; but this seems to fall into the &ldquo;legacy&rdquo; bucket and as far as the <strong>latest releases</strong> are concerned there is no known problems.</p><p>I don&rsquo;t intend to support all legacy systems out there but since fixing the <code>clock_gettime()</code> issue might be beneficial to portability outside of macOS, <strong>I started tackling the issue and am almost done</strong>.</p><h2 id=fixed-get_progname-bug>Fixed get_progname() bug</h2><p>A bug was introduced over a release ago which caused OpenSMTPD to <strong>improperly log the process name in maillog on some systems</strong>.</p><p>It was weird because the process names were correctly reported in the <code>ps</code> output, they just weren&rsquo;t in the logs.</p><p>I traced it back to a broken feature detection in <code>configure.ac</code> leading to the <code>setprotctitle()</code> workaround not working correctly.</p><p>Issue was <strong>fixed and committed</strong> to the portable repository.</p><h2 id=implemented-an-ecdsa-engine-for-openssl-sponsored-development>Implemented an ECDSA engine for OpenSSL (sponsored development)</h2><p>When OpenSMTPD 6.6.0 was released a year ago,
+some specific to the portable version and some that have been fixed upstream at OpenBSD.</p>
+<p>The <strong><a href=https://www.mail-archive.com/misc@opensmtpd.org/msg05188.html>6.8.0p1 release was published today</a></strong> and <strong>contains the fixes</strong> for the issues mentioned below.</p>
+<h2 id=fixed-macos-build>Fixed macOS build</h2>
+<p>The build on macOS was broken due to a missing OpenSSL include.</p>
+<p>A user submitted a pull request that fixed the build but another user reported that this was <strong>not enough for older macOS</strong> that lack the <code>clock_gettime()</code> call which we use in the profiling code.</p>
+<p>I&rsquo;m not familiar enough (at all) with macOS to figure out which versions are &ldquo;old&rdquo; but this seems to fall into the &ldquo;legacy&rdquo; bucket and as far as the <strong>latest releases</strong> are concerned there is no known problems.</p>
+<p>I don&rsquo;t intend to support all legacy systems out there but since fixing the <code>clock_gettime()</code> issue might be beneficial to portability outside of macOS, <strong>I started tackling the issue and am almost done</strong>.</p>
+<h2 id=fixed-get_progname-bug>Fixed get_progname() bug</h2>
+<p>A bug was introduced over a release ago which caused OpenSMTPD to <strong>improperly log the process name in maillog on some systems</strong>.</p>
+<p>It was weird because the process names were correctly reported in the <code>ps</code> output, they just weren&rsquo;t in the logs.</p>
+<p>I traced it back to a broken feature detection in <code>configure.ac</code> leading to the <code>setprotctitle()</code> workaround not working correctly.</p>
+<p>Issue was <strong>fixed and committed</strong> to the portable repository.</p>
+<h2 id=implemented-an-ecdsa-engine-for-openssl-sponsored-development>Implemented an ECDSA engine for OpenSSL (sponsored development)</h2>
+<p>When OpenSMTPD 6.6.0 was released a year ago,
 it brought support for <strong>server-side ECDSA certificates</strong> but with the caveat that it only worked with LibreSSL.
-OpenSMTPD would build with OpenSSL but disable server-side ECDSA support.</p><p>People assumed that this was done because I wanted to push LibreSSL as otherwise I could have just added a few <code>#ifdef</code> and handled both,
-but this was of course not the reason.</p><p><a href=https://poolp.org/posts/2019-06-02/may-2019-report/>As I wrote in June 2019</a>,
+OpenSMTPD would build with OpenSSL but disable server-side ECDSA support.</p>
+<p>People assumed that this was done because I wanted to push LibreSSL as otherwise I could have just added a few <code>#ifdef</code> and handled both,
+but this was of course not the reason.</p>
+<p><a href=https://poolp.org/posts/2019-06-02/may-2019-report/>As I wrote in June 2019</a>,
 the crypto operations in OpenSMTPD are done in a <strong>special way</strong> compared to what&rsquo;s commonly seen.
 As a result,
 adding support to ECDSA was not just about slapping a few <code>#ifdef</code> and calling the proper function but required writing a custom crypto engine which,
 unluckily for me,
-uses an API that <strong>diverged between LibreSSL and OpenSSL</strong>.</p><p>I didn&rsquo;t have interest in doing that work because it&rsquo;s not very pleasant,
-but people kept asking for it and a user contacted me in private to ask if I was willing to accept a sponsored development to do that work.</p><p>I accepted and worked on it for a few days until I could start OpenSMTPD on an Ubuntu with OpenSSL and use ECDSA certificates.
-A few people tested the diff and reported success so <strong>it was committed</strong> to the portable repository.</p><p>I&rsquo;d like to thank again that user who wishes to remain anonymous,
+uses an API that <strong>diverged between LibreSSL and OpenSSL</strong>.</p>
+<p>I didn&rsquo;t have interest in doing that work because it&rsquo;s not very pleasant,
+but people kept asking for it and a user contacted me in private to ask if I was willing to accept a sponsored development to do that work.</p>
+<p>I accepted and worked on it for a few days until I could start OpenSMTPD on an Ubuntu with OpenSSL and use ECDSA certificates.
+A few people tested the diff and reported success so <strong>it was committed</strong> to the portable repository.</p>
+<p>I&rsquo;d like to thank again that user who wishes to remain anonymous,
 this sponsored development helped me replace my laptop with a new MacBook Air which is lovely,
-and the result <strong>benefits all users of OpenSMTPD portable</strong>.</p><center><img src=/images/2020-12-new_laptop.jpg></center><h2 id=plugged-multiple-memory-leaks>Plugged multiple memory leaks</h2><p>As I requested feedback on the release candidate for OpenSMTPD 6.8.0p1,
-another user reported a <strong>memory leak</strong> which sent me on a big hunt.</p><p>Thanks to a <code>top</code> output I knew it was the <code>lookup process</code>&mldr;
+and the result <strong>benefits all users of OpenSMTPD portable</strong>.</p>
+<center>
+<img src=/images/2020-12-new_laptop.jpg>
+</center>
+<h2 id=plugged-multiple-memory-leaks>Plugged multiple memory leaks</h2>
+<p>As I requested feedback on the release candidate for OpenSMTPD 6.8.0p1,
+another user reported a <strong>memory leak</strong> which sent me on a big hunt.</p>
+<p>Thanks to a <code>top</code> output I knew it was the <code>lookup process</code>&mldr;
 but that process covers several scopes as it is in charge of <strong>DNS lookups</strong>,
 <strong>table lookups</strong> and <strong>passing information back and forth between an SMTP session and filters</strong>.
-I didn&rsquo;t have an immediate intuition where the leak could come from as is often the case with other processes.</p><p>I was suspicious of the <strong>filters layer</strong> since filters are still somewhat experimental and recent,
+I didn&rsquo;t have an immediate intuition where the leak could come from as is often the case with other processes.</p>
+<p>I was suspicious of the <strong>filters layer</strong> since filters are still somewhat experimental and recent,
 however there are <strong>very few runtime allocations</strong> there and I could not find any unbalanced allocation
 <strong><a href=https://github.com/openbsd/src/commit/21522cbeb01f50e971ec01911918d719023484fd#diff-6cb46d1f1c7fb0972d7569a29ef930a534cade4034f526f1083e4dfb9f5a6599>except for a minor one</a></strong> that could not explain a noticeable leak.
-This was confirmed when the user applied the diff and saw no improvement whatsoever.</p><p>Then I started being suspicious of <strong>DNS lookups</strong> and ended up diving into the <code>resolver.c</code> interface to <code>asr</code>, the asynchronous resolver.
+This was confirmed when the user applied the diff and saw no improvement whatsoever.</p>
+<p>Then I started being suspicious of <strong>DNS lookups</strong> and ended up diving into the <code>resolver.c</code> interface to <code>asr</code>, the asynchronous resolver.
 This led to <a href=https://github.com/openbsd/src/commit/ce5509e44fe2267548c237d9c134a82641183226#diff-6cb46d1f1c7fb0972d7569a29ef930a534cade4034f526f1083e4dfb9f5a6599>another small leak</a> found in OpenSMTPD and <a href=https://github.com/openbsd/src/commit/caf7b7a2ea9bf223de3b73d4b702f2249359245f#diff-01bed4da21c6a83cc09cf6951ac885c4196a3c119bcc5bd61ac0b1ebddeca96c>another one in asr itself</a> prompting a diff from Eric Faurot in OpenBSD&rsquo;s libc.
-This was slightly more noticeable than the previous one but still not very significant, it was <strong>barely visible</strong> on my own MX that had been running for a year without a restart.</p><p>Finally, I had a eureka moment and convinced myself to look at the handling of <strong>regex lookup</strong> in tables.
+This was slightly more noticeable than the previous one but still not very significant, it was <strong>barely visible</strong> on my own MX that had been running for a year without a restart.</p>
+<p>Finally, I had a eureka moment and convinced myself to look at the handling of <strong>regex lookup</strong> in tables.
 It turns out that a <code>regfree()</code> call was missing which caused a <code>regex_t</code> to leak for each regex lookup.
 <strong>Depending on the OpenSMTPD configuration</strong>, the use of regex, the size of tables used by regex and the filters in place,
-the leak <strong>could grow from fully inexistant to very significant</strong>.</p><p>I submitted a diff to OpenBSD <strong><a href=https://github.com/openbsd/src/commit/79a034b4aed29e965f45a13409268290c9910043#diff-6cb46d1f1c7fb0972d7569a29ef930a534cade4034f526f1083e4dfb9f5a6599>that was committed today by martijn@</a></strong>.</p><h2 id=tracked-and-found-a-possible-crash-in-the-filters-state-machine>Tracked and found a possible crash in the filters state machine</h2><p>As I was tracking the memory leak above,
+the leak <strong>could grow from fully inexistant to very significant</strong>.</p>
+<p>I submitted a diff to OpenBSD <strong><a href=https://github.com/openbsd/src/commit/79a034b4aed29e965f45a13409268290c9910043#diff-6cb46d1f1c7fb0972d7569a29ef930a534cade4034f526f1083e4dfb9f5a6599>that was committed today by martijn@</a></strong>.</p>
+<h2 id=tracked-and-found-a-possible-crash-in-the-filters-state-machine>Tracked and found a possible crash in the filters state machine</h2>
+<p>As I was tracking the memory leak above,
 I came up by accident with a script that caused the OpenSMTPD instance on my laptop to <strong>crash</strong>&mldr; just once.
-I tried to reproduce multiple times without success and decided to stop tracking the leak and focus on finding what caused the crash as it was more concerning.</p><p>I spent hours adapting my script to play different kinds of sessions with varying number of recipients, concurrency levels and amounts of data sent.
+I tried to reproduce multiple times without success and decided to stop tracking the leak and focus on finding what caused the crash as it was more concerning.</p>
+<p>I spent hours adapting my script to play different kinds of sessions with varying number of recipients, concurrency levels and amounts of data sent.
 Eventually, I managed to get a <strong>kill script</strong> that would reliably crash my instance after a few seconds of running.
-It highly suggested a race condition.</p><p>I tested the script on various instances with different configurations and realised that this did not affect all OpenSMTPD setups,
+It highly suggested a race condition.</p>
+<p>I tested the script on various instances with different configurations and realised that this did not affect all OpenSMTPD setups,
 but required a <strong>specific configuration</strong> and a <strong>specific client pattern to trigger</strong>.
-I could not crash a default install or my main MX which makes use of a lot of features, including filters, but I could easily crash my submission MX.</p><p>The bug was tracked for two days and it ended up being a <strong>logic issue in the filters state machine</strong> which could cause the io channel between the SMTP engine and the filters layer to be released while filters were still processing a request. Upon return from a filter, the channel would be expected to be writeable but it would in turn be NULL.</p><p>This led to <strong><a href=https://github.com/openbsd/src/commit/6c3220444ed06b5796dedfd53a0f4becd903c0d1#diff-6cb46d1f1c7fb0972d7569a29ef930a534cade4034f526f1083e4dfb9f5a6599>a fix being committed to OpenBSD-current</a></strong> and an <strong><a href=https://www.openbsd.org/errata68.html>errata</a></strong> published today.</p><h1 id=work-on-opensmtpd-post-release>Work on OpenSMTPD post-release</h1><p>With the 6.8.0p1 release out of the way, I worked on a few diffs for future releases.</p><h2 id=suggested-the-rename-of-opensmtpd-processes-diff-sent-upstream>Suggested the rename of OpenSMTPD processes (diff sent upstream)</h2><p>Many years ago,
+I could not crash a default install or my main MX which makes use of a lot of features, including filters, but I could easily crash my submission MX.</p>
+<p>The bug was tracked for two days and it ended up being a <strong>logic issue in the filters state machine</strong> which could cause the io channel between the SMTP engine and the filters layer to be released while filters were still processing a request. Upon return from a filter, the channel would be expected to be writeable but it would in turn be NULL.</p>
+<p>This led to <strong><a href=https://github.com/openbsd/src/commit/6c3220444ed06b5796dedfd53a0f4becd903c0d1#diff-6cb46d1f1c7fb0972d7569a29ef930a534cade4034f526f1083e4dfb9f5a6599>a fix being committed to OpenBSD-current</a></strong> and an <strong><a href=https://www.openbsd.org/errata68.html>errata</a></strong> published today.</p>
+<h1 id=work-on-opensmtpd-post-release>Work on OpenSMTPD post-release</h1>
+<p>With the 6.8.0p1 release out of the way, I worked on a few diffs for future releases.</p>
+<h2 id=suggested-the-rename-of-opensmtpd-processes-diff-sent-upstream>Suggested the rename of OpenSMTPD processes (diff sent upstream)</h2>
+<p>Many years ago,
 OpenSMTPD had dedicated processes for the MDA and the MTA processes.
 OpenBSD hackers requested that I factor things a bit and merge these processes because they were both unprivileged and chrooted to <code>/var/empty</code>,
-making it <strong>pointless to over-isolate them</strong>.</p><p>We couldn&rsquo;t find a proper name for the new process in charge of both MDA and MTA,
+making it <strong>pointless to over-isolate them</strong>.</p>
+<p>We couldn&rsquo;t find a proper name for the new process in charge of both MDA and MTA,
 but <strong>since an OpenBSD hacker had repeatedly requested that I offer him a pony</strong> I decided to temporarily name the process <code>pony express</code> (if you don&rsquo;t understand why it&rsquo;s funny, I can&rsquo;t help).
-Later, the joke was improved by another developer when he named the new privsep crypto agent <code>klondike</code>.</p><p>As years passed,
+Later, the joke was improved by another developer when he named the new privsep crypto agent <code>klondike</code>.</p>
+<p>As years passed,
 I considered renaming multiple times but could not convince myself the alternative names were better,
 and when I found better names they would not convince others.
 When a user said that these names were useless and unprofessional,
-I decided to let the joke run longer.</p><p>Years later,
-I think the joke has been utilized to its fullest and is now bugging me for both technical (a space in the name of a process is annoying) and non-technical reasons.</p><p>When the configuration file changed a while back to split rules into <code>action</code> and <code>match</code> sets,
+I decided to let the joke run longer.</p>
+<p>Years later,
+I think the joke has been utilized to its fullest and is now bugging me for both technical (a space in the name of a process is annoying) and non-technical reasons.</p>
+<p>When the configuration file changed a while back to split rules into <code>action</code> and <code>match</code> sets,
 the concept of <code>dispatchers</code> was introduced in the code:
 an envelope is matched and based on the action,
-it is scheduled to a local or a remote dispatcher.</p><p>I <a href=http://openbsd-archive.7691.n7.nabble.com/diff-src-usr-sbin-smtpd-change-process-names-td404136.html>sent a diff</a> to OpenBSD suggesting that the <code>pony express</code> process be renamed <code>dispatcher</code>,
+it is scheduled to a local or a remote dispatcher.</p>
+<p>I <a href=http://openbsd-archive.7691.n7.nabble.com/diff-src-usr-sbin-smtpd-change-process-names-td404136.html>sent a diff</a> to OpenBSD suggesting that the <code>pony express</code> process be renamed <code>dispatcher</code>,
 and that the <code>klondike</code> process be renamed <code>crypto</code>.
-I don&rsquo;t know if/when this will be committed but the feedback was positive.</p><h2 id=suggested-explicitly-requesting-forward-files-diff-sent-upstream>Suggested explicitly requesting forward files (diff sent upstream)</h2><p>Whenever a local dispatcher is used (actions <code>mbox</code>, <code>maildir</code>, <code>mda</code> or <code>lmtp</code>),
+I don&rsquo;t know if/when this will be committed but the feedback was positive.</p>
+<h2 id=suggested-explicitly-requesting-forward-files-diff-sent-upstream>Suggested explicitly requesting forward files (diff sent upstream)</h2>
+<p>Whenever a local dispatcher is used (actions <code>mbox</code>, <code>maildir</code>, <code>mda</code> or <code>lmtp</code>),
 OpenSMTPD will unconditionally look for a <code>~/.forward</code> file in the recipients home directory.
-This is a mechanism that today can&rsquo;t be turned off by an admin.</p><p>I <a href="https://marc.info/?l=openbsd-tech&m=160841747511126&w=2">sent a diff</a> to OpenBSD suggesting the <strong>introduction of a <code>forward-file</code> option</strong>.</p><p>The idea is to have OpenSMTPD consider it must NOT try to process <code>~/.forward</code> files unless the admin explicitly requests it by adding the <code>forward-file</code> keyword to a local action.
+This is a mechanism that today can&rsquo;t be turned off by an admin.</p>
+<p>I <a href="https://marc.info/?l=openbsd-tech&m=160841747511126&w=2">sent a diff</a> to OpenBSD suggesting the <strong>introduction of a <code>forward-file</code> option</strong>.</p>
+<p>The idea is to have OpenSMTPD consider it must NOT try to process <code>~/.forward</code> files unless the admin explicitly requests it by adding the <code>forward-file</code> keyword to a local action.
 In the example below,
 I configure two domains with maildir,
-one not supporting forward files and the other supporting it:</p><pre><code>action &quot;local_users_1&quot; maildir
+one not supporting forward files and the other supporting it:</p>
+<pre><code>action &quot;local_users_1&quot; maildir
 action &quot;local_users_2&quot; maildir forward-file
 
 match from any for domain &quot;foobar.org&quot; action &quot;local_users_1&quot;
 match from any for domain &quot;barbaz.org&quot; action &quot;local_users_2&quot;
 </code></pre><p>The benefit is that this <strong>reduces the attack surface</strong> on setups where <code>~/.forward</code> files are not desired.
 Processing these files require <strong>an indirection through the parent process to open the file on behalf of the daemon</strong>,
-but if we know we don&rsquo;t want to process them <strong>the indirection can be bypassed</strong>.</p><p>I don&rsquo;t know if/when this will be committed.</p><h2 id=suggested-explicitly-requesting-custom-mda-execution-in-forward-files-diff-sent-upstream>Suggested explicitly requesting custom MDA execution in forward files (diff sent upstream)</h2><p>Built on top of the previous diff,
-I <a href=http://openbsd-archive.7691.n7.nabble.com/diff-src-usr-sbin-smtpd-add-allow-exec-to-explicitly-allow-custom-mda-td404142.html>suggested the introduction of the <code>allow-exec</code> option for <code>forward-file</code></a>.</p><p>The <code>~/.forward</code> files allow users to redirect their mails to another e-mail address,
+but if we know we don&rsquo;t want to process them <strong>the indirection can be bypassed</strong>.</p>
+<p>I don&rsquo;t know if/when this will be committed.</p>
+<h2 id=suggested-explicitly-requesting-custom-mda-execution-in-forward-files-diff-sent-upstream>Suggested explicitly requesting custom MDA execution in forward files (diff sent upstream)</h2>
+<p>Built on top of the previous diff,
+I <a href=http://openbsd-archive.7691.n7.nabble.com/diff-src-usr-sbin-smtpd-add-allow-exec-to-explicitly-allow-custom-mda-td404142.html>suggested the introduction of the <code>allow-exec</code> option for <code>forward-file</code></a>.</p>
+<p>The <code>~/.forward</code> files allow users to redirect their mails to another e-mail address,
 local or not,
-but they <strong>can also be used to plug a custom mail delivery agent</strong> such as <code>fdm</code> or <code>procmail</code>.</p><p>This is a very nice and interesting feature but it is also a vector of attack as if any bug allowed an attacker to write that file,
+but they <strong>can also be used to plug a custom mail delivery agent</strong> such as <code>fdm</code> or <code>procmail</code>.</p>
+<p>This is a very nice and interesting feature but it is also a vector of attack as if any bug allowed an attacker to write that file,
 including a bug unrelated to OpenSMTPD,
-it would allow them to execute commands with the recipient privileges.</p><p>We can&rsquo;t really remove the exec feature of <code>~/.forward</code> files because being able to execute a custom MDA is a very important feature.
-However, there are setups were you want to support users redirecting their mails elsewhere but not allow them to run their own custom MDA.</p><p>My proposal was to <strong>disallow execution of a custom MDA in <code>~/.forward</code> files unless the admin explicitly allows it</strong>.
+it would allow them to execute commands with the recipient privileges.</p>
+<p>We can&rsquo;t really remove the exec feature of <code>~/.forward</code> files because being able to execute a custom MDA is a very important feature.
+However, there are setups were you want to support users redirecting their mails elsewhere but not allow them to run their own custom MDA.</p>
+<p>My proposal was to <strong>disallow execution of a custom MDA in <code>~/.forward</code> files unless the admin explicitly allows it</strong>.
 In the example below,
-I configure two domains that support forward files but one does not allow execution of a custom MDA while the other does:</p><pre><code>action &quot;local_users_1&quot; maildir forward-file
+I configure two domains that support forward files but one does not allow execution of a custom MDA while the other does:</p>
+<pre><code>action &quot;local_users_1&quot; maildir forward-file
 action &quot;local_users_2&quot; maildir forward-file allow-exec
 
 match from any for domain &quot;foobar.org&quot; action &quot;local_users_1&quot;
 match from any for domain &quot;barbaz.org&quot; action &quot;local_users_2&quot;
 </code></pre><p>With my diff,
-if a custom MDA command is placed in a <code>~/.forward</code> file then the SMTP session temporarily rejects the session until the recipient fixes the file.</p><p>I don&rsquo;t know if/when this will be committed.</p><h2 id=suggested-explicitly-requesting-custom-mda-execution-in-aliases-and-virtual-mappings-diff-sent-upstream>Suggested explicitly requesting custom MDA execution in aliases and virtual mappings (diff sent upstream)</h2><p>Built on top of the previous diff,
-I <a href=http://openbsd-archive.7691.n7.nabble.com/diff-src-usr-sbin-smtpd-add-allow-exec-to-explicitly-allow-commands-from-aliases-td404143.html>suggested the introduction of the <code>allow-exec</code> option for <code>alias</code> and <code>virtual</code></a>.</p><p>Historically,
-plugging a mailing list or similar tools was done by creating an alias to a command:</p><pre><code>lists:  |/usr/local/bin/mlmmj ...
+if a custom MDA command is placed in a <code>~/.forward</code> file then the SMTP session temporarily rejects the session until the recipient fixes the file.</p>
+<p>I don&rsquo;t know if/when this will be committed.</p>
+<h2 id=suggested-explicitly-requesting-custom-mda-execution-in-aliases-and-virtual-mappings-diff-sent-upstream>Suggested explicitly requesting custom MDA execution in aliases and virtual mappings (diff sent upstream)</h2>
+<p>Built on top of the previous diff,
+I <a href=http://openbsd-archive.7691.n7.nabble.com/diff-src-usr-sbin-smtpd-add-allow-exec-to-explicitly-allow-commands-from-aliases-td404143.html>suggested the introduction of the <code>allow-exec</code> option for <code>alias</code> and <code>virtual</code></a>.</p>
+<p>Historically,
+plugging a mailing list or similar tools was done by creating an alias to a command:</p>
+<pre><code>lists:  |/usr/local/bin/mlmmj ...
 </code></pre><p>This is however <strong>a very bad practice that should be discouraged</strong> because attaching a command to an alias means there&rsquo;s no recipient user to run the command as,
 and they <strong>end up executed as the daemon&rsquo;s user</strong>.
 In every single use-case I ever met,
-creating dedicated users and using their <code>~/.forward</code> files to execute the commands achieves the same result while properly isolating the commands from the daemon.</p><p>Killing support for execution of a command in aliases is a battle that I wanted to fight but that will meet a lot of resistance,
-so my proposal <strong>was to do the same as above for forward files and disable execution by default unless an admin explicitly requests it</strong>.</p><p>In the example below,
+creating dedicated users and using their <code>~/.forward</code> files to execute the commands achieves the same result while properly isolating the commands from the daemon.</p>
+<p>Killing support for execution of a command in aliases is a battle that I wanted to fight but that will meet a lot of resistance,
+so my proposal <strong>was to do the same as above for forward files and disable execution by default unless an admin explicitly requests it</strong>.</p>
+<p>In the example below,
 I configure two domains with different aliases mappings,
-one not supporting execution of commands and the other supporting it:</p><pre><code>action &quot;local_users_1&quot; maildir alias &lt;aliases_1&gt;
+one not supporting execution of commands and the other supporting it:</p>
+<pre><code>action &quot;local_users_1&quot; maildir alias &lt;aliases_1&gt;
 action &quot;local_users_2&quot; maildir alias &lt;aliases_2&gt; allow-exec
 
 match from any for domain &quot;foobar.org&quot; action &quot;local_users_1&quot;
 match from any for domain &quot;barbaz.org&quot; action &quot;local_users_2&quot;
-</code></pre><p>Note that <code>virtual</code> uses the same expansion loop as <code>alias</code> so it works the same:</p><pre><code>action &quot;local_users_1&quot; maildir virtual &lt;aliases_1&gt;
+</code></pre><p>Note that <code>virtual</code> uses the same expansion loop as <code>alias</code> so it works the same:</p>
+<pre><code>action &quot;local_users_1&quot; maildir virtual &lt;aliases_1&gt;
 action &quot;local_users_2&quot; maildir virtual &lt;aliases_2&gt; allow-exec
 
 match from any for domain &quot;foobar.org&quot; action &quot;local_users_1&quot;
 match from any for domain &quot;barbaz.org&quot; action &quot;local_users_2&quot;
 </code></pre><p>Similarly to the behavior of <code>allow-exec</code> with <code>~/.forward</code> files,
-if a command is found on an alias that&rsquo;s not allowed to execute a custom command then the SMTP session temporarily rejects the recipient until the alias is fixed.</p><p>I don&rsquo;t know if/when this will be committed.</p><h2 id=privileged-process-safety-net-for-allow-exec>Privileged-process safety net for allow-exec</h2><p>I have a diff which is done but that I haven&rsquo;t submitted as it depends on the diffs above and is pointless to submit until (if ?) they are committed.</p><p>What it does is add a check in <code>forkmda()</code> so that before executing a custom MDA command from an envelope,
-it checks <strong>again</strong> that the dispatcher was configured to allow custom MDA commands through <code>allow-exec</code>.</p><p>Except for configuration changes,
+if a command is found on an alias that&rsquo;s not allowed to execute a custom command then the SMTP session temporarily rejects the recipient until the alias is fixed.</p>
+<p>I don&rsquo;t know if/when this will be committed.</p>
+<h2 id=privileged-process-safety-net-for-allow-exec>Privileged-process safety net for allow-exec</h2>
+<p>I have a diff which is done but that I haven&rsquo;t submitted as it depends on the diffs above and is pointless to submit until (if ?) they are committed.</p>
+<p>What it does is add a check in <code>forkmda()</code> so that before executing a custom MDA command from an envelope,
+it checks <strong>again</strong> that the dispatcher was configured to allow custom MDA commands through <code>allow-exec</code>.</p>
+<p>Except for configuration changes,
 this should <strong>NEVER</strong> happen because a dispatcher that doesn&rsquo;t <code>allow-exec</code> would reject the recipient during the SMTP session when it expands to a command.
 However, if an attacker managed to find a bug which allows injection of a custom MDA command into an envelope,
-then this safety net would prevent execution of the command by spotting the fishy situation.</p><p>On setups without <code>allow-exec</code> <strong>this would have prevented one of the security issues that Qualys disclosed earlier this year</strong>.</p><p>I&rsquo;m trying to find a similar way to provide a safety net for setups with <code>allow-exec</code> but it&rsquo;s much harder as they explicitly allow custom MDA commands,
-and it&rsquo;s not possible for OpenSMTPD to know from a custom MDA command if it was legitimate or not.</p><h1 id=released-new-version-of-filter-rspamd>Released new version of <code>filter-rspamd</code></h1><p>I did a minor release of <code>filter-rspamd</code> to change the versioning format and make it easier to package on OpenBSD.</p><p>Nothing fancy.</p><h1 id=started-releasing-chapters-from-the-opensmtpd-book>Started releasing chapters from the OpenSMTPD book</h1><p>As I&rsquo;ve mentioned in the past,
-I work on an OpenSMTPD book which is 120ish pages as of today.</p><p>My plan to release it when done does not work because I keep rewriting the same chapters over and over until I&rsquo;m happy&mldr; <strong>and I never am</strong>.
-Meanwhile the project moves forward so things get outdated and I need to rewrite them again.</p><p>I decided to take a more radical approach and work on it publicly on Github.
-This way, I don&rsquo;t have to worry about people seeing an imperfect phrasing or pages not rendering the way I want in PDF.</p><p>You&rsquo;ll <a href=https://github.com/poolpOrg/OpenSMTPD-book>find the repository here</a>.</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>I have great plans for 2021 but for now I don&rsquo;t want to disclose them.</p><p>Have a merry Xmas, a happy new year, and see you in January !</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/124>https://github.com/poolpOrg/poolp.org/discussions/124</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2020-12-29/writing-a-custom-mail-delivery-agent/>&#171; Writing a custom Mail Delivery Agent</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2020-11-22/november-2020-i-wasnt-slacking-but-no-opensource-work/>November 2020: I wasn't slacking but no opensource work &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
+then this safety net would prevent execution of the command by spotting the fishy situation.</p>
+<p>On setups without <code>allow-exec</code> <strong>this would have prevented one of the security issues that Qualys disclosed earlier this year</strong>.</p>
+<p>I&rsquo;m trying to find a similar way to provide a safety net for setups with <code>allow-exec</code> but it&rsquo;s much harder as they explicitly allow custom MDA commands,
+and it&rsquo;s not possible for OpenSMTPD to know from a custom MDA command if it was legitimate or not.</p>
+<h1 id=released-new-version-of-filter-rspamd>Released new version of <code>filter-rspamd</code></h1>
+<p>I did a minor release of <code>filter-rspamd</code> to change the versioning format and make it easier to package on OpenBSD.</p>
+<p>Nothing fancy.</p>
+<h1 id=started-releasing-chapters-from-the-opensmtpd-book>Started releasing chapters from the OpenSMTPD book</h1>
+<p>As I&rsquo;ve mentioned in the past,
+I work on an OpenSMTPD book which is 120ish pages as of today.</p>
+<p>My plan to release it when done does not work because I keep rewriting the same chapters over and over until I&rsquo;m happy&mldr; <strong>and I never am</strong>.
+Meanwhile the project moves forward so things get outdated and I need to rewrite them again.</p>
+<p>I decided to take a more radical approach and work on it publicly on Github.
+This way, I don&rsquo;t have to worry about people seeing an imperfect phrasing or pages not rendering the way I want in PDF.</p>
+<p>You&rsquo;ll <a href=https://github.com/poolpOrg/OpenSMTPD-book>find the repository here</a>.</p>
+<h1 id=whats-next->What&rsquo;s next ?</h1>
+<p>I have great plans for 2021 but for now I don&rsquo;t want to disclose them.</p>
+<p>Have a merry Xmas, a happy new year, and see you in January !</p>
+<hr>
+<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/124>https://github.com/poolpOrg/poolp.org/discussions/124</a></p>
+</div>
+<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+<a class="d-block col-md-6" href=https://poolp.org/posts/2020-12-29/writing-a-custom-mail-delivery-agent/> &#171; Writing a custom Mail Delivery Agent</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2020-11-22/november-2020-i-wasnt-slacking-but-no-opensource-work/>November 2020: I wasn't slacking but no opensource work &#187;</a>
+<div class=clearfix></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=alertbar>
+<div class="container text-center">
+<span>
+<img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script><script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script><script src=/js/mediumish.js></script></body></html>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
+</span>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=row>
+<div class="col-md-6 col-sm-6 text-center text-lg-left">
+&copy; Copyright poolp.org - All rights reserved
+</div>
+<div class="col-md-6 col-sm-6 text-center text-lg-right">
+<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=/js/mediumish.js></script>
+</body>
+</html>

@@ -1,19 +1,157 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.83.1"><link rel=icon href=/images/poolp_org.png><title>Some OpenSMTPD overview, part 3 | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="Some OpenSMTPD overview, part 3"><meta name=twitter:description content="EHLO,
+<!doctype html><html lang=en-us><head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=icon href=/images/poolp_org.png>
+<title>Some OpenSMTPD overview, part 3 | poolp.org</title>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Some OpenSMTPD overview, part 3">
+<meta name=twitter:description content="EHLO,
 This is the third post of a series about OpenSMTPD improvements that have taken place since this summer.
 Content altering For a long time, we have developed OpenSMTPD with a strict rule that the daemon should not alter DATA (as in the DATA SMTP phase) in any way.
-The rationale was that by enforcing that rule, the message writing was simplified as the smtp process would simply read data from a client and write it, without any post-processing, to a file descriptor."><meta property="og:title" content="Some OpenSMTPD overview, part 3"><meta property="og:description" content="EHLO,
+The rationale was that by enforcing that rule, the message writing was simplified as the smtp process would simply read data from a client and write it, without any post-processing, to a file descriptor.">
+<meta property="og:title" content="Some OpenSMTPD overview, part 3">
+<meta property="og:description" content="EHLO,
 This is the third post of a series about OpenSMTPD improvements that have taken place since this summer.
 Content altering For a long time, we have developed OpenSMTPD with a strict rule that the daemon should not alter DATA (as in the DATA SMTP phase) in any way.
-The rationale was that by enforcing that rule, the message writing was simplified as the smtp process would simply read data from a client and write it, without any post-processing, to a file descriptor."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2014-12-10/some-opensmtpd-overview-part-3/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2014-12-10T12:38:26+00:00"><meta property="article:modified_time" content="2014-12-10T12:38:26+00:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+The rationale was that by enforcing that rule, the message writing was simplified as the smtp process would simply read data from a client and write it, without any post-processing, to a file descriptor.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poolp.org/posts/2014-12-10/some-opensmtpd-overview-part-3/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2014-12-10T12:38:26+00:00">
+<meta property="article:modified_time" content="2014-12-10T12:38:26+00:00">
+<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
+<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
+<link href=/css/medium.css rel=stylesheet>
+<link href=/css/additional.css rel=stylesheet>
+<link href=/css/syntax.css rel=stylesheet>
+<link href=/css/custom.css rel=stylesheet>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<div class="container pr-0">
+<a class=navbar-brand href=https://poolp.org/>
+<img src=/images/poolp_org.png alt=logo>
+</a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=Some%20OpenSMTPD%20overview%2c%20part%203&url=https%3a%2f%2fpoolp.org%2fposts%2f2014-12-10%2fsome-opensmtpd-overview-part-3%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1"><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2014-12-10%2fsome-opensmtpd-overview-part-3%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1"><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2014-12-10%2fsome-opensmtpd-overview-part-3%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1"><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarMediumish>
+<ul class="navbar-nav ml-auto">
+<li class=nav-item>
+<a class=nav-link href=/fr/contracting/>Freelance</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hypno.cat>Hypnose</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/authors/gilles-chehade>About Me</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class=site-content>
+<div class=container>
+<div class=mainheading>
+</div><div class=main-content>
+<div class=container>
+<div class=row>
+<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+<p>Share</p>
+<ul>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://twitter.com/intent/tweet?text=Some%20OpenSMTPD%20overview%2c%20part%203&url=https%3a%2f%2fpoolp.org%2fposts%2f2014-12-10%2fsome-opensmtpd-overview-part-3%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2014-12-10%2fsome-opensmtpd-overview-part-3%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
+<i class="fab fa-facebook-f"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2014-12-10%2fsome-opensmtpd-overview-part-3%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
+<i class="fab fa-xing"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-md-9 flex-first flex-md-unordered">
+<div class=mainheading>
+<div class="row post-top-meta">
+<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+</div>
+<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<span class=author-description>
+foobarbaz-ing since 1981<br>
+</span>
+<br>
+<span class=author-description>
+<i class="far fa-star"></i>
 Dec 10, 2014
 <i class="far fa-clock clock"></i>
-12 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>Some OpenSMTPD overview, part 3</h1></div><div class=article-post><p>EHLO,</p><p>This is the third post of a series about OpenSMTPD improvements that have taken place since this summer.</p><h2 id=content-altering>Content altering</h2><p>For a long time, we have developed OpenSMTPD with a strict rule that the daemon should not alter DATA (as in the DATA SMTP phase) in any way.</p><p>The rationale was that by enforcing that rule, the message writing was simplified as the smtp process would simply read data from a client and write it, without any post-processing, to a file descriptor. We didn&rsquo;t want to prevent the writing of data modifiers, but we wanted to move this feature out of the daemon and into the filtering API which would allow any kind of rewriting outside the daemon memory space and with different privileges if we wanted to.</p><p>The other rationale was that by avoiding adding hooks to alter content we were receiving, we made it harder on us and contributors to go lazy and implement every feature out there in the daemon just because it was easier through the hooks. When we wanted to implement a feature, we would immediately ask ourselves if it could be done outside the daemon scope before eventually adding it.</p><p>Besides the occasional complaints that we did not support address masquerading (yet), this did not really cause any issue with our users running a wide range of MUA and we decided to maintain that rule, convince people that masquerading was really a filter thing and that it would become available as soon as our filter API had stabilized.</p><h2 id=then-we-became-default-mta-on-openbsd>Then we became default MTA on OpenBSD</h2><p>We started getting complaints from hackers that, although without a value, the BCC header was being emitted by OpenSMTPD.</p><p>It seemed rather strange because clients typically strip them from the DATA phase and we never actually receive them. It turned out that some older MUA did not do that stripping and I had to add a basic check to skip BCC line(s) if any appeared in the DATA phase before the message content. I was not too happy about that change, and a few other hackers/people either as it turns out, but it was not really altering content, simply discarding content that we were not meant to receive in the first place so&mldr;</p><p>Then came another complaint: some hackers were receiving mails from some other hackers &mldr; but the mail had a From header with the local domain instead of the sender domain.</p><p>This also seemed strange because the &ldquo;local domain&rdquo; is not necessarily the &ldquo;sender domain&rdquo;. For instance, if you mail me at @opensmtpd.org, the destination domain will be @opensmtpd.org but the local domain will be poolp.org as that&rsquo;s the local domain of the MX machine. This could only mean that the domain had been inserted by the receiving MX because it was missing.</p><p>Now, when a mail goes out, it can take two paths:</p><ul><li>it can go through a SMTP connection to localhost;</li><li>or it can use the local enqueuer, <code>send-mail</code> or <code>sendmail</code>, which are actually both mapped to <code>smtpctl</code> working in enqueue mode;</li></ul><p>Many MUA support both modes, but usually rely on the second mode by default when ran locally except for a few modern ones that need to be configured explicitly to do so.</p><p>What bothered me was that modern MUA usually append a domain so they could pretty much all be ruled out, and older MUA tend to rely on the local enqueuer which has code to insert the local domain if it is missing. In these two cases, the mail would have not been emitted without a domain.</p><p>So the logical explanation was that the sender used a MUA that both bypassed the local enqueuer AND did emit a From without a domain. After a bit of testing, this proved to be the case and it brought hell on me.</p><h2 id=addresses-parsing>Addresses Parsing</h2><p>It became clear that if we wanted to continue supporting these older MUA, some basic rewriting was required in the daemon and were no longer just a feature but a mandatory part of the session processing. Without this, an OpenSMTPD server could send mails to another MTA such as Sendmail or Postfix and the recipient would get unexpected headers due to the local rewriting performed by them.</p><p>As a quick fix, I wrote a small addresses parser that would extract From, To and Cc fields. It would then attempt to parse the addresses in them, check if a domain was missing and append the local domain in that case. This proved to be a very very bad idea because unlike email addresses in the SMTP protocol, the email addresses inside a message can be written in many ways and are a nightmare to parse. Addresses can span on multiple lines, have comments inside them, they can have brackets or not, they can be surrounded by components, parts of the representation may use different encodings and we even ran into representations such as &ldquo;Gilles <gilles>Chehade&rdquo; which goes beyond mind-fuckery.</p><p>The issue was not just the parsing, but also that once appended the address had to be rendered back so not only I had to find a way to parse the way-too-many fucked up representations into a structure I could work on, but I had to be able to render the fucked up representation back with the domain inserted in them.</p><p>I took a first approach of not doing the replacing in place, but rather constructing a list of sanitized addresses that would be output as a multi-line header. The addresses would be parsed into a common structure and rendered so that (superfluous spaces intended):</p><pre><code>From: &quot;Gilles Chehade&quot;        gilles, &quot;Eric Faurot&quot; eric@poolp.org,     &quot;Charles Longeau&quot; &lt; chl &gt;
-</code></pre><p>would turn into:</p><pre><code>From: &quot;Gilles Chehade&quot; &lt;gilles@poolp.org&gt;,
+12 min read
+</span>
+</div>
+</div>
+<div class=after-post-tags>
+<ul class=tags>
+</ul>
+</div>
+<h1 class=posttitle>Some OpenSMTPD overview, part 3</h1>
+</div>
+<div class=article-post>
+<p>EHLO,</p>
+<p>This is the third post of a series about OpenSMTPD improvements that have taken place since this summer.</p>
+<h2 id=content-altering>Content altering</h2>
+<p>For a long time, we have developed OpenSMTPD with a strict rule that the daemon should not alter DATA (as in the DATA SMTP phase) in any way.</p>
+<p>The rationale was that by enforcing that rule, the message writing was simplified as the smtp process would simply read data from a client and write it, without any post-processing, to a file descriptor. We didn&rsquo;t want to prevent the writing of data modifiers, but we wanted to move this feature out of the daemon and into the filtering API which would allow any kind of rewriting outside the daemon memory space and with different privileges if we wanted to.</p>
+<p>The other rationale was that by avoiding adding hooks to alter content we were receiving, we made it harder on us and contributors to go lazy and implement every feature out there in the daemon just because it was easier through the hooks. When we wanted to implement a feature, we would immediately ask ourselves if it could be done outside the daemon scope before eventually adding it.</p>
+<p>Besides the occasional complaints that we did not support address masquerading (yet), this did not really cause any issue with our users running a wide range of MUA and we decided to maintain that rule, convince people that masquerading was really a filter thing and that it would become available as soon as our filter API had stabilized.</p>
+<h2 id=then-we-became-default-mta-on-openbsd>Then we became default MTA on OpenBSD</h2>
+<p>We started getting complaints from hackers that, although without a value, the BCC header was being emitted by OpenSMTPD.</p>
+<p>It seemed rather strange because clients typically strip them from the DATA phase and we never actually receive them. It turned out that some older MUA did not do that stripping and I had to add a basic check to skip BCC line(s) if any appeared in the DATA phase before the message content. I was not too happy about that change, and a few other hackers/people either as it turns out, but it was not really altering content, simply discarding content that we were not meant to receive in the first place so&mldr;</p>
+<p>Then came another complaint: some hackers were receiving mails from some other hackers &mldr; but the mail had a From header with the local domain instead of the sender domain.</p>
+<p>This also seemed strange because the &ldquo;local domain&rdquo; is not necessarily the &ldquo;sender domain&rdquo;. For instance, if you mail me at @opensmtpd.org, the destination domain will be @opensmtpd.org but the local domain will be poolp.org as that&rsquo;s the local domain of the MX machine. This could only mean that the domain had been inserted by the receiving MX because it was missing.</p>
+<p>Now, when a mail goes out, it can take two paths:</p>
+<ul>
+<li>it can go through a SMTP connection to localhost;</li>
+<li>or it can use the local enqueuer, <code>send-mail</code> or <code>sendmail</code>, which are actually both mapped to <code>smtpctl</code> working in enqueue mode;</li>
+</ul>
+<p>Many MUA support both modes, but usually rely on the second mode by default when ran locally except for a few modern ones that need to be configured explicitly to do so.</p>
+<p>What bothered me was that modern MUA usually append a domain so they could pretty much all be ruled out, and older MUA tend to rely on the local enqueuer which has code to insert the local domain if it is missing. In these two cases, the mail would have not been emitted without a domain.</p>
+<p>So the logical explanation was that the sender used a MUA that both bypassed the local enqueuer AND did emit a From without a domain. After a bit of testing, this proved to be the case and it brought hell on me.</p>
+<h2 id=addresses-parsing>Addresses Parsing</h2>
+<p>It became clear that if we wanted to continue supporting these older MUA, some basic rewriting was required in the daemon and were no longer just a feature but a mandatory part of the session processing. Without this, an OpenSMTPD server could send mails to another MTA such as Sendmail or Postfix and the recipient would get unexpected headers due to the local rewriting performed by them.</p>
+<p>As a quick fix, I wrote a small addresses parser that would extract From, To and Cc fields. It would then attempt to parse the addresses in them, check if a domain was missing and append the local domain in that case. This proved to be a very very bad idea because unlike email addresses in the SMTP protocol, the email addresses inside a message can be written in many ways and are a nightmare to parse. Addresses can span on multiple lines, have comments inside them, they can have brackets or not, they can be surrounded by components, parts of the representation may use different encodings and we even ran into representations such as &ldquo;Gilles <gilles> Chehade&rdquo; which goes beyond mind-fuckery.</p>
+<p>The issue was not just the parsing, but also that once appended the address had to be rendered back so not only I had to find a way to parse the way-too-many fucked up representations into a structure I could work on, but I had to be able to render the fucked up representation back with the domain inserted in them.</p>
+<p>I took a first approach of not doing the replacing in place, but rather constructing a list of sanitized addresses that would be output as a multi-line header. The addresses would be parsed into a common structure and rendered so that (superfluous spaces intended):</p>
+<pre><code>From: &quot;Gilles Chehade&quot;        gilles, &quot;Eric Faurot&quot; eric@poolp.org,     &quot;Charles Longeau&quot; &lt; chl &gt;
+</code></pre>
+<p>would turn into:</p>
+<pre><code>From: &quot;Gilles Chehade&quot; &lt;gilles@poolp.org&gt;,
     &quot;Eric Faurot&quot; &lt;eric@poolp.org&gt;,
     &quot;Charles Longeau&quot; &lt;chl@poolp.org&gt;
-</code></pre><p>But this lead to another round of complaints that the rewriting was altering the message structure, not only did it expand multi-line (which is RFC compliant) but &lsquo;&lt;&rsquo; and &lsquo;>&rsquo; appeared surrounding the addresses even if they were lacking in the original header.</p><p>It became really clear at this point that any attempt at taking a &ldquo;parse-then-render&rdquo; approach was not going to work.</p><h2 id=message-parser>Message Parser</h2><p>After a discussion with eric@, I decided to take a different approach and split the problem in two smaller problems.</p><p>The first one is locating the specific parts of a message that need to be altered, in this case some specific headers. The second one is to actually do the appending somehow.</p><p>Locating the specific parts of a message is a seemingly simple issue, however it raises some concerns of its own. The DATA arrives line by line and the headers may span on multiple lines, therefore the processing can&rsquo;t be done as lines arrive but requires a bit of context and knowing which line is the last one &mldr; when this information is actually carried by the next one which has not yet been received.</p><p>The simplest way to deal with the problem is to take a full message parser, such as the one we have in the enqueuer, grab the part that deals with the headers and feed it with the full headers for the session in progress.</p><p>To achieve this, we could either buffer the headers in memory during the session then work on that buffer or, since we&rsquo;re writing the full message to a file anyway, have the message parser work on that file before it is committed to the queue. Unfortunately, neither of these works with us:</p><p>Keeping full headers in memory paves the road for resources starvation attacks. On a default install, a message can be up to 35MB with many people bumping that value further. Depending on your operating system, OpenSMTPD may accept several thousands of concurrent clients. Now, if we went that path, an evil human being could simply craft very large messages consisting solely of headers and have thousands of clients emitting them without sending the final &ldquo;.&rdquo; but waiting for the server timeout to trigger instead. You get the idea why this is not a good idea.</p><p>Working with the file we saved the message to is slightly better, however two issues pop-up.</p><p>First, we can&rsquo;t do in-place editing so we will basically be rewriting the entire content to another file. For large messages, the performances penalty will be very visible. Then, we have an atomicity requirement, we can&rsquo;t acknowledge the client that we have accepted the message until it has been committed to queue, so between his final &ldquo;.&rdquo; and our acknowledgement, he will have to wait for the entire message to be processed, copied to the other file and committed to queue&mldr; during that time, he will be consuming a session slot preventing another client from being handled. If he gets lucky, he may even have a chance to hit a timeout causing his disconnect while the server will abort processing of his message and trash it.</p><p>So, nope, working with full message or full headers is not the way&mldr; data has to be processed as a stream.</p><h2 id=stream-message-parser>Stream Message Parser</h2><p>I discussed the idea with eric@ a bit and then came up with a prototype for a stream message parser that we would plug in the SMTP session.</p><div class=highlight><pre class=chroma><code class=language-c data-lang=c><span class=kt>void</span>    <span class=nf>rfc2822_parser_init</span><span class=p>(</span><span class=k>struct</span> <span class=n>rfc2822_parser</span> <span class=o>*</span><span class=p>);</span>
+</code></pre>
+<p>But this lead to another round of complaints that the rewriting was altering the message structure, not only did it expand multi-line (which is RFC compliant) but &lsquo;&lt;&rsquo; and &lsquo;>&rsquo; appeared surrounding the addresses even if they were lacking in the original header.</p>
+<p>It became really clear at this point that any attempt at taking a &ldquo;parse-then-render&rdquo; approach was not going to work.</p>
+<h2 id=message-parser>Message Parser</h2>
+<p>After a discussion with eric@, I decided to take a different approach and split the problem in two smaller problems.</p>
+<p>The first one is locating the specific parts of a message that need to be altered, in this case some specific headers. The second one is to actually do the appending somehow.</p>
+<p>Locating the specific parts of a message is a seemingly simple issue, however it raises some concerns of its own. The DATA arrives line by line and the headers may span on multiple lines, therefore the processing can&rsquo;t be done as lines arrive but requires a bit of context and knowing which line is the last one &mldr; when this information is actually carried by the next one which has not yet been received.</p>
+<p>The simplest way to deal with the problem is to take a full message parser, such as the one we have in the enqueuer, grab the part that deals with the headers and feed it with the full headers for the session in progress.</p>
+<p>To achieve this, we could either buffer the headers in memory during the session then work on that buffer or, since we&rsquo;re writing the full message to a file anyway, have the message parser work on that file before it is committed to the queue. Unfortunately, neither of these works with us:</p>
+<p>Keeping full headers in memory paves the road for resources starvation attacks. On a default install, a message can be up to 35MB with many people bumping that value further. Depending on your operating system, OpenSMTPD may accept several thousands of concurrent clients. Now, if we went that path, an evil human being could simply craft very large messages consisting solely of headers and have thousands of clients emitting them without sending the final &ldquo;.&rdquo; but waiting for the server timeout to trigger instead. You get the idea why this is not a good idea.</p>
+<p>Working with the file we saved the message to is slightly better, however two issues pop-up.</p>
+<p>First, we can&rsquo;t do in-place editing so we will basically be rewriting the entire content to another file. For large messages, the performances penalty will be very visible. Then, we have an atomicity requirement, we can&rsquo;t acknowledge the client that we have accepted the message until it has been committed to queue, so between his final &ldquo;.&rdquo; and our acknowledgement, he will have to wait for the entire message to be processed, copied to the other file and committed to queue&mldr; during that time, he will be consuming a session slot preventing another client from being handled. If he gets lucky, he may even have a chance to hit a timeout causing his disconnect while the server will abort processing of his message and trash it.</p>
+<p>So, nope, working with full message or full headers is not the way&mldr; data has to be processed as a stream.</p>
+<h2 id=stream-message-parser>Stream Message Parser</h2>
+<p>I discussed the idea with eric@ a bit and then came up with a prototype for a stream message parser that we would plug in the SMTP session.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>void</span>    <span class=nf>rfc2822_parser_init</span><span class=p>(</span><span class=k>struct</span> <span class=n>rfc2822_parser</span> <span class=o>*</span><span class=p>);</span>
 <span class=kt>int</span>     <span class=nf>rfc2822_parser_feed</span><span class=p>(</span><span class=k>struct</span> <span class=n>rfc2822_parser</span> <span class=o>*</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=p>);</span>
 <span class=kt>void</span>    <span class=nf>rfc2822_parser_reset</span><span class=p>(</span><span class=k>struct</span> <span class=n>rfc2822_parser</span> <span class=o>*</span><span class=p>);</span>
 <span class=kt>void</span>    <span class=nf>rfc2822_parser_release</span><span class=p>(</span><span class=k>struct</span> <span class=n>rfc2822_parser</span> <span class=o>*</span><span class=p>);</span>
@@ -23,29 +161,89 @@ Dec 10, 2014
 	<span class=kt>void</span> <span class=p>(</span><span class=o>*</span><span class=p>)(</span><span class=k>const</span> <span class=k>struct</span> <span class=n>rfc2822_header</span> <span class=o>*</span><span class=p>,</span> <span class=kt>void</span> <span class=o>*</span><span class=p>),</span> <span class=kt>void</span> <span class=o>*</span><span class=p>);</span>
 <span class=kt>void</span>    <span class=nf>rfc2822_body_callback</span><span class=p>(</span><span class=k>struct</span> <span class=n>rfc2822_parser</span> <span class=o>*</span><span class=p>,</span>
 	<span class=kt>void</span> <span class=p>(</span><span class=o>*</span><span class=p>)(</span><span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=p>,</span> <span class=kt>void</span> <span class=o>*</span><span class=p>),</span> <span class=kt>void</span> <span class=o>*</span><span class=p>);</span>
-</code></pre></div><p>Before, the workflow would basically go like &ldquo;read a line from this client, write that line to this file&rdquo;.</p><p>Now, the SMTP server will associate a parser context to every session and register a set of callbacks. The default callbacks will simply receive the line as parameter and write it to the file, doing exactly what was done before. However, they now get a chance to modify it somehow before writing it.</p><p>For example, before the parser was integrated, the BCC remove code I had quicked-fix required adding code to the session reading function to detect if we were still in headers, if there was a continuation line, as well as explicit strcasecmp() checks to bypass the writing. It was not much, but it made it clear that the function would become a big pile of crap once we started adding other special cases.</p><p>Now, it is as simple as registering a callback for that header:</p><div class=highlight><pre class=chroma><code class=language-c data-lang=c><span class=n>rfc2822_header_callback</span><span class=p>(</span><span class=o>&amp;</span><span class=n>s</span><span class=o>-&gt;</span><span class=n>rfc2822_parser</span><span class=p>,</span> <span class=s>&#34;bcc&#34;</span><span class=p>,</span>
+</code></pre></div><p>Before, the workflow would basically go like &ldquo;read a line from this client, write that line to this file&rdquo;.</p>
+<p>Now, the SMTP server will associate a parser context to every session and register a set of callbacks. The default callbacks will simply receive the line as parameter and write it to the file, doing exactly what was done before. However, they now get a chance to modify it somehow before writing it.</p>
+<p>For example, before the parser was integrated, the BCC remove code I had quicked-fix required adding code to the session reading function to detect if we were still in headers, if there was a continuation line, as well as explicit strcasecmp() checks to bypass the writing. It was not much, but it made it clear that the function would become a big pile of crap once we started adding other special cases.</p>
+<p>Now, it is as simple as registering a callback for that header:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=n>rfc2822_header_callback</span><span class=p>(</span><span class=o>&amp;</span><span class=n>s</span><span class=o>-&gt;</span><span class=n>rfc2822_parser</span><span class=p>,</span> <span class=s>&#34;bcc&#34;</span><span class=p>,</span>
             <span class=n>header_bcc_callback</span><span class=p>,</span> <span class=n>s</span><span class=p>);</span>
-</code></pre></div><p>And writing a callback that &mldr; does nothing:</p><div class=highlight><pre class=chroma><code class=language-c data-lang=c><span class=k>static</span> <span class=kt>void</span>
+</code></pre></div><p>And writing a callback that &mldr; does nothing:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=k>static</span> <span class=kt>void</span>
 <span class=nf>header_bcc_callback</span><span class=p>(</span><span class=k>const</span> <span class=k>struct</span> <span class=n>rfc2822_header</span> <span class=o>*</span><span class=n>hdr</span><span class=p>,</span> <span class=kt>void</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
 <span class=p>{</span>
 <span class=p>}</span>
-</code></pre></div><p>During a session, the lines read from the clients are passed to the rfc2822_parser_feed function which then takes care of all context handling, buffering and calling registered callbacks when needed. The callbacks will receive headers as a rfc2822_header structure holding a list of lines, and the lines can then either be written as is to a file or modified at will. A message crafted to exhaust resources by providing a single header with an insanely large number of lines will cause the parser to generate an error that the server will properly handle, so all cases solved.</p><p>With this in, the code in the SMTP session remains clear with no special cases and no &ldquo;state&rdquo; variables all over the place.</p><h2 id=so-how-do-we-deal-with-addresses->So how do we deal with addresses ?</h2><p>Let&rsquo;s get back to the main issue: fixing addresses.</p><p>So, the message parser has made it possible to extract specific headers and we could now do the following without having to kludge the session reading code:</p><div class=highlight><pre class=chroma><code class=language-c data-lang=c><span class=n>rfc2822_header_callback</span><span class=p>(</span><span class=o>&amp;</span><span class=n>s</span><span class=o>-&gt;</span><span class=n>rfc2822_parser</span><span class=p>,</span> <span class=s>&#34;from&#34;</span><span class=p>,</span>
+</code></pre></div><p>During a session, the lines read from the clients are passed to the rfc2822_parser_feed function which then takes care of all context handling, buffering and calling registered callbacks when needed. The callbacks will receive headers as a rfc2822_header structure holding a list of lines, and the lines can then either be written as is to a file or modified at will. A message crafted to exhaust resources by providing a single header with an insanely large number of lines will cause the parser to generate an error that the server will properly handle, so all cases solved.</p>
+<p>With this in, the code in the SMTP session remains clear with no special cases and no &ldquo;state&rdquo; variables all over the place.</p>
+<h2 id=so-how-do-we-deal-with-addresses->So how do we deal with addresses ?</h2>
+<p>Let&rsquo;s get back to the main issue: fixing addresses.</p>
+<p>So, the message parser has made it possible to extract specific headers and we could now do the following without having to kludge the session reading code:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=n>rfc2822_header_callback</span><span class=p>(</span><span class=o>&amp;</span><span class=n>s</span><span class=o>-&gt;</span><span class=n>rfc2822_parser</span><span class=p>,</span> <span class=s>&#34;from&#34;</span><span class=p>,</span>
 	<span class=n>header_masquerade_callback</span><span class=p>,</span> <span class=n>s</span><span class=p>);</span>
 <span class=n>rfc2822_header_callback</span><span class=p>(</span><span class=o>&amp;</span><span class=n>s</span><span class=o>-&gt;</span><span class=n>rfc2822_parser</span><span class=p>,</span> <span class=s>&#34;to&#34;</span><span class=p>,</span>
 	<span class=n>header_masquerade_callback</span><span class=p>,</span> <span class=n>s</span><span class=p>);</span>
 <span class=n>rfc2822_header_callback</span><span class=p>(</span><span class=o>&amp;</span><span class=n>s</span><span class=o>-&gt;</span><span class=n>rfc2822_parser</span><span class=p>,</span> <span class=s>&#34;cc&#34;</span><span class=p>,</span>
 	<span class=n>header_masquerade_callback</span><span class=p>,</span> <span class=n>s</span><span class=p>);</span>
-</code></pre></div><p>But how do we implement header_masquerade_callback ?</p><p>Instead of using the previous &ldquo;parse-and-render&rdquo; approach, I decided to give a try at another way: locate insert points.</p><p>While it is hard to parse the header into a series of per-address structures that I can work with and render back, it is not too hard to parse the header into a series of buffers in which I can check if a domain is missing and locate where it should have been. This technique has the advantage that once the processing has been done, the buffers can be written back in sequence preserving the structure of the original message.</p><p>For instance:</p><pre><code>From: &quot;Gilles Chehade&quot;      gilles,      &quot;Eric Faurot&quot; eric@poolp.org, &quot;Charles Longeau&quot; &lt; chl &gt;
-</code></pre><p>Would now be parsed into three buffers containing (note that the various superfluous spaces were preserved):</p><pre><code>&quot;Gilles Chehade&quot;      gilles
+</code></pre></div><p>But how do we implement header_masquerade_callback ?</p>
+<p>Instead of using the previous &ldquo;parse-and-render&rdquo; approach, I decided to give a try at another way: locate insert points.</p>
+<p>While it is hard to parse the header into a series of per-address structures that I can work with and render back, it is not too hard to parse the header into a series of buffers in which I can check if a domain is missing and locate where it should have been. This technique has the advantage that once the processing has been done, the buffers can be written back in sequence preserving the structure of the original message.</p>
+<p>For instance:</p>
+<pre><code>From: &quot;Gilles Chehade&quot;      gilles,      &quot;Eric Faurot&quot; eric@poolp.org, &quot;Charles Longeau&quot; &lt; chl &gt;
+</code></pre>
+<p>Would now be parsed into three buffers containing (note that the various superfluous spaces were preserved):</p>
+<pre><code>&quot;Gilles Chehade&quot;      gilles
 &quot;Eric Faurot&quot; eric@poolp.org
 &quot;Charles Longeau&quot; &lt; chl &gt;
-</code></pre><p>The domain-appending logic would then go through the three buffers and determine:</p><p>is a domain appending necessary ?
+</code></pre>
+<p>The domain-appending logic would then go through the three buffers and determine:</p>
+<p>is a domain appending necessary ?
 if it is, where in the buffer should it be inserted ?
-The second buffer would be unchanged while the first and third buffers would result in an insert point right after gilles and right after chl. The code would then simply copy the buffer to another one up to that insert point, insert the domain, then copy the remaining. Once all buffers have been processed, they are written sequentially resulting in:</p><pre><code>From: &quot;Gilles Chehade&quot;      gilles@poolp.org,      &quot;Eric Faurot&quot; eric@poolp.org, &quot;Charles Longeau&quot; &lt; chl@poolp.org &gt;
-</code></pre><p>Again note that structure has been preserved, header has not be rendered multi-line and superfluous spaces in the original header are left as is.</p><h2 id=so-were-all-done->So&mldr; we&rsquo;re all done ?</h2><p>This has been committed several weeks ago and there&rsquo;s been no complaints so I guess the solution was correct.</p><p>We&rsquo;ve discussed about masquerading a bit and maybe we will reevaluate our position that it would be better off in a filter, after all &mldr; the code to do the domain append is masquerading so if we&rsquo;re going to do it for the incoming case we might as well make it handle the outgoing case too.</p><p>However, our stance has not changed and while the message parser offers a lot of ease for in-daemon content altering, we still believe that the bulk of content altering is filters material. If only to benefit from privileges separation while parsing untrusted content.</p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2014-12-12/the-state-of-filters/>&#171; The state of filters</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2014-12-01/some-opensmtpd-overview-part-2/>Some OpenSMTPD overview, part 2 &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
+The second buffer would be unchanged while the first and third buffers would result in an insert point right after gilles and right after chl. The code would then simply copy the buffer to another one up to that insert point, insert the domain, then copy the remaining. Once all buffers have been processed, they are written sequentially resulting in:</p>
+<pre><code>From: &quot;Gilles Chehade&quot;      gilles@poolp.org,      &quot;Eric Faurot&quot; eric@poolp.org, &quot;Charles Longeau&quot; &lt; chl@poolp.org &gt;
+</code></pre>
+<p>Again note that structure has been preserved, header has not be rendered multi-line and superfluous spaces in the original header are left as is.</p>
+<h2 id=so-were-all-done->So&mldr; we&rsquo;re all done ?</h2>
+<p>This has been committed several weeks ago and there&rsquo;s been no complaints so I guess the solution was correct.</p>
+<p>We&rsquo;ve discussed about masquerading a bit and maybe we will reevaluate our position that it would be better off in a filter, after all &mldr; the code to do the domain append is masquerading so if we&rsquo;re going to do it for the incoming case we might as well make it handle the outgoing case too.</p>
+<p>However, our stance has not changed and while the message parser offers a lot of ease for in-daemon content altering, we still believe that the bulk of content altering is filters material. If only to benefit from privileges separation while parsing untrusted content.</p>
+</div>
+<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+<a class="d-block col-md-6" href=https://poolp.org/posts/2014-12-12/the-state-of-filters/> &#171; The state of filters</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2014-12-01/some-opensmtpd-overview-part-2/>Some OpenSMTPD overview, part 2 &#187;</a>
+<div class=clearfix></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=alertbar>
+<div class="container text-center">
+<span>
+<img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script><script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script><script src=/js/mediumish.js></script></body></html>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
+</span>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=row>
+<div class="col-md-6 col-sm-6 text-center text-lg-left">
+&copy; Copyright poolp.org - All rights reserved
+</div>
+<div class="col-md-6 col-sm-6 text-center text-lg-right">
+<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=/js/mediumish.js></script>
+</body>
+</html>

@@ -1,26 +1,138 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.83.1"><link rel=icon href=/images/poolp_org.png><title>June 2020: poolp.org, folder pinning and webmail work | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/cover.png"><meta name=twitter:title content="June 2020: poolp.org, folder pinning and webmail work"><meta name=twitter:description content="TL;DR: Reworked my infrastructure at poolp.org, implemented folder pinning, worked on my webmail.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
+<!doctype html><html lang=en-us><head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=icon href=/images/poolp_org.png>
+<title>June 2020: poolp.org, folder pinning and webmail work | poolp.org</title>
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/cover.png">
+<meta name=twitter:title content="June 2020: poolp.org, folder pinning and webmail work">
+<meta name=twitter:description content="TL;DR: Reworked my infrastructure at poolp.org, implemented folder pinning, worked on my webmail.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
 poolp.org infrastructure rework I decided to move my servers from online.net to vultr.com (affiliation link).
-I have been at online.net for hosting since 2007 and have always been happy with their services, however OpenBSD has never been supported there and I always had to use custom install procedures and hope things go well."><meta property="og:title" content="June 2020: poolp.org, folder pinning and webmail work"><meta property="og:description" content="TL;DR: Reworked my infrastructure at poolp.org, implemented folder pinning, worked on my webmail.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
+I have been at online.net for hosting since 2007 and have always been happy with their services, however OpenBSD has never been supported there and I always had to use custom install procedures and hope things go well.">
+<meta property="og:title" content="June 2020: poolp.org, folder pinning and webmail work">
+<meta property="og:description" content="TL;DR: Reworked my infrastructure at poolp.org, implemented folder pinning, worked on my webmail.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
 poolp.org infrastructure rework I decided to move my servers from online.net to vultr.com (affiliation link).
-I have been at online.net for hosting since 2007 and have always been happy with their services, however OpenBSD has never been supported there and I always had to use custom install procedures and hope things go well."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/"><meta property="og:image" content="https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/cover.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-06-27T23:13:00+02:00"><meta property="article:modified_time" content="2020-06-27T23:13:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+I have been at online.net for hosting since 2007 and have always been happy with their services, however OpenBSD has never been supported there and I always had to use custom install procedures and hope things go well.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/"><meta property="og:image" content="https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/cover.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-06-27T23:13:00+00:00">
+<meta property="article:modified_time" content="2020-06-27T23:13:00+00:00">
+<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
+<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
+<link href=/css/medium.css rel=stylesheet>
+<link href=/css/additional.css rel=stylesheet>
+<link href=/css/syntax.css rel=stylesheet>
+<link href=/css/custom.css rel=stylesheet>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<div class="container pr-0">
+<a class=navbar-brand href=https://poolp.org/>
+<img src=/images/poolp_org.png alt=logo>
+</a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=June%202020%3a%20poolp.org%2c%20folder%20pinning%20and%20webmail%20work&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-06-27%2fjune-2020-poolp.org-folder-pinning-and-webmail-work%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1"><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-06-27%2fjune-2020-poolp.org-folder-pinning-and-webmail-work%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1"><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-06-27%2fjune-2020-poolp.org-folder-pinning-and-webmail-work%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1"><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarMediumish>
+<ul class="navbar-nav ml-auto">
+<li class=nav-item>
+<a class=nav-link href=/fr/contracting/>Freelance</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hypno.cat>Hypnose</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/authors/gilles-chehade>About Me</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class=site-content>
+<div class=container>
+<div class=mainheading>
+</div><div class=main-content>
+<div class=container>
+<div class=row>
+<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+<p>Share</p>
+<ul>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://twitter.com/intent/tweet?text=June%202020%3a%20poolp.org%2c%20folder%20pinning%20and%20webmail%20work&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-06-27%2fjune-2020-poolp.org-folder-pinning-and-webmail-work%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-06-27%2fjune-2020-poolp.org-folder-pinning-and-webmail-work%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
+<i class="fab fa-facebook-f"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-06-27%2fjune-2020-poolp.org-folder-pinning-and-webmail-work%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
+<i class="fab fa-xing"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-md-9 flex-first flex-md-unordered">
+<div class=mainheading>
+<div class="row post-top-meta">
+<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+</div>
+<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<span class=author-description>
+foobarbaz-ing since 1981<br>
+</span>
+<br>
+<span class=author-description>
+<i class="far fa-star"></i>
 Jun 27, 2020
 <i class="far fa-clock clock"></i>
-9 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>June 2020: poolp.org, folder pinning and webmail work</h1></div><div class=article-post><blockquote><b>TL;DR:</b>
+9 min read
+</span>
+</div>
+</div>
+<div class=after-post-tags>
+<ul class=tags>
+</ul>
+</div>
+<h1 class=posttitle>June 2020: poolp.org, folder pinning and webmail work</h1>
+</div>
+<div class=article-post>
+<blockquote>
+<b>TL;DR:</b>
 Reworked my infrastructure at poolp.org,
 implemented folder pinning,
-worked on my webmail.</blockquote><h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1><p>As usual,
-a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong> or <strong><a href=https://github.com/sponsors/poolpOrg>github</a></strong>, the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p><h1 id=poolporg-infrastructure-rework>poolp.org infrastructure rework</h1><p>I decided to move my servers from <a href=https://online.net>online.net</a> to <a href="https://www.vultr.com/?ref=6831037">vultr.com</a> (affiliation link).</p><p>I have been at online.net for hosting since 2007 and have always been happy with their services,
-however OpenBSD has never been supported there and I always had to <a href=https://poolp.org/posts/2018-01-29/install-openbsd-on-dedibox-with-full-disk-encryption/>use custom install procedures</a> and hope things go well.</p><p>Nowadays,
+worked on my webmail.
+</blockquote>
+<h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1>
+<p>As usual,
+a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong> or <strong><a href=https://github.com/sponsors/poolpOrg>github</a></strong>, the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p>
+<h1 id=poolporg-infrastructure-rework>poolp.org infrastructure rework</h1>
+<p>I decided to move my servers from <a href=https://online.net>online.net</a> to <a href="https://www.vultr.com/?ref=6831037">vultr.com</a> (affiliation link).</p>
+<p>I have been at online.net for hosting since 2007 and have always been happy with their services,
+however OpenBSD has never been supported there and I always had to <a href=https://poolp.org/posts/2018-01-29/install-openbsd-on-dedibox-with-full-disk-encryption/>use custom install procedures</a> and hope things go well.</p>
+<p>Nowadays,
 I&rsquo;m testing a lot of stuff and I create a lot of short-lived machines so going through these procedures each time is painful.
 I&rsquo;ve been happy with <a href="https://www.vultr.com/?ref=6831037">vultr.com</a> for a little while now so I decided to just move everything there,
-only keeping a backup server at <a href=https://online.net>online.net</a>.</p><p>This forced me to rework my setup but also allowed me to improve it as the cost of running multiple VPS is considerably lower than running multiple dedicated servers, I could split multiple services into their dedicated VPS and tidy things a bit.
+only keeping a backup server at <a href=https://online.net>online.net</a>.</p>
+<p>This forced me to rework my setup but also allowed me to improve it as the cost of running multiple VPS is considerably lower than running multiple dedicated servers, I could split multiple services into their dedicated VPS and tidy things a bit.
 <strong>Instead of three servers, I now operate 15 VPS</strong>.
 As time allows,
-I&rsquo;ll start documenting on this blog the different parts and their configuration.</p><p>It was a bit painful but everything is migrated at this point and the old servers can be shutdown.</p><p>The idea behind this infrastructure change is also to start considering the services that I might provide my sponsors in the future :-)</p><h1 id=mail-classification-heuristics-and-folder-pinning>Mail classification heuristics and folder pinning</h1><p>A downside of mail commonly shared by users is the problem of <strong>mail classification</strong> and <strong>inbox overload</strong>.</p><p>Historically mails were dropped in an <code>mbox</code> which is a mail format where all mails are appended to a common mailbox.
+I&rsquo;ll start documenting on this blog the different parts and their configuration.</p>
+<p>It was a bit painful but everything is migrated at this point and the old servers can be shutdown.</p>
+<p>The idea behind this infrastructure change is also to start considering the services that I might provide my sponsors in the future :-)</p>
+<h1 id=mail-classification-heuristics-and-folder-pinning>Mail classification heuristics and folder pinning</h1>
+<p>A downside of mail commonly shared by users is the problem of <strong>mail classification</strong> and <strong>inbox overload</strong>.</p>
+<p>Historically mails were dropped in an <code>mbox</code> which is a mail format where all mails are appended to a common mailbox.
 This meant that all mails were considered <strong>equivalent</strong> in priority and were just sorted in delivery time order.
-The user had to navigate through them all mixed together and decide which ones they wanted to deal with.</p><p>The <code>mbox</code> format was mostly deprecated by the <code>Maildir</code> format which comes with many advantages and uses a <strong>directory structure</strong>,
+The user had to navigate through them all mixed together and decide which ones they wanted to deal with.</p>
+<p>The <code>mbox</code> format was mostly deprecated by the <code>Maildir</code> format which comes with many advantages and uses a <strong>directory structure</strong>,
 rather than a <strong>unique mailbox file</strong>.
 The directory structure allows mail folders to exist as sub-directories making it possible to create dedicated folders,
 and use post-processing tools to classify mails in these folders.
@@ -28,13 +140,15 @@ For example,
 at <a href=https://poolp.org/>poolp.org</a> the <code>fdm</code> utility was installed and allowed users to create <strong>classification rules</strong> which,
 in my case,
 were used to classify mails from OpenBSD mailing lists into their own folders and out of my Inbox.
-This is extra powerful and flexible but not very generic as the rules set by a user may not work for another.</p><p>The problem is that even if you can create folders and create rules to put mails in them,
+This is extra powerful and flexible but not very generic as the rules set by a user may not work for another.</p>
+<p>The problem is that even if you can create folders and create rules to put mails in them,
 an Inbox essentially replicates the historical behavior of <code>mbox</code> and ends up accumulating all kinds of mails.
 If we keep spam and mailing lists aside for now,
 the Inbox is still where all commercial mails,
 social network notifications,
 password recovery,
-undelivered mails notifications and other land until you create a rule matching each of them.</p><p>Gmail,
+undelivered mails notifications and other land until you create a rule matching each of them.</p>
+<p>Gmail,
 despite an interface I dislike,
 tackled the issue in a very sound way with their folder tabs:
 <code>Primary</code>, <code>Social</code>, <code>Promotions</code>, <code>Updates</code> and <code>Forums</code>.
@@ -42,9 +156,11 @@ The <code>Primary</code> folder is the <code>Inbox</code>,
 <code>Social</code> is where all social networks notifications land,
 <code>Promotions</code> is where bulk mails land,
 <code>Updates</code> is where transactional mails land,
-and <code>Forums</code> is where mailing lists land.</p><p>I wanted to replicate this on my server and it turned out to be very simple as this classification can be done with a few heuristics.
+and <code>Forums</code> is where mailing lists land.</p>
+<p>I wanted to replicate this on my server and it turned out to be very simple as this classification can be done with a few heuristics.
 I configured <code>dovecot</code> to expose these additionals folders by default,
-then configured <code>fdm</code> to apply a set of rules that would categorize mail in these folders:</p><pre><code>action &quot;inbox&quot;          maildir &quot;%h/&quot;
+then configured <code>fdm</code> to apply a set of rules that would categorize mail in these folders:</p>
+<pre><code>action &quot;inbox&quot;          maildir &quot;%h/&quot;
 action &quot;junk&quot;           maildir &quot;%h/.Junk&quot;
 action &quot;social&quot;         maildir &quot;%h/.Social&quot;
 action &quot;bulk&quot;           maildir &quot;%h/.Bulk&quot;
@@ -64,7 +180,8 @@ match all action &quot;inbox&quot;
 </code></pre><p>Every time a mail that I would expect to land in a subfolder hit my Inbox,
 I looked at its headers and checked what could be used as a discriminator to create a new rule or improve an existing one.
 This considerably improved the state of my Inbox as most mails that didn&rsquo;t <strong>expect an answer</strong> landed in a subfolder,
-while my Inbox contained mostly mails from people expecting an answer.</p><p>This worked wonders for <strong>most</strong> mails but then there were some that didn&rsquo;t get proper classification,
+while my Inbox contained mostly mails from people expecting an answer.</p>
+<p>This worked wonders for <strong>most</strong> mails but then there were some that didn&rsquo;t get proper classification,
 because sender didn&rsquo;t do things correctly and made it hard to classify:
 these mails kept hitting the Inbox and I kept moving them out of the way without being able to write a proper rule.
 Also,
@@ -74,43 +191,123 @@ It occured to me that what was needed on top of these heuristics was <strong>fol
 if a user receives mail from a sender and moves it to a folder,
 then most likely future mails from that sender should be moved to that folder too.
 This would solve the problem of senders that don&rsquo;t fit generic classification,
-but also the problem of mails you would like classified in custom folders.</p><p>I decided to implement this using three components:</p><ul><li>a <strong>mail delivery agent</strong>, similar to <code>fdm</code>, but with extra logic that would take into account the folder pinning;</li><li>a <strong>key-value store</strong> to keep track of folder pinning state;</li><li>a <strong>sieve script</strong> for learning new pinning states from mail moves in IMAP;</li></ul><p>Basically,
+but also the problem of mails you would like classified in custom folders.</p>
+<p>I decided to implement this using three components:</p>
+<ul>
+<li>a <strong>mail delivery agent</strong>, similar to <code>fdm</code>, but with extra logic that would take into account the folder pinning;</li>
+<li>a <strong>key-value store</strong> to keep track of folder pinning state;</li>
+<li>a <strong>sieve script</strong> for learning new pinning states from mail moves in IMAP;</li>
+</ul>
+<p>Basically,
 when a mail arrives at <a href=https://poolp.org>poolp.org</a> the mail delivery agent <strong>extracts the sender information</strong>,
 checks in the key-value store if the recipient has a <strong>pinning rule</strong> for the sender and proceeds to delivery.
 If there&rsquo;s a pinning rule then that folder is used,
-otherwise heuristics are used to find the most likely folder the mail should land in.</p><p>If a user is not satisfied with where a mail landed,
+otherwise heuristics are used to find the most likely folder the mail should land in.</p>
+<p>If a user is not satisfied with where a mail landed,
 <strong>moving it to a new folder causes dovecot to pass the mail to a sieve script</strong> which will extract the sender information,
-and push a new rule automatically to the key-value store so that <strong>next time</strong> the mail delivery agent will know where that sender should land.</p><p>The sender extraction is done on the <strong>Return-Path</strong> address,
+and push a new rule automatically to the key-value store so that <strong>next time</strong> the mail delivery agent will know where that sender should land.</p>
+<p>The sender extraction is done on the <strong>Return-Path</strong> address,
 not the From header,
 which ensures that someone contacting me directly or through a mailing-list is classified in the proper folder,
-and the fact it is done at the <strong>protocol level</strong> ensures that this is works <strong>regardless of the client</strong> used to read mail.</p><p>This works very nicely and is particularly pleasant as you quickly forget that it is here,
+and the fact it is done at the <strong>protocol level</strong> ensures that this is works <strong>regardless of the client</strong> used to read mail.</p>
+<p>This works very nicely and is particularly pleasant as you quickly forget that it is here,
 mail just lands where you most expect it.
 The way I implemented it makes it possible to share in a generic way so that everyone can benefit from this feature,
 <strong>regardless of which MTA they are using</strong>,
 however the code is not ready yet as I wrote it as an experiment for my own setup with hardcoded paths and such.
 I&rsquo;ll keep working on it and,
 when it is ready,
-I&rsquo;ll publish my mail delivery agent, the sieve scripts and the dovecot configuration in a single repository.</p><h1 id=webmail-work>Webmail work</h1><p>As I <a href=/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/>mentionned in April</a>,
+I&rsquo;ll publish my mail delivery agent, the sieve scripts and the dovecot configuration in a single repository.</p>
+<h1 id=webmail-work>Webmail work</h1>
+<p>As I <a href=/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/>mentionned in April</a>,
 I&rsquo;m currently working on a webmail of my own.
 Most of the work I did this month was around that project which is evolving at a good pace considering that I had no experience in React,
-and that it is the end of my scholar year which comes with assignments consuming all of my spare time.</p><p>The webmail comes in two parts:</p><ul><li>the backend;</li><li>the frontend;</li></ul><h2 id=backend-work>Backend work</h2><p>The backend is just an API that exposes REST endpoints to the underlying IMAP server.
+and that it is the end of my scholar year which comes with assignments consuming all of my spare time.</p>
+<p>The webmail comes in two parts:</p>
+<ul>
+<li>the backend;</li>
+<li>the frontend;</li>
+</ul>
+<h2 id=backend-work>Backend work</h2>
+<p>The backend is just an API that exposes REST endpoints to the underlying IMAP server.
 It doesn&rsquo;t just map a route to an IMAP command but does it in a way that&rsquo;s optimized for a webmail,
 for instance <code>/select</code> is not just selecting a mailbox <strong>but also an offset and a limit</strong> to lookup envelopes for that mailbox,
 avoiding a round-trip for a <code>/fetch</code>.
 I wrote a version of the backend in Python and another in Go but eventually decided to stick to Python,
-the email parsing library is much more featureful and the performances are just there.</p><p>It <strong>currently</strong> implements:</p><ul><li><code>/login</code>, to authenticate against the IMAP server</li><li><code>/noop</code>, which is used by the webmail to keep a connection alive</li><li><code>/select</code>, to select a <code>folder</code> and fetch up to <code>limit</code> envelopes from <code>offset</code></li><li><code>/fetch</code>, to fetch a specific message (currently only headers)</li><li><code>/move</code>, to move a set of messages from a folder to another</li><li><code>/expunge</code>, to delete a set of messages permanently</li></ul><p>This backend can be used as the building block of any mail client so I will publish it as a standalone project,
-if people are interested in building their webmails they can then focus on the interface and not the lower-level bits.</p><h2 id=frontend-work>Frontend work</h2><p>The frontend is a React client to that API, plain and simple.
+the email parsing library is much more featureful and the performances are just there.</p>
+<p>It <strong>currently</strong> implements:</p>
+<ul>
+<li><code>/login</code>, to authenticate against the IMAP server</li>
+<li><code>/noop</code>, which is used by the webmail to keep a connection alive</li>
+<li><code>/select</code>, to select a <code>folder</code> and fetch up to <code>limit</code> envelopes from <code>offset</code></li>
+<li><code>/fetch</code>, to fetch a specific message (currently only headers)</li>
+<li><code>/move</code>, to move a set of messages from a folder to another</li>
+<li><code>/expunge</code>, to delete a set of messages permanently</li>
+</ul>
+<p>This backend can be used as the building block of any mail client so I will publish it as a standalone project,
+if people are interested in building their webmails they can then focus on the interface and not the lower-level bits.</p>
+<h2 id=frontend-work>Frontend work</h2>
+<p>The frontend is a React client to that API, plain and simple.
 I <strong>only focused on the folder view at the moment</strong> so it is not usable yet to read mails,
-but it is possible to authenticate, navigate between folders, select and delete or junk mails, etc&mldr;</p><center><img src=/images/2020-06-27-webmail.png></center><p>Remember that this is a <strong>work in progress</strong> at an early stage,
+but it is possible to authenticate, navigate between folders, select and delete or junk mails, etc&mldr;</p>
+<center>
+<img src=/images/2020-06-27-webmail.png>
+</center>
+<p>Remember that this is a <strong>work in progress</strong> at an early stage,
 not the final interface,
-but it allowed me to test the behaviors I wanted from the webmail and I&rsquo;m happy with the result.</p><p>You&rsquo;ll just have to be patient until I put up a live demo so you can test for yourself&mldr;</p><p>At this point,
+but it allowed me to test the behaviors I wanted from the webmail and I&rsquo;m happy with the result.</p>
+<p>You&rsquo;ll just have to be patient until I put up a live demo so you can test for yourself&mldr;</p>
+<p>At this point,
 all I can say is that it is progressing and that some aspects of it are impressive.
 It is very fast, and this is despite me testing it from my laptop on a remote IMAP server with no caching and no pre-fetching,
-no optimizations whatsoever.</p><p>Patience !</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>My main focus in July will be the webmail, the sooner I get a PoC out the better.</p><p>I have some ideas to improve mail classification further in more &ldquo;creative&rdquo; ways,
-I&rsquo;ll continue exploring how to make mail management nicer.</p><p>I have some pending work for OpenSMTPD, both on the filter side and on the queue side.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/121>https://github.com/poolpOrg/poolp.org/discussions/121</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/>&#171; July 2020: webmail, custom MDA and python framework work</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/>May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
+no optimizations whatsoever.</p>
+<p>Patience !</p>
+<h1 id=whats-next->What&rsquo;s next ?</h1>
+<p>My main focus in July will be the webmail, the sooner I get a PoC out the better.</p>
+<p>I have some ideas to improve mail classification further in more &ldquo;creative&rdquo; ways,
+I&rsquo;ll continue exploring how to make mail management nicer.</p>
+<p>I have some pending work for OpenSMTPD, both on the filter side and on the queue side.</p>
+<hr>
+<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/121>https://github.com/poolpOrg/poolp.org/discussions/121</a></p>
+</div>
+<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+<a class="d-block col-md-6" href=https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/> &#171; July 2020: webmail, custom MDA and python framework work</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/>May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs &#187;</a>
+<div class=clearfix></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=alertbar>
+<div class="container text-center">
+<span>
+<img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script><script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script><script src=/js/mediumish.js></script></body></html>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
+</span>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=row>
+<div class="col-md-6 col-sm-6 text-center text-lg-left">
+&copy; Copyright poolp.org - All rights reserved
+</div>
+<div class="col-md-6 col-sm-6 text-center text-lg-right">
+<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=/js/mediumish.js></script>
+</body>
+</html>

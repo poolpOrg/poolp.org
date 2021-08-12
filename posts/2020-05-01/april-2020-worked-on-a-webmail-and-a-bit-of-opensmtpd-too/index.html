@@ -1,80 +1,224 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.83.1"><link rel=icon href=/images/poolp_org.png><title>April 2020: worked on a webmail and a bit of OpenSMTPD too | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/cover.png"><meta name=twitter:title content="April 2020: worked on a webmail and a bit of OpenSMTPD too"><meta name=twitter:description content="TL;DR: Worked on my webmail; Did a bit of OpenSMTPD work;  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
-Webmail vs mutt I started using console clients to read my mail back when I was a student in early 2000s, and I&rsquo;ve been using mutt for as long as I can recall now."><meta property="og:title" content="April 2020: worked on a webmail and a bit of OpenSMTPD too"><meta property="og:description" content="TL;DR: Worked on my webmail; Did a bit of OpenSMTPD work;  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
-Webmail vs mutt I started using console clients to read my mail back when I was a student in early 2000s, and I&rsquo;ve been using mutt for as long as I can recall now."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/"><meta property="og:image" content="https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/cover.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-05-01T11:37:00+02:00"><meta property="article:modified_time" content="2020-05-01T11:37:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<!doctype html><html lang=en-us><head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=icon href=/images/poolp_org.png>
+<title>April 2020: worked on a webmail and a bit of OpenSMTPD too | poolp.org</title>
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/cover.png">
+<meta name=twitter:title content="April 2020: worked on a webmail and a bit of OpenSMTPD too">
+<meta name=twitter:description content="TL;DR: Worked on my webmail; Did a bit of OpenSMTPD work;  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
+Webmail vs mutt I started using console clients to read my mail back when I was a student in early 2000s, and I&rsquo;ve been using mutt for as long as I can recall now.">
+<meta property="og:title" content="April 2020: worked on a webmail and a bit of OpenSMTPD too">
+<meta property="og:description" content="TL;DR: Worked on my webmail; Did a bit of OpenSMTPD work;  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
+Webmail vs mutt I started using console clients to read my mail back when I was a student in early 2000s, and I&rsquo;ve been using mutt for as long as I can recall now.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/"><meta property="og:image" content="https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/cover.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-05-01T11:37:00+00:00">
+<meta property="article:modified_time" content="2020-05-01T11:37:00+00:00">
+<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
+<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
+<link href=/css/medium.css rel=stylesheet>
+<link href=/css/additional.css rel=stylesheet>
+<link href=/css/syntax.css rel=stylesheet>
+<link href=/css/custom.css rel=stylesheet>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<div class="container pr-0">
+<a class=navbar-brand href=https://poolp.org/>
+<img src=/images/poolp_org.png alt=logo>
+</a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=April%202020%3a%20worked%20on%20a%20webmail%20and%20a%20bit%20of%20OpenSMTPD%20too&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-01%2fapril-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1"><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-01%2fapril-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1"><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-01%2fapril-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1"><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarMediumish>
+<ul class="navbar-nav ml-auto">
+<li class=nav-item>
+<a class=nav-link href=/fr/contracting/>Freelance</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hypno.cat>Hypnose</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/authors/gilles-chehade>About Me</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class=site-content>
+<div class=container>
+<div class=mainheading>
+</div><div class=main-content>
+<div class=container>
+<div class=row>
+<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+<p>Share</p>
+<ul>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://twitter.com/intent/tweet?text=April%202020%3a%20worked%20on%20a%20webmail%20and%20a%20bit%20of%20OpenSMTPD%20too&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-01%2fapril-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-01%2fapril-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
+<i class="fab fa-facebook-f"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-01%2fapril-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
+<i class="fab fa-xing"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-md-9 flex-first flex-md-unordered">
+<div class=mainheading>
+<div class="row post-top-meta">
+<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+</div>
+<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<span class=author-description>
+foobarbaz-ing since 1981<br>
+</span>
+<br>
+<span class=author-description>
+<i class="far fa-star"></i>
 May 1, 2020
 <i class="far fa-clock clock"></i>
-9 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>April 2020: worked on a webmail and a bit of OpenSMTPD too</h1></div><div class=article-post><blockquote><b>TL;DR:</b>
+9 min read
+</span>
+</div>
+</div>
+<div class=after-post-tags>
+<ul class=tags>
+</ul>
+</div>
+<h1 class=posttitle>April 2020: worked on a webmail and a bit of OpenSMTPD too</h1>
+</div>
+<div class=article-post>
+<blockquote>
+<b>TL;DR:</b>
 Worked on my <mark>webmail</mark>;
-Did a bit of <mark>OpenSMTPD</mark> work;</blockquote><h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1><p>As usual,
-a <strong>huge</strong> thanks goes to the people sponsoring me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>, the work in this post was made possible by my <a href=/sponsorship/>sponsorship</a>.</p><h1 id=webmail-vs-mutt>Webmail vs mutt</h1><p>I started using console clients to read my mail back when I was a student in early 2000s,
+Did a bit of <mark>OpenSMTPD</mark> work;
+</blockquote>
+<h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1>
+<p>As usual,
+a <strong>huge</strong> thanks goes to the people sponsoring me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>, the work in this post was made possible by my <a href=/sponsorship/>sponsorship</a>.</p>
+<h1 id=webmail-vs-mutt>Webmail vs mutt</h1>
+<p>I started using console clients to read my mail back when I was a student in early 2000s,
 and I&rsquo;ve been using <code>mutt</code> for as long as I can recall now.
 I installed various mail clients along the years,
 some with graphical interfaces such as <code>thunderbird</code> or <code>sylpheed</code>,
 others with a web interface such as <code>nullWebmail</code>, <code>SquirrelMail</code>, <code>Roundcube</code>, <code>Mailpile</code> or currently <code>Rainloop</code>.
 No matter which,
-I always end up falling back to <code>mutt</code> for most tasks.</p><center><img src=/images/2020-05-01-mutt-1.png></center><p>Then why don&rsquo;t I stick with <code>mutt</code> and stop trying to use other ones ?</p><p>Wether I like it or not,
+I always end up falling back to <code>mutt</code> for most tasks.</p>
+<center>
+<img src=/images/2020-05-01-mutt-1.png>
+</center>
+<p>Then why don&rsquo;t I stick with <code>mutt</code> and stop trying to use other ones ?</p>
+<p>Wether I like it or not,
 a lot of mails that are important to me contain MIME-parts that are just not comfortable to deal with in console.
 There are ways to work-around,
 like having <code>lynx</code> render HTML mails, <code>mupdf</code> be launched for PDF attachements, and so on&mldr;
 but this is not comfortable enough (to me).
-I keep using <code>mutt</code> for a large part of my mails and keep some unread so that I can read them from another client.</p><p>Ok, so why don&rsquo;t I stick with other ones and stop using <code>mutt</code> ?</p><p>I want to be able to read my mail from various places and not rely on a heavy client.
+I keep using <code>mutt</code> for a large part of my mails and keep some unread so that I can read them from another client.</p>
+<p>Ok, so why don&rsquo;t I stick with other ones and stop using <code>mutt</code> ?</p>
+<p>I want to be able to read my mail from various places and not rely on a heavy client.
 This leaves me with console-based clients that I can <code>ssh</code> to,
 and webmails that I can hit from any browser.
 Unfortunately for me,
 most webmails have interfaces that are inspired by heavy clients with framing and pagination,
-something that&rsquo;s not practical with my use of mails.</p><center><img src=/images/2020-05-01-webmail-0.png></center><p>If I want to cleanup the <code>List</code> folder which has accumulated too many mails,
+something that&rsquo;s not practical with my use of mails.</p>
+<center>
+<img src=/images/2020-05-01-webmail-0.png>
+</center>
+<p>If I want to cleanup the <code>List</code> folder which has accumulated too many mails,
 I&rsquo;d rather use <code>mutt</code> which lets me scroll through the entire folder and delete mails with a key press,
 rather than rely on this user interface to paginate through 81 pages.
 This particular webmail has some keyboard shortcuts which makes it less painful than some others,
 but still,
 I have to scroll down to see the list of mails for this page and skip to the next pages to see other mails in the folder.
 Because of this,
-I will simply never use that interface to do this task and fall back to <code>mutt</code> which lets me do in a couple minutes.</p><h2 id=my-2012-attempt-at-a-webmail>My 2012 attempt at a webmail</h2><p>In 2012,
+I will simply never use that interface to do this task and fall back to <code>mutt</code> which lets me do in a couple minutes.</p>
+<h2 id=my-2012-attempt-at-a-webmail>My 2012 attempt at a webmail</h2>
+<p>In 2012,
 I wrote a small webmail for my use in <code>python</code> with the <code>bottlepy</code> mini framework,
-with the intent to release it opensource.</p><p>I had not yet understood what caused me not to use them on the long run,
+with the intent to release it opensource.</p>
+<p>I had not yet understood what caused me not to use them on the long run,
 but I knew I didn&rsquo;t work along with traditional webmail interfaces.
-So it was mostly keyboard based and had a different look than others:</p><center><img src=/images/2020-05-01-webmail-1.png></center><p>It also had some features I thought were interesting for my own use-case,
+So it was mostly keyboard based and had a different look than others:</p>
+<center>
+<img src=/images/2020-05-01-webmail-1.png>
+</center>
+<p>It also had some features I thought were interesting for my own use-case,
 like for example the use of <a href=https://robohash.org>robohash</a> to immediately spot mails originating from the same sender,
 the detection of diffs and their highlighting to make them more readable,
-or a <code>show analysis</code> button which allowed me to display a ton of technical details about a particular sender and mail:</p><center><img src=/images/2020-05-01-webmail-2.png></center><p>Unfortunately,
+or a <code>show analysis</code> button which allowed me to display a ton of technical details about a particular sender and mail:</p>
+<center>
+<img src=/images/2020-05-01-webmail-2.png>
+</center>
+<p>Unfortunately,
 I got carried by <strong>${DAYTIMEJOB}</strong> and gave up work on it before it became usable for real.
-It is a mail viewer with limited writing abilities.</p><h2 id=my-2020-attempt-at-a-webmail>My 2020 attempt at a webmail</h2><p>We&rsquo;re now 8 years later and I still want to scratch that itch that annoys me since then.
+It is a mail viewer with limited writing abilities.</p>
+<h2 id=my-2020-attempt-at-a-webmail>My 2020 attempt at a webmail</h2>
+<p>We&rsquo;re now 8 years later and I still want to scratch that itch that annoys me since then.
 I think my past effort had value but it didn&rsquo;t tackle the issue correctly,
 and with 8 additional years of mail experience and nuisance,
-I think I can come up with something that suits me better.</p><p>My knowledge and the technologies available are not the same than in 2012.
+I think I can come up with something that suits me better.</p>
+<p>My knowledge and the technologies available are not the same than in 2012.
 I&rsquo;m sure I could have achieved something very usable back then but definitely not something comfortable.
 Part of what makes <code>mutt</code> comfortable is its interface,
 but the other part is the fluidity of being able to scroll a folder of thousands of mails.
 My 2012 webmail didn&rsquo;t prefetch mails, didn&rsquo;t do any kind of caching and did everything synchronously.
 Sure I could skip from a page to another with the press of an arrow key,
 but I then had to wait for a command to be sent to the IMAP server and for the answer to come back before the page actually changed.
-It was not really slow but it was definitely not really fluid.</p><p>I decided to rewrite it from scratch,
-still with the intent of publishing it opensource.</p><p>Below is a screenshot from my initial work,
-start this week:</p><center><img src=/images/2020-05-01-webmail-3.png></center><p>The webmail is now split into a backend and a frontend.
+It was not really slow but it was definitely not really fluid.</p>
+<p>I decided to rewrite it from scratch,
+still with the intent of publishing it opensource.</p>
+<p>Below is a screenshot from my initial work,
+start this week:</p>
+<center>
+<img src=/images/2020-05-01-webmail-3.png>
+</center>
+<p>The webmail is now split into a backend and a frontend.
 The backend is written in <code>python</code> + <code>flask</code> and exposes a REST API to the IMAP server,
 whereas the frontend is written in <code>react</code> (which I had never used before this Monday) and only implements the rendering.
 The reason for this split is that I intend to write custom frontends too.
-This is too birds with one stone.</p><p>The screenshot is for an early work in progress so this is a &ldquo;developer&rdquo; interface more than a user interface.
+This is too birds with one stone.</p>
+<p>The screenshot is for an early work in progress so this is a &ldquo;developer&rdquo; interface more than a user interface.
 The idea here is that I have a mail listing with a cursor controled by my arrow keys,
 scrolling down and up will paginate mail by mail whereas left and right will paginate by full pages.
 <code>Delete</code> or <code>d</code> keys will move a mail to <code>Trash</code>, while <code>Enter</code> will display the mail viewer.
-<code>Space</code> will select the mail that&rsquo;s below the cursor and add it to a selected list so that <code>Delete</code> will allow bulk deleting for example.</p><p>Of course, I will make it easier to use for non-techies but my main goal is that I&rsquo;m able to find the same comfort as <code>mutt</code>,
-THEN add buttons so that people who are more into using a mouse can find their ways.</p><p>I&rsquo;ll continue working on this every now and then until I have something that I can put up a demo for,
+<code>Space</code> will select the mail that&rsquo;s below the cursor and add it to a selected list so that <code>Delete</code> will allow bulk deleting for example.</p>
+<p>Of course, I will make it easier to use for non-techies but my main goal is that I&rsquo;m able to find the same comfort as <code>mutt</code>,
+THEN add buttons so that people who are more into using a mouse can find their ways.</p>
+<p>I&rsquo;ll continue working on this every now and then until I have something that I can put up a demo for,
 then when I&rsquo;m happy enough I will release the code for backend and frontend.
 Right now,
 having no experience with <code>react</code> causes me to do a lot of write and throw-away code,
-there&rsquo;s no point in sharing code at this point.</p><h1 id=preparing-opensmtpd-670>Preparing OpenSMTPD 6.7.0</h1><p>OpenBSD 6.7 is around the corner and OpenSMTPD 6.7.0 by the same occasion.</p><p>As I <a href=/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/>explained last month</a>,
-I no longer contribute directly to OpenBSD as a committer but I didn&rsquo;t ghost and helped review several diffs.</p><h2 id=bug-fixes>Bug fixes</h2><p>As with any release cycle,
-people wake up right before a release with annoying bugs.</p><p>This time it was three bugs.
+there&rsquo;s no point in sharing code at this point.</p>
+<h1 id=preparing-opensmtpd-670>Preparing OpenSMTPD 6.7.0</h1>
+<p>OpenBSD 6.7 is around the corner and OpenSMTPD 6.7.0 by the same occasion.</p>
+<p>As I <a href=/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/>explained last month</a>,
+I no longer contribute directly to OpenBSD as a committer but I didn&rsquo;t ghost and helped review several diffs.</p>
+<h2 id=bug-fixes>Bug fixes</h2>
+<p>As with any release cycle,
+people wake up right before a release with annoying bugs.</p>
+<p>This time it was three bugs.
 One was a bug in the aliases expansion code and the
 <a href=https://github.com/OpenSMTPD/OpenSMTPD/issues/1053>handling of virtual aliases catchalls</a>
 where the <code>@</code> catch-all incorrectly caught recipients in some setups.
 Another was a shortcoming in the <a href=https://github.com/OpenSMTPD/OpenSMTPD/issues/1044>order of fields of two events</a>
 in the filtering protocol that required a protocol change and version bump.
 The last one was a <a href=https://github.com/OpenSMTPD/OpenSMTPD/issues/1046>buggy root-restricted command</a>
-causing the server to halt due to a <code>fatal()</code>.</p><p>Aliasing code is particularly tricky because it doesn&rsquo;t just map a recipient address to a user,
+causing the server to halt due to a <code>fatal()</code>.</p>
+<p>Aliasing code is particularly tricky because it doesn&rsquo;t just map a recipient address to a user,
 it can map a recipient address to multiple users spanning over multiple domains that may or may not use aliases.
 It&rsquo;s not a <code>key => value</code> but a <code>key => tree</code> resolution where each node has a different expansion context.
 To make things harder,
@@ -83,37 +227,93 @@ so the whole expansion code is an interruptible-resumable loop which makes code 
 <strong>The first reaction to a bug affecting aliases is always denial</strong> because even simple fixes require a lot of thinking.
 <code>eric@</code> and I confirmed and discussed the issue,
 we found a fix very fast that we were both sure worked,
-but we had to make sure that it didn&rsquo;t have side-effects by testing multiple scenarios.</p><p>The shortcoming in the filtering protocol was easily fixed by swapping two fields but required a protocol bump,
+but we had to make sure that it didn&rsquo;t have side-effects by testing multiple scenarios.</p>
+<p>The shortcoming in the filtering protocol was easily fixed by swapping two fields but required a protocol bump,
 so this also needed discussions to make sure the fix was really the one we wanted and not come up with another one a month later.
-This also required planning for how existing filters would need to be adapted to support both 6.6.0 and 6.7.0 transparently.</p><p>The last issue <code>eric@</code> fixed alone, I only reviewed the diff.</p><p>All the fixes were committed to OpenBSD and synchronized in portable,
-so they will not be present in the 6.7.0 release.</p><h2 id=portable>Portable</h2><p>The portable version of OpenSMTPD also needed a specific fix after
+This also required planning for how existing filters would need to be adapted to support both 6.6.0 and 6.7.0 transparently.</p>
+<p>The last issue <code>eric@</code> fixed alone, I only reviewed the diff.</p>
+<p>All the fixes were committed to OpenBSD and synchronized in portable,
+so they will not be present in the 6.7.0 release.</p>
+<h2 id=portable>Portable</h2>
+<p>The portable version of OpenSMTPD also needed a specific fix after
 <a href=https://github.com/dfateyev>Denis Fateyev</a>, package maintainer for Fedora,
 and <a href=https://github.com/ryanakca>Ryan Kavanagh</a>, package maintainer for Debian,
 reported that it <a href=https://github.com/OpenSMTPD/OpenSMTPD/issues/1051>failed to build</a> with newer <code>gcc-10</code>.
 I worked on a fix which was committed to the portable version allowing it to build again and,
 while at it,
-added a <code>gcc-10</code> target to our CI so we&rsquo;ll detect breakages there too.</p><p>Given that I will spend more time working in the portable branch from now on,
-I also took time to set myself a proper docker-based development environment to test build and fixes on various systems.</p><h2 id=github-history>Github history</h2><p>Finally,
-I decided to tackle an issue that&rsquo;s been around since forever.</p><p>The history for the project in our <a href=https://github.com/OpenSMTPD/OpenSMTPD>Github</a> mirror was shit.
+added a <code>gcc-10</code> target to our CI so we&rsquo;ll detect breakages there too.</p>
+<p>Given that I will spend more time working in the portable branch from now on,
+I also took time to set myself a proper docker-based development environment to test build and fixes on various systems.</p>
+<h2 id=github-history>Github history</h2>
+<p>Finally,
+I decided to tackle an issue that&rsquo;s been around since forever.</p>
+<p>The history for the project in our <a href=https://github.com/OpenSMTPD/OpenSMTPD>Github</a> mirror was shit.
 OpenBSD is the main repository and uses <code>cvs</code>,
 we synchronize code in <code>git</code> by diffing the checkout from <code>git</code> and the checkout from <code>git</code>&mldr;
-then applying the diff to <code>git</code> with a commit log saying <code>sync</code>.</p><p>As a result,
+then applying the diff to <code>git</code> with a commit log saying <code>sync</code>.</p>
+<p>As a result,
 our <code>git</code> repository contained detailed commit logs for portable-specific commits,
 but whenever trying to track a specific commit originating from OpenBSD&mldr;
-you could not find it by commit log and you had to find the <code>sync</code> commit which contained the relevant diff.</p><p>I managed to bring back the entire OpenSMTPD history from <code>cvs</code> to our mirror,
-so you can now track individual OpenBSD commits there instead of <code>sync</code>.</p><p>Here&rsquo;s the <a href=https://github.com/OpenSMTPD/OpenSMTPD/commit/bcc02bda06c866c719adce97668b373e00d8ff11#diff-b67911656ef5d18c4ae36cb6741b7965>first import</a> commit of OpenSMTPD into OpenBSD,
-which we didn&rsquo;t have before.</p><p>More interestingly,
+you could not find it by commit log and you had to find the <code>sync</code> commit which contained the relevant diff.</p>
+<p>I managed to bring back the entire OpenSMTPD history from <code>cvs</code> to our mirror,
+so you can now track individual OpenBSD commits there instead of <code>sync</code>.</p>
+<p>Here&rsquo;s the <a href=https://github.com/OpenSMTPD/OpenSMTPD/commit/bcc02bda06c866c719adce97668b373e00d8ff11#diff-b67911656ef5d18c4ae36cb6741b7965>first import</a> commit of OpenSMTPD into OpenBSD,
+which we didn&rsquo;t have before.</p>
+<p>More interestingly,
 here&rsquo;s the <a href=https://github.com/OpenSMTPD/OpenSMTPD/commit/033cd161f809bf756024e36d5250bdf88b91892c>sync</a> commit
 for the fix to the aliasing bug discussed above&mldr; which also contains various other commits to unrelated stuff,
-and here&rsquo;s the <a href=https://github.com/OpenSMTPD/OpenSMTPD/commit/d48edb0478f1e77ff7fd50177b582d0c8e0c2c18>actual commit</a> to OpenBSD.</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>I have switched my part-time scheduling so that instead of a week every month,
+and here&rsquo;s the <a href=https://github.com/OpenSMTPD/OpenSMTPD/commit/d48edb0478f1e77ff7fd50177b582d0c8e0c2c18>actual commit</a> to OpenBSD.</p>
+<h1 id=whats-next->What&rsquo;s next ?</h1>
+<p>I have switched my part-time scheduling so that instead of a week every month,
 I have a day each week + 1 day each month to work on my projects.
-This will be the same amount of time but spread over the month.</p><p>I&rsquo;ll spend most of my spare time in May preparing the actual release of portable OpenSMTPD 6.7.0,
-but also to work on my webmail.</p><p>I also have various branches I want to submit to OpenBSD for review after the 6.7.0 release,
-and work to add support to ECDSA in portable OpenSMTPD when OpenSSL is used instead of LibreSSL.</p><p>If you&rsquo;re interested in my work,
-consider supporting me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/119>https://github.com/poolpOrg/poolp.org/discussions/119</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/>&#171; May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/>Anxiety, OpenBSD break, COVID-19 and resuming work &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
+This will be the same amount of time but spread over the month.</p>
+<p>I&rsquo;ll spend most of my spare time in May preparing the actual release of portable OpenSMTPD 6.7.0,
+but also to work on my webmail.</p>
+<p>I also have various branches I want to submit to OpenBSD for review after the 6.7.0 release,
+and work to add support to ECDSA in portable OpenSMTPD when OpenSSL is used instead of LibreSSL.</p>
+<p>If you&rsquo;re interested in my work,
+consider supporting me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>.</p>
+<hr>
+<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/119>https://github.com/poolpOrg/poolp.org/discussions/119</a></p>
+</div>
+<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+<a class="d-block col-md-6" href=https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/> &#171; May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/>Anxiety, OpenBSD break, COVID-19 and resuming work &#187;</a>
+<div class=clearfix></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=alertbar>
+<div class="container text-center">
+<span>
+<img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script><script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script><script src=/js/mediumish.js></script></body></html>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
+</span>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=row>
+<div class="col-md-6 col-sm-6 text-center text-lg-left">
+&copy; Copyright poolp.org - All rights reserved
+</div>
+<div class="col-md-6 col-sm-6 text-center text-lg-right">
+<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=/js/mediumish.js></script>
+</body>
+</html>

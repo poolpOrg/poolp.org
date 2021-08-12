@@ -1,22 +1,127 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.83.1"><link rel=icon href=/images/poolp_org.png><title>July 2020: webmail, custom MDA and python framework work | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/cover.png"><meta name=twitter:title content="July 2020: webmail, custom MDA and python framework work"><meta name=twitter:description content="TL;DR: worked on my webmail, on a custom MDA and on a python framework for API development.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
-Worked on my webmail Again, I&rsquo;d like to emphasize that this is something that&rsquo;s going to span over many months so&mldr; don&rsquo;t hold your breath."><meta property="og:title" content="July 2020: webmail, custom MDA and python framework work"><meta property="og:description" content="TL;DR: worked on my webmail, on a custom MDA and on a python framework for API development.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
-Worked on my webmail Again, I&rsquo;d like to emphasize that this is something that&rsquo;s going to span over many months so&mldr; don&rsquo;t hold your breath."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/"><meta property="og:image" content="https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/cover.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-07-31T22:47:00+02:00"><meta property="article:modified_time" content="2020-07-31T22:47:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<!doctype html><html lang=en-us><head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=icon href=/images/poolp_org.png>
+<title>July 2020: webmail, custom MDA and python framework work | poolp.org</title>
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/cover.png">
+<meta name=twitter:title content="July 2020: webmail, custom MDA and python framework work">
+<meta name=twitter:description content="TL;DR: worked on my webmail, on a custom MDA and on a python framework for API development.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
+Worked on my webmail Again, I&rsquo;d like to emphasize that this is something that&rsquo;s going to span over many months so&mldr; don&rsquo;t hold your breath.">
+<meta property="og:title" content="July 2020: webmail, custom MDA and python framework work">
+<meta property="og:description" content="TL;DR: worked on my webmail, on a custom MDA and on a python framework for API development.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
+Worked on my webmail Again, I&rsquo;d like to emphasize that this is something that&rsquo;s going to span over many months so&mldr; don&rsquo;t hold your breath.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/"><meta property="og:image" content="https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/cover.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-07-31T22:47:00+00:00">
+<meta property="article:modified_time" content="2020-07-31T22:47:00+00:00">
+<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
+<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
+<link href=/css/medium.css rel=stylesheet>
+<link href=/css/additional.css rel=stylesheet>
+<link href=/css/syntax.css rel=stylesheet>
+<link href=/css/custom.css rel=stylesheet>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<div class="container pr-0">
+<a class=navbar-brand href=https://poolp.org/>
+<img src=/images/poolp_org.png alt=logo>
+</a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=July%202020%3a%20webmail%2c%20custom%20MDA%20and%20python%20framework%20work&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-07-31%2fjuly-2020-webmail-custom-mda-and-python-framework-work%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1"><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-07-31%2fjuly-2020-webmail-custom-mda-and-python-framework-work%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1"><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-07-31%2fjuly-2020-webmail-custom-mda-and-python-framework-work%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1"><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarMediumish>
+<ul class="navbar-nav ml-auto">
+<li class=nav-item>
+<a class=nav-link href=/fr/contracting/>Freelance</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hypno.cat>Hypnose</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/authors/gilles-chehade>About Me</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class=site-content>
+<div class=container>
+<div class=mainheading>
+</div><div class=main-content>
+<div class=container>
+<div class=row>
+<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+<p>Share</p>
+<ul>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://twitter.com/intent/tweet?text=July%202020%3a%20webmail%2c%20custom%20MDA%20and%20python%20framework%20work&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-07-31%2fjuly-2020-webmail-custom-mda-and-python-framework-work%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-07-31%2fjuly-2020-webmail-custom-mda-and-python-framework-work%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
+<i class="fab fa-facebook-f"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-07-31%2fjuly-2020-webmail-custom-mda-and-python-framework-work%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
+<i class="fab fa-xing"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-md-9 flex-first flex-md-unordered">
+<div class=mainheading>
+<div class="row post-top-meta">
+<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+</div>
+<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<span class=author-description>
+foobarbaz-ing since 1981<br>
+</span>
+<br>
+<span class=author-description>
+<i class="far fa-star"></i>
 Jul 31, 2020
 <i class="far fa-clock clock"></i>
-7 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>July 2020: webmail, custom MDA and python framework work</h1></div><div class=article-post><blockquote><b>TL;DR:</b>
+7 min read
+</span>
+</div>
+</div>
+<div class=after-post-tags>
+<ul class=tags>
+</ul>
+</div>
+<h1 class=posttitle>July 2020: webmail, custom MDA and python framework work</h1>
+</div>
+<div class=article-post>
+<blockquote>
+<b>TL;DR:</b>
 worked on my webmail,
-on a custom MDA and on a python framework for API development.</blockquote><h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1><p>As usual,
-a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong> or <strong><a href=https://github.com/sponsors/poolpOrg>github</a></strong>, the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p><h1 id=worked-on-my-webmail>Worked on my webmail</h1><p>Again,
+on a custom MDA and on a python framework for API development.
+</blockquote>
+<h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1>
+<p>As usual,
+a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong> or <strong><a href=https://github.com/sponsors/poolpOrg>github</a></strong>, the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p>
+<h1 id=worked-on-my-webmail>Worked on my webmail</h1>
+<p>Again,
 I&rsquo;d like to emphasize that this is something that&rsquo;s going to span over many months so&mldr;
-<strong>don&rsquo;t hold your breath</strong>.</p><p>Last month I wrote that the webmail didn&rsquo;t allow reading messages yet as the <code>/fetch</code> backend operation only fetched headers.
+<strong>don&rsquo;t hold your breath</strong>.</p>
+<p>Last month I wrote that the webmail didn&rsquo;t allow reading messages yet as the <code>/fetch</code> backend operation only fetched headers.
 This was because I focused on navigation and the fetching of messages in IMAP is a bit <strong>tricky to do right</strong> so I wanted to be focused.
 A naive approach that works is to simply get the <strong>full message</strong> and <strong>parse it in the client</strong>,
 something that I&rsquo;ve done multiple time in the past when <strong>performances</strong> weren&rsquo;t a big deal.
 With a webmail, this approach does not work:
 the time it takes to open a page with the mail content is <strong>unbearable</strong> when there&rsquo;s a big file attached to it,
-it&rsquo;s just not acceptable.</p><p>Luckily,
+it&rsquo;s just not acceptable.</p>
+<p>Luckily,
 imap supports fetching a <code>BODYSTRUCTURE</code> which results in a response describing the <strong>MIME structure</strong> of the message.
 With this, a client can inspect the structure and determine which parts it wants to fetch them <strong>specifically</strong>.
 This is a nice solution,
@@ -26,10 +131,16 @@ the backend and the frontend.
 This took me a while to complete because parsing the <code>BODYSTRUCTURE</code> is nightmarish:
 it describes a MIME structure &mldr; and MIME supports nesting &mldr; and the imap protocol is &mldr;
 how do I put it &mldr;
-<em>not the most beautiful thing</em>.</p><p>With this done,
+<em>not the most beautiful thing</em>.</p>
+<p>With this done,
 I could fetch multipart messages and allows displaying a specific part,
-without the performance overhead of a full fetch:</p><center><img src=/images/2020-07-31-webmail-multipart.png></center><p>The above was essentially backend work with just a bit of frontend work,
-but the remaining of my work on the webmail was essentially on the frontend side:</p><p>I reworked a bit the navigation to simplify,
+without the performance overhead of a full fetch:</p>
+<center>
+<img src=/images/2020-07-31-webmail-multipart.png>
+</center>
+<p>The above was essentially backend work with just a bit of frontend work,
+but the remaining of my work on the webmail was essentially on the frontend side:</p>
+<p>I reworked a bit the navigation to simplify,
 splitting between &ldquo;system folders&rdquo; and &ldquo;custom&rdquo; folders,
 but also allowing to click on a progressbar to skip to a <strong>specific portion</strong> of a large folder,
 getting rid of &ldquo;pagination&rdquo; links.
@@ -38,44 +149,73 @@ I reworked the folder listing so that the frontend now adapts to the screen size
 it determines the window height and fetches just enough entries to <strong>fill the window</strong> without generating a scrollbar.
 The scrollbar is unnecessary because pagination uses either the <code>pageup/pagedown</code> button,
 or is automatic when using <code>arrow up/down</code> while on the first or last entry of the listing.
-If you use <code>mutt</code>, you&rsquo;ll be in a very familiar ground.</p><center><img src=/images/2020-07-31-webmail-listing.png></center><p>A bit I&rsquo;d like to improve is the display of subfolders which are currently displayed inlined in the custom folder tab.</p><p>I also worked on mail composing,
-because being able to read a mail is nice but being able to answer is even better.</p><p>I&rsquo;m not a big fan of HTML emails for a variety of reasons,
+If you use <code>mutt</code>, you&rsquo;ll be in a very familiar ground.</p>
+<center>
+<img src=/images/2020-07-31-webmail-listing.png>
+</center>
+<p>A bit I&rsquo;d like to improve is the display of subfolders which are currently displayed inlined in the custom folder tab.</p>
+<p>I also worked on mail composing,
+because being able to read a mail is nice but being able to answer is even better.</p>
+<p>I&rsquo;m not a big fan of HTML emails for a variety of reasons,
 some of which will be explained in an upcoming article,
 but I&rsquo;d be deluded if I thought HTML emails were going anywhere.
 Still,
 I want to avoid them as much as possible,
 so I decided to make the webmail allow composing HTML messages while emitting them in plain by default,
-if possible.</p><center><img src=/images/2020-07-31-webmail-compose.png></center><p>Basically, the webmail will display a compose page which allows to customize the appearance of text,
-however it will:</p><ul><li>default to generating a <code>text/plain</code> part if no customization was used</li><li>generate a <code>text/plain</code> <strong>alternative part</strong> stripped of customization if any was used</li></ul><p>Of course, the idea is not just to compose an email but also to send it.
+if possible.</p>
+<center>
+<img src=/images/2020-07-31-webmail-compose.png>
+</center>
+<p>Basically, the webmail will display a compose page which allows to customize the appearance of text,
+however it will:</p>
+<ul>
+<li>default to generating a <code>text/plain</code> part if no customization was used</li>
+<li>generate a <code>text/plain</code> <strong>alternative part</strong> stripped of customization if any was used</li>
+</ul>
+<p>Of course, the idea is not just to compose an email but also to send it.
 I wrote the backend bits to <strong>craft a MIME-message</strong> from the frontend submission and send it,
-which allowed me to mail myself:</p><center><img src=/images/2020-07-31-webmail-sent.png></center><p>Work is still needed to allow attachments when composing a message,
-but there is not technical difficulty there.</p><p>At this point,
-I know the backend API is about right and I can focus on improving the frontend to make it more usable.</p><h1 id=worked-on-a-custom-mda>Worked on a custom MDA</h1><p>Last month,
+which allowed me to mail myself:</p>
+<center>
+<img src=/images/2020-07-31-webmail-sent.png>
+</center>
+<p>Work is still needed to allow attachments when composing a message,
+but there is not technical difficulty there.</p>
+<p>At this point,
+I know the backend API is about right and I can focus on improving the frontend to make it more usable.</p>
+<h1 id=worked-on-a-custom-mda>Worked on a custom MDA</h1>
+<p>Last month,
 I talked about my custom MDA and script script to perform folder pinning.
-I&rsquo;m happy with the idea but not so much with the implementation so I decided to revisit.</p><p>The issue is that folder pinning is far from being the only thing I want to do with incoming mails at delivery time,
+I&rsquo;m happy with the idea but not so much with the implementation so I decided to revisit.</p>
+<p>The issue is that folder pinning is far from being the only thing I want to do with incoming mails at delivery time,
 and shoving everything in the mda executable is not ideal.
 I rewrote the MDA to have it handle <strong>delivery only</strong> and <strong>call an API</strong> to determine where it should do it,
 this let me play with a ton of ideas on a custom API server without tweaking the working MDA.
 At the end of the day,
 I had incoming mails processed by various <strong>text analyzers</strong>,
 attachments automatically <strong>extracted</strong> and put in an s3 backing store,
-and mails <strong>indexed</strong> for fast lookups.</p><p>I will not expand much on how I did this as I think it makes a nice topic for a <strong>dedicated article</strong> on custom MDA,
-and fun stuff you can easily do with them to provide some awesome features on your mail setup.</p><h1 id=worked-on-a-python-framework-for-my-apiweb-development>Worked on a python framework for my API/web development</h1><p>I often write APIs, either for work of for my own needs, and I usually use <code>bottlepy</code> which is a micro-framework for python.
+and mails <strong>indexed</strong> for fast lookups.</p>
+<p>I will not expand much on how I did this as I think it makes a nice topic for a <strong>dedicated article</strong> on custom MDA,
+and fun stuff you can easily do with them to provide some awesome features on your mail setup.</p>
+<h1 id=worked-on-a-python-framework-for-my-apiweb-development>Worked on a python framework for my API/web development</h1>
+<p>I often write APIs, either for work of for my own needs, and I usually use <code>bottlepy</code> which is a micro-framework for python.
 Along the years,
 I worked on a lot of projects using that framework,
-including professional projects with tons of constraints.</p><p>Eric and I built a lot of small helpers around it to make out job easier,
+including professional projects with tons of constraints.</p>
+<p>Eric and I built a lot of small helpers around it to make out job easier,
 and we kept <strong>copying</strong> these in each and every project,
 improving them as needed.
 I thought it would be a nice idea to package this so that I could easily bootstrap a new project without copying code around.
 So I spent a few days extracting the code from an existing project,
 cleaning it up,
-and packaging it so it could easily be used to start a new project.</p><p>The work isn&rsquo;t done yet, but the idea is that you end up with an executable.
+and packaging it so it could easily be used to start a new project.</p>
+<p>The work isn&rsquo;t done yet, but the idea is that you end up with an executable.
 This executable is controlled by a configuration file which lets you describe what interface and port the API is running on,
 as well as what package implements its endpoints.
 Then, all you need to do is to create a small package that contains the endpoints and implementations,
-something like:</p><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>openbar.routes</span>
+something like:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>openbar.routes</span>
 
-<span class=nd>@openbar.routes.register</span><span class=p>(</span><span class=s2>&#34;0.1&#34;</span><span class=p>,</span> <span class=s2>&#34;backend&#34;</span><span class=p>)</span>
+<span class=nd>@openbar</span><span class=o>.</span><span class=n>routes</span><span class=o>.</span><span class=n>register</span><span class=p>(</span><span class=s2>&#34;0.1&#34;</span><span class=p>,</span> <span class=s2>&#34;backend&#34;</span><span class=p>)</span>
 <span class=k>def</span> <span class=nf>setup</span><span class=p>(</span><span class=n>app</span><span class=p>):</span>
     <span class=n>app</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;/&#34;</span><span class=p>)(</span><span class=n>get_root</span><span class=p>)</span>
     <span class=n>app</span><span class=o>.</span><span class=n>post</span><span class=p>(</span><span class=s2>&#34;/&#34;</span><span class=p>)(</span><span class=n>post_foobar</span><span class=p>)</span>
@@ -90,21 +230,69 @@ because you&rsquo;d get about the same if you just dropped <code>bottlepy</code>
 but it&rsquo;s that you don&rsquo;t need to do all the plumbing to daemonize and drop privileges,
 log to syslog,
 etc&mldr;
-and that it comes with a lot of helpers.</p><p>I will also not expand much on this as I&rsquo;m almost done with the packaging and I might as well demo it rather than spoil it.
+and that it comes with a lot of helpers.</p>
+<p>I will also not expand much on this as I&rsquo;m almost done with the packaging and I might as well demo it rather than spoil it.
 There is nothing super impressive,
 no big innovation,
-but just a wrapping of common stuff in interfaces that makes them pleasant to deal with.</p><p>The webmail backend is an obvious candidate for this,
+but just a wrapping of common stuff in interfaces that makes them pleasant to deal with.</p>
+<p>The webmail backend is an obvious candidate for this,
 but so is the MDA API server.
 I keep needing this over and over,
-it made sense stepping into this project to cut time on the others.</p><h1 id=no-opensmtpd-work->no OpenSMTPD work ?</h1><p>Not much this month.</p><p>I spent a day playing with a <code>queue-procexec</code> but the code was <strong>throw-away</strong>,
-only meant to help me detect if something was utterly broken with the idea.</p><p>I also worked a bit on the <code>go-opensmtpd</code> package and made progress on the filter API,
+it made sense stepping into this project to cut time on the others.</p>
+<h1 id=no-opensmtpd-work->no OpenSMTPD work ?</h1>
+<p>Not much this month.</p>
+<p>I spent a day playing with a <code>queue-procexec</code> but the code was <strong>throw-away</strong>,
+only meant to help me detect if something was utterly broken with the idea.</p>
+<p>I also worked a bit on the <code>go-opensmtpd</code> package and made progress on the filter API,
 the goal being to allow writing a filter without worrying about the low-level protocol.
 Instead of reading the protocol, parsing it and determining what should be called or not,
-a filter can register callbacks for specific events and implement these callbacks.</p><p>I will finish this in September and adapt my <code>filter-rspamd</code> accordingly.</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>I will be <strong>taking a break</strong> from all projects in August to enjoy some long-awaited vacations,
-so&mldr; <strong>don&rsquo;t expect any code to be written before September</strong>.</p><p>Have a nice month !</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/122>https://github.com/poolpOrg/poolp.org/discussions/122</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2020-11-22/november-2020-i-wasnt-slacking-but-no-opensource-work/>&#171; November 2020: I wasn't slacking but no opensource work</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/>June 2020: poolp.org, folder pinning and webmail work &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
+a filter can register callbacks for specific events and implement these callbacks.</p>
+<p>I will finish this in September and adapt my <code>filter-rspamd</code> accordingly.</p>
+<h1 id=whats-next->What&rsquo;s next ?</h1>
+<p>I will be <strong>taking a break</strong> from all projects in August to enjoy some long-awaited vacations,
+so&mldr; <strong>don&rsquo;t expect any code to be written before September</strong>.</p>
+<p>Have a nice month !</p>
+<hr>
+<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/122>https://github.com/poolpOrg/poolp.org/discussions/122</a></p>
+</div>
+<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+<a class="d-block col-md-6" href=https://poolp.org/posts/2020-11-22/november-2020-i-wasnt-slacking-but-no-opensource-work/> &#171; November 2020: I wasn't slacking but no opensource work</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/>June 2020: poolp.org, folder pinning and webmail work &#187;</a>
+<div class=clearfix></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=alertbar>
+<div class="container text-center">
+<span>
+<img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script><script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script><script src=/js/mediumish.js></script></body></html>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
+</span>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=row>
+<div class="col-md-6 col-sm-6 text-center text-lg-left">
+&copy; Copyright poolp.org - All rights reserved
+</div>
+<div class="col-md-6 col-sm-6 text-center text-lg-right">
+<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=/js/mediumish.js></script>
+</body>
+</html>

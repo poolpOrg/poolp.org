@@ -1,38 +1,153 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.83.1"><link rel=icon href=/images/poolp_org.png><title>OpenSMTPD proc filters & fc-rDNS | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="OpenSMTPD proc filters & fc-rDNS"><meta name=twitter:description content="TL;DR: I *FINALFUCKINGLY* commited proc filters support allowing full filtering in OpenSMTPD. eric@ implemented fc-rDNS lookups.  fc-rDNS fc-rDNS, or forward-confirmed reverse DNS, consists in performing a reverse DNS lookup to determine the hostname associated to an IP address&mldr; then performing a DNS lookup on that hostname to check if it resolves back to the IP address.
-On my request, eric@ implemented fc-rDNS lookups in our SMTP engine, causing OpenSMTPD to perform the double lookup upon clients connections."><meta property="og:title" content="OpenSMTPD proc filters & fc-rDNS"><meta property="og:description" content="TL;DR: I *FINALFUCKINGLY* commited proc filters support allowing full filtering in OpenSMTPD. eric@ implemented fc-rDNS lookups.  fc-rDNS fc-rDNS, or forward-confirmed reverse DNS, consists in performing a reverse DNS lookup to determine the hostname associated to an IP address&mldr; then performing a DNS lookup on that hostname to check if it resolves back to the IP address.
-On my request, eric@ implemented fc-rDNS lookups in our SMTP engine, causing OpenSMTPD to perform the double lookup upon clients connections."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2018-12-06/opensmtpd-proc-filters-fc-rdns/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-12-06T21:31:00+00:00"><meta property="article:modified_time" content="2018-12-06T21:31:00+00:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<!doctype html><html lang=en-us><head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=icon href=/images/poolp_org.png>
+<title>OpenSMTPD proc filters & fc-rDNS | poolp.org</title>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="OpenSMTPD proc filters & fc-rDNS">
+<meta name=twitter:description content="TL;DR: I *FINALFUCKINGLY* commited proc filters support allowing full filtering in OpenSMTPD. eric@ implemented fc-rDNS lookups.  fc-rDNS fc-rDNS, or forward-confirmed reverse DNS, consists in performing a reverse DNS lookup to determine the hostname associated to an IP address&mldr; then performing a DNS lookup on that hostname to check if it resolves back to the IP address.
+On my request, eric@ implemented fc-rDNS lookups in our SMTP engine, causing OpenSMTPD to perform the double lookup upon clients connections.">
+<meta property="og:title" content="OpenSMTPD proc filters & fc-rDNS">
+<meta property="og:description" content="TL;DR: I *FINALFUCKINGLY* commited proc filters support allowing full filtering in OpenSMTPD. eric@ implemented fc-rDNS lookups.  fc-rDNS fc-rDNS, or forward-confirmed reverse DNS, consists in performing a reverse DNS lookup to determine the hostname associated to an IP address&mldr; then performing a DNS lookup on that hostname to check if it resolves back to the IP address.
+On my request, eric@ implemented fc-rDNS lookups in our SMTP engine, causing OpenSMTPD to perform the double lookup upon clients connections.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poolp.org/posts/2018-12-06/opensmtpd-proc-filters-fc-rdns/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2018-12-06T21:31:00+00:00">
+<meta property="article:modified_time" content="2018-12-06T21:31:00+00:00">
+<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
+<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
+<link href=/css/medium.css rel=stylesheet>
+<link href=/css/additional.css rel=stylesheet>
+<link href=/css/syntax.css rel=stylesheet>
+<link href=/css/custom.css rel=stylesheet>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<div class="container pr-0">
+<a class=navbar-brand href=https://poolp.org/>
+<img src=/images/poolp_org.png alt=logo>
+</a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=OpenSMTPD%20proc%20filters%20%26%20fc-rDNS&url=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-06%2fopensmtpd-proc-filters-fc-rdns%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1"><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-06%2fopensmtpd-proc-filters-fc-rdns%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1"><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-06%2fopensmtpd-proc-filters-fc-rdns%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1"><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarMediumish>
+<ul class="navbar-nav ml-auto">
+<li class=nav-item>
+<a class=nav-link href=/fr/contracting/>Freelance</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hypno.cat>Hypnose</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/authors/gilles-chehade>About Me</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class=site-content>
+<div class=container>
+<div class=mainheading>
+</div><div class=main-content>
+<div class=container>
+<div class=row>
+<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+<p>Share</p>
+<ul>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://twitter.com/intent/tweet?text=OpenSMTPD%20proc%20filters%20%26%20fc-rDNS&url=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-06%2fopensmtpd-proc-filters-fc-rdns%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-06%2fopensmtpd-proc-filters-fc-rdns%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
+<i class="fab fa-facebook-f"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-06%2fopensmtpd-proc-filters-fc-rdns%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
+<i class="fab fa-xing"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-md-9 flex-first flex-md-unordered">
+<div class=mainheading>
+<div class="row post-top-meta">
+<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+</div>
+<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<span class=author-description>
+foobarbaz-ing since 1981<br>
+</span>
+<br>
+<span class=author-description>
+<i class="far fa-star"></i>
 Dec 6, 2018
 <i class="far fa-clock clock"></i>
-4 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>OpenSMTPD proc filters & fc-rDNS</h1></div><div class=article-post><pre><code>TL;DR:
+4 min read
+</span>
+</div>
+</div>
+<div class=after-post-tags>
+<ul class=tags>
+</ul>
+</div>
+<h1 class=posttitle>OpenSMTPD proc filters & fc-rDNS</h1>
+</div>
+<div class=article-post>
+<pre><code>TL;DR:
 I *FINALFUCKINGLY* commited proc filters support allowing full filtering in OpenSMTPD.
 eric@ implemented fc-rDNS lookups.
-</code></pre><h2 id=fc-rdns>fc-rDNS</h2><p>fc-rDNS,
+</code></pre>
+<h2 id=fc-rdns>fc-rDNS</h2>
+<p>fc-rDNS,
 or forward-confirmed reverse DNS,
 consists in performing a reverse DNS lookup to determine the hostname associated to an IP address&mldr;
-then performing a DNS lookup on that hostname to check if it resolves back to the IP address.</p><p>On my request,
+then performing a DNS lookup on that hostname to check if it resolves back to the IP address.</p>
+<p>On my request,
 eric@ implemented fc-rDNS lookups in our SMTP engine,
-causing OpenSMTPD to perform the double lookup upon clients connections.</p><p>Right now,
+causing OpenSMTPD to perform the double lookup upon clients connections.</p>
+<p>Right now,
 the fc-rDNS result is only passed to the reporting API but the idea is to allow using it in a builtin filter,
-something along the lines of <code>filter smtp-in connect check-fcrdns disconnect "550 go away punk"</code>.</p><p>Note that this is <em>particularly</em> efficient at cutting spam,
+something along the lines of <code>filter smtp-in connect check-fcrdns disconnect "550 go away punk"</code>.</p>
+<p>Note that this is <em>particularly</em> efficient at cutting spam,
 it essentially means that a spammer must control both the DNS and reverse DNS zone to pass the test,
-killing the bulk of zombified spam proxies living on infected home computers.</p><p>There is still some refining to do and the plugging of a builtin-filter,
-but the code is here and -current users will be able to test it soon</p><h2 id=tx-mail-and-tx-rcpt-events>tx-mail and tx-rcpt events</h2><p>I have added two new reporting events for smtp-in and smtp-out: <code>tx-mail</code> and <code>tx-rcpt</code>.</p><p>They are generated whenever <code>MAIL FROM</code> or <code>RCPT TO</code> have received a result from the server:</p><pre><code>report|1|1544130229|smtp-in|tx-mail|0f3004c08c82d33e|fc08ce7d|&lt;owner-hackers+M85937=gilles=poolp.org@openbsd.org&gt;|ok
+killing the bulk of zombified spam proxies living on infected home computers.</p>
+<p>There is still some refining to do and the plugging of a builtin-filter,
+but the code is here and -current users will be able to test it soon</p>
+<h2 id=tx-mail-and-tx-rcpt-events>tx-mail and tx-rcpt events</h2>
+<p>I have added two new reporting events for smtp-in and smtp-out: <code>tx-mail</code> and <code>tx-rcpt</code>.</p>
+<p>They are generated whenever <code>MAIL FROM</code> or <code>RCPT TO</code> have received a result from the server:</p>
+<pre><code>report|1|1544130229|smtp-in|tx-mail|0f3004c08c82d33e|fc08ce7d|&lt;owner-hackers+M85937=gilles=poolp.org@openbsd.org&gt;|ok
 report|1|1544130229|smtp-in|tx-rcpt|0f3004c08c82d33e|fc08ce7d|&lt;gilles@poolp.org&gt;|ok
 </code></pre><p>A filter may listen for these events to determine which sender and recipients have been accepted in a transaction,
-something that would otherwise require keeping track of protocol-client and protocol-server events.</p><h2 id=proc-filtering-finally-in>proc filtering finally in</h2><p>I have committed full proc filtering support today,
-allowing a standalone filter to perform all kind of filtering on every single phase of an SMTP session.</p><p>This means that with the code in -current,
+something that would otherwise require keeping track of protocol-client and protocol-server events.</p>
+<h2 id=proc-filtering-finally-in>proc filtering finally in</h2>
+<p>I have committed full proc filtering support today,
+allowing a standalone filter to perform all kind of filtering on every single phase of an SMTP session.</p>
+<p>This means that with the code in -current,
 it is now possible to write a filter that talks to rspamd or that computes dkim signatures,
-something that was not doable until today without resorting to tricky setups.</p><p>The code is still a work in progress,
+something that was not doable until today without resorting to tricky setups.</p>
+<p>The code is still a work in progress,
 we have things to clean up, improve and there are some known minor issues that we are working on.
 We will likely hit corner cases that will cause new issues&mldr;
 but this is a fully working implementation, the real deal, not a PoC.
-Consider it as &ldquo;in a process of stabilization to be production ready by April&rdquo;.</p><p>When we have stabilized the API,
+Consider it as &ldquo;in a process of stabilization to be production ready by April&rdquo;.</p>
+<p>When we have stabilized the API,
 I&rsquo;ll take time to write about how it works internally,
-for now let&rsquo;s just celebrate because I FINALLY FUCKING COMMITED FILTERS.</p><h2 id=python-bridge-proof-of-concept>python bridge, proof of concept</h2><p>As I wrote in a previous post,
+for now let&rsquo;s just celebrate because I FINALLY FUCKING COMMITED FILTERS.</p>
+<h2 id=python-bridge-proof-of-concept>python bridge, proof of concept</h2>
+<p>As I wrote in a previous post,
 proc filters are programs reading on stdin and writing to stdout,
-making it possible write them in any language.</p><p>I put my code where my mouth is:</p><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>opensmtpd</span>
+making it possible write them in any language.</p>
+<p>I put my code where my mouth is:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>opensmtpd</span>
 
 <span class=k>def</span> <span class=nf>link_connect</span><span class=p>(</span><span class=n>timestamp</span><span class=p>,</span> <span class=n>session_id</span><span class=p>,</span> <span class=n>args</span><span class=p>):</span>
     <span class=n>rdns</span><span class=p>,</span> <span class=n>fcrdns</span><span class=p>,</span> <span class=n>laddr</span><span class=p>,</span> <span class=n>raddr</span> <span class=o>=</span> <span class=n>args</span>
@@ -79,13 +194,56 @@ making it possible write them in any language.</p><p>I put my code where my mout
 
     <span class=n>o</span><span class=o>.</span><span class=n>run</span><span class=p>()</span>
 </code></pre></div><p>This only covers the callback API for &ldquo;report&rdquo; events,
-but it does so thanks to an opensmtpd package that consists of less than 100 lines of code.</p><p>I will be implementing the <code>on_filter</code> callback API probably next week,
-so I can start writing the filters I need in python.</p><p>If you want to discuss how to write an interface for the language of your choice,
-feel free to jump to our IRC channel, #opensmtpd @ freenode ;-)</p><h2 id=what-next->What next ?</h2><p>Essentially code cleanup and simplification,
-API stabilization and writing filters to spot improvements required in the API.</p><p>Stay tuned !</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/97>https://github.com/poolpOrg/poolp.org/discussions/97</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2018-12-19/more-on-opensmtpd-filters/>&#171; more on OpenSMTPD filters</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2018-11-09/opensmtpd-reporting-update/>OpenSMTPD reporting update &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
+but it does so thanks to an opensmtpd package that consists of less than 100 lines of code.</p>
+<p>I will be implementing the <code>on_filter</code> callback API probably next week,
+so I can start writing the filters I need in python.</p>
+<p>If you want to discuss how to write an interface for the language of your choice,
+feel free to jump to our IRC channel, #opensmtpd @ freenode ;-)</p>
+<h2 id=what-next->What next ?</h2>
+<p>Essentially code cleanup and simplification,
+API stabilization and writing filters to spot improvements required in the API.</p>
+<p>Stay tuned !</p>
+<hr>
+<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/97>https://github.com/poolpOrg/poolp.org/discussions/97</a></p>
+</div>
+<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+<a class="d-block col-md-6" href=https://poolp.org/posts/2018-12-19/more-on-opensmtpd-filters/> &#171; more on OpenSMTPD filters</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2018-11-09/opensmtpd-reporting-update/>OpenSMTPD reporting update &#187;</a>
+<div class=clearfix></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=alertbar>
+<div class="container text-center">
+<span>
+<img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script><script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script><script src=/js/mediumish.js></script></body></html>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
+</span>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=row>
+<div class="col-md-6 col-sm-6 text-center text-lg-left">
+&copy; Copyright poolp.org - All rights reserved
+</div>
+<div class="col-md-6 col-sm-6 text-center text-lg-right">
+<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=/js/mediumish.js></script>
+</body>
+</html>

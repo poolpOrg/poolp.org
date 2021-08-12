@@ -1,72 +1,262 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.83.1"><link rel=icon href=/images/poolp_org.png><title>February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/cover.jpg"><meta name=twitter:title content="February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols"><meta name=twitter:description content="TL;DR: I converted nooSMTPD to libtls and implemented SMTP ciphers, curves and protocols selection.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
+<!doctype html><html lang=en-us><head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=icon href=/images/poolp_org.png>
+<title>February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols | poolp.org</title>
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/cover.jpg">
+<meta name=twitter:title content="February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols">
+<meta name=twitter:description content="TL;DR: I converted nooSMTPD to libtls and implemented SMTP ciphers, curves and protocols selection.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
 Let&rsquo;s start with some LoFi Relax.
    I have a youtube channel (subscribe ! now !)
-Nothing new in OpenSMTPD-portable eric@ sent a libtls-conversion diff to tech@ last month but there hasn&rsquo;t been much progress since then."><meta property="og:title" content="February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols"><meta property="og:description" content="TL;DR: I converted nooSMTPD to libtls and implemented SMTP ciphers, curves and protocols selection.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
+Nothing new in OpenSMTPD-portable eric@ sent a libtls-conversion diff to tech@ last month but there hasn&rsquo;t been much progress since then.">
+<meta property="og:title" content="February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols">
+<meta property="og:description" content="TL;DR: I converted nooSMTPD to libtls and implemented SMTP ciphers, curves and protocols selection.  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon, github or liberaPay, the work in this post was made possible by my sponsorship.
 Let&rsquo;s start with some LoFi Relax.
    I have a youtube channel (subscribe ! now !)
-Nothing new in OpenSMTPD-portable eric@ sent a libtls-conversion diff to tech@ last month but there hasn&rsquo;t been much progress since then."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/"><meta property="og:image" content="https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/cover.jpg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-02-28T23:00:00+02:00"><meta property="article:modified_time" content="2021-02-28T23:00:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+Nothing new in OpenSMTPD-portable eric@ sent a libtls-conversion diff to tech@ last month but there hasn&rsquo;t been much progress since then.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/"><meta property="og:image" content="https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/cover.jpg"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-02-28T23:00:00+00:00">
+<meta property="article:modified_time" content="2021-02-28T23:00:00+00:00">
+<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
+<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
+<link href=/css/medium.css rel=stylesheet>
+<link href=/css/additional.css rel=stylesheet>
+<link href=/css/syntax.css rel=stylesheet>
+<link href=/css/custom.css rel=stylesheet>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<div class="container pr-0">
+<a class=navbar-brand href=https://poolp.org/>
+<img src=/images/poolp_org.png alt=logo>
+</a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=February%202021%3a%20nooSMTPD%20libtls-conversion%2c%20ciphers%2c%20curves%20and%20protocols&url=https%3a%2f%2fpoolp.org%2fposts%2f2021-02-28%2ffebruary-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1"><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2021-02-28%2ffebruary-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1"><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2021-02-28%2ffebruary-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1"><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarMediumish>
+<ul class="navbar-nav ml-auto">
+<li class=nav-item>
+<a class=nav-link href=/fr/contracting/>Freelance</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hypno.cat>Hypnose</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/authors/gilles-chehade>About Me</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class=site-content>
+<div class=container>
+<div class=mainheading>
+</div><div class=main-content>
+<div class=container>
+<div class=row>
+<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+<p>Share</p>
+<ul>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://twitter.com/intent/tweet?text=February%202021%3a%20nooSMTPD%20libtls-conversion%2c%20ciphers%2c%20curves%20and%20protocols&url=https%3a%2f%2fpoolp.org%2fposts%2f2021-02-28%2ffebruary-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2021-02-28%2ffebruary-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
+<i class="fab fa-facebook-f"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2021-02-28%2ffebruary-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
+<i class="fab fa-xing"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-md-9 flex-first flex-md-unordered">
+<div class=mainheading>
+<div class="row post-top-meta">
+<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+</div>
+<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<span class=author-description>
+foobarbaz-ing since 1981<br>
+</span>
+<br>
+<span class=author-description>
+<i class="far fa-star"></i>
 Feb 28, 2021
 <i class="far fa-clock clock"></i>
-5 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols</h1></div><div class=article-post><blockquote><b>TL;DR:</b>
-I converted nooSMTPD to libtls and implemented SMTP ciphers, curves and protocols selection.</blockquote><h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1><p>As usual, a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong>,
+5 min read
+</span>
+</div>
+</div>
+<div class=after-post-tags>
+<ul class=tags>
+</ul>
+</div>
+<h1 class=posttitle>February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols</h1>
+</div>
+<div class=article-post>
+<blockquote>
+<b>TL;DR:</b>
+I converted nooSMTPD to libtls and implemented SMTP ciphers, curves and protocols selection.
+</blockquote>
+<h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1>
+<p>As usual, a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong>,
 <strong><a href=https://github.com/sponsors/poolpOrg>github</a></strong> or <strong><a href=https://liberapay.com/poolpOrg>liberaPay</a></strong>,
-the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p><h1 id=lets-start-with-some-lofi>Let&rsquo;s start with some LoFi</h1><p>Relax.</p><center><iframe width=560 height=315 src=https://www.youtube.com/embed/VbEfXZtETvE frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center><p>I have a <a href=https://www.youtube.com/c/GillesChehade>youtube channel</a> (subscribe ! now !)</p><h1 id=nothing-new-in-opensmtpd-portable>Nothing new in OpenSMTPD-portable</h1><p><code>eric@</code> sent a libtls-conversion diff to <code>tech@</code> last month but <strong>there hasn&rsquo;t been much progress since then</strong>.</p><p>I tested the diff extensively and I&rsquo;m currently waiting for it to be merged to OpenBSD so I can bring it to OpenSMTPD-portable.</p><h1 id=noosmtpd-is-libtls-enabled>nooSMTPD is libtls-enabled</h1><p>In nooSMTPD,
-I did the libtls-conversion by applying the diff and <strong>making the appropriate changes to the libtls compat layer</strong>.</p><p>I switched my machines from my custom FrankenOpenSMTPD to nooSMTPD and been running it since late January,
-with no regressions.</p><p>It&rsquo;s interesting to note that while I ran OpenSMTPD from upstream repository <strong>without the autoconf build</strong>,
+the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p>
+<h1 id=lets-start-with-some-lofi>Let&rsquo;s start with some LoFi</h1>
+<p>Relax.</p>
+<center>
+<iframe width=560 height=315 src=https://www.youtube.com/embed/VbEfXZtETvE frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</center>
+<p>I have a <a href=https://www.youtube.com/c/GillesChehade>youtube channel</a> (subscribe ! now !)</p>
+<h1 id=nothing-new-in-opensmtpd-portable>Nothing new in OpenSMTPD-portable</h1>
+<p><code>eric@</code> sent a libtls-conversion diff to <code>tech@</code> last month but <strong>there hasn&rsquo;t been much progress since then</strong>.</p>
+<p>I tested the diff extensively and I&rsquo;m currently waiting for it to be merged to OpenBSD so I can bring it to OpenSMTPD-portable.</p>
+<h1 id=noosmtpd-is-libtls-enabled>nooSMTPD is libtls-enabled</h1>
+<p>In nooSMTPD,
+I did the libtls-conversion by applying the diff and <strong>making the appropriate changes to the libtls compat layer</strong>.</p>
+<p>I switched my machines from my custom FrankenOpenSMTPD to nooSMTPD and been running it since late January,
+with no regressions.</p>
+<p>It&rsquo;s interesting to note that while I ran OpenSMTPD from upstream repository <strong>without the autoconf build</strong>,
 I&rsquo;m running nooSMTPD <strong>from autoconf</strong> which led to <strong>a lot of swearing</strong> as it was never meant to be used on OpenBSD.
-I <strong>fixed a few unpleasant things</strong> which I&rsquo;ll be able to push to OpenSMTPD-portable as well.</p><h1 id=the-smtp-tls-global-configuration>The <code>smtp tls</code> global configuration</h1><p>OpenSMTPD allows setting up SMTP global configuration with the <code>smtp</code> global keyword:</p><pre><code>smtp max-message-size &quot;30M&quot;
+I <strong>fixed a few unpleasant things</strong> which I&rsquo;ll be able to push to OpenSMTPD-portable as well.</p>
+<h1 id=the-smtp-tls-global-configuration>The <code>smtp tls</code> global configuration</h1>
+<p>OpenSMTPD allows setting up SMTP global configuration with the <code>smtp</code> global keyword:</p>
+<pre><code>smtp max-message-size &quot;30M&quot;
 smtp sub-addr-delim &quot;+&quot;
 </code></pre><p>Because it may be desireable to setup an alternate list of ciphers,
-the <code>ciphers</code> keyword was introduced a long time ago and a global option allows overriding the default ciphers:</p><pre><code>smtp ciphers &quot;HIGH:!aNULL:!MD5&quot;
+the <code>ciphers</code> keyword was introduced a long time ago and a global option allows overriding the default ciphers:</p>
+<pre><code>smtp ciphers &quot;HIGH:!aNULL:!MD5&quot;
 </code></pre><p>In nooSMTPD,
-I decided to introduce the <code>tls</code> keyword for TLS related options.</p><p>The libtls conversion unlocks several TLS-related features that may be confusing below <code>smtp</code>,
+I decided to introduce the <code>tls</code> keyword for TLS related options.</p>
+<p>The libtls conversion unlocks several TLS-related features that may be confusing below <code>smtp</code>,
 without any reference to TLS.
 For instance,
-I have implemented TLS protocol selection and unless <code>tls</code> appears in the configuration this will result in:</p><pre><code>smtp protocols [...]
-</code></pre><p>which is much more confusing than:</p><pre><code>smtp tls protocols [...]
-</code></pre><p>as it is unclear that the protocols are TLS related.</p><p>As a result,
-I moved <code>ciphers</code> below <code>smtp tls</code> so in nooSMTPD it reads as:</p><pre><code>smtp tls ciphers &quot;HIGH:!aNULL:!MD5&quot;
-</code></pre><p>I&rsquo;ll suggest this change to OpenSMTPD too.</p><h1 id=tls-ciphers-selection>TLS ciphers selection</h1><p>As mentionned above,
-I have changed the grammar to introduce a <code>tls</code> namespace to the <code>smtp</code> keyword:</p><pre><code>smtp tls ciphers &quot;HIGH:!aNULL:!MD5&quot;
+I have implemented TLS protocol selection and unless <code>tls</code> appears in the configuration this will result in:</p>
+<pre><code>smtp protocols [...]
+</code></pre><p>which is much more confusing than:</p>
+<pre><code>smtp tls protocols [...]
+</code></pre><p>as it is unclear that the protocols are TLS related.</p>
+<p>As a result,
+I moved <code>ciphers</code> below <code>smtp tls</code> so in nooSMTPD it reads as:</p>
+<pre><code>smtp tls ciphers &quot;HIGH:!aNULL:!MD5&quot;
+</code></pre><p>I&rsquo;ll suggest this change to OpenSMTPD too.</p>
+<h1 id=tls-ciphers-selection>TLS ciphers selection</h1>
+<p>As mentionned above,
+I have changed the grammar to introduce a <code>tls</code> namespace to the <code>smtp</code> keyword:</p>
+<pre><code>smtp tls ciphers &quot;HIGH:!aNULL:!MD5&quot;
 </code></pre><p>Because libtls supports cipher suite groups,
 the <code>secure</code>, <code>compat</code>, <code>legacy</code> or <code>insecure</code> groups can be used in place of a cipher suite,
 and since <code>secure</code> is the default,
-the global cipher selection only needs to be specified for other cases:</p><pre><code>smtp tls ciphers &quot;compat&quot;
+the global cipher selection only needs to be specified for other cases:</p>
+<pre><code>smtp tls ciphers &quot;compat&quot;
 </code></pre><p>With this done,
-I also added the ability to setup the ciphers at the listener level:</p><pre><code>listen on 0.0.0.0 tls ciphers &quot;compat&quot;
+I also added the ability to setup the ciphers at the listener level:</p>
+<pre><code>listen on 0.0.0.0 tls ciphers &quot;compat&quot;
 listen on 192.168.0.1 tls ciphers &quot;legacy&quot;  # use on legacy subnet
-</code></pre><p>This was committed to nooSMTPD and I&rsquo;ll submit a diff to OpenSMPTD when libtls-conversion is done upstream.</p><h1 id=tls-curves-selection>TLS curves selection</h1><p>The selection of curves was never merged in OpenSMTPD,
+</code></pre><p>This was committed to nooSMTPD and I&rsquo;ll submit a diff to OpenSMPTD when libtls-conversion is done upstream.</p>
+<h1 id=tls-curves-selection>TLS curves selection</h1>
+<p>The selection of curves was never merged in OpenSMTPD,
 as a result <strong>it is not possible to select specific curves at either one of the global or listener level</strong>.
 The default curves (<code>X25519,P-256,P-384</code>) in libtls are <strong>sensible choices</strong> but some use-cases require restricting to a specific curve,
-or even an alternate one.</p><p>I introduced a <code>curves</code> option which allows specifying curves to override the default:</p><pre><code>smtp tls curves &quot;X25519&quot;
+or even an alternate one.</p>
+<p>I introduced a <code>curves</code> option which allows specifying curves to override the default:</p>
+<pre><code>smtp tls curves &quot;X25519&quot;
 </code></pre><p>While at it,
-I added the ability to setup the curves at the listener level:</p><pre><code>listen on 0.0.0.0 tls ciphers &quot;X25519&quot;
+I added the ability to setup the curves at the listener level:</p>
+<pre><code>listen on 0.0.0.0 tls ciphers &quot;X25519&quot;
 listen on 192.168.0.1 tls curves &quot;P-256,P-384&quot;
-</code></pre><p>This was committed to nooSMTPD and I&rsquo;ll also submit a diff to OpenSMPTD when libtls-conversion is done upstream.</p><h1 id=tls-protocols-selection>TLS protocols selection</h1><p>Just like for curves,
-the selection of a TLS protocol was never merged in OpenSMTPD.</p><p>I introduce a <code>protocols</code> option which allows specifiying protocols to override the default:</p><pre><code>smtp tls protocols &quot;tlsv1.3:tlsv1.2&quot;
+</code></pre><p>This was committed to nooSMTPD and I&rsquo;ll also submit a diff to OpenSMPTD when libtls-conversion is done upstream.</p>
+<h1 id=tls-protocols-selection>TLS protocols selection</h1>
+<p>Just like for curves,
+the selection of a TLS protocol was never merged in OpenSMTPD.</p>
+<p>I introduce a <code>protocols</code> option which allows specifiying protocols to override the default:</p>
+<pre><code>smtp tls protocols &quot;tlsv1.3:tlsv1.2&quot;
 </code></pre><p>And again,
-I added the ability to setup the protocol at the listener level:</p><pre><code>listen on 0.0.0.0 tls protocols &quot;tlsv1.3&quot;
+I added the ability to setup the protocol at the listener level:</p>
+<pre><code>listen on 0.0.0.0 tls protocols &quot;tlsv1.3&quot;
 </code></pre><p>Guess what&mldr;
-Yes, this was also committed to nooSMTPD and I&rsquo;ll submit a diff to OpenSMPTD when libtls-conversion is done upstream.</p><h1 id=global-smtp-tls-grammar-needs-to-be-reworked>Global <code>smtp tls</code> grammar needs to be reworked</h1><p>The <code>smtp tls</code> keyword was implemented as a placeholder for the <code>ciphers</code>, <code>curves</code> and <code>protocols</code> options,
-but it was not implemented the way it should.</p><p>Basically,
-<code>ciphers</code>, <code>curves</code> and <code>protocols</code> should be options to <code>tls</code> so that it is possible to write:</p><pre><code>smtp tls ciphers &quot;secure&quot; protocols &quot;secure&quot;
+Yes, this was also committed to nooSMTPD and I&rsquo;ll submit a diff to OpenSMPTD when libtls-conversion is done upstream.</p>
+<h1 id=global-smtp-tls-grammar-needs-to-be-reworked>Global <code>smtp tls</code> grammar needs to be reworked</h1>
+<p>The <code>smtp tls</code> keyword was implemented as a placeholder for the <code>ciphers</code>, <code>curves</code> and <code>protocols</code> options,
+but it was not implemented the way it should.</p>
+<p>Basically,
+<code>ciphers</code>, <code>curves</code> and <code>protocols</code> should be options to <code>tls</code> so that it is possible to write:</p>
+<pre><code>smtp tls ciphers &quot;secure&quot; protocols &quot;secure&quot;
 </code></pre><p>At the time being,
-this is not possible and it must be expressed as follows:</p><pre><code>smtp tls ciphers &quot;secure&quot;
+this is not possible and it must be expressed as follows:</p>
+<pre><code>smtp tls ciphers &quot;secure&quot;
 smtp tls protocols &quot;secure&quot;
-</code></pre><p>This requires a bit of grammar refactor which I&rsquo;ll be working on in March.</p><h1 id=listener-tls-grammar-was-reworked>Listener <code>tls</code> grammar was reworked</h1><p>The listener <code>tls</code> keyword suffered from the same issue as the global <code>smtp tls</code> keyword.</p><p>Initially,
+</code></pre><p>This requires a bit of grammar refactor which I&rsquo;ll be working on in March.</p>
+<h1 id=listener-tls-grammar-was-reworked>Listener <code>tls</code> grammar was reworked</h1>
+<p>The listener <code>tls</code> keyword suffered from the same issue as the global <code>smtp tls</code> keyword.</p>
+<p>Initially,
 it was implemented in such a way that <code>ciphers</code>, <code>curves</code> and <code>protocols</code> were <strong>standalone options</strong>.
 This allowed avoiding the need to repeat <code>tls</code> before every option,
 you needed one <code>tls</code> on the listener so it was flagged as TLS-enabled and the options would check for the flag.
-This worked but it <strong>was not the right way</strong> to do it.</p><p>I reworked the grammar for <code>tls</code> in listeners so that <code>ciphers</code>, <code>curves</code> and <code>protocols</code> are <code>tls</code> options.
+This worked but it <strong>was not the right way</strong> to do it.</p>
+<p>I reworked the grammar for <code>tls</code> in listeners so that <code>ciphers</code>, <code>curves</code> and <code>protocols</code> are <code>tls</code> options.
 This avoids having to repeat <code>tls</code> before every keyword,
-and it allows relying on the grammar rather than on a flag to determine if the configuration is valid:</p><pre><code>listen on 0.0.0.0 tls ciphers &quot;secure&quot; curves &quot;P-256,P-384&quot; protocols &quot;secure&quot;
-</code></pre><p>I&rsquo;m happy with the result.</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>I will rework the grammar for global settings and will implement these options for the MTA layer,
-as these options were done only for the incoming path.</p><p>I intend to publish a technical article in March regarding software design and data.</p><p>I might unveil a project that&rsquo;s unrelated to computer programming too :-)</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/127>https://github.com/poolpOrg/poolp.org/discussions/127</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/>&#171; March 2021: backups with Plakar</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2021-01-31/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support-noosmtpd/>January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support, nooSMTPD &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
+and it allows relying on the grammar rather than on a flag to determine if the configuration is valid:</p>
+<pre><code>listen on 0.0.0.0 tls ciphers &quot;secure&quot; curves &quot;P-256,P-384&quot; protocols &quot;secure&quot;
+</code></pre><p>I&rsquo;m happy with the result.</p>
+<h1 id=whats-next->What&rsquo;s next ?</h1>
+<p>I will rework the grammar for global settings and will implement these options for the MTA layer,
+as these options were done only for the incoming path.</p>
+<p>I intend to publish a technical article in March regarding software design and data.</p>
+<p>I might unveil a project that&rsquo;s unrelated to computer programming too :-)</p>
+<hr>
+<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/127>https://github.com/poolpOrg/poolp.org/discussions/127</a></p>
+</div>
+<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+<a class="d-block col-md-6" href=https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/> &#171; March 2021: backups with Plakar</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2021-01-31/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support-noosmtpd/>January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support, nooSMTPD &#187;</a>
+<div class=clearfix></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=alertbar>
+<div class="container text-center">
+<span>
+<img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script><script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script><script src=/js/mediumish.js></script></body></html>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
+</span>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=row>
+<div class="col-md-6 col-sm-6 text-center text-lg-left">
+&copy; Copyright poolp.org - All rights reserved
+</div>
+<div class="col-md-6 col-sm-6 text-center text-lg-right">
+<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=/js/mediumish.js></script>
+</body>
+</html>

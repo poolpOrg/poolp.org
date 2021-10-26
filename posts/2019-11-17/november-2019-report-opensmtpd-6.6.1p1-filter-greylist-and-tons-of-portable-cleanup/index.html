@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>November 2019 report: OpenSMTPD 6.6.1p1, filter-greylist and tons of portable cleanup | poolp.org</title>
 <meta name=twitter:card content="summary_large_image">
@@ -12,8 +12,8 @@
 <meta property="og:description" content="TL;DR: - our CI was improved - a new OpenSMTPD release, 6.6.1p1 took place to deal with portable issues - multiple portability issues were adressed - new table API in the works - filter-rspamd and filter-senderscore were improved - filter-greylist proof-of-concept published - wrote 2 chapters for my book  Shout outs to my sponsors ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/"><meta property="og:image" content="https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/cover.jpg"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2019-11-17T22:45:00+00:00">
-<meta property="article:modified_time" content="2019-11-17T22:45:00+00:00">
+<meta property="article:published_time" content="2019-11-17T22:45:00+02:00">
+<meta property="article:modified_time" content="2019-11-17T22:45:00+02:00">
 <link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
 <link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
 <link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
@@ -77,10 +77,10 @@
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -335,14 +335,14 @@ but also that you can spot at build time what&rsquo;s included or not on a targe
 which can raise eyebrows right away if you see <code>arc4random.c</code> built on a system which provides <code>arc4random()</code> for instance.</p>
 <p>This is already in place in the portable branch,
 so this is what you get on an OpenBSD system:</p>
-<pre><code>laptop$ make
+<pre tabindex=0><code>laptop$ make
 gcc -DHAVE_CONFIG_H -I. -I..  -I../smtpd -I../openbsd-compat  -I../openbsd-compat/err_h  -I/usr/include -I/usr/local/include   -g -O2  -fPIC -DPIC -Wall -Wpointer-arith -Wuninitialized -Wsign-compare -Wformat-security -Wno-pointer-sign -fno-strict-aliasing -fno-builtin-memset  -c -o empty.o empty.c
 rm -f libopenbsd-compat.a
 /usr/bin/ar cru libopenbsd-compat.a empty.o                                                          
 ranlib libopenbsd-compat.a
 laptop$
 </code></pre><p>and on a Linux system (Archlinux, glibc, LibreSSL):</p>
-<pre><code>$ make 
+<pre tabindex=0><code>$ make 
 gcc -DHAVE_CONFIG_H -I. -I..  -I../smtpd -I../openbsd-compat -I../openbsd-compat/err_h -I/usr/include   -g -O2  -fPIC -DPIC -Wall -Wpointer-arith -Wuninitialized -Wsign-compare -Wformat-security -Wsizeof-pointer-memaccess -Wno-pointer-sign -Wno-unused-result -fno-strict-aliasing -fno-builtin-memset -I/usr/include/libressl -L/usr/lib/libressl -Wl,-rpath=/usr/lib/libressl -D_BSD_SOURCE -D_DEFAULT_SOURCE  -c -o empty.o empty.c
 gcc -DHAVE_CONFIG_H -I. -I..  -I../smtpd -I../openbsd-compat -I../openbsd-compat/err_h -I/usr/include   -g -O2  -fPIC -DPIC -Wall -Wpointer-arith -Wuninitialized -Wsign-compare -Wformat-security -Wsizeof-pointer-memaccess -Wno-pointer-sign -Wno-unused-result -fno-strict-aliasing -fno-builtin-memset -I/usr/include/libressl -L/usr/lib/libressl -Wl,-rpath=/usr/lib/libressl -D_BSD_SOURCE -D_DEFAULT_SOURCE  -c -o closefrom.o closefrom.c
 gcc -DHAVE_CONFIG_H -I. -I..  -I../smtpd -I../openbsd-compat -I../openbsd-compat/err_h -I/usr/include   -g -O2  -fPIC -DPIC -Wall -Wpointer-arith -Wuninitialized -Wsign-compare -Wformat-security -Wsizeof-pointer-memaccess -Wno-pointer-sign -Wno-unused-result -fno-strict-aliasing -fno-builtin-memset -I/usr/include/libressl -L/usr/lib/libressl -Wl,-rpath=/usr/lib/libressl -D_BSD_SOURCE -D_DEFAULT_SOURCE  -c -o crypt_checkpass.o crypt_checkpass.c
@@ -381,7 +381,7 @@ however I&rsquo;m not done yet and I will keep the details for another article.<
 to extend the headers and have them include the scoring for the symbols they matched.</p>
 <p>This results from a discussion and a previous pull request that I had rejected as I felt the header was way too verbose.</p>
 <p>The 0.1.4 release of <code>filter-rspamd</code> would display headers as:</p>
-<pre><code>X-Spam: yes
+<pre tabindex=0><code>X-Spam: yes
 X-Spam-Score: 8.789999 / 15
 X-Spam-Symbols: MIME_TRACE,
  FROM_NEQ_ENVFROM,
@@ -413,7 +413,7 @@ X-Spam-Symbols: MIME_TRACE,
  TO_DN_NONE
 </code></pre><p>In development,
 it now replaces the <code>X-Spam-Symbols</code> with <code>X-Spam-Status</code> and outputs as follows:</p>
-<pre><code>X-Spam-Status: Yes, score=7.267 required=15.000
+<pre tabindex=0><code>X-Spam-Status: Yes, score=7.267 required=15.000
         tests=[ARC_NA=0.000, BAYES_SPAM=5.100, DCC_BULK=0.667
         FROM_EQ_ENVFROM=0.000, FROM_HAS_DN=0.000, MID_RHS_MATCH_FROM=0.000
         MIME_BAD_ATTACHMENT=1.600, MIME_GOOD=-0.100, MIME_TRACE=0.000

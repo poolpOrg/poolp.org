@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>December 2019: OpenSMTPD and filters work, articles and goodies | poolp.org</title>
 <meta name=twitter:card content="summary_large_image">
@@ -16,8 +16,8 @@ Examples of code and configuration that appear in this article are here to help 
 They are subject to changes and must not be considered as user documentation. By the time you&rsquo;re reading this, they will likely no longer work or reflect reality.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://poolp.org/posts/2019-12-24/december-2019-opensmtpd-and-filters-work-articles-and-goodies/"><meta property="og:image" content="https://poolp.org/posts/2019-12-24/december-2019-opensmtpd-and-filters-work-articles-and-goodies/cover.gif"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2019-12-24T09:31:00+00:00">
-<meta property="article:modified_time" content="2019-12-24T09:31:00+00:00">
+<meta property="article:published_time" content="2019-12-24T09:31:00+02:00">
+<meta property="article:modified_time" content="2019-12-24T09:31:00+02:00">
 <link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
 <link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
 <link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
@@ -81,10 +81,10 @@ They are subject to changes and must not be considered as user documentation. By
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -161,17 +161,17 @@ far more than I thought I actually did. Go figure.</p>
 <h2 id=reworking-match-rules-a-bit>Reworking <code>match</code> rules a bit</h2>
 <p>As you probably know,
 OpenSMTPD uses a ruleset to match envelopes:</p>
-<pre><code>match from local for local action &quot;in&quot;
+<pre tabindex=0><code>match from local for local action &quot;in&quot;
 match from local for any action &quot;out&quot;
 </code></pre><p>These rules may have a set of criterias to refine them further:</p>
-<pre><code>match from local mail-from &quot;gilles@poolp.org&quot; for local action &quot;in-alternative&quot;
+<pre tabindex=0><code>match from local mail-from &quot;gilles@poolp.org&quot; for local action &quot;in-alternative&quot;
 match from local for any rcpt-to &quot;eric@faurot.net&quot; action &quot;out-alternative&quot;
 match from local for local action &quot;in&quot;
 match from local for any action &quot;out&quot;
 </code></pre><p>Because it has an implicit &ldquo;local&rdquo; behavior,
 rules may skip <code>from local</code> and <code>for local</code>,
 which makes ruleset more concise:</p>
-<pre><code># match from any for local action &quot;in&quot;
+<pre tabindex=0><code># match from any for local action &quot;in&quot;
 match from any action &quot;in&quot;
 
 # match from local for any action &quot;out&quot;
@@ -202,29 +202,29 @@ and a ruleset that became more and more flexible with many more matching criteri
 trying to be as concise as possible to save two keywords became unproductive.</p>
 <p>In some cases,
 writing rules like this can be confusing and result in errors like this one:</p>
-<pre><code>match auth for any action &quot;out&quot;
+<pre tabindex=0><code>match auth for any action &quot;out&quot;
 </code></pre><p>where a lot of users mistakenly assume that this will match all authenticated sessions for any destination and relay&mldr;
 but since <code>auth</code> is only a criteria that specifies further the rule and since rules are local by default,
 this really translates to:</p>
-<pre><code>match from local auth for any action &quot;out&quot;
+<pre tabindex=0><code>match from local auth for any action &quot;out&quot;
 </code></pre><p>a rule that really only matches authenticated sessions coming from a local interface.</p>
 <p>This is not the case that confuses users,
 another error I saw happen multiple times is the following one:</p>
-<pre><code>match from any rcpt-to &quot;gilles@poolp.org&quot; action &quot;out&quot;
+<pre tabindex=0><code>match from any rcpt-to &quot;gilles@poolp.org&quot; action &quot;out&quot;
 </code></pre><p>which due to implicit &ldquo;local&rdquo; translates to:</p>
-<pre><code>match from any for local rcpt-to &quot;gilles@poolp.org&quot; action &quot;out&quot;
+<pre tabindex=0><code>match from any for local rcpt-to &quot;gilles@poolp.org&quot; action &quot;out&quot;
 </code></pre><p>unless <code>poolp.org</code> is the machines' hostname,
 this will cause mails for <code>gilles@poolp.org</code> to be rejected,
 because the <code>for</code> criteria didn&rsquo;t match much.</p>
 <p>The proper way to write the rule would be:</p>
-<pre><code>match from any for domain &quot;poolp.org&quot; rcpt-to &quot;gilles@poolp.org&quot; action &quot;out&quot;
+<pre tabindex=0><code>match from any for domain &quot;poolp.org&quot; rcpt-to &quot;gilles@poolp.org&quot; action &quot;out&quot;
 </code></pre><p>which everyone keeps simplifying as:</p>
-<pre><code>match from any for any rcpt-to &quot;gilles@poolp.org&quot; action &quot;out&quot;
+<pre tabindex=0><code>match from any for any rcpt-to &quot;gilles@poolp.org&quot; action &quot;out&quot;
 </code></pre><p>just because rcpt-to already acts as a whitelist of recipients,
 so having to maintain a list of corresponding domains is overkill.</p>
 <p>This highlights an issue which is that the grammar should describe the user intent,
 and the intent is very clear with rules like these:</p>
-<pre><code>match auth for any action &quot;out&quot;
+<pre tabindex=0><code>match auth for any action &quot;out&quot;
 match from any rcpt-to &quot;gilles@poolp.org&quot; action &quot;in&quot;
 </code></pre><p>The fact that it doesn&rsquo;t work like they think is a problem.
 A problem that <strong>is caused by the implicit local behavior</strong>,
@@ -258,7 +258,7 @@ and ruleset could be expressed with intents that were no longer considering a so
 The <code>mail-from</code> and <code>rcpt-to</code> criterias are perfect example of this,
 they are <strong>often</strong> used with the intent of providing a whitelist of e-mail addresses.
 A lot of people use constructs such as:</p>
-<pre><code>match from any mail-from &lt;senders&gt; [...]
+<pre tabindex=0><code>match from any mail-from &lt;senders&gt; [...]
 match from any for any rcpt-to &lt;rcpts&gt; [...]
 </code></pre><p>What they really want is to match a sender or recipient e-mail address regardless of the source.
 If we take a step back to get a larger picture,
@@ -275,26 +275,26 @@ with no more ambiguous cases and shorter syntax for most cases.</p>
 <p>How so ?</p>
 <p>Let&rsquo;s take the examples above,
 what the user really expresses when writing:</p>
-<pre><code>match from any mail-from &lt;senders&gt; [...]
+<pre tabindex=0><code>match from any mail-from &lt;senders&gt; [...]
 </code></pre><p>is the following:</p>
-<pre><code>match from mail-from &lt;senders&gt; [...]
+<pre tabindex=0><code>match from mail-from &lt;senders&gt; [...]
 </code></pre><p>And what the user really wants to express when writing:</p>
-<pre><code>match from any for any rcpt-to &lt;rcpts&gt; [...]
+<pre tabindex=0><code>match from any for any rcpt-to &lt;rcpts&gt; [...]
 </code></pre><p>is the following:</p>
-<pre><code>match from any for rcpt-to &lt;rcpts&gt; [...]
+<pre tabindex=0><code>match from any for rcpt-to &lt;rcpts&gt; [...]
 </code></pre><p>Specifying <code>any</code> is not invalid,
 it is just redundant in both of these cases,
 but is still valid because using a source address criteria in conjunction to a sender or recipient e-mail address is still a valid use-case:</p>
-<pre><code>match from src 192.168.1.0/24 mail-from &lt;senders&gt; [...]
+<pre tabindex=0><code>match from src 192.168.1.0/24 mail-from &lt;senders&gt; [...]
 match from local mail-from &lt;senders&gt; [...]
 </code></pre><p>With that in mind,
 the following rules can now be expressed to match authenticated users regardless of their source address:</p>
-<pre><code>match from auth for any [...]
+<pre tabindex=0><code>match from auth for any [...]
 match from auth gilles@poolp.org for any [...]
 match from auth &lt;users&gt; for any [...]
 </code></pre><p>And just like in the previous example,
 it is still possible to filter on specific addresses:</p>
-<pre><code>match from src 192.168.1.0/24 auth &lt;users&gt; for any [...]
+<pre tabindex=0><code>match from src 192.168.1.0/24 auth &lt;users&gt; for any [...]
 match from src 192.168.2.0/24 auth &lt;users&gt; for any [...]
 </code></pre><p>This change took more time convincing others than it took writing,
 but it is really the right direction.
@@ -343,7 +343,7 @@ but nothing in the protocol would let the filter know where it was attached,
 so a filter could not know if it had to register for <code>smtp-in</code> or <code>smtp-out</code> events.</p>
 <p>The protocol has a handshake which allows the server to provide a set of <code>key|value</code> to filters at startup before they register events,
 so I have made sure the server would let the filters know to which subsystems they were attached so they can register the proper events:</p>
-<pre><code>config|subsystem|smtp-in
+<pre tabindex=0><code>config|subsystem|smtp-in
 config|subsystem|smtp-out
 </code></pre><h2 id=the-smtp-out-reporting>The smtp-out reporting</h2>
 <p>With the subsystem attachement issue fixed I could complete my work on <code>smtp-out reporting</code>.</p>
@@ -370,14 +370,14 @@ There was just one thing missing,
 the <strong>ability to bypass filters</strong> in a specific phase.</p>
 <p>For instance,
 you could define multiple filters:</p>
-<pre><code>filter no_rdns phase mail-from match !rdns reject &quot;550 go away&quot;
+<pre tabindex=0><code>filter no_rdns phase mail-from match !rdns reject &quot;550 go away&quot;
 filter no_fcrdns phase mail-from match !fcrdns  &quot;550 go away&quot;
 
 listen on all filter { no_rdns, no_fcrdns }
 </code></pre><p>but you could not have a way to bypass these filters for a set of trusted hosts for example.</p>
 <p>The <code>bypass</code> action allows a builtin filter to take the decision to not go through the chain but accept the phase,
 it would allow doing the following:</p>
-<pre><code>filter trusted phase mail-from match src &lt;trusted_sources&gt; bypass
+<pre tabindex=0><code>filter trusted phase mail-from match src &lt;trusted_sources&gt; bypass
 filter no_rdns phase mail-from match !rdns reject &quot;550 go away&quot;
 filter no_fcrdns phase mail-from match !fcrdns  &quot;550 go away&quot;
 

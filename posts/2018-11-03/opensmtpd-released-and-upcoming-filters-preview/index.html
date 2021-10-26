@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>OpenSMTPD released and upcoming filters preview | poolp.org</title>
 <meta name=twitter:card content="summary">
@@ -78,10 +78,10 @@ I won&rsquo;t expand on the features in the 6.">
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -243,7 +243,7 @@ and on systems that provide randomized memory layout they do not even share the 
 On OpenBSD, each processor could benefit from its own <code>pledge()</code> and its own <code>unveil()</code>.
 A compromise of either one does not imply the compromission of the others or of the daemon.</p>
 <p>In addition, they can be executed with different privileges and including chrooted() to a particular directory:</p>
-<pre><code>proc filter1 &quot;/tmp/filter1.sh&quot; user _filter1
+<pre tabindex=0><code>proc filter1 &quot;/tmp/filter1.sh&quot; user _filter1
 proc filter2 &quot;/tmp/filter2.sh&quot; group _filter2
 proc filter3 &quot;/tmp/filter3.sh&quot; user _filter3 group gilles
 proc filter4 &quot;/filter4&quot; user _filter4 chroot &quot;/tmp&quot;
@@ -262,13 +262,13 @@ some filters may be able to work without any context by looking solely at the cu
 but in many cases a decision at a particular phase may be the consequence of decisions at earlier phases,
 and filters can consume these event reports to build their own view of the state of sessions.</p>
 <p>Here is a sample of event reports:</p>
-<pre><code>report|smtp-in|link-connect|1541271219|3189ac6874354895|localhost|127.0.0.1:41564|127.0.0.1:25
+<pre tabindex=0><code>report|smtp-in|link-connect|1541271219|3189ac6874354895|localhost|127.0.0.1:41564|127.0.0.1:25
 report|smtp-in|protocol-server|1541271219|3189ac6874354895|220 poolp.org ESMTP OpenSMTPD
 report|smtp-in|protocol-client|1541271222|3189ac6874354895|helo localhost
 report|smtp-in|protocol-server|1541271222|3189ac6874354895|250 poolp.org Hello localhost [127.0.0.1], pleased to meet you
 report|smtp-in|link-disconnect|1541271224|3189ac6874354895
 </code></pre><p>And this is how you define an event proc in smtpd.conf:</p>
-<pre><code>proc my_event_proc &quot;/usr/local/bin/script.sh&quot;
+<pre tabindex=0><code>proc my_event_proc &quot;/usr/local/bin/script.sh&quot;
 
 report smtp on my_event_proc
 
@@ -276,7 +276,7 @@ report smtp on my_event_proc
 <h2 id=filter-proc>Filter proc</h2>
 <p>Filter processors are very similar to event processors in how they work,
 excepted that they are registered for specific filtering phases:</p>
-<pre><code>proc my_filter_proc &quot;/usr/local/bin/script.sh&quot;
+<pre tabindex=0><code>proc my_filter_proc &quot;/usr/local/bin/script.sh&quot;
 
 # line below can be uncommented if filters needs event reports to build a state
 # report smtp on my_filter_proc
@@ -286,7 +286,7 @@ filter smtp mail-from on my_filter_proc
 filter smtp rcpt-to on my_filter_proc
 
 </code></pre><p>The filters will receive phase-specific parameters:</p>
-<pre><code>filter-request|smtp-in|ehlo|e68808ff61812a6f|laptop.home|localhost
+<pre tabindex=0><code>filter-request|smtp-in|ehlo|e68808ff61812a6f|laptop.home|localhost
 filter-request|smtp-in|mail-from|e68808ff61812a6f|&lt;gilles@laptop.home&gt;
 filter-request|smtp-in|rcpt-to|e68808ff61812a6f|&lt;gilles@laptop.home&gt;
 filter-request|smtp-in|ehlo|e688090368c275a3|laptop.home|localhost
@@ -294,7 +294,7 @@ filter-request|smtp-in|mail-from|e688090368c275a3|&lt;gilles@laptop.home&gt;
 filter-request|smtp-in|rcpt-to|e688090368c275a3|&lt;gilles@laptop.home&gt;
 
 </code></pre><p>To which they will have to reply with a decision:</p>
-<pre><code>filter-response|e68808ff61812a6f|proceed
+<pre tabindex=0><code>filter-response|e68808ff61812a6f|proceed
 filter-response|e68808ff61812a6f|rewrite|BLEH
 filter-response|e68808ff61812a6f|reject|550 go away
 filter-response|e68808ff61812a6f|disconnect|550 go away
@@ -310,7 +310,7 @@ one may want to reject a HELO hostname that&rsquo;s not part of a table,
 or reject a MAIL FROM that matches a regular expression.</p>
 <p>For these cases,
 OpenSMTPD provides a small set of builtin filters which are fairly generic to be applied to all phases.</p>
-<pre><code>table helo-reject { &quot;foobar&quot;, &quot;barbaz&quot;, &quot;bazqux&quot; }
+<pre tabindex=0><code>table helo-reject { &quot;foobar&quot;, &quot;barbaz&quot;, &quot;bazqux&quot; }
 table helo-reject-regex { &quot;^f[oO]o[bB]ar$&quot; }
 
 filter smtp helo check-table &lt;helo-reject&gt; reject &quot;550 go away&quot;
@@ -320,7 +320,7 @@ filter smtp helo check-regex &lt;helo-reject-regex&gt; reject &quot;550 go away&
 OpenSMTPD performs a reverse DNS lookup on connect,
 both connect and helo/ehlo filter phases commonly check reverse DNS,
 so we already provided a <code>check-rdns</code> for these phases:</p>
-<pre><code>filter smtp connect check-rdns reject &quot;550 you need a reverse DNS&quot;
+<pre tabindex=0><code>filter smtp connect check-rdns reject &quot;550 you need a reverse DNS&quot;
 filter smtp ehlo check-rdns reject &quot;550 your HELO hostname and rDNS mismatch&quot;
 </code></pre><p>There shouldn&rsquo;t be many builtin filters,
 we don&rsquo;t expect more than a handful of them,

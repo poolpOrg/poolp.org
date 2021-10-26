@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols | poolp.org</title>
 <meta name=twitter:card content="summary_large_image">
@@ -18,8 +18,8 @@ Let&rsquo;s start with some LoFi Relax.
 Nothing new in OpenSMTPD-portable eric@ sent a libtls-conversion diff to tech@ last month but there hasn&rsquo;t been much progress since then.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/"><meta property="og:image" content="https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/cover.jpg"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-02-28T23:00:00+00:00">
-<meta property="article:modified_time" content="2021-02-28T23:00:00+00:00">
+<meta property="article:published_time" content="2021-02-28T23:00:00+02:00">
+<meta property="article:modified_time" content="2021-02-28T23:00:00+02:00">
 <link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
 <link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
 <link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
@@ -83,10 +83,10 @@ Nothing new in OpenSMTPD-portable eric@ sent a libtls-conversion diff to tech@ l
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -133,37 +133,37 @@ I&rsquo;m running nooSMTPD <strong>from autoconf</strong> which led to <strong>a
 I <strong>fixed a few unpleasant things</strong> which I&rsquo;ll be able to push to OpenSMTPD-portable as well.</p>
 <h1 id=the-smtp-tls-global-configuration>The <code>smtp tls</code> global configuration</h1>
 <p>OpenSMTPD allows setting up SMTP global configuration with the <code>smtp</code> global keyword:</p>
-<pre><code>smtp max-message-size &quot;30M&quot;
+<pre tabindex=0><code>smtp max-message-size &quot;30M&quot;
 smtp sub-addr-delim &quot;+&quot;
 </code></pre><p>Because it may be desireable to setup an alternate list of ciphers,
 the <code>ciphers</code> keyword was introduced a long time ago and a global option allows overriding the default ciphers:</p>
-<pre><code>smtp ciphers &quot;HIGH:!aNULL:!MD5&quot;
+<pre tabindex=0><code>smtp ciphers &quot;HIGH:!aNULL:!MD5&quot;
 </code></pre><p>In nooSMTPD,
 I decided to introduce the <code>tls</code> keyword for TLS related options.</p>
 <p>The libtls conversion unlocks several TLS-related features that may be confusing below <code>smtp</code>,
 without any reference to TLS.
 For instance,
 I have implemented TLS protocol selection and unless <code>tls</code> appears in the configuration this will result in:</p>
-<pre><code>smtp protocols [...]
+<pre tabindex=0><code>smtp protocols [...]
 </code></pre><p>which is much more confusing than:</p>
-<pre><code>smtp tls protocols [...]
+<pre tabindex=0><code>smtp tls protocols [...]
 </code></pre><p>as it is unclear that the protocols are TLS related.</p>
 <p>As a result,
 I moved <code>ciphers</code> below <code>smtp tls</code> so in nooSMTPD it reads as:</p>
-<pre><code>smtp tls ciphers &quot;HIGH:!aNULL:!MD5&quot;
+<pre tabindex=0><code>smtp tls ciphers &quot;HIGH:!aNULL:!MD5&quot;
 </code></pre><p>I&rsquo;ll suggest this change to OpenSMTPD too.</p>
 <h1 id=tls-ciphers-selection>TLS ciphers selection</h1>
 <p>As mentionned above,
 I have changed the grammar to introduce a <code>tls</code> namespace to the <code>smtp</code> keyword:</p>
-<pre><code>smtp tls ciphers &quot;HIGH:!aNULL:!MD5&quot;
+<pre tabindex=0><code>smtp tls ciphers &quot;HIGH:!aNULL:!MD5&quot;
 </code></pre><p>Because libtls supports cipher suite groups,
 the <code>secure</code>, <code>compat</code>, <code>legacy</code> or <code>insecure</code> groups can be used in place of a cipher suite,
 and since <code>secure</code> is the default,
 the global cipher selection only needs to be specified for other cases:</p>
-<pre><code>smtp tls ciphers &quot;compat&quot;
+<pre tabindex=0><code>smtp tls ciphers &quot;compat&quot;
 </code></pre><p>With this done,
 I also added the ability to setup the ciphers at the listener level:</p>
-<pre><code>listen on 0.0.0.0 tls ciphers &quot;compat&quot;
+<pre tabindex=0><code>listen on 0.0.0.0 tls ciphers &quot;compat&quot;
 listen on 192.168.0.1 tls ciphers &quot;legacy&quot;  # use on legacy subnet
 </code></pre><p>This was committed to nooSMTPD and I&rsquo;ll submit a diff to OpenSMPTD when libtls-conversion is done upstream.</p>
 <h1 id=tls-curves-selection>TLS curves selection</h1>
@@ -172,20 +172,20 @@ as a result <strong>it is not possible to select specific curves at either one o
 The default curves (<code>X25519,P-256,P-384</code>) in libtls are <strong>sensible choices</strong> but some use-cases require restricting to a specific curve,
 or even an alternate one.</p>
 <p>I introduced a <code>curves</code> option which allows specifying curves to override the default:</p>
-<pre><code>smtp tls curves &quot;X25519&quot;
+<pre tabindex=0><code>smtp tls curves &quot;X25519&quot;
 </code></pre><p>While at it,
 I added the ability to setup the curves at the listener level:</p>
-<pre><code>listen on 0.0.0.0 tls ciphers &quot;X25519&quot;
+<pre tabindex=0><code>listen on 0.0.0.0 tls ciphers &quot;X25519&quot;
 listen on 192.168.0.1 tls curves &quot;P-256,P-384&quot;
 </code></pre><p>This was committed to nooSMTPD and I&rsquo;ll also submit a diff to OpenSMPTD when libtls-conversion is done upstream.</p>
 <h1 id=tls-protocols-selection>TLS protocols selection</h1>
 <p>Just like for curves,
 the selection of a TLS protocol was never merged in OpenSMTPD.</p>
 <p>I introduce a <code>protocols</code> option which allows specifiying protocols to override the default:</p>
-<pre><code>smtp tls protocols &quot;tlsv1.3:tlsv1.2&quot;
+<pre tabindex=0><code>smtp tls protocols &quot;tlsv1.3:tlsv1.2&quot;
 </code></pre><p>And again,
 I added the ability to setup the protocol at the listener level:</p>
-<pre><code>listen on 0.0.0.0 tls protocols &quot;tlsv1.3&quot;
+<pre tabindex=0><code>listen on 0.0.0.0 tls protocols &quot;tlsv1.3&quot;
 </code></pre><p>Guess what&mldr;
 Yes, this was also committed to nooSMTPD and I&rsquo;ll submit a diff to OpenSMPTD when libtls-conversion is done upstream.</p>
 <h1 id=global-smtp-tls-grammar-needs-to-be-reworked>Global <code>smtp tls</code> grammar needs to be reworked</h1>
@@ -193,10 +193,10 @@ Yes, this was also committed to nooSMTPD and I&rsquo;ll submit a diff to OpenSMP
 but it was not implemented the way it should.</p>
 <p>Basically,
 <code>ciphers</code>, <code>curves</code> and <code>protocols</code> should be options to <code>tls</code> so that it is possible to write:</p>
-<pre><code>smtp tls ciphers &quot;secure&quot; protocols &quot;secure&quot;
+<pre tabindex=0><code>smtp tls ciphers &quot;secure&quot; protocols &quot;secure&quot;
 </code></pre><p>At the time being,
 this is not possible and it must be expressed as follows:</p>
-<pre><code>smtp tls ciphers &quot;secure&quot;
+<pre tabindex=0><code>smtp tls ciphers &quot;secure&quot;
 smtp tls protocols &quot;secure&quot;
 </code></pre><p>This requires a bit of grammar refactor which I&rsquo;ll be working on in March.</p>
 <h1 id=listener-tls-grammar-was-reworked>Listener <code>tls</code> grammar was reworked</h1>
@@ -209,7 +209,7 @@ This worked but it <strong>was not the right way</strong> to do it.</p>
 <p>I reworked the grammar for <code>tls</code> in listeners so that <code>ciphers</code>, <code>curves</code> and <code>protocols</code> are <code>tls</code> options.
 This avoids having to repeat <code>tls</code> before every keyword,
 and it allows relying on the grammar rather than on a flag to determine if the configuration is valid:</p>
-<pre><code>listen on 0.0.0.0 tls ciphers &quot;secure&quot; curves &quot;P-256,P-384&quot; protocols &quot;secure&quot;
+<pre tabindex=0><code>listen on 0.0.0.0 tls ciphers &quot;secure&quot; curves &quot;P-256,P-384&quot; protocols &quot;secure&quot;
 </code></pre><p>I&rsquo;m happy with the result.</p>
 <h1 id=whats-next->What&rsquo;s next ?</h1>
 <p>I will rework the grammar for global settings and will implement these options for the MTA layer,

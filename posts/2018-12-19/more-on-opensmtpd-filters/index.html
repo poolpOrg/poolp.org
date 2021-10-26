@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>more on OpenSMTPD filters | poolp.org</title>
 <meta name=twitter:card content="summary">
@@ -78,10 +78,10 @@ I had a working proof-of-concept running on my laptop and my plan was to start b
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -245,7 +245,7 @@ the purpose of registering for the <code>link-identify</code> event is to store 
 filters were declared globally in the configuration,
 listeners would only enable/disable filtering,
 the filters would be applied in sequence:</p>
-<pre><code>filter smtp-in connect check-fcrdns reject &quot;550 go away you punk&quot;
+<pre tabindex=0><code>filter smtp-in connect check-fcrdns reject &quot;550 go away you punk&quot;
 filter smtp-in connect check-rdns reject &quot;550 go away you punk&quot;
 
 listen on all filter	# not filtered
@@ -261,7 +261,7 @@ it couldn&rsquo;t cover some of the use-cases I had in mind and planned for,
 but now that the plumbing has evolved enough we can move towards what&rsquo;s going to look like the final grammar.</p>
 <p>First of all,
 let&rsquo;s look how I would plug that <code>filter-rspamd</code> in my config:</p>
-<pre><code>filter rspamd proc-exec &quot;/usr/local/bin/filter-rspamd&quot;
+<pre tabindex=0><code>filter rspamd proc-exec &quot;/usr/local/bin/filter-rspamd&quot;
 
 listen on all filter rspamd
 </code></pre><p>That&rsquo;s all.</p>
@@ -270,13 +270,13 @@ instructed OpenSMTPD that it has to execute a proc filter from <code>/usr/local/
 and instructed the listener that all sessions handled through it should go through the <code>rspamd</code> filter.</p>
 <p>If I didn&rsquo;t want to use rspamd but a builtin filter to reject sessions without a forward-confirmed rDNS,
 I could have used:</p>
-<pre><code>filter fcrdns builtin connect check-fcrdns reject &quot;550 go away you punk&quot;
+<pre tabindex=0><code>filter fcrdns builtin connect check-fcrdns reject &quot;550 go away you punk&quot;
 
 listen on all filter fcrdns
 </code></pre><p>But what&rsquo;s more interesting is the chaining of filters,
 which allows &mldr;
 well, chaining filters:</p>
-<pre><code>filter fcrdns builtin connect check-fcrdns reject &quot;550 go away you punk&quot;
+<pre tabindex=0><code>filter fcrdns builtin connect check-fcrdns reject &quot;550 go away you punk&quot;
 filter rspamd proc-exec &quot;/usr/local/bin/filter-rspamd&quot;
 filter nazi_mode chain { fcrdns, rspamd }
 

@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>OpenSMTPD reporting update | poolp.org</title>
 <meta name=twitter:card content="summary">
@@ -78,10 +78,10 @@ To sum it up, you could now write an event processor as simple as a shell script
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -111,7 +111,7 @@ The format is improving further and has extended to outgoing trafic reporting.
 I described the events reporting mechanism that has been introduced in the development branch of OpenSMTPD.</p>
 <p>To sum it up,
 you could now write an event processor as simple as a shell script reading its stdin on a loop:</p>
-<pre><code>$ cat  /tmp/reporting.sh
+<pre tabindex=0><code>$ cat  /tmp/reporting.sh
 #! /bin/sh
 #
 
@@ -119,11 +119,11 @@ while read line; do
         echo $line &gt;&gt; /tmp/reporting.log
 done
 </code></pre><p>and configure your OpenSMTPD so it would report all incoming SMTP events:</p>
-<pre><code>$ grep report /etc/mail/smtpd.conf                                                                                                                                                                                   
+<pre tabindex=0><code>$ grep report /etc/mail/smtpd.conf                                                                                                                                                                                   
 proc reporting &quot;/tmp/reporting.sh&quot;
 report smtp on reporting
 </code></pre><p>which would then produce an events report log in /tmp/reporting.log containing entries similar to these:</p>
-<pre><code>report|smtp-in|link-connect|1541271219|3189ac6874354895|localhost|127.0.0.1:41564|127.0.0.1:25
+<pre tabindex=0><code>report|smtp-in|link-connect|1541271219|3189ac6874354895|localhost|127.0.0.1:41564|127.0.0.1:25
 report|smtp-in|protocol-server|1541271219|3189ac6874354895|220 poolp.org ESMTP OpenSMTPD
 report|smtp-in|protocol-client|1541271222|3189ac6874354895|helo localhost
 report|smtp-in|protocol-server|1541271222|3189ac6874354895|250 poolp.org Hello localhost [127.0.0.1], pleased to meet you
@@ -140,7 +140,7 @@ This doesn&rsquo;t seem like an improvement but it eases reading and allows me t
 <p>The third improvement comes from adding some new events and adding information to some existing events.
 For instance,
 OpenSMTPD reported these transaction events:</p>
-<pre><code>report|smtp-in|tx-begin|1541271225|3189ac6874354895
+<pre tabindex=0><code>report|smtp-in|tx-begin|1541271225|3189ac6874354895
 report|smtp-in|tx-commit|1541271225|3189ac6874354895
 report|smtp-in|tx-rollback|1541271225|3189ac6874354895
 </code></pre><p>But reading from these,
@@ -162,7 +162,7 @@ If we generate this commit request event,
 a filter may decide that it wants to reject it which will then produce a <code>tx-rollback</code> that was not possible before.</p>
 <p>A pattern emerges that <code>tx-*</code> events should appear in between <code>protocol-*</code> events otherwise they cannot be filtered.</p>
 <p>Here is a sample curated event report log from my own server as of today:</p>
-<pre><code>$ cat /tmp/reporting.log     
+<pre tabindex=0><code>$ cat /tmp/reporting.log     
 report|1|1541750432|smtp-in|link-connect|c73c0aff0dfb6250|poolp.org|local:0|local:0
 report|1|1541750432|smtp-in|protocol-server|c73c0aff0dfb6250|220 poolp.org ESMTP OpenSMTPD
 report|1|1541750432|smtp-in|protocol-client|c73c0aff0dfb6250|EHLO localhost
@@ -195,7 +195,7 @@ the event types are the same,
 the parameters are the same,
 you just need to get your head around the fact that <code>protocol-client</code> is your peer when in <code>smtp-in</code>,
 whereas <code>protocol-server</code> is your peer when in <code>smtp-out</code>:</p>
-<pre><code>report|1|1541750707|smtp-out|link-connect|c73c0b206ad6c41c||:0|64.233.167.26:25
+<pre tabindex=0><code>report|1|1541750707|smtp-out|link-connect|c73c0b206ad6c41c||:0|64.233.167.26:25
 report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|220 mx.google.com ESMTP k132-v6si807155wma.16 - gsmtp
 report|1|1541750707|smtp-out|protocol-client|c73c0b206ad6c41c|EHLO out.mailbrix.mx
 report|1|1541750707|smtp-out|protocol-server|c73c0b206ad6c41c|250-mx.google.com at your service, [212.83.129.132]
@@ -233,7 +233,7 @@ report|1|1541750718|smtp-out|protocol-server|c73c0b206ad6c41c|221 2.0.0 closing 
 report|1|1541750718|smtp-out|link-disconnect|c73c0b206ad6c41c
 </code></pre><p>Because not everyone needs reporting and not everyone needs <em>both</em> incoming and outgoing reporting,
 I have added the smtp-in and smtp-out keywords to the grammar so that you can:</p>
-<pre><code>$ grep report /etc/mail/smtpd.conf                                                                                                                                                                                   
+<pre tabindex=0><code>$ grep report /etc/mail/smtpd.conf                                                                                                                                                                                   
 proc reporting &quot;/tmp/reporting.sh&quot;
 report smtp-in on reporting
 report smtp-out on reporting

@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>May 2019 report | poolp.org</title>
 <meta name=twitter:card content="summary">
@@ -200,7 +200,7 @@ it will require a LibreSSL (libcrypto, libssl and libtls) minor crank so I&rsquo
 I&rsquo;m also waiting for an ok from ports to make sure it doesn&rsquo;t break ports as adding new symbols may have some configure scripts uncover other symbols we don&rsquo;t have.</p>
 <h2 id=write-an-ecdsa-privsep-engine-for-opensmtpd>Write an ECDSA privsep engine for OpenSMTPD</h2>
 <p>The crypto privsep engine only supported RSA and this means that starting OpenSMTPD with an ECDSA results in a fatal():</p>
-<pre><code>debug: init private ssl-tree
+<pre tabindex=0><code>debug: init private ssl-tree
 debug: SSL library error: ssl_ctx_create: error:06FFF07F:digital envelope routines:CRYPTO_internal:expecting an rsa key
 debug: SSL library error: ssl_ctx_create: error:140AE006:SSL routines:func(174):EVP lib
 pony express: ssl_ctx_create: could not fake private key: Invalid argument
@@ -208,7 +208,7 @@ pony express: ssl_ctx_create: could not fake private key: Invalid argument
 but it was not a trivial one-liner as adding support meant writing a custom ECDSA crypto engine akin to what <code>reyk@</code> did for RSA.
 It took me time to find the motivation,
 but ultimately I came around to implement such an engine this week.</p>
-<pre><code>debug: rsa_engine_init: using RSA privsep engine
+<pre tabindex=0><code>debug: rsa_engine_init: using RSA privsep engine
 debug: ecdsa_engine_init: using ECDSA privsep engine
 </code></pre><p>The details of how I implemented the ECDSA crypto engine are not that interesting,
 they follow the same pattern as the RSA crypto engine:</p>
@@ -226,7 +226,7 @@ figuring out the primitives for ECDSA and doing the proper serialization in IPC.
 <p>On my laptop,
 OpenSMTPD can now load and work with both RSA and ECDSA certificates,
 accepting SMTP sessions on listeners presenting either one:</p>
-<pre><code>9362d76af3ab2882 smtp connected address=127.0.0.1 host=localhost
+<pre tabindex=0><code>9362d76af3ab2882 smtp connected address=127.0.0.1 host=localhost
 debug: looking up pki &quot;localhost&quot;
 debug: session_start_ssl: switching to SSL
 debug: pony: rsae_priv_enc
@@ -249,7 +249,7 @@ most were C++ bloated software that didn&rsquo;t build on my laptop and required
 displaying sequence, version, the six channels and buttons values.</p>
 <p>There seemed to be a bug because packet loss kept triggering my recovery code,
 skipping bits until finding the alignment for a new packet (eg: packets 53, 56, 58, 5a, 5c are missing in this sample):</p>
-<pre><code>[...]
+<pre tabindex=0><code>[...]
 4f|2|512|511|505|499|493|487|7
 50|2|532|511|505|500|493|487|7
 51|2|513|65281|63745|62465|60673|59143|5

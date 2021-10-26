@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>Setting up a mail server with OpenSMTPD, Dovecot and Rspamd | poolp.org</title>
 <meta name=twitter:card content="summary_large_image">
@@ -79,10 +79,10 @@ EDIT (2019-12-15) I have refactored the article to remove the political aspect b
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -279,7 +279,7 @@ This is done through the lookup of MX (Mail eXchanger) records,
 so the most minimal thing to do for SMTP to work is to declare an MX record for your domain.
 For <code>hypno.cat</code>,
 the zone contains the following:</p>
-<pre><code>;; an A (and AAAA record for IPv6) record is declared to name your mail server
+<pre tabindex=0><code>;; an A (and AAAA record for IPv6) record is declared to name your mail server
 
 mail.hypno.cat  A       217.69.8.253
 mail.hypno.cat  AAAA    2001:19f0:6801:867:5400:01ff:fee7:7af7
@@ -292,7 +292,7 @@ mail.hypno.cat  AAAA    2001:19f0:6801:867:5400:01ff:fee7:7af7
 hypno.cat.      MX 0    mail.hypno.cat.
 ;;hypno.cat.    MX 10   mail-backup.hypno.cat.
 </code></pre><p>I can verify that everything is fine using the <code>host</code> and <code>dig</code> utilities to check that the mail server name resolves and that the MX lookup returns the mail server name:</p>
-<pre><code>$ host mail.hypno.cat
+<pre tabindex=0><code>$ host mail.hypno.cat
 mail.hypno.cat has address 217.69.8.253
 mail.hypno.cat has IPv6 address 2001:19f0:6801:867:5400:1ff:fee7:7af7
 
@@ -326,12 +326,12 @@ so they generally provide a small form somewhere in their control panels to let 
 </center>
 <p>If I setup my rDNS to be the same as the forward records I configured above, then I automatically pass the FCrDNS test.
 This can be easily verified by looking up the rDNS for an IP address:</p>
-<pre><code>$ host 217.69.8.253   
+<pre tabindex=0><code>$ host 217.69.8.253   
 253.8.69.217.in-addr.arpa domain name pointer mail.hypno.cat.
 $ host 2001:19f0:6801:867:5400:1ff:fee7:7af7
 7.f.a.7.7.e.e.f.f.f.1.0.0.0.4.5.7.6.8.0.1.0.8.6.0.f.9.1.1.0.0.2.ip6.arpa domain name pointer mail.hypno.cat.
 </code></pre><p>Then looking up the IP address for that rDNS:</p>
-<pre><code>$ host mail.hypno.cat
+<pre tabindex=0><code>$ host mail.hypno.cat
 mail.hypno.cat has address 217.69.8.253
 mail.hypno.cat has IPv6 address 2001:19f0:6801:867:5400:1ff:fee7:7af7
 </code></pre><p>If they match both ways, then everything&rsquo;s fine.</p>
@@ -350,7 +350,7 @@ so given how simple it is to provide the record,
 there&rsquo;s simply no excuse.</p>
 <p>There are multiple ways to setup SPF,
 in this example I will simply set it up so ONLY my mail server can send mail on my behalf:</p>
-<pre><code>hypno.cat.      IN TXT  &quot;v=spf1 mx -all&quot;
+<pre tabindex=0><code>hypno.cat.      IN TXT  &quot;v=spf1 mx -all&quot;
 </code></pre><p>Should hosts receive a mail with a sender <code>@hypno.cat</code> not originating from <code>mail.hypno.cat</code>,
 they will be able to assume,
 or even enforce,
@@ -389,9 +389,9 @@ you can still experiment truncating key into two records and see if it suits you
 adapting my example is trivial,
 just make sure you have a TXT record with a part of the key and another TXT record with the remaining.</p>
 <p>I&rsquo;ll create a directory to hold the keys:</p>
-<pre><code># mkdir /etc/mail/dkim
+<pre tabindex=0><code># mkdir /etc/mail/dkim
 </code></pre><p>Then, the following commands will generate the keypair and extract the public key out of the private key:</p>
-<pre><code># openssl genrsa -out /etc/mail/dkim/hypno.cat.key 1024                                       
+<pre tabindex=0><code># openssl genrsa -out /etc/mail/dkim/hypno.cat.key 1024                                       
 Generating RSA private key, 1024 bit long modulus
 ..............................++++++
 ...............++++++
@@ -409,7 +409,7 @@ kfVP2OqK6sHAdXjnowIDAQAB
 -----END PUBLIC KEY-----
 </code></pre><p>Finally,
 I can create the DNS TXT record by extracting the public key out of the armor delimiters and formatting the content so it displays as follows:</p>
-<pre><code>20190913._domainkey.hypno.cat.	IN TXT &quot;v=DKIM1;k=rsa;p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDThHqiM610nwN1nmV8OMc7PaPOuJWVGRDz5bWj4cRjTTmQYjJQd02xrydRNrRhjEKBm2mMDArNWjoM3jvN04ZifqJxDmKr7X8jsYi+MPEHz6wZxB8mayDK6glYTCyx//zl1luUdvm26PutA38K8cgnb7iTkfVP2OqK6sHAdXjnowIDAQAB;&quot;
+<pre tabindex=0><code>20190913._domainkey.hypno.cat.	IN TXT &quot;v=DKIM1;k=rsa;p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDThHqiM610nwN1nmV8OMc7PaPOuJWVGRDz5bWj4cRjTTmQYjJQd02xrydRNrRhjEKBm2mMDArNWjoM3jvN04ZifqJxDmKr7X8jsYi+MPEHz6wZxB8mayDK6glYTCyx//zl1luUdvm26PutA38K8cgnb7iTkfVP2OqK6sHAdXjnowIDAQAB;&quot;
 </code></pre><p>The name of the record should be constructed using this pattern: <code>&lt;selector>._domainkey.&lt;domain>.</code>,
 where <code>&lt;selector></code> is a name you chose and which allows multiple keys to coexist.
 I like to use the date at which I generated the keypair,
@@ -435,7 +435,7 @@ The percentage field (pct=) declares how many of these mails should be subjected
 and the Reporting URI of Aggregated field (rua=) is where you should receive DMARC reports should you want to analyze them (before switching from <code>quarantine</code> to <code>reject</code> for example).</p>
 <p>I&rsquo;ll just setup the most dummy record,
 one that will make all Big Mailer Corps see that we care about DMARC even though we don&rsquo;t know what to do with it:</p>
-<pre><code>_dmarc.hypno.cat.   IN TXT    &quot;v=DMARC1;p=none;pct=100;rua=mailto:postmaster@hypno.cat;&quot;
+<pre tabindex=0><code>_dmarc.hypno.cat.   IN TXT    &quot;v=DMARC1;p=none;pct=100;rua=mailto:postmaster@hypno.cat;&quot;
 </code></pre><h2 id=getting-yourself-a-certificate-for-tls>Getting yourself a certificate for TLS</h2>
 <p>There are multiple ways you can obtain a TLS certificate,
 and assuming that you are already familiar with hosting other services,
@@ -452,7 +452,7 @@ Because we&rsquo;re EXTRA lucky, it also provides an example configuration file 
 <p>Simply copy the example configuration from <code>/etc/example/httpd.conf</code> to <code>/etc/httpd.conf</code>,
 replace <code>example.com</code> with <code>mail.hypno.cat</code> and remove the tls block since we only care about serving the challenge.
 The file should now read as follow:</p>
-<pre><code>server &quot;mail.hypno.cat&quot; {
+<pre tabindex=0><code>server &quot;mail.hypno.cat&quot; {
         listen on * port 80
         location &quot;/.well-known/acme-challenge/*&quot; {
                 root &quot;/acme&quot;
@@ -463,18 +463,18 @@ The file should now read as follow:</p>
         }
 }
 </code></pre><p>The <code>httpd</code> daemon can be started with the following command:</p>
-<pre><code># rcctl -f start httpd
+<pre tabindex=0><code># rcctl -f start httpd
 httpd(ok)
 </code></pre><p>The acme-client itself is straighforward to configure,
 again simply copy the example configuration from <code>/etc/example/acme-client.conf</code> to <code>/etc/acme-client.conf</code>,
 replace <code>example.com</code> with <code>mail.hypno.cat</code> and you should end up with a block like this:</p>
-<pre><code>domain mail.hypno.cat {
+<pre tabindex=0><code>domain mail.hypno.cat {
         domain key &quot;/etc/ssl/private/mail.hypno.cat.key&quot;
         domain full chain certificate &quot;/etc/ssl/mail.hypno.cat.fullchain.pem&quot;
         sign with letsencrypt
 }
 </code></pre><p>at this point you can simply run <code>acme-client</code> on the domain:</p>
-<pre><code># acme-client -v mail.hypno.cat
+<pre tabindex=0><code># acme-client -v mail.hypno.cat
 [...]
 acme-client: /etc/ssl/mail.hypno.cat.fullchain.pem: created
 </code></pre><p>The certificate and keys are created at the appropriate place,
@@ -494,7 +494,7 @@ you can simply <a href=https://github.com/poolpOrg/filter-rspamd>obtain it from 
 Both Redis and Rspamd are already available in OpenBSD packages so the instructions below are already valid for them.</p>
 <p>First,
 I&rsquo;ll install these packages:</p>
-<pre><code>mail$ doas pkg_add redis rspamd opensmtpd-filter-rspamd
+<pre tabindex=0><code>mail$ doas pkg_add redis rspamd opensmtpd-filter-rspamd
 [...]
 redis-4.0.14: ok
 rspamd-1.9.0: ok
@@ -505,14 +505,14 @@ See rcctl(8) for details.
 For the purpose of this article I&rsquo;ll keep it very basic,
 as is the case on my own machines.</p>
 <p>I could edit the configuration in <code>/etc/rspamd/actions.conf</code> to adjust junking thresholds to my liking, but the defaults suit me fine so this was just to show them to you:</p>
-<pre><code>actions {
+<pre tabindex=0><code>actions {
     reject = 15;    # Reject when reaching this score
     add_header = 6; # Add header when reaching this score
     greylist = 4;   # Apply greylisting when reaching this score (will emit `soft reject action`)
     [...]
 </code></pre><p>And what I really, really want is for Rspamd to handle my DKIM signing because this is one of the requirements to not look bad to the world.</p>
 <p>This is done by providing the configuration to match the DKIM key I generated earlier in <code>/etc/rspamd/local.d/dkim_signing.conf</code>:</p>
-<pre><code># mkdir /etc/rspamd/local.d
+<pre tabindex=0><code># mkdir /etc/rspamd/local.d
 # cat &lt;&lt; EOF &gt;/etc/rspamd/local.d/dkim_signing.conf
 allow_username_mismatch = true;
 
@@ -527,10 +527,10 @@ EOF
 but <strong>in this setup</strong> OpenSMTPD authenticates against simple usernames. Also make sure the dkim key file is
 readable by members of the <code>_rspamd</code> group.</p>
 <p>We&rsquo;re done here, Rspamd and Redis can be enabled so OpenBSD starts them at next reboot:</p>
-<pre><code># rcctl enable redis
+<pre tabindex=0><code># rcctl enable redis
 # rcctl enable rspamd
 </code></pre><p>And I can start them right away so we don&rsquo;t have to wait until next reboot:</p>
-<pre><code># rcctl start redis
+<pre tabindex=0><code># rcctl start redis
 redis(ok)
 # rcctl start rspamd
 rspamd(ok)
@@ -546,7 +546,7 @@ earlier versions don&rsquo;t support filters and some other features described h
 not accepting connections from the outside,
 but able to let local users exchange messages between themselves and to a remote host.
 It looks like this:</p>
-<pre><code>#       $OpenBSD: smtpd.conf,v 1.11 2018/06/04 21:10:58 jmc Exp $
+<pre tabindex=0><code>#       $OpenBSD: smtpd.conf,v 1.11 2018/06/04 21:10:58 jmc Exp $
 
 # This is the smtpd server system-wide configuration file.
 # See smtpd.conf(5) for more information.
@@ -573,7 +573,7 @@ You would have to very explicitely tell your server to <code>match from any for 
 <p>I initially wanted to update the configuration file progressively to hold your hand,
 but this article grew a lot since my first version.
 I&rsquo;ll just put the complete 16 configuration lines configuration file and comment it extensively afterwards:</p>
-<pre><code>pki mail.hypno.cat cert &quot;/etc/ssl/mail.hypno.cat.fullchain.pem&quot;
+<pre tabindex=0><code>pki mail.hypno.cat cert &quot;/etc/ssl/mail.hypno.cat.fullchain.pem&quot;
 pki mail.hypno.cat key &quot;/etc/ssl/private/mail.hypno.cat.key&quot;
 
 filter check_dyndns phase connect match rdns regex { '.*\.dyn\..*', '.*\.dsl\..*' } \
@@ -624,7 +624,7 @@ There&rsquo;s no configuration as it is fully controlled from the Rspamd daemon 
 all we need to do is declare it.</p>
 <p>If you want to be more conservative and not reject mails to avoid false positives,
 you can assign a <code>junk</code> action rather than <code>disconnect</code> action to builtin filters and remove the <code>-blockBelow</code> option in the <code>senderscore</code> filter:</p>
-<pre><code>filter check_dyndns phase connect match rdns regex { '.*\.dyn\..*', '.*\.dsl\..*' } junk
+<pre tabindex=0><code>filter check_dyndns phase connect match rdns regex { '.*\.dyn\..*', '.*\.dsl\..*' } junk
 filter check_rdns phase connect match !rdns junk
 filter check_fcrdns phase connect match !fcrdns junk
 filter senderscore proc-exec &quot;filter-senderscore -junkBelow 70 -slowFactor 5000&quot;
@@ -639,7 +639,7 @@ The <code>rdns regex</code> one can be tuned as depending on your country,
 you may see patterns that are particularly repetitive and that would never appear in mine.
 To ease maintenance,
 you can store them in a file, one by line and use the following construct:</p>
-<pre><code>table &lt;dyndns&gt; file:/etc/mail/path-to-my-regex-file
+<pre tabindex=0><code>table &lt;dyndns&gt; file:/etc/mail/path-to-my-regex-file
 filter check_dyndns phase connect match rdns regex &lt;dyndns&gt; junk
 </code></pre><p>Let&rsquo;s continue dissecting the configuration.</p>
 <p>The <code>table aliases</code> points to a file with&mldr; aliases in two columns.
@@ -700,7 +700,7 @@ I would personally assume hosts below 80 to be good junking candidates,
 and hosts below 10 to be obvious rejects.</p>
 <h2 id=installing-and-configuring-dovecot>Installing and configuring Dovecot</h2>
 <p>OpenBSD also has a package for Dovecot which can be installed with a simple command:</p>
-<pre><code>mail# pkg_add dovecot
+<pre tabindex=0><code>mail# pkg_add dovecot
 dovecot-2.3.7.2v0: ok
 The following new rcscripts were installed: /etc/rc.d/dovecot
 See rcctl(8) for details.
@@ -711,20 +711,20 @@ New and changed readme(s):
 <strong>specifically for OpenBSD</strong>,
 following instructions from the readme,
 the <code>/etc/login.conf</code> file should contain a <code>dovecot</code> class to bump the resources allowed as Dovecot is very hungry for file descriptors:</p>
-<pre><code>dovecot:\
+<pre tabindex=0><code>dovecot:\
     :openfiles-cur=1024:\
     :openfiles-max=2048:\
     :tc=daemon:
 </code></pre><p>Once that is done,
 there&rsquo;s really not much to do on the Dovecot side except have it point to the proper TLS certificate we generated earlier.</p>
 <p>I do that by tweaking the <code>ssl_cert</code> and <code>ssl_key</code> configuration keys in the <code>/etc/dovecot/conf.d/10-ssl.conf</code> file so they read as follows:</p>
-<pre><code>ssl_cert = &lt;/etc/ssl/mail.hypno.cat.fullchain.pem
+<pre tabindex=0><code>ssl_cert = &lt;/etc/ssl/mail.hypno.cat.fullchain.pem
 ssl_key = &lt;/etc/ssl/private/mail.hypno.cat.key
 </code></pre><p>Then Dovecot must be told that mails should be looked up in the user <code>~/Maildir</code> directory as this is where OpenSMTPD drops files.
 I do that by tweaking the <code>mail_location</code> configuration key in the <code>/etc/dovecot/conf.d/10-mail.conf</code> file so it reads as follows:</p>
-<pre><code>mail_location = maildir:~/Maildir
+<pre tabindex=0><code>mail_location = maildir:~/Maildir
 </code></pre><p>We&rsquo;re all set, we can enable the daemon so it&rsquo;s started at next boot, and start it right away:</p>
-<pre><code>mail# rcctl enable dovecot
+<pre tabindex=0><code>mail# rcctl enable dovecot
 mail# rcctl start dovecot   
 dovecot(ok)
 </code></pre><p>At this point,
@@ -758,7 +758,7 @@ how do you put it with diplomacy &mldr;
 <p>To enable imap sieve,
 the Pigeonhole package must be installed,
 and as has been the case throughout this article all I need is a simple command:</p>
-<pre><code>mail# pkg_add dovecot-pigeonhole
+<pre tabindex=0><code>mail# pkg_add dovecot-pigeonhole
 dovecot-pigeonhole-0.5.7.2v1: ok
 
 [...]
@@ -767,7 +767,7 @@ here comes the tricky part, you need to configure Dovecot to enable imap_sieve,
 and teach it what sieve scripts to use for what actions.</p>
 <p>First, I will need to enable <code>imap_sieve</code> in Dovecot by adding it to the mail plugins for IMAP.
 This is done by tweaking the <code>mail_plugins</code> configuration key in <code>/etc/dovecot/conf.d/20-imap.conf</code>:</p>
-<pre><code>protocol imap {
+<pre tabindex=0><code>protocol imap {
     [...]
 
     mail_plugins = $mail_plugins imap_sieve
@@ -777,7 +777,7 @@ This is done by tweaking the <code>mail_plugins</code> configuration key in <cod
 </code></pre><p>Then to teach Dovecot how to train,
 I&rsquo;ll add the following bit to <code>/etc/dovecot/conf.d/90-plugin.conf</code>,
 telling it that there are sieve scripts to trigger when mail gets moved in and out of Junk mailbox:</p>
-<pre><code>plugin {
+<pre tabindex=0><code>plugin {
   sieve_plugins = sieve_imapsieve sieve_extprograms
   sieve_global_extensions = +vnd.dovecot.pipe +vnd.dovecot.environment
 
@@ -798,7 +798,7 @@ telling it that there are sieve scripts to trigger when mail gets moved in and o
 }
 </code></pre><p>Now that dovecot is ready,
 I&rsquo;ll have to prepare the sieve part which relies on two sieve scripts to train spam and ham inside <code>/usr/local/lib/dovecot/sieve</code>:</p>
-<pre><code># cat report-ham.sieve
+<pre tabindex=0><code># cat report-ham.sieve
 
 require [&quot;vnd.dovecot.pipe&quot;, &quot;copy&quot;, &quot;imapsieve&quot;, &quot;environment&quot;, &quot;variables&quot;];
 
@@ -815,7 +815,7 @@ if environment :matches &quot;imap.user&quot; &quot;*&quot; {
 }
 
 pipe :copy &quot;sa-learn-ham.sh&quot; [ &quot;${username}&quot; ];
-</code></pre><pre><code># cat report-spam.sieve
+</code></pre><pre tabindex=0><code># cat report-spam.sieve
 
 require [&quot;vnd.dovecot.pipe&quot;, &quot;copy&quot;, &quot;imapsieve&quot;, &quot;environment&quot;, &quot;variables&quot;];
 
@@ -826,23 +826,23 @@ if environment :matches &quot;imap.user&quot; &quot;*&quot; {
 pipe :copy &quot;sa-learn-spam.sh&quot; [ &quot;${username}&quot; ];
 </code></pre><p>Because both sieve scripts rely on shell scripts <code>sa-learn-ham.sh</code> and <code>sa-learn-spam.sh</code>,
 I also need to create these shell scripts in <code>/usr/local/lib/dovecot/sieve</code>:</p>
-<pre><code># cat sa-learn-ham.sh
+<pre tabindex=0><code># cat sa-learn-ham.sh
 
 #!/bin/sh
 exec /usr/local/bin/rspamc -d &quot;${1}&quot; learn_ham
-</code></pre><pre><code># cat sa-learn-spam.sh
+</code></pre><pre tabindex=0><code># cat sa-learn-spam.sh
 
 #!/bin/sh
 exec /usr/local/bin/rspamc -d &quot;${1}&quot; learn_spam
 </code></pre><p>And finally,
 I need to compile the sieve scripts and make the shell scripts executable so that Dovecot can actually use them:</p>
-<pre><code># sievec report-ham.sieve
+<pre tabindex=0><code># sievec report-ham.sieve
 # sievec report-spam.sieve
 # chmod 755 sa-learn-ham.sh
 # chmod 755 sa-learn-spam.sh
 </code></pre><p>That&rsquo;s all,
 now moving mails from a folder to another I can see the following lines in the <code>/var/log/rspamd/rspamd.log</code> file:</p>
-<pre><code>2019-09-13 23:59:46 #18598(controller) &lt;1d44bd&gt;; csession; rspamd_controller_learn_fin_task: &lt;127.0.0.1&gt; learned message as ham: CAHPtQbOxQxBCsVd7nUCP4podu74Pa-F6k28z+4BWfNeeqWYiAg@mail.gmail.com
+<pre tabindex=0><code>2019-09-13 23:59:46 #18598(controller) &lt;1d44bd&gt;; csession; rspamd_controller_learn_fin_task: &lt;127.0.0.1&gt; learned message as ham: CAHPtQbOxQxBCsVd7nUCP4podu74Pa-F6k28z+4BWfNeeqWYiAg@mail.gmail.com
 [...]
 2019-09-14 00:01:57 #18598(controller) &lt;b76e28&gt;; csession; rspamd_controller_learn_fin_task: &lt;127.0.0.1&gt; learned message as spam: CAHPtQbOxQxBCsVd7nUCP4podu74Pa-F6k28z+4BWfNeeqWYiAg@mail.gmail.com
 [...]

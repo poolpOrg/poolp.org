@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>July 2019 report: tons of smtpd work mostly | poolp.org</title>
 <meta name=twitter:card content="summary">
@@ -78,10 +78,10 @@ This month has been sponsored by:">
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -151,7 +151,7 @@ this resulted in failures to build with OpenSSL 1.1.x and me trying to unfuck th
 I brought a few functions from OpenSSL to LibreSSL to help reduce the divergence in OpenSMTPD scope and as a result,
 with minimal work,
 I have been able to build a working OpenSMTPD on an Ubuntu system with OpenSSL 1.1.x again.</p>
-<pre><code>$ uname -srm
+<pre tabindex=0><code>$ uname -srm
 Linux 5.0.0-15-generic x86_64
 $ openssl version
 OpenSSL 1.1.1b  26 Feb 2019
@@ -207,14 +207,14 @@ By registering for this event,
 it is possible to determine if a session was authenticated or not,
 track which sessions were issued by which user,
 etc&mldr;</p>
-<pre><code>report|1|1564213979.757908|smtp-in|link-auth|63dc9f08477410de|gilles|pass
+<pre tabindex=0><code>report|1|1564213979.757908|smtp-in|link-auth|63dc9f08477410de|gilles|pass
 report|1|1564214009.115878|smtp-in|link-auth|63dc9f06465b1cb2|gilles|fail
 report|1|1564214037.439016|smtp-in|link-auth|63dc9f0732384d8d|gilles|error
 </code></pre><p>While working on that,
 I made sure that OpenSMTPD would obfuscate parameters to any event it reports when in an authentication phase.
 This ensures that one can&rsquo;t accidentally leak credentials to a third party filter,
 a database or a log file:</p>
-<pre><code>report|1|1562975948.315256|smtp-in|protocol-client|4772092f35819fed|AUTH LOGIN
+<pre tabindex=0><code>report|1|1562975948.315256|smtp-in|protocol-client|4772092f35819fed|AUTH LOGIN
 report|1|1562975948.315572|smtp-in|protocol-server|4772092f35819fed|334 VXNlcm5hbWU6
 report|1|1562975961.559697|smtp-in|protocol-client|4772092f35819fed|********
 report|1|1562975961.559724|smtp-in|protocol-server|4772092f35819fed|334 UGFzc3dvcmQ6
@@ -235,7 +235,7 @@ Until now, to do this filters had to register for events that initiate or termin
 to make sure that a cleanup function was called from each of these.
 With <code>tx-reset</code>, filters no longer need to register these events if they don&rsquo;t intend to do anything with them,
 they can register a <code>tx-reset</code> handler to cleanup transaction with the guarantee that when a transaction is no longer relevant the event will be generated.</p>
-<pre><code>report|1|1564191006.311117|smtp-in|tx-commit|f6369c781fea802b|fac552ff|2806
+<pre tabindex=0><code>report|1|1564191006.311117|smtp-in|tx-commit|f6369c781fea802b|fac552ff|2806
 report|1|1564191006.311120|smtp-in|tx-reset|f6369c781fea802b|fac552ff
 
 report|1|1564191100.066978|smtp-in|tx-rollback|f6369c8a16ddbcb8|8a4f9aad
@@ -244,7 +244,7 @@ report|1|1564191100.066982|smtp-in|tx-reset|f6369c8a16ddbcb8|8a4f9aad
 until now the reporting API &ldquo;only&rdquo; generated events for <code>smtp-in</code> which is incoming SMTP trafic,
 but I have started teaching <code>smtp-out</code>, which is outgoing SMTP trafic, to also report all events.
 This work is not fully done but it works enough that I have deployed it on my own MX:</p>
-<pre><code>report|1|1564191030.737128|smtp-out|link-connect|f6369c7b41a82d01|localhost|pass|45.76.46.201:40938|127.0.0.1:25
+<pre tabindex=0><code>report|1|1564191030.737128|smtp-out|link-connect|f6369c7b41a82d01|localhost|pass|45.76.46.201:40938|127.0.0.1:25
 report|1|1564191030.738602|smtp-in|link-connect|f6369c7cc2cb4dfe|out.mailbrix.mx|fail|45.76.46.201:40938|127.0.0.1:25
 report|1|1564191038.043809|smtp-in|link-connect|f6369c7d5157f9d8|mail.mailbrix.mx|pass|95.179.226.54:39341|45.76.46.201:25
 report|1|1564191052.947431|smtp-out|link-connect|f6369c85f7a894d6|localhost|pass|45.76.46.201:4502|127.0.0.1:25
@@ -261,13 +261,13 @@ I decided to write it in Golang because I didn&rsquo;t (and still don&rsquo;t) k
 so if I managed to write a useful filter in a language I don&rsquo;t know in just a few hours I guess the goal for a simple and useful API is reached ;-)</p>
 <p>So how does it work ?</p>
 <p>First the filter is built:</p>
-<pre><code>$ cd filter-rspamd
+<pre tabindex=0><code>$ cd filter-rspamd
 $ go build
 </code></pre><p>Then it is installed:</p>
-<pre><code>$ doas cp filter-rspamd /usr/libexec
+<pre tabindex=0><code>$ doas cp filter-rspamd /usr/libexec
 $
 </code></pre><p>The smtpd.conf file needs to be updated:</p>
-<pre><code>[...]
+<pre tabindex=0><code>[...]
 
 filter rspamd proc-exec &quot;/usr/libexec/filter-rspamd&quot;
 
@@ -282,7 +282,7 @@ any error will just output the mail as it was received: fail-safe by default.</p
 <p>As of today,
 the filter already does a lot of useful things.</p>
 <p>Adding X-Spam{,-Action,-Score} headers:</p>
-<pre><code>$ cat /var/mail/gilles
+<pre tabindex=0><code>$ cat /var/mail/gilles
 From gilles@laptop.home Fri Jul 26 08:54:35 2019
 Return-Path: &lt;gilles@laptop.home&gt;
 Delivered-To: gilles@laptop.home
@@ -301,7 +301,7 @@ Message-ID: &lt;04eabdcea50bc883@laptop.home&gt;
 
 test
 </code></pre><p>Rewrite Subject line:</p>
-<pre><code>$ cat /var/mail/gilles
+<pre tabindex=0><code>$ cat /var/mail/gilles
 From gilles@laptop.home Sat Jul 27 10:43:34 2019
 Return-Path: &lt;gilles@laptop.home&gt;
 Delivered-To: gilles@laptop.home
@@ -318,7 +318,7 @@ Message-ID: &lt;7e41c7e558f77a3e@laptop.home&gt;
 
 test
 </code></pre><p>Reject content, greylist a session or soft reject a transaction:</p>
-<pre><code>$ echo 'XJS*C4JDBQADN1.NSBN3*2IDNEN*GTUBE-STANDARD-ANTI-UBE-TEST-EMAIL*C.34X' | mail -s test gilles
+<pre tabindex=0><code>$ echo 'XJS*C4JDBQADN1.NSBN3*2IDNEN*GTUBE-STANDARD-ANTI-UBE-TEST-EMAIL*C.34X' | mail -s test gilles
 550 message rejected
 
 $ echo greylist-test | mail -s test gilles
@@ -332,7 +332,7 @@ filter-rspamd supports adding the DKIM-signature header provided by <code>rspamd
 so by properly configuring <code>rspamd</code> to perform DKIM signing,
 e-mails will be automagically DKIM signed when filter-rspamd is installed.
 NO MORE FUCKING DKIMPROXY.</p>
-<pre><code>[...]
+<pre tabindex=0><code>[...]
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poolp.org; s=opensmtpd;
 	t=1564217527;
 	h=from:from:reply-to:subject:date📅message-id:message-id:to:to:cc;
@@ -377,7 +377,7 @@ We can do better !</p>
 so the mail log format was simplified and trimmed from redundant informations,
 whereas the reporting API would publish a lot of informations humans don&rsquo;t really care about when looking at logs.</p>
 <p>I wrote a filter-eventlog last month which would simply write the reporting stream to a file:</p>
-<pre><code>[...]
+<pre tabindex=0><code>[...]
 report|1|1564217526.405901|smtp-in|protocol-client|63dca0f760bad4af|MAIL FROM:&lt;gilles@poolp.org&gt;
 report|1|1564217526.406175|smtp-in|filter-response|63dca0f760bad4af|mail-from|proceed
 report|1|1564217526.408265|smtp-in|tx-begin|63dca0f760bad4af|c097ac23
@@ -391,7 +391,7 @@ report|1|1564217526.410417|smtp-in|protocol-server|63dca0f760bad4af|250 2.1.5 De
 [...]
 </code></pre><p>After discussing with a friend well versed in ELK he suggested I adopt a key-value format so it could be injected more easily,
 so I added a command line option so the filter would output in the following format:</p>
-<pre><code>[...]
+<pre tabindex=0><code>[...]
 timestamp=1564217526.405901 subsystem=smtp-in evt=protocol-client session=63dca0f760bad4af line=&quot;MAIL FROM:&lt;gilles@poolp.org&gt;  &quot;
 timestamp=1564217526.406175 subsystem=smtp-in evt=filter-response session=63dca0f760bad4af phase=mail-from response=proceed
 timestamp=1564217526.408265 subsystem=smtp-in evt=tx-begin session=63dca0f760bad4af msgid=c097ac23

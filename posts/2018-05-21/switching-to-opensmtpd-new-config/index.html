@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>switching to OpenSMTPD new config | poolp.org</title>
 <meta name=twitter:card content="summary">
@@ -76,10 +76,10 @@
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -117,7 +117,7 @@ different aliases mappings,
 backup MX,
 relaying through a DKIM proxy,
 and more&mldr;</p>
-<pre><code>pki mx1.poolp.org certificate &quot;/etc/ssl/poolp.org.fullchain.pem&quot;
+<pre tabindex=0><code>pki mx1.poolp.org certificate &quot;/etc/ssl/poolp.org.fullchain.pem&quot;
 pki mx1.poolp.org key &quot;/etc/ssl/private/poolp.org.key&quot;
 
 pki mail.poolp.org certificate &quot;/etc/ssl/poolp.org.fullchain.pem&quot;
@@ -157,13 +157,13 @@ the <code>pki</code> directives which contain the certificates and private keys 
 They work exactly as with the old grammar,
 we only shortened the <code>certificate</code> keyword to <code>cert</code> by popular demand.
 This results in:</p>
-<pre><code>pki mx1.poolp.org certificate &quot;/etc/ssl/poolp.org.fullchain.pem&quot;
+<pre tabindex=0><code>pki mx1.poolp.org certificate &quot;/etc/ssl/poolp.org.fullchain.pem&quot;
 pki mx1.poolp.org key &quot;/etc/ssl/private/poolp.org.key&quot;
 
 pki mail.poolp.org certificate &quot;/etc/ssl/poolp.org.fullchain.pem&quot;
 pki mail.poolp.org key &quot;/etc/ssl/private/poolp.org.key&quot;
 </code></pre><p>being rewritten as:</p>
-<pre><code>pki mx1.poolp.org cert &quot;/etc/ssl/poolp.org.fullchain.pem&quot;
+<pre tabindex=0><code>pki mx1.poolp.org cert &quot;/etc/ssl/poolp.org.fullchain.pem&quot;
 pki mx1.poolp.org key &quot;/etc/ssl/private/poolp.org.key&quot;
 
 pki mail.poolp.org cert &quot;/etc/ssl/poolp.org.fullchain.pem&quot;
@@ -171,14 +171,14 @@ pki mail.poolp.org key &quot;/etc/ssl/private/poolp.org.key&quot;
 </code></pre><p>The <code>ca</code> directive which allows setting a custom CA certificate,
 and which is not used in this configuration file,
 is subjected to the same change so if you have a directive such as:</p>
-<pre><code>ca mail.poolp.org certificate &quot;/etc/ssl/poolp.org.ca&quot;
+<pre tabindex=0><code>ca mail.poolp.org certificate &quot;/etc/ssl/poolp.org.ca&quot;
 </code></pre><p>all you have to do is replace <code>certificate</code> with <code>cert</code>:</p>
-<pre><code>ca mail.poolp.org cert &quot;/etc/ssl/poolp.org.ca&quot;
+<pre tabindex=0><code>ca mail.poolp.org cert &quot;/etc/ssl/poolp.org.ca&quot;
 </code></pre><p>Other <code>pki</code> options are unchanged and default to the sanest option.</p>
 <h2 id=fixing-table-directives>Fixing <code>table</code> directives</h2>
 <p><img src=https://brillianceinsight.files.wordpress.com/2014/02/card-2-24-2014-1_thumb.jpg alt="Good news, everyone!"></p>
 <p>No changes in <code>table</code> directives:</p>
-<pre><code>table sources           { 212.83.181.8 }
+<pre tabindex=0><code>table sources           { 212.83.181.8 }
 table helonames         { 212.83.181.8 = mx1.poolp.org }
 
 table aliases           &quot;/etc/mail/aliases&quot;
@@ -193,7 +193,7 @@ table shithole		{ &quot;@qq.com&quot; }
 <p>The <code>listen</code> directive works as before, however like for <code>pki</code> some keywords were shortened.
 For instance, <code>mask-source</code>, which is not used in my config, was shortened to the more compact versions <code>mask-src</code>.</p>
 <p>In my smtpd.conf, there was no change to <code>listen</code> directives despite using a large subset of <code>listen</code> features:</p>
-<pre><code>listen on lo0
+<pre tabindex=0><code>listen on lo0
 listen on lo0 port 10028 tag DKIM
 listen on egress tls-require pki mx1.poolp.org hostnames { 212.83.181.7 = mail.poolp.org, 212.83.181.8 = mx1.poolp.org }
 listen on egress smtps pki mail.poolp.org auth hostname mail.poolp.org
@@ -212,7 +212,7 @@ There is no change whatsoever to that logic,
 so converting a former ruleset to a new ruleset is basically&mldr;
 splitting previous ruleset into <code>action</code> and <code>match</code> directives with the <code>match</code> directives following the exact same order as with current ruleset.</p>
 <p>In my case, the following ruleset needs to be rewritten:</p>
-<pre><code>reject from any sender &lt;shithole&gt; for any
+<pre tabindex=0><code>reject from any sender &lt;shithole&gt; for any
 
 accept for local alias &lt;aliases&gt; deliver to maildir
 accept from any for domain &lt;pdomains&gt; alias &lt;aliases&gt; deliver to maildir
@@ -224,14 +224,14 @@ accept tagged DKIM for any relay source &lt;sources&gt; hostnames &lt;helonames&
 accept for any relay via smtp://127.0.0.1:10027
 </code></pre><p>First of all, we need to identify what are the unique actions within that ruleset,
 and this boils down to &ldquo;aliases/virtual/userbase and anything after <code>relay</code>, <code>deliver to</code>":</p>
-<pre><code>alias &lt;aliases&gt; deliver to maildir
+<pre tabindex=0><code>alias &lt;aliases&gt; deliver to maildir
 alias &lt;opensmtpd-aliases&gt; deliver to maildir
 virtual &lt;vusers&gt; deliver to maildir
 relay backup mx1.poolp.org
 relay source &lt;sources&gt; hostnames &lt;helonames&gt;
 relay via smtp://127.0.0.1:10027
 </code></pre><p>The new grammar for these will result in:</p>
-<pre><code>action act01 maildir alias &lt;aliases&gt;
+<pre tabindex=0><code>action act01 maildir alias &lt;aliases&gt;
 action act02 maildir alias &lt;opensmtpd-aliases&gt;
 action act03 maildir virtual &lt;vusers&gt;
 action act04 relay backup mx mx1.poolp.org
@@ -240,7 +240,7 @@ action act06 relay host smtp://127.0.0.1:10027
 </code></pre><p>Now that all actions have been defined, we need to identify what are the matching patterns within the former ruleset,
 rewrite them with new grammar and attach them to their respective action.
 The change is very mechanical but keywords were shortened and made less ambiguous:</p>
-<pre><code>match from any mail-from &lt;shithole&gt; for any reject
+<pre tabindex=0><code>match from any mail-from &lt;shithole&gt; for any reject
 
 match for local action act01
 match from any for domain &lt;pdomains&gt; action act01
@@ -257,7 +257,7 @@ they are just expressed differently.</p>
 <p>This is the resulting smtpd.conf for poolp.org which should be considerably more complex thant most setups,
 we use a large part of OpenSMTPD&rsquo;s feature across all domains,
 most setups will have two or three actions at most:</p>
-<pre><code>pki mx1.poolp.org cert &quot;/etc/ssl/poolp.org.fullchain.pem&quot;
+<pre tabindex=0><code>pki mx1.poolp.org cert &quot;/etc/ssl/poolp.org.fullchain.pem&quot;
 pki mx1.poolp.org key &quot;/etc/ssl/private/poolp.org.key&quot;
 
 pki mail.poolp.org cert &quot;/etc/ssl/poolp.org.fullchain.pem&quot;

@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>September 2019 report: Jules, OpenSMTPD 6.6.0 upcoming release and related things | poolp.org</title>
 <meta name=twitter:card content="summary_large_image">
@@ -12,8 +12,8 @@
 <meta property="og:description" content="TL;DR: - I started writing this post a week ago but got interrupted by a baby, Jules - Spent MANY hours on writing OpenSMTPD-related articles - Enabled continuous integration in the OpenSMTPD portable repository - Managed to get rid of all the blocking issues for OpenSMTPD 6.6.0 release - Added some features and fixed a crash in filter-rspamd  Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/"><meta property="og:image" content="https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/cover.jpg"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2019-09-21T07:08:00+00:00">
-<meta property="article:modified_time" content="2019-09-21T07:08:00+00:00">
+<meta property="article:published_time" content="2019-09-21T07:08:00+02:00">
+<meta property="article:modified_time" content="2019-09-21T07:08:00+02:00">
 <link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
 <link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
 <link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
@@ -77,10 +77,10 @@
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -168,7 +168,7 @@ builtin and proc filters had only 4 possible actions:
 and <code>disconnect</code> to reject AND disconnect the phase with a custom SMTP message.</p>
 <p>Most filters used <code>reject</code> or <code>disconnect</code> as a mean to kill spammers upfront,
 with builtin filters such as:</p>
-<pre><code>filter check_rdns phase connect match !rdns disconnect &quot;550 GO AWAY&quot;
+<pre tabindex=0><code>filter check_rdns phase connect match !rdns disconnect &quot;550 GO AWAY&quot;
 </code></pre><p>But I received a lot of feedback from people scared of rejecting legitimate mails by being too harsh,
 and asking if there was a way to junk the messages rather than throw them away.</p>
 <p>I introduced the <code>junk</code> action which flags a session or transaction so messages can proceed,
@@ -176,7 +176,7 @@ but will get an <code>X-Spam: yes</code> header prepended.
 The following builtin filter would match the same session as above but,
 instead of killing the session,
 all messages from the session would be marked as spam:</p>
-<pre><code>filter check_rdns phase connect match !rdns junk
+<pre tabindex=0><code>filter check_rdns phase connect match !rdns junk
 </code></pre><p>With this new action,
 people can actually build confidence for a while before going stricter.</p>
 <p>As a bonus,
@@ -200,7 +200,7 @@ resulting in an SPF check failure.</p>
 <p>To work around this,
 mailing list software encode the sender address in the protocol so it originates from the mailing list domain,
 and allows them to decode back upon replies:</p>
-<pre><code>bb957901382a5d3f mta delivery evpid=25d3675b29721118 from=&lt;misc+bounces-probe-eric=faurot.net@opensmtpd.org&gt; to=&lt;gilles@poolp.org&gt; rcpt=&lt;-&gt; [...]
+<pre tabindex=0><code>bb957901382a5d3f mta delivery evpid=25d3675b29721118 from=&lt;misc+bounces-probe-eric=faurot.net@opensmtpd.org&gt; to=&lt;gilles@poolp.org&gt; rcpt=&lt;-&gt; [...]
 </code></pre><p>The <code>misc+bounces-probe-eric=faurot.net@opensmtpd.org</code> address resolves to <code>misc@opensmtpd.org</code> once you remove the <code>+</code> subaddressing and the mailing list software handling that address uses the subaddressing value <code>bounces-probe-eric=faurot.net</code> to retrieve the original sender.</p>
 <p>So far so good,
 but this only works for mailing lists.
@@ -220,7 +220,7 @@ there&rsquo;s a specificiation that can be easily found on a search engine,
 but <strong>it&rsquo;s now supported natively in OpenSMTPD</strong>.</p>
 <p>If your mail exchanger is intended to forward mails on behalf of other domains,
 you can enable SRS using the following configuration:</p>
-<pre><code>srs key secret_key_to_prevent_people_from_impersonating_me
+<pre tabindex=0><code>srs key secret_key_to_prevent_people_from_impersonating_me
 [...]
 action &quot;outgoing_mails&quot; relay srs
 </code></pre><p>Resulting in:</p>

@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>OpenSMTPD proc filters & fc-rDNS | poolp.org</title>
 <meta name=twitter:card content="summary">
@@ -78,10 +78,10 @@ On my request, eric@ implemented fc-rDNS lookups in our SMTP engine, causing Ope
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -124,7 +124,7 @@ but the code is here and -current users will be able to test it soon</p>
 <h2 id=tx-mail-and-tx-rcpt-events>tx-mail and tx-rcpt events</h2>
 <p>I have added two new reporting events for smtp-in and smtp-out: <code>tx-mail</code> and <code>tx-rcpt</code>.</p>
 <p>They are generated whenever <code>MAIL FROM</code> or <code>RCPT TO</code> have received a result from the server:</p>
-<pre><code>report|1|1544130229|smtp-in|tx-mail|0f3004c08c82d33e|fc08ce7d|&lt;owner-hackers+M85937=gilles=poolp.org@openbsd.org&gt;|ok
+<pre tabindex=0><code>report|1|1544130229|smtp-in|tx-mail|0f3004c08c82d33e|fc08ce7d|&lt;owner-hackers+M85937=gilles=poolp.org@openbsd.org&gt;|ok
 report|1|1544130229|smtp-in|tx-rcpt|0f3004c08c82d33e|fc08ce7d|&lt;gilles@poolp.org&gt;|ok
 </code></pre><p>A filter may listen for these events to determine which sender and recipients have been accepted in a transaction,
 something that would otherwise require keeping track of protocol-client and protocol-server events.</p>

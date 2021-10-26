@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github | poolp.org</title>
 <meta name=twitter:card content="summary_large_image">
@@ -16,8 +16,8 @@ Let&rsquo;s start with some LoFi Relax.
    About sponsorship First of all, I must say how grateful and happy I am that people value my work enough to trust and sponsor me, I appreciate it a lot and it is a huge motivation booster.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/"><meta property="og:image" content="https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/cover.jpg"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2020-12-24T02:38:00+00:00">
-<meta property="article:modified_time" content="2020-12-24T02:38:00+00:00">
+<meta property="article:published_time" content="2020-12-24T02:38:00+02:00">
+<meta property="article:modified_time" content="2020-12-24T02:38:00+02:00">
 <link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
 <link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
 <link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
@@ -81,10 +81,10 @@ Let&rsquo;s start with some LoFi Relax.
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -230,7 +230,7 @@ This is a mechanism that today can&rsquo;t be turned off by an admin.</p>
 In the example below,
 I configure two domains with maildir,
 one not supporting forward files and the other supporting it:</p>
-<pre><code>action &quot;local_users_1&quot; maildir
+<pre tabindex=0><code>action &quot;local_users_1&quot; maildir
 action &quot;local_users_2&quot; maildir forward-file
 
 match from any for domain &quot;foobar.org&quot; action &quot;local_users_1&quot;
@@ -253,7 +253,7 @@ However, there are setups were you want to support users redirecting their mails
 <p>My proposal was to <strong>disallow execution of a custom MDA in <code>~/.forward</code> files unless the admin explicitly allows it</strong>.
 In the example below,
 I configure two domains that support forward files but one does not allow execution of a custom MDA while the other does:</p>
-<pre><code>action &quot;local_users_1&quot; maildir forward-file
+<pre tabindex=0><code>action &quot;local_users_1&quot; maildir forward-file
 action &quot;local_users_2&quot; maildir forward-file allow-exec
 
 match from any for domain &quot;foobar.org&quot; action &quot;local_users_1&quot;
@@ -266,7 +266,7 @@ if a custom MDA command is placed in a <code>~/.forward</code> file then the SMT
 I <a href=http://openbsd-archive.7691.n7.nabble.com/diff-src-usr-sbin-smtpd-add-allow-exec-to-explicitly-allow-commands-from-aliases-td404143.html>suggested the introduction of the <code>allow-exec</code> option for <code>alias</code> and <code>virtual</code></a>.</p>
 <p>Historically,
 plugging a mailing list or similar tools was done by creating an alias to a command:</p>
-<pre><code>lists:  |/usr/local/bin/mlmmj ...
+<pre tabindex=0><code>lists:  |/usr/local/bin/mlmmj ...
 </code></pre><p>This is however <strong>a very bad practice that should be discouraged</strong> because attaching a command to an alias means there&rsquo;s no recipient user to run the command as,
 and they <strong>end up executed as the daemon&rsquo;s user</strong>.
 In every single use-case I ever met,
@@ -276,13 +276,13 @@ so my proposal <strong>was to do the same as above for forward files and disable
 <p>In the example below,
 I configure two domains with different aliases mappings,
 one not supporting execution of commands and the other supporting it:</p>
-<pre><code>action &quot;local_users_1&quot; maildir alias &lt;aliases_1&gt;
+<pre tabindex=0><code>action &quot;local_users_1&quot; maildir alias &lt;aliases_1&gt;
 action &quot;local_users_2&quot; maildir alias &lt;aliases_2&gt; allow-exec
 
 match from any for domain &quot;foobar.org&quot; action &quot;local_users_1&quot;
 match from any for domain &quot;barbaz.org&quot; action &quot;local_users_2&quot;
 </code></pre><p>Note that <code>virtual</code> uses the same expansion loop as <code>alias</code> so it works the same:</p>
-<pre><code>action &quot;local_users_1&quot; maildir virtual &lt;aliases_1&gt;
+<pre tabindex=0><code>action &quot;local_users_1&quot; maildir virtual &lt;aliases_1&gt;
 action &quot;local_users_2&quot; maildir virtual &lt;aliases_2&gt; allow-exec
 
 match from any for domain &quot;foobar.org&quot; action &quot;local_users_1&quot;

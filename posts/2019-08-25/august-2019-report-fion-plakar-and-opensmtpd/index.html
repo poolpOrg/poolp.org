@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=icon href=/images/poolp_org.png>
 <title>August 2019 report: Fion, Plakar and OpenSMTPD | poolp.org</title>
 <meta name=twitter:card content="summary_large_image">
@@ -79,10 +79,10 @@ This month has been sponsored by:">
 <div class=mainheading>
 <div class="row post-top-meta">
 <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
 </div>
 <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade</a><br>
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
 <span class=author-description>
 foobarbaz-ing since 1981<br>
 </span>
@@ -195,7 +195,7 @@ which is the main show stopper for switching to fion as far as i&rsquo;m concern
 I went from tar, to dump/restore, to incremental dump/restore, to rsync, to incremental rsync,
 and started writing my own tools for different use-cases I had.</p>
 <p>As I&rsquo;m doing some cleanup of my private repositories I found the following ones:</p>
-<pre><code>drwxr-xr-x   2 gilles  gilles   512 Aug  3  2012 backup
+<pre tabindex=0><code>drwxr-xr-x   2 gilles  gilles   512 Aug  3  2012 backup
 drwxr-xr-x   2 gilles  gilles   512 Jul 23  2012 backuptool
 drwxr-xr-x   6 gilles  gilles   512 Apr  1  2015 plakar
 </code></pre><p>Both <code>backup</code> and <code>backuptool</code> are going to bite the dust,
@@ -225,7 +225,7 @@ operations can be done on portions of a snapshot,
 not requiring the extraction of an entire snapshot when only a few files or directories are needed.
 I had started an UI which allowed <code>plakar</code> to display a randomized password and launch a local webserver expecting that password,
 a web interface would then allow visualizing the snapshots and their contents.</p>
-<pre><code>laptop$ plakar list
+<pre tabindex=0><code>laptop$ plakar list
 laptop$ plakar push ~/wip/OpenSMTPD
 snapshot ee30bf0b4a4f44b5bfe71c632424c4d3: dirs=47, files=426, errors=0
 laptop$ plakar list
@@ -254,7 +254,7 @@ Hit Ctrl-C to quit.
 however to learn Golang I rewrote <code>plakar</code> in Go this week-end and I have a version that works.
 It&rsquo;s not yet finished but the push/pull/list/trash commands are working,
 I&rsquo;m going to start using it on my machines and see how it goes for the next few weeks before I publish the code on Github.</p>
-<pre><code>laptop$ plakar list
+<pre tabindex=0><code>laptop$ plakar list
 laptop$ plakar push ~/wip/OpenSMTPD
 2b5bec66-1799-48a1-8418-42509347eac1
 laptop$ plakar list

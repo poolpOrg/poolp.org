@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.89.4">
 <link rel=icon href=/images/poolp_org.png>
 <title>OpenSMTPD: table_proc, queue_proc, crypto queue and other stuff | poolp.org</title>
 <meta name=twitter:card content="summary">
@@ -151,7 +151,7 @@ argv += optind;</p>
     table_api_on_check(table_stub_check);
     table_api_on_lookup(table_stub_lookup);
         table_api_on_fetch(table_stub_fetch);
-        table_api_dispatch();
+	    table_api_dispatch();
 
 return (0);
 }
@@ -197,13 +197,13 @@ argv += optind;</p>
     queue_api_on_message_commit(queue_stub_message_commit);
     queue_api_on_message_delete(queue_stub_message_delete);
         queue_api_on_message_fd_r(queue_stub_message_fd_r);
-        queue_api_on_message_fd_w(queue_stub_message_fd_w);
-            queue_api_on_message_corrupt(queue_stub_message_corrupt);
-            queue_api_on_envelope_create(queue_stub_envelope_create);
-                queue_api_on_envelope_delete(queue_stub_envelope_delete);
-                queue_api_on_envelope_update(queue_stub_envelope_update);
-                    queue_api_on_envelope_load(queue_stub_envelope_load);
-                    queue_api_on_envelope_walk(queue_stub_envelope_walk);
+	    queue_api_on_message_fd_w(queue_stub_message_fd_w);
+	        queue_api_on_message_corrupt(queue_stub_message_corrupt);
+		    queue_api_on_envelope_create(queue_stub_envelope_create);
+		        queue_api_on_envelope_delete(queue_stub_envelope_delete);
+			    queue_api_on_envelope_update(queue_stub_envelope_update);
+			        queue_api_on_envelope_load(queue_stub_envelope_load);
+				    queue_api_on_envelope_walk(queue_stub_envelope_walk);
 
 queue_api_dispatch();
 

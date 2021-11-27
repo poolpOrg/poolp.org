@@ -460,19 +460,32 @@ $ plakar on sqlite:///tmp/plakar.db ls
 $
 ```
 
-This has advantages and disadvantages.
+<strike>This has advantages and disadvantages.</strike>
 
 SQLite backend is **MUCH faster** than using the filesystem on a `plakar push` / `plakar pull`,
 mainly because **operations are reduced to reads & writes** in SQLite when the FS has to **open / close** files too for each chunk and object accesses.
 The **commit of a snapshot in SQLite is very efficient and fast**,
 whereas on the FS it can take a long while due to **a lot of hard links tricks**.
-But... on the other end,
-I trust my filesystem more than SQLite and I don't have to worry about **multiple concurrent writers** there.
+<strike>But... on the other end,
+I trust my filesystem more than SQLite and I don't have to worry about **multiple concurrent writers** there.</strike>
 
-I wouldn't use SQLite myself but I can reasons why one would,
-including the ease to produce a self-contained deduplicated backup that can be transfered as a single unit elsewhere.
+> Edit:
+> After thinking more about it, my irrational fear of storing backups in a single structured binary file doesn't hold:
+> I already do it with tarballs.
+>
+> I also had a concern with concurrent writes because, many years ago, a writer would lock the entire database.
+> This would for instance prevent plakar from pushing a small snapshot while a very big one was holding a transaction for an extended period of time.
+> But I was stuck in the past, as SQLite introduced a WAL ... 11 years ago.
+>
+> Thanks to Glandos @ Github for questionning my SQLite fear which had me revisit the concurrent writers concern and realize it no longer held ground,
+> this will be very useful as even the SQLite code I wrote still assumed this old behaviour:
+>
+> For example, the local cache opens the database in read-only and keeps track of all writes it wants to do,
+> then when a snapshot is committed, it reopens the database in write mode to flush changes and reduce the time it had to retain the database open.
+> This whole contorted way of working is no longer relevant and code can be simplified a lot.
+>
 
-What's more interesting is that SQLite support uses a generic SQL database connector,
+What's interesting is that SQLite support uses a generic SQL database connector,
 so I will be able to implement support for any SQL database by rewriting some queries...
 and obviously I have in mind databases that allow replication.
 

@@ -91,7 +91,7 @@ foobarbaz-ing since 1981<br>
 <i class="far fa-star"></i>
 Oct 26, 2021
 <i class="far fa-clock clock"></i>
-19 min read
+20 min read
 </span>
 </div>
 </div>
@@ -464,16 +464,27 @@ $ plakar on sqlite:///tmp/plakar.db push /bin
 $ plakar on sqlite:///tmp/plakar.db ls       
 2021-11-27T00:12:04Z  99e53a9c-e503-4c32-8622-924bf966f15b     <span class=m>11</span> MB /bin
 $
-</code></pre></div><p>This has advantages and disadvantages.</p>
+</code></pre></div><p><strike>This has advantages and disadvantages.</strike></p>
 <p>SQLite backend is <strong>MUCH faster</strong> than using the filesystem on a <code>plakar push</code> / <code>plakar pull</code>,
 mainly because <strong>operations are reduced to reads & writes</strong> in SQLite when the FS has to <strong>open / close</strong> files too for each chunk and object accesses.
 The <strong>commit of a snapshot in SQLite is very efficient and fast</strong>,
 whereas on the FS it can take a long while due to <strong>a lot of hard links tricks</strong>.
-But&mldr; on the other end,
-I trust my filesystem more than SQLite and I don&rsquo;t have to worry about <strong>multiple concurrent writers</strong> there.</p>
-<p>I wouldn&rsquo;t use SQLite myself but I can reasons why one would,
-including the ease to produce a self-contained deduplicated backup that can be transfered as a single unit elsewhere.</p>
-<p>What&rsquo;s more interesting is that SQLite support uses a generic SQL database connector,
+<strike>But&mldr; on the other end,
+I trust my filesystem more than SQLite and I don&rsquo;t have to worry about <strong>multiple concurrent writers</strong> there.</strike></p>
+<blockquote>
+<p>Edit:
+After thinking more about it, my irrational fear of storing backups in a single structured binary file doesn&rsquo;t hold:
+I already do it with tarballs.</p>
+<p>I also had a concern with concurrent writes because, many years ago, a writer would lock the entire database.
+This would for instance prevent plakar from pushing a small snapshot while a very big one was holding a transaction for an extended period of time.
+But I was stuck in the past, as SQLite introduced a WAL &mldr; 11 years ago.</p>
+<p>Thanks to Glandos @ Github for questionning my SQLite fear which had me revisit the concurrent writers concern and realize it no longer held ground,
+this will be very useful as even the SQLite code I wrote still assumed this old behaviour:</p>
+<p>For example, the local cache opens the database in read-only and keeps track of all writes it wants to do,
+then when a snapshot is committed, it reopens the database in write mode to flush changes and reduce the time it had to retain the database open.
+This whole contorted way of working is no longer relevant and code can be simplified a lot.</p>
+</blockquote>
+<p>What&rsquo;s interesting is that SQLite support uses a generic SQL database connector,
 so I will be able to implement support for any SQL database by rewriting some queries&mldr;
 and obviously I have in mind databases that allow replication.</p>
 <h2 id=optimized-local-cache-logic-and-replaced-with-an-sqlite-implementation>Optimized local cache logic and replaced with an SQLite implementation</h2>

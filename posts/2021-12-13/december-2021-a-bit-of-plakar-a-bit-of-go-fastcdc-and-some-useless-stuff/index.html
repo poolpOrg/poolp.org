@@ -1,0 +1,377 @@
+<!doctype html><html lang=en-us><head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.91.0">
+<link rel=icon href=/images/poolp_org.png>
+<title>December 2021: a bit of plakar, a bit of go-fastcdc and some useless stuff | poolp.org</title>
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://poolp.org/posts/2021-12-13/december-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff/cover.png">
+<meta name=twitter:title content="December 2021: a bit of plakar, a bit of go-fastcdc and some useless stuff">
+<meta name=twitter:description content="TL;DR: I worked on plakar, go-fastcdc a FastCDC implementation for plakar, and some useless stuff.    Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I created a Discord where I hang out and discuss my projects or screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord.">
+<meta property="og:title" content="December 2021: a bit of plakar, a bit of go-fastcdc and some useless stuff">
+<meta property="og:description" content="TL;DR: I worked on plakar, go-fastcdc a FastCDC implementation for plakar, and some useless stuff.    Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I created a Discord where I hang out and discuss my projects or screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://poolp.org/posts/2021-12-13/december-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff/"><meta property="og:image" content="https://poolp.org/posts/2021-12-13/december-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff/cover.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-12-13T07:40:00+02:00">
+<meta property="article:modified_time" content="2021-12-13T07:40:00+02:00">
+<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
+<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
+<link href=/css/medium.css rel=stylesheet>
+<link href=/css/additional.css rel=stylesheet>
+<link href=/css/syntax.css rel=stylesheet>
+<link href=/css/custom.css rel=stylesheet>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<div class="container pr-0">
+<a class=navbar-brand href=https://poolp.org/>
+<img src=/images/poolp_org.png alt=logo>
+</a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarMediumish>
+<ul class="navbar-nav ml-auto">
+<li class=nav-item>
+<a class=nav-link href=/fr/contracting/>Freelance</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hypno.cat>Hypnose</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/authors/gilles-chehade>About Me</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class=site-content>
+<div class=container>
+<div class=mainheading>
+</div><div class=main-content>
+<div class=container>
+<div class=row>
+<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+<p>Share</p>
+<ul>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://twitter.com/intent/tweet?text=December%202021%3a%20a%20bit%20of%20plakar%2c%20a%20bit%20of%20go-fastcdc%20and%20some%20useless%20stuff&url=https%3a%2f%2fpoolp.org%2fposts%2f2021-12-13%2fdecember-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2021-12-13%2fdecember-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
+<i class="fab fa-facebook-f"></i>
+</a>
+</li>
+<li class="ml-1 mr-1">
+<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2021-12-13%2fdecember-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
+<i class="fab fa-xing"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-md-9 flex-first flex-md-unordered">
+<div class=mainheading>
+<div class="row post-top-meta">
+<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade / حيل شحادة">
+</div>
+<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
+<span class=author-description>
+foobarbaz-ing since 1981<br>
+</span>
+<br>
+<span class=author-description>
+<i class="far fa-star"></i>
+Dec 13, 2021
+<i class="far fa-clock clock"></i>
+12 min read
+</span>
+</div>
+</div>
+<div class=after-post-tags>
+<ul class=tags>
+</ul>
+</div>
+<h1 class=posttitle>December 2021: a bit of plakar, a bit of go-fastcdc and some useless stuff</h1>
+</div>
+<div class=article-post>
+<blockquote>
+<b>TL;DR:</b>
+I worked on plakar, go-fastcdc a FastCDC implementation for plakar, and some useless stuff.
+</blockquote>
+<center>
+<img src=cover.png height=300px>
+</center>
+<h1 id=shout-out-to-my-sponsors-x2764xfe0f>Shout out to my sponsors ❤️</h1>
+<p>A <strong>HUGE thanks</strong> goes to my sponsors on <a href=https://github.com/sponsors/poolpOrg>github</a>
+and <a href=https://www.patreon.com/gilles>patreon</a>:
+your continuous support is very much appreciated !</p>
+<p>I created a Discord where I hang out and discuss my projects or screencast as I work on them.
+Feel free to hop in if you want,
+and feel free to do just like me and share thoughts as you work on your own projects there:
+<strong>this is a virtual hack room for anyone to join</strong>: <a href=https://discord.gg/6RBDax3S>https://discord.gg/6RBDax3S</a></p>
+<h1 id=this-activity-report-will-be-short>This activity report will be short</h1>
+<p>This activity report will be short because <strong>I spent the last ten days caring for my kid who got sick</strong>&mldr;
+before catching his stomach bug myself and spending the last few days in a somewhat familiar and unpleasant hell,
+unable to do everything I intended for this month.</p>
+<p>I didn&rsquo;t want to skip this report as it&rsquo;s the last of the year,
+but I&rsquo;m exhausted and don&rsquo;t have the energy to spend hours writing and rephrasing,
+I&rsquo;ll make it up to you next year.</p>
+<h1 id=first-plakar>First, plakar</h1>
+<p>The last few months,
+I worked on and off on the <code>plakar</code> project and while it&rsquo;s not at a stage where I want to release it,
+it&rsquo;s most certainly <strong>at a stage where feedback from early testers would be useful</strong>.</p>
+<p>If you have followed it through the last two or three reports and are interested in where this is going,
+feel free to <strong>join my <a href=https://discord.gg/6RBDax3S>discord</a></strong> where a room is dedicated to this project,
+where you can provide feedback as you test,
+and where I can fix things live as you break:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=gd>- DO NOT USE PLAKAR
+</span><span class=gd></span><span class=gi>+ DO NOT USE PLAKAR (UNLESS YOU&#39;RE HELPING ME MAKING IT USABLE)
+</span></code></pre></div><p>If I get enough feedback and assurance that it&rsquo;s not too buggy and can&rsquo;t collapse into a singularity,
+this might even get a first release sometime early 2022 if it keeps on at the pace it was going this last quarter.</p>
+<h1 id=since-were-on-the-subject-of-plakar>Since we&rsquo;re on the subject of plakar&mldr;</h1>
+<p>I did a ton of optimizations,
+not just code-wise but in terms of index format and such,
+storage representation is not fully stable yet but barely changes anymore and plakar snapshots made this week are likely to be restorable with a build from next week.
+Work these days is mainly focused on improving the command line interface and features built on top of snapshots themselves, not on how data is dealt with.</p>
+<p>One of the things I really wanted to improve,
+and which is the main thing I did this month,
+was to change the chunker&mldr;
+so let&rsquo;s talk about that.</p>
+<h1 id=whats-a-chunker->What&rsquo;s a chunker ?</h1>
+<p>To save space and avoid storing multiple copies of a same file content,
+<code>plakar</code> checks if that content is already in the store and only records a reference if it is.</p>
+<p>Instead of checking for an exact copy of the file,
+which would no longer match if a single byte was appended,
+it <strong>slices the content into chunks</strong> and checks for them individually so as to only write chunks that are not already present.</p>
+<p>A very naive approach to this slicing is that of <strong>fixed chunking</strong> where the file is sliced into chunks of fixed size,
+say 16KB,
+which works nicely for any file <strong>that&rsquo;s not supposed to change</strong> (hello <code>/bin</code>, you&rsquo;re awesome) or <strong>that only gets appends</strong> (I see you <code>/var/log/maillog</code>).
+This approach is naive because it works perfectly&mldr; as long as nothing causes a shift in chunk alignment:
+prepend a single byte in front of a 1GB log file that&rsquo;s already in the store,
+and all chunks are now shifted, none can be found in store and the whole file needs to be stored again.</p>
+<p>A solution to this problem is the use of <strong>content-defined chunking</strong>,
+an approach that uses the content itself to dynamically determine the location of <strong>chunk boundaries</strong>,
+rather than using fixed boundaries.</p>
+<p>The basic idea is that if you use a rolling buffer of data to <strong>somehow determine the chunk boundaries</strong>,
+then even if you insert a byte at the beginning or the middle of the stream and process the stream again again,
+<strong>after a while</strong> the rolling buffer will contain the same content as before the byte was inserted and therefore <strong>end up in the same chunking cycle</strong>&mldr;
+so it should be possible to <strong>compute a rolling hash</strong> of some kind and use specific outputs of that rolling hash as a condition to delimit chunks.</p>
+<p>This is nice and all but <strong>it doesn&rsquo;t come for free</strong>.
+If chunking is not of a fixed size,
+then it&rsquo;s no longer a simple fixed cursor increment but the result of computation done on content&mldr;
+which means that the more content needs to be seen to determine chunks,
+the slower chunking becomes.
+<strong>ORDERS OF MAGNITUDE slower</strong>.</p>
+<p>Luckily for me,
+there&rsquo;s a research community focused on content-defined chunking which has smarter people (<strong>ORDERS OF MAGNITUDE smarter</strong>) coming up with ways to speed things up,
+and while there&rsquo;s no way it&rsquo;ll ever reach the speed of fixed-length chunking,
+they made so much progress these last decades that it&rsquo;s actually fast enough to be usable.
+Not only that,
+but through <strong>improvements on resources consumptions</strong> like for instance not pegging a CPU during the whole process of chunking,
+some of the time lost on chunking can be regained on parallelization of tasks for example.</p>
+<p>Anyways,
+I digressed&mldr;</p>
+<p>In my very early Python PoC of plakar years ago,
+I started with fixed-length chunking to bootstrap the code then implemented a <a href=https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm>Rabin-Karp</a> rolling hash to provide contend-defined chunking.
+It worked and it was slow (a.f.),
+probably because it was Python,
+probably because it was my code,
+probably because Rabin-Karp isn&rsquo;t&mldr; too fast.</p>
+<p>When I revisited this project from scratch in Golang a few months ago,
+I thought I&rsquo;d just use any existing chunker available to me while bootstrapping the project,
+then take serious time investigating what&rsquo;s the chunker algorithm I really want to use and if I really need to implement it myself.</p>
+<p>For a few months,
+I relied on <a href=https://github.com/restic/chunker>restic&rsquo;s chunker</a> which&mldr; is a rolling Rabin hash (hooray, no surprises),
+but this month I decided to reconsider as it doesn&rsquo;t perform as fast as I&rsquo;d like and having plakar depend on another backup utility was a bit weird and came with its own issues.</p>
+<p>I did some quick search and found a paper titled <a href=https://www.usenix.org/conference/atc16/technical-sessions/presentation/xia>FastCDC: A Fast and Efficient Content-Defined Chunking Approach for Data Deduplication</a>,
+claiming:</p>
+<blockquote>
+<p>we propose FastCDC, a much faster CDC approach for data deduplication than the state-of-the-art CDC approaches while achieving a comparable deduplication ratio.
+[&mldr;]
+Our experimental evaluation demonstrates that FastCDC obtains a chunking speed that is about 10× higher than that of the Rabin-based CDC and about 3× that of the Gear- and AE-based CDC while achieving nearly the same deduplication ratio as the Rabin-based CDC.</p>
+</blockquote>
+<p>SAY NO MORE, SCIENTIST, YOU CONVINCED ME WITH YOUR WISE WORDS.</p>
+<p>I did a bit of github search,
+found implementations,
+tested them but they didn&rsquo;t work too well for me as one crashed,
+the other had an interface optimized for streaming,
+and both copied optimizations that I didn&rsquo;t understand from a different implementation in a different language.</p>
+<p>The paper was nicely written,
+came with pseudo-code displaying a very simple algorithm,
+so&mldr;</p>
+<h1 id=go-fastcdc>go-fastcdc</h1>
+<p>The <a href=https://github.com/poolpOrg/go-fastcdc>go-fastcdc</a> package hosts my implementation of the FastCDC paper with no bells and whistles&mldr;
+except that it takes special care to avoid unnecessary buffer allocations and has an <strong>implementation-specific</strong> optimization of my own,
+unrelated to how FastCDC itself works.</p>
+<p>Basically,
+a chunking loop looks like this:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go>    <span class=k>for</span> <span class=p>{</span>
+        <span class=nx>chunk</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>chunker</span><span class=p>.</span><span class=nf>Next</span><span class=p>()</span>
+        <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=k>if</span> <span class=nx>err</span> <span class=o>==</span> <span class=nx>io</span><span class=p>.</span><span class=nx>EOF</span> <span class=p>{</span>
+                <span class=c1>// no more chunks to read
+</span><span class=c1></span>                <span class=k>break</span>
+            <span class=p>}</span>
+            <span class=nx>log</span><span class=p>.</span><span class=nf>Fatal</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+        <span class=p>}</span>
+
+        <span class=c1>// do something with the chunk
+</span><span class=c1></span>    <span class=p>}</span>
+</code></pre></div><p>In other implementations that I read,
+the call to <code>Next()</code> is what computes the chunk boundaries so that in this loop the chunker only works during <code>Next()</code>,
+then remains idle while the caller does something with the chunk.</p>
+<p>My optimization was to have a goroutine part of the chunker to <strong>keep ensuring that the next chunk is available</strong> as soon as possible,
+and make <code>Next()</code> return the next chunk as soon as it is made available by the goroutine.
+This doesn&rsquo;t seem like much but it actually ensures that <strong>the chunker doesn&rsquo;t remain idle while the caller works with a chunk</strong>,
+making the calls to <code>Next()</code> almost &ldquo;free&rdquo; as the cost of chunking is paid concurrently to whatever work the caller is doing (if caller isn&rsquo;t pegging the CPU that is)
+The chunker goroutine only ensures ONE chunk ahead and will sleep as long as that chunk isn&rsquo;t consumed.</p>
+<p>On a <strong>loop similar to the one above</strong> with no work done on the chunk,
+this will bring absolutely <strong>no benefit</strong>,
+but for <code>plakar</code> which does <strong>a lot of chunking</strong> but also does <strong>a lot of stuff with chunks</strong> before requesting the next one,
+this <strong>saves several seconds</strong> on the snapshot of a 1GB directory.</p>
+<p>There&rsquo;s not much more I can say about it,
+it takes an input reader,
+produces content-defined chunks out of it following the FastCDC algorithm,
+not much to see,
+chop chop.</p>
+<p>It is ISC-licensed, use it for whatever you see fit,
+or don&rsquo;t use it and read what follows.</p>
+<h1 id=plakar-uses-go-fastcdc>plakar uses go-fastcdc</h1>
+<p>With go-fastcdc available to use,
+I broke ties with the restic chunker and switched plakar to go-fastcdc as its chunker,
+<del>it was a very tricky change that involved a ton of</del>
+I wish I could write about the challenges I faced but it was a trivial change that took two minutes as I used the same interface.</p>
+<p>The performance improvement was <strong>not as great as advertised by other fastcdc implementation</strong> but it is slighly faster for my use-case,
+I fully know the chunker code and am the maintainer of it so if anything needs tweaking, it&rsquo;s a big win.</p>
+<p>Does that mean that <code>plakar</code> will rely on FastCDC ?
+I dunno.</p>
+<p>See, it took me a day to switch from the previous chunker to my own FastCDC implementation,
+removing the downsides I had,
+so <strong>it was worth doing that work</strong> but this doesn&rsquo;t mean that FastCDC is the one I want to go with in the end.</p>
+<p>The <strong>FastCDC</strong> paper was published in 2016 claiming to be up to 10x faster than CDC,
+but then <strong>RapidCDC</strong> was published in 2019 claiming to be up to 33x faster than CDC,
+and now <strong>QuickCDC</strong> was published this year claiming to be even faster.
+Speed isn&rsquo;t everything but&mldr; in my case it kinda is.</p>
+<p>Unless the trade-offs (cpu cost / ram cost) are unbearable,
+there&rsquo;s <strong>no reason to stick with FastCDC if anything else is faster</strong>.
+I only had the time to read and implement FastCDC before my son tripped me into a hell of body fluids,
+but I&rsquo;ll be carefully reading (and probably implementing) RapidCDC and QuickCDC so I can do tests and pick what&rsquo;s the best for <code>plakar</code>.</p>
+<h1 id=thats-all-for-the-useful-stuff-below-is-junk>THAT&rsquo;S ALL FOR THE USEFUL STUFF, BELOW IS JUNK</h1>
+<h1 id=assorted-experiments-to-reduce-my-mental-backlog>Assorted experiments to reduce my mental backlog</h1>
+<h2 id=implemented-my-first-genetic-algorithm>Implemented my first genetic algorithm</h2>
+<p>I learnt the theory behind (some) genetic algorithms reading a book when I was a student <strong>approximately a century ago</strong>,
+but there was no school project involving one and since I was already drowning in work (and really wanted to graduate),
+I decided not to disperse myself and plain forgot about the topic.</p>
+<p>Somehow,
+something reminded me of genetic algorithms this month and since I never wrote one and didn&rsquo;t want to remain ignorant,
+I searched for a tutorial and ran into this presentation:</p>
+<center>
+<iframe width=560 height=315 src=https://www.youtube.com/embed/YrgTSPSdhSw title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</center>
+<p>I spent an hour implementing both examples,
+another hour trying to come up with smart optimizations to speed things up as it was painfully slow,
+then yet another hour to experiment with them further until I understood what they were useful for and what they were unusable for.</p>
+<p>It was lovely,
+I&rsquo;m not sure I&rsquo;ll be using one again before the next decade but who knows.</p>
+<h2 id=implemented-a-custom-dht>Implemented a custom DHT</h2>
+<p>Many years ago,
+I worked at a company that sells services built on top of a distributed storage powered by a <a href=https://pdos.csail.mit.edu/papers/chord:sigcomm01/chord_sigcomm.pdf>chord</a>-inspired DHT.
+I had never heard about DHT before so I studied the paper in anticipation of the interview,
+wrote a very basic network-less implementation,
+fell in love with the idea,
+and enjoyed my time working there with this technology even though I didn&rsquo;t work on the DHT itself but on a project built on top of it.</p>
+<p>Life went on,
+I switched job and city,
+but I kind of kept a regret that I never worked on the DHT layer myself &mldr;</p>
+<p>&mldr; and since this month was already screwed in terms of usefulness,
+I spent a couple evenings experimenting with a DHT implementation of my own that has some properties I&rsquo;m interested in.
+Some ideas were nice,
+others sucked or didn&rsquo;t produce the result I expected.
+It&rsquo;s an ongoing work to understand what I want to retain and what should be thrown away.</p>
+<p>I have a working implementation,
+with a memory-based key/value store built on top of it,
+networking and all,
+but there&rsquo;s nothing really interesting to show so I&rsquo;ll continue experimenting as a low-priority exercise and I&rsquo;ll write about it here if anything nice ever comes out of it.</p>
+<h2 id=hello-vr->Hello, VR !</h2>
+<p>If 2020 and 2021 have taught me anything,
+it&rsquo;s that <strong>there&rsquo;s an overwhelming amount of people that I wish would live on another planet</strong>.
+A number so high,
+in fact,
+that even if they all agreed to board a shuttle right away and head to the sun,
+I&rsquo;d still consider moving away from this planet while they board because oh my I wish they lived on another planet.</p>
+<p>I had huge plans for relocating on Mars ever since I read Ray Bradbury&rsquo;s Martian Chronicles as a teenager,
+but now there&rsquo;s this electric car guy who wants to ruin there too so&mldr;
+nu-uh,
+I need another place,
+preferably the opposite direction.</p>
+<p>Venus seemed very promising but the NASA won&rsquo;t be floating outposts there before my time is over,
+I&rsquo;m screwed.</p>
+<p>This only leaves me with VR.</p>
+<p>I picked up a book and started learning about VR development.
+This way,
+when I have a rough day and I just can&rsquo;t anymore with the human race,
+I can wear a mask and instantly put a few million kilometers between others and myself,
+even if just for a few deep breathes and the sight of an asteroid putting this place out of its misery.</p>
+<center>
+<img src=cover.png>
+</center>
+<p>I&rsquo;m not quite there yet but it seems achievable in a more realistic timeframe than my travel to Venus.</p>
+<h1 id=thats-all-folks>That&rsquo;s all folks!</h1>
+<p>As I do every year,
+I&rsquo;ll write a more personal retrospective of this year in a few days,
+maybe late 2021 or early 2022,
+it&rsquo;s been an intense year and I need to pour it out so my head is empty again.</p>
+<p>Hope you enjoyed reading this post,
+happy Xmas,
+happy new year and may life bring you joy and happiness.</p>
+<hr>
+<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/144>https://github.com/poolpOrg/poolp.org/discussions/144</a></p>
+</div>
+<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2021-10-26/november-2021-a-bit-of-go-ipcmsg-a-bit-of-go-privsep-and-a-ton-of-plakar/>November 2021: a bit of go-ipcmsg, a bit of go-privsep and a ton of plakar &#187;</a>
+<div class=clearfix></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=alertbar>
+<div class="container text-center">
+<span>
+<img src=/images/poolp_org.png alt=logo height=0px>
+Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
+supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
+<a href=https://patreon.com/gilles>Patreon</a> or
+<a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
+</span>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=container>
+<div class=row>
+<div class="col-md-6 col-sm-6 text-center text-lg-left">
+&copy; Copyright poolp.org - All rights reserved
+</div>
+<div class="col-md-6 col-sm-6 text-center text-lg-right">
+<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=/js/mediumish.js></script>
+</body>
+</html>

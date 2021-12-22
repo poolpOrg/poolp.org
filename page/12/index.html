@@ -1,7 +1,7 @@
 <!doctype html><html lang=en-us><head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.89.4">
+<meta name=generator content="Hugo 0.91.0">
 <link rel=icon href=/images/poolp_org.png>
 <title>poolp.org | poolp.org</title>
 <meta name=twitter:card content="summary">
@@ -51,6 +51,32 @@
 <div class=section-title>
 </div>
 <div class="row listrecent">
+<div class="col-lg-4 col-md-6 mb-30px card-group">
+<div class="card h-100">
+<div class=maxthumb>
+<a href=https://poolp.org/posts/2012-08-29/opensmtpd-crypto_backend-and-encrypted-queue/>
+</a>
+</div>
+<div class=card-body>
+<h2 class=card-title><a href=https://poolp.org/posts/2012-08-29/opensmtpd-crypto_backend-and-encrypted-queue/>OpenSMTPD: crypto_backend and encrypted queue</a></h2>
+<h4 class=card-text>A few days ago, Charles committed the compress_backend API which allowed transparent deflation/inflation of envelopes and messages as they hit the queue.
+The compression code is executed before the queue_backend gets the data so that any queue_backend can benefit transparently from compression without having to add any code to handle it. Due to our design, this also means that if the queue_backend stores envelopes and messages remotely, then the compression will take place before sending and after fetching, the remote end only ever sees compressed data.</h4>
+</div>
+<div class="card-footer bg-white">
+<div class=wrapfooter>
+<span class=meta-footer-thumb>
+<img class=author-thumb src=/images/me.png alt="Gilles Chehade">
+</span>
+<span class=author-meta>
+<span class=post-name><a href=authors/gilles-chehade>Gilles Chehade</a></span><br>
+<span class=post-date>Aug 29, 2012 - 2 min read </span>
+</span>
+<span class=post-read-more><a href=https://poolp.org/posts/2012-08-29/opensmtpd-crypto_backend-and-encrypted-queue/ title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1.0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5.0 00.706.03L12.5 16.85l5.662 4.126a.508.508.0 00.708-.03.5.5.0 00.118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55.0 1 .45 1 1v13.637l-5.162-3.668a.49.49.0 00-.676.0z" fill-rule="evenodd"/></svg></a></span>
+<div class=clearfix></div>
+</div>
+</div>
+</div>
+</div>
 <div class="col-lg-4 col-md-6 mb-30px card-group">
 <div class="card h-100">
 <div class=maxthumb>
@@ -179,32 +205,6 @@ Anyways, one of the most requested feature of OpenSMTPD is to provide users with
 <span class=post-date>Jun 19, 2012 - 3 min read </span>
 </span>
 <span class=post-read-more><a href=https://poolp.org/posts/2012-06-19/opensmtpd-development-bug-tracker-github/ title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1.0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5.0 00.706.03L12.5 16.85l5.662 4.126a.508.508.0 00.708-.03.5.5.0 00.118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55.0 1 .45 1 1v13.637l-5.162-3.668a.49.49.0 00-.676.0z" fill-rule="evenodd"/></svg></a></span>
-<div class=clearfix></div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-lg-4 col-md-6 mb-30px card-group">
-<div class="card h-100">
-<div class=maxthumb>
-<a href=https://poolp.org/posts/2012-06-06/opensmtpd-rest-queue/>
-</a>
-</div>
-<div class=card-body>
-<h2 class=card-title><a href=https://poolp.org/posts/2012-06-06/opensmtpd-rest-queue/>OpenSMTPD REST queue</a></h2>
-<h4 class=card-text>This is the first post of a series to illustrate and describe a &ldquo;proof of concept&rdquo; code by Charles, Eric and I. I will describe the features as they are implemented.
-Since mid-November 2011, OpenSMTPD offers support for an extensible queue API. The queue_backend API allows a developer to write a custom storage driver by implementing a small set of functions that take care of storing, updating and removing envelopes and messages.</h4>
-</div>
-<div class="card-footer bg-white">
-<div class=wrapfooter>
-<span class=meta-footer-thumb>
-<img class=author-thumb src=/images/me.png alt="Gilles Chehade">
-</span>
-<span class=author-meta>
-<span class=post-name><a href=authors/gilles-chehade>Gilles Chehade</a></span><br>
-<span class=post-date>Jun 6, 2012 - 6 min read </span>
-</span>
-<span class=post-read-more><a href=https://poolp.org/posts/2012-06-06/opensmtpd-rest-queue/ title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1.0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5.0 00.706.03L12.5 16.85l5.662 4.126a.508.508.0 00.708-.03.5.5.0 00.118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55.0 1 .45 1 1v13.637l-5.162-3.668a.49.49.0 00-.676.0z" fill-rule="evenodd"/></svg></a></span>
 <div class=clearfix></div>
 </div>
 </div>

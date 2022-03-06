@@ -11,6 +11,21 @@ language: fr
 implemented cloning and synchronization between plakar repositories
 </blockquote>
 
+<center>
+    <img src="cover.png" height="300px">
+</center>
+
+
+# Shout out to my sponsors &#x2764;&#xfe0f;
+
+A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
+and [patreon](https://www.patreon.com/gilles):
+your continuous support is very much appreciated !
+
+I created a Discord where I hang out and discuss my projects or screencast as I work on them.
+Feel free to hop in if you want,
+and feel free to do just like me and share thoughts as you work on your own projects there:
+**this is a virtual hack room for anyone to join**: [https://discord.gg/6RBDax3S](https://discord.gg/6RBDax3S)
 
 # Slacked a bit
 Shortly after I published my [yearly retrospective](/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/),

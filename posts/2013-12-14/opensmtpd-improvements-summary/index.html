@@ -1,203 +1,24 @@
-<!doctype html><html lang=en-us><head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.92.2">
-<link rel=icon href=/images/poolp_org.png>
-<title>OpenSMTPD improvements summary | poolp.org</title>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="OpenSMTPD improvements summary">
-<meta name=twitter:description content="Hey,
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.96.0"><link rel=icon href=/images/poolp_org.png><title>OpenSMTPD improvements summary | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="OpenSMTPD improvements summary"><meta name=twitter:description content="Hey,
 No OpenSMTPD news since almost a month&mldr; time to break the trend !
 As far as I&rsquo;m concerned, I&rsquo;ve been busy with other work but still a git log shows that between Eric and I we have accumulated quite a few things during this month. Below is a short non-exhaustive summary of changes and news.
-All of it is already pushed to our Github mirror and part of the snapshots that were published yesterday.">
-<meta property="og:title" content="OpenSMTPD improvements summary">
-<meta property="og:description" content="Hey,
+All of it is already pushed to our Github mirror and part of the snapshots that were published yesterday."><meta property="og:title" content="OpenSMTPD improvements summary"><meta property="og:description" content="Hey,
 No OpenSMTPD news since almost a month&mldr; time to break the trend !
 As far as I&rsquo;m concerned, I&rsquo;ve been busy with other work but still a git log shows that between Eric and I we have accumulated quite a few things during this month. Below is a short non-exhaustive summary of changes and news.
-All of it is already pushed to our Github mirror and part of the snapshots that were published yesterday.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://poolp.org/posts/2013-12-14/opensmtpd-improvements-summary/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2013-12-14T21:36:40+00:00">
-<meta property="article:modified_time" content="2013-12-14T21:36:40+00:00">
-<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
-<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
-<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
-<link href=/css/medium.css rel=stylesheet>
-<link href=/css/additional.css rel=stylesheet>
-<link href=/css/syntax.css rel=stylesheet>
-<link href=/css/custom.css rel=stylesheet>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-<div class="container pr-0">
-<a class=navbar-brand href=https://poolp.org/>
-<img src=/images/poolp_org.png alt=logo>
-</a>
+All of it is already pushed to our Github mirror and part of the snapshots that were published yesterday."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2013-12-14/opensmtpd-improvements-summary/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2013-12-14T21:36:40+00:00"><meta property="article:modified_time" content="2013-12-14T21:36:40+00:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarMediumish>
-<ul class="navbar-nav ml-auto">
-<li class=nav-item>
-<a class=nav-link href=/fr/contracting/>Freelance</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=https://hypno.cat>Hypnose</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/authors/gilles-chehade>About Me</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<div class=site-content>
-<div class=container>
-<div class=mainheading>
-</div><div class=main-content>
-<div class=container>
-<div class=row>
-<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
-<p>Share</p>
-<ul>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://twitter.com/intent/tweet?text=OpenSMTPD%20improvements%20summary&url=https%3a%2f%2fpoolp.org%2fposts%2f2013-12-14%2fopensmtpd-improvements-summary%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
-<i class="fab fa-twitter"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2013-12-14%2fopensmtpd-improvements-summary%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
-<i class="fab fa-facebook-f"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2013-12-14%2fopensmtpd-improvements-summary%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
-<i class="fab fa-xing"></i>
-</a>
-</li>
-</ul>
-</div>
-</div>
-<div class="col-md-9 flex-first flex-md-unordered">
-<div class=mainheading>
-<div class="row post-top-meta">
-<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة">
-</div>
-<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
-<span class=author-description>
-foobarbaz-ing since 1981<br>
-</span>
-<br>
-<span class=author-description>
-<i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=OpenSMTPD%20improvements%20summary&url=https%3a%2f%2fpoolp.org%2fposts%2f2013-12-14%2fopensmtpd-improvements-summary%2f" onclick='return window.open(this.href,"twitter-share","width=550,height=435"),!1'><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2013-12-14%2fopensmtpd-improvements-summary%2f" onclick='return window.open(this.href,"facebook-share","width=550,height=435"),!1'><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2013-12-14%2fopensmtpd-improvements-summary%2f" onclick='return window.open(this.href,"xing-share","width=550,height=435"),!1'><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
 Dec 14, 2013
 <i class="far fa-clock clock"></i>
-11 min read
-</span>
-</div>
-</div>
-<div class=after-post-tags>
-<ul class=tags>
-</ul>
-</div>
-<h1 class=posttitle>OpenSMTPD improvements summary</h1>
-</div>
-<div class=article-post>
-<p>Hey,</p>
-<p>No OpenSMTPD news since almost a month&mldr; time to break the trend !</p>
-<p>As far as I&rsquo;m concerned, I&rsquo;ve been busy with other work but still a git log shows that between Eric and I we have accumulated quite a few things during this month. Below is a short non-exhaustive summary of changes and news.</p>
-<p>All of it is already pushed to our Github mirror and part of the snapshots that were published yesterday. I&rsquo;d like to stress out that if you can run bleeding edge stuff, you REALLY want to test the latest snapshot as it has some very invasive improvements which we want to make sure are &ldquo;bug-free&rdquo; before the next big release in a few months.</p>
-<p>We have also fixed some minor bugs that were reported to us since 5.3.1 and discovered/smashed some other bugs on our own. The bugfixes are part of the snapshots and were backported to the 5.3.2 stable release that should take place next week.</p>
-<p>MTA improvements</p>
-<p>OpenSMTPD has various &ldquo;logical&rdquo; optimizations to try and optimize its transfers. It will create several, but not too many, connections to a destination; it will detect that two domains share a same set of MX; it will spread load across MX of same priority; it will group messages on connections and group envelopes for messages; proceed to quadratic increase of delay upon temporary failures, and much more &mldr;</p>
-<p>This all performs pretty well with regular use-cases but we have discovered a use-case that was sub-optimal: dealing with a large list of single recipient messages going to the same destination. For example, the <a href=mailto:misc@opensmtpd.org>misc@opensmtpd.org</a> list uses DKIM-proxy and signs all outgoing mail for each single recipient. Then, our code will optimize that out by grouping these recipients so that their mail is delivered through the same connection. So far, so good.</p>
-<p>Problem occurs if the other side uses grey-listing and rejects the recipients with 451 instead of dropping the connection with a 421 at first recipient: we keep reusing the connection to submit envelopes which we know are likely to fail. With a small list like ours, that&rsquo;s not a problem as we will fail a few dozens envelopes and the quadratic delay will cause things to sort themselves after a few bounces but &mldr;</p>
-<p>&mldr; now imagine your list is that of a company with hundreds of thousands of recipients and the same happens. By the time you&rsquo;re done submitting your list of recipients, it&rsquo;s already time to try out the first of the list. The delay between your last recipient and the retry of first one causes you to fail to pass the grey-listing again, and you enter another loop of failures&mldr; It eventually sorts itself out when the quadratic delay is so large that the delay between your last submitted recipient and the next retry of the first recipient respects the grey-listing imposed delay.</p>
-<p>Most people will never hit this case, but those who hit it will see their mails delivered after much more time than they really should (ie: your customers could receive their mail 12 hours later when they could be delivered after 4 hours.</p>
-<p>Eric and I came up with two distinct mechanisms to improve the situation:</p>
-<p>First of all, instead of starting several concurrent connections, OpenSMTPD will first try to establish one and ensure that it is working before creating new ones progressively. If an issue prevents connections from being established and sessions from being started, the MTA layer will penalize the route and prevent it from being used for a small period. If new envelopes arrive for that destination, they are delayed until the route is considered usable again.</p>
-<p>Then, another mechanism kicks in. If too many recipients are rejected in a row, instead of trying the entire list OpenSMTPD will consider that they are all temporarily failed and mark the route temporarily unusable. This will cause the deliveries to be reattempted later, just like when a grey-listing mechanism is in place, without hammering the host with tons of recipients that are most likely going to fail. The ones that were rejected are penalized and their delay is slightly increased compared to those that OpenSMTPD failed. With this, in most situations people will not hit the case; in case we really face the problem, we will avoid hammering the server that kindly asked us to try again later several times; and if this was just a coincidence, legitimate envelopes are only deferred for 400 seconds.</p>
-<p>Finally, Eric spotted a bug that could cause a wrong error to be detected and imposing a long delay on some deliveries to hosts that advertise both IPv4 and IPv6 MX records.</p>
-<p>smtpctl show routes</p>
-<p>With all this routing logic added, we needed a way to be able to better understand what is happening at the MTA level.</p>
-<p>Log files have been extended and they provide a precise history, however it&rsquo;s always nice to have a tool that provides real-time display of the state of something you&rsquo;re investigating. So Eric added a &ldquo;smtpctl show routes&rdquo; subcommand that display the routing informations that are currently in used by MTA. It displays active routes, routes that have been penalized and when their penalty is going to expire and the route be usable again. This is a shortened output of the command right when I sent the &ldquo;new snapshot published&rdquo; mail to our mailing list, it displays the route in use, the state of the route, the number of connections currently active to that route, the penalty level and the timeout before a route is usable again after we detected a failure:</p>
-<p>smtpctl show routes
-88.190.237.114 &lt;-> 144.76.32.53 (arati.lostca.se) &mdash;- nconn=1 penalty=0 timeout=- 88.190.237.114 &lt;-> 213.41.253.7 (gw.zefyris.com) &mdash;- nconn=1 penalty=0 timeout=- 88.190.237.114 &lt;-> 213.165.67.115 (mx01.gmx.net) &ndash;Q- nconn=0 penalty=0 timeout=2s 88.190.237.114 &lt;-> 213.165.67.97 (mx01.gmx.net) &ndash;Q- nconn=0 penalty=0 timeout=1s 88.190.237.114 &lt;-> 213.165.67.99 (mx00.gmx.net) &ndash;Q- nconn=0 penalty=0 timeout=2s [&mldr;] about a hundred entries [&mldr;] 88.190.237.114 &lt;-> 72.249.41.52 (lavabit.com) &mdash;- nconn=1 penalty=0 timeout=- 88.190.237.114 &lt;-> 87.98.163.156 (ns1.huynguyen.org) N&mdash; nconn=1 penalty=0 timeout=- 88.190.237.114 &lt;-> 95.130.12.24 (host1.trois-doubles.net) &ndash;Q- nconn=0 penalty=0 timeout=1s</p>
-<p>Truly perfect for troubleshooting remote delivery issues !</p>
-<p>SSL issues</p>
-<p>Eric ran into an issue where the daemon would crash when accepting a SSL connection from a client that didn&rsquo;t do what we expected.</p>
-<p>I tried to reproduce but for some reason, it would not happen on OpenBSD, only on Linux. I spent a while troubleshooting and eventually found a subtle issue with our handling of I/O events.</p>
-<p>During a non-SSL session, OpenSMTPD enables and disables events as the session progresses since a SMTP session is a succession of command/responses where it is not expected to read a command when it has to send a response, and not expected to send a response when it is waiting for a client command. This works fine.</p>
-<p>During a SSL session, however, renegociation can take place and expect the server to write while the server is in read mode, and the other way around. To cope with this, the code wrongfully enabled both read/write events, causing the daemon to eventually end up in a weird state leading to either a hang until the client disconnects or a fatal() being hit.</p>
-<p>In addition, we never set the client socket non-blocking, even though the logic around expected it, because it was assumed that we didn&rsquo;t really need to do so due to the event-based approach. However, I found ways to cause SSL_accept() to be triggered BUT block with a misbehaving client that didn&rsquo;t complete the SSL &ldquo;handshake&rdquo;. Other related issues could cause a SSL client to &ldquo;block&rdquo; other concurrent sessions until it timedout.</p>
-<p>All these were fixed by making the client socket non-blocking and by being more strict with our event handling, none of the bugs could be reproduce on Linux after the fixes while no regressions were observed on OpenBSD.</p>
-<p>Portable improvements</p>
-<p>An OpenBSD hacker complained that on Linux authentication didn&rsquo;t work.</p>
-<p>In fact, it would only work when built with PAM (which most Linux users have been doing so far) as the default authentication method in -portable is getpwnam(3) which doesn&rsquo;t return the passwd field on Linux even when called as root. He suggested we implement a getspnam(3) method and provided the code which we merged.</p>
-<p>I spent a while tracking a crash on FreeBSD-STABLE that didn&rsquo;t trigger on FreeBSD-RELEASE and which was caused by their import of NetBSD&rsquo;s strnvis(3) which has &mldr; swapped parameters compared to OpenBSD&rsquo;s strnvis(3). This caused an invalid read that lead to a segv. We marked strnvis(3) as broken on NetBSD and FreeBSD to ensure that -portable builds with the compat glue until we deal with it differently.</p>
-<p>Charles has also worked on some fixes for OSX which we broke with all our new code :-)</p>
-<p>smtpd -dvn improvements</p>
-<p>The -d option was supposed to start it in foreground, while the -v option was supposed to start it verbose. In practice, this was not the case as -d started it in foreground AND verbose, while -v was essentially no-op. Oh and due to the log.[ch] code we inherited, it was not possible to start in foreground without verbose, and it was not possible for us to activate traces without being verbose too.</p>
-<p>Some people have been willing to start it in foreground without the verbose mode because they want to run it with a process manager and let it handle god knows what. Since it&rsquo;s a common request and our behaviour was not consistent with the documentation, I decided to rework that and make it behave like expected.</p>
-<p>While at it, I fixed the requirement for verbose mode to enable traces so that now it is possible to:</p>
-<p>smtpd -d -> start smtpd in foreground but not verbose smtpd -v -> start smtpd in background but verbose smtpd -dv -> foreground and verbose</p>
-<p>and no matter if -d and/or -v is specified, &ldquo;smtpctl trace " will activate traces at runtime which will either appear at foreground or be logged to syslog as mail.debug.</p>
-<p>I also received two complaints the same day that &lsquo;smtpd -n&rsquo; checked the configuration file for validity but didn&rsquo;t detect SSL certs errors as they are loaded after the configuration file parsing (on purpose). I slightly reworked the code so that we still load them after the configuration is parsed but to detect errors in the &lsquo;smtpd -n&rsquo; case.</p>
-<p>Assorted bugfixes and improvements</p>
-<p>Table lookups where not always folding key to lowercase which could lead to failed lookups for existing entries.</p>
-<p>The &ldquo;as&rdquo; feature allows a rule to override the sender at SMTP-level (not in the message itself) and a missing check would lead it to override the sender when generating a bounce. Since the override can be partial (ie: @domain, or user without domain) and the sender for a bounce is an empty address, this could lead to invalid addresses (ie: MAIL FROM: , MAIL FROM: &lt;@poolp.org>) causing a reject of the bounce by remote host.</p>
-<p>Also, on the bounce side, the delivery_mbox backend didn&rsquo;t assume that a sender could be empty in the bounce case and it would call the mailer.local third-party utility with an empty sender. That utility would write to the mbox with the usual delimiter &ldquo;From</p>
-<p>" but with an empty address causing the following delimiter to be generated &ldquo;From " (two spaces before date). Some MUA that do not check for &ldquo;From " but for &ldquo;From
+11 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>OpenSMTPD improvements summary</h1></div><div class=article-post><p>Hey,</p><p>No OpenSMTPD news since almost a month&mldr; time to break the trend !</p><p>As far as I&rsquo;m concerned, I&rsquo;ve been busy with other work but still a git log shows that between Eric and I we have accumulated quite a few things during this month. Below is a short non-exhaustive summary of changes and news.</p><p>All of it is already pushed to our Github mirror and part of the snapshots that were published yesterday. I&rsquo;d like to stress out that if you can run bleeding edge stuff, you REALLY want to test the latest snapshot as it has some very invasive improvements which we want to make sure are &ldquo;bug-free&rdquo; before the next big release in a few months.</p><p>We have also fixed some minor bugs that were reported to us since 5.3.1 and discovered/smashed some other bugs on our own. The bugfixes are part of the snapshots and were backported to the 5.3.2 stable release that should take place next week.</p><p>MTA improvements</p><p>OpenSMTPD has various &ldquo;logical&rdquo; optimizations to try and optimize its transfers. It will create several, but not too many, connections to a destination; it will detect that two domains share a same set of MX; it will spread load across MX of same priority; it will group messages on connections and group envelopes for messages; proceed to quadratic increase of delay upon temporary failures, and much more &mldr;</p><p>This all performs pretty well with regular use-cases but we have discovered a use-case that was sub-optimal: dealing with a large list of single recipient messages going to the same destination. For example, the <a href=mailto:misc@opensmtpd.org>misc@opensmtpd.org</a> list uses DKIM-proxy and signs all outgoing mail for each single recipient. Then, our code will optimize that out by grouping these recipients so that their mail is delivered through the same connection. So far, so good.</p><p>Problem occurs if the other side uses grey-listing and rejects the recipients with 451 instead of dropping the connection with a 421 at first recipient: we keep reusing the connection to submit envelopes which we know are likely to fail. With a small list like ours, that&rsquo;s not a problem as we will fail a few dozens envelopes and the quadratic delay will cause things to sort themselves after a few bounces but &mldr;</p><p>&mldr; now imagine your list is that of a company with hundreds of thousands of recipients and the same happens. By the time you&rsquo;re done submitting your list of recipients, it&rsquo;s already time to try out the first of the list. The delay between your last recipient and the retry of first one causes you to fail to pass the grey-listing again, and you enter another loop of failures&mldr; It eventually sorts itself out when the quadratic delay is so large that the delay between your last submitted recipient and the next retry of the first recipient respects the grey-listing imposed delay.</p><p>Most people will never hit this case, but those who hit it will see their mails delivered after much more time than they really should (ie: your customers could receive their mail 12 hours later when they could be delivered after 4 hours.</p><p>Eric and I came up with two distinct mechanisms to improve the situation:</p><p>First of all, instead of starting several concurrent connections, OpenSMTPD will first try to establish one and ensure that it is working before creating new ones progressively. If an issue prevents connections from being established and sessions from being started, the MTA layer will penalize the route and prevent it from being used for a small period. If new envelopes arrive for that destination, they are delayed until the route is considered usable again.</p><p>Then, another mechanism kicks in. If too many recipients are rejected in a row, instead of trying the entire list OpenSMTPD will consider that they are all temporarily failed and mark the route temporarily unusable. This will cause the deliveries to be reattempted later, just like when a grey-listing mechanism is in place, without hammering the host with tons of recipients that are most likely going to fail. The ones that were rejected are penalized and their delay is slightly increased compared to those that OpenSMTPD failed. With this, in most situations people will not hit the case; in case we really face the problem, we will avoid hammering the server that kindly asked us to try again later several times; and if this was just a coincidence, legitimate envelopes are only deferred for 400 seconds.</p><p>Finally, Eric spotted a bug that could cause a wrong error to be detected and imposing a long delay on some deliveries to hosts that advertise both IPv4 and IPv6 MX records.</p><p>smtpctl show routes</p><p>With all this routing logic added, we needed a way to be able to better understand what is happening at the MTA level.</p><p>Log files have been extended and they provide a precise history, however it&rsquo;s always nice to have a tool that provides real-time display of the state of something you&rsquo;re investigating. So Eric added a &ldquo;smtpctl show routes&rdquo; subcommand that display the routing informations that are currently in used by MTA. It displays active routes, routes that have been penalized and when their penalty is going to expire and the route be usable again. This is a shortened output of the command right when I sent the &ldquo;new snapshot published&rdquo; mail to our mailing list, it displays the route in use, the state of the route, the number of connections currently active to that route, the penalty level and the timeout before a route is usable again after we detected a failure:</p><p>smtpctl show routes
+88.190.237.114 &lt;-> 144.76.32.53 (arati.lostca.se) &mdash;- nconn=1 penalty=0 timeout=- 88.190.237.114 &lt;-> 213.41.253.7 (gw.zefyris.com) &mdash;- nconn=1 penalty=0 timeout=- 88.190.237.114 &lt;-> 213.165.67.115 (mx01.gmx.net) &ndash;Q- nconn=0 penalty=0 timeout=2s 88.190.237.114 &lt;-> 213.165.67.97 (mx01.gmx.net) &ndash;Q- nconn=0 penalty=0 timeout=1s 88.190.237.114 &lt;-> 213.165.67.99 (mx00.gmx.net) &ndash;Q- nconn=0 penalty=0 timeout=2s [&mldr;] about a hundred entries [&mldr;] 88.190.237.114 &lt;-> 72.249.41.52 (lavabit.com) &mdash;- nconn=1 penalty=0 timeout=- 88.190.237.114 &lt;-> 87.98.163.156 (ns1.huynguyen.org) N&mdash; nconn=1 penalty=0 timeout=- 88.190.237.114 &lt;-> 95.130.12.24 (host1.trois-doubles.net) &ndash;Q- nconn=0 penalty=0 timeout=1s</p><p>Truly perfect for troubleshooting remote delivery issues !</p><p>SSL issues</p><p>Eric ran into an issue where the daemon would crash when accepting a SSL connection from a client that didn&rsquo;t do what we expected.</p><p>I tried to reproduce but for some reason, it would not happen on OpenBSD, only on Linux. I spent a while troubleshooting and eventually found a subtle issue with our handling of I/O events.</p><p>During a non-SSL session, OpenSMTPD enables and disables events as the session progresses since a SMTP session is a succession of command/responses where it is not expected to read a command when it has to send a response, and not expected to send a response when it is waiting for a client command. This works fine.</p><p>During a SSL session, however, renegociation can take place and expect the server to write while the server is in read mode, and the other way around. To cope with this, the code wrongfully enabled both read/write events, causing the daemon to eventually end up in a weird state leading to either a hang until the client disconnects or a fatal() being hit.</p><p>In addition, we never set the client socket non-blocking, even though the logic around expected it, because it was assumed that we didn&rsquo;t really need to do so due to the event-based approach. However, I found ways to cause SSL_accept() to be triggered BUT block with a misbehaving client that didn&rsquo;t complete the SSL &ldquo;handshake&rdquo;. Other related issues could cause a SSL client to &ldquo;block&rdquo; other concurrent sessions until it timedout.</p><p>All these were fixed by making the client socket non-blocking and by being more strict with our event handling, none of the bugs could be reproduce on Linux after the fixes while no regressions were observed on OpenBSD.</p><p>Portable improvements</p><p>An OpenBSD hacker complained that on Linux authentication didn&rsquo;t work.</p><p>In fact, it would only work when built with PAM (which most Linux users have been doing so far) as the default authentication method in -portable is getpwnam(3) which doesn&rsquo;t return the passwd field on Linux even when called as root. He suggested we implement a getspnam(3) method and provided the code which we merged.</p><p>I spent a while tracking a crash on FreeBSD-STABLE that didn&rsquo;t trigger on FreeBSD-RELEASE and which was caused by their import of NetBSD&rsquo;s strnvis(3) which has &mldr; swapped parameters compared to OpenBSD&rsquo;s strnvis(3). This caused an invalid read that lead to a segv. We marked strnvis(3) as broken on NetBSD and FreeBSD to ensure that -portable builds with the compat glue until we deal with it differently.</p><p>Charles has also worked on some fixes for OSX which we broke with all our new code :-)</p><p>smtpd -dvn improvements</p><p>The -d option was supposed to start it in foreground, while the -v option was supposed to start it verbose. In practice, this was not the case as -d started it in foreground AND verbose, while -v was essentially no-op. Oh and due to the log.[ch] code we inherited, it was not possible to start in foreground without verbose, and it was not possible for us to activate traces without being verbose too.</p><p>Some people have been willing to start it in foreground without the verbose mode because they want to run it with a process manager and let it handle god knows what. Since it&rsquo;s a common request and our behaviour was not consistent with the documentation, I decided to rework that and make it behave like expected.</p><p>While at it, I fixed the requirement for verbose mode to enable traces so that now it is possible to:</p><p>smtpd -d -> start smtpd in foreground but not verbose smtpd -v -> start smtpd in background but verbose smtpd -dv -> foreground and verbose</p><p>and no matter if -d and/or -v is specified, &ldquo;smtpctl trace " will activate traces at runtime which will either appear at foreground or be logged to syslog as mail.debug.</p><p>I also received two complaints the same day that &lsquo;smtpd -n&rsquo; checked the configuration file for validity but didn&rsquo;t detect SSL certs errors as they are loaded after the configuration file parsing (on purpose). I slightly reworked the code so that we still load them after the configuration is parsed but to detect errors in the &lsquo;smtpd -n&rsquo; case.</p><p>Assorted bugfixes and improvements</p><p>Table lookups where not always folding key to lowercase which could lead to failed lookups for existing entries.</p><p>The &ldquo;as&rdquo; feature allows a rule to override the sender at SMTP-level (not in the message itself) and a missing check would lead it to override the sender when generating a bounce. Since the override can be partial (ie: @domain, or user without domain) and the sender for a bounce is an empty address, this could lead to invalid addresses (ie: MAIL FROM: , MAIL FROM: &lt;@poolp.org>) causing a reject of the bounce by remote host.</p><p>Also, on the bounce side, the delivery_mbox backend didn&rsquo;t assume that a sender could be empty in the bounce case and it would call the mailer.local third-party utility with an empty sender. That utility would write to the mbox with the usual delimiter &ldquo;From</p><p>" but with an empty address causing the following delimiter to be generated &ldquo;From " (two spaces before date). Some MUA that do not check for &ldquo;From " but for &ldquo;From
 " as a delimiter would fail to detect the bounces in the mbox.
-As mentionned before, the table API and queue API now allow people to write standalone backends that are started by OpenSMTPD. They can have their own dependencies and be maintained out of the official tree, just as any other tool. To help with this, various APIs have been improved and changed slightly to ease this mechanism.</p>
-<p>A user has improved local LMTP delivery by adding support for unix sockets so that OpenSMTPD can talk LMTP to a unix socket setup by another daemon (Dovecot seems to be the trend ;-)</p>
-<p>Another user reported a hang after a while and Eric traced it back to a missing check that could lead to an EOF not being detected. The mda/mta sessions would be in a broken state for a session and fail to deliver the message, causing it to stay in queue indefinitely. It was rare enough that we never hit it as it was &mldr; specific to the size of a message &mldr;</p>
-<p>A third user reported a &ldquo;reject&rdquo; rule not working as expected and we spotted a typo in the config file parser causing &ldquo;reject&rdquo; rules to fail when used with the &ldquo;sender&rdquo; parameter.</p>
-<p>A poolp user mentionned the &lsquo;+&rsquo; delimiter not working for one of his domains while it worked with his @poolp.org mail account. I realized that the &lsquo;+&rsquo; delimiter handling was not implemented for virtual domains, only for primary domains&mldr; so I added support for it.</p>
-<p>Finally, an OpenBSD hacker reported that he had issues with his ~/.forward file causing recipient to be rejected when the file is empty. This was indeed the case and anoter user provided a diff to fix it.</p>
-<p>That&rsquo;s all folks !</p>
-<p>For now ;-)</p>
-</div>
-<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-<a class="d-block col-md-6" href=https://poolp.org/posts/2013-12-14/news-from-the-front/> &#171; News-from-the-front</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2013-05-08/installer-openbsd-sur-une-dedibox-classic-gen2/>Installer OpenBSD sur une dedibox Classic+ Gen2 &#187;</a>
-<div class=clearfix></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class=alertbar>
-<div class="container text-center">
-<span>
-<img src=/images/poolp_org.png alt=logo height=0px>
+As mentionned before, the table API and queue API now allow people to write standalone backends that are started by OpenSMTPD. They can have their own dependencies and be maintained out of the official tree, just as any other tool. To help with this, various APIs have been improved and changed slightly to ease this mechanism.</p><p>A user has improved local LMTP delivery by adding support for unix sockets so that OpenSMTPD can talk LMTP to a unix socket setup by another daemon (Dovecot seems to be the trend ;-)</p><p>Another user reported a hang after a while and Eric traced it back to a missing check that could lead to an EOF not being detected. The mda/mta sessions would be in a broken state for a session and fail to deliver the message, causing it to stay in queue indefinitely. It was rare enough that we never hit it as it was &mldr; specific to the size of a message &mldr;</p><p>A third user reported a &ldquo;reject&rdquo; rule not working as expected and we spotted a typo in the config file parser causing &ldquo;reject&rdquo; rules to fail when used with the &ldquo;sender&rdquo; parameter.</p><p>A poolp user mentionned the &lsquo;+&rsquo; delimiter not working for one of his domains while it worked with his @poolp.org mail account. I realized that the &lsquo;+&rsquo; delimiter handling was not implemented for virtual domains, only for primary domains&mldr; so I added support for it.</p><p>Finally, an OpenBSD hacker reported that he had issues with his ~/.forward file causing recipient to be rejected when the file is empty. This was indeed the case and anoter user provided a diff to fix it.</p><p>That&rsquo;s all folks !</p><p>For now ;-)</p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2013-12-14/news-from-the-front/>&#171; News-from-the-front</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2013-05-08/installer-openbsd-sur-une-dedibox-classic-gen2/>Installer OpenBSD sur une dedibox Classic+ Gen2 &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
-</span>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=container>
-<div class=row>
-<div class="col-md-6 col-sm-6 text-center text-lg-left">
-&copy; Copyright poolp.org - All rights reserved
-</div>
-<div class="col-md-6 col-sm-6 text-center text-lg-right">
-<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
-</div>
-</div>
-</div>
-</footer>
-</div>
-<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
 <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
-<script src=/js/mediumish.js></script>
-</body>
-</html>
+<script src=/js/mediumish.js></script></body></html>

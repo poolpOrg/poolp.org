@@ -1,130 +1,23 @@
-<!doctype html><html lang=en-us><head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.92.2">
-<link rel=icon href=/images/poolp_org.png>
-<title>January 2020: OpenSMTPD work - libasr and libtls | poolp.org</title>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="January 2020: OpenSMTPD work - libasr and libtls">
-<meta name=twitter:description content="TL;DR: - brought back libasr to OpenSMTPD, it is no longer an external dependency - libtls-enabled OpenSMTPD is now a thing - documented filters and improved reporting  Shout outs to my sponsors ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
-If you like my work, you can join my sponsors or share my reports and articles to help me find more people willing to sponsor me !">
-<meta property="og:title" content="January 2020: OpenSMTPD work - libasr and libtls">
-<meta property="og:description" content="TL;DR: - brought back libasr to OpenSMTPD, it is no longer an external dependency - libtls-enabled OpenSMTPD is now a thing - documented filters and improved reporting  Shout outs to my sponsors ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
-If you like my work, you can join my sponsors or share my reports and articles to help me find more people willing to sponsor me !">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://poolp.org/posts/2020-01-22/january-2020-opensmtpd-work-libasr-and-libtls/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2020-01-22T06:51:00+02:00">
-<meta property="article:modified_time" content="2020-01-22T06:51:00+02:00">
-<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
-<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
-<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
-<link href=/css/medium.css rel=stylesheet>
-<link href=/css/additional.css rel=stylesheet>
-<link href=/css/syntax.css rel=stylesheet>
-<link href=/css/custom.css rel=stylesheet>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-<div class="container pr-0">
-<a class=navbar-brand href=https://poolp.org/>
-<img src=/images/poolp_org.png alt=logo>
-</a>
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.96.0"><link rel=icon href=/images/poolp_org.png><title>January 2020: OpenSMTPD work - libasr and libtls | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="January 2020: OpenSMTPD work - libasr and libtls"><meta name=twitter:description content="TL;DR: - brought back libasr to OpenSMTPD, it is no longer an external dependency - libtls-enabled OpenSMTPD is now a thing - documented filters and improved reporting  Shout outs to my sponsors ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
+If you like my work, you can join my sponsors or share my reports and articles to help me find more people willing to sponsor me !"><meta property="og:title" content="January 2020: OpenSMTPD work - libasr and libtls"><meta property="og:description" content="TL;DR: - brought back libasr to OpenSMTPD, it is no longer an external dependency - libtls-enabled OpenSMTPD is now a thing - documented filters and improved reporting  Shout outs to my sponsors ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
+If you like my work, you can join my sponsors or share my reports and articles to help me find more people willing to sponsor me !"><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2020-01-22/january-2020-opensmtpd-work-libasr-and-libtls/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-01-22T06:51:00+02:00"><meta property="article:modified_time" content="2020-01-22T06:51:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarMediumish>
-<ul class="navbar-nav ml-auto">
-<li class=nav-item>
-<a class=nav-link href=/fr/contracting/>Freelance</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=https://hypno.cat>Hypnose</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/authors/gilles-chehade>About Me</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<div class=site-content>
-<div class=container>
-<div class=mainheading>
-</div><div class=main-content>
-<div class=container>
-<div class=row>
-<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
-<p>Share</p>
-<ul>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://twitter.com/intent/tweet?text=January%202020%3a%20OpenSMTPD%20work%20-%20libasr%20and%20libtls&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-22%2fjanuary-2020-opensmtpd-work-libasr-and-libtls%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
-<i class="fab fa-twitter"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-22%2fjanuary-2020-opensmtpd-work-libasr-and-libtls%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
-<i class="fab fa-facebook-f"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-22%2fjanuary-2020-opensmtpd-work-libasr-and-libtls%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
-<i class="fab fa-xing"></i>
-</a>
-</li>
-</ul>
-</div>
-</div>
-<div class="col-md-9 flex-first flex-md-unordered">
-<div class=mainheading>
-<div class="row post-top-meta">
-<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة">
-</div>
-<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
-<span class=author-description>
-foobarbaz-ing since 1981<br>
-</span>
-<br>
-<span class=author-description>
-<i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=January%202020%3a%20OpenSMTPD%20work%20-%20libasr%20and%20libtls&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-22%2fjanuary-2020-opensmtpd-work-libasr-and-libtls%2f" onclick='return window.open(this.href,"twitter-share","width=550,height=435"),!1'><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-22%2fjanuary-2020-opensmtpd-work-libasr-and-libtls%2f" onclick='return window.open(this.href,"facebook-share","width=550,height=435"),!1'><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-01-22%2fjanuary-2020-opensmtpd-work-libasr-and-libtls%2f" onclick='return window.open(this.href,"xing-share","width=550,height=435"),!1'><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
 Jan 22, 2020
 <i class="far fa-clock clock"></i>
-9 min read
-</span>
-</div>
-</div>
-<div class=after-post-tags>
-<ul class=tags>
-</ul>
-</div>
-<h1 class=posttitle>January 2020: OpenSMTPD work - libasr and libtls</h1>
-</div>
-<div class=article-post>
-<pre><code>TL;DR:
+9 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>January 2020: OpenSMTPD work - libasr and libtls</h1></div><div class=article-post><pre><code>TL;DR:
 - brought back libasr to OpenSMTPD, it is no longer an external dependency
 - libtls-enabled OpenSMTPD is now a thing
 - documented filters and improved reporting
-</code></pre>
-<h2 id=shout-outs-to-my-sponsors->Shout outs to my sponsors !</h2>
-<p>As usual,
-a <strong>huge</strong> thanks goes to the people sponsoring me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>, the work in this post was made possible by my <a href=/sponsorship/>sponsorship</a>.</p>
-<p>If you like my work,
-you can join my sponsors or share my reports and articles to help me find more people willing to sponsor me !</p>
-<p><strong><font color=red>&lt;3</font></strong> <strong><font color=red>&lt;3</font></strong> <strong><font color=red>&lt;3</font></strong></p>
-<h2 id=no-shiny-feature-this-month-ungrateful-work>No shiny feature this month, ungrateful work</h2>
-<p>OpenSMTPD has had quite a few features implemented since its latest major release.
+</code></pre><h2 id=shout-outs-to-my-sponsors->Shout outs to my sponsors !</h2><p>As usual,
+a <strong>huge</strong> thanks goes to the people sponsoring me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>, the work in this post was made possible by my <a href=/sponsorship/>sponsorship</a>.</p><p>If you like my work,
+you can join my sponsors or share my reports and articles to help me find more people willing to sponsor me !</p><p><strong><font color=red>&lt;3</font></strong> <strong><font color=red>&lt;3</font></strong> <strong><font color=red>&lt;3</font></strong></p><h2 id=no-shiny-feature-this-month-ungrateful-work>No shiny feature this month, ungrateful work</h2><p>OpenSMTPD has had quite a few features implemented since its latest major release.
 As we get closer and closer to the next major release,
-my work on new features will slow down to focus more on getting the release in shape.</p>
-<p>I spent this month working on plumbing and stuff that&rsquo;s not necessarily very visible to users,
-as well as multiple features that will <strong>NOT</strong> be part of the next release but will be committed shortly after release is tagged.</p>
-<p>This month I focused on simplifying OpenSMTPD portable packaging by removing the need for <code>libasr</code> dependency.
+my work on new features will slow down to focus more on getting the release in shape.</p><p>I spent this month working on plumbing and stuff that&rsquo;s not necessarily very visible to users,
+as well as multiple features that will <strong>NOT</strong> be part of the next release but will be committed shortly after release is tagged.</p><p>This month I focused on simplifying OpenSMTPD portable packaging by removing the need for <code>libasr</code> dependency.
 I also worked on making <code>libtls</code>-enabled OpenSMTPD possible for portable,
-a long awaited change that was not trivial and that will be skipped for the next release as it is very invasive.</p>
-<h2 id=libasr-brought-back-to-compat-layer>libasr brought back to compat layer</h2>
-<p>For various purposes,
-OpenSMTPD relies <strong>a lot</strong> on DNS lookups and requires them to be <strong>non-blocking</strong>.</p>
-<p>In May 2009,
+a long awaited change that was not trivial and that will be skipped for the next release as it is very invasive.</p><h2 id=libasr-brought-back-to-compat-layer>libasr brought back to compat layer</h2><p>For various purposes,
+OpenSMTPD relies <strong>a lot</strong> on DNS lookups and requires them to be <strong>non-blocking</strong>.</p><p>In May 2009,
 because we didn&rsquo;t want threading in the daemon,
 a former developer implemented this using a <code>fork()</code>-based approach.
 In November 2010,
@@ -133,51 +26,33 @@ a then experimental asynchronous resolver written by <code>eric@</code>,
 which uses an asynchronous-friendly interface that can be used with a multiplexer.
 In other words,
 <code>asr</code> allows DNS lookups to happen in parallel without multi-processing or multi-threading,
-and results to be notified through <code>select()</code>, <code>poll()</code> or similar interfaces (<code>libevent</code> in the case of OpenSMTPD).</p>
-<p>As <code>asr</code> is not a standard interface,
+and results to be notified through <code>select()</code>, <code>poll()</code> or similar interfaces (<code>libevent</code> in the case of OpenSMTPD).</p><p>As <code>asr</code> is not a standard interface,
 OpenSMTPD initially shipped it with its compat layer so it could be built on other BSD & Linux.
 Back then,
 the release process didn&rsquo;t include major / minor / portable-only releases,
 and <code>asr</code> was still a moving target with bugs being spotted every few weeks.
 This led to a very annoying situation as bugs in <code>asr</code> required a new OpenSMTPD release,
-sometimes a few days apart.</p>
-<p>We decided to split <code>asr</code> from OpenSMTPD and have it as a standalone library,
+sometimes a few days apart.</p><p>We decided to split <code>asr</code> from OpenSMTPD and have it as a standalone library,
 with its own releases.
 This was a bit inconvenient because it meant package maintainers had to to maintain two packages,
 one for OpenSMTPD and one for <code>asr</code>,
-but it allowed us to decorellate both releases which was very helpful at that point.</p>
-<p>Years passed,
+but it allowed us to decorellate both releases which was very helpful at that point.</p><p>Years passed,
 OpenSMTPD improved its release management and <code>asr</code> stabilized so much that four years passed without a need for release,
 but this split was not reconsidered&mldr;
-until recently.</p>
-<p>In 2019,
+until recently.</p><p>In 2019,
 after filters were released,
 I started working heavily on improving our portable layer which <a href=https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/>suffered multiple shortcomings</a>.
 While discussing with <em>eric@</em>,
 we came up with the conclusion that <code>asr</code> should now be brought back to OpenSMTPD compat layer:
 unlike years ago,
 rolling a portable-specific release to fix a bug in the compat layer is something we do,
-and it is now inconvenient for us to have the two split apart.</p>
-<p>The compat layers had diverged a bit so I did the work to bring back <code>asr</code> to OpenSMTPD,
+and it is now inconvenient for us to have the two split apart.</p><p>The compat layers had diverged a bit so I did the work to bring back <code>asr</code> to OpenSMTPD,
 conditionally compiling it if not available on the system.
 Starting with the next major version,
 6.7.0 due sometime in April/May,
 the portable release of OpenSMTPD will no longer require a <code>libasr</code> dependency and <code>--with-libasr</code> configure flag.
-It will autodetect if it is available on the system and conditionally build the compat layer one if it isn&rsquo;t.</p>
-<h2 id=libtls--for-systems-without-libressl>libtls &mldr; for systems without LibreSSL</h2>
-<p>To quote the LibreSSL home page:</p>
-<blockquote>
-<p>LibreSSL is a version of the TLS/crypto stack forked from OpenSSL in 2014, with goals of modernizing the codebase, improving security, and applying best practice development processes.</p>
-</blockquote>
-<p>Among the improvements that LibreSSL brought was a new <code>libtls</code> library,
-described as follow:</p>
-<blockquote>
-<p><code>libtls</code>: a new TLS library, designed to make it easier to write foolproof applications.</p>
-</blockquote>
-<center>
-<img src=/images/2020-01-22-libtls.jpg>
-</center>
-<p>Indeed,
+It will autodetect if it is available on the system and conditionally build the compat layer one if it isn&rsquo;t.</p><h2 id=libtls--for-systems-without-libressl>libtls &mldr; for systems without LibreSSL</h2><p>To quote the LibreSSL home page:</p><blockquote><p>LibreSSL is a version of the TLS/crypto stack forked from OpenSSL in 2014, with goals of modernizing the codebase, improving security, and applying best practice development processes.</p></blockquote><p>Among the improvements that LibreSSL brought was a new <code>libtls</code> library,
+described as follow:</p><blockquote><p><code>libtls</code>: a new TLS library, designed to make it easier to write foolproof applications.</p></blockquote><center><img src=/images/2020-01-22-libtls.jpg></center><p>Indeed,
 as someone who started using OpenSSL and <code>libssl</code> as a student during the 2000&rsquo;s,
 I can attest that using the library is overly complex and writing foolproof applications is a challenge.
 I won&rsquo;t expand more because this post is not about OpenSSL bashing.
@@ -185,20 +60,17 @@ Lets just say that <strong>it&rsquo;s easy to write code that works</strong> usi
 but <strong>it&rsquo;s very hard to know if that code is correct or overlooking an option or a flag somewhere</strong>.
 Part of this is because crypto is not easy and you must know what you&rsquo;re doing,
 but a bigger part of this is because the API doesn&rsquo;t make it any easier:
-its attempt at being extremely flexible and allowing a developer to do pretty much anything provides multiple ways for a developer to fail and shoot their own feet.</p>
-<p>The <code>libtls</code> interface is <strong>a wrapper</strong> around <code>libssl</code> which exposes a much simpler interface.
+its attempt at being extremely flexible and allowing a developer to do pretty much anything provides multiple ways for a developer to fail and shoot their own feet.</p><p>The <code>libtls</code> interface is <strong>a wrapper</strong> around <code>libssl</code> which exposes a much simpler interface.
 It provides sane defaults,
 so that missing something somewhere doesn&rsquo;t result in a less secure setup,
 but it also provides <em>less</em> possibilities of tweaking everything which is often better for <em>most</em> people.
 This results in TLS code that&rsquo;s considerably smaller,
-easier to understand and less error-prone.</p>
-<p>I have had in my plans to convert OpenSMTPD to <code>libtls</code> since it was first released,
+easier to understand and less error-prone.</p><p>I have had in my plans to convert OpenSMTPD to <code>libtls</code> since it was first released,
 but couldn&rsquo;t switch to that interface because it <strong>requires LibreSSL</strong> and many systems still do not provide a package for it:
 a switch to <code>libtls</code> would essentially kill OpenSMTPD portable.
 Another option could be to build a standalone <code>libtls</code> that carries LibreSSL&rsquo;s <code>libssl</code>,
 <a href=https://github.com/reyk/libressl-deb>which is just what <em>reyk@</em> did</a>.
-His approach is a very good trade-off and I hope it catches with his standalone <code>libtls</code> becoming widespread.</p>
-<p>In the meantime,
+His approach is a very good trade-off and I hope it catches with his standalone <code>libtls</code> becoming widespread.</p><p>In the meantime,
 OpenSMTPD cannot use <code>libtls</code> interface without breaking on systems that didn&rsquo;t package his work and&mldr;
 experience shows it might take time.
 A time during which we&rsquo;re still forced to use <code>libssl</code> interface,
@@ -207,22 +79,17 @@ This is highly annoying because multiple features were put on hold until the <co
 some have been deferred for so long that its a bit difficult to defer them some more.
 At some point we need to either implement them using the <code>libssl</code> interface,
 which will take time and efforts for code that we don&rsquo;t intend to keep,
-or find a way to <strong>use the <code>libtls</code> interface with OpenSSL</strong>&rsquo;s <code>libssl</code> as a &ldquo;degraded&rdquo; mode.</p>
-<p>Since <code>libtls</code> is <strong>a wrapper</strong> around <code>libssl</code>,
+or find a way to <strong>use the <code>libtls</code> interface with OpenSSL</strong>&rsquo;s <code>libssl</code> as a &ldquo;degraded&rdquo; mode.</p><p>Since <code>libtls</code> is <strong>a wrapper</strong> around <code>libssl</code>,
 you&rsquo;d figure that this shouldn&rsquo;t be too hard BUT LibreSSL and OpenSSL diverged on a few things,
 the <code>libssl</code> interface now has a few differences in terms of structures,
 functions available and options to these functions.
 You can&rsquo;t just grab <code>libtls</code> and build it with OpenSSL,
-it won&rsquo;t for a variety of reasons.</p>
-<p>I didn&rsquo;t want to spend time working on an OpenSSL version of a standalone <code>libtls</code>:
+it won&rsquo;t for a variety of reasons.</p><p>I didn&rsquo;t want to spend time working on an OpenSSL version of a standalone <code>libtls</code>:
 I believe there are good reasons why LibreSSL was forked and I&rsquo;d rather see more people use LibreSSL than endorsing OpenSSL myself.
-So&mldr; I found a middle-ground which seemed the most pramatic to me.</p>
-<p>I have brought <code>libtls</code> from latest LibreSSL into the <strong>compat layer</strong> of OpenSMTPD,
+So&mldr; I found a middle-ground which seemed the most pramatic to me.</p><p>I have brought <code>libtls</code> from latest LibreSSL into the <strong>compat layer</strong> of OpenSMTPD,
 then did the <strong><em>strict minimum</em></strong> to allow it to build and link with OpenSSL <strong>to cover OpenSMTPD&rsquo;s needs and nothing more</strong>.
 This allowed me to convert OpenSMTPD to the <code>libtls</code> interface simplifying <em>an awesome lot</em> of code,
-while being able to build on any system wether it ships LibreSSL or not.</p>
-<p>So how does this differ from a standalone <code>libtls</code> ?</p>
-<p>OpenSMTPD&rsquo;s configure will detect if LibreSSL is installed and use its <code>libtls</code> if available.
+while being able to build on any system wether it ships LibreSSL or not.</p><p>So how does this differ from a standalone <code>libtls</code> ?</p><p>OpenSMTPD&rsquo;s configure will detect if LibreSSL is installed and use its <code>libtls</code> if available.
 If it&rsquo;s not available,
 it will detect if a <code>libtls</code> is available (<em>reyk@</em>&rsquo;s work, for example),
 then if neither one is available it will build a dumbed down version that contains only what OpenSMTPD needs.
@@ -231,95 +98,34 @@ This has the benefit that <strong>LibreSSL is always prioritized</strong> if ava
 while still allowing us to switch to <code>libtls</code> if it isn&rsquo;t.
 This is not ideal as it adds complexity to the compat layer in OpenSMTPD,
 but this complexity allows unlocking the <code>libtls</code> conversion which will considerably simplify OpenSMTPD itself,
-so I think it is a fair choice.</p>
-<p>The work to build that compat <code>libtls</code> is done and so is the conversion of OpenSMTPD to the <code>libtls</code> interface.
+so I think it is a fair choice.</p><p>The work to build that compat <code>libtls</code> is done and so is the conversion of OpenSMTPD to the <code>libtls</code> interface.
 It is very invasive and, like any huge work, it has a potential for introducing regressions.
 Given that there&rsquo;s only a few weeks before the next major release,
-I won&rsquo;t merge this for the next major release but skip it so we have a full development cycle to spot shortcomings.</p>
-<p>The next major release of OpenSMTPD,
+I won&rsquo;t merge this for the next major release but skip it so we have a full development cycle to spot shortcomings.</p><p>The next major release of OpenSMTPD,
 version 6.7.0 due April/May,
 will still use the <code>libssl</code> interface but later releases starting with version 6.8.0,
 due October/November,
-will use the <code>libtls</code> interface.</p>
-<h2 id=implemented-multiple-feature-requests>Implemented multiple feature requests</h2>
-<p>Building on top of my <code>libtls</code> work,
+will use the <code>libtls</code> interface.</p><h2 id=implemented-multiple-feature-requests>Implemented multiple feature requests</h2><p>Building on top of my <code>libtls</code> work,
 I have implemented several of the features that were requested and left pending waiting for the switch.
-They are committed in separate branches and waiting for the <code>libtls</code> work to be merged:</p>
-<ul>
-<li>selectable ciphers per listener</li>
-<li>selectable curves per listener</li>
-<li>selectable TLS protocol version per listener</li>
-<li>selectable SNI per listener (they&rsquo;re currently global)</li>
-</ul>
-<p>Other features are being worked on but not finished yet:</p>
-<ul>
-<li>OCSP check</li>
-<li>certificate fingerprint verifications</li>
-</ul>
-<h2 id=started-documenting-the-filter-api>Started documenting the filter API</h2>
-<p>I have also committed a <code>smtpd-filters(7)</code> man page,
+They are committed in separate branches and waiting for the <code>libtls</code> work to be merged:</p><ul><li>selectable ciphers per listener</li><li>selectable curves per listener</li><li>selectable TLS protocol version per listener</li><li>selectable SNI per listener (they&rsquo;re currently global)</li></ul><p>Other features are being worked on but not finished yet:</p><ul><li>OCSP check</li><li>certificate fingerprint verifications</li></ul><h2 id=started-documenting-the-filter-api>Started documenting the filter API</h2><p>I have also committed a <code>smtpd-filters(7)</code> man page,
 which doesn&rsquo;t get installed yet,
-that documents the protocol and events.</p>
-<p>The feedback so far has been good and resulted in a few changes,
-but having more people read it and comment would be nice.</p>
-<h2 id=more-smtp-out-reporting-improvements>More <code>smtp-out</code> reporting improvements</h2>
-<p>I discussed <code>smtp-out</code> reporting <a href=/posts/2019-12-24/december-2019-opensmtpd-and-filters-work-articles-and-goodies/>in my last report</a>,
-but it wasn&rsquo;t finished and didn&rsquo;t cover all events.</p>
-<p>I spent time to get this done so that we have events parity between <code>smtp-in</code> and <code>smtp-out</code>.
+that documents the protocol and events.</p><p>The feedback so far has been good and resulted in a few changes,
+but having more people read it and comment would be nice.</p><h2 id=more-smtp-out-reporting-improvements>More <code>smtp-out</code> reporting improvements</h2><p>I discussed <code>smtp-out</code> reporting <a href=/posts/2019-12-24/december-2019-opensmtpd-and-filters-work-articles-and-goodies/>in my last report</a>,
+but it wasn&rsquo;t finished and didn&rsquo;t cover all events.</p><p>I spent time to get this done so that we have events parity between <code>smtp-in</code> and <code>smtp-out</code>.
 If you enable reporting for <code>smtp-in</code> and <code>smtp-out</code> then accept a mail for relaying,
 you will first see the events happening from <code>smtp-in</code> as you accept the mail (server),
-then see the same events from <code>smtp-out</code> as you relay the mail (client).</p>
-<p>The message id and transaction id are preserved so that it is possible to track the path of an envelope through its entire life.</p>
-<h2 id=what-next->What next ?</h2>
-<p>I&rsquo;m contemplating <code>mda</code> reporting,
-more on that in a future report.</p>
-<p>I started learning Go by writing OpenSMTPD filters a few months ago and now I&rsquo;m learning Rust for other purposes.
+then see the same events from <code>smtp-out</code> as you relay the mail (client).</p><p>The message id and transaction id are preserved so that it is possible to track the path of an envelope through its entire life.</p><h2 id=what-next->What next ?</h2><p>I&rsquo;m contemplating <code>mda</code> reporting,
+more on that in a future report.</p><p>I started learning Go by writing OpenSMTPD filters a few months ago and now I&rsquo;m learning Rust for other purposes.
 Half-way through a book,
 I will probably work on a real project to get my hands dirty.
 I&rsquo;m unsure what that project will be yet as I have a few ideas in my sleeves,
-but if I come up with anything valuable I&rsquo;ll share it.</p>
-<p>I will write another article next week to discuss some work that could not make it into this report.</p>
-<hr>
-<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/116>https://github.com/poolpOrg/poolp.org/discussions/116</a></p>
-</div>
-<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-<a class="d-block col-md-6" href=https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/> &#171; OpenSMTPD advisory dissected</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-12-26/spf-aware-greylisting-et-filter-greylist/>SPF-aware greylisting et filter-greylist &#187;</a>
-<div class=clearfix></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class=alertbar>
-<div class="container text-center">
-<span>
-<img src=/images/poolp_org.png alt=logo height=0px>
+but if I come up with anything valuable I&rsquo;ll share it.</p><p>I will write another article next week to discuss some work that could not make it into this report.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/116>https://github.com/poolpOrg/poolp.org/discussions/116</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/>&#171; OpenSMTPD advisory dissected</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-12-26/spf-aware-greylisting-et-filter-greylist/>SPF-aware greylisting et filter-greylist &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
-</span>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=container>
-<div class=row>
-<div class="col-md-6 col-sm-6 text-center text-lg-left">
-&copy; Copyright poolp.org - All rights reserved
-</div>
-<div class="col-md-6 col-sm-6 text-center text-lg-right">
-<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
-</div>
-</div>
-</div>
-</footer>
-</div>
-<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
 <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
-<script src=/js/mediumish.js></script>
-</body>
-</html>
+<script src=/js/mediumish.js></script></body></html>

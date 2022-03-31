@@ -1,182 +1,19 @@
-<!doctype html><html lang=en-us><head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.92.2">
-<link rel=icon href=/images/poolp_org.png>
-<title>OpenSMTPD: plenty of news | poolp.org</title>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="OpenSMTPD: plenty of news">
-<meta name=twitter:description content="It&rsquo;s been over a month since my last post but I have an excuse: I was super busy, then I was super on vacation &mldr; but I&rsquo;m back again ;-)
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.96.0"><link rel=icon href=/images/poolp_org.png><title>OpenSMTPD: plenty of news | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="OpenSMTPD: plenty of news"><meta name=twitter:description content="It&rsquo;s been over a month since my last post but I have an excuse: I was super busy, then I was super on vacation &mldr; but I&rsquo;m back again ;-)
 So my life was pretty intense these last few weeks, both professionnally and on the opensource front. I&rsquo;ll explain later, for now let&rsquo;s just focus on the OpenSMTPD goodies.
-OpenSMTPD portable to a new system First of all, I&rsquo;d like to stress out that Rune Lynge and Charles Longeau did an amazing job at porting OpenSMTPD to yet another system &mldr; MacOSX.">
-<meta property="og:title" content="OpenSMTPD: plenty of news">
-<meta property="og:description" content="It&rsquo;s been over a month since my last post but I have an excuse: I was super busy, then I was super on vacation &mldr; but I&rsquo;m back again ;-)
+OpenSMTPD portable to a new system First of all, I&rsquo;d like to stress out that Rune Lynge and Charles Longeau did an amazing job at porting OpenSMTPD to yet another system &mldr; MacOSX."><meta property="og:title" content="OpenSMTPD: plenty of news"><meta property="og:description" content="It&rsquo;s been over a month since my last post but I have an excuse: I was super busy, then I was super on vacation &mldr; but I&rsquo;m back again ;-)
 So my life was pretty intense these last few weeks, both professionnally and on the opensource front. I&rsquo;ll explain later, for now let&rsquo;s just focus on the OpenSMTPD goodies.
-OpenSMTPD portable to a new system First of all, I&rsquo;d like to stress out that Rune Lynge and Charles Longeau did an amazing job at porting OpenSMTPD to yet another system &mldr; MacOSX.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://poolp.org/posts/2012-08-21/opensmtpd-plenty-of-news/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2012-08-21T22:22:00+00:00">
-<meta property="article:modified_time" content="2012-08-21T22:22:00+00:00">
-<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
-<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
-<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
-<link href=/css/medium.css rel=stylesheet>
-<link href=/css/additional.css rel=stylesheet>
-<link href=/css/syntax.css rel=stylesheet>
-<link href=/css/custom.css rel=stylesheet>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-<div class="container pr-0">
-<a class=navbar-brand href=https://poolp.org/>
-<img src=/images/poolp_org.png alt=logo>
-</a>
+OpenSMTPD portable to a new system First of all, I&rsquo;d like to stress out that Rune Lynge and Charles Longeau did an amazing job at porting OpenSMTPD to yet another system &mldr; MacOSX."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2012-08-21/opensmtpd-plenty-of-news/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2012-08-21T22:22:00+00:00"><meta property="article:modified_time" content="2012-08-21T22:22:00+00:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarMediumish>
-<ul class="navbar-nav ml-auto">
-<li class=nav-item>
-<a class=nav-link href=/fr/contracting/>Freelance</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=https://hypno.cat>Hypnose</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/authors/gilles-chehade>About Me</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<div class=site-content>
-<div class=container>
-<div class=mainheading>
-</div><div class=main-content>
-<div class=container>
-<div class=row>
-<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
-<p>Share</p>
-<ul>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://twitter.com/intent/tweet?text=OpenSMTPD%3a%20plenty%20of%20news&url=https%3a%2f%2fpoolp.org%2fposts%2f2012-08-21%2fopensmtpd-plenty-of-news%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
-<i class="fab fa-twitter"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2012-08-21%2fopensmtpd-plenty-of-news%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
-<i class="fab fa-facebook-f"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2012-08-21%2fopensmtpd-plenty-of-news%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
-<i class="fab fa-xing"></i>
-</a>
-</li>
-</ul>
-</div>
-</div>
-<div class="col-md-9 flex-first flex-md-unordered">
-<div class=mainheading>
-<div class="row post-top-meta">
-<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة">
-</div>
-<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
-<span class=author-description>
-foobarbaz-ing since 1981<br>
-</span>
-<br>
-<span class=author-description>
-<i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=OpenSMTPD%3a%20plenty%20of%20news&url=https%3a%2f%2fpoolp.org%2fposts%2f2012-08-21%2fopensmtpd-plenty-of-news%2f" onclick='return window.open(this.href,"twitter-share","width=550,height=435"),!1'><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2012-08-21%2fopensmtpd-plenty-of-news%2f" onclick='return window.open(this.href,"facebook-share","width=550,height=435"),!1'><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2012-08-21%2fopensmtpd-plenty-of-news%2f" onclick='return window.open(this.href,"xing-share","width=550,height=435"),!1'><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
 Aug 21, 2012
 <i class="far fa-clock clock"></i>
-8 min read
-</span>
-</div>
-</div>
-<div class=after-post-tags>
-<ul class=tags>
-</ul>
-</div>
-<h1 class=posttitle>OpenSMTPD: plenty of news</h1>
-</div>
-<div class=article-post>
-<p>It&rsquo;s been over a month since my last post but I have an excuse: I was super busy, then I was super on vacation &mldr; but I&rsquo;m back again ;-)</p>
-<p>So my life was pretty intense these last few weeks, both professionnally and on the opensource front. I&rsquo;ll explain later, for now let&rsquo;s just focus on the OpenSMTPD goodies.</p>
-<p>OpenSMTPD portable to a new system First of all, I&rsquo;d like to stress out that Rune Lynge and Charles Longeau did an amazing job at porting OpenSMTPD to yet another system &mldr; MacOSX. While I don&rsquo;t know anyone running a mail server on MacOSX, nor do I know anyone who knows anyone doing it, the fact that we can do it fills my heart with joy. We can officially be a free and very expensive mail server at once ;)</p>
-<p>The compressed/encrypted queue experiment Charles also worked on a proof-of-concept to compress the message and envelopes in the queue. It is not committed yet but there is discussion around it in private as it will very likely hit the tree soon. This is a very important move forward as it also proves that compressing/encrypting the queue does not prevent OpenSMTPD from working which in turn proves that we will be able to store an encrypted queue in an untrusted storage (ie: public cloud provider) and still be able to deliver mail while retaining privacy. Believe me, we&rsquo;re not done on that front and you&rsquo;ll hear about it again in the future.</p>
-<p>Scheduler/Queue layer separations On my end, not much done since the hackathon. While there, we had discussed a scheduler and mta refactor with Eric Faurot. The design was not optimal, there was a layer violation with the scheduler taking looks at the queue during initialization, etc &mldr;</p>
-<p>During the hackathon I moved the queue initialization to the queue process. I didn&rsquo;t commit it but Eric cloned my repository, improved it further and committed the result a few days ago. I then realized that since the scheduler no longer had to look at the queue, it could be chrooted to /var/empty instead of /var/spool/smtpd to further restrict it in case of a catastrophe.</p>
-<p>Transactional scheduling At the end of the hackathon I also started working on a new scheduler logic, it started with just a few simplifications but then I realized that making the scheduler transactionnal would help us reach the design we had discussed.</p>
-<p>The scheduler initially consisted of a set of trees and a list sorted by schedule time. An envelope would be part of the trees allowing fast lookups for internal purposes, and the scheduler would just have to look at the first envelope of the list to see if something could be scheduled.</p>
-<p>This had a side effect that as soon as pushing an envelope in the scheduler, it could be scheduled. That is not always desireable as sometimes we have multiple recipients for a same message / destination and we start scheduling before we get a chance to check that other recipients can be part of the same SMTP transaction. This would lead to inefficient MTA sessions as we would potentially connect multiple times to the same host to deliver the same message for a handful of different recipients.</p>
-<p>The transactional scheduler uses a set of tree and linear queue BUT when it receives envelopes it doesn&rsquo;t add them to these structures. Instead it adds them to a temporary set of structures, the changeset, which can then be atomically committed to be merged to the scheduling structures, or rollbacked depending on errors we encounter. That ensures that whenever we commit and make envelopes scheduleable, we are able to send as many envelopes as possible in one go to optimize MTA sessions.</p>
-<p>When I left the hackathon this was partly done but still required lots of work and improvements which Eric completed by himself and finished just a few days ago. It works perfect, it is a HUGE step forward which will make OpenSMTPD far more efficient.</p>
-<p>New MTA logic While he was at it, he also reworked entirely the MTA logic. I&rsquo;m not familiar with the new code yet but what I can tell from it is that it&rsquo;s been simplified, cleaned and that it now supports some long awaited features like connection-caching to avoid the overhead of round-trips by reusing existing connections when different messages are heading to the same host.</p>
-<p>Actually, it is a bit more complex than that because we no longer deal with hosts but rather with &ldquo;routes&rdquo; which allows reusing the same connection when talking to a MX that is shared by multiple domains (ie: poolp.org / opensmptd.org share mx1.poolp.org, so if we have a connection to mx1.poolp.org already opened, mails for both domains will take advantage of it).</p>
-<p>There is still work to do in that area but this is also another HUGE step forward on a bit of code that we had planned to rework for months.</p>
-<p>Stats backends Statistics used to be stored as size_t fields of fixed structures residing in a chunk of shared mmap-ed memory.</p>
-<p>This was highly annoying as adding new counters would require changing structures, while the shared memory was in complete opposition with our separated processes design. To make things more annoying even, some of the statistics were used to alter logic when they were supposed to be informative only &mldr; and the statistics were necessarily non-persistent as they were kept in RAM.</p>
-<p>I came up with the stat_backend API to allow writing custom statistic backends and implement the ramstat backend to provide the same feature as before.</p>
-<p>The main difference lies in the fact that the stats are pushed and never fetched so the logic can never use them; the keys are dynamic so we can generate very precise statistics by creating keys as dynamic strings containing msgid, evpid, etc &mldr; and since they are only pushed, we can centralize them to a single process, have them pushed by imsg and remove the need for shared memory.</p>
-<p>I also wrote a sqlitestat backend which is not committed but that does work and that allows providing persistent statistics that survive accross restarts so that admins can generate graphs and whatnot.</p>
-<p>Ideas float to write stat backends to send to collecting daemons, snmpd, etc &mldr; but the next plan for the stat API is to extend it to provide different type of statistics so we can have ratios, times, etc&mldr;</p>
-<p>Bounces grouping OpenSMPTD tries to avoid bounces by rejecting early at session time. Sometimes this is not doable as we accept a recipient and the delivery fails later, after a ~/.forward for example, and we have to generate a bounce for a failed recipient.</p>
-<p>Initially OpenSMTPD grouped all failed recipients coming from same sender as part of the same bounce message so that sender would only receive one report with all failed recipients &mldr; but that feature got broken at some point in time leading to as many bounces as failed recipients.</p>
-<p>It was conceptually simple to implement but it could not easily be done until queue/scheduler interaction logic was rewritten. Now the queue handles the bounce re-enqueueing. The grouping is simply achieved by delaying the actual bounce a bit in case another bounce for the same message arrives shortly after. Guess who designed and implemented it ? Yup, Eric !</p>
-<p>Loop detection Loop detection was performed by the scheduler, which was a layer violation and which went in the way of Charles' attempt at the compression experiment.</p>
-<p>We got rid of it altogether and reimplemented it at the proper place. I added a Delivered-To loop detection at the MDA level while Eric plugged the Received loop detection at the MTA level.</p>
-<p>Backup MX Oh and since Eric was bored with all these &ldquo;little&rdquo; reworks, he implemented today the also long awaited &ldquo;backup MX&rdquo; features.</p>
-<p>Until now, OpenSMTPD could not operate like a real backup MX, we could trick it into doing a similar job by using a set of &ldquo;relay via&rdquo; rules like I did on mx2.poolp.org:</p>
-<p>accept for domain &ldquo;poolp.org&rdquo; relay via &ldquo;mx1.poolp.org&rdquo;</p>
-<p>But this would be a pain to maintain when many backup MX with different priorities are declared in the zone and it would not honour the priorities.</p>
-<p>It is now possible to do:</p>
-<p>accept for domain &ldquo;poolp.org&rdquo; relay backup &ldquo;mx2.poolp.org&rdquo;</p>
-<p>which will declare ourselves as the mx2.poolp.org MX backup for domain poolp.org and allow OpenSMTPD to perform a MX lookup and try to find a MX with a higher priority to hand the mail over. The diff is so small that it&rsquo;s a shame we didn&rsquo;t have this before :-p</p>
-<p>Getting closer to release OpenSMTPD is now in an almost production-ready state, in a better shape than ever, and we&rsquo;re looking forward to receive as many tests and bug reports as possible to ensure that it&rsquo;s rock solid.</p>
-<p>You can submit your bug reports on our github tracker, feel free to join us on IRC at #OpenSMTPD @ freenode and subscribe to our mailing list <a href=mailto:misc@opensmtpd.org>misc@opensmtpd.org</a> by sending a mail with subject [misc] subscribe.</p>
-<p>Cheers !</p>
-</div>
-<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-<a class="d-block col-md-6" href=https://poolp.org/posts/2012-08-26/opensmtpd-i-have-no-idea-for-that-title-sorry/> &#171; OpenSMTPD: I have no idea for that title, sorry</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2012-07-15/g2k12-openbsd-hackathon-part-ii/>g2k12: OpenBSD hackathon - part II &#187;</a>
-<div class=clearfix></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class=alertbar>
-<div class="container text-center">
-<span>
-<img src=/images/poolp_org.png alt=logo height=0px>
+8 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>OpenSMTPD: plenty of news</h1></div><div class=article-post><p>It&rsquo;s been over a month since my last post but I have an excuse: I was super busy, then I was super on vacation &mldr; but I&rsquo;m back again ;-)</p><p>So my life was pretty intense these last few weeks, both professionnally and on the opensource front. I&rsquo;ll explain later, for now let&rsquo;s just focus on the OpenSMTPD goodies.</p><p>OpenSMTPD portable to a new system First of all, I&rsquo;d like to stress out that Rune Lynge and Charles Longeau did an amazing job at porting OpenSMTPD to yet another system &mldr; MacOSX. While I don&rsquo;t know anyone running a mail server on MacOSX, nor do I know anyone who knows anyone doing it, the fact that we can do it fills my heart with joy. We can officially be a free and very expensive mail server at once ;)</p><p>The compressed/encrypted queue experiment Charles also worked on a proof-of-concept to compress the message and envelopes in the queue. It is not committed yet but there is discussion around it in private as it will very likely hit the tree soon. This is a very important move forward as it also proves that compressing/encrypting the queue does not prevent OpenSMTPD from working which in turn proves that we will be able to store an encrypted queue in an untrusted storage (ie: public cloud provider) and still be able to deliver mail while retaining privacy. Believe me, we&rsquo;re not done on that front and you&rsquo;ll hear about it again in the future.</p><p>Scheduler/Queue layer separations On my end, not much done since the hackathon. While there, we had discussed a scheduler and mta refactor with Eric Faurot. The design was not optimal, there was a layer violation with the scheduler taking looks at the queue during initialization, etc &mldr;</p><p>During the hackathon I moved the queue initialization to the queue process. I didn&rsquo;t commit it but Eric cloned my repository, improved it further and committed the result a few days ago. I then realized that since the scheduler no longer had to look at the queue, it could be chrooted to /var/empty instead of /var/spool/smtpd to further restrict it in case of a catastrophe.</p><p>Transactional scheduling At the end of the hackathon I also started working on a new scheduler logic, it started with just a few simplifications but then I realized that making the scheduler transactionnal would help us reach the design we had discussed.</p><p>The scheduler initially consisted of a set of trees and a list sorted by schedule time. An envelope would be part of the trees allowing fast lookups for internal purposes, and the scheduler would just have to look at the first envelope of the list to see if something could be scheduled.</p><p>This had a side effect that as soon as pushing an envelope in the scheduler, it could be scheduled. That is not always desireable as sometimes we have multiple recipients for a same message / destination and we start scheduling before we get a chance to check that other recipients can be part of the same SMTP transaction. This would lead to inefficient MTA sessions as we would potentially connect multiple times to the same host to deliver the same message for a handful of different recipients.</p><p>The transactional scheduler uses a set of tree and linear queue BUT when it receives envelopes it doesn&rsquo;t add them to these structures. Instead it adds them to a temporary set of structures, the changeset, which can then be atomically committed to be merged to the scheduling structures, or rollbacked depending on errors we encounter. That ensures that whenever we commit and make envelopes scheduleable, we are able to send as many envelopes as possible in one go to optimize MTA sessions.</p><p>When I left the hackathon this was partly done but still required lots of work and improvements which Eric completed by himself and finished just a few days ago. It works perfect, it is a HUGE step forward which will make OpenSMTPD far more efficient.</p><p>New MTA logic While he was at it, he also reworked entirely the MTA logic. I&rsquo;m not familiar with the new code yet but what I can tell from it is that it&rsquo;s been simplified, cleaned and that it now supports some long awaited features like connection-caching to avoid the overhead of round-trips by reusing existing connections when different messages are heading to the same host.</p><p>Actually, it is a bit more complex than that because we no longer deal with hosts but rather with &ldquo;routes&rdquo; which allows reusing the same connection when talking to a MX that is shared by multiple domains (ie: poolp.org / opensmptd.org share mx1.poolp.org, so if we have a connection to mx1.poolp.org already opened, mails for both domains will take advantage of it).</p><p>There is still work to do in that area but this is also another HUGE step forward on a bit of code that we had planned to rework for months.</p><p>Stats backends Statistics used to be stored as size_t fields of fixed structures residing in a chunk of shared mmap-ed memory.</p><p>This was highly annoying as adding new counters would require changing structures, while the shared memory was in complete opposition with our separated processes design. To make things more annoying even, some of the statistics were used to alter logic when they were supposed to be informative only &mldr; and the statistics were necessarily non-persistent as they were kept in RAM.</p><p>I came up with the stat_backend API to allow writing custom statistic backends and implement the ramstat backend to provide the same feature as before.</p><p>The main difference lies in the fact that the stats are pushed and never fetched so the logic can never use them; the keys are dynamic so we can generate very precise statistics by creating keys as dynamic strings containing msgid, evpid, etc &mldr; and since they are only pushed, we can centralize them to a single process, have them pushed by imsg and remove the need for shared memory.</p><p>I also wrote a sqlitestat backend which is not committed but that does work and that allows providing persistent statistics that survive accross restarts so that admins can generate graphs and whatnot.</p><p>Ideas float to write stat backends to send to collecting daemons, snmpd, etc &mldr; but the next plan for the stat API is to extend it to provide different type of statistics so we can have ratios, times, etc&mldr;</p><p>Bounces grouping OpenSMPTD tries to avoid bounces by rejecting early at session time. Sometimes this is not doable as we accept a recipient and the delivery fails later, after a ~/.forward for example, and we have to generate a bounce for a failed recipient.</p><p>Initially OpenSMTPD grouped all failed recipients coming from same sender as part of the same bounce message so that sender would only receive one report with all failed recipients &mldr; but that feature got broken at some point in time leading to as many bounces as failed recipients.</p><p>It was conceptually simple to implement but it could not easily be done until queue/scheduler interaction logic was rewritten. Now the queue handles the bounce re-enqueueing. The grouping is simply achieved by delaying the actual bounce a bit in case another bounce for the same message arrives shortly after. Guess who designed and implemented it ? Yup, Eric !</p><p>Loop detection Loop detection was performed by the scheduler, which was a layer violation and which went in the way of Charles&rsquo; attempt at the compression experiment.</p><p>We got rid of it altogether and reimplemented it at the proper place. I added a Delivered-To loop detection at the MDA level while Eric plugged the Received loop detection at the MTA level.</p><p>Backup MX Oh and since Eric was bored with all these &ldquo;little&rdquo; reworks, he implemented today the also long awaited &ldquo;backup MX&rdquo; features.</p><p>Until now, OpenSMTPD could not operate like a real backup MX, we could trick it into doing a similar job by using a set of &ldquo;relay via&rdquo; rules like I did on mx2.poolp.org:</p><p>accept for domain &ldquo;poolp.org&rdquo; relay via &ldquo;mx1.poolp.org&rdquo;</p><p>But this would be a pain to maintain when many backup MX with different priorities are declared in the zone and it would not honour the priorities.</p><p>It is now possible to do:</p><p>accept for domain &ldquo;poolp.org&rdquo; relay backup &ldquo;mx2.poolp.org&rdquo;</p><p>which will declare ourselves as the mx2.poolp.org MX backup for domain poolp.org and allow OpenSMTPD to perform a MX lookup and try to find a MX with a higher priority to hand the mail over. The diff is so small that it&rsquo;s a shame we didn&rsquo;t have this before :-p</p><p>Getting closer to release OpenSMTPD is now in an almost production-ready state, in a better shape than ever, and we&rsquo;re looking forward to receive as many tests and bug reports as possible to ensure that it&rsquo;s rock solid.</p><p>You can submit your bug reports on our github tracker, feel free to join us on IRC at #OpenSMTPD @ freenode and subscribe to our mailing list <a href=mailto:misc@opensmtpd.org>misc@opensmtpd.org</a> by sending a mail with subject [misc] subscribe.</p><p>Cheers !</p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2012-08-26/opensmtpd-i-have-no-idea-for-that-title-sorry/>&#171; OpenSMTPD: I have no idea for that title, sorry</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2012-07-15/g2k12-openbsd-hackathon-part-ii/>g2k12: OpenBSD hackathon - part II &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
-</span>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=container>
-<div class=row>
-<div class="col-md-6 col-sm-6 text-center text-lg-left">
-&copy; Copyright poolp.org - All rights reserved
-</div>
-<div class="col-md-6 col-sm-6 text-center text-lg-right">
-<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
-</div>
-</div>
-</div>
-</footer>
-</div>
-<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
 <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
-<script src=/js/mediumish.js></script>
-</body>
-</html>
+<script src=/js/mediumish.js></script></body></html>

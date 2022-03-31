@@ -1,215 +1,85 @@
-<!doctype html><html lang=en-us><head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.92.2">
-<link rel=icon href=/images/poolp_org.png>
-<title>You should not run your mail server because mail is hard | poolp.org</title>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="You should not run your mail server because mail is hard">
-<meta name=twitter:description content="TL;DR: - Mail is not hard: people keep repeating that because they read it, not because they tried it - Big Mailer Corps are quite happy with that myth, it keeps their userbase growing - Big Mailer Corps control a large percentage of the e-mail address space which is good for none of us - It's ok that people have their e-mails hosted at Big Mailer Corps as long as there's enough people outside too  EDIT (2019-12-15) A practical guide to set up a mail exchanger was published on this blog.">
-<meta property="og:title" content="You should not run your mail server because mail is hard">
-<meta property="og:description" content="TL;DR: - Mail is not hard: people keep repeating that because they read it, not because they tried it - Big Mailer Corps are quite happy with that myth, it keeps their userbase growing - Big Mailer Corps control a large percentage of the e-mail address space which is good for none of us - It's ok that people have their e-mails hosted at Big Mailer Corps as long as there's enough people outside too  EDIT (2019-12-15) A practical guide to set up a mail exchanger was published on this blog.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2019-08-30T12:00:00+00:00">
-<meta property="article:modified_time" content="2019-08-30T12:00:00+00:00">
-<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
-<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
-<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
-<link href=/css/medium.css rel=stylesheet>
-<link href=/css/additional.css rel=stylesheet>
-<link href=/css/syntax.css rel=stylesheet>
-<link href=/css/custom.css rel=stylesheet>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-<div class="container pr-0">
-<a class=navbar-brand href=https://poolp.org/>
-<img src=/images/poolp_org.png alt=logo>
-</a>
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.96.0"><link rel=icon href=/images/poolp_org.png><title>You should not run your mail server because mail is hard | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="You should not run your mail server because mail is hard"><meta name=twitter:description content="TL;DR: - Mail is not hard: people keep repeating that because they read it, not because they tried it - Big Mailer Corps are quite happy with that myth, it keeps their userbase growing - Big Mailer Corps control a large percentage of the e-mail address space which is good for none of us - It's ok that people have their e-mails hosted at Big Mailer Corps as long as there's enough people outside too  EDIT (2019-12-15) A practical guide to set up a mail exchanger was published on this blog."><meta property="og:title" content="You should not run your mail server because mail is hard"><meta property="og:description" content="TL;DR: - Mail is not hard: people keep repeating that because they read it, not because they tried it - Big Mailer Corps are quite happy with that myth, it keeps their userbase growing - Big Mailer Corps control a large percentage of the e-mail address space which is good for none of us - It's ok that people have their e-mails hosted at Big Mailer Corps as long as there's enough people outside too  EDIT (2019-12-15) A practical guide to set up a mail exchanger was published on this blog."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-08-30T12:00:00+00:00"><meta property="article:modified_time" content="2019-08-30T12:00:00+00:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarMediumish>
-<ul class="navbar-nav ml-auto">
-<li class=nav-item>
-<a class=nav-link href=/fr/contracting/>Freelance</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=https://hypno.cat>Hypnose</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/authors/gilles-chehade>About Me</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<div class=site-content>
-<div class=container>
-<div class=mainheading>
-</div><div class=main-content>
-<div class=container>
-<div class=row>
-<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
-<p>Share</p>
-<ul>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://twitter.com/intent/tweet?text=You%20should%20not%20run%20your%20mail%20server%20because%20mail%20is%20hard&url=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-30%2fyou-should-not-run-your-mail-server-because-mail-is-hard%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
-<i class="fab fa-twitter"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-30%2fyou-should-not-run-your-mail-server-because-mail-is-hard%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
-<i class="fab fa-facebook-f"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-30%2fyou-should-not-run-your-mail-server-because-mail-is-hard%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
-<i class="fab fa-xing"></i>
-</a>
-</li>
-</ul>
-</div>
-</div>
-<div class="col-md-9 flex-first flex-md-unordered">
-<div class=mainheading>
-<div class="row post-top-meta">
-<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة">
-</div>
-<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
-<span class=author-description>
-foobarbaz-ing since 1981<br>
-</span>
-<br>
-<span class=author-description>
-<i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=You%20should%20not%20run%20your%20mail%20server%20because%20mail%20is%20hard&url=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-30%2fyou-should-not-run-your-mail-server-because-mail-is-hard%2f" onclick='return window.open(this.href,"twitter-share","width=550,height=435"),!1'><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-30%2fyou-should-not-run-your-mail-server-because-mail-is-hard%2f" onclick='return window.open(this.href,"facebook-share","width=550,height=435"),!1'><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2019-08-30%2fyou-should-not-run-your-mail-server-because-mail-is-hard%2f" onclick='return window.open(this.href,"xing-share","width=550,height=435"),!1'><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
 Aug 30, 2019
 <i class="far fa-clock clock"></i>
-15 min read
-</span>
-</div>
-</div>
-<div class=after-post-tags>
-<ul class=tags>
-</ul>
-</div>
-<h1 class=posttitle>You should not run your mail server because mail is hard</h1>
-</div>
-<div class=article-post>
-<pre><code>TL;DR:
+15 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>You should not run your mail server because mail is hard</h1></div><div class=article-post><pre><code>TL;DR:
 - Mail is not hard: people keep repeating that because they read it, not because they tried it
 - Big Mailer Corps are quite happy with that myth, it keeps their userbase growing
 - Big Mailer Corps control a large percentage of the e-mail address space which is good for none of us
 - It's ok that people have their e-mails hosted at Big Mailer Corps as long as there's enough people outside too
-</code></pre>
-<h2 id=edit-2019-12-15>EDIT (2019-12-15)</h2>
-<p>A practical guide to <a href=/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/>set up a mail exchanger</a> was published on this blog.</p>
-<h2 id=disclaimer>Disclaimer</h2>
-<p><strong><font color=red>THIS IS FOR SYSADMINS WITH TECH KNOWLEDGE, WHO KNOW HOW TO HOST SERVICES</font>.</strong>
+</code></pre><h2 id=edit-2019-12-15>EDIT (2019-12-15)</h2><p>A practical guide to <a href=/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/>set up a mail exchanger</a> was published on this blog.</p><h2 id=disclaimer>Disclaimer</h2><p><strong><font color=red>THIS IS FOR SYSADMINS WITH TECH KNOWLEDGE, WHO KNOW HOW TO HOST SERVICES</font>.</strong>
 <strong>Self-hosting mail is not HARD but requires WORK, which are two different things.</strong>
-<strong>Setting up a mail infrastructures requires a lot of initial work, then basic long term maintenance.</strong></p>
-<p>I work on an opensource SMTP server. I build both opensource and proprietary solutions related to mail. I will likely open a commercial mail service next year.</p>
-<p>In this article,
+<strong>Setting up a mail infrastructures requires a lot of initial work, then basic long term maintenance.</strong></p><p>I work on an opensource SMTP server. I build both opensource and proprietary solutions related to mail. I will likely open a commercial mail service next year.</p><p>In this article,
 I will voluntarily use the term <code>mail</code> because it is vague enough to encompass protocols and software.
 This is not a very technical article and I don&rsquo;t want to dive into protocols,
-I want people who have never worked with mail to understand all of it.</p>
-<p>I will also not explain how I achieve the tasks I describe as easy.
+I want people who have never worked with mail to understand all of it.</p><p>I will also not explain how I achieve the tasks I describe as easy.
 I want this article to be about the &ldquo;mail is hard&rdquo; myth,
 disregarding what technical solution you use to implement it.
 I want people who read this to go read about <a href=http://www.postfix.org>Postfix</a>,
 <a href=https://github.com/notqmail/notqmail>Notqmail</a>,
 <a href=https://www.exim.org>Exim</a> and <a href=https://www.OpenSMTPD.org>OpenSMTPD</a>,
-and not go directly to OpenSMTPD because I provided examples.</p>
-<p>I will write a follow-up article,
+and not go directly to OpenSMTPD because I provided examples.</p><p>I will write a follow-up article,
 this time focusing on how I do things with OpenSMTPD.
 If people write similar articles for other solutions,
 please forward them to me and I&rsquo;ll link some of them.
 it will be updated as time passes by to reflect changes in the ecosystem,
-come back and check again over time.</p>
-<p>Finally,
+come back and check again over time.</p><p>Finally,
 the name Big Mailer Corps represents the major e-mail providers.
 I&rsquo;m not targeting a specific one,
 you can basically replace Big Mailer Corps anywhere in this text with the name of any provider that holds several hundred of millions of recipient addresses.
 Keep in mind that some Big Mailer Corps allow hosting under your own domain name,
 so when I mention the e-mail address space,
 if you own a domain but it is hosted by a Big Mailer Corp,
-your domain and all e-mail addresses below your domain are part of their address space.</p>
-<h2 id=once-upon-a-time-the-mail-is-hard-myth>Once upon a time, the &ldquo;mail is hard&rdquo; myth</h2>
-<p>When you first look into becoming independant with your e-mails,
+your domain and all e-mail addresses below your domain are part of their address space.</p><h2 id=once-upon-a-time-the-mail-is-hard-myth>Once upon a time, the &ldquo;mail is hard&rdquo; myth</h2><p>When you first look into becoming independant with your e-mails,
 as soon as you ask in a public tech medium for help setting up a &ldquo;mail&rdquo; server,
-people will invariably jump in the discussion to discourage you from attempting because &ldquo;mail is hard&rdquo;.</p>
-<p>Not only &ldquo;mail is hard&rdquo; but it also seems that &ldquo;Big Mailer Corps have already won&rdquo;,
-that &ldquo;all mail you send will end up in your recipients' spam box&rdquo;,
-and that &ldquo;you will be flooded by spammers&rdquo; who will &ldquo;abuse your server to relay spam to the world&rdquo;.</p>
-<p>Wow, that&rsquo;s overwhelming :-|</p>
-<p>You just wanted to send and receive mail because it seemed like a good idea,
-and now this turned into the worst life decision. But is it ?</p>
-<h2 id=software-is-hard>Software is hard</h2>
-<p>Mail used to be hard.
-A long long time ago.</p>
-<p>It was hard because software were hard to setup correctly.
+people will invariably jump in the discussion to discourage you from attempting because &ldquo;mail is hard&rdquo;.</p><p>Not only &ldquo;mail is hard&rdquo; but it also seems that &ldquo;Big Mailer Corps have already won&rdquo;,
+that &ldquo;all mail you send will end up in your recipients&rsquo; spam box&rdquo;,
+and that &ldquo;you will be flooded by spammers&rdquo; who will &ldquo;abuse your server to relay spam to the world&rdquo;.</p><p>Wow, that&rsquo;s overwhelming :-|</p><p>You just wanted to send and receive mail because it seemed like a good idea,
+and now this turned into the worst life decision. But is it ?</p><h2 id=software-is-hard>Software is hard</h2><p>Mail used to be hard.
+A long long time ago.</p><p>It was hard because software were hard to setup correctly.
 A mail server like Sendmail required a Ph.D in compilers theory to operate,
 and the elitist culture of postmasters who could read Sendmail&rsquo;s so-called &ldquo;configuration files&rdquo; didn&rsquo;t help create a user-friendly environment.
 Postmasters bragging about how hard Sendmail was,
 while disclosing their unconditional love for m4 was a pissing contest.
-I can easily imagine these people whipping themselves with fresh nettles as a hobby.</p>
-<p>Postfix is an alternative to Sendmail that has been around since 1998.
+I can easily imagine these people whipping themselves with fresh nettles as a hobby.</p><p>Postfix is an alternative to Sendmail that has been around since 1998.
 While I wouldn&rsquo;t consider it as &ldquo;simple&rdquo; by any stretch of the word,
 it is <strong>orders of magnitude</strong> simpler than Sendmail.
 With the help of a search engine,
-new comers will easily find tutorials to spot the <strong>three or four</strong> configuration options they need to tweak.</p>
-<p>OpenSMTPD is another alternative which was first released in 2013.
+new comers will easily find tutorials to spot the <strong>three or four</strong> configuration options they need to tweak.</p><p>OpenSMTPD is another alternative which was first released in 2013.
 It is also <strong>orders of magnitude</strong> simpler than Sendmail.
-The configuration reads almost as plain english and a usable configuration file can actually fit &mldr; <strong>in a tweet</strong>.</p>
-<img alt="OpenSMTPD config fitting in a tweet" src=/images/2019-08-30-tweet.png width=100%>
-[full screen](/images/2019-08-30-tweet.png)
-<p>I don&rsquo;t have experience in other contenders,
+The configuration reads almost as plain english and a usable configuration file can actually fit &mldr; <strong>in a tweet</strong>.</p><img alt="OpenSMTPD config fitting in a tweet" src=/images/2019-08-30-tweet.png width=100%>
+[full screen](/images/2019-08-30-tweet.png)<p>I don&rsquo;t have experience in other contenders,
 but most operating systems and distributions provide multiple alternatives,
-pre-packaged so you can install and run with a simple command.</p>
-<p>Mail software is NOT hard.
-It was if you stopped looking in the 90&rsquo;s.</p>
-<h2 id=ok-software-isnt-hard-but-dealing-with-spam-is>OK, software isn&rsquo;t hard but dealing with SPAM is</h2>
-<p>The myth goes on by saying that mail is hard because as soon as you run your mail server,
+pre-packaged so you can install and run with a simple command.</p><p>Mail software is NOT hard.
+It was if you stopped looking in the 90&rsquo;s.</p><h2 id=ok-software-isnt-hard-but-dealing-with-spam-is>OK, software isn&rsquo;t hard but dealing with SPAM is</h2><p>The myth goes on by saying that mail is hard because as soon as you run your mail server,
 spammers are going to come in hordes and dealing with spam will become a daily nightmare.
-This could not be further from the truth.</p>
-<p>Now that we&rsquo;ve established trust,
-I&rsquo;m not going to lie to you: there are hordes of spammers.</p>
-<p>When you plug your server in to the internet,
+This could not be further from the truth.</p><p>Now that we&rsquo;ve established trust,
+I&rsquo;m not going to lie to you: there are hordes of spammers.</p><p>When you plug your server in to the internet,
 you&rsquo;ll start seeing connections from random sources trying to get mail accross.
 You&rsquo;ll see them coming from home connections,
 from remote countries,
 from IP addresses sharing the same range,
-there will be no end to how much amazement this will procure.</p>
-<p>Basically, they all fit in two categories:</p>
-<ul>
-<li>clients trying to abuse your server to use it as a relay to send spam to the world</li>
-<li>clients trying to send spam to you after having obtained your e-mail address somehow</li>
-</ul>
-<p>The ones from the first category are easy to deal with:
+there will be no end to how much amazement this will procure.</p><p>Basically, they all fit in two categories:</p><ul><li>clients trying to abuse your server to use it as a relay to send spam to the world</li><li>clients trying to send spam to you after having obtained your e-mail address somehow</li></ul><p>The ones from the first category are easy to deal with:
 <strong>IGNORE THEM</strong>.
 They search for misconfigured servers and try doing things that will be rejected on a properly configured server,
 or even try to authenticate with a dictionnary attack which is not going to succeed if you have good passwords.
 They are like mosquitoes on a summer evening,
-annoying but&mldr; meh.</p>
-<pre tabindex=0><code>c1a89cb774083905 smtp connected address=185.234.219.64 host=&lt;unknown&gt;
-c1a89cb774083905 smtp failed-command command=&quot;AUTH LOGIN&quot; result=&quot;503 5.5.1 Invalid command: Command not supported&quot;
+annoying but&mldr; meh.</p><pre tabindex=0><code>c1a89cb774083905 smtp connected address=185.234.219.64 host=&lt;unknown&gt;
+c1a89cb774083905 smtp failed-command command=&#34;AUTH LOGIN&#34; result=&#34;503 5.5.1 Invalid command: Command not supported&#34;
 c1a89cb774083905 smtp disconnected reason=disconnect
 c1a89cb8c5b84cbf smtp connected address=193.32.160.143 host=&lt;unknown&gt;
-c1a89cb8c5b84cbf smtp bad-input result=&quot;500 5.5.1 Invalid command: Pipelining not supported&quot;
+c1a89cb8c5b84cbf smtp bad-input result=&#34;500 5.5.1 Invalid command: Pipelining not supported&#34;
 c1a89cb8c5b84cbf smtp disconnected reason=quit
 c1a89cb9441966e7 smtp connected address=185.234.219.193 host=&lt;unknown&gt;
-c1a89cb9441966e7 smtp failed-command command=&quot;AUTH LOGIN&quot; result=&quot;503 5.5.1 Invalid command: Command not supported&quot;
+c1a89cb9441966e7 smtp failed-command command=&#34;AUTH LOGIN&#34; result=&#34;503 5.5.1 Invalid command: Command not supported&#34;
 c1a89cb9441966e7 smtp disconnected reason=disconnect
 </code></pre><p>If they really, really bother you or you dislike logs full of such attempts,
 write a script that detects such patterns in logs and add them to your firewall.
 Out of pure laziness,
 I have never ever used scripts to deal with these in the twenty years I operated mail servers and I&rsquo;m still here to talk about it.
 As long as you don&rsquo;t see them succeeding anything,
-you can just disregard these.</p>
-<p>The ones from the second category are slighly more annoying because if you ignore them,
+you can just disregard these.</p><p>The ones from the second category are slighly more annoying because if you ignore them,
 your mailbox becomes full of spam.
 Luckily,
 they are not so hard to filter through several <strong>simple</strong> means and it is very easy to reduce spam to a few,
@@ -220,31 +90,24 @@ I take absolutely no precaution hiding my e-mail address,
 and I sometimes get one or two spam e-mails per day in the junk folder.
 Not only is that not a daily nightmare,
 but it&rsquo;s less than what I actually receive on my own Big Mailer Corps account,
-which I do not share as easily and which has an average of three to five daily junked mails.</p>
-<p>Note that some very simple filters you&rsquo;d apply for the second category of spammers,
-are HIGHLY effective to also kill the spammers from the first category:</p>
-<pre tabindex=0><code>a56dece24dcac3d2 smtp failed-command command=&quot;DATA&quot; result=&quot;550 message rejected&quot;
-a56ded3dd6cda8c2 smtp failed-command command=&quot;&quot; result=&quot;550 your IP reputation is too low for this MX&quot;
-a56ded3f7db5b96c smtp failed-command command=&quot;DATA&quot; result=&quot;550 message rejected&quot;
-a56dec6ffdb2caef smtp failed-command command=&quot;&quot; result=&quot;421 you must have rDNS to contact this MX&quot;
-a56dec895475b9bf smtp failed-command command=&quot;&quot; result=&quot;421 you must have FCrDNS to contact this MX&quot;
+which I do not share as easily and which has an average of three to five daily junked mails.</p><p>Note that some very simple filters you&rsquo;d apply for the second category of spammers,
+are HIGHLY effective to also kill the spammers from the first category:</p><pre tabindex=0><code>a56dece24dcac3d2 smtp failed-command command=&#34;DATA&#34; result=&#34;550 message rejected&#34;
+a56ded3dd6cda8c2 smtp failed-command command=&#34;&#34; result=&#34;550 your IP reputation is too low for this MX&#34;
+a56ded3f7db5b96c smtp failed-command command=&#34;DATA&#34; result=&#34;550 message rejected&#34;
+a56dec6ffdb2caef smtp failed-command command=&#34;&#34; result=&#34;421 you must have rDNS to contact this MX&#34;
+a56dec895475b9bf smtp failed-command command=&#34;&#34; result=&#34;421 you must have FCrDNS to contact this MX&#34;
 </code></pre><p>I&rsquo;ll just state it as it is:
 <strong>You will never reach &ldquo;absolute 0 spam&rdquo;</strong>,
 it was proven mathematically in the 2000s,
 but the amount you&rsquo;ll receive while self-hosted can be as low or lower as what you receive at Big Mailer Corps.
 Spam is not more of an issue self-hosted,
-no matter how much the marketing tries to tell you otherwise.</p>
-<p>To illustrate this I emptied the Spam folder on my poolp.org account and my Big Mailer Corps account this morning,
+no matter how much the marketing tries to tell you otherwise.</p><p>To illustrate this I emptied the Spam folder on my poolp.org account and my Big Mailer Corps account this morning,
 here&rsquo;s the screenshot I took of both accounts tonight,
 poolp.org on the left and Big Mailer Corps on the right.
-Neither of them have spam in Inbox.</p>
-<img alt="poolp.org vs Big Mailer Corps spambox" src=/images/2019-08-30-spambox.png width=100%>
-[full screen](/images/2019-08-30-spambox.png)
-<h2 id=ok-spam-is-not-the-issue-but-my-mails-will-not-reach-my-users-at-big-mailer-corps>OK SPAM is not the issue but my mails will not reach my users at Big Mailer Corps</h2>
-<p>Another myth,
+Neither of them have spam in Inbox.</p><img alt="poolp.org vs Big Mailer Corps spambox" src=/images/2019-08-30-spambox.png width=100%>
+[full screen](/images/2019-08-30-spambox.png)<h2 id=ok-spam-is-not-the-issue-but-my-mails-will-not-reach-my-users-at-big-mailer-corps>OK SPAM is not the issue but my mails will not reach my users at Big Mailer Corps</h2><p>Another myth,
 with slightly more substance this time,
-is that sending e-mail to an address at a Big Mailer Corp will result in the e-mail being rejected or junked.</p>
-<p>Let me tell you a secret:
+is that sending e-mail to an address at a Big Mailer Corp will result in the e-mail being rejected or junked.</p><p>Let me tell you a secret:
 Big Mailer Corps are not worried about you but are worried about big senders harassing their users.
 They do not care about your personal server sending a few mails,
 even if its in the thousands per months.
@@ -255,13 +118,9 @@ trying to work-around spam filters,
 and that sometimes manage to go for a while without being rejected.
 Unless you are sending hundreds of thousands of mails to them on a daily basis,
 quite frankly and without trying to hurt your feelings,
-you fall waaaaaaaaaaaaaaay below the radars.</p>
-<img alt="inbox at various Big Mailer Corps" src=/images/2019-08-30-bigmailercorps.png width=100%>
-[full screen](/images/2019-08-30-bigmailercorps.png)
-<p>So why did I say this claim has more substance than the others ?</p>
-<p>Big Mailer Corps have introduced proof-of-work into mail exchanges,
-voluntarily or not.</p>
-<p>Unlike legitimate senders who want to reach a specific user,
+you fall waaaaaaaaaaaaaaay below the radars.</p><img alt="inbox at various Big Mailer Corps" src=/images/2019-08-30-bigmailercorps.png width=100%>
+[full screen](/images/2019-08-30-bigmailercorps.png)<p>So why did I say this claim has more substance than the others ?</p><p>Big Mailer Corps have introduced proof-of-work into mail exchanges,
+voluntarily or not.</p><p>Unlike legitimate senders who want to reach a specific user,
 spammers want to reach a ton of users whoever they are,
 because statistically some of them are going to fall for whatever it is that they&rsquo;re trying to sell.
 Among these spammers,
@@ -273,32 +132,27 @@ So the harder it is for them,
 the higher the chance they&rsquo;ll switch to another target because it&rsquo;s the only way to not fall behind statistically.
 Don&rsquo;t think I&rsquo;m making this up,
 you&rsquo;d be amazed at what tricks and hacks are used to mechanically increase openings by a few percents,
-including lowering the number of recipients at a particular destination and increasing at another.</p>
-<p>In opposition to this are legitimate users who can&rsquo;t just switch to another target,
+including lowering the number of recipients at a particular destination and increasing at another.</p><p>In opposition to this are legitimate users who can&rsquo;t just switch to another target,
 they want to reach a specific recipient and,
 if work is needed to achieve that,
 well&mldr; you got to do what you got to do.
-They&rsquo;ll pour in the work needed to make it work.</p>
-<p>Knowing this,
+They&rsquo;ll pour in the work needed to make it work.</p><p>Knowing this,
 Big Mailer Corps came with sets of rules about what a Good Sender should do to be able to communicate with them.
 These lists are basically a proof of work:
 they do not guarantee that you&rsquo;ll be able to send to them,
 they do not guarantee that you&rsquo;ll hit the inbox and will not be junked,
 but they are the minimal set of things you should do to prove you actually care.
 And considering some spammers do their best to look good,
-if you don&rsquo;t do it yourself it basically means you&rsquo;re not even willing to do better than spammers.</p>
-<p>These rules are not only here to annoy you,
+if you don&rsquo;t do it yourself it basically means you&rsquo;re not even willing to do better than spammers.</p><p>These rules are not only here to annoy you,
 they are also very effective:
 some of the rules cannot be achieved for spammers who use compromised hosts, for example.
 This proof of work paradigm is annoying because it raises (in time) the cost of entry,
 but it can also be leveraged by others to kill spam.
 Since Good Senders most definitely want to be able to send to Big Mailer Corps,
 if you receive connections from clients that didn&rsquo;t do the minimum to deliver there,
-you can shut them down yourself because they&rsquo;re already cut from a big portion of the e-mail address space.</p>
-<p>This is why I wrote this has more substance than the other claims.
+you can shut them down yourself because they&rsquo;re already cut from a big portion of the e-mail address space.</p><p>This is why I wrote this has more substance than the other claims.
 It&rsquo;s true that <strong>IF</strong> you don&rsquo;t even try to do the minimum work,
-<strong>THEN</strong> you&rsquo;ll start with a penalty.</p>
-<p>In practice, a notion of reputation is also into play.
+<strong>THEN</strong> you&rsquo;ll start with a penalty.</p><p>In practice, a notion of reputation is also into play.
 Some people don&rsquo;t even try but they fall but fall sooooooo far below the radars&mldr;
 that even without trying they&rsquo;ll manage to send e-mails without issues.
 I often send mail to my Big Mailer Corp account from my development laptop,
@@ -307,17 +161,12 @@ and they almost always reach inbox.
 A good reputation allows you to make some mistakes and go through without respecting all rules,
 while bad reputation increases the amount of work you need to do.
 Considering that a good reputation is earned from doing things right,
-you get the general idea: do things right.</p>
-<p>The minimum set rules is <strong>VERY FAR</strong> from being hard.
-To quote someone on twitter:</p>
-<img alt="rDNS + SPF/DKIM and you're golden" src=/images/2019-08-30-tweet_2.png width=100%>
-[full screen](/images/2019-08-30-tweet_2.png)
-<p>I would add a few things to that list but this highlights that some people are already &ldquo;golden&rdquo;,
+you get the general idea: do things right.</p><p>The minimum set rules is <strong>VERY FAR</strong> from being hard.
+To quote someone on twitter:</p><img alt="rDNS + SPF/DKIM and you're golden" src=/images/2019-08-30-tweet_2.png width=100%>
+[full screen](/images/2019-08-30-tweet_2.png)<p>I would add a few things to that list but this highlights that some people are already &ldquo;golden&rdquo;,
 just by setting up proper rDNS, SPF and DKIM.
 That last bit about handling incoming spam,
-we&rsquo;ve already discussed it above ;-)</p>
-<h2 id=ok-then-why-is-everyone-saying-its-hard->OK, then why is everyone saying it&rsquo;s hard ?</h2>
-<p>The first reason,
+we&rsquo;ve already discussed it above ;-)</p><h2 id=ok-then-why-is-everyone-saying-its-hard->OK, then why is everyone saying it&rsquo;s hard ?</h2><p>The first reason,
 is because no one claims otherwise and,
 since Big Mailer Corps benefits from this situation,
 they&rsquo;re not going to contradict it either.
@@ -329,13 +178,11 @@ the more people will eventually subscribe to their services,
 and since they already control a large share,
 they can make mail slighly more difficult by making their requirements higher (harder, not hard).
 This is <strong>not</strong> something they do in some kind of conspiracy,
-this is just the result of them obtaining more power because people stay away from self hosting.</p>
-<p>Another reason is because it used to be hard a long time ago.
+this is just the result of them obtaining more power because people stay away from self hosting.</p><p>Another reason is because it used to be hard a long time ago.
 People got traumatized by how hard it was to not screw up and never reevaluated the situation.
 Some people today genuinely discourage other people from running their mail server,
 citing the very real difficulties they faced over a decade ago,
-far before some of today&rsquo;s tools even existed.</p>
-<p>And finally,
+far before some of today&rsquo;s tools even existed.</p><p>And finally,
 another reason is that people keep repeating it without actually trying themselves.
 I know this for a fact because people have been telling me that mail is hard for the last ten years,
 and for the last ten years I asked what they found hard in order to try improving the situation.
@@ -345,12 +192,9 @@ often from a source they trusted,
 then accepted that claim and started telling others that mail was hard.
 We can&rsquo;t really blame them when that myth has been around for so long,
 if I had no previous knowledge of mail and did a quick search today to find out how to setup my server,
-I might just decide not to do it given how difficult it seems from reading others.</p>
-<h2 id=what-do-we-do-from-now->What do we do from now ?</h2>
-<p>We need to reclaim mail.
+I might just decide not to do it given how difficult it seems from reading others.</p><h2 id=what-do-we-do-from-now->What do we do from now ?</h2><p>We need to reclaim mail.
 I&rsquo;m not saying people shouldn&rsquo;t be hosted at Big Mailer Corps,
-but these should not become the Pavlovian reaction to &ldquo;where do I get an e-mail address ?&rdquo;.</p>
-<p>As long as there are enough mail hosts out there,
+but these should not become the Pavlovian reaction to &ldquo;where do I get an e-mail address ?&rdquo;.</p><p>As long as there are enough mail hosts out there,
 Big Mailer Corps <strong>HAVE</strong> to remain friendly because their users can complain that their legitimate mail is junked,
 which results in a risk of them leaving for elsewhere,
 less e-mails, less targeted advertisement, less $$$.
@@ -359,69 +203,27 @@ then it becomes their protocols and they can start making up rules that are not 
 because no one will notice when the insignificant number of e-mails not coming from there is junked.
 Again, <strong>not</strong> a conspiracy but a side effect of being the few relevant actors of a system:
 why bother abiding to standards that work for everyone and ensuring any sender can reach them&mldr;
-if most of the trafic comes from a handful of actors.</p>
-<p>This is already happening with one specifically requiring mails to be sent from another Big Mailer Corp to hit the inbox,
+if most of the trafic comes from a handful of actors.</p><p>This is already happening with one specifically requiring mails to be sent from another Big Mailer Corp to hit the inbox,
 or requiring that senders be added to the contacts for others.
-Any other sender will hit spambox unconditionnally for a while before being eventually upgraded to inbox.</p>
-<p>We can&rsquo;t let that happen:
-allowing e-mail to be fully controlled by a small set of cooperating multi-million users hosts is just accepting to be screwed.</p>
-<p>It is therefore very important that we don&rsquo;t let the myth propagate further.
+Any other sender will hit spambox unconditionnally for a while before being eventually upgraded to inbox.</p><p>We can&rsquo;t let that happen:
+allowing e-mail to be fully controlled by a small set of cooperating multi-million users hosts is just accepting to be screwed.</p><p>It is therefore very important that we don&rsquo;t let the myth propagate further.
 Our best interest is to have a WIDE variety of mail hosts and providers,
 small and big,
 commercial and not.
 We must not allow the number of mail hosts to shrink,
-they must increase so the e-mail address space out of the control of Big Mailer Corps remains significant.</p>
-<p>And by all means,
+they must increase so the e-mail address space out of the control of Big Mailer Corps remains significant.</p><p>And by all means,
 <strong>we must not push everyone to use Big Mailer Corps</strong>,
 particularly because a lot of people simply read their e-mail from a smartphone and don&rsquo;t see a difference in interface,
-so they could be using pretty much any provider and be just as happy.</p>
-<p>I hope my point gets accross,
-feel free to share this wherever you want and point people to this article.</p>
-<p>In a few days I&rsquo;ll publish a <em>practical</em> description of how to setup a host similar to mine,
+so they could be using pretty much any provider and be just as happy.</p><p>I hope my point gets accross,
+feel free to share this wherever you want and point people to this article.</p><p>In a few days I&rsquo;ll publish a <em>practical</em> description of how to setup a host similar to mine,
 providing spam protection for incoming mail,
-and basic proof of work to make most Big Mailer Corps happy.</p>
-<hr>
-<p>If you like my work, <a href=https://patreon.com/gilles>support me on patreon</a> !</p>
-<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/105>https://github.com/poolpOrg/poolp.org/discussions/105</a></p>
-</div>
-<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-<a class="d-block col-md-6" href=https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/> &#171; Setting up a mail server with OpenSMTPD, Dovecot and Rspamd</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/>August 2019 report: Fion, Plakar and OpenSMTPD &#187;</a>
-<div class=clearfix></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class=alertbar>
-<div class="container text-center">
-<span>
-<img src=/images/poolp_org.png alt=logo height=0px>
+and basic proof of work to make most Big Mailer Corps happy.</p><hr><p>If you like my work, <a href=https://patreon.com/gilles>support me on patreon</a> !</p><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/105>https://github.com/poolpOrg/poolp.org/discussions/105</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/>&#171; Setting up a mail server with OpenSMTPD, Dovecot and Rspamd</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/>August 2019 report: Fion, Plakar and OpenSMTPD &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
-</span>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=container>
-<div class=row>
-<div class="col-md-6 col-sm-6 text-center text-lg-left">
-&copy; Copyright poolp.org - All rights reserved
-</div>
-<div class="col-md-6 col-sm-6 text-center text-lg-right">
-<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
-</div>
-</div>
-</div>
-</footer>
-</div>
-<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
 <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
-<script src=/js/mediumish.js></script>
-</body>
-</html>
+<script src=/js/mediumish.js></script></body></html>

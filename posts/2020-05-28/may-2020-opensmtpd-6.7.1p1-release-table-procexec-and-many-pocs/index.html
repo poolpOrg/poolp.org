@@ -1,184 +1,56 @@
-<!doctype html><html lang=en-us><head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.92.2">
-<link rel=icon href=/images/poolp_org.png>
-<title>May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs | poolp.org</title>
-<meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/cover.png">
-<meta name=twitter:title content="May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs">
-<meta name=twitter:description content="TL;DR: Worked on the OpenSMTPD 6.7 release; Did a lot of work on the new table API; Wrote several PoCs;   WARNING:
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.96.0"><link rel=icon href=/images/poolp_org.png><title>May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/cover.png"><meta name=twitter:title content="May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs"><meta name=twitter:description content="TL;DR: Worked on the OpenSMTPD 6.7 release; Did a lot of work on the new table API; Wrote several PoCs;   WARNING:
 Examples of code and configuration that appear in this article are here to help illustrate and explain development stages of my work.
-They are subject to changes and must not be considered as user documentation. By the time you&rsquo;re reading this, they will likely no longer work or reflect reality.">
-<meta property="og:title" content="May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs">
-<meta property="og:description" content="TL;DR: Worked on the OpenSMTPD 6.7 release; Did a lot of work on the new table API; Wrote several PoCs;   WARNING:
+They are subject to changes and must not be considered as user documentation. By the time you&rsquo;re reading this, they will likely no longer work or reflect reality."><meta property="og:title" content="May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs"><meta property="og:description" content="TL;DR: Worked on the OpenSMTPD 6.7 release; Did a lot of work on the new table API; Wrote several PoCs;   WARNING:
 Examples of code and configuration that appear in this article are here to help illustrate and explain development stages of my work.
-They are subject to changes and must not be considered as user documentation. By the time you&rsquo;re reading this, they will likely no longer work or reflect reality.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/"><meta property="og:image" content="https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/cover.png"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2020-05-28T01:57:00+02:00">
-<meta property="article:modified_time" content="2020-05-28T01:57:00+02:00">
-<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
-<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
-<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
-<link href=/css/medium.css rel=stylesheet>
-<link href=/css/additional.css rel=stylesheet>
-<link href=/css/syntax.css rel=stylesheet>
-<link href=/css/custom.css rel=stylesheet>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-<div class="container pr-0">
-<a class=navbar-brand href=https://poolp.org/>
-<img src=/images/poolp_org.png alt=logo>
-</a>
+They are subject to changes and must not be considered as user documentation. By the time you&rsquo;re reading this, they will likely no longer work or reflect reality."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/"><meta property="og:image" content="https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/cover.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-05-28T01:57:00+02:00"><meta property="article:modified_time" content="2020-05-28T01:57:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarMediumish>
-<ul class="navbar-nav ml-auto">
-<li class=nav-item>
-<a class=nav-link href=/fr/contracting/>Freelance</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=https://hypno.cat>Hypnose</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/authors/gilles-chehade>About Me</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<div class=site-content>
-<div class=container>
-<div class=mainheading>
-</div><div class=main-content>
-<div class=container>
-<div class=row>
-<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
-<p>Share</p>
-<ul>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://twitter.com/intent/tweet?text=May%202020%3a%20OpenSMTPD%206.7.1p1%20release%2c%20table-procexec%20and%20many%20PoCs&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-28%2fmay-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
-<i class="fab fa-twitter"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-28%2fmay-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
-<i class="fab fa-facebook-f"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-28%2fmay-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
-<i class="fab fa-xing"></i>
-</a>
-</li>
-</ul>
-</div>
-</div>
-<div class="col-md-9 flex-first flex-md-unordered">
-<div class=mainheading>
-<div class="row post-top-meta">
-<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة">
-</div>
-<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
-<span class=author-description>
-foobarbaz-ing since 1981<br>
-</span>
-<br>
-<span class=author-description>
-<i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=May%202020%3a%20OpenSMTPD%206.7.1p1%20release%2c%20table-procexec%20and%20many%20PoCs&url=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-28%2fmay-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs%2f" onclick='return window.open(this.href,"twitter-share","width=550,height=435"),!1'><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-28%2fmay-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs%2f" onclick='return window.open(this.href,"facebook-share","width=550,height=435"),!1'><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2020-05-28%2fmay-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs%2f" onclick='return window.open(this.href,"xing-share","width=550,height=435"),!1'><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
 May 28, 2020
 <i class="far fa-clock clock"></i>
-15 min read
-</span>
-</div>
-</div>
-<div class=after-post-tags>
-<ul class=tags>
-</ul>
-</div>
-<h1 class=posttitle>May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs</h1>
-</div>
-<div class=article-post>
-<blockquote>
-<b>TL;DR:</b>
+15 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs</h1></div><div class=article-post><blockquote><b>TL;DR:</b>
 Worked on the <mark>OpenSMTPD 6.7</mark> release;
 Did a lot of work on <mark>the new table API</mark>;
-Wrote several PoCs;
-</blockquote>
-<hr>
-<p><font color=red><b>WARNING:</b></font></p>
-<p>Examples of <strong>code</strong> and <strong>configuration</strong> that appear in this article are
-here to help illustrate and explain <strong>development stages</strong> of my work.</p>
-<p>They are subject to <strong>changes</strong> and <strong>must not</strong> be considered as user documentation.
-By the time you&rsquo;re reading this, they will likely no longer work or reflect reality.</p>
-<hr>
-<h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1>
-<p>As usual,
-a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong> or <strong><a href=https://github.com/sponsors/poolpOrg>github</a></strong>, the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p>
-<h1 id=opensmtpd-671p1-release>OpenSMTPD 6.7.1p1 release</h1>
-<p>On May 19, 2020 was released <a href=https://www.openbsd.org/67.html>OpenBSD 6.7</a> which ships OpenSMTPD 6.7,
-the latest stable version of OpenSMTPD.</p>
-<center>
-<img src=https://www.openbsd.org/images/puffy67.gif>
-</center>
-<p>I released the portable version of OpenSMTPD on the same day,
-followed a few days later by a minor update to fix a packaging issue spotted by Debian maintainer <a href=https://github.com/ryanakca>Ryan Kavanagh</a> and a possible crash when relaying over IPv6 spotted post-release by Void Linux maintainer <a href=https://github.com/leahneukirchen>Leah Neukirchen</a>.</p>
-<p>I did <strong>a lot of work on portable</strong>,
+Wrote several PoCs;</blockquote><hr><p><font color=red><b>WARNING:</b></font></p><p>Examples of <strong>code</strong> and <strong>configuration</strong> that appear in this article are
+here to help illustrate and explain <strong>development stages</strong> of my work.</p><p>They are subject to <strong>changes</strong> and <strong>must not</strong> be considered as user documentation.
+By the time you&rsquo;re reading this, they will likely no longer work or reflect reality.</p><hr><h1 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h1><p>As usual,
+a <strong>huge</strong> thanks goes to the people <strong>sponsoring me</strong> on <strong><a href=https://www.patreon.com/gilles>patreon</a></strong> or <strong><a href=https://github.com/sponsors/poolpOrg>github</a></strong>, the work in this post was made possible by my <strong><a href=/sponsorship/>sponsorship</a></strong>.</p><h1 id=opensmtpd-671p1-release>OpenSMTPD 6.7.1p1 release</h1><p>On May 19, 2020 was released <a href=https://www.openbsd.org/67.html>OpenBSD 6.7</a> which ships OpenSMTPD 6.7,
+the latest stable version of OpenSMTPD.</p><center><img src=https://www.openbsd.org/images/puffy67.gif></center><p>I released the portable version of OpenSMTPD on the same day,
+followed a few days later by a minor update to fix a packaging issue spotted by Debian maintainer <a href=https://github.com/ryanakca>Ryan Kavanagh</a> and a possible crash when relaying over IPv6 spotted post-release by Void Linux maintainer <a href=https://github.com/leahneukirchen>Leah Neukirchen</a>.</p><p>I did <strong>a lot of work on portable</strong>,
 extending the CI to new targets and such,
-I won&rsquo;t talk about this work because this article contains a fair amount of more interesting topics.</p>
-<h2 id=some-highlights-in-the-671p1-release>Some highlights in the 6.7.1p1 release</h2>
-<p>Before all,
+I won&rsquo;t talk about this work because this article contains a fair amount of more interesting topics.</p><h2 id=some-highlights-in-the-671p1-release>Some highlights in the 6.7.1p1 release</h2><p>Before all,
 one of the most visible change for package maintainers is that <code>libasr</code> is no longer a dependency.
 It is shipped in the compat layer and built conditionally if the host system doesn&rsquo;t have the library installed,
-this will solve a few headaches.</p>
-<p>This release brings various improvements to the filtering protocol,
+this will solve a few headaches.</p><p>This release brings various improvements to the filtering protocol,
 not visible to users for the most part,
-but most notably three features deserve a special mention.</p>
-<p>First, the new <code>bypass</code> action which was
+but most notably three features deserve a special mention.</p><p>First, the new <code>bypass</code> action which was
 <a href=/posts/2019-12-24/december-2019-opensmtpd-and-filters-work-articles-and-goodies/>already discussed here</a>.
 It allows writing exclusion rules for certain sessions in builtin filters whereas,
 prior to that,
-all sessions connecting to a listener with filters would always have all filters applied to them:</p>
-<pre tabindex=0><code>filter trusted phase mail-from match src &lt;trusted_sources&gt; bypass
-filter no_rdns phase mail-from match !rdns reject &quot;550 go away&quot;
-filter no_fcrdns phase mail-from match !fcrdns  &quot;550 go away&quot;
+all sessions connecting to a listener with filters would always have all filters applied to them:</p><pre tabindex=0><code>filter trusted phase mail-from match src &lt;trusted_sources&gt; bypass
+filter no_rdns phase mail-from match !rdns reject &#34;550 go away&#34;
+filter no_fcrdns phase mail-from match !fcrdns  &#34;550 go away&#34;
 
 listen on all filter { trusted, no_rdns, no_fcrdns }
 </code></pre><p>Then, the <code>smtp-out</code> reporting stream which is very similar to <code>smtp-in</code> but reports SMTP events for outgoing sessions.
 This allows writing filters that do all kind of accounting on outgoing trafic and,
 as will be shown in this article,
-can be used to make interesting filters.</p>
-<p>Finally, all built-in filters can now match authenticated sessions and specific authenticated users.
+can be used to make interesting filters.</p><p>Finally, all built-in filters can now match authenticated sessions and specific authenticated users.
 It becomes possible to apply some filters to non-authenticated sessions only,
-or to avoid applying some filters to specific authenticated users.</p>
-<pre tabindex=0><code>filter auth_only phase mail-from match !auth reject &quot;550 you must be authenticated to send mail&quot;
-filter gilles_only phase mail-from match !auth gilles &quot;550 only gilles is allowed to send mail&quot;
+or to avoid applying some filters to specific authenticated users.</p><pre tabindex=0><code>filter auth_only phase mail-from match !auth reject &#34;550 you must be authenticated to send mail&#34;
+filter gilles_only phase mail-from match !auth gilles &#34;550 only gilles is allowed to send mail&#34;
 </code></pre><p>And because <code>auth</code> takes a table parameter,
-we can also do table-based filter matching using a credentials table:</p>
-<pre tabindex=0><code>table poolp_users { gilles = XXX, eric = XXX }
-filter poolp_only phase mail-from match !auth &lt;poolp_users&gt; reject &quot;550 must be a poolp.org user&quot;
+we can also do table-based filter matching using a credentials table:</p><pre tabindex=0><code>table poolp_users { gilles = XXX, eric = XXX }
+filter poolp_only phase mail-from match !auth &lt;poolp_users&gt; reject &#34;550 must be a poolp.org user&#34;
 </code></pre><p>Outside of the filtering area,
-other improvements were made to <code>smtpd.conf</code> that makes it possible to simplify existing configurations as well as express configurations that were not possible before.</p>
-<p>There are two notable improvements in my opinion:</p>
-<p>In previous releases, it was possible to have rules match authenticated session as follows:</p>
-<pre tabindex=0><code>match from any auth for any action &quot;relay&quot;
+other improvements were made to <code>smtpd.conf</code> that makes it possible to simplify existing configurations as well as express configurations that were not possible before.</p><p>There are two notable improvements in my opinion:</p><p>In previous releases, it was possible to have rules match authenticated session as follows:</p><pre tabindex=0><code>match from any auth for any action &#34;relay&#34;
 </code></pre><p>but this was an all or nothing mechanism,
-either you wanted to match all authenticated sessions or none.</p>
-<p>The mechanism was extended to support matching specific authenticated users so that you can write:</p>
-<pre tabindex=0><code>match from any auth gilles for any action &quot;relay_gilles&quot;
-match from any auth eric for any action &quot;relay_eric&quot;
+either you wanted to match all authenticated sessions or none.</p><p>The mechanism was extended to support matching specific authenticated users so that you can write:</p><pre tabindex=0><code>match from any auth gilles for any action &#34;relay_gilles&#34;
+match from any auth eric for any action &#34;relay_eric&#34;
 </code></pre><p>Similarly to filters,
-the <code>auth</code> parameter is a table so that it is possible to pass a list of specific users and create rules targeting specific users:</p>
-<pre tabindex=0><code>match from any auth { gilles, eric } for any action &quot;relay_custom&quot;
-match from any auth for any action &quot;relay&quot;
+the <code>auth</code> parameter is a table so that it is possible to pass a list of specific users and create rules targeting specific users:</p><pre tabindex=0><code>match from any auth { gilles, eric } for any action &#34;relay_custom&#34;
+match from any auth for any action &#34;relay&#34;
 </code></pre><p>This is very powerful as <code>auth</code> accepts credentials tables and allows setups serving multiple domains to have rules match their specific users,
-something that was not doable previously:</p>
-<pre tabindex=0><code>table users_poolp_org file:/etc/mail/users_poolp_org
+something that was not doable previously:</p><pre tabindex=0><code>table users_poolp_org file:/etc/mail/users_poolp_org
 table users_opensmtpd_org file:/etc/mail/users_opensmtpd_org
 
 listen on $ip_poolp [...] auth &lt;users_poolp_org&gt;
@@ -186,98 +58,71 @@ listen on $ip_opensmtpd [...] auth &lt;users_opensmtpd_org&gt;
 
 [...]
 
-match from any auth &lt;users_poolp_org&gt; for any action &quot;relay_poolp&quot;
-match from any auth &lt;users_opensmtpd_org&gt; for any action &quot;relay_opensmtpd&quot;
+match from any auth &lt;users_poolp_org&gt; for any action &#34;relay_poolp&#34;
+match from any auth &lt;users_opensmtpd_org&gt; for any action &#34;relay_opensmtpd&#34;
 </code></pre><p>Finally,
 a rework of the <code>from</code> and <code>for</code> logic in <code>smtpd.conf</code> was done to better express rules.
 Instead of assuming that <code>from</code> and <code>for</code> always attempted to match a source address and a destination,
-they now match the user intent:</p>
-<pre tabindex=0><code>match from auth [...]
+they now match the user intent:</p><pre tabindex=0><code>match from auth [...]
 match from mail-from gilles@poolp.org [...]
 match [...] for rcpt-to gilles@poolp.org
-</code></pre><p>This change allows expressing many configurations in a much more compact and user-friendly way:</p>
-<p>For example, the following:</p>
-<pre tabindex=0><code>match from any auth for domain poolp.org rcpt-to gilles@poolp.org action &quot;deliver&quot;
-</code></pre><p>becomes:</p>
-<pre tabindex=0><code>match from auth for rcpt-to gilles@poolp.org action &quot;deliver&quot;
+</code></pre><p>This change allows expressing many configurations in a much more compact and user-friendly way:</p><p>For example, the following:</p><pre tabindex=0><code>match from any auth for domain poolp.org rcpt-to gilles@poolp.org action &#34;deliver&#34;
+</code></pre><p>becomes:</p><pre tabindex=0><code>match from auth for rcpt-to gilles@poolp.org action &#34;deliver&#34;
 </code></pre><p>They are both functionally equivalent but the change is semantic,
 the first rule requires that the envelope matches both <code>from any</code> and <code>auth</code> for origin and both <code>for domain poolp.org</code> and <code>rcpt-to gilles@poolp.org</code> for destination,
 whereas in the second rule it only requires that <code>auth</code> and <code>rcpt-to gilles@poolp.org</code> be matched regardless of the source address and destination domain.
 This semantic shift is backwards compatible so existing configuration are not impacted,
-they just have some rules that could be simplified in some cases.</p>
-<p>Most of the other work is either not visible to users,
-but feel free to <a href=https://github.com/OpenSMTPD/OpenSMTPD/commits/master>browse the commit history</a> for more as there&rsquo;s been a LOT of work poured in the release polishing and cleaning stuff.</p>
-<h1 id=filter-prometheus>filter-prometheus</h1>
-<p>As I mentionned above,
+they just have some rules that could be simplified in some cases.</p><p>Most of the other work is either not visible to users,
+but feel free to <a href=https://github.com/OpenSMTPD/OpenSMTPD/commits/master>browse the commit history</a> for more as there&rsquo;s been a LOT of work poured in the release polishing and cleaning stuff.</p><h1 id=filter-prometheus>filter-prometheus</h1><p>As I mentionned above,
 the new release comes with an <code>smtp-out</code> events reporting stream that makes it possible to write filters that are aware of outgoing trafic,
-so I decided to write a PoC filter that would highlight how this can be used in a useful way.</p>
-<p><a href=https://prometheus.io/>Prometheus</a> is an open-source monitoring system that&rsquo;s fairly popular and that seems to have the favours of highly competent people at ${DAYJOB}.
+so I decided to write a PoC filter that would highlight how this can be used in a useful way.</p><p><a href=https://prometheus.io/>Prometheus</a> is an open-source monitoring system that&rsquo;s fairly popular and that seems to have the favours of highly competent people at ${DAYJOB}.
 Since I need to get familiar with it at work,
-I thought I&rsquo;d get my hands on it on my spare time too.</p>
-<p><strong>Basically</strong> the idea is that you run an instance (or a cluster, but lets keep it simple) that will contact configured endpoints that expose various metrics.
-The metrics are then available in Prometheus through a query language, PromQL, and through graphs in a web user interface.</p>
-<p>I wrote a filter-prometheus which registers <code>smtp-in</code> and <code>smtp-out</code> events,
+I thought I&rsquo;d get my hands on it on my spare time too.</p><p><strong>Basically</strong> the idea is that you run an instance (or a cluster, but lets keep it simple) that will contact configured endpoints that expose various metrics.
+The metrics are then available in Prometheus through a query language, PromQL, and through graphs in a web user interface.</p><p>I wrote a filter-prometheus which registers <code>smtp-in</code> and <code>smtp-out</code> events,
 creates some metrics based on them,
-and exposes these metrics on an HTTP endpoint.</p>
-<center>
-<img src=/images/2020-05-28-filter-prometheus-metrics.png>
-</center>
-<p>Prometheus is configured to hit that endpoint and&mldr;
+and exposes these metrics on an HTTP endpoint.</p><center><img src=/images/2020-05-28-filter-prometheus-metrics.png></center><p>Prometheus is configured to hit that endpoint and&mldr;
 voila, that&rsquo;s all,
-they are available through prometheus.</p>
-<center>
-<img src=/images/2020-05-28-filter-prometheus.png>
-</center>
-<p>On the configuration standpoint,
+they are available through prometheus.</p><center><img src=/images/2020-05-28-filter-prometheus.png></center><p>On the configuration standpoint,
 this is straightforward.
 The filter itself doesn&rsquo;t have configuration,
-it only supports a command line flag to specify which IP and port are used to exposed the metrics.</p>
-<p>Prometheus has a simple configuration:</p>
-<pre tabindex=0><code>global:
+it only supports a command line flag to specify which IP and port are used to exposed the metrics.</p><p>Prometheus has a simple configuration:</p><pre tabindex=0><code>global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: &quot;prometheus&quot;
+  - job_name: &#34;prometheus&#34;
     static_configs:
-    - targets: [&quot;localhost:9090&quot;]
+    - targets: [&#34;localhost:9090&#34;]
 
-  - job_name: &quot;OpenSMTPD: in.mailbrix.mx&quot;
+  - job_name: &#34;OpenSMTPD: in.mailbrix.mx&#34;
     static_configs:
-    - targets: [&quot;in.mailbrix.mx:31333&quot;]
-</code></pre><p>OpenSMTPD has an even simpler configuration:</p>
-<pre tabindex=0><code>filter prometheus proc-exec &quot;filter-prometheus -exporter 0.0.0.0:31333&quot;
+    - targets: [&#34;in.mailbrix.mx:31333&#34;]
+</code></pre><p>OpenSMTPD has an even simpler configuration:</p><pre tabindex=0><code>filter prometheus proc-exec &#34;filter-prometheus -exporter 0.0.0.0:31333&#34;
 
 # attach filter to a listener for smtp-in metrics
 listen on all filter prometheus
 
 # attach filter to a relay action for smtp-out metrics
-action &quot;outgoing&quot; relay filter prometheus
+action &#34;outgoing&#34; relay filter prometheus
 
 [...]
 </code></pre><p>The filter is already available in a
 <a href=https://github.com/poolpOrg/filter-prometheus>Github repository</a>
 but note that this is a work in progress and that it was mostly done to play with prometheus and exporting metrics,
-not intended to be used for real as I don&rsquo;t have any significant experience to design metrics properly at this point.</p>
-<p><strong>If you are familiar with prometheus and want to give me a hand in making this filter production-ready,
-I&rsquo;ll be more than happy to make this happen with your help.</strong></p>
-<h1 id=table-procexec>table-procexec</h1>
-<p>OK,
+not intended to be used for real as I don&rsquo;t have any significant experience to design metrics properly at this point.</p><p><strong>If you are familiar with prometheus and want to give me a hand in making this filter production-ready,
+I&rsquo;ll be more than happy to make this happen with your help.</strong></p><h1 id=table-procexec>table-procexec</h1><p>OK,
 let&rsquo;s get to the hairy part now,
-but first a bit of a refresher.</p>
-<p>OpenSMTPD uses a mechanism called <code>tables</code> for all kinds of internal lookups.
+but first a bit of a refresher.</p><p>OpenSMTPD uses a mechanism called <code>tables</code> for all kinds of internal lookups.
 The table API support <strong>three operations</strong>,
 <code>check</code>, <code>lookup</code> and <code>fetch</code>.
 It uses these three operations to check if an envelope criteria is met (ie: does this user exists ?),
 lookup informations based on a specific key (ie: what are the aliases for root ?),
-or fetch a value from a set (ie: what&rsquo;s a valid source IP to use for this outgoing session ?).</p>
-<p>In addition to this,
+or fetch a value from a set (ie: what&rsquo;s a valid source IP to use for this outgoing session ?).</p><p>In addition to this,
 the table API supports various <strong>lookup services</strong> (ie: <code>credentials</code>, <code>aliases</code>, <code>mailaddr</code>, &mldr;)
 which determine <strong>what kind of data the table is supposed to return</strong>.
 If you lookup a <code>mailaddr</code> in a table,
 the expected return value is an e-mail address that can be validated by the daemon.
 The three table operations are aware of this,
-so OpenSMTPD will for example &ldquo;check if table has a mailaddr matching key <code>gilles@poolp.org</code>&rdquo;.</p>
-<p>There are <strong>multiple table backends available</strong>,
+so OpenSMTPD will for example &ldquo;check if table has a mailaddr matching key <code>gilles@poolp.org</code>&rdquo;.</p><p>There are <strong>multiple table backends available</strong>,
 both builtin to OpenSMTPD (memory, file and db) and third-party (sqlite, postgres, mysql, &mldr;).
 Some backends,
 like table-passwd,
@@ -287,239 +132,160 @@ you can implement a backend for some or all of the lookup services.
 The good part is that this happens outside of the daemon,
 so there&rsquo;s <strong>no need for cooperation from OpenSMTPD</strong>,
 no spill of dependencies and such,
-table backends are <strong>fully independant standalone programs</strong>.</p>
-<p>The API is very simple so in theory anyone can write a backend for their own custom use-cases,
+table backends are <strong>fully independant standalone programs</strong>.</p><p>The API is very simple so in theory anyone can write a backend for their own custom use-cases,
 but in practice the communication with OpenSMTPD happens through the <code>imsg</code> API which limits the interface to C developers.
 Eric and I <a href=https://github.com/OpenSMTPD/OpenSMTPD-extras/blob/master/api/table_api.c>wrote the necessary bits a long time ago to abstract the details</a> so that C developers <a href=https://github.com/OpenSMTPD/OpenSMTPD-extras/blob/master/extras/tables/table-stub/table_stub.c>only need to focus on implementing the operations</a> and not deal with the IPC.
 It helped a lot but any backend doing something a bit tricky,
 <a href=https://github.com/OpenSMTPD/OpenSMTPD-extras/blob/master/extras/tables/table-ldap/table_ldap.c>ldap for example</a>,
 still requires being comfortable with C programming and a sysadmin without that knowledge can&rsquo;t really get anything done.
-A bit sad given that sysadmins are the primary users of this&mldr;</p>
-<p>I later <a href=https://github.com/OpenSMTPD/OpenSMTPD-extras/blob/master/extras/tables/table-python/table_python.c>implemented a table-python backend</a> which acted as a <strong>bridge</strong>.
+A bit sad given that sysadmins are the primary users of this&mldr;</p><p>I later <a href=https://github.com/OpenSMTPD/OpenSMTPD-extras/blob/master/extras/tables/table-python/table_python.c>implemented a table-python backend</a> which acted as a <strong>bridge</strong>.
 It allowed to implement the three operations in Python functions and have the backend call the functions,
 taking care of converting back and forth between the two languages.
 This made table-backends much more user-friendly but then came the Perl people, then the Lua people, then the Go people, &mldr;
 and a bridge would have to be written and maintained for all of them,
-something I don&rsquo;t have the time or motivation to do.</p>
-<p>We had already agreed with <code>eric@</code>,
+something I don&rsquo;t have the time or motivation to do.</p><p>We had already agreed with <code>eric@</code>,
 for other reasons,
 that <strong>the API should be switched to a line-based protocol</strong>,
 like was done for filters,
 but this is a very tricky task in the daemon at this point and requires solving non-trivial limitations first.
 I&rsquo;ll skip on this because this article would grow considerably,
-let&rsquo;s just say that my first two attempts at this were unsuccessful.</p>
-<p>It still annoyed me that we couldn&rsquo;t move forward with this so I decided to tackle the issue differently.
+let&rsquo;s just say that my first two attempts at this were unsuccessful.</p><p>It still annoyed me that we couldn&rsquo;t move forward with this so I decided to tackle the issue differently.
 I wrote <a href=https://github.com/OpenSMTPD/OpenSMTPD-extras/tree/table-procexec/extras/tables/table-procexec>table-procexec</a>
-a table backend which translate the <code>imsg</code> protocol into a filter-like query/response line-based protocol:</p>
-<pre tabindex=0><code>table|0.1|1590631921.2944137|table-name|check|deadbeefdeadbeef|mailaddr|gilles@poolp.org
+a table backend which translate the <code>imsg</code> protocol into a filter-like query/response line-based protocol:</p><pre tabindex=0><code>table|0.1|1590631921.2944137|table-name|check|deadbeefdeadbeef|mailaddr|gilles@poolp.org
 table-response|deadbeefdeadbeef|found
 table|0.1|1590632034.2909038|table-name|lookup|deadbeefdeadbeef|alias|root
 table-response|deadbeefdeadbeef|found|gilles
 </code></pre><p>The <code>table-procexec</code> backend communicates with OpenSMTPD through <code>imsg</code>,
-forks a child table backend <strong>talking the new protocol</strong> and takes care of proxying queries and responses <strong>translating</strong> imsg to this new protocol.</p>
-<pre tabindex=0><code>OpenSMTPD &lt;-- imsg --&gt; table-procexec &lt;-- line-protocol --&gt; table-foobar
+forks a child table backend <strong>talking the new protocol</strong> and takes care of proxying queries and responses <strong>translating</strong> imsg to this new protocol.</p><pre tabindex=0><code>OpenSMTPD &lt;-- imsg --&gt; table-procexec &lt;-- line-protocol --&gt; table-foobar
 </code></pre><p>The child table backend can be any program written in any language,
 just like with filters,
 and all it has to do is to implement the three operations expected from a backend,
-read the queries from stdin and respond to stdout.</p>
-<p>This isn&rsquo;t as elegant as if OpenSMTPD was producing the line-based protocol itself,
+read the queries from stdin and respond to stdout.</p><p>This isn&rsquo;t as elegant as if OpenSMTPD was producing the line-based protocol itself,
 allowing us to skip the <code>table-procexec</code> layer,
 but it allows moving forward in a way that&rsquo;s <strong>transparent to the daemon</strong>.
 We can already test the API, improve it, make sure it works, implement new table backends on top of it and use them.
 When the limitations in OpenSMTPD are solved,
-the <code>table-procexec</code> can be thrown away transparently:</p>
-<pre tabindex=0><code>OpenSMTPD &lt;-- line-protocol --&gt; table-foobar
+the <code>table-procexec</code> can be thrown away transparently:</p><pre tabindex=0><code>OpenSMTPD &lt;-- line-protocol --&gt; table-foobar
 </code></pre><p>This is a work in progress and while it can be plugged to OpenSMTPD today using nothing but the existing framework,
-it doesn&rsquo;t allow passing a configuration file to the child backend (yet).</p>
-<p>In terms of configuration,
-it works similarly to any existing backend:</p>
-<pre tabindex=0><code># table foobar uses procexec backend to fork table-foobar
+it doesn&rsquo;t allow passing a configuration file to the child backend (yet).</p><p>In terms of configuration,
+it works similarly to any existing backend:</p><pre tabindex=0><code># table foobar uses procexec backend to fork table-foobar
 table foobar procexec:table-foobar
-</code></pre><p>Ideally, we should switch to a filter like syntax, but we&rsquo;re not there yet:</p>
-<pre tabindex=0><code>table foobar proc-exec &quot;table-foobar -f /etc/mail/foobar.conf&quot;
+</code></pre><p>Ideally, we should switch to a filter like syntax, but we&rsquo;re not there yet:</p><pre tabindex=0><code>table foobar proc-exec &#34;table-foobar -f /etc/mail/foobar.conf&#34;
 </code></pre><p>Testing this require building the <code>table-procexec</code> backend from the branch of the same name in the OpenSMTPD-extras repository,
-I&rsquo;ll leave this as an exercise to the reader.</p>
-<h1 id=go-opensmtpd>go-opensmtpd</h1>
-<p>Of course,
-testing the new table API required a PoC so I decided to start with a Go implementation.</p>
-<p>The <code>go-opensmtpd/table</code> package provides a work-in-progress implementation of the protocol parser,
+I&rsquo;ll leave this as an exercise to the reader.</p><h1 id=go-opensmtpd>go-opensmtpd</h1><p>Of course,
+testing the new table API required a PoC so I decided to start with a Go implementation.</p><p>The <code>go-opensmtpd/table</code> package provides a work-in-progress implementation of the protocol parser,
 as well as a table API to ease development.
 Writing a table backend in Go using this package is simple,
-here&rsquo;s a simple dummy example of a table that only contains my e-mail address:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
-
-<span class=kn>import</span> <span class=p>(</span>
-	<span class=s>&#34;github.com/poolpOrg/go-opensmtpd/table&#34;</span>
-<span class=p>)</span>
-
-<span class=kd>func</span> <span class=nf>check</span><span class=p>(</span><span class=nx>token</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>service</span> <span class=nx>table</span><span class=p>.</span><span class=nx>LookupService</span><span class=p>,</span> <span class=nx>key</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
-	<span class=k>if</span> <span class=nx>key</span> <span class=o>==</span> <span class=s>&#34;gilles@poolp.org&#34;</span> <span class=p>{</span>
-		<span class=c1>// found in table
-</span><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Boolean</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=kc>true</span><span class=p>)</span>
-	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-		<span class=c1>// not found
-</span><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Boolean</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=kc>false</span><span class=p>)</span>
-	<span class=p>}</span>
-<span class=p>}</span>
-
-<span class=kd>func</span> <span class=nf>lookup</span><span class=p>(</span><span class=nx>token</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>service</span> <span class=nx>table</span><span class=p>.</span><span class=nx>LookupService</span><span class=p>,</span> <span class=nx>key</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
-	<span class=k>if</span> <span class=nx>service</span> <span class=o>==</span> <span class=s>&#34;alias&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>key</span> <span class=o>==</span> <span class=s>&#34;root&#34;</span> <span class=p>{</span>
-		<span class=c1>// if looking up alias for root, return my address
-</span><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Result</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=s>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
-	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-		<span class=c1>// empty result, not-found
-</span><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Result</span><span class=p>(</span><span class=nx>token</span><span class=p>)</span>
-	<span class=p>}</span>
-<span class=p>}</span>
-
-<span class=kd>func</span> <span class=nf>fetch</span><span class=p>(</span><span class=nx>token</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>service</span> <span class=nx>table</span><span class=p>.</span><span class=nx>LookupService</span><span class=p>)</span> <span class=p>{</span>
-	<span class=c1>// only my address is in the set
-</span><span class=c1></span>	<span class=nx>table</span><span class=p>.</span><span class=nf>Result</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=s>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
-<span class=p>}</span>
-
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-	<span class=nx>table</span><span class=p>.</span><span class=nf>OnCheck</span><span class=p>(</span><span class=nx>check</span><span class=p>)</span>
-	<span class=nx>table</span><span class=p>.</span><span class=nf>OnLookup</span><span class=p>(</span><span class=nx>lookup</span><span class=p>)</span>
-	<span class=nx>table</span><span class=p>.</span><span class=nf>OnFetch</span><span class=p>(</span><span class=nx>fetch</span><span class=p>)</span>
-	<span class=nx>table</span><span class=p>.</span><span class=nf>Dispatch</span><span class=p>()</span>
-<span class=p>}</span>
-</code></pre></div><p>Note that the Dispatch() function never returns as it is the event loop for the protocol parser.
-I don&rsquo;t have much to add here, this is trivial to understand.</p>
-<p>The package is a work in progress,
+here&rsquo;s a simple dummy example of a table that only contains my e-mail address:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>main</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;github.com/poolpOrg/go-opensmtpd/table&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>check</span><span class=p>(</span><span class=nx>token</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>service</span> <span class=nx>table</span><span class=p>.</span><span class=nx>LookupService</span><span class=p>,</span> <span class=nx>key</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>key</span> <span class=o>==</span> <span class=s>&#34;gilles@poolp.org&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=c1>// found in table
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Boolean</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=kc>true</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=c1>// not found
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Boolean</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=kc>false</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>lookup</span><span class=p>(</span><span class=nx>token</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>service</span> <span class=nx>table</span><span class=p>.</span><span class=nx>LookupService</span><span class=p>,</span> <span class=nx>key</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>service</span> <span class=o>==</span> <span class=s>&#34;alias&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>key</span> <span class=o>==</span> <span class=s>&#34;root&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=c1>// if looking up alias for root, return my address
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Result</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=s>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=c1>// empty result, not-found
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Result</span><span class=p>(</span><span class=nx>token</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>fetch</span><span class=p>(</span><span class=nx>token</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>service</span> <span class=nx>table</span><span class=p>.</span><span class=nx>LookupService</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=c1>// only my address is in the set
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=nx>table</span><span class=p>.</span><span class=nf>Result</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=s>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>table</span><span class=p>.</span><span class=nf>OnCheck</span><span class=p>(</span><span class=nx>check</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>table</span><span class=p>.</span><span class=nf>OnLookup</span><span class=p>(</span><span class=nx>lookup</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>table</span><span class=p>.</span><span class=nf>OnFetch</span><span class=p>(</span><span class=nx>fetch</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>table</span><span class=p>.</span><span class=nf>Dispatch</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>Note that the Dispatch() function never returns as it is the event loop for the protocol parser.
+I don&rsquo;t have much to add here, this is trivial to understand.</p><p>The package is a work in progress,
 it is already <a href=https://github.com/poolpOrg/go-opensmtpd>available in a Github repository</a> but expect it to change every few days at this point,
-don&rsquo;t use it unless you are ready to suffer.</p>
-<h1 id=py-opensmtpd>py-opensmtpd</h1>
-<p>The goal not being to have a Go centric API,
-testing with a different language required another PoC so I decided to go with Python this time.</p>
-<p>The <code>py-opensmtpd/table</code> module also provides a work-in-progress implementation of the protocol parser,
+don&rsquo;t use it unless you are ready to suffer.</p><h1 id=py-opensmtpd>py-opensmtpd</h1><p>The goal not being to have a Go centric API,
+testing with a different language required another PoC so I decided to go with Python this time.</p><p>The <code>py-opensmtpd/table</code> module also provides a work-in-progress implementation of the protocol parser,
 as well as a table API to ease development.
 Writing a table backend in Python using this module is no more complex than in Go,
-here&rsquo;s the exact same dummy example of a table that only contains my e-mail address:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>opensmtpd</span> <span class=kn>import</span> <span class=n>table</span>
-
-<span class=k>def</span> <span class=nf>check</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>tableName</span><span class=p>,</span> <span class=n>service</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
-	<span class=k>if</span> <span class=n>key</span> <span class=o>==</span> <span class=s2>&#34;gilles@poolp.org&#34;</span><span class=p>:</span>
-		<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>boolean</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>true</span><span class=p>)</span>
-	<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>boolean</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>false</span><span class=p>)</span>
-
-<span class=k>def</span> <span class=nf>lookup</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>tableName</span><span class=p>,</span> <span class=n>service</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
-	<span class=k>if</span> <span class=n>service</span> <span class=o>==</span> <span class=s2>&#34;alias&#34;</span> <span class=ow>and</span> <span class=n>key</span> <span class=o>==</span> <span class=s2>&#34;root&#34;</span><span class=p>:</span>
-		<span class=c1># if looking up alias for root, return my address</span>
-		<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>result</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=s2>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
-	<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>result</span><span class=p>(</span><span class=n>token</span><span class=p>)</span>
-
-<span class=k>def</span> <span class=nf>fetch</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>tableName</span><span class=p>,</span> <span class=n>service</span><span class=p>):</span>
-	<span class=c1># only my address is in the set</span>
-	<span class=n>table</span><span class=o>.</span><span class=n>result</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=s2>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
-
-<span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
-	<span class=n>table</span><span class=o>.</span><span class=n>on_check</span><span class=p>(</span><span class=n>check</span><span class=p>)</span>
-	<span class=n>table</span><span class=o>.</span><span class=n>on_lookup</span><span class=p>(</span><span class=n>lookup</span><span class=p>)</span>
-	<span class=n>table</span><span class=o>.</span><span class=n>on_fetch</span><span class=p>(</span><span class=n>fetch</span><span class=p>)</span>
-	<span class=n>table</span><span class=o>.</span><span class=n>dispatch</span><span class=p>()</span>
-
-<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
-	<span class=n>main</span><span class=p>()</span>
-</code></pre></div><p>Again, the dispatch() function never returns as it is the event loop for the protocol parser.
-The interface is the exact same as what I did with <code>go-opensmtpd</code>.</p>
-<p>The package is also a work in progress,
+here&rsquo;s the exact same dummy example of a table that only contains my e-mail address:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>opensmtpd</span> <span class=kn>import</span> <span class=n>table</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>check</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>tableName</span><span class=p>,</span> <span class=n>service</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=n>key</span> <span class=o>==</span> <span class=s2>&#34;gilles@poolp.org&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>boolean</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>true</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>boolean</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>false</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>lookup</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>tableName</span><span class=p>,</span> <span class=n>service</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=n>service</span> <span class=o>==</span> <span class=s2>&#34;alias&#34;</span> <span class=ow>and</span> <span class=n>key</span> <span class=o>==</span> <span class=s2>&#34;root&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>		<span class=c1># if looking up alias for root, return my address</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>result</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=s2>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>result</span><span class=p>(</span><span class=n>token</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>fetch</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>tableName</span><span class=p>,</span> <span class=n>service</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>	<span class=c1># only my address is in the set</span>
+</span></span><span class=line><span class=cl>	<span class=n>table</span><span class=o>.</span><span class=n>result</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=s2>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>	<span class=n>table</span><span class=o>.</span><span class=n>on_check</span><span class=p>(</span><span class=n>check</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=n>table</span><span class=o>.</span><span class=n>on_lookup</span><span class=p>(</span><span class=n>lookup</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=n>table</span><span class=o>.</span><span class=n>on_fetch</span><span class=p>(</span><span class=n>fetch</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=n>table</span><span class=o>.</span><span class=n>dispatch</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>	<span class=n>main</span><span class=p>()</span>
+</span></span></code></pre></div><p>Again, the dispatch() function never returns as it is the event loop for the protocol parser.
+The interface is the exact same as what I did with <code>go-opensmtpd</code>.</p><p>The package is also a work in progress,
 it is also already <a href=https://github.com/poolpOrg/py-opensmtpd>available in a Github repository</a> but expect it to change every few days,
-don&rsquo;t use it unless you are also ready to suffer.</p>
-<h1 id=py-consul>py-consul</h1>
-<p>And because these PoC were dummy and do not show how the API can be used for real cases,
-I wrote a PoC for a table-backend that would actually <strong>do something more useful</strong>.</p>
-<p><a href=https://www.consul.io/>Consul</a> is a service to <em>&ldquo;automate network configurations, discover services, and enable secure connectivity across any cloud or runtime&rdquo;</em>.
+don&rsquo;t use it unless you are also ready to suffer.</p><h1 id=py-consul>py-consul</h1><p>And because these PoC were dummy and do not show how the API can be used for real cases,
+I wrote a PoC for a table-backend that would actually <strong>do something more useful</strong>.</p><p><a href=https://www.consul.io/>Consul</a> is a service to <em>&ldquo;automate network configurations, discover services, and enable secure connectivity across any cloud or runtime&rdquo;</em>.
 It is another tool highly valued at work and it conveniently comes with a key-value store hidden behind a REST API,
-something that we can work with to implement the three table backend operations.</p>
-<p>I implemented a <code>table-consul</code> python backend using the key-value store to perform its lookups.
+something that we can work with to implement the three table backend operations.</p><p>I implemented a <code>table-consul</code> python backend using the key-value store to perform its lookups.
 <strong>The code is a work in progress, not meant to be used in production, but it highlights how simple it is to integrate with existing tools</strong>.
 It took about 20 minutes to write the backend from scratch with no prior experience in Consul.
 The backend itself is ~70 lines including the license and empty lines.
 Using <code>table-consul</code>,
-one can setup a consul instance and use the key-value store to hold table informations used in OpenSMTPD lookups.</p>
-<p>In the following example,
-I will setup and OpenSMTPD to use <code>table-consul</code> for aliases lookups:</p>
-<pre tabindex=0><code>table consul procexec:table-consul
+one can setup a consul instance and use the key-value store to hold table informations used in OpenSMTPD lookups.</p><p>In the following example,
+I will setup and OpenSMTPD to use <code>table-consul</code> for aliases lookups:</p><pre tabindex=0><code>table consul procexec:table-consul
 
 listen on all
 
-action &quot;local_users&quot; maildir alias &lt;consul&gt;
+action &#34;local_users&#34; maildir alias &lt;consul&gt;
 
 [...]
-</code></pre><p>I then start a brand new empty consul instance and send a mail to root from my OpenSMTPD:</p>
-<center>
-<img src=/images/2020-05-28-empty-consul.png>
-</center>
-<center>
-<img src=/images/2020-05-28-consul-mail-root-noalias.png>
-</center>
-<p>Then,
+</code></pre><p>I then start a brand new empty consul instance and send a mail to root from my OpenSMTPD:</p><center><img src=/images/2020-05-28-empty-consul.png></center>
+<center><img src=/images/2020-05-28-consul-mail-root-noalias.png></center><p>Then,
 after adding a key <code>root</code> with value <code>gilles</code> in the <code>foobar/alias</code> bucket and sending a mail again,
-without restarting the daemon:</p>
-<center>
-<img src=/images/2020-05-28-consul-fed.png>
-</center>
-<center>
-<img src=/images/2020-05-28-consul-mail-root-alias.png>
-</center>
-<p>The alias lookup went to <code>table-consul</code> through <code>table-procexec</code>,
+without restarting the daemon:</p><center><img src=/images/2020-05-28-consul-fed.png></center>
+<center><img src=/images/2020-05-28-consul-mail-root-alias.png></center><p>The alias lookup went to <code>table-consul</code> through <code>table-procexec</code>,
 <code>table-consul</code> did an HTTP request to consul to retrieve the alias,
-passed it back to an unsuspecting OpenSMTPD just as if it came from a regular table.</p>
-<p>Because <code>table-procexec</code> can&rsquo;t pass configuration to child backend yet,
+passed it back to an unsuspecting OpenSMTPD just as if it came from a regular table.</p><p>Because <code>table-procexec</code> can&rsquo;t pass configuration to child backend yet,
 I decided to use <code>&lt;table>/&lt;service></code> as the bucket for key-values which is not always very
-practical as it doesn&rsquo;t allow sharing same keys between multiple service lookups but this was good enough for a PoC.</p>
-<p>Like for <code>filter-prometheus</code>,
+practical as it doesn&rsquo;t allow sharing same keys between multiple service lookups but this was good enough for a PoC.</p><p>Like for <code>filter-prometheus</code>,
 the table is already available in a
 <a href=https://github.com/poolpOrg/py-table-consul>Github repository</a>,
 but <strong>this is a work in progress</strong> and was mostly to play with the new API,
-<strong>not intended to be used for real</strong> as I don&rsquo;t have any significant experience with consul to make sound choices.</p>
-<p><strong>If you are familiar with consul and want to give me a hand in making this table production-ready,
-I&rsquo;ll be more than happy to make this happen with your help.</strong></p>
-<h1 id=whats-next->What&rsquo;s next ?</h1>
-<p>I started this article at ~2:00AM and spent four hours writing,
+<strong>not intended to be used for real</strong> as I don&rsquo;t have any significant experience with consul to make sound choices.</p><p><strong>If you are familiar with consul and want to give me a hand in making this table production-ready,
+I&rsquo;ll be more than happy to make this happen with your help.</strong></p><h1 id=whats-next->What&rsquo;s next ?</h1><p>I started this article at ~2:00AM and spent four hours writing,
 I can&rsquo;t even remember my name at this point so I have no idea what I&rsquo;ll prioritize next month,
-I just need some sleep.</p>
-<hr>
-<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/120>https://github.com/poolpOrg/poolp.org/discussions/120</a></p>
-</div>
-<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-<a class="d-block col-md-6" href=https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/> &#171; June 2020: poolp.org, folder pinning and webmail work</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/>April 2020: worked on a webmail and a bit of OpenSMTPD too &#187;</a>
-<div class=clearfix></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class=alertbar>
-<div class="container text-center">
-<span>
-<img src=/images/poolp_org.png alt=logo height=0px>
+I just need some sleep.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/120>https://github.com/poolpOrg/poolp.org/discussions/120</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/>&#171; June 2020: poolp.org, folder pinning and webmail work</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/>April 2020: worked on a webmail and a bit of OpenSMTPD too &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
-</span>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=container>
-<div class=row>
-<div class="col-md-6 col-sm-6 text-center text-lg-left">
-&copy; Copyright poolp.org - All rights reserved
-</div>
-<div class="col-md-6 col-sm-6 text-center text-lg-right">
-<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
-</div>
-</div>
-</div>
-</footer>
-</div>
-<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
 <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
-<script src=/js/mediumish.js></script>
-</body>
-</html>
+<script src=/js/mediumish.js></script></body></html>

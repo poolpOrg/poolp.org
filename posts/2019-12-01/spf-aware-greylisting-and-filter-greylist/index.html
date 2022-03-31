@@ -1,132 +1,28 @@
-<!doctype html><html lang=en-us><head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.92.2">
-<link rel=icon href=/images/poolp_org.png>
-<title>SPF-aware greylisting and filter-greylist | poolp.org</title>
-<meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/cover.jpg">
-<meta name=twitter:title content="SPF-aware greylisting and filter-greylist">
-<meta name=twitter:description content="TL;DR: - greylisting is a sound idea - yet it is not really practical today - people tend to disable it or find work-arounds - SPF-aware greylisting makes greylisting usable again  Shout outs to my sponsors ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
-SMTP failures in a nutshell SMTP is a fail-safe protocol which attempts very hard to ensure that messages do not get lost once they are in transit.">
-<meta property="og:title" content="SPF-aware greylisting and filter-greylist">
-<meta property="og:description" content="TL;DR: - greylisting is a sound idea - yet it is not really practical today - people tend to disable it or find work-arounds - SPF-aware greylisting makes greylisting usable again  Shout outs to my sponsors ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
-SMTP failures in a nutshell SMTP is a fail-safe protocol which attempts very hard to ensure that messages do not get lost once they are in transit.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/"><meta property="og:image" content="https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/cover.jpg"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2019-12-01T10:11:00+02:00">
-<meta property="article:modified_time" content="2019-12-01T10:11:00+02:00">
-<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
-<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
-<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
-<link href=/css/medium.css rel=stylesheet>
-<link href=/css/additional.css rel=stylesheet>
-<link href=/css/syntax.css rel=stylesheet>
-<link href=/css/custom.css rel=stylesheet>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-<div class="container pr-0">
-<a class=navbar-brand href=https://poolp.org/>
-<img src=/images/poolp_org.png alt=logo>
-</a>
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.96.0"><link rel=icon href=/images/poolp_org.png><title>SPF-aware greylisting and filter-greylist | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/cover.jpg"><meta name=twitter:title content="SPF-aware greylisting and filter-greylist"><meta name=twitter:description content="TL;DR: - greylisting is a sound idea - yet it is not really practical today - people tend to disable it or find work-arounds - SPF-aware greylisting makes greylisting usable again  Shout outs to my sponsors ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
+SMTP failures in a nutshell SMTP is a fail-safe protocol which attempts very hard to ensure that messages do not get lost once they are in transit."><meta property="og:title" content="SPF-aware greylisting and filter-greylist"><meta property="og:description" content="TL;DR: - greylisting is a sound idea - yet it is not really practical today - people tend to disable it or find work-arounds - SPF-aware greylisting makes greylisting usable again  Shout outs to my sponsors ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship.
+SMTP failures in a nutshell SMTP is a fail-safe protocol which attempts very hard to ensure that messages do not get lost once they are in transit."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/"><meta property="og:image" content="https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/cover.jpg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-12-01T10:11:00+02:00"><meta property="article:modified_time" content="2019-12-01T10:11:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarMediumish>
-<ul class="navbar-nav ml-auto">
-<li class=nav-item>
-<a class=nav-link href=/fr/contracting/>Freelance</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=https://hypno.cat>Hypnose</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/authors/gilles-chehade>About Me</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<div class=site-content>
-<div class=container>
-<div class=mainheading>
-</div><div class=main-content>
-<div class=container>
-<div class=row>
-<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
-<p>Share</p>
-<ul>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://twitter.com/intent/tweet?text=SPF-aware%20greylisting%20and%20filter-greylist&url=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-01%2fspf-aware-greylisting-and-filter-greylist%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
-<i class="fab fa-twitter"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-01%2fspf-aware-greylisting-and-filter-greylist%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
-<i class="fab fa-facebook-f"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-01%2fspf-aware-greylisting-and-filter-greylist%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
-<i class="fab fa-xing"></i>
-</a>
-</li>
-</ul>
-</div>
-</div>
-<div class="col-md-9 flex-first flex-md-unordered">
-<div class=mainheading>
-<div class="row post-top-meta">
-<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة">
-</div>
-<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
-<span class=author-description>
-foobarbaz-ing since 1981<br>
-</span>
-<br>
-<span class=author-description>
-<i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=SPF-aware%20greylisting%20and%20filter-greylist&url=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-01%2fspf-aware-greylisting-and-filter-greylist%2f" onclick='return window.open(this.href,"twitter-share","width=550,height=435"),!1'><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-01%2fspf-aware-greylisting-and-filter-greylist%2f" onclick='return window.open(this.href,"facebook-share","width=550,height=435"),!1'><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2019-12-01%2fspf-aware-greylisting-and-filter-greylist%2f" onclick='return window.open(this.href,"xing-share","width=550,height=435"),!1'><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
 Dec 1, 2019
 <i class="far fa-clock clock"></i>
-12 min read
-</span>
-</div>
-</div>
-<div class=after-post-tags>
-<ul class=tags>
-</ul>
-</div>
-<h1 class=posttitle>SPF-aware greylisting and filter-greylist</h1>
-</div>
-<div class=article-post>
-<pre><code>TL;DR:
+12 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>SPF-aware greylisting and filter-greylist</h1></div><div class=article-post><pre><code>TL;DR:
 - greylisting is a sound idea
 - yet it is not really practical today
 - people tend to disable it or find work-arounds
 - SPF-aware greylisting makes greylisting usable again
-</code></pre>
-<h2 id=shout-outs-to-my-sponsors->Shout outs to my sponsors !</h2>
-<p>As usual,
-a <strong>huge</strong> thanks goes to the people sponsoring me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>, the work in this post was made possible by my <a href=/sponsorship/>sponsorship</a>.</p>
-<h2 id=smtp-failures-in-a-nutshell>SMTP failures in a nutshell</h2>
-<p>SMTP is a fail-safe protocol which attempts very hard to ensure that messages do not get lost once they are in transit.
-Among the various mechanisms and requirements in place is the use of &ldquo;Temporary Failures&rdquo;.</p>
-<p>Basically,
+</code></pre><h2 id=shout-outs-to-my-sponsors->Shout outs to my sponsors !</h2><p>As usual,
+a <strong>huge</strong> thanks goes to the people sponsoring me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>, the work in this post was made possible by my <a href=/sponsorship/>sponsorship</a>.</p><h2 id=smtp-failures-in-a-nutshell>SMTP failures in a nutshell</h2><p>SMTP is a fail-safe protocol which attempts very hard to ensure that messages do not get lost once they are in transit.
+Among the various mechanisms and requirements in place is the use of &ldquo;Temporary Failures&rdquo;.</p><p>Basically,
 an SMTP node has <strong>two</strong> final states for a mail.
 <strong>Either it is delivered</strong>,
 and the recipient has the mail,
 <strong>or it&rsquo;s not</strong>,
 and the recipient doesn&rsquo;t have the mail.
 For the latter,
-the SMTP requires that a node notifies the sender that an error occured either by rejecting during the SMTP transaction or by sending a <code>deferred bounce</code> (also known as <code>MAILER-DAEMON</code>).</p>
-<p>Then,
+the SMTP requires that a node notifies the sender that an error occured either by rejecting during the SMTP transaction or by sending a <code>deferred bounce</code> (also known as <code>MAILER-DAEMON</code>).</p><p>Then,
 there&rsquo;s a <strong>third state</strong> that&rsquo;s not final: <code>temporarily failed</code>.
 It covers any <strong>transient</strong> error that prevented delivery&mldr;
-but which <strong>might</strong> result in a delivery (or a permanent failure) if the mail was retried after <strong>something</strong> was fixed by the destination node.</p>
-<p>Unlike delivered mail,
+but which <strong>might</strong> result in a delivery (or a permanent failure) if the mail was retried after <strong>something</strong> was fixed by the destination node.</p><p>Unlike delivered mail,
 which the recipient sees,
 and failed mail,
 which the sender sees,
@@ -139,102 +35,70 @@ often without even knowing that a retry took place.
 In the second case,
 the sender will get a notification that,
 despite retries,
-the mail could not be delivered after an extended period of time.</p>
-<p>The retry strategies are handled differently by different software,
+the mail could not be delivered after an extended period of time.</p><p>The retry strategies are handled differently by different software,
 but you can expect that you&rsquo;ll see retries happening seconds or minutes after a temporary failure.
 A popular approach,
 the quadratic delay increase,
 causes the delay between retries to start short,
 but then grow with the number of retries so that the longer a destination host is unable to handle a mail,
-the longer between the retries from a sender.</p>
-<p>Temporary failures happen <strong>all the time</strong>,
+the longer between the retries from a sender.</p><p>Temporary failures happen <strong>all the time</strong>,
 it is a normal thing in the SMTP world,
-looking at log you will very often see lines such as this:</p>
-<pre><code>4b3a6c195c1f6010 mta delivery evpid=8f26ea98359eccea from=&lt;misc+bounces-4541-[redacted]=tin.it@opensmtpd.org&gt; to=&lt;[redacted]@tin.it&gt; rcpt=&lt;-&gt; source=&quot;45.76.46.201&quot; relay=&quot;62.211.72.32 (smtp.tin.it)&quot; delay=0s result=&quot;TempFail&quot; stat=&quot;421 &lt;[redacted]@tin.it&gt; Service not available - too busy&quot;
-</code></pre>
-<p>This is not just for small destinations,
+looking at log you will very often see lines such as this:</p><pre><code>4b3a6c195c1f6010 mta delivery evpid=8f26ea98359eccea from=&lt;misc+bounces-4541-[redacted]=tin.it@opensmtpd.org&gt; to=&lt;[redacted]@tin.it&gt; rcpt=&lt;-&gt; source=&quot;45.76.46.201&quot; relay=&quot;62.211.72.32 (smtp.tin.it)&quot; delay=0s result=&quot;TempFail&quot; stat=&quot;421 &lt;[redacted]@tin.it&gt; Service not available - too busy&quot;
+</code></pre><p>This is not just for small destinations,
 I know of two Big Mailer Corps that have temporary issues pretty much always,
 but they also have so many mail exchangers that a retry is unlikely to hit the same MX twice in a row,
-so mail usually gets delivered at first or second try.</p>
-<p>A lot more could be said but lets keep this article simple and summarize:</p>
-<p>There exists a mechanism in SMTP which allows a destination MX to tell a sender MX that it should retry a delivery.
+so mail usually gets delivered at first or second try.</p><p>A lot more could be said but lets keep this article simple and summarize:</p><p>There exists a mechanism in SMTP which allows a destination MX to tell a sender MX that it should retry a delivery.
 The retries happen behind the scene,
 without any action from the users,
-and can cause a delay in delivery.</p>
-<h2 id=greylisting-explained>Greylisting explained</h2>
-<p>Spam is a <strong>volume</strong> industry.</p>
-<p>Spammers are not interested in targeting <strong>specific</strong> recipients,
-they are interested in targeting a <strong>large amount</strong> of recipients so that it <strong>statistically</strong> increases the number of recipients that will fall for it.</p>
-<p>I won&rsquo;t dig into this too much because it is the topic of another article I&rsquo;m writing,
+and can cause a delay in delivery.</p><h2 id=greylisting-explained>Greylisting explained</h2><p>Spam is a <strong>volume</strong> industry.</p><p>Spammers are not interested in targeting <strong>specific</strong> recipients,
+they are interested in targeting a <strong>large amount</strong> of recipients so that it <strong>statistically</strong> increases the number of recipients that will fall for it.</p><p>I won&rsquo;t dig into this too much because it is the topic of another article I&rsquo;m writing,
 however you have to keep in mind that there are different kinds of spammers,
 and that while some use regular MX that respect the retry requests,
 a lot more rely on stateless scripts or custom MX code that <strong>DOES NOT</strong> honor the retries because&mldr;
 <strong>it slows them down considerably for uncertain result</strong>.
 Waiting minutes to retry a recipient just to end up resolving to an &ldquo;unknown user&rdquo; permanent failure is not interesting,
-it clutters the queue and it prevents sending other domains at full speed.</p>
-<p>The idea behind greylisting is very simple:</p>
-<p>Greylisting causes a temporary failure to be triggered for MX you don&rsquo;t trust and keeps track of these retry requests.
+it clutters the queue and it prevents sending other domains at full speed.</p><p>The idea behind greylisting is very simple:</p><p>Greylisting causes a temporary failure to be triggered for MX you don&rsquo;t trust and keeps track of these retry requests.
 If the retry happens too soon, it is ignored, so spammers can&rsquo;t just perform immediate retries.
 If the retry happens too late, well&mldr; it is too late and the implementation may do different things ranging from blacklisting, to degrading reputation, to forgetting the initial request and causing greylisting to start all over again, and again, and again, &mldr;
 The bottom line is that spammers are <strong>forced to keep state</strong> and behave like an RFC-compliant implementation,
-which goes against the economics of sending <em>en masse</em>.</p>
-<p>In the other hand,
-RFC-compliant MX naturally try again multiple times so they eventually fall in the correct window for a retry and are whitelisted.</p>
-<h2 id=how-greylisting-usually-works>How greylisting usually works</h2>
-<p>There are different greylisting solutions and they don&rsquo;t all work the same.</p>
-<p>The general idea is that you have a database which keeps track of the window of time between which a retry is considered as valid to pass greylisting for a given MX. However, how the MX is considered for a retry varies and while some solutions will just look at the source IP address,
+which goes against the economics of sending <em>en masse</em>.</p><p>In the other hand,
+RFC-compliant MX naturally try again multiple times so they eventually fall in the correct window for a retry and are whitelisted.</p><h2 id=how-greylisting-usually-works>How greylisting usually works</h2><p>There are different greylisting solutions and they don&rsquo;t all work the same.</p><p>The general idea is that you have a database which keeps track of the window of time between which a retry is considered as valid to pass greylisting for a given MX. However, how the MX is considered for a retry varies and while some solutions will just look at the source IP address,
 others will also look at the MAIL FROM,
 others will also look at the RCPT TO,
 and based on my own studying of some failure patterns,
-the unique Message-ID is <em>sometimes</em> also tracked.</p>
-<p>The OpenBSD <code>spamd(8)</code> for example tracks the source IP address,
+the unique Message-ID is <em>sometimes</em> also tracked.</p><p>The OpenBSD <code>spamd(8)</code> for example tracks the source IP address,
 the identification hostname provided at HELO/EHLO,
 the envelope-from (MAIL FROM) and the envelope-to (RCPT TO).
-So, to pass greylisting, an MX must retry during the proper window of time, coming from the same IP address, identifying with the same HELO/EHLO, from the same MAIL FROM and to the same RCPT TO.</p>
-<center>
-<img src=/images/2019-12-01-spam.jpg>
-</center>
-<h2 id=the-problem-with-greylisting-and-big-mailer-corps>The problem with greylisting and Big Mailer Corps</h2>
-<p>For small destinations,
+So, to pass greylisting, an MX must retry during the proper window of time, coming from the same IP address, identifying with the same HELO/EHLO, from the same MAIL FROM and to the same RCPT TO.</p><center><img src=/images/2019-12-01-spam.jpg></center><h2 id=the-problem-with-greylisting-and-big-mailer-corps>The problem with greylisting and Big Mailer Corps</h2><p>For small destinations,
 greylisting works nicely as they tend to use the same MX for incoming and outgoing trafic.
 The MX will contact you,
 be told to retry later,
-then be accepted when it comes back after a minute or so.</p>
-<p>Then,
+then be accepted when it comes back after a minute or so.</p><p>Then,
 you have Gmail / Yahoo / Outlook / &mldr;
 which not only have different MX for incoming and outgoing trafic,
 but also have dozens and dozens of outgoing mail exchangers.
 This leads to a situation where an initial MX contacts you,
 gets asked to retry,
 but you never see a retry because it came from another MX which was asked to retry,
-and so on&mldr;</p>
-<p>Greylisting with such hosts is unusable and results in mails being delayed for hours,
+and so on&mldr;</p><p>Greylisting with such hosts is unusable and results in mails being delayed for hours,
 days,
-or even expire and never reach you.</p>
-<p>But at the same time,
+or even expire and never reach you.</p><p>But at the same time,
 greylisting keep a lot of nuisance outside too as it kills most scripts and compromised computers acting as spamming bots,
-so a lot of operators put in place various work-arounds to keep using greylisting for small senders and not for Big Mailer Corps.</p>
-<h2 id=work-around-strategies>Work-around strategies</h2>
-<p>I used the plural but quite frankly there&rsquo;s only one strategy:
-<strong>whitelisting</strong>.</p>
-<p>The work-around is to figure out IP addresses of Big Mailer Corps,
-then give them a free pass and allow them to skip greylisting.</p>
-<p>Does this defeat greylisting ?
+so a lot of operators put in place various work-arounds to keep using greylisting for small senders and not for Big Mailer Corps.</p><h2 id=work-around-strategies>Work-around strategies</h2><p>I used the plural but quite frankly there&rsquo;s only one strategy:
+<strong>whitelisting</strong>.</p><p>The work-around is to figure out IP addresses of Big Mailer Corps,
+then give them a free pass and allow them to skip greylisting.</p><p>Does this defeat greylisting ?
 Not really.
 Greylisting kills non-RFC compliant MX,
-but they operate RFC-compliant MX and if they retried from the same outgoing MX they would pass greylisting hands up.</p>
-<p>Fair enough,
+but they operate RFC-compliant MX and if they retried from the same outgoing MX they would pass greylisting hands up.</p><p>Fair enough,
 let&rsquo;s whitelist them&mldr;
-but how ?</p>
-<p>For a while,
+but how ?</p><p>For a while,
 I used a naive approach which consisted in whitelisting the <code>/24</code> of any Big Mailer Corps MX that would get greylisted.
 After a while,
 my list was big enough that new ones would rarely get greylisted.
 It was tedious,
 it didn&rsquo;t cover the case of new ones hitting me from new ranges,
 and I ended up merging lists from various people with mine to make sure I add as many as possible.
-This resulted in a <strong>constantly growing whitelist</strong>.</p>
-<p>This was not really smart because all of the Big Mailer Corps have SPF.
+This resulted in a <strong>constantly growing whitelist</strong>.</p><p>This was not really smart because all of the Big Mailer Corps have SPF.
 They actually advertise in a DNS record which IP they will contact you with,
 so that whenever you receive a connection claiming to be from them,
 you can do a lookup and check if it is legit.
@@ -244,51 +108,40 @@ a tool that would walk through the SPF record of domains and extract as many IP 
 There is a <a href=https://poolp.org/posts/2018-01-08/spfwalk/>write up about spfwalk</a> on this blog if you&rsquo;re interested.
 This tool was intended to replace the dummy approach I used until then,
 but it is in no way perfect,
-it is best effort.</p>
-<p>The way SPF records work means that it&rsquo;s easy to check if an IP matches a policy but not to extract a list of IP addresses for later check.
+it is best effort.</p><p>The way SPF records work means that it&rsquo;s easy to check if an IP matches a policy but not to extract a list of IP addresses for later check.
 For example, some policies expect runtime reverse DNS resolution of the source IP address to check if they match a domain,
 so there&rsquo;s literally NO IP address to extract from the record.
-So&mldr; this works for most cases until you hit one where it doesn&rsquo;t.</p>
-<p>A lot of people are happy with SPF walking,
+So&mldr; this works for most cases until you hit one where it doesn&rsquo;t.</p><p>A lot of people are happy with SPF walking,
 it does improve the situation considerably,
-but it is very hackish and I personally don&rsquo;t use that tool anymore as I feel it&rsquo;s not the right way to tackle the issue.</p>
-<h2 id=the-filter-greylist-proof-of-concept>The filter-greylist proof of concept</h2>
-<p>Last month,
+but it is very hackish and I personally don&rsquo;t use that tool anymore as I feel it&rsquo;s not the right way to tackle the issue.</p><h2 id=the-filter-greylist-proof-of-concept>The filter-greylist proof of concept</h2><p>Last month,
 <a href=https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/>I wrote a proof-of-concept filter</a>
 for OpenSMTPD which uses a different approach and that is available
-<a href=https://github.com/poolpOrg/filter-greylist>on Github</a>.</p>
-<p>Let me clarify first that <strong>I don&rsquo;t claim to have invented this</strong>,
+<a href=https://github.com/poolpOrg/filter-greylist>on Github</a>.</p><p>Let me clarify first that <strong>I don&rsquo;t claim to have invented this</strong>,
 it just occured to me that it was a good idea so I implemented it and it may already be available elsewhere.
 Since I <strong>haven&rsquo;t looked very hard</strong>,
 (that&rsquo;s a synonym for &ldquo;at all&rdquo;),
 not only do I not know of another implementation in another opensource software,
 but if such an implementation exists,
-I&rsquo;m also unaware if my implementation tackles the idea the same way.</p>
-<p>The base idea is that we don&rsquo;t really want Big Mailer Corps to skip the greylisting, we resort to whitelisting SPF because what we <em>really</em> want is for all IP addresses from a Big Mailer Corp to be considered as equivalent when it comes to greylisting retries.
+I&rsquo;m also unaware if my implementation tackles the idea the same way.</p><p>The base idea is that we don&rsquo;t really want Big Mailer Corps to skip the greylisting, we resort to whitelisting SPF because what we <em>really</em> want is for all IP addresses from a Big Mailer Corp to be considered as equivalent when it comes to greylisting retries.
 And by whitelisting IP addresses from the SPF record,
 what we really want is to consider the IP addresses from the SPF record as equivalent&mldr;
 In other words,
-what we want is <strong>SPF-aware greylisting</strong>.</p>
-<p>The proof of concept considers that there are two kinds of senders:
-those not publishing SPF records and those publishing SPF records.</p>
-<p>MX that do not publish SPF are greylisted by source address,
+what we want is <strong>SPF-aware greylisting</strong>.</p><p>The proof of concept considers that there are two kinds of senders:
+those not publishing SPF records and those publishing SPF records.</p><p>MX that do not publish SPF are greylisted by source address,
 like they would with a regular greylisting.
 This doesn&rsquo;t affect a lot of legitimate senders because Big Mailer Corps require senders to provide SPF in order not to degrade their reputation,
 and because Big Mailer Corps represent such a large e-mail address space,
-legitimate senders tend to comply.</p>
-<p>Then,
+legitimate senders tend to comply.</p><p>Then,
 you have the MX that do publish SPF records,
 which includes all Big Mailer Corps for obvious reasons.
 And for these,
 instead of greylisting by source address,
-we can do an SPF-aware greylisting for the domain.</p>
-<p>Assuming this is the first mail we receive from an MX,
+we can do an SPF-aware greylisting for the domain.</p><p>Assuming this is the first mail we receive from an MX,
 when a new connection arrives,
 the filter tracks the source IP address.
 The SMTP session moves forward,
 initiates an SMTP transaction,
-and then the client provides the envelope-from (MAIL FROM):</p>
-<pre tabindex=0><code>S: 220 in.mailbrix.mx ESMTP OpenSMTPD
+and then the client provides the envelope-from (MAIL FROM):</p><pre tabindex=0><code>S: 220 in.mailbrix.mx ESMTP OpenSMTPD
 C: EHLO localhost
 S: [...]
 S: 250 in.mailbrix.mx Hello localhost [127.0.0.1], pleased to meet you
@@ -296,87 +149,42 @@ C: MAIL FROM:&lt;gilles@poolp.org&gt;
 </code></pre><p>At this point,
 the filter can do an SPF lookup for the envelope-from domain, <code>poolp.org</code>.
 If it <strong>doesn&rsquo;t find an SPF record</strong>,
-it can simply <strong>keep track of the source address</strong> and issue a retry request.</p>
-<p>If it <strong>finds an SPF record</strong>,
+it can simply <strong>keep track of the source address</strong> and issue a retry request.</p><p>If it <strong>finds an SPF record</strong>,
 it <strong>checks if the source IP address is valid</strong>.
 If it is not,
 then it supposedly doesn&rsquo;t come from the sender domain,
 so the filter keeps track of the source address and issues a retry request.
-A stricter approach could be to reject the sender but I don&rsquo;t think it&rsquo;s the goal of a greylisting to check SPF validity.</p>
-<p>If,
+A stricter approach could be to reject the sender but I don&rsquo;t think it&rsquo;s the goal of a greylisting to check SPF validity.</p><p>If,
 however,
 <strong>the source IP address is valid for the SPF record</strong>,
 then instead of keeping track of the source address,
-the filter <strong>keeps track of the domain</strong> and issues a retry request.</p>
-<p>Upon a second connection,
+the filter <strong>keeps track of the domain</strong> and issues a retry request.</p><p>Upon a second connection,
 when reaching the same point in an SMTP transaction,
 if the source address is valid for the SPF record and because we track the domain and not the source IP address,
 any SPF valid IP address will be considered equivalent to pass greylisting.
 What this means, <strong>in simpler words</strong>, is that if Gmail comes from one IP address,
 it is allowed to retry from another,
-<strong>as long as both IP addresses are declared in SPF</strong>.</p>
-<p>This runtime SPF resolution also ensures that there is no need to pre-whitelist IP addresses,
+<strong>as long as both IP addresses are declared in SPF</strong>.</p><p>This runtime SPF resolution also ensures that there is no need to pre-whitelist IP addresses,
 instead SPF-enabled domains are whitelisted as a whole,
 there&rsquo;s no need to run periodic cron or anything to catch up new addresses.
-This way of working is fully compatible with non-SPF domains which degrade to IP-greylisted.</p>
-<p>It can&rsquo;t be implemented in a daemon like <code>spamd(8)</code>,
+This way of working is fully compatible with non-SPF domains which degrade to IP-greylisted.</p><p>It can&rsquo;t be implemented in a daemon like <code>spamd(8)</code>,
 the decision to greylist or let the session move forward is taken at <code>MAIL FROM</code>,
-whereas redirection to <code>spamd(8)</code> is decided at connect time through firewall rules.</p>
-<h2 id=does-this-get-any-better->Does this get any better ?</h2>
-<p>Dunno but I doubt so.</p>
-<p>There may be some adaptations to slightly improve the idea,
+whereas redirection to <code>spamd(8)</code> is decided at connect time through firewall rules.</p><h2 id=does-this-get-any-better->Does this get any better ?</h2><p>Dunno but I doubt so.</p><p>There may be some adaptations to slightly improve the idea,
 but I personally doubt there&rsquo;s much more to do in that area:
-an SPF-aware greylisting solves the issue that breaks greylisting for Big Mailer Corps, no more, no less.</p>
-<p>Keeping in mind that spamming is a volume industry,
+an SPF-aware greylisting solves the issue that breaks greylisting for Big Mailer Corps, no more, no less.</p><p>Keeping in mind that spamming is a volume industry,
 more interesting work can be done in raising the cost of sending volumes:
 just like spammers don&rsquo;t like retrying with uncertain result,
 they <strong>REALLY</strong> dislike hosts that are laggy,
 because it has a <strong>HUGE</strong> impact on throughput and queue size.
 In my filter-senderscore,
 I have already implemented something along these lines by correlating a delay to a sender reputation,
-achieving stateless tarpitting for low reputation senders.</p>
-<p>If I&rsquo;m spending more time making OpenSMTPD a hard target to spammers it will be through time-penalty for sure.</p>
-<hr>
-<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/110>https://github.com/poolpOrg/poolp.org/discussions/110</a></p>
-</div>
-<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-<a class="d-block col-md-6" href=https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/> &#171; Decentralised SMTP is for the greater good</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/>November 2019 report: OpenSMTPD 6.6.1p1, filter-greylist and tons of portable cleanup &#187;</a>
-<div class=clearfix></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class=alertbar>
-<div class="container text-center">
-<span>
-<img src=/images/poolp_org.png alt=logo height=0px>
+achieving stateless tarpitting for low reputation senders.</p><p>If I&rsquo;m spending more time making OpenSMTPD a hard target to spammers it will be through time-penalty for sure.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/110>https://github.com/poolpOrg/poolp.org/discussions/110</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/>&#171; Decentralised SMTP is for the greater good</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/>November 2019 report: OpenSMTPD 6.6.1p1, filter-greylist and tons of portable cleanup &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
-</span>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=container>
-<div class=row>
-<div class="col-md-6 col-sm-6 text-center text-lg-left">
-&copy; Copyright poolp.org - All rights reserved
-</div>
-<div class="col-md-6 col-sm-6 text-center text-lg-right">
-<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
-</div>
-</div>
-</div>
-</footer>
-</div>
-<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
 <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
-<script src=/js/mediumish.js></script>
-</body>
-</html>
+<script src=/js/mediumish.js></script></body></html>

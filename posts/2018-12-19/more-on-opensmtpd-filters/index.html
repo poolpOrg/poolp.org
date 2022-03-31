@@ -1,170 +1,55 @@
-<!doctype html><html lang=en-us><head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.92.2">
-<link rel=icon href=/images/poolp_org.png>
-<title>more on OpenSMTPD filters | poolp.org</title>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="more on OpenSMTPD filters">
-<meta name=twitter:description content="TL;DR: Not this time, pal/gal, I took hours writing this post, you'll take a few minutes reading it all. Oh, and merry X-mas :-*  A bit of short-sighted history The filtering feature has been introduced only recently in OpenSMTPD, first presented on this blog a month ago.
-I had a working proof-of-concept running on my laptop and my plan was to start bringing the code to the OpenBSD tree, small chunks by small chunks, through a serie of diffs.">
-<meta property="og:title" content="more on OpenSMTPD filters">
-<meta property="og:description" content="TL;DR: Not this time, pal/gal, I took hours writing this post, you'll take a few minutes reading it all. Oh, and merry X-mas :-*  A bit of short-sighted history The filtering feature has been introduced only recently in OpenSMTPD, first presented on this blog a month ago.
-I had a working proof-of-concept running on my laptop and my plan was to start bringing the code to the OpenBSD tree, small chunks by small chunks, through a serie of diffs.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://poolp.org/posts/2018-12-19/more-on-opensmtpd-filters/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2018-12-19T18:21:00+00:00">
-<meta property="article:modified_time" content="2018-12-19T18:21:00+00:00">
-<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
-<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
-<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
-<link href=/css/medium.css rel=stylesheet>
-<link href=/css/additional.css rel=stylesheet>
-<link href=/css/syntax.css rel=stylesheet>
-<link href=/css/custom.css rel=stylesheet>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-<div class="container pr-0">
-<a class=navbar-brand href=https://poolp.org/>
-<img src=/images/poolp_org.png alt=logo>
-</a>
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.96.0"><link rel=icon href=/images/poolp_org.png><title>more on OpenSMTPD filters | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="more on OpenSMTPD filters"><meta name=twitter:description content="TL;DR: Not this time, pal/gal, I took hours writing this post, you'll take a few minutes reading it all. Oh, and merry X-mas :-*  A bit of short-sighted history The filtering feature has been introduced only recently in OpenSMTPD, first presented on this blog a month ago.
+I had a working proof-of-concept running on my laptop and my plan was to start bringing the code to the OpenBSD tree, small chunks by small chunks, through a serie of diffs."><meta property="og:title" content="more on OpenSMTPD filters"><meta property="og:description" content="TL;DR: Not this time, pal/gal, I took hours writing this post, you'll take a few minutes reading it all. Oh, and merry X-mas :-*  A bit of short-sighted history The filtering feature has been introduced only recently in OpenSMTPD, first presented on this blog a month ago.
+I had a working proof-of-concept running on my laptop and my plan was to start bringing the code to the OpenBSD tree, small chunks by small chunks, through a serie of diffs."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2018-12-19/more-on-opensmtpd-filters/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-12-19T18:21:00+00:00"><meta property="article:modified_time" content="2018-12-19T18:21:00+00:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarMediumish>
-<ul class="navbar-nav ml-auto">
-<li class=nav-item>
-<a class=nav-link href=/fr/contracting/>Freelance</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=https://hypno.cat>Hypnose</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/authors/gilles-chehade>About Me</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<div class=site-content>
-<div class=container>
-<div class=mainheading>
-</div><div class=main-content>
-<div class=container>
-<div class=row>
-<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
-<p>Share</p>
-<ul>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://twitter.com/intent/tweet?text=more%20on%20OpenSMTPD%20filters&url=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-19%2fmore-on-opensmtpd-filters%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
-<i class="fab fa-twitter"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-19%2fmore-on-opensmtpd-filters%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
-<i class="fab fa-facebook-f"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-19%2fmore-on-opensmtpd-filters%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
-<i class="fab fa-xing"></i>
-</a>
-</li>
-</ul>
-</div>
-</div>
-<div class="col-md-9 flex-first flex-md-unordered">
-<div class=mainheading>
-<div class="row post-top-meta">
-<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة">
-</div>
-<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
-<span class=author-description>
-foobarbaz-ing since 1981<br>
-</span>
-<br>
-<span class=author-description>
-<i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=more%20on%20OpenSMTPD%20filters&url=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-19%2fmore-on-opensmtpd-filters%2f" onclick='return window.open(this.href,"twitter-share","width=550,height=435"),!1'><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-19%2fmore-on-opensmtpd-filters%2f" onclick='return window.open(this.href,"facebook-share","width=550,height=435"),!1'><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2018-12-19%2fmore-on-opensmtpd-filters%2f" onclick='return window.open(this.href,"xing-share","width=550,height=435"),!1'><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
 Dec 19, 2018
 <i class="far fa-clock clock"></i>
-9 min read
-</span>
-</div>
-</div>
-<div class=after-post-tags>
-<ul class=tags>
-</ul>
-</div>
-<h1 class=posttitle>more on OpenSMTPD filters</h1>
-</div>
-<div class=article-post>
-<pre><code>TL;DR:
+9 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>more on OpenSMTPD filters</h1></div><div class=article-post><pre><code>TL;DR:
 Not this time, pal/gal, I took hours writing this post, you'll take a few minutes reading it all.
 Oh, and merry X-mas :-*
-</code></pre>
-<h2 id=a-bit-of-short-sighted-history>A bit of short-sighted history</h2>
-<p>The filtering feature has been introduced only recently in OpenSMTPD,
-first presented on <a href=https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/>this blog a month ago</a>.</p>
-<p>I had a working proof-of-concept running on my laptop and my plan was to start bringing the code to the OpenBSD tree,
+</code></pre><h2 id=a-bit-of-short-sighted-history>A bit of short-sighted history</h2><p>The filtering feature has been introduced only recently in OpenSMTPD,
+first presented on <a href=https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/>this blog a month ago</a>.</p><p>I had a working proof-of-concept running on my laptop and my plan was to start bringing the code to the OpenBSD tree,
 small chunks by small chunks,
-through a serie of diffs.</p>
-<p>I won&rsquo;t cover the serie in details because it&rsquo;s irrelevant,
+through a serie of diffs.</p><p>I won&rsquo;t cover the serie in details because it&rsquo;s irrelevant,
 but the point is that we went from scratch to a working filter implementation in a few days,
-one that we knew would work but that had only ran on a one-interface laptop and was not polished.</p>
-<p>In the last few weeks,
+one that we knew would work but that had only ran on a one-interface laptop and was not polished.</p><p>In the last few weeks,
 as various proof-of-concepts for useful filters were written,
 the protocol and API improved and while there&rsquo;s many more improvements to come before the next major release,
-it is safe to say that the API now allows full-featured filters.</p>
-<h2 id=how-does-filtering-work-in-opensmtpd->How does filtering work in OpenSMTPD ?</h2>
-<p>During the lifetime of an SMTP session,
+it is safe to say that the API now allows full-featured filters.</p><h2 id=how-does-filtering-work-in-opensmtpd->How does filtering work in OpenSMTPD ?</h2><p>During the lifetime of an SMTP session,
 whenever a client sends a command,
-the server checks if the command should be accepted or rejected then replies to the client.</p>
-<p>First it checks if the command is valid in terms of syntax and context (for example,
+the server checks if the command should be accepted or rejected then replies to the client.</p><p>First it checks if the command is valid in terms of syntax and context (for example,
 <code>AMIL FORM</code> is an invalid command,
 <code>MAIL FROM: >&lt;</code> is a valid command with an invalid parameter,
 and you can&rsquo;t send <code>RCPT TO</code> before <code>MAIL FROM</code>).
 Then, it checks if the command is actually allowed by the ruleset.
 Sometimes, it may reject a valid command for issues related to lack of ressources,
-but let&rsquo;s keep this corner case out.</p>
-<p>How does filtering work then ?</p>
-<p>Well,
+but let&rsquo;s keep this corner case out.</p><p>How does filtering work then ?</p><p>Well,
 right between the two types of checks,
 after the server has checked that the input was valid in terms of syntax and context,
 it pauses processing and requests the <code>lookup</code> process to take a decision based on the input.
 The <code>lookup</code> process passes that input to the filters sequentially and if any decides to take an action,
-the server will enforce that action instead of resuming its usual check.</p>
-<p>When it comes to the <code>DATA</code> part,
+the server will enforce that action instead of resuming its usual check.</p><p>When it comes to the <code>DATA</code> part,
 things are trickier because the server doesn&rsquo;t answer to the individual lines but to the whole message.
 Also,
 it is expected that the filters can actually make changes to the content of the message.
 As such,
 there are two kinds of filtering in OpenSMTPD: protocol filtering and data filtering.
 The former provides a simple query/reply mechanism to alter the decision taking in the SMTP engine,
-the latter provides a simple transformation mechanism consuming an input and producing an output.</p>
-<h2 id=lets-get-a-bit-more-technical>Let&rsquo;s get a bit more technical</h2>
-<p>As mentionned in the blog post linked in my introduction,
-there are two mechanisms involved: reporting and filtering.</p>
-<p>Each of these have their own specific hooks,
+the latter provides a simple transformation mechanism consuming an input and producing an output.</p><h2 id=lets-get-a-bit-more-technical>Let&rsquo;s get a bit more technical</h2><p>As mentionned in the blog post linked in my introduction,
+there are two mechanisms involved: reporting and filtering.</p><p>Each of these have their own specific hooks,
 triggering at specific phases of the SMTP session,
-and allowing the SMTP engine to generate reporting events or filter queries at appropriate times.</p>
-<p>The basic idea when I designed the filter API was that we don&rsquo;t want complexity in these hooks.
+and allowing the SMTP engine to generate reporting events or filter queries at appropriate times.</p><p>The basic idea when I designed the filter API was that we don&rsquo;t want complexity in these hooks.
 We do want filters to have as much flexibility as possible,
 a filter should be able to reject a session after the <code>data</code> phase because the source address used during the <code>connect</code> phase didn&rsquo;t have a proper reverse DNS configured,
-but this should not come at the cost of having hooks with tons of parameters or huge structures encompassing each and everything.</p>
-<p>To achieve this, the reporting and filtering mechanisms were designed with the following philosophy in mind:</p>
-<p>The reporting mechanism should generate enough events that it is possible to replicate the state of an SMTP session,
+but this should not come at the cost of having hooks with tons of parameters or huge structures encompassing each and everything.</p><p>To achieve this, the reporting and filtering mechanisms were designed with the following philosophy in mind:</p><p>The reporting mechanism should generate enough events that it is possible to replicate the state of an SMTP session,
 but these events should only contain the information related to the event itself.
 A filter that wants to reject a session after the <code>data</code> phase because of the reverse DNS doesn&rsquo;t need to receive the reverse DNS during the <code>data</code> phase,
 instead it needs to receive it during the <code>connect</code> phase and keep it in a local state to check it at the <code>data</code> phase.
-This allowed making the reporting mechanism very simple and not limiting since a filter can essentially hook all reporting phases and have the exact same state as the SMTP session itself.</p>
-<p>The filtering mechanism in turn should only take decisions based on the parameters of the phase itself &mldr; and any local state.
+This allowed making the reporting mechanism very simple and not limiting since a filter can essentially hook all reporting phases and have the exact same state as the SMTP session itself.</p><p>The filtering mechanism in turn should only take decisions based on the parameters of the phase itself &mldr; and any local state.
 A filter registering a hook for the <code>MAIL FROM</code> phase will only receive the address of the sender.
 If it wants to take decisions based on anything more than that,
-then it needs to rely on a local state gathered from the reporting mechanism.</p>
-<p>The <code>data</code> filtering is trickier because we want to be able to add, change or suppress lines.
+then it needs to rely on a local state gathered from the reporting mechanism.</p><p>The <code>data</code> filtering is trickier because we want to be able to add, change or suppress lines.
 As a result,
 we can&rsquo;t rely on the number of bytes we sent and the number of bytes we received,
 just like we can&rsquo;t rely on a lines count.
@@ -174,170 +59,103 @@ so the first filter may receive 1 line,
 generate 4 headers,
 the second filter remove some of these headers,
 the third filter append a ton of data,
-etc&mldr;</p>
-<p>This is where <code>eric@</code> had a very clever idea which is to consider the <code>DATA</code> part as a stream.
+etc&mldr;</p><p>This is where <code>eric@</code> had a very clever idea which is to consider the <code>DATA</code> part as a stream.
 The SMTP protocol ends <code>DATA</code> with a single <code>.</code> on a line by itself,
 so the lines are streamed to the filters which read them up to the <code>.</code> and output a new stream terminate by a <code>.</code> itself.
 Doing this allows the SMTP engine to stream to filters the DATA up to the client-submitted <code>.</code>,
 then read back a stream from the filters up to the filter-submitted <code>.</code>,
-not having to care if the stream was altered.</p>
-<p>Sounds like a lot of details ?</p>
-<p>You need not worry,
-in practice writing a filter is trivial.</p>
-<h2 id=a-case-study-filter-rspamd>A case study: filter-rspamd</h2>
-<p>I wrote many filters to experiment and refine the API,
-but here&rsquo;s an interesting one.</p>
-<p>Let&rsquo;s have a look at how this whole reporting and filtering mechanisms come into play.
+not having to care if the stream was altered.</p><p>Sounds like a lot of details ?</p><p>You need not worry,
+in practice writing a filter is trivial.</p><h2 id=a-case-study-filter-rspamd>A case study: filter-rspamd</h2><p>I wrote many filters to experiment and refine the API,
+but here&rsquo;s an interesting one.</p><p>Let&rsquo;s have a look at how this whole reporting and filtering mechanisms come into play.
 I wrote the filter in python,
 it is fairly small but I will not copy paste the whole code because I wrote it as a PoC,
-<a href=https://github.com/poolpOrg/py-opensmtpd-rspamd/blob/master/opensmtpd_rspamd/processor.py>and I&rsquo;m ashamed of the quality</a>.</p>
-<p>First of all,
-let&rsquo;s define what we want to do with the filter.</p>
-<p>We want a filter that will pass a <code>DATA</code> part to the <a href=https://rspamd.com>rspamd</a> daemon,
+<a href=https://github.com/poolpOrg/py-opensmtpd-rspamd/blob/master/opensmtpd_rspamd/processor.py>and I&rsquo;m ashamed of the quality</a>.</p><p>First of all,
+let&rsquo;s define what we want to do with the filter.</p><p>We want a filter that will pass a <code>DATA</code> part to the <a href=https://rspamd.com>rspamd</a> daemon,
 with several session informations gathered from the connection up to the message itself so it can take a decision,
 and then alter the message to insert headers and possibly reject temporarily or permanently the message.
 Since I was in a good mood when I wrote the PoC,
-I also added DKIM signing but it&rsquo;s out of scope ;-)</p>
-<p>Remember that this is a Python example,
+I also added DKIM signing but it&rsquo;s out of scope ;-)</p><p>Remember that this is a Python example,
 because I find it easier to understand for all,
-but filters can be written with any language really.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>sessions</span> <span class=o>=</span> <span class=p>{}</span>
-
-<span class=k>class</span> <span class=nc>Rspamd</span><span class=p>():</span>
-    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span> <span class=o>=</span> <span class=n>smtp_in</span><span class=p>()</span>
-
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;link-connect&#39;</span><span class=p>,</span> <span class=n>link_connect</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;link-disconnect&#39;</span><span class=p>,</span> <span class=n>link_disconnect</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;link-identify&#39;</span><span class=p>,</span> <span class=n>link_identify</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-begin&#39;</span><span class=p>,</span> <span class=n>tx_begin</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-mail&#39;</span><span class=p>,</span> <span class=n>tx_mail</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-rcpt&#39;</span><span class=p>,</span> <span class=n>tx_rcpt</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-data&#39;</span><span class=p>,</span> <span class=n>tx_data</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-commit&#39;</span><span class=p>,</span> <span class=n>tx_cleanup</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-rollback&#39;</span><span class=p>,</span> <span class=n>tx_cleanup</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
-
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_filter</span><span class=p>(</span><span class=s1>&#39;commit&#39;</span><span class=p>,</span> <span class=n>filter_commit</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_filter</span><span class=p>(</span><span class=s1>&#39;data-line&#39;</span><span class=p>,</span> <span class=n>filter_data_line</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
-        
-    <span class=k>def</span> <span class=nf>run</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>run</span><span class=p>()</span>
-</code></pre></div><p>Based on this excerpt alone,
+but filters can be written with any language really.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>sessions</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Rspamd</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span> <span class=o>=</span> <span class=n>smtp_in</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;link-connect&#39;</span><span class=p>,</span> <span class=n>link_connect</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;link-disconnect&#39;</span><span class=p>,</span> <span class=n>link_disconnect</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;link-identify&#39;</span><span class=p>,</span> <span class=n>link_identify</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-begin&#39;</span><span class=p>,</span> <span class=n>tx_begin</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-mail&#39;</span><span class=p>,</span> <span class=n>tx_mail</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-rcpt&#39;</span><span class=p>,</span> <span class=n>tx_rcpt</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-data&#39;</span><span class=p>,</span> <span class=n>tx_data</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-commit&#39;</span><span class=p>,</span> <span class=n>tx_cleanup</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_report</span><span class=p>(</span><span class=s1>&#39;tx-rollback&#39;</span><span class=p>,</span> <span class=n>tx_cleanup</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_filter</span><span class=p>(</span><span class=s1>&#39;commit&#39;</span><span class=p>,</span> <span class=n>filter_commit</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>on_filter</span><span class=p>(</span><span class=s1>&#39;data-line&#39;</span><span class=p>,</span> <span class=n>filter_data_line</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>run</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>stream</span><span class=o>.</span><span class=n>run</span><span class=p>()</span>
+</span></span></code></pre></div><p>Based on this excerpt alone,
 without looking at the actual implementation of the callback functions,
-here&rsquo;s what you can understand:</p>
-<p>The only times when we actually want to mess with a session somehow is when making changes to the data,
+here&rsquo;s what you can understand:</p><p>The only times when we actually want to mess with a session somehow is when making changes to the data,
 which is handled by the <code>data-line</code> callback,
 and when we want to possibly reject temporarily or permanently a message,
-which is handled by the <code>commit</code> callback.</p>
-<p>All of the <code>on_report()</code> calls are used solely to accumulate enough informations so the two filter hooks can work,
+which is handled by the <code>commit</code> callback.</p><p>All of the <code>on_report()</code> calls are used solely to accumulate enough informations so the two filter hooks can work,
 and if we look at the implementation of one of these,
-you&rsquo;ll realize that all it does is really store a particular bit of information in the local state for a session.</p>
-<p>For example,
-the purpose of registering for the <code>link-identify</code> event is to store the <code>helo</code> name the client submitted in the local session state:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>def</span> <span class=nf>link_identify</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=n>timestamp</span><span class=p>,</span> <span class=n>session_id</span><span class=p>,</span> <span class=n>args</span><span class=p>):</span>
-    <span class=n>helo</span> <span class=o>=</span> <span class=n>args</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
-
-    <span class=n>session</span> <span class=o>=</span> <span class=n>sessions</span><span class=p>[</span><span class=n>session_id</span><span class=p>]</span>
-    <span class=n>session</span><span class=o>.</span><span class=n>control</span><span class=p>[</span><span class=s1>&#39;Helo&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>helo</span>
-</code></pre></div><p>So that the information can be sent to the <code>rspamd</code> daemon when the filter begins sending the message in the <code>data-line</code> callback.</p>
-<h2 id=per-listener-filtering>Per-listener filtering</h2>
-<p>In the first version of the filter feature I commited,
+you&rsquo;ll realize that all it does is really store a particular bit of information in the local state for a session.</p><p>For example,
+the purpose of registering for the <code>link-identify</code> event is to store the <code>helo</code> name the client submitted in the local session state:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>link_identify</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=n>timestamp</span><span class=p>,</span> <span class=n>session_id</span><span class=p>,</span> <span class=n>args</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>helo</span> <span class=o>=</span> <span class=n>args</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>session</span> <span class=o>=</span> <span class=n>sessions</span><span class=p>[</span><span class=n>session_id</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>session</span><span class=o>.</span><span class=n>control</span><span class=p>[</span><span class=s1>&#39;Helo&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>helo</span>
+</span></span></code></pre></div><p>So that the information can be sent to the <code>rspamd</code> daemon when the filter begins sending the message in the <code>data-line</code> callback.</p><h2 id=per-listener-filtering>Per-listener filtering</h2><p>In the first version of the filter feature I commited,
 filters were declared globally in the configuration,
 listeners would only enable/disable filtering,
-the filters would be applied in sequence:</p>
-<pre tabindex=0><code>filter smtp-in connect check-fcrdns reject &quot;550 go away you punk&quot;
-filter smtp-in connect check-rdns reject &quot;550 go away you punk&quot;
+the filters would be applied in sequence:</p><pre tabindex=0><code>filter smtp-in connect check-fcrdns reject &#34;550 go away you punk&#34;
+filter smtp-in connect check-rdns reject &#34;550 go away you punk&#34;
 
 listen on all filter	# not filtered
 listen on socket	# filtered
 </code></pre><p>This was a first step at plugging filters on and off,
 but real use cases rely on being able to plug different sets of filters on different interfaces,
 so that you can for example reject senders without a reverse DNS on an interface,
-while allowing them on the submission port where they authenticate.</p>
-<p>This feature is now supported.</p>
-<h2 id=filter-grammar-changes>Filter grammar changes</h2>
-<p>The filter declaration grammar I used to begin was easy to start playing right away,
+while allowing them on the submission port where they authenticate.</p><p>This feature is now supported.</p><h2 id=filter-grammar-changes>Filter grammar changes</h2><p>The filter declaration grammar I used to begin was easy to start playing right away,
 it couldn&rsquo;t cover some of the use-cases I had in mind and planned for,
-but now that the plumbing has evolved enough we can move towards what&rsquo;s going to look like the final grammar.</p>
-<p>First of all,
-let&rsquo;s look how I would plug that <code>filter-rspamd</code> in my config:</p>
-<pre tabindex=0><code>filter rspamd proc-exec &quot;/usr/local/bin/filter-rspamd&quot;
+but now that the plumbing has evolved enough we can move towards what&rsquo;s going to look like the final grammar.</p><p>First of all,
+let&rsquo;s look how I would plug that <code>filter-rspamd</code> in my config:</p><pre tabindex=0><code>filter rspamd proc-exec &#34;/usr/local/bin/filter-rspamd&#34;
 
 listen on all filter rspamd
-</code></pre><p>That&rsquo;s all.</p>
-<p>I declared a filter named <code>rspamd</code>,
+</code></pre><p>That&rsquo;s all.</p><p>I declared a filter named <code>rspamd</code>,
 instructed OpenSMTPD that it has to execute a proc filter from <code>/usr/local/bin/filter-rspamd</code>,
-and instructed the listener that all sessions handled through it should go through the <code>rspamd</code> filter.</p>
-<p>If I didn&rsquo;t want to use rspamd but a builtin filter to reject sessions without a forward-confirmed rDNS,
-I could have used:</p>
-<pre tabindex=0><code>filter fcrdns builtin connect check-fcrdns reject &quot;550 go away you punk&quot;
+and instructed the listener that all sessions handled through it should go through the <code>rspamd</code> filter.</p><p>If I didn&rsquo;t want to use rspamd but a builtin filter to reject sessions without a forward-confirmed rDNS,
+I could have used:</p><pre tabindex=0><code>filter fcrdns builtin connect check-fcrdns reject &#34;550 go away you punk&#34;
 
 listen on all filter fcrdns
 </code></pre><p>But what&rsquo;s more interesting is the chaining of filters,
 which allows &mldr;
-well, chaining filters:</p>
-<pre tabindex=0><code>filter fcrdns builtin connect check-fcrdns reject &quot;550 go away you punk&quot;
-filter rspamd proc-exec &quot;/usr/local/bin/filter-rspamd&quot;
+well, chaining filters:</p><pre tabindex=0><code>filter fcrdns builtin connect check-fcrdns reject &#34;550 go away you punk&#34;
+filter rspamd proc-exec &#34;/usr/local/bin/filter-rspamd&#34;
 filter nazi_mode chain { fcrdns, rspamd }
 
 listen on all filter nazi_mode
 </code></pre><p>This,
 combined with the fact that the filters apply per-interface,
-allow for very flexible setups that could never be expressed on OpenSMTPD before.</p>
-<h2 id=what-next->What next ?</h2>
-<p>The code and new grammar is working and committed in a branch,
-I intend to do some additional cleanup and code simplification before comitting to the OpenBSD tree hopefully this week.</p>
-<p>I will spend the remaining of the release cycle,
+allow for very flexible setups that could never be expressed on OpenSMTPD before.</p><h2 id=what-next->What next ?</h2><p>The code and new grammar is working and committed in a branch,
+I intend to do some additional cleanup and code simplification before comitting to the OpenBSD tree hopefully this week.</p><p>I will spend the remaining of the release cycle,
 until April,
 performing code cleanups,
 refining the reporting events and protocol,
-and maybe committing a few minor features (or maybe I have some other nice major features ready, who knows ;-)</p>
-<p>You are <em>HIGHLY</em> encouraged to start playing with filters next week after my commit.
+and maybe committing a few minor features (or maybe I have some other nice major features ready, who knows ;-)</p><p>You are <em>HIGHLY</em> encouraged to start playing with filters next week after my commit.
 There&rsquo;s currently NO filter available,
-you can really be the first to do useful stuff for the community.</p>
-<p>Stay tuned !</p>
-<p>OH AND MERRY X-MAS BECAUSE I WONT BE POSTING BEFORE THEN ;-)</p>
-<hr>
-<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/98>https://github.com/poolpOrg/poolp.org/discussions/98</a></p>
-</div>
-<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-<a class="d-block col-md-6" href=https://poolp.org/posts/2018-12-21/opensmtpd-now-supports-regex-in-match-rules/> &#171; OpenSMTPD now supports regex in match rules</a>
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2018-12-06/opensmtpd-proc-filters-fc-rdns/>OpenSMTPD proc filters & fc-rDNS &#187;</a>
-<div class=clearfix></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class=alertbar>
-<div class="container text-center">
-<span>
-<img src=/images/poolp_org.png alt=logo height=0px>
+you can really be the first to do useful stuff for the community.</p><p>Stay tuned !</p><p>OH AND MERRY X-MAS BECAUSE I WONT BE POSTING BEFORE THEN ;-)</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/98>https://github.com/poolpOrg/poolp.org/discussions/98</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2018-12-21/opensmtpd-now-supports-regex-in-match-rules/>&#171; OpenSMTPD now supports regex in match rules</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2018-12-06/opensmtpd-proc-filters-fc-rdns/>OpenSMTPD proc filters & fc-rDNS &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
-</span>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=container>
-<div class=row>
-<div class="col-md-6 col-sm-6 text-center text-lg-left">
-&copy; Copyright poolp.org - All rights reserved
-</div>
-<div class="col-md-6 col-sm-6 text-center text-lg-right">
-<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
-</div>
-</div>
-</div>
-</footer>
-</div>
-<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
 <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
-<script src=/js/mediumish.js></script>
-</body>
-</html>
+<script src=/js/mediumish.js></script></body></html>

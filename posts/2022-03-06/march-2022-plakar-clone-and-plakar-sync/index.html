@@ -1,246 +1,87 @@
-<!doctype html><html lang=en-us><head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=generator content="Hugo 0.92.2">
-<link rel=icon href=/images/poolp_org.png>
-<title>March 2022: plakar clone and plakar sync | poolp.org</title>
-<meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/cover.png">
-<meta name=twitter:title content="March 2022: plakar clone and plakar sync">
-<meta name=twitter:description content="TL;DR: implemented cloning and synchronization between plakar repositories    Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
-I created a Discord where I hang out and discuss my projects or screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord.">
-<meta property="og:title" content="March 2022: plakar clone and plakar sync">
-<meta property="og:description" content="TL;DR: implemented cloning and synchronization between plakar repositories    Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
-I created a Discord where I hang out and discuss my projects or screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/"><meta property="og:image" content="https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/cover.png"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2022-03-06T00:51:00+02:00">
-<meta property="article:modified_time" content="2022-03-06T00:51:00+02:00">
-<link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous>
-<link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous>
-<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet>
-<link href=/css/medium.css rel=stylesheet>
-<link href=/css/additional.css rel=stylesheet>
-<link href=/css/syntax.css rel=stylesheet>
-<link href=/css/custom.css rel=stylesheet>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-<div class="container pr-0">
-<a class=navbar-brand href=https://poolp.org/>
-<img src=/images/poolp_org.png alt=logo>
-</a>
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.96.0"><link rel=icon href=/images/poolp_org.png><title>March 2022: plakar clone and plakar sync | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/cover.png"><meta name=twitter:title content="March 2022: plakar clone and plakar sync"><meta name=twitter:description content="TL;DR: implemented cloning and synchronization between plakar repositories    Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I created a Discord where I hang out and discuss my projects or screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord."><meta property="og:title" content="March 2022: plakar clone and plakar sync"><meta property="og:description" content="TL;DR: implemented cloning and synchronization between plakar repositories    Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I created a Discord where I hang out and discuss my projects or screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/"><meta property="og:image" content="https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/cover.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-03-06T00:51:00+02:00"><meta property="article:modified_time" content="2022-03-06T00:51:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link href=/css/medium.css rel=stylesheet><link href=/css/additional.css rel=stylesheet><link href=/css/syntax.css rel=stylesheet><link href=/css/custom.css rel=stylesheet></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarMediumish>
-<ul class="navbar-nav ml-auto">
-<li class=nav-item>
-<a class=nav-link href=/fr/contracting/>Freelance</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=https://hypno.cat>Hypnose</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/authors/gilles-chehade>About Me</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<div class=site-content>
-<div class=container>
-<div class=mainheading>
-</div><div class=main-content>
-<div class=container>
-<div class=row>
-<div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
-<p>Share</p>
-<ul>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://twitter.com/intent/tweet?text=March%202022%3a%20plakar%20clone%20and%20plakar%20sync&url=https%3a%2f%2fpoolp.org%2fposts%2f2022-03-06%2fmarch-2022-plakar-clone-and-plakar-sync%2f" onclick="return window.open(this.href,'twitter-share','width=550,height=435'),!1">
-<i class="fab fa-twitter"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2022-03-06%2fmarch-2022-plakar-clone-and-plakar-sync%2f" onclick="return window.open(this.href,'facebook-share','width=550,height=435'),!1">
-<i class="fab fa-facebook-f"></i>
-</a>
-</li>
-<li class="ml-1 mr-1">
-<a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2022-03-06%2fmarch-2022-plakar-clone-and-plakar-sync%2f" onclick="return window.open(this.href,'xing-share','width=550,height=435'),!1">
-<i class="fab fa-xing"></i>
-</a>
-</li>
-</ul>
-</div>
-</div>
-<div class="col-md-9 flex-first flex-md-unordered">
-<div class=mainheading>
-<div class="row post-top-meta">
-<div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
-<img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة">
-</div>
-<div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
-<a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br>
-<span class=author-description>
-foobarbaz-ing since 1981<br>
-</span>
-<br>
-<span class=author-description>
-<i class="far fa-star"></i>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=March%202022%3a%20plakar%20clone%20and%20plakar%20sync&url=https%3a%2f%2fpoolp.org%2fposts%2f2022-03-06%2fmarch-2022-plakar-clone-and-plakar-sync%2f" onclick='return window.open(this.href,"twitter-share","width=550,height=435"),!1'><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2022-03-06%2fmarch-2022-plakar-clone-and-plakar-sync%2f" onclick='return window.open(this.href,"facebook-share","width=550,height=435"),!1'><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2022-03-06%2fmarch-2022-plakar-clone-and-plakar-sync%2f" onclick='return window.open(this.href,"xing-share","width=550,height=435"),!1'><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / حيل شحادة"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / حيل شحادة</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
 Mar 6, 2022
 <i class="far fa-clock clock"></i>
-5 min read
-</span>
-</div>
-</div>
-<div class=after-post-tags>
-<ul class=tags>
-</ul>
-</div>
-<h1 class=posttitle>March 2022: plakar clone and plakar sync</h1>
-</div>
-<div class=article-post>
-<blockquote>
-<b>TL;DR:</b>
-implemented cloning and synchronization between plakar repositories
-</blockquote>
-<center>
-<img src=cover.png height=300px>
-</center>
-<h1 id=shout-out-to-my-sponsors-x2764xfe0f>Shout out to my sponsors ❤️</h1>
-<p>A <strong>HUGE thanks</strong> goes to my sponsors on <a href=https://github.com/sponsors/poolpOrg>github</a>
+5 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>March 2022: plakar clone and plakar sync</h1></div><div class=article-post><blockquote><b>TL;DR:</b>
+implemented cloning and synchronization between plakar repositories</blockquote><center><img src=cover.png height=300px></center><h1 id=shout-out-to-my-sponsors-x2764xfe0f>Shout out to my sponsors ❤️</h1><p>A <strong>HUGE thanks</strong> goes to my sponsors on <a href=https://github.com/sponsors/poolpOrg>github</a>
 and <a href=https://www.patreon.com/gilles>patreon</a>:
-your continuous support is very much appreciated !</p>
-<p>I created a Discord where I hang out and discuss my projects or screencast as I work on them.
+your continuous support is very much appreciated !</p><p>I created a Discord where I hang out and discuss my projects or screencast as I work on them.
 Feel free to hop in if you want,
 and feel free to do just like me and share thoughts as you work on your own projects there:
-<strong>this is a virtual hack room for anyone to join</strong>: <a href=https://discord.gg/6RBDax3S>https://discord.gg/6RBDax3S</a></p>
-<h1 id=slacked-a-bit>Slacked a bit</h1>
-<p>Shortly after I published my <a href=/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/>yearly retrospective</a>,
+<strong>this is a virtual hack room for anyone to join</strong>: <a href=https://discord.gg/6RBDax3S>https://discord.gg/6RBDax3S</a></p><h1 id=slacked-a-bit>Slacked a bit</h1><p>Shortly after I published my <a href=/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/>yearly retrospective</a>,
 I was hit with two highly annoying personal issues that kept me very busy these last two months.
 I finally got everything back under control,
-my mind is mostly free again and I resumed playing with <code>plakar</code>.</p>
-<h1 id=plakar-clone>plakar clone</h1>
-<p>I implemented a <code>clone</code> operation in <code>plakar</code> allowing the creation of a new repository that is <strong>an exact copy</strong> of a source repository.
+my mind is mostly free again and I resumed playing with <code>plakar</code>.</p><h1 id=plakar-clone>plakar clone</h1><p>I implemented a <code>clone</code> operation in <code>plakar</code> allowing the creation of a new repository that is <strong>an exact copy</strong> of a source repository.
 This is a bit trickier than it reads,
 repositories rely on a specific structure as well as hard links magic to properly represent snapshots and <strong>reference counts</strong> on files.
-Performing a recursive <code>cp</code> of the plakar storage directory would lead to a broken repository unable to properly handle de-duplication.</p>
-<p>To implement cloning,
+Performing a recursive <code>cp</code> of the plakar storage directory would lead to a broken repository unable to properly handle de-duplication.</p><p>To implement cloning,
 <code>plakar</code> creates a new repository from scratch <strong>using the exact same configuration</strong> as the source repository.
 It retrieves the list of chunks, objects and snapshots from the source repository,
 then for each chunk, object and snapshot it retrieves the data from the source repository and writes it to the destination repository.
 Once this is done,
 it loads the index file for each snapshot and performs the hard link magic to recreate the references required for snapshots to be complete.
 When done,
-<strong>both repositories are identical</strong> and the destination one can be used just as if it was the source one.</p>
-<p>This required <strong>adding a few primitives</strong> to the storage layer and it was quite frustrating as mistakes didn&rsquo;t show up right away.
+<strong>both repositories are identical</strong> and the destination one can be used just as if it was the source one.</p><p>This required <strong>adding a few primitives</strong> to the storage layer and it was quite frustrating as mistakes didn&rsquo;t show up right away.
 A lot of tasks can rely on the snapshot index,
 so when a chunk or an object are missing or incorrectly referenced for example,
 the cloned repository can still handle a lot of commands as if there was no issue.
 This is where <code>plakar check</code> came in handy,
-letting me know right away that something was off.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar create -no-encryption
-$ plakar push /bin
-$ plakar ls
-2022-03-05T22:30:58Z  3a5769ff-3353-4ae9-ae64-13fc0fc0b6ac     <span class=m>13</span> MB /bin
-$ plakar clone /tmp/plakar-copy
-$ plakar on /tmp/plakar-copy ls
-2022-03-05T22:30:58Z  3a5769ff-3353-4ae9-ae64-13fc0fc0b6ac     <span class=m>13</span> MB /bin
-$ 
-</code></pre></div><p>As you can see in the example above,
+letting me know right away that something was off.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar create -no-encryption
+</span></span><span class=line><span class=cl>$ plakar push /bin
+</span></span><span class=line><span class=cl>$ plakar ls
+</span></span><span class=line><span class=cl>2022-03-05T22:30:58Z  3a5769ff-3353-4ae9-ae64-13fc0fc0b6ac     <span class=m>13</span> MB /bin
+</span></span><span class=line><span class=cl>$ plakar clone /tmp/plakar-copy
+</span></span><span class=line><span class=cl>$ plakar on /tmp/plakar-copy ls
+</span></span><span class=line><span class=cl>2022-03-05T22:30:58Z  3a5769ff-3353-4ae9-ae64-13fc0fc0b6ac     <span class=m>13</span> MB /bin
+</span></span><span class=line><span class=cl>$ 
+</span></span></code></pre></div><p>As you can see in the example above,
 <strong>the clone retains snapshots UUID</strong> as this is not a new snapshot being copied from another one in a new transaction,
-but really the exact same snapshot copied using lower level primitives.</p>
-<p>As of today,
+but really the exact same snapshot copied using lower level primitives.</p><p>As of today,
 <code>plakar clone</code> is not fully finished as it <strong>only supports filesystem-based repository</strong>.
 I need to implement the new storage primitives in the SQLite and network backends,
 so that cloning can happen <strong>seamlessly over the network or between different backends</strong>.
 When this is done,
 it&rsquo;ll be possible to convert a filesystem plakar to an SQLite plakar by cloning it (right now, it&rsquo;s only doable the other way),
-or to clone a plakar repository on a different machine.</p>
-<h1 id=plakar-sync>plakar sync</h1>
-<p>With <code>plakar clone</code>,
-all the primitives required to <strong>synchronize two repositories</strong> became available.</p>
-<p>Similarly to cloning,
+or to clone a plakar repository on a different machine.</p><h1 id=plakar-sync>plakar sync</h1><p>With <code>plakar clone</code>,
+all the primitives required to <strong>synchronize two repositories</strong> became available.</p><p>Similarly to cloning,
 synchronizing allows performing a low level copy of snapshots <strong>without initiating new transactions</strong>,
 thus retaining the same snapshots UUID.
 To achieve synchronization,
 <code>plakar</code> opens a source repository and a destination repository,
 then compares which chunks, objects and indexes are available in the source one but missing from the destination one to <strong>compute a delta</strong>.
 It then performs a cloning of that delta,
-<strong>only exchanging the missing bits</strong> and doing the hard links magic.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ plakar create -no-encryption
-$ plakar clone /tmp/bleh.t1   
-$ plakar ls                   
-$ plakar on /tmp/bleh.t1 ls   
-$ plakar push /bin            
-$ plakar ls                
-2022-03-05T23:24:08Z  480e6781-4f51-4289-9983-17f0e5962cc9     <span class=m>13</span> MB /bin
-$ plakar sync /tmp/bleh.t1 
-$ plakar on /tmp/bleh.t1 ls
-2022-03-05T23:24:08Z  480e6781-4f51-4289-9983-17f0e5962cc9     <span class=m>13</span> MB /bin
-$ 
-</code></pre></div><p>In the example above,
+<strong>only exchanging the missing bits</strong> and doing the hard links magic.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar create -no-encryption
+</span></span><span class=line><span class=cl>$ plakar clone /tmp/bleh.t1   
+</span></span><span class=line><span class=cl>$ plakar ls                   
+</span></span><span class=line><span class=cl>$ plakar on /tmp/bleh.t1 ls   
+</span></span><span class=line><span class=cl>$ plakar push /bin            
+</span></span><span class=line><span class=cl>$ plakar ls                
+</span></span><span class=line><span class=cl>2022-03-05T23:24:08Z  480e6781-4f51-4289-9983-17f0e5962cc9     <span class=m>13</span> MB /bin
+</span></span><span class=line><span class=cl>$ plakar sync /tmp/bleh.t1 
+</span></span><span class=line><span class=cl>$ plakar on /tmp/bleh.t1 ls
+</span></span><span class=line><span class=cl>2022-03-05T23:24:08Z  480e6781-4f51-4289-9983-17f0e5962cc9     <span class=m>13</span> MB /bin
+</span></span><span class=line><span class=cl>$ 
+</span></span></code></pre></div><p>In the example above,
 I create a new empty repository and clone it.
 Then I push <code>/bin</code> to the source plakar,
 perform a <code>plakar sync</code> to the destination plakar,
-<strong>which ends up having the same snapshot</strong>.</p>
-<p>Like for cloning,
-this is a work in progress and not finished.</p>
-<p>The idea behind sync is that when the primitives are ported to network plakar,
+<strong>which ends up having the same snapshot</strong>.</p><p>Like for cloning,
+this is a work in progress and not finished.</p><p>The idea behind sync is that when the primitives are ported to network plakar,
 it becomes possible to have a remote plakar centralize the backups of a local plakar,
-but it also becomes possible for multiple remote plakars to synchronize themselves one with another and provide multiple copies of the same backups very easily.</p>
-<h1 id=whats-next->What&rsquo;s next ?</h1>
-<p>I&rsquo;ll be working on and off as I have a wedding that&rsquo;s coming soon and a lot of things to prepare,
-but this should not prevent me from finding time to relax with some code.</p>
-<p>I&rsquo;ll rework clone and sync because functionality set aside <strong>I don&rsquo;t like the way it&rsquo;s implemented in the CLI</strong>.</p>
-<p>I&rsquo;m currently reading the QuickCDC paper and wondering if it&rsquo;s worth implementing on top of my go-fastcdc implementation,
-it is unclear if there will be any gain at this point.</p>
-<p>I&rsquo;m considering a few more repository-level operations,
+but it also becomes possible for multiple remote plakars to synchronize themselves one with another and provide multiple copies of the same backups very easily.</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>I&rsquo;ll be working on and off as I have a wedding that&rsquo;s coming soon and a lot of things to prepare,
+but this should not prevent me from finding time to relax with some code.</p><p>I&rsquo;ll rework clone and sync because functionality set aside <strong>I don&rsquo;t like the way it&rsquo;s implemented in the CLI</strong>.</p><p>I&rsquo;m currently reading the QuickCDC paper and wondering if it&rsquo;s worth implementing on top of my go-fastcdc implementation,
+it is unclear if there will be any gain at this point.</p><p>I&rsquo;m considering a few more repository-level operations,
 similar to clone/sync,
-to help make plakar as friendly as possible to operators.</p>
-<p>It will be time to start working on a website too :-)</p>
-<hr>
-<p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/149>https://github.com/poolpOrg/poolp.org/discussions/149</a></p>
-</div>
-<div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/>Farewell 2021, Welcome 2022: a personal post &#187;</a>
-<div class=clearfix></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class=alertbar>
-<div class="container text-center">
-<span>
-<img src=/images/poolp_org.png alt=logo height=0px>
+to help make plakar as friendly as possible to operators.</p><p>It will be time to start working on a website too :-)</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/149>https://github.com/poolpOrg/poolp.org/discussions/149</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2022-04-01/april-2022-plakar-keys-and-ui-stuff/>&#171; April 2022: plakar keys and UI stuff</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/>Farewell 2021, Welcome 2022: a personal post &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>
 Consider tipping me on <a href=https://paypal.me/poolpOrg>PayPal</a>,
 supporting me through <a href=https://github.com/sponsors/poolpOrg>Github</a>,
 <a href=https://patreon.com/gilles>Patreon</a> or
 <a href=https://liberapay.com/poolpOrg>LiberaPay</a>,
-or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)
-</span>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=container>
-<div class=row>
-<div class="col-md-6 col-sm-6 text-center text-lg-left">
-&copy; Copyright poolp.org - All rights reserved
-</div>
-<div class="col-md-6 col-sm-6 text-center text-lg-right">
-<a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net
-</div>
-</div>
-</div>
-</footer>
-</div>
-<script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+or getting me something from <a href=http://amzn.eu/3MwH6CX>Amazon</a> for positive <a href=https://en.wikipedia.org/wiki/Reinforcement>reinforcement</a> :-)</span></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
 <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
-<script src=/js/mediumish.js></script>
-</body>
-</html>
+<script src=/js/mediumish.js></script></body></html>

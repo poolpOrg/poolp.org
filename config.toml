@@ -45,6 +45,7 @@ enableEmoji = true
 	section = ["HTML", "RSS"]
 	page = ["HTML"]
 
+
 [[menu.main]]
     name = "Freelance"
     url = "/fr/contracting/"
@@ -53,13 +54,12 @@ enableEmoji = true
 [[menu.main]]
     name = "Hypnose"
     url = "https://hypno.cat"
-    weight = 5
+    weight = 3
 
 [[menu.main]]
   name = "About me"
   url = "/authors/gilles-chehade"
-  weight = 10
-
+  weight = 4
 
 [taxonomies]
   author = "authors"

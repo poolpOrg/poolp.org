@@ -8,7 +8,7 @@ language: fr
 
 <blockquote>
 <b>TL;DR:</b>
-I still have a discord, https://discord.gg/6RBDax3S, feel free to join.
+I still have a discord, [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk), feel free to join.
 I worked on go-ipcmsg to make it nicer, go-privsep to make it more useable, and A LOT on plakar to make it plakar.
 </blockquote>
 
@@ -28,7 +28,7 @@ your continuous support is very much appreciated !
 I created a Discord where I hang out and discuss my projects or screencast as I work on them.
 Feel free to hop in if you want,
 and feel free to do just like me and share thoughts as you work on your own projects there:
-**this is a virtual hack room for anyone to join**: [https://discord.gg/6RBDax3S](https://discord.gg/6RBDax3S)
+**this is a virtual hack room for anyone to join**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
 
 
 # Go-ipcmsg

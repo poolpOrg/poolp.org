@@ -27,7 +27,7 @@ your continuous support is very much appreciated !
 I created a Discord where I hang out and discuss my projects or screencast as I work on them.
 Feel free to hop in if you want,
 and feel free to do just like me and share thoughts as you work on your own projects there:
-**this is a virtual hack room for anyone to join**: [https://discord.gg/6RBDax3S](https://discord.gg/6RBDax3S)
+**this is a virtual hack room for anyone to join**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
 
 
 # This activity report will be short
@@ -48,7 +48,7 @@ I worked on and off on the `plakar` project and while it's not at a stage where 
 it's most certainly **at a stage where feedback from early testers would be useful**.
 
 If you have followed it through the last two or three reports and are interested in where this is going,
-feel free to **join my [discord](https://discord.gg/6RBDax3S)** where a room is dedicated to this project,
+feel free to **join my [discord](https://discord.gg/YC6j4rbvSk)** where a room is dedicated to this project,
 where you can provide feedback as you test,
 and where I can fix things live as you break:
 

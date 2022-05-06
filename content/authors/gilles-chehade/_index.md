@@ -1,5 +1,5 @@
 ---
-name: Gilles Chehade / حيل شحادة
+name: Gilles Chehade / جيل شحادة
 subtitle: foobarbaz-ing since 1981
 photo: '/images/me.jpg'
 github: "poolpOrg"

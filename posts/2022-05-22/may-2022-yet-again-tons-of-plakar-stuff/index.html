@@ -5,7 +5,7 @@ I created a Discord where I hang out and discuss my projects or screencast as I 
 <span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/fr/contracting/>Freelance</a></li><li class=nav-item><a class=nav-link href=https://hypno.cat>Hypnose</a></li><li class=nav-item><a class=nav-link href=/authors/gilles-chehade>About Me</a></li></ul></div></div></nav><div class=site-content><div class=container><div class=mainheading></div><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset"><p>Share</p><ul><li class="ml-1 mr-1"><a target=_blank href="https://twitter.com/intent/tweet?text=May%202022%3a%20yet%20again%2c%20tons%20of%20plakar%20stuff%20&url=https%3a%2f%2fpoolp.org%2fposts%2f2022-05-22%2fmay-2022-yet-again-tons-of-plakar-stuff%2f" onclick='return window.open(this.href,"twitter-share","width=550,height=435"),!1'><i class="fab fa-twitter"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://facebook.com/sharer.php?u=https%3a%2f%2fpoolp.org%2fposts%2f2022-05-22%2fmay-2022-yet-again-tons-of-plakar-stuff%2f" onclick='return window.open(this.href,"facebook-share","width=550,height=435"),!1'><i class="fab fa-facebook-f"></i></a></li><li class="ml-1 mr-1"><a target=_blank href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fpoolp.org%2fposts%2f2022-05-22%2fmay-2022-yet-again-tons-of-plakar-stuff%2f" onclick='return window.open(this.href,"xing-share","width=550,height=435"),!1'><i class="fab fa-xing"></i></a></li></ul></div></div><div class="col-md-9 flex-first flex-md-unordered"><div class=mainheading><div class="row post-top-meta"><div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/images/me.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description>foobarbaz-ing since 1981<br></span><br><span class=author-description><i class="far fa-star"></i>
 May 22, 2022
 <i class="far fa-clock clock"></i>
-21 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>May 2022: yet again, tons of plakar stuff</h1></div><div class=article-post><blockquote><b>TL;DR:</b>
+22 min read</span></div></div><div class=after-post-tags><ul class=tags></ul></div><h1 class=posttitle>May 2022: yet again, tons of plakar stuff</h1></div><div class=article-post><blockquote><b>TL;DR:</b>
 tons of plakar work,
 most notably on indexes,
 performances,
@@ -358,7 +358,22 @@ storage.go
 %
 </code></pre><p>This was <strong>not committed and I have no plans to commit it for the time being</strong>,
 a lot of work still needs to be done before I focus on such features,
-but it shows how plakar can be improved in ways that my current rsync/tar backups will never match.</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>Next is <strong>a couple months of rest</strong>.</p><p>I&rsquo;ll be marrying at the end of June and there are still a lot of things to do,
+but it shows how plakar can be improved in ways that my current rsync/tar backups will never match.</p><h1 id=s3-experiment>S3 experiment</h1><p>I also did a small experiment writing an s3 backend for plakar,
+<strong>allowing it to store repositories on Amazon s3 or on a <a href=https://min.io><code>minio</code> server</a></strong>.</p><p>I&rsquo;m not too comfortable with the API as I never used s3 before,
+surely I&rsquo;m not using it correctly,
+but someone asked me if this would be supported and so I gave it a try.</p><p>After about half an hour,
+I had a plakar repository hosted on a local s3:</p><pre tabindex=0><code>% plakar on s3://minioadmin:minioadmin@localhost:9000/my-s3-plakar create -no-encryption
+% plakar on s3://minioadmin:minioadmin@localhost:9000/my-s3-plakar push /private/etc 2&gt;/dev/null
+% plakar on s3://minioadmin:minioadmin@localhost:9000/my-s3-plakar ls                           
+2022-05-08T21:19:14Z  21388086    3.1 MB        0s /private/etc
+% plakar on s3://minioadmin:minioadmin@localhost:9000/my-s3-plakar ls 21:/private/etc/passwd
+2022-03-26T07:21:13Z -rw-r--r--     root    wheel   7.9 kB passwd
+% plakar on s3://minioadmin:minioadmin@localhost:9000/my-s3-plakar cat 21:/private/etc/passwd | tail -3
+_darwindaemon:*:284:284:Darwin Daemon:/var/db/darwindaemon:/usr/bin/false
+_notification_proxy:*:285:285:Notification Proxy:/var/empty:/usr/bin/false
+_oahd:*:441:441:OAH Daemon:/var/empty:/usr/bin/false
+% 
+</code></pre><p>This will likely need more work but it was a successful proof of concept :-)</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>Next is <strong>a couple months of rest</strong>.</p><p>I&rsquo;ll be marrying at the end of June and there are still a lot of things to do,
 I doubt I&rsquo;ll find much spare time to write code this month&mldr;
 just as I think the month of July will be needed to recover as a wedding is a lot to deal with for someone with an anxiety disorder :-)</p><p>Stay tuned,
 I&rsquo;ll post as soon as I resume my work !</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/152>https://github.com/poolpOrg/poolp.org/discussions/152</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2022-04-24/april-2022-plakar.io-plakar-refactor-and-ssh-support/>April 2022: plakar.io, plakar refactor and ssh support &#187;</a><div class=clearfix></div></div></div></div></div></div><div class=alertbar><div class="container text-center"><span><img src=/images/poolp_org.png alt=logo height=0px>

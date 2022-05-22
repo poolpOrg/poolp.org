@@ -588,6 +588,35 @@ a lot of work still needs to be done before I focus on such features,
 but it shows how plakar can be improved in ways that my current rsync/tar backups will never match. 
 
 
+# S3 experiment
+
+I also did a small experiment writing an s3 backend for plakar,
+**allowing it to store repositories on Amazon s3 or on a [`minio` server](https://min.io)**.
+
+I'm not too comfortable with the API as I never used s3 before,
+surely I'm not using it correctly,
+but someone asked me if this would be supported and so I gave it a try.
+
+After about half an hour,
+I had a plakar repository hosted on a local s3:
+
+```
+% plakar on s3://minioadmin:minioadmin@localhost:9000/my-s3-plakar create -no-encryption
+% plakar on s3://minioadmin:minioadmin@localhost:9000/my-s3-plakar push /private/etc 2>/dev/null
+% plakar on s3://minioadmin:minioadmin@localhost:9000/my-s3-plakar ls                           
+2022-05-08T21:19:14Z  21388086    3.1 MB        0s /private/etc
+% plakar on s3://minioadmin:minioadmin@localhost:9000/my-s3-plakar ls 21:/private/etc/passwd
+2022-03-26T07:21:13Z -rw-r--r--     root    wheel   7.9 kB passwd
+% plakar on s3://minioadmin:minioadmin@localhost:9000/my-s3-plakar cat 21:/private/etc/passwd | tail -3
+_darwindaemon:*:284:284:Darwin Daemon:/var/db/darwindaemon:/usr/bin/false
+_notification_proxy:*:285:285:Notification Proxy:/var/empty:/usr/bin/false
+_oahd:*:441:441:OAH Daemon:/var/empty:/usr/bin/false
+% 
+```
+
+This will likely need more work but it was a successful proof of concept :-)
+
+
 # What's next ?
 
 Next is **a couple months of rest**.

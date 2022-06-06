@@ -52,14 +52,25 @@ enableEmoji = true
     weight = 2
 
 [[menu.main]]
+    name = "Discord"
+    url = "https://discord.gg/YC6j4rbvSk"
+    weight = 3
+
+
+[[menu.main]]
+    name = "Youtube"
+    url = "https://www.youtube.com/channel/UCU-1Rn7gWhessHWwC3_EsEg"
+    weight = 4
+
+[[menu.main]]
     name = "Hypnose"
     url = "https://hypno.cat"
-    weight = 3
+    weight = 5
 
 [[menu.main]]
   name = "About me"
   url = "/authors/gilles-chehade"
-  weight = 4
+  weight = 6
 
 [taxonomies]
   author = "authors"

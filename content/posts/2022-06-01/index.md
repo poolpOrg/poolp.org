@@ -36,25 +36,25 @@ First,
 here's my progress on learning Hyunsoo Lee's adaptation of Bach's Air on G string,
 still not quite right and with some missing parts but... slowly getting there:
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=u6G3bgIk4Wo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u6G3bgIk4Wo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
 
 While at it,
 I started learning Hyunsoo Lee's adaptation of Beethovens' 5th's Symphony,
 also not quite right and with missing parts but also making progress:
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=PtlDJwlM-SM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PtlDJwlM-SM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
 
 It was a long time since I made a LoFi track,
 here's two that I thought were not too bad:
 
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=rjxiUCOkLGA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rjxiUCOkLGA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
 
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=Fk0grNZ4LtY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Fk0grNZ4LtY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
 
 They're mostly an exercise to get familiar with Logic Pro X.

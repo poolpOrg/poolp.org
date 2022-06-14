@@ -527,7 +527,7 @@ so it may not be perfect yet but it works pretty decently in my opinion.
 
 My current plans are to cleanup the proof-of-concept,
 make it work on at least macOS, Windows, Linux and OpenBSD,
-and then extent it with new features such as **loops and functions**.
+and then extend it with new features such as **loops and functions**.
 A very nice feature would be to allow it to read from MIDI and generate the corresponding `.muff` code,
 allowing me to auto-generate code from a MIDI input (like a keyboard for example),
 or simply allowing me to export a SMF from another tool to work on it with `earmuff` and export it back to the other tool:

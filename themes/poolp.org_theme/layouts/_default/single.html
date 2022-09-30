@@ -108,6 +108,25 @@
         {{ if .Params.comments }}
             {{- partial "single-partials/comments.html" . -}}
         {{ end }}
+
+
+        <script src="https://giscus.app/client.js"
+        data-repo="poolpOrg/poolp.org"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA="
+        data-category="Articles"
+        data-category-id="DIC_kwDOB4WANM4B-Zf1"
+        data-mapping="og:title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
     </div>
     {{- partial "_shared/alertbar.html" . -}}
 {{ end }}

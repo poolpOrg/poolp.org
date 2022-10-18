@@ -13,7 +13,7 @@
                 <div class="col-md-2 pl-0">      
                     {{- partial "single-partials/share.html" . -}}
                 </div>
-                <!-- Post -->                
+                <!-- Post -->   
                 <div class="col-md-9 flex-first flex-md-unordered">
                     <div class="mainheading">
                         <!-- Author Box -->
@@ -54,7 +54,8 @@
                         {{end}}
                         {{end}}
 
-                    <!-- Post Categories -->
+
+                        <!-- Post Categories -->
                     <div class="after-post-tags">
                         <ul class="tags">
                         {{ range .Params.tags }}
@@ -81,7 +82,12 @@
 
                         <!-- Post Title -->
                         <h1 class="posttitle">{{ .Title }}</h1> 
+                        <b><a class="far fa-comment" href="#comments"> go to comments</a></b>
+                        <br />
+                        <br />
+
                     </div>
+
 
                     <!-- Post Content -->
                     <div class="article-post">
@@ -109,7 +115,9 @@
             {{- partial "single-partials/comments.html" . -}}
         {{ end }}
 
-
+        <div class="container">
+            <div id="comments" class="row justify-content-center mb-5">
+                <div class="col-md-8">    
         <script src="https://giscus.app/client.js"
         data-repo="poolpOrg/poolp.org"
         data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA="
@@ -126,6 +134,9 @@
         crossorigin="anonymous"
         async>
 </script>
+</div>
+</div>
+</div>
 
     </div>
     {{- partial "_shared/alertbar.html" . -}}

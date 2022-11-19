@@ -90,7 +90,7 @@ guaranteeing the **authenticity and integrity** of the content and expecting **a
 
 Think of it as a kind of RSS feed...
 but an RSS feed that's not XML,
-that contains an index for random access to any information chunk contain in the feed,
+that contains an index for random access to any information chunk contained in the feed,
 and that has a signature for the whole feed as well as for each individual chunk.
 And like an RSS feed,
 it will not require a specific server to work but any service that can expose the file and preferably support range queries to avoid full fetches.

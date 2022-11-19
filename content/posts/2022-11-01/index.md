@@ -42,7 +42,8 @@ not necessarily related to my own work.
 - [I have a working PoC](#i-have-a-working-poc)
 - [About the format](#about-the-format)
 - [Limitations and rationale](#limitations-and-rationale)
-- [... but it means you keep rebuilding and uploading the whole feed ?](#but-it-means-you-keep-rebuilding-and-uploading-the-whole-feed)
+- [But it means you keep rebuilding and uploading the whole feed ?](#but-it-means-you-keep-rebuilding-and-uploading-the-whole-feed)
+- [Next steps](#next-steps)
 
 # This is not my activity report
 
@@ -297,7 +298,7 @@ the way feedchain works means that I can't impose hosting on a node of mine.
 
 
 
-# ... but it means you keep rebuilding and uploading the whole feed ?
+# But it means you keep rebuilding and uploading the whole feed ?
 
 YES ... and NO, it depends.
 

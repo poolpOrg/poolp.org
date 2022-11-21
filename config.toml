@@ -16,6 +16,7 @@ enableEmoji = true
 	logo = "/images/poolp_org.png"
 	commit = false
 	rss = true
+  ShowFullTextinRSS = true
 	comments = false
 	readingTime = true
 	wordCount = true

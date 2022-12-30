@@ -756,7 +756,8 @@ Your browser does not support the audio element.
 </center>
 <br />
 
-This sounds ... interesting ? :-)
+I seemingly got a wrong mapping for instruments as this doesn't sound like a tuba at all,
+but it's... interesting ? :-)
 
 
 # What's next ?

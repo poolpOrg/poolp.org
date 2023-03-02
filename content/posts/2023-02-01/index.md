@@ -70,7 +70,7 @@ It would be unfair to let you develop further knowing that you had an illness,
 that you'd suffer from it and that your brother would have to take care of you when we're too old or no longer around to do it ourselves.
 I'm sure your mom had the same train of thoughts that night.
 We decided to do what was in the best interest for the both of you,
-regardless of how painful it was to us.
+regardless of how painful it was to us, we knew it wasn't to you at this point.
 
 It's been almost a week now.
 It's been almost a week since we left home and drove to the maternity hospital.

@@ -64,7 +64,7 @@ During that sleepless night,
 I tried to convince myself that we could make it work,
 that as long as we loved you and took care of you everything would be fine,
 but as much as I tried, I could not pretend that this would be an act of love.
-It would not be love to knowingly force you into a life of pain, deprivement and reliance just because we wanted you so much.
+It would not be love to knowingly force you into a life of suffering, deprivement and reliance just because we wanted you so much.
 It would be unfair to both your brother and you to let our desire of a child take precedence over the well-being of both of you.
 It would be unfair to let you develop further knowing that you had an illness,
 that you'd suffer from it and that your brother would have to take care of you when we're too old or no longer around to do it ourselves.

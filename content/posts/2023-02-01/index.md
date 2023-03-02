@@ -76,7 +76,9 @@ It's been almost a week now.
 It's been almost a week since we left home and drove to the maternity hospital.
 We didn't want to go,
 we knew that this time we'd come back alone, just the two of us.
-A few hours later your mom gave birth to you,
+A few hours later,
+on the 24/02/2023,
+your mom gave birth to you,
 my little girl,
 and then your heart stopped beating.
 Mine too.

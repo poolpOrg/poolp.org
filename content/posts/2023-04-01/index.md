@@ -28,9 +28,12 @@ not necessarily related to my own work.
 
 
 # Table of content
-- [Re-focusing on go_harmony](#re-focusing-on-go-harmony)
-- [What's next ?](#whats-next)
-
+- [Code-unrelated work](#code-unrelated-work)
+- [I have not been very active these last three months](#i-have-not-been-very-active-these-last-three-months)
+- [MHL: MIDI to human language](#mhl-midi-to-human-language)
+- [go-midicsv: MIDICSV implementation in Golang](#go-midicsv-midicsv-implementation-in-golang)
+- [Melodya: a melody and music assistant](#melodya-a-melody-and-music-assistant)
+- [What’s next ?](#whats-next)
 
 
 # Code-unrelated work

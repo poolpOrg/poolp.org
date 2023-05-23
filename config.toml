@@ -64,11 +64,6 @@ enableEmoji = true
     weight = 4
 
 [[menu.main]]
-    name = "Hypnose"
-    url = "https://hypno.cat"
-    weight = 5
-
-[[menu.main]]
   name = "About me"
   url = "/authors/gilles-chehade"
   weight = 6

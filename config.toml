@@ -46,28 +46,6 @@ enableEmoji = true
 	section = ["HTML", "RSS"]
 	page = ["HTML"]
 
-
-[[menu.main]]
-    name = "Freelance"
-    url = "/fr/contracting/"
-    weight = 2
-
-[[menu.main]]
-    name = "Discord"
-    url = "https://discord.gg/YC6j4rbvSk"
-    weight = 3
-
-
-[[menu.main]]
-    name = "Youtube"
-    url = "https://www.youtube.com/channel/UCU-1Rn7gWhessHWwC3_EsEg"
-    weight = 4
-
-[[menu.main]]
-  name = "About me"
-  url = "/authors/gilles-chehade"
-  weight = 6
-
 [taxonomies]
   author = "authors"
   tag = "tags"

@@ -1,6 +1,6 @@
 ---
 name: Gilles Chehade / جيل شحادة
-subtitle: foobarbaz-ing since 1981
+subtitle: 
 photo: '/images/me.jpg'
 github: "poolpOrg"
 twitter: "poolpOrg"

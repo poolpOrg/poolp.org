@@ -47,7 +47,7 @@ With this done,
 I could fetch multipart messages and allows displaying a specific part,
 without the performance overhead of a full fetch:
 <center>
-	<img src="/images/2020-07-31-webmail-multipart.png" />
+	<img src="2020-07-31-webmail-multipart.png" />
 </center>
 
 The above was essentially backend work with just a bit of frontend work,
@@ -65,7 +65,7 @@ or is automatic when using `arrow up/down` while on the first or last entry of t
 If you use `mutt`, you'll be in a very familiar ground.
 
 <center>
-	<img src="/images/2020-07-31-webmail-listing.png" />
+	<img src="2020-07-31-webmail-listing.png" />
 </center>
 
 A bit I'd like to improve is the display of subfolders which are currently displayed inlined in the custom folder tab.
@@ -82,7 +82,7 @@ so I decided to make the webmail allow composing HTML messages while emitting th
 if possible.
 
 <center>
-	<img src="/images/2020-07-31-webmail-compose.png" />
+	<img src="2020-07-31-webmail-compose.png" />
 </center>
 
 Basically, the webmail will display a compose page which allows to customize the appearance of text,
@@ -96,7 +96,7 @@ I wrote the backend bits to **craft a MIME-message** from the frontend submissio
 which allowed me to mail myself:
 
 <center>
-	<img src="/images/2020-07-31-webmail-sent.png" />
+	<img src="2020-07-31-webmail-sent.png" />
 </center>
 
 Work is still needed to allow attachments when composing a message,

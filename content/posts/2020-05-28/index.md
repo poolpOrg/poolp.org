@@ -188,7 +188,7 @@ creates some metrics based on them,
 and exposes these metrics on an HTTP endpoint.
 
 <center>
-	<img src="/images/2020-05-28-filter-prometheus-metrics.png" />
+	<img src="2020-05-28-filter-prometheus-metrics.png" />
 </center>
 
 
@@ -197,7 +197,7 @@ voila, that's all,
 they are available through prometheus.
 
 <center>
-	<img src="/images/2020-05-28-filter-prometheus.png" />
+	<img src="2020-05-28-filter-prometheus.png" />
 </center>
 
 On the configuration standpoint,
@@ -492,11 +492,11 @@ action "local_users" maildir alias <consul>
 I then start a brand new empty consul instance and send a mail to root from my OpenSMTPD:
 
 <center>
-	<img src="/images/2020-05-28-empty-consul.png" />
+	<img src="2020-05-28-empty-consul.png" />
 </center>
 
 <center>
-	<img src="/images/2020-05-28-consul-mail-root-noalias.png" />
+	<img src="2020-05-28-consul-mail-root-noalias.png" />
 </center>
 
 
@@ -505,11 +505,11 @@ after adding a key `root` with value `gilles` in the `foobar/alias` bucket and s
 without restarting the daemon:
 
 <center>
-	<img src="/images/2020-05-28-consul-fed.png" />
+	<img src="2020-05-28-consul-fed.png" />
 </center>
 
 <center>
-	<img src="/images/2020-05-28-consul-mail-root-alias.png" />
+	<img src="2020-05-28-consul-mail-root-alias.png" />
 </center>
 
 The alias lookup went to `table-consul` through `table-procexec`,

@@ -422,11 +422,11 @@ while I use `filebeat` to inject the log to an elasticsearch node.
 The setup for this is really trivial :-)
 
 Here are two screenshots:
-<img alt="JSON log in terms" src="/images/2019-07-27-terms.jpeg" width=100%>
-[full screen](/images/2019-07-27-terms.jpeg)
+<img alt="JSON log in terms" src="2019-07-27-terms.jpeg" width=100%>
+[full screen](2019-07-27-terms.jpeg)
 
-<img alt="Kibana" src="/images/2019-07-27-kibana.jpeg" width=100%>
-[full screen](/images/2019-07-27-kibana.jpeg)
+<img alt="Kibana" src="2019-07-27-kibana.jpeg" width=100%>
+[full screen](2019-07-27-kibana.jpeg)
 
 Unfortunately I suck at creating dashboards myself,
 so if you want to help me get things in shape to improve the jsonlog output and provide dashboard templates for the community,

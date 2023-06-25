@@ -94,7 +94,7 @@ OpenSMTPD is another alternative which was first released in 2013.
 It is also **orders of magnitude** simpler than Sendmail.
 The configuration reads almost as plain english and a usable configuration file can actually fit ... **in a tweet**.
 
-<img alt="OpenSMTPD config fitting in a tweet" src="/images/2019-08-30-tweet.png" width=100%>
+<img alt="OpenSMTPD config fitting in a tweet" src="2019-08-30-tweet.png" width=100%>
 [full screen](/images/2019-08-30-tweet.png)
 
 I don't have experience in other contenders,
@@ -185,7 +185,7 @@ here's the screenshot I took of both accounts tonight,
 poolp.org on the left and Big Mailer Corps on the right.
 Neither of them have spam in Inbox.
 
-<img alt="poolp.org vs Big Mailer Corps spambox" src="/images/2019-08-30-spambox.png" width=100%>
+<img alt="poolp.org vs Big Mailer Corps spambox" src="2019-08-30-spambox.png" width=100%>
 [full screen](/images/2019-08-30-spambox.png)
 
 
@@ -208,7 +208,7 @@ Unless you are sending hundreds of thousands of mails to them on a daily basis,
 quite frankly and without trying to hurt your feelings,
 you fall waaaaaaaaaaaaaaay below the radars.
 
-<img alt="inbox at various Big Mailer Corps" src="/images/2019-08-30-bigmailercorps.png" width=100%>
+<img alt="inbox at various Big Mailer Corps" src="2019-08-30-bigmailercorps.png" width=100%>
 [full screen](/images/2019-08-30-bigmailercorps.png)
 
 So why did I say this claim has more substance than the others ?
@@ -272,7 +272,7 @@ you get the general idea: do things right.
 The minimum set rules is **VERY FAR** from being hard.
 To quote someone on twitter:
 
-<img alt="rDNS + SPF/DKIM and you're golden" src="/images/2019-08-30-tweet_2.png" width=100%>
+<img alt="rDNS + SPF/DKIM and you're golden" src="2019-08-30-tweet_2.png" width=100%>
 [full screen](/images/2019-08-30-tweet_2.png)
 
 I would add a few things to that list but this highlights that some people are already "golden",

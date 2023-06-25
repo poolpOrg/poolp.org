@@ -99,7 +99,7 @@ this sponsored development helped me replace my laptop with a new MacBook Air wh
 and the result **benefits all users of OpenSMTPD portable**.
 
 <center>
-  <img src="/images/2020-12-new_laptop.jpg" />
+  <img src="cover.jpg" />
 </center>
 
 

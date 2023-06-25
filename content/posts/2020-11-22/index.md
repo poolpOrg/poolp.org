@@ -69,7 +69,7 @@ I started considering opening an office so it would be more confortable for me.
 on Thursday and Friday.
 
 <center>
-  <img src="/images/2020-11-22-hypnocat.jpg" />
+  <img src="2020-11-22-hypnocat.jpg" />
 </center>
 
 
@@ -96,7 +96,7 @@ I got myself a refurbished machine from [backmarket](https://www.backmarket.fr/?
 installed the latest OpenBSD on it and started moving everything there so I could progressively shutdown a few VPS.
 
 <center>
-  <img src="/images/2020-11-22-macmini.jpeg" />
+  <img src="2020-11-22-macmini.jpeg" />
 </center>
 
 You're reading this blog post from a machine **hosted in my appartment**,

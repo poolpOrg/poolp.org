@@ -55,7 +55,7 @@ Pour cet article, nous mettrons en place un serveur de mail pour [hypno.cat](htt
 J'ai enregistré ce domaine il y a plusieurs années parce que j'aimais bien le nom mais il n'a jamais été utilisé pour quoi que ce soit d'autre que l'hébergement d'un **merveilleux** fichier animé.
 
 <center>
-  <img src="/images/2019-09-01-newdomain.png">
+  <img src="2019-09-01-newdomain.png">
 </center>
 
 Google, Bing et Yahoo le connaissent ; on ne sait pas trop comment *(je vais du moins faire semblant de ne pas savoir)* et ont indexé la page d'accueil, du coup ils ne considèrent pas que ce domaine vient d'être acheté par un spammer pour immédiatement envoyer du mail, mais il reste virtuellement inconnu sur internet parce qu'il n'a aucun contenu, ne fais aucun lien, n'est linké depuis nul part, et n'a jamais émis ou reçu de mail depuis ou vers personne.
@@ -214,7 +214,7 @@ Le rDNS est généralement hors de votre contrôle parce que dans une zone un pe
 Les FAI ne vous laissent pas toujours les configurer ; mais les hébergeurs de serveurs n'ayant pas vraiment d'autres choix, fournissent généralement un formulaire quelque part sur leurs espaces clients pour assigner un rDNS aux adresses qu'ils vous ont assignées : 
 
 <center>
-  <img src="/images/2019-09-01-vultr-rdns.png">
+  <img src="2019-09-01-vultr-rdns.png">
 </center>
 
 Si je configure mon rDNS pour avoir la même valeur que l'enregistrement DNS configuré plus haut, alors je passe automatiquement le test du FCrDNS.
@@ -683,7 +683,7 @@ dovecot(ok)
 À ce stade, il est possible de configurer n'importe quel client mail comme `mutt`, `thunderbird` ou même l'application `gmail` sur Android, et utiliser `mail.hypno.cat` pour les mails entrants et sortants.
 
 <center>
-  <img src="/images/2019-09-01-smartphone.png">
+  <img src="2019-09-01-smartphone.png">
 </center>
 
 
@@ -833,32 +833,32 @@ Et maintenant, on va juste tester que l'on arrive à faire un trajet complet all
 Tout d'abord, je prépare un mail depuis mon compte `hypno.cat` vers mon compte `gmail.com` : 
 
 <center>
-  <img src="/images/2019-09-01-craft-mail.png">
+  <img src="2019-09-01-craft-mail.png">
 </center>
 
 Après envoi, je vérifie qu'il arrive bien chez `gmail.com` : 
 
 <center>
-  <img src="/images/2019-09-01-gmail-1.png">
+  <img src="2019-09-01-gmail-1.png">
 </center>
 
 Ensuite, je vérifie que l'émission a bien eu lieu par dessus un canal sécurisé par TLS : 
 
 <center>
-  <img src="/images/2019-09-01-gmail-2.png">
+  <img src="2019-09-01-gmail-2.png">
 </center>
 
 Je vérifie également que `gmail.com` est content avec notre déclaration SPF, notre signature DKIM et qu'il a bien vu notre enregistrement DMARC.
 On fait cela en sélectionnant "Voir l'original" dans le menu associé à chaque mail : 
 
 <center>
-  <img src="/images/2019-09-01-gmail-3.png">
+  <img src="2019-09-01-gmail-3.png">
 </center>
 
 Enfin, j'y répond pour être sur que ça fonctionne dans les deux sens : 
 
 <center>
-  <img src="/images/2019-09-01-received-mail.png">
+  <img src="2019-09-01-received-mail.png">
 </center>
 
 

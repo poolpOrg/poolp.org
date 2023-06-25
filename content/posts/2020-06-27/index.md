@@ -188,7 +188,7 @@ I **only focused on the folder view at the moment** so it is not usable yet to r
 but it is possible to authenticate, navigate between folders, select and delete or junk mails, etc...
 
 <center>
-	<img src="/images/2020-06-27-webmail.png" />
+	<img src="2020-06-27-webmail.png" />
 </center>
 
 Remember that this is a **work in progress** at an early stage,

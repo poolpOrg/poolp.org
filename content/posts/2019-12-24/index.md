@@ -70,7 +70,7 @@ stickers and mugs,
 a few days ago.
 
 <center>
-    <img src="/images/2019-12-24-goodies.png">
+    <img src="2019-12-24-goodies.png">
 </center>
 
 I don't intend to start dispatching anything before mid-January,
@@ -314,7 +314,7 @@ What is fun is that once I got enough okays,
 I committed the change and I'm quite sure that other OpenBSD hackers didn't even realize it as nothing changed for existing setups.
 
 <center>
-    <img src="/images/2019-12-24-plan.gif">
+    <img src="2019-12-24-plan.gif">
 </center>
 
 This will be part of the **OpenSMTPD 6.7.0 release** happening sometime around April/May,

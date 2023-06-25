@@ -24,7 +24,7 @@ Got myself a pinebook pro
 --
 I got myself an arm64 pinebook pro:
 <center>
-<img src="/images/2019-11-17-laptop.png">
+<img src="2019-11-17-laptop.png">
 </center>
 
 My only goal for it was to have a convenient machine on which I could learn some arm64 assembly,
@@ -286,7 +286,7 @@ but this was an intuitive claim and while technically there should be no issue,
 something felt really wrong about it.
 
 <center>
-<img src="/images/2019-11-17-portable.jpg">
+<img src="2019-11-17-portable.jpg">
 </center>
 
 Then OpenBSD's `pledge()` system call came to the scene and my worry became very real:

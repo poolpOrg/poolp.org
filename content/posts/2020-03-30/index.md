@@ -134,7 +134,7 @@ it was not a pleasant experience.
 **I'll give it 1 star, do not recommend**.
 
 <center>
-	<img src="/images/2020-03-30-covid.jpg" />
+	<img src="cover.jpg" />
 </center>
 
 Resuming work

@@ -61,7 +61,7 @@ I registered the website years ago because I liked the name,
 but never done anything with it beyond hosting an **awesome** animated file.
 
 <center>
-  <img src="/images/2019-09-01-newdomain.png">
+  <img src="2019-09-01-newdomain.png">
 </center>
 
 Google, Bing and Yahoo have somehow known about it for years and indexed that front page,
@@ -281,7 +281,7 @@ ISP usually don't let you configure it but server providers can't realistically 
 so they generally provide a small form somewhere in their control panels to let you provide the rDNS you want for the IP address they allocated you:
 
 <center>
-  <img src="/images/2019-09-01-vultr-rdns.png">
+  <img src="2019-09-01-vultr-rdns.png">
 </center>
 
 If I setup my rDNS to be the same as the forward records I configured above, then I automatically pass the FCrDNS test.
@@ -830,7 +830,7 @@ you can already configure any mail client like `mutt`, `thunderbird` or even the
 so that it uses `mail.hypno.cat` both for incoming and outgoing mails.
 
 <center>
-  <img src="/images/2019-09-01-smartphone.png">
+  <img src="2019-09-01-smartphone.png">
 </center>
 
 Teaching Dovecot to train Rspamd
@@ -994,21 +994,21 @@ First,
 I'll craft a mail from my `hypno.cat` account to my `gmail.com` account:
 
 <center>
-  <img src="/images/2019-09-01-craft-mail.png">
+  <img src="2019-09-01-craft-mail.png">
 </center>
 
 After sending it,
 I'll check it arrives at `gmail.com`:
 
 <center>
-  <img src="/images/2019-09-01-gmail-1.png">
+  <img src="2019-09-01-gmail-1.png">
 </center>
 
 Then, 
 I'll check that it was sent over a TLS-secured channel:
 
 <center>
-  <img src="/images/2019-09-01-gmail-2.png">
+  <img src="2019-09-01-gmail-2.png">
 </center>
 
 I'll check that `gmail.com` is happy with our SPF declaration,
@@ -1016,14 +1016,14 @@ our DKIM signature and that it saw we had a DMARC record.
 You do that by selecting "Show original" in the menu associated to each mail:
 
 <center>
-  <img src="/images/2019-09-01-gmail-3.png">
+  <img src="2019-09-01-gmail-3.png">
 </center>
 
 And finally,
 I'll reply to the mail just to be sure that it works both ways:
 
 <center>
-  <img src="/images/2019-09-01-received-mail.png">
+  <img src="2019-09-01-received-mail.png">
 </center>
 
 

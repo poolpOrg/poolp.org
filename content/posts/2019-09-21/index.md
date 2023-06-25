@@ -27,7 +27,7 @@ The expected date for bringing our little monkey home was the 2nd of October,
 but while I started writing this article the 21st of September,
 he decided not to stick to the plan.
 <center>
-    <img src="/images/2019-09-21-baby2.jpg">
+    <img src="2019-09-21-baby2.jpg">
 </center>
 
 This is why I'm publishing today an article dated from the 21st,
@@ -38,7 +38,7 @@ born Sunday the 22nd of September 2019 at 08:03 AM in the city of Nantes.
 
 Hopefully a future OpenBSD hacker:
 <center>
-    <img src="/images/2019-09-21-baby.jpeg">
+    <img src="2019-09-21-baby.jpeg">
 </center>
 
 Though he can be anything,
@@ -182,7 +182,7 @@ action "outgoing_mails" relay srs
 Resulting in:
 
 <center>
-    <img src="/images/2019-09-21-srs.png">
+    <img src="2019-09-21-srs.png">
 </center>
 
 Plain and simple.

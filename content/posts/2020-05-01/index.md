@@ -27,7 +27,7 @@ No matter which,
 I always end up falling back to `mutt` for most tasks.
 
 <center>
-	<img src="/images/2020-05-01-mutt-1.png"/>
+	<img src="2020-05-01-mutt-1.png"/>
 </center>
 
 Then why don't I stick with `mutt` and stop trying to use other ones ?
@@ -49,7 +49,7 @@ most webmails have interfaces that are inspired by heavy clients with framing an
 something that's not practical with my use of mails.
 
 <center>
-<img src="/images/2020-05-01-webmail-0.png"/>
+<img src="2020-05-01-webmail-0.png"/>
 </center>
 
 If I want to cleanup the `List` folder which has accumulated too many mails,
@@ -72,7 +72,7 @@ but I knew I didn't work along with traditional webmail interfaces.
 So it was mostly keyboard based and had a different look than others:
 
 <center>
-<img src="/images/2020-05-01-webmail-1.png"/>
+<img src="2020-05-01-webmail-1.png"/>
 </center>
 
 It also had some features I thought were interesting for my own use-case,
@@ -81,7 +81,7 @@ the detection of diffs and their highlighting to make them more readable,
 or a `show analysis` button which allowed me to display a ton of technical details about a particular sender and mail:
 
 <center>
-<img src="/images/2020-05-01-webmail-2.png"/>
+<img src="2020-05-01-webmail-2.png"/>
 </center>
 
 Unfortunately,
@@ -111,7 +111,7 @@ still with the intent of publishing it opensource.
 Below is a screenshot from my initial work,
 start this week:
 <center>
-<img src="/images/2020-05-01-webmail-3.png"/>
+<img src="2020-05-01-webmail-3.png"/>
 </center>
 
 The webmail is now split into a backend and a frontend.

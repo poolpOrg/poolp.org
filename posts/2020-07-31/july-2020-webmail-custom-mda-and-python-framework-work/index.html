@@ -28,7 +28,7 @@ it describes a MIME structure &mldr; and MIME supports nesting &mldr; and the im
 how do I put it &mldr;
 <em>not the most beautiful thing</em>.</p><p>With this done,
 I could fetch multipart messages and allows displaying a specific part,
-without the performance overhead of a full fetch:</p><center><img src=/images/2020-07-31-webmail-multipart.png></center><p>The above was essentially backend work with just a bit of frontend work,
+without the performance overhead of a full fetch:</p><center><img src=2020-07-31-webmail-multipart.png></center><p>The above was essentially backend work with just a bit of frontend work,
 but the remaining of my work on the webmail was essentially on the frontend side:</p><p>I reworked a bit the navigation to simplify,
 splitting between &ldquo;system folders&rdquo; and &ldquo;custom&rdquo; folders,
 but also allowing to click on a progressbar to skip to a <strong>specific portion</strong> of a large folder,
@@ -38,17 +38,17 @@ I reworked the folder listing so that the frontend now adapts to the screen size
 it determines the window height and fetches just enough entries to <strong>fill the window</strong> without generating a scrollbar.
 The scrollbar is unnecessary because pagination uses either the <code>pageup/pagedown</code> button,
 or is automatic when using <code>arrow up/down</code> while on the first or last entry of the listing.
-If you use <code>mutt</code>, you&rsquo;ll be in a very familiar ground.</p><center><img src=/images/2020-07-31-webmail-listing.png></center><p>A bit I&rsquo;d like to improve is the display of subfolders which are currently displayed inlined in the custom folder tab.</p><p>I also worked on mail composing,
+If you use <code>mutt</code>, you&rsquo;ll be in a very familiar ground.</p><center><img src=2020-07-31-webmail-listing.png></center><p>A bit I&rsquo;d like to improve is the display of subfolders which are currently displayed inlined in the custom folder tab.</p><p>I also worked on mail composing,
 because being able to read a mail is nice but being able to answer is even better.</p><p>I&rsquo;m not a big fan of HTML emails for a variety of reasons,
 some of which will be explained in an upcoming article,
 but I&rsquo;d be deluded if I thought HTML emails were going anywhere.
 Still,
 I want to avoid them as much as possible,
 so I decided to make the webmail allow composing HTML messages while emitting them in plain by default,
-if possible.</p><center><img src=/images/2020-07-31-webmail-compose.png></center><p>Basically, the webmail will display a compose page which allows to customize the appearance of text,
+if possible.</p><center><img src=2020-07-31-webmail-compose.png></center><p>Basically, the webmail will display a compose page which allows to customize the appearance of text,
 however it will:</p><ul><li>default to generating a <code>text/plain</code> part if no customization was used</li><li>generate a <code>text/plain</code> <strong>alternative part</strong> stripped of customization if any was used</li></ul><p>Of course, the idea is not just to compose an email but also to send it.
 I wrote the backend bits to <strong>craft a MIME-message</strong> from the frontend submission and send it,
-which allowed me to mail myself:</p><center><img src=/images/2020-07-31-webmail-sent.png></center><p>Work is still needed to allow attachments when composing a message,
+which allowed me to mail myself:</p><center><img src=2020-07-31-webmail-sent.png></center><p>Work is still needed to allow attachments when composing a message,
 but there is not technical difficulty there.</p><p>At this point,
 I know the backend API is about right and I can focus on improving the frontend to make it more usable.</p><h1 id=worked-on-a-custom-mda>Worked on a custom MDA</h1><p>Last month,
 I talked about my custom MDA and script script to perform folder pinning.

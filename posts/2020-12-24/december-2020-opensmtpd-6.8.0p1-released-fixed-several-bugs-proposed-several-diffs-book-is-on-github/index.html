@@ -30,7 +30,7 @@ uses an API that <strong>diverged between LibreSSL and OpenSSL</strong>.</p><p>I
 but people kept asking for it and a user contacted me in private to ask if I was willing to accept a sponsored development to do that work.</p><p>I accepted and worked on it for a few days until I could start OpenSMTPD on an Ubuntu with OpenSSL and use ECDSA certificates.
 A few people tested the diff and reported success so <strong>it was committed</strong> to the portable repository.</p><p>I&rsquo;d like to thank again that user who wishes to remain anonymous,
 this sponsored development helped me replace my laptop with a new MacBook Air which is lovely,
-and the result <strong>benefits all users of OpenSMTPD portable</strong>.</p><center><img src=/images/2020-12-new_laptop.jpg></center><h2 id=plugged-multiple-memory-leaks>Plugged multiple memory leaks</h2><p>As I requested feedback on the release candidate for OpenSMTPD 6.8.0p1,
+and the result <strong>benefits all users of OpenSMTPD portable</strong>.</p><center><img src=cover.jpg></center><h2 id=plugged-multiple-memory-leaks>Plugged multiple memory leaks</h2><p>As I requested feedback on the release candidate for OpenSMTPD 6.8.0p1,
 another user reported a <strong>memory leak</strong> which sent me on a big hunt.</p><p>Thanks to a <code>top</code> output I knew it was the <code>lookup process</code>&mldr;
 but that process covers several scopes as it is in charge of <strong>DNS lookups</strong>,
 <strong>table lookups</strong> and <strong>passing information back and forth between an SMTP session and filters</strong>.

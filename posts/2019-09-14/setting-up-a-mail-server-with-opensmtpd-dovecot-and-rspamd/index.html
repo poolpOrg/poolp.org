@@ -29,7 +29,7 @@ I&rsquo;ll reiterate it for you: <strong>mail is not hard</strong>.</p><h2 id=eh
 we will setup a mail server for <a href=https://hypno.cat>hypno.cat</a>,
 a small website for my thriving (hypothetical) hypnotherapist activity.
 I registered the website years ago because I liked the name,
-but never done anything with it beyond hosting an <strong>awesome</strong> animated file.</p><center><img src=/images/2019-09-01-newdomain.png></center><p>Google, Bing and Yahoo have somehow known about it for years and indexed that front page,
+but never done anything with it beyond hosting an <strong>awesome</strong> animated file.</p><center><img src=2019-09-01-newdomain.png></center><p>Google, Bing and Yahoo have somehow known about it for years and indexed that front page,
 so they won&rsquo;t consider it as a domain that was just bought by a spammer to start sending mail,
 however it is virtually unknown to anyone on the internet because it has no content,
 doesn&rsquo;t link to anywhere,
@@ -164,7 +164,7 @@ Either way,
 it&rsquo;s a BARE MINIMUM,
 make sure that your hostname looks like a REAL mail server (ie: <code>mail.hypno.cat</code>, not <code>www.hypno.cat</code>).</p><p>rDNS is usually out of your control because it&rsquo;s managed in a somewhat special &ldquo;arpa&rdquo; zone owned by the IP address owner.
 ISP usually don&rsquo;t let you configure it but server providers can&rsquo;t realistically expect their customers not to,
-so they generally provide a small form somewhere in their control panels to let you provide the rDNS you want for the IP address they allocated you:</p><center><img src=/images/2019-09-01-vultr-rdns.png></center><p>If I setup my rDNS to be the same as the forward records I configured above, then I automatically pass the FCrDNS test.
+so they generally provide a small form somewhere in their control panels to let you provide the rDNS you want for the IP address they allocated you:</p><center><img src=2019-09-01-vultr-rdns.png></center><p>If I setup my rDNS to be the same as the forward records I configured above, then I automatically pass the FCrDNS test.
 This can be easily verified by looking up the rDNS for an IP address:</p><pre tabindex=0><code>$ host 217.69.8.253   
 253.8.69.217.in-addr.arpa domain name pointer mail.hypno.cat.
 $ host 2001:19f0:6801:867:5400:1ff:fee7:7af7
@@ -486,7 +486,7 @@ mail# rcctl start dovecot
 dovecot(ok)
 </code></pre><p>At this point,
 you can already configure any mail client like <code>mutt</code>, <code>thunderbird</code> or even the <code>gmail</code> app on Android,
-so that it uses <code>mail.hypno.cat</code> both for incoming and outgoing mails.</p><center><img src=/images/2019-09-01-smartphone.png></center><h2 id=teaching-dovecot-to-train-rspamd>Teaching Dovecot to train Rspamd</h2><p>You read until here,
+so that it uses <code>mail.hypno.cat</code> both for incoming and outgoing mails.</p><center><img src=2019-09-01-smartphone.png></center><h2 id=teaching-dovecot-to-train-rspamd>Teaching Dovecot to train Rspamd</h2><p>You read until here,
 good.</p><p>So this is a bonus section,
 one that&rsquo;s absolutely not mandatory in setting up your mail server,
 but one that I&rsquo;d like to add because it lets users train the spam filtering the same way they&rsquo;re used to already:
@@ -591,12 +591,12 @@ I&rsquo;ll be honest and say that I don&rsquo;t really care because it&rsquo;s j
 I&rsquo;m unlikely to touch the sieve scripts for the next decade,
 I don&rsquo;t think anyone should touch sieve scripts,
 we should just come with something better that doesn&rsquo;t remind me of m4 wankery.</p><h2 id=testing-it-all>Testing it all</h2><p>And now, we&rsquo;ll just test that we can do a round-trip from <code>hypno.cat</code> to <code>gmail.com</code>.</p><p>First,
-I&rsquo;ll craft a mail from my <code>hypno.cat</code> account to my <code>gmail.com</code> account:</p><center><img src=/images/2019-09-01-craft-mail.png></center><p>After sending it,
-I&rsquo;ll check it arrives at <code>gmail.com</code>:</p><center><img src=/images/2019-09-01-gmail-1.png></center><p>Then,
-I&rsquo;ll check that it was sent over a TLS-secured channel:</p><center><img src=/images/2019-09-01-gmail-2.png></center><p>I&rsquo;ll check that <code>gmail.com</code> is happy with our SPF declaration,
+I&rsquo;ll craft a mail from my <code>hypno.cat</code> account to my <code>gmail.com</code> account:</p><center><img src=2019-09-01-craft-mail.png></center><p>After sending it,
+I&rsquo;ll check it arrives at <code>gmail.com</code>:</p><center><img src=2019-09-01-gmail-1.png></center><p>Then,
+I&rsquo;ll check that it was sent over a TLS-secured channel:</p><center><img src=2019-09-01-gmail-2.png></center><p>I&rsquo;ll check that <code>gmail.com</code> is happy with our SPF declaration,
 our DKIM signature and that it saw we had a DMARC record.
-You do that by selecting &ldquo;Show original&rdquo; in the menu associated to each mail:</p><center><img src=/images/2019-09-01-gmail-3.png></center><p>And finally,
-I&rsquo;ll reply to the mail just to be sure that it works both ways:</p><center><img src=/images/2019-09-01-received-mail.png></center><h2 id=yay-were-done>Yay, we&rsquo;re done</h2><p>So this article is dense,
+You do that by selecting &ldquo;Show original&rdquo; in the menu associated to each mail:</p><center><img src=2019-09-01-gmail-3.png></center><p>And finally,
+I&rsquo;ll reply to the mail just to be sure that it works both ways:</p><center><img src=2019-09-01-received-mail.png></center><h2 id=yay-were-done>Yay, we&rsquo;re done</h2><p>So this article is dense,
 I wanted to <em>explain</em> why we do things,
 if you remove all my blabber and focus on the purely technical aspects you&rsquo;ll realize that we built a working mail infra,
 providing TLS inbound and outbound services,

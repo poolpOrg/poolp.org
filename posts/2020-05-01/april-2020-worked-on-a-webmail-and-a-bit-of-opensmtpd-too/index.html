@@ -14,7 +14,7 @@ I installed various mail clients along the years,
 some with graphical interfaces such as <code>thunderbird</code> or <code>sylpheed</code>,
 others with a web interface such as <code>nullWebmail</code>, <code>SquirrelMail</code>, <code>Roundcube</code>, <code>Mailpile</code> or currently <code>Rainloop</code>.
 No matter which,
-I always end up falling back to <code>mutt</code> for most tasks.</p><center><img src=/images/2020-05-01-mutt-1.png></center><p>Then why don&rsquo;t I stick with <code>mutt</code> and stop trying to use other ones ?</p><p>Wether I like it or not,
+I always end up falling back to <code>mutt</code> for most tasks.</p><center><img src=2020-05-01-mutt-1.png></center><p>Then why don&rsquo;t I stick with <code>mutt</code> and stop trying to use other ones ?</p><p>Wether I like it or not,
 a lot of mails that are important to me contain MIME-parts that are just not comfortable to deal with in console.
 There are ways to work-around,
 like having <code>lynx</code> render HTML mails, <code>mupdf</code> be launched for PDF attachements, and so on&mldr;
@@ -24,7 +24,7 @@ This leaves me with console-based clients that I can <code>ssh</code> to,
 and webmails that I can hit from any browser.
 Unfortunately for me,
 most webmails have interfaces that are inspired by heavy clients with framing and pagination,
-something that&rsquo;s not practical with my use of mails.</p><center><img src=/images/2020-05-01-webmail-0.png></center><p>If I want to cleanup the <code>List</code> folder which has accumulated too many mails,
+something that&rsquo;s not practical with my use of mails.</p><center><img src=2020-05-01-webmail-0.png></center><p>If I want to cleanup the <code>List</code> folder which has accumulated too many mails,
 I&rsquo;d rather use <code>mutt</code> which lets me scroll through the entire folder and delete mails with a key press,
 rather than rely on this user interface to paginate through 81 pages.
 This particular webmail has some keyboard shortcuts which makes it less painful than some others,
@@ -35,10 +35,10 @@ I will simply never use that interface to do this task and fall back to <code>mu
 I wrote a small webmail for my use in <code>python</code> with the <code>bottlepy</code> mini framework,
 with the intent to release it opensource.</p><p>I had not yet understood what caused me not to use them on the long run,
 but I knew I didn&rsquo;t work along with traditional webmail interfaces.
-So it was mostly keyboard based and had a different look than others:</p><center><img src=/images/2020-05-01-webmail-1.png></center><p>It also had some features I thought were interesting for my own use-case,
+So it was mostly keyboard based and had a different look than others:</p><center><img src=2020-05-01-webmail-1.png></center><p>It also had some features I thought were interesting for my own use-case,
 like for example the use of <a href=https://robohash.org>robohash</a> to immediately spot mails originating from the same sender,
 the detection of diffs and their highlighting to make them more readable,
-or a <code>show analysis</code> button which allowed me to display a ton of technical details about a particular sender and mail:</p><center><img src=/images/2020-05-01-webmail-2.png></center><p>Unfortunately,
+or a <code>show analysis</code> button which allowed me to display a ton of technical details about a particular sender and mail:</p><center><img src=2020-05-01-webmail-2.png></center><p>Unfortunately,
 I got carried by <strong>${DAYTIMEJOB}</strong> and gave up work on it before it became usable for real.
 It is a mail viewer with limited writing abilities.</p><h2 id=my-2020-attempt-at-a-webmail>My 2020 attempt at a webmail</h2><p>We&rsquo;re now 8 years later and I still want to scratch that itch that annoys me since then.
 I think my past effort had value but it didn&rsquo;t tackle the issue correctly,
@@ -52,7 +52,7 @@ Sure I could skip from a page to another with the press of an arrow key,
 but I then had to wait for a command to be sent to the IMAP server and for the answer to come back before the page actually changed.
 It was not really slow but it was definitely not really fluid.</p><p>I decided to rewrite it from scratch,
 still with the intent of publishing it opensource.</p><p>Below is a screenshot from my initial work,
-start this week:</p><center><img src=/images/2020-05-01-webmail-3.png></center><p>The webmail is now split into a backend and a frontend.
+start this week:</p><center><img src=2020-05-01-webmail-3.png></center><p>The webmail is now split into a backend and a frontend.
 The backend is written in <code>python</code> + <code>flask</code> and exposes a REST API to the IMAP server,
 whereas the frontend is written in <code>react</code> (which I had never used before this Monday) and only implements the rendering.
 The reason for this split is that I intend to write custom frontends too.

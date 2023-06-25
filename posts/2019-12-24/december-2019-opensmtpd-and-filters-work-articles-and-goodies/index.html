@@ -31,7 +31,7 @@ Both of them were translated in French,
 nothing too impressive,
 but I have received the first goodies,
 stickers and mugs,
-a few days ago.</p><center><img src=/images/2019-12-24-goodies.png></center><p>I don&rsquo;t intend to start dispatching anything before mid-January,
+a few days ago.</p><center><img src=2019-12-24-goodies.png></center><p>I don&rsquo;t intend to start dispatching anything before mid-January,
 I don&rsquo;t trust shipping stuff around this period of the year.
 I haven&rsquo;t received the shirts yet anyways ;-)</p><h2 id=opensmtpd-work>OpenSMTPD work</h2><p>I thought I&rsquo;d be slacking,
 but <strong>a lot</strong> of work has been put into OpenSMTPD since my last report,
@@ -134,7 +134,7 @@ match from src 192.168.2.0/24 auth &lt;users&gt; for any [...]
 but it is really the right direction.
 Because it makes the syntax simpler but also because ambiguous cases translate into people mailing me for help,
 and all of the common mistakes people do just vanish when <code>from</code> and <code>for</code> become explicit and the new constructs are available.</p><p>What is fun is that once I got enough okays,
-I committed the change and I&rsquo;m quite sure that other OpenBSD hackers didn&rsquo;t even realize it as nothing changed for existing setups.</p><center><img src=/images/2019-12-24-plan.gif></center><p>This will be part of the <strong>OpenSMTPD 6.7.0 release</strong> happening sometime around April/May,
+I committed the change and I&rsquo;m quite sure that other OpenBSD hackers didn&rsquo;t even realize it as nothing changed for existing setups.</p><center><img src=2019-12-24-plan.gif></center><p>This will be part of the <strong>OpenSMTPD 6.7.0 release</strong> happening sometime around April/May,
 but it is already available in OpenBSD -current of in the master and portable branches on Github.</p><p>I have converted multiple setups to the next syntax and they are much nicer this way.</p><h2 id=improve-documentation>Improve documentation</h2><p>Various improvements were done to the manual pages of OpenSMTPD.</p><p>I have committed bits of missing information which <code>jmc@</code> reworded and fixed to get nicer.
 There&rsquo;s still work to do,
 most notably documenting how to plug filters and providing examples for DKIM and spam filtering,

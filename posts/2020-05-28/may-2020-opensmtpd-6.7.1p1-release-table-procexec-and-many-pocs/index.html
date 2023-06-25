@@ -80,9 +80,9 @@ Since I need to get familiar with it at work,
 I thought I&rsquo;d get my hands on it on my spare time too.</p><p><strong>Basically</strong> the idea is that you run an instance (or a cluster, but lets keep it simple) that will contact configured endpoints that expose various metrics.
 The metrics are then available in Prometheus through a query language, PromQL, and through graphs in a web user interface.</p><p>I wrote a filter-prometheus which registers <code>smtp-in</code> and <code>smtp-out</code> events,
 creates some metrics based on them,
-and exposes these metrics on an HTTP endpoint.</p><center><img src=/images/2020-05-28-filter-prometheus-metrics.png></center><p>Prometheus is configured to hit that endpoint and&mldr;
+and exposes these metrics on an HTTP endpoint.</p><center><img src=2020-05-28-filter-prometheus-metrics.png></center><p>Prometheus is configured to hit that endpoint and&mldr;
 voila, that&rsquo;s all,
-they are available through prometheus.</p><center><img src=/images/2020-05-28-filter-prometheus.png></center><p>On the configuration standpoint,
+they are available through prometheus.</p><center><img src=2020-05-28-filter-prometheus.png></center><p>On the configuration standpoint,
 this is straightforward.
 The filter itself doesn&rsquo;t have configuration,
 it only supports a command line flag to specify which IP and port are used to exposed the metrics.</p><p>Prometheus has a simple configuration:</p><pre tabindex=0><code>global:
@@ -264,11 +264,11 @@ listen on all
 action &#34;local_users&#34; maildir alias &lt;consul&gt;
 
 [...]
-</code></pre><p>I then start a brand new empty consul instance and send a mail to root from my OpenSMTPD:</p><center><img src=/images/2020-05-28-empty-consul.png></center>
-<center><img src=/images/2020-05-28-consul-mail-root-noalias.png></center><p>Then,
+</code></pre><p>I then start a brand new empty consul instance and send a mail to root from my OpenSMTPD:</p><center><img src=2020-05-28-empty-consul.png></center>
+<center><img src=2020-05-28-consul-mail-root-noalias.png></center><p>Then,
 after adding a key <code>root</code> with value <code>gilles</code> in the <code>foobar/alias</code> bucket and sending a mail again,
-without restarting the daemon:</p><center><img src=/images/2020-05-28-consul-fed.png></center>
-<center><img src=/images/2020-05-28-consul-mail-root-alias.png></center><p>The alias lookup went to <code>table-consul</code> through <code>table-procexec</code>,
+without restarting the daemon:</p><center><img src=2020-05-28-consul-fed.png></center>
+<center><img src=2020-05-28-consul-mail-root-alias.png></center><p>The alias lookup went to <code>table-consul</code> through <code>table-procexec</code>,
 <code>table-consul</code> did an HTTP request to consul to retrieve the alias,
 passed it back to an unsuspecting OpenSMTPD just as if it came from a regular table.</p><p>Because <code>table-procexec</code> can&rsquo;t pass configuration to child backend yet,
 I decided to use <code>&lt;table>/&lt;service></code> as the bucket for key-values which is not always very

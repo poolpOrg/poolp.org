@@ -69,7 +69,7 @@ and based on my own studying of some failure patterns,
 the unique Message-ID is <em>sometimes</em> also tracked.</p><p>The OpenBSD <code>spamd(8)</code> for example tracks the source IP address,
 the identification hostname provided at HELO/EHLO,
 the envelope-from (MAIL FROM) and the envelope-to (RCPT TO).
-So, to pass greylisting, an MX must retry during the proper window of time, coming from the same IP address, identifying with the same HELO/EHLO, from the same MAIL FROM and to the same RCPT TO.</p><center><img src=/images/2019-12-01-spam.jpg></center><h2 id=the-problem-with-greylisting-and-big-mailer-corps>The problem with greylisting and Big Mailer Corps</h2><p>For small destinations,
+So, to pass greylisting, an MX must retry during the proper window of time, coming from the same IP address, identifying with the same HELO/EHLO, from the same MAIL FROM and to the same RCPT TO.</p><center><img src=cover.jpg></center><h2 id=the-problem-with-greylisting-and-big-mailer-corps>The problem with greylisting and Big Mailer Corps</h2><p>For small destinations,
 greylisting works nicely as they tend to use the same MX for incoming and outgoing trafic.
 The MX will contact you,
 be told to retry later,

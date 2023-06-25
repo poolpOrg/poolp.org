@@ -12,7 +12,7 @@ Nov 17, 2019
 - filter-greylist proof-of-concept published
 - wrote 2 chapters for my book
 </code></pre><h2 id=shout-outs-to-my-sponsors->Shout outs to my sponsors !</h2><p>As usual,
-a <strong>huge</strong> thanks goes to the people sponsoring me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>, the work in this post was made possible by my <a href=/sponsorship/>sponsorship</a>.</p><h2 id=got-myself-a-pinebook-pro>Got myself a pinebook pro</h2><p>I got myself an arm64 pinebook pro:</p><center><img src=/images/2019-11-17-laptop.png></center><p>My only goal for it was to have a convenient machine on which I could learn some arm64 assembly,
+a <strong>huge</strong> thanks goes to the people sponsoring me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>, the work in this post was made possible by my <a href=/sponsorship/>sponsorship</a>.</p><h2 id=got-myself-a-pinebook-pro>Got myself a pinebook pro</h2><p>I got myself an arm64 pinebook pro:</p><center><img src=2019-11-17-laptop.png></center><p>My only goal for it was to have a convenient machine on which I could learn some arm64 assembly,
 and do some portability work on an architecture that&rsquo;s different from amd64.</p><p>I still aim at getting myself a proper laptop in a few months with the sponsorship money,
 this one is not going to be comfortable enough,
 but it&rsquo;s really a nice to have.</p><p>I bricked it on the first day,
@@ -148,7 +148,7 @@ well, there should be no missing OpenBSD function in OpenBSD.</p><p>In practice,
 For years I discouraged using OpenSMTPD portable on top of OpenBSD,
 claiming it was unsupported,
 but this was an intuitive claim and while technically there should be no issue,
-something felt really wrong about it.</p><center><img src=/images/2019-11-17-portable.jpg></center><p>Then OpenBSD&rsquo;s <code>pledge()</code> system call came to the scene and my worry became very real:
+something felt really wrong about it.</p><center><img src=2019-11-17-portable.jpg></center><p>Then OpenBSD&rsquo;s <code>pledge()</code> system call came to the scene and my worry became very real:
 building OpenSMTPD portable on OpenBSD led to an executable that would crash at startup.
 The compat layer didn&rsquo;t properly exclude a replacement function,
 which relied upon a system call that we didn&rsquo;t allow in our pledges.

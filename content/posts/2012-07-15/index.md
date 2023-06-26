@@ -4,6 +4,8 @@ date: 2012-07-15 21:43:58
 category: OpenBSD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 Yesterday, I came back from Budapest and was too tired to write anything, but here's a quick summary of all the features that have been implemented with regard to OpenSMTPD by Eric, Charles and I.

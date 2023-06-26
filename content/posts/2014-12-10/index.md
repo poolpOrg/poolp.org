@@ -4,6 +4,8 @@ date: 2014-12-10 12:38:26
 category: OpenSMTPD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 EHLO,

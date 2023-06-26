@@ -4,6 +4,8 @@ date: 2012-08-31 15:21:39
 category: OpenSMTPD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 The crypto backend that has been committed a couple days ago started a little discussion and it was decided to switch the default cipher from Blowfish to AES-128 and make it a default.

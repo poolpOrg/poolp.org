@@ -4,6 +4,8 @@ date: 2022-10-18 11:11:00 +0200
 authors:
  - Gilles Chehade
 language: fr
+categories:
+ - technology
 ---
 
 <blockquote>

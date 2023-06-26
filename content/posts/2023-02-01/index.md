@@ -4,6 +4,8 @@ date: 2023-03-01 12:00:00 +0200
 authors:
  - Gilles Chehade
 language: en
+categories:
+ - personal
 ---
 
 Almost four years ago,

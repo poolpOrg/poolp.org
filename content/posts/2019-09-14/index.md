@@ -4,6 +4,8 @@ date: 2019-09-14 05:37:00
 category: opensource
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
     TL;DR:
     - NO TL;DR: this time, I spent hours writing, you should spend minutes reading.

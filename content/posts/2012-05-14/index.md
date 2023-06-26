@@ -4,6 +4,8 @@ date: 2012-05-14 09:55:52
 category: OpenSMTPD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 When we first started working on OpenSMTPD, we planned for future features but we did not necessarily start integrating them right away as the goal was to bootstrap the project first with basic features.

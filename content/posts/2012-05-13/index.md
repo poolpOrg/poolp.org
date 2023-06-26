@@ -4,6 +4,8 @@ date: 2012-05-13 03:09:16
 category: OpenSMTPD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 Ok, I already posted about the new SQLite map_backend earlier today but it turns out that I've been very productive, and it was worth another post ;-)

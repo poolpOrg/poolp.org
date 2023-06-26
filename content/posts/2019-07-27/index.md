@@ -4,6 +4,8 @@ date: 2019-07-27 07:27:00
 category: opensource
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
     TL;DR:

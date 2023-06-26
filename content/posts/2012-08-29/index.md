@@ -4,6 +4,8 @@ date: 2012-08-29 10:21:59
 category: OpenSMTPD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 A few days ago, Charles committed the compress_backend API which allowed transparent deflation/inflation of envelopes and messages as they hit the queue.

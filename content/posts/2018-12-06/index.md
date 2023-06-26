@@ -4,6 +4,8 @@ date: 2018-12-06 21:31:00
 category: OpenSMTPD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
     TL;DR:

@@ -4,6 +4,8 @@ date: 2012-07-09 23:52:31
 category: OpenBSD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 Yesterday, after nearly missing my plane by 5 minutes, I finally managed to make it to Budapest for g2k12, the OpenBSD general hackathon.

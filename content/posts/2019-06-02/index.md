@@ -1,9 +1,10 @@
 ---
 title: "happy new year 2019, a personal post"
 date: 2019-06-02 13:42:00
-category: myLife
 authors:
  - Gilles Chehade
+categories:
+ - personal
 ---
 
     TL;DR:

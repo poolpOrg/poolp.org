@@ -4,6 +4,8 @@ date: 2013-05-08 14:23:43
 category: OpenBSD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 Yop,

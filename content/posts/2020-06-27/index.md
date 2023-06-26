@@ -1,9 +1,10 @@
 ---
 title: "June 2020: poolp.org, folder pinning and webmail work"
 date: 2020-06-27 23:13:00 +0200
-category: opensource
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 <blockquote>
 <b>TL;DR:</b>

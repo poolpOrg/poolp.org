@@ -4,6 +4,8 @@ date: 2012-05-09 23:03:36
 category: ["OpenSMTPD"]
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 It's been a whiiiiiiile since my last OpenSMTPD related post. Time to break the slacking, blog-wise.

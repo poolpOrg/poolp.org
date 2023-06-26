@@ -4,6 +4,8 @@ date: 2018-01-08 12:11:00
 category: myLife
 authors:
  - Gilles Chehade
+categories:
+ - personal
 ---
 
 	TL;DR:

@@ -3,6 +3,8 @@ title: May 2019 report
 date: 2019-06-02 14:57:00
 category: opensource
 author: Gilles Chehade
+categories:
+ - technology
 ---
 
     TL;DR:

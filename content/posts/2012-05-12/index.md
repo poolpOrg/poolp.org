@@ -4,6 +4,8 @@ date: 2012-05-12 14:23:54
 category: OpenSMTPD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 During the r2k12 hackathon in Paris, Marc Espie committed SQLite to OpenBSD's base system.

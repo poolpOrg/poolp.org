@@ -2,8 +2,9 @@
 title: "Décentralisons SMTP pour le bien commun"
 slug: decentralisons-smtp-pour-le-bien-commun
 date: 2019-12-15 13:05:00 +0200
-category: opensource
 author: Gilles Chehade
+categories:
+ - technology
 ---
 
     TL;DR:

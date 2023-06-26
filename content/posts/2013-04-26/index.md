@@ -4,6 +4,8 @@ date: 2013-04-26 18:42:36
 category: OpenSMTPD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 Yop,

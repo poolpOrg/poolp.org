@@ -1,9 +1,10 @@
 ---
 title: "March 2021: backups with Plakar"
 date: 2021-03-26 16:52:00 +0200
-category: opensource
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 <blockquote>

@@ -1,9 +1,10 @@
 ---
 title: "Anxiety, OpenBSD break, COVID-19 and resuming work"
 date: 2020-03-30 14:01:00 +0200
-category: opensource
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
     TL;DR:
 	- I took a break to deal with personal stuff

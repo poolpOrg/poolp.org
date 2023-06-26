@@ -5,6 +5,8 @@ category: ["myLife"]
 authors:
  - Gilles Chehade
 draft: false
+categories:
+ - technology
 ---
 
 Je sais pas pourquoi, mais je suis epuise alors que j'ai dormi pres de 14h cette nuit.

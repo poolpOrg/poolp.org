@@ -4,6 +4,8 @@ date: 2012-06-06 14:44:10
 category: OpenSMTPD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 This is the first post of a series to illustrate and describe a "proof of concept" code by Charles, Eric and I. I will describe the features as they are implemented.

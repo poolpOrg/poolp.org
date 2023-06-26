@@ -4,6 +4,8 @@ date: 2019-08-25 04:00:00
 author: Gilles Chehade
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
     Tl;DR:

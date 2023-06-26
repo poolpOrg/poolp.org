@@ -4,6 +4,8 @@ date: 2021-04-30 21:12:00 +0200
 category: opensource
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 <blockquote>

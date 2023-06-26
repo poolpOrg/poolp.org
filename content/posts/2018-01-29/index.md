@@ -4,6 +4,8 @@ date: 2018-01-29 23:28:00
 category: OpenBSD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 	TL;DR:

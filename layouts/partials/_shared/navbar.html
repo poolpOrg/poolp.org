@@ -28,9 +28,16 @@
                 </li>
                 {{ end }}
             </ul>
+
+            <ul class="navbar-nav ml-auto">
+                {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+                <li class="nav-item" style="margin: 5px;">
+                   <a class="mt-1 mb-1" href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}"><button type="button" class="btn btn-sm btn-primary">{{$name}}</button></a>
+                </li>
+                {{ end }}
+            </ul>
         </div>
         <!-- End Menu -->
     </div>
 </nav>
-<!-- End Navigation
-================================================== -->
+<!-- End Navigation -->

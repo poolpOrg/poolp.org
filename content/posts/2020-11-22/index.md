@@ -4,6 +4,8 @@ date: 2020-11-22 21:26:00 +0200
 category: opensource
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 <blockquote>

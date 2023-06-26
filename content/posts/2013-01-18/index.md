@@ -4,6 +4,8 @@ date: 2013-01-18 22:11:07
 category: OpenSMTPD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 	<p>Hey,</p>

@@ -4,6 +4,8 @@ date: 2012-12-07 21:17:57
 category: OpenSMTPD
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
 
 OHAI,

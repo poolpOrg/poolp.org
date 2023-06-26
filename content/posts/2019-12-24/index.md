@@ -1,9 +1,10 @@
 ---
 title: "December 2019: OpenSMTPD and filters work, articles and goodies"
 date: 2019-12-24 09:31:00 +0200
-category: opensource
 authors:
  - Gilles Chehade
+categories:
+ - technology
 ---
     TL;DR:
     - wrote, reworked and translated multiple articles this month

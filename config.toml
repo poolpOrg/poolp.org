@@ -1,20 +1,15 @@
 baseURL = "https://poolp.org"
 languageCode = "en-us"
 title = "poolp.org"
-#theme = "mediumish-gohugo-theme"
-theme = "digitalgarden"
-#pygmentsCodeFences = true
-#pygmentsUseClasses = true
+theme = "mediumish-gohugo-theme"
+pygmentsCodeFences = true
+pygmentsUseClasses = true
 publishDir = "docs"
 copyright = "poolp.org - All rights reserved"
 enableEmoji = true
 
-[markup]
-  [markup.goldmark.renderer]
-    unsafe = true
-  [markup.highlight]
-    style = "dracula"
-  
+[markup.goldmark.renderer]
+  unsafe = true
 
 [Params]
 	mainSections = ["posts"]
@@ -24,13 +19,12 @@ enableEmoji = true
   ShowFullTextinRSS = true
 	comments = true
 	readingTime = true
+	wordCount = true
+	useHLJS = true
 	socialShare = true
 	showRelatedPosts = true
   alertbar = true
-  description = "My Digital Garden on the Internet"
-  images = ['/images/poolp_org.png']
-  enableSearch = true
-  useHLJS = true
+  #customCSS = ["css/custom.css"]
 
 [Params.author]
   name = "Gilles Chehade"
@@ -57,59 +51,3 @@ enableEmoji = true
   author = "authors"
   tag = "tags"
   category = "categories"
-
-[menu]
-[[menu.main]]
-  name = 'Home'
-  url = '/'
-  weight = 1
-[[menu.main]]
-  name = 'Technology'
-  params.header = true
-  weight = 2
-[[menu.main]]
-  name = 'Articles'
-  url = '/posts'
-  weight = 3
-[[menu.main]]
-  name = 'Stack'
-  url = '/stack'
-  weight = 5
-
-
-#[[menu.main]]
-#  name = 'Links'
-#  params.header = true
-#  weight = 6
-#[[menu.main]]
-#  name = 'OpenBSD'
-#  url = 'https://OpenBSD.org'
-#  weight = 7
-
-
-
-
-[[menu.social]]
-  name = 'Twitter'
-  url = 'https://twitter.com/poolpOrg'
-  weight = 1
-
-[[menu.social]]
-  name = 'GitHub'
-  url = 'https://github.com/poolpOrg'
-  weight = 2
-
-[[menu.social]]
-  name = 'LinkedIn'
-  url = 'https://linkedin.com/in/gilleschehade'
-  weight = 3
-
-[[menu.social]]
-  name = 'Email'
-  url = 'mailto:gilles@poolp.org'
-  weight = 4
-
-[[menu.social]]
-  name = 'RSS'
-  url = '/index.xml'
-  weight = 4

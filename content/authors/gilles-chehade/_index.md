@@ -1,7 +1,7 @@
 ---
 name: Gilles Chehade / جيل شحادة
 subtitle: 
-photo: '/images/me.jpg'
+photo: '/authors/gilles-chehade/gilles-chehade.jpg'
 github: "poolpOrg"
 twitter: "poolpOrg"
 linkedin: "gilleschehade"

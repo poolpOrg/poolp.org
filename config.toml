@@ -1,7 +1,6 @@
 baseURL = "https://poolp.org"
 languageCode = "en-us"
 title = "poolp.org"
-#theme = "poolp.org_theme"
 theme = "mediumish-gohugo-theme"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
@@ -25,7 +24,7 @@ enableEmoji = true
 	socialShare = true
 	showRelatedPosts = true
   alertbar = true
-  #customCSS = ["/css/custom.css"]
+  #customCSS = ["css/custom.css"]
 
 [Params.author]
   name = "Gilles Chehade"

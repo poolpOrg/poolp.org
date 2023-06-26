@@ -1,0 +1,84 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>Anxiety, OpenBSD break, COVID-19 and resuming work | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/cover.jpg"><meta name=twitter:title content="Anxiety, OpenBSD break, COVID-19 and resuming work"><meta name=twitter:description content="TL;DR: - I took a break to deal with personal stuff - I'm taking a long break from OpenBSD for personal reasons - I may or may not have experienced COVID-19, who knows - resumed work on OpenSMTPD and other projects This is a weird report This is a weird report.
+I&rsquo;ll mix a bit of personal info to provide some context as to why I decided to leave the OpenBSD project, explain why this doesn&rsquo;t mean I won&rsquo;t be an active contributor, and give some small insight into my upcoming work."><meta property="og:title" content="Anxiety, OpenBSD break, COVID-19 and resuming work"><meta property="og:description" content="TL;DR: - I took a break to deal with personal stuff - I'm taking a long break from OpenBSD for personal reasons - I may or may not have experienced COVID-19, who knows - resumed work on OpenSMTPD and other projects This is a weird report This is a weird report.
+I&rsquo;ll mix a bit of personal info to provide some context as to why I decided to leave the OpenBSD project, explain why this doesn&rsquo;t mean I won&rsquo;t be an active contributor, and give some small insight into my upcoming work."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/"><meta property="og:image" content="https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/cover.jpg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-03-30T14:01:00+02:00"><meta property="article:modified_time" content="2020-03-30T14:01:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul><ul class="navbar-nav ml-auto"><li class=nav-item style=margin:5px><a class="mt-1 mb-1" href=/categories/personal><button type=button class="btn btn-sm btn-primary">personal</button></a></li><li class=nav-item style=margin:5px><a class="mt-1 mb-1" href=/categories/technology><button type=button class="btn btn-sm btn-primary">technology</button></a></li></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/authors/gilles-chehade/gilles-chehade.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description><br></span><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>Anxiety, OpenBSD break, COVID-19 and resuming work</h1><span class=author-description><i class="far fa-star"></i>
+Mar 30, 2020
+<i class="far fa-clock clock"></i>
+7 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br><center><img class="featured-image img-fluid" src=https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/cover.jpg alt="thumbnail for this post"></center></div><div class=article-post><pre><code>TL;DR:
+- I took a break to deal with personal stuff
+- I'm taking a long break from OpenBSD for personal reasons
+- I may or may not have experienced COVID-19, who knows
+- resumed work on OpenSMTPD and other projects
+</code></pre><h2 id=this-is-a-weird-report>This is a weird report</h2><p>This is a weird report.</p><p>I&rsquo;ll mix a bit of personal info to provide some context as to why I decided to leave the OpenBSD project,
+explain why this doesn&rsquo;t mean I won&rsquo;t be an active contributor,
+and give some small insight into my upcoming work.</p><h2 id=a-bit-of-personal-context>A bit of personal context</h2><p>As some may have noticed,
+I didn&rsquo;t write a report in February:
+<strong>I took a small break</strong>.</p><p>In 2013,
+my body started failing me with constant headaches and nausea.
+I had weekly visits at my doctor to adapt non-working treatments,
+which then led to weekly exams to rule out a serious illness and eventually led me to being admitted in hospital for biopsy,
+endoscopy and other unpleasant tortures.
+All of this resulted in the observation that there was no organic reason to my illness,
+it was purely psychological.
+I couldn&rsquo;t wrap my head around this because everything was apparently fine in my life,
+but I was treated accordingly for a few weeks and my physical health got much better in no time.
+The whole episode became a thing of the past after a while.</p><p>Late 2018,
+<a href=https://poolp.org/posts/2019-06-02/happy-new-year-2019-a-personal-post/>I was diagnosed with generalised anxiety disorder and alexithymia</a>.
+The general idea is that I&rsquo;m pretty much constantly anxious but I&rsquo;m also <strong>unaware</strong> of it most of the time:
+I have trouble decoding my own emotions and the related physical sensations.
+It is not uncommon for my better half to ask me if I&rsquo;m feeling ok as she realizes I&rsquo;m having an anxiety attack before/if I do.
+This puts a lot of perspective on the events of 2013:
+I don&rsquo;t realise my anxiety is becoming unsustainable until my body starts to dysfunction somehow for extended periods of time.</p><p>I&rsquo;ve grown used to it and came up with fairly effective coping mechanisms.
+In regular times,
+most people don&rsquo;t know about this disorder even after knowing me for years,
+but these are no regular times for me.
+I had major changes in my life with the
+<a href=https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/>arrival of a baby</a>,
+the learning of a bad news regarding a close family member,
+and the doubts about staying at my daytime job.</p><p>My mind hasn&rsquo;t been at rest in a while and keeping things under control has a cost,
+sadly I&rsquo;m unable to properly assess when that cost is becoming too high&mldr; which brings me to the next topic.</p><h2 id=taking-a-break-from-openbsd>Taking a break from OpenBSD</h2><p>I&rsquo;ve been an OpenBSD user since 1999 and an OpenBSD developer since 2008.
+OpenBSD has literally been around me for half of my life now.</p><p>I&rsquo;ve attended multiple hackathons,
+met plenty of skilled hackers from across the globe and been part of a project I love.
+A project that drove me into studying computer science and whose philosophy I&rsquo;m still perfectly aligned with after all these years.
+I spent <strong>wonderful</strong> years and I&rsquo;m a bit sad that I have to put an end to it.</p><p>My anxiety disorder causes me to obsess a lot about my work,
+and while I can easily put distance between my daytime job work and myself,
+it is much harder for an opensource project I&rsquo;m emotionally attached to.
+I&rsquo;m unable to disconnect and take a break,
+I feel a disproportionate duty towards hackers and users.
+I must not let people down and so I keep obsessing about what needs to be done and how it should be done.
+I can never find enough time to do all of it,
+so it leads to more anxiety and more obsession,
+in a vicious circle.</p><p>The almost two months break I just took without booting an OpenBSD laptop was <strong>a first in +10 years</strong>.
+I can&rsquo;t recall a single vacation or week-end where I didn&rsquo;t boot my laptop at least an hour to work on something.</p><p>I decided to quit because I don&rsquo;t believe I can be part of the project and work a few hours here and there,
+disconnecting to take a break every now and then.
+It&rsquo;s just not in my nature.
+As long as I&rsquo;ll be part of the team,
+I&rsquo;ll feel a duty towards it and will be unable to put distance when needed.
+I have to deal with a lot of personal stuff these days and not being able to assess emotions correctly makes it hard to know my limits.
+The last thing I want is to push myself too far and back into hospital for being too obsessed&mldr; about a hobby.</p><p>I told the OpenBSD people I was leaving in a lengthy mail late January IIRC,
+and I received nothing but friendly replies.
+I may not be an OpenBSD hacker anymore but that doesn&rsquo;t matter much,
+<strong>I met the coolest people</strong>.</p><h2 id=does-it-mean-that-i-will-no-longer-contribute-to-openbsdopensmtpd->Does it mean that I will no longer contribute to OpenBSD/OpenSMTPD ?</h2><p>Not at all, <strong>I don&rsquo;t intend to ghost OpenBSD/OpenSMTPD</strong>.</p><p>What it means is that <strong>I&rsquo;ll be contributing as any other user</strong> through diffs sent to specific hackers or to mailing lists.
+This will make it easier for me to contribute on my own schedule and will leave to others the decision of what gets in and when.
+Other hackers have done that in the past for diverse reasons,
+I wouldn&rsquo;t be the first former hacker to send diffs to tech@.</p><p>It&rsquo;ll also make it easier for me to work on <strong><em>other</em></strong> stuff.
+I have many other interests than but could never convince myself that my time was better spent elsewhere.
+You know, duty and all.</p><p>As far as OpenSMTPD is concerned,
+I&rsquo;m currently sitting on diffs to convert it to <code>libtls</code> as well as other related features that are <strong>waiting for the 6.7 release</strong>.
+I will also continue my work to improve the portable version which is outside of OpenBSD&rsquo;s scope and doesn&rsquo;t really attract developers besides me.</p><p><strong>I&rsquo;ll still be a main contributor, just not the lead on that project</strong>.</p><h2 id=suspected-covid-19-achievement-unlocked>Suspected COVID-19: achievement unlocked.</h2><p>My wife and I were suspected COVID-19.
+Symptoms were mild but between the fever, the weakness, the coughing and the caring for a baby,
+it was not a pleasant experience.</p><p><strong>I&rsquo;ll give it 1 star, do not recommend</strong>.</p><center><img src=cover.jpg></center><h2 id=resuming-work>Resuming work</h2><p>As I&rsquo;m back from my break I don&rsquo;t have much work to talk about in this report,
+but <strong>I&rsquo;m working on my personal projects this week</strong> so expect stuff in the next one.</p><p>I have already synchronized OpenSMTPD portable with the OpenBSD tree so it carries commits that happened by other developers during my break.</p><p>I&rsquo;m catching up on my <code>libtls</code> work in OpenSMTPD portable as it got interrupted by the advisory in January.
+I need to dive back into that code and test that it works as expected.
+I will also continue my work of cleanup in <code>openbsd-compat</code> which is bringing OpenSMTPD portable closer to a clean compat layer.</p><p>I&rsquo;m currently working on <strong>client-side</strong> mail stuff.
+I did a major fuckup with my mailbox and reinjected years of Trash and Junk to my Inbox.
+This was +30k mails to <strong>classify</strong> and it inspired me to work on a tool which I&rsquo;ll continue working on and disclose when it is useable.</p><p>Finally,
+I&rsquo;ll catch up on the MANY notifications I received on github and the tons of mails that I accumulated in my mailbox during my break.
+I know there are pull requests on some filters and questions regarding OpenSMTPD.
+I need to catch up on all of this.</p><p>Take care,
+next report will be in the usual format.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/118>https://github.com/poolpOrg/poolp.org/discussions/118</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/>&#171; April 2020: worked on a webmail and a bit of OpenSMTPD too</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/>OpenSMTPD advisory dissected &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

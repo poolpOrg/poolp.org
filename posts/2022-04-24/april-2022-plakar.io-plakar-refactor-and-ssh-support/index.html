@@ -1,0 +1,272 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>April 2022: plakar.io, plakar refactor and ssh support | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2022-04-24/april-2022-plakar.io-plakar-refactor-and-ssh-support/cover.png"><meta name=twitter:title content="April 2022: plakar.io, plakar refactor and ssh support"><meta name=twitter:description content="TL;DR: I refactored internal structures to split metadata from the index, implemented an stdio server and finally added SSH support. Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I created a Discord where I hang out and discuss my projects or screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord."><meta property="og:title" content="April 2022: plakar.io, plakar refactor and ssh support"><meta property="og:description" content="TL;DR: I refactored internal structures to split metadata from the index, implemented an stdio server and finally added SSH support. Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I created a Discord where I hang out and discuss my projects or screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2022-04-24/april-2022-plakar.io-plakar-refactor-and-ssh-support/"><meta property="og:image" content="https://poolp.org/posts/2022-04-24/april-2022-plakar.io-plakar-refactor-and-ssh-support/cover.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-04-24T17:24:00+02:00"><meta property="article:modified_time" content="2022-04-24T17:24:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul><ul class="navbar-nav ml-auto"><li class=nav-item style=margin:5px><a class="mt-1 mb-1" href=/categories/personal><button type=button class="btn btn-sm btn-primary">personal</button></a></li><li class=nav-item style=margin:5px><a class="mt-1 mb-1" href=/categories/technology><button type=button class="btn btn-sm btn-primary">technology</button></a></li></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/authors/gilles-chehade/gilles-chehade.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description><br></span><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>April 2022: plakar.io, plakar refactor and ssh support</h1><span class=author-description><i class="far fa-star"></i>
+Apr 24, 2022
+<i class="far fa-clock clock"></i>
+12 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br><center><img class="featured-image img-fluid" src=https://poolp.org/posts/2022-04-24/april-2022-plakar.io-plakar-refactor-and-ssh-support/cover.png alt="thumbnail for this post"></center></div><div class=article-post><blockquote><b>TL;DR:</b>
+I refactored internal structures to split metadata from the index, implemented an stdio server and finally added SSH support.</blockquote><center><img src=cover.png></center><h1 id=shout-out-to-my-sponsors-x2764xfe0f>Shout out to my sponsors ❤️</h1><p>A <strong>HUGE thanks</strong> goes to my sponsors on <a href=https://github.com/sponsors/poolpOrg>github</a>
+and <a href=https://www.patreon.com/gilles>patreon</a>:
+your continuous support is very much appreciated !</p><p>I created a Discord where I hang out and discuss my projects or screencast as I work on them.
+Feel free to hop in if you want,
+and feel free to do just like me and share thoughts as you work on your own projects there:
+<strong>this is a virtual hack room for anyone to join</strong>: <a href=https://discord.gg/YC6j4rbvSk>https://discord.gg/YC6j4rbvSk</a></p><h1 id=the-plakariohttpsplakario-website>The <a href=https://plakar.io>plakar.io</a> website</h1><p>A project needs a website so&mldr;
+I published the <a href=https://plakar.io>plakar.io</a> website.</p><p>This will centralize instructions and documentation for the plakar project,
+but <strong>it is still a work in progress</strong> as development still happens at a fast pace that&rsquo;s hard to keep up with.</p><p>The website is published from commits to the <a href=https://github.com/poolpOrg/plakar.io>plakar.io Github repository</a>,
+so feel free to submit pull requests to improve it.</p><h1 id=reworked-internal-structures>Reworked internal structures</h1><p>A snapshot generates an index that contains <strong>everything needed to map chunks and objects into a filesystem hierarchy</strong>.
+The index is very small comparatively to the snapshot size,
+but it may still be relatively large as <strong>a multi-gigabyte snapshot may produce a multi-megabyte index</strong>,
+which still requires time to fetch, decompress and deserialize.
+In many cases,
+this is fast enough that you don&rsquo;t really feel it,
+but the bigger the snapshot the more laggy it feels when browsing it through the UI or when listing content in a snapshot.</p><p>For many commands there&rsquo;s <strong>no need to access the index</strong> because it&rsquo;s not so much the content of files that is needed,
+but really <strong>some metadata or statistics</strong>.
+Good examples of these are <code>plakar ls</code> in the repository or <code>plakar info</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar ls 
+</span></span><span class=line><span class=cl>2022-04-19T22:07:03Z  a9d01365    2.4 GB /Users/gilles/Wip
+</span></span><span class=line><span class=cl>2022-04-19T22:08:11Z  f87bd54e    2.4 GB /Users/gilles/Wip
+</span></span><span class=line><span class=cl>2022-04-19T22:11:46Z  70cc55f6    2.4 GB /Users/gilles/Wip
+</span></span><span class=line><span class=cl>2022-04-20T22:48:55Z  1c537551    2.4 GB /Users/gilles/Wip
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>% plakar info a9
+</span></span><span class=line><span class=cl>Uuid: a9d01365-4f97-42e1-8b19-59e4fe2f630a
+</span></span><span class=line><span class=cl>CreationTime: 2022-04-20 00:07:03.728327 +0200 CEST
+</span></span><span class=line><span class=cl>Version: 0.1.0
+</span></span><span class=line><span class=cl>Hostname: desktop.local
+</span></span><span class=line><span class=cl>Username: gilles
+</span></span><span class=line><span class=cl>CommandLine: ./plakar -no-cache push /Users/gilles/Wip
+</span></span><span class=line><span class=cl>MachineID: 3657f7dd-c012-53ba-b8e6-73e08d311a6a
+</span></span><span class=line><span class=cl>PublicKey: 
+</span></span><span class=line><span class=cl>Directories: <span class=m>7589</span>
+</span></span><span class=line><span class=cl>Files: <span class=m>77206</span>
+</span></span><span class=line><span class=cl>NonRegular: <span class=m>84</span>
+</span></span><span class=line><span class=cl>Pathnames: <span class=m>77206</span>
+</span></span><span class=line><span class=cl>Objects: <span class=m>63306</span>
+</span></span><span class=line><span class=cl>Chunks: <span class=m>65702</span>
+</span></span><span class=line><span class=cl>Size: 2.4 GB <span class=o>(</span><span class=m>2445114798</span> bytes<span class=o>)</span>
+</span></span><span class=line><span class=cl>Index Size <span class=o>(</span>uncompressed<span class=o>)</span>: <span class=m>113</span> MB <span class=o>(</span><span class=m>2445114798</span> bytes<span class=o>)</span>
+</span></span></code></pre></div><p>Here,
+the index for snapshot <code>a9d01365</code> is 113MB uncompressed (really 21MB on disk),
+which means that the <code>plakar ls</code> above required decompressing and deserializing roughly 4 times that size to list the 4 snapshots,
+then decompressing and deserializing that size once for the <code>plakar info</code> above,
+just to display some informations that didn&rsquo;t rely on the filesystem hierarchy and content.</p><p>I have split snapshots into two main structures:
+<code>Metadata</code> and <code>Index</code>.</p><p>The first structure contains <strong>general informations and statistics regarding the index</strong>,
+just enough that the structure fits in a few KiloBytes,
+but can avoid relying on the much larger index for commands that don&rsquo;t involve diving into the content of a snapshot.
+The second structure contains <strong>the mappings themselves</strong>,
+and is <strong>only accessed when data needs to be reconstructured somehow</strong>.</p><p>This allowed <code>plakar ls</code> to get a serious boost when listing a large number of large snapshots,
+but it is really a first step as I&rsquo;m evaluating solutions to shard the index and allow fetching subsets of it.</p><h1 id=implemented-a-reader-interface>Implemented a Reader interface</h1><p>When a snapshot is created,
+plakar will consider each file <strong>as an object consisting of one or many chunks</strong>.
+The repository stores the object structure and chunks as <strong>separate resources</strong>,
+and so when a file is being recovered this is done by <strong>first fetching the structure</strong>,
+<strong>then fetching each chunk</strong>.</p><p>For example,
+to implement <code>plakar cat</code>,
+the code would look something like this (error handling omitted for simplicity):</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=p>[</span><span class=o>...</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>object</span> <span class=o>:=</span> <span class=nx>snapshot</span><span class=p>.</span><span class=nf>LookupObjectForPathname</span><span class=p>(</span><span class=nx>pathname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>checksum</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>object</span><span class=p>.</span><span class=nx>Chunks</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>data</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>snapshot</span><span class=p>.</span><span class=nf>GetChunk</span><span class=p>(</span><span class=nx>checksum</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>os</span><span class=p>.</span><span class=nx>Stdout</span><span class=p>.</span><span class=nf>Write</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=o>...</span><span class=p>]</span>
+</span></span></code></pre></div><p>As every call may fail and needs to be checked,
+the code is actually far more verbose as can be seen below:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=p>[</span><span class=o>...</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>object</span> <span class=o>:=</span> <span class=nx>snapshot</span><span class=p>.</span><span class=nf>LookupObjectForPathname</span><span class=p>(</span><span class=nx>pathname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nx>object</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>logger</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=s>&#34;%s: could not open file &#39;%s&#39;&#34;</span><span class=p>,</span> <span class=nx>flags</span><span class=p>.</span><span class=nf>Name</span><span class=p>(),</span> <span class=nx>pathname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>continue</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>checksum</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>object</span><span class=p>.</span><span class=nx>Chunks</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>data</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>snapshot</span><span class=p>.</span><span class=nf>GetChunk</span><span class=p>(</span><span class=nx>checksum</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>logger</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=s>&#34;%s: %s: could not obtain chunk &#39;%s&#39;: %s&#34;</span><span class=p>,</span> <span class=nx>flags</span><span class=p>.</span><span class=nf>Name</span><span class=p>(),</span> <span class=nx>pathname</span><span class=p>,</span> <span class=nx>checksum</span><span class=p>,</span> <span class=nx>err</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=nx>_</span><span class=p>,</span> <span class=nx>err</span> <span class=p>=</span> <span class=nx>os</span><span class=p>.</span><span class=nx>Stdout</span><span class=p>.</span><span class=nf>Write</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>logger</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=s>&#34;%s: %s: could not write chunk &#39;%s&#39; to stdout: %s&#34;</span><span class=p>,</span> <span class=nx>flags</span><span class=p>.</span><span class=nf>Name</span><span class=p>(),</span> <span class=nx>pathname</span><span class=p>,</span> <span class=nx>checksum</span><span class=p>,</span> <span class=nx>err</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=o>...</span><span class=p>]</span>
+</span></span></code></pre></div><p>and this construct needs to be replicated <strong>everywhere a file is accessed</strong> which is&mldr;
+pretty much everywhere you do something with a snapshot.</p><p>I thought it would be nice to have a Reader interface abstracting the details of reconstructing a file.
+This way,
+I could simply obtain a reader to a file and call <code>Read()</code> to obtain the next bytes <strong>without worrying about fetching chunks as the cursor advances</strong>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl>    <span class=nx>rd</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>snapshot</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>pathname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>buf</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>([]</span><span class=kt>byte</span><span class=p>,</span> <span class=mi>16</span><span class=o>*</span><span class=mi>1024</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>nbytes</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>rd</span><span class=p>.</span><span class=nf>Read</span><span class=p>(</span><span class=nx>buf</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>err</span> <span class=o>==</span> <span class=nx>io</span><span class=p>.</span><span class=nx>EOF</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=nx>os</span><span class=p>.</span><span class=nx>Stdout</span><span class=p>.</span><span class=nf>Write</span><span class=p>(</span><span class=nx>data</span><span class=p>[:</span><span class=nx>nbytes</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span></code></pre></div><p>In the example above,
+<code>snapshot.NewReader(pathname)</code> fetches the object structure for file located at <code>pathname</code>.
+As <code>rd.Read()</code> is called,
+it takes care of fetching chunks as needed to fill <code>buf</code> with the next 16k bytes.</p><p>How is that simpler than calling <code>GetObject()</code> and <code>GetChunk()</code> ?</p><p>Well,
+first and foremost,
+there&rsquo;s a large range of functions already available in Go to do what I want but which expect a Reader interface.
+So <strong>rather than rolling my own version of functions</strong>,
+by implementing the Reader interface,
+I can <strong>rely on existing stuff</strong> and reduce the amount of code I have to maintain in plakar.</p><p>Rather than re-implementing a loop to read chunks and write them to stdout,
+<code>plakar cat</code> could take advantage of the new Reader interface and the fact that <code>os.Stdout</code> is a Writer,
+allowing it to use the <code>io.Copy()</code> function part of the standard library to copy from a Reader to a Writer:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl>    <span class=nx>rd</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>snapshot</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>pathname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>logger</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=s>&#34;%s: %s: %s&#34;</span><span class=p>,</span> <span class=nx>flags</span><span class=p>.</span><span class=nf>Name</span><span class=p>(),</span> <span class=nx>pathname</span><span class=p>,</span> <span class=nx>err</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>continue</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nx>_</span><span class=p>,</span> <span class=nx>err</span> <span class=p>=</span> <span class=nx>io</span><span class=p>.</span><span class=nf>Copy</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Stdout</span><span class=p>,</span> <span class=nx>rd</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>logger</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=s>&#34;%s: %s: %s&#34;</span><span class=p>,</span> <span class=nx>flags</span><span class=p>.</span><span class=nf>Name</span><span class=p>(),</span> <span class=nx>pathname</span><span class=p>,</span> <span class=nx>err</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>continue</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span></code></pre></div><p>This is also the case for <code>plakar tarball</code>,
+which creates a tarball from a snapshort,
+and relies on the standard libraries&rsquo; <code>archive/tar</code>.
+The code instantiates a <code>tar.NewWriter()</code> and I previously had something like:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl>    <span class=nx>obj</span> <span class=o>:=</span> <span class=nx>snapshot</span><span class=p>.</span><span class=nf>LookupObjectForChecksum</span><span class=p>(</span><span class=nx>checksum</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>chunkChecksum</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>obj</span><span class=p>.</span><span class=nx>Chunks</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>data</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>snapshot</span><span class=p>.</span><span class=nf>GetChunk</span><span class=p>(</span><span class=nx>chunkChecksum</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>logger</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=s>&#34;corrupted file %s&#34;</span><span class=p>,</span> <span class=nx>file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=nx>_</span><span class=p>,</span> <span class=nx>err</span> <span class=p>=</span> <span class=nx>io</span><span class=p>.</span><span class=nf>WriteString</span><span class=p>(</span><span class=nx>tarWriter</span><span class=p>,</span> <span class=nb>string</span><span class=p>(</span><span class=nx>data</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>logger</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=s>&#34;could not write file %s&#34;</span><span class=p>,</span> <span class=nx>file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span></code></pre></div><p>which could be rewritten as follows,
+leaving it up to the standard library to loop and handle do the read and writes:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl>    <span class=nx>rd</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>snapshot</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>logger</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=s>&#34;could not find file %s&#34;</span><span class=p>,</span> <span class=nx>file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>continue</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nx>_</span><span class=p>,</span> <span class=nx>err</span> <span class=p>=</span> <span class=nx>io</span><span class=p>.</span><span class=nf>Copy</span><span class=p>(</span><span class=nx>tarWriter</span><span class=p>,</span> <span class=nx>rd</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>logger</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=s>&#34;could not write file %s: %s&#34;</span><span class=p>,</span> <span class=nx>file</span><span class=p>,</span> <span class=nx>err</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>continue</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span></code></pre></div><p>In commands such as <code>plakar diff</code> which require copying the full data to a buffer,
+it also makes it possible to rely on existing functions like <code>ioutil.ReadAll()</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl>    <span class=nx>buf</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>([]</span><span class=kt>byte</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>rd</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>snapshot</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>filename</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nx>err</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>buf</span><span class=p>,</span> <span class=nx>err</span> <span class=p>=</span> <span class=nx>ioutil</span><span class=p>.</span><span class=nf>ReadAll</span><span class=p>(</span><span class=nx>rd</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span></code></pre></div><p>In the UI,
+this is even nicer as it uses the standard libraries&rsquo; http server which <strong>uses a Writer for the response to the client</strong>.
+Implementing a download endpoint boils down to using the new Reader interface,
+then copying it to the Writer <strong>rather than doing the whole fetch object then chunks and copy them in a loop logic</strong>.</p><p>Basically,
+this simplifies a TON of areas in plakar and allows me to remove a lot of custom code for things that exist in the standard library.</p><h1 id=fixed-handling-of-max-concurrent-files>Fixed handling of max concurrent files</h1><p>During the last few months,
+a lot of work was poured into parallelizing operations in <code>plakar</code> to utilize resources as efficiently as possible and speed things up.</p><p>This led to some issues when processing large directories as <strong>you could end up opening a very large amount of files</strong>,
+sometimes exceeding the number of descriptors available to the process and resulting in EMFILE errors.</p><p>My initial thought was that I could simply <strong>implement a backoff mechanism</strong>,
+but this is complex and in the case of plakar it doesn&rsquo;t really make sense:
+a backoff mechanism is useful as a mean to recover from bursts that cause resources exhaustion.
+If plakar is going to parallelize and <strong>constantly hit the backoff mechanism</strong>,
+it hints that the solution should be located elsewhere.</p><p>Contrarily to a network daemon which could accept a very large number of clients and take advantage of idle times from some to process others,
+plakar only opens files when it will actively read or write them,
+so <strong>it makes no sense opening files when it can&rsquo;t process them</strong>.
+If it opens 1024 files but can only chunk concurrently 32 files before it uses all of the CPU time available,
+then having 992 opened files waiting to be processed is pointless.
+I decided to <strong>tie the number of descriptors to a factor of the number of cores available</strong>,
+currently <code>2 * n + 1</code>,
+and this ensures that the number of descriptors is low enough not to provoke an EMFILE while high enough to keep cores busy.
+The factor may be adjusted in the future but this feels like the proper way to handle this.</p><p>This doesn&rsquo;t solve the ENFILE errors,
+<strong>where the system descriptor table is full while the process itself has not hit a limit</strong>,
+but I&rsquo;m wondering if it&rsquo;s even worth having a backoff mechanism to retry as I don&rsquo;t see how a backup tool can really recover from a system not being able to reliably allocate descriptors.
+I&rsquo;d personally rather have the backup fail and restart it when the system is in better shape,
+than have a backup take a lot more time to complete and then not trust that backup and do another one just in case some failures where not handled properly by plakar.
+I&rsquo;m still not decided on this,
+<strong>maybe I&rsquo;m wrong about it</strong>,
+but I need more time to think about it.</p><p>Anyways,
+with this change I was able to produce large snapshots that previously hit a <code>too many open files</code> error,
+without observing any significant performances degradation and while still using cores efficiently.</p><h1 id=plakar-stdio-server>plakar stdio server</h1><p>I had mentionned my work on remote repositories <a href=/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/>in this post</a>,
+but didn&rsquo;t communicate much about it because <strong>it was mainly a proof of concept to validate that no repository primitive expected locality of the repository</strong>,
+not a serious attempt at writing the final network mode.</p><p>Remote repositories work thanks to a TCP server <strong>accepting the repository primitives and mapping them to a local repository</strong>,
+the client is basically <strong>a proxy which doesn&rsquo;t run the primitives locally but passes them to the server and waits for the result</strong>.</p><p>Because the server logic is isolated in a client handler function,
+I thought it would be nice if I could abstract the network layer and consider that the client handler could work using <code>stdio</code> rather than a network connection.
+Instead of passing the client handler a descriptor to <strong>a network connection</strong>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>handleConnection</span><span class=p>(</span><span class=nx>conn</span> <span class=o>*</span><span class=nx>net</span><span class=p>.</span><span class=nx>Conn</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=o>...</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>Server</span><span class=p>(</span><span class=nx>repository</span> <span class=o>*</span><span class=nx>storage</span><span class=p>.</span><span class=nx>Repository</span><span class=p>,</span> <span class=nx>addr</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=o>...</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=k>go</span> <span class=nf>handleConnection</span><span class=p>(</span><span class=nx>c</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=o>...</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>I converted it to using <code>io.Reader</code> and <code>io.Writer</code> interfaces and <strong>passed the same network connection for both</strong>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>handleConnection</span><span class=p>(</span><span class=nx>rd</span> <span class=nx>io</span><span class=p>.</span><span class=nx>Reader</span><span class=p>,</span> <span class=nx>wr</span> <span class=nx>io</span><span class=p>.</span><span class=nx>Writer</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=o>...</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>Server</span><span class=p>(</span><span class=nx>repository</span> <span class=o>*</span><span class=nx>storage</span><span class=p>.</span><span class=nx>Repository</span><span class=p>,</span> <span class=nx>addr</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=o>...</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=k>go</span> <span class=nf>handleConnection</span><span class=p>(</span><span class=nx>c</span><span class=p>,</span> <span class=nx>c</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=o>...</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>This worked nicely,
+so I took it a step further and created a new entry point <code>plakar stdio</code> which would call the client handler but passing <code>os.Stdin</code> as the Reader and <code>os.Stdout</code> as the Writer.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>handleConnection</span><span class=p>(</span><span class=nx>rd</span> <span class=nx>io</span><span class=p>.</span><span class=nx>Reader</span><span class=p>,</span> <span class=nx>wr</span> <span class=nx>io</span><span class=p>.</span><span class=nx>Writer</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=o>...</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>Stdio</span><span class=p>()</span> <span class=kt>error</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nf>ProtocolRegister</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>	<span class=nf>handleConnection</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Stdin</span><span class=p>,</span> <span class=nx>os</span><span class=p>.</span><span class=nx>Stdout</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=kc>nil</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>It meant that I could now fork <code>plakar stdio</code> from a parent process and <strong>communicate with it through pipes or socketpairs</strong>.
+I did a few tests and it worked fine which made me very happy.</p><p>How is this any useful, you ask ?</p><h1 id=plakar-over-ssh>plakar over SSH</h1><p>I&rsquo;ve been willing to add plakar over SSH support for a while but <strong>couldn&rsquo;t set my mind on the simplest way to do it</strong>.
+I did various experiments which were all either too complex or that led to unsatisfying experiences:
+if I use SSH,
+I want the full SSH experience with known hosts,
+authorized keys,
+public key authentication,
+etc&mldr;
+so all attempts that involved implementing an SSH client myself either led to missing features or to a TON of code unrelated to plakar.</p><p>However&mldr;</p><p>With <code>plakar stdio</code> <strong>things are much simpler</strong> because I can simply use the <code>ssh</code> client to spawn a remote <code>plakar stdio</code>,
+then <strong>take advantage of the fact that the client will do the <code>stdio</code> mapping and expose the ssh transport through <code>stdin</code> and <code>stdout</code> for me</strong>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% ssh gilles@backups.poolp.org <span class=s1>&#39;plakar stdio&#39;</span>
+</span></span></code></pre></div><p>Using this method,
+plakar <strong>does not need to have a daemon running on the remote end</strong>,
+it just needs the command installed.</p><p>So I implemented the <code>ssh://</code> protocol for plakar which <strong>simply forks a process for <code>ssh</code></strong> and emits packets to its stdin while reading responses from its stdout.
+Because it uses the <code>ssh</code> command,
+I <strong>no longer have to worry about known hosts & such</strong>, they are already handled, and I can even benefit from having used <code>ssh-agent</code> so I don&rsquo;t have to keep typing my passphrase:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar on ssh://backups.poolp.org ls                 
+</span></span><span class=line><span class=cl>2022-04-24T08:18:04Z  9bca77d9    3.1 MB /private/etc
+</span></span><span class=line><span class=cl>% plakar on ssh://backups.poolp.org push /bin
+</span></span><span class=line><span class=cl>% plakar on ssh://backups.poolp.org ls       
+</span></span><span class=line><span class=cl>2022-04-24T08:18:04Z  9bca77d9    3.1 MB /private/etc
+</span></span><span class=line><span class=cl>2022-04-24T14:54:12Z  <span class=m>02895414</span>     <span class=m>13</span> MB /bin
+</span></span><span class=line><span class=cl>%
+</span></span></code></pre></div><p>It took me hours to implement various SSH proof of concepts,
+people <a href=https://discord.gg/YC6j4rbvSk>on the discord channel</a> have endured me quite a lot,
+but this last version&mldr; <strong>took only two minutes to implement</strong> using a few lines of code.</p><p>It was both <strong>very satisfying</strong> and <strong>very frustrating</strong> :-)</p><h1 id=remote-creation-of-repositories>Remote creation of repositories</h1><p>Until yesterday,
+using a remote plakar expected you to <strong>create the repository on the remote end before starting to use it</strong>.</p><p>I implemented the creation primitives both on the server and client and so it is now possible to do as follows:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar on ssh://backups.poolp.org create -no-encryption
+</span></span><span class=line><span class=cl>% plakar on ssh://backups.poolp.org push /bin
+</span></span><span class=line><span class=cl>% plakar on ssh://backups.poolp.org ls
+</span></span><span class=line><span class=cl>2022-04-24T15:02:48Z  181702cd     <span class=m>13</span> MB /bin
+</span></span><span class=line><span class=cl>%
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>% plakar on ssh://backups.poolp.org/tmp/plakar create -no-encryption
+</span></span><span class=line><span class=cl>% plakar on ssh://backups.poolp.org/tmp/plakar push /bin
+</span></span><span class=line><span class=cl>% plakar on ssh://backups.poolp.org/tmp/plakar ls
+</span></span><span class=line><span class=cl>2022-04-24T15:03:37Z  8a2ab608     <span class=m>13</span> MB /bin
+</span></span><span class=line><span class=cl>%
+</span></span></code></pre></div><p>Note that <code>-no-encryption</code> is only used here to simplify the examples,
+dropping the flag will allow creating encrypted repositories remotely.</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>Not really decided on my next tasks as I have multiple areas that need to be improve,
+but <strong>a good candidate</strong> is the <code>plakar sync</code> command which currently only synchronizes clone repositories (same configuration, either unencrypted or both encrypted with same key).
+I&rsquo;d like to improve it <strong>so it can synchronize snapshots with arbitrary repositories</strong>,
+allowing to <strong>synchronize an unencrypted snapshot with an encrypted repository and encrypting chunks on the fly</strong>.</p><p>I&rsquo;m also working on two new projects,
+which I won&rsquo;t disclose for now,
+so I may be going back and forth depending on the mood.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/151>https://github.com/poolpOrg/poolp.org/discussions/151</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2022-05-22/may-2022-yet-again-tons-of-plakar-stuff/>&#171; May 2022: yet again, tons of plakar stuff</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2022-04-01/april-2022-plakar-keys-and-ui-stuff/>April 2022: plakar keys and UI stuff &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

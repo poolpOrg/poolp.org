@@ -1,0 +1,131 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>Décentralisons SMTP pour le bien commun | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2019-12-15/decentralisons-smtp-pour-le-bien-commun/cover.jpg"><meta name=twitter:title content="Décentralisons SMTP pour le bien commun"><meta name=twitter:description content="TL;DR: - SMTP est la méthode dont les ordinateurs échangent des e-mails - il s'agit d'un protocole décentralisé, ce qui signifie que CHACUN peut héberger un nœud et être indépendant - il est en train d'être centralisé dans des sociétés qui ont un passif d'abus - il est en train d'être centralisé dans un pays qui a un passif d'abus Où est-ce que j&rsquo;ai déjà lu ça ? En Août, j&rsquo;ai publié un petit article intitulé &ldquo;You should not run your mail server because mail is hard&rdquo; (&ldquo;Vous ne devriez pas héberger votre serveur de mail parce que c&rsquo;est dur&rdquo;) qui était, en gros, mon opinion sur les différentes raisons qui poussent les gens à décourager l&rsquo;hébergement de mails."><meta property="og:title" content="Décentralisons SMTP pour le bien commun"><meta property="og:description" content="TL;DR: - SMTP est la méthode dont les ordinateurs échangent des e-mails - il s'agit d'un protocole décentralisé, ce qui signifie que CHACUN peut héberger un nœud et être indépendant - il est en train d'être centralisé dans des sociétés qui ont un passif d'abus - il est en train d'être centralisé dans un pays qui a un passif d'abus Où est-ce que j&rsquo;ai déjà lu ça ? En Août, j&rsquo;ai publié un petit article intitulé &ldquo;You should not run your mail server because mail is hard&rdquo; (&ldquo;Vous ne devriez pas héberger votre serveur de mail parce que c&rsquo;est dur&rdquo;) qui était, en gros, mon opinion sur les différentes raisons qui poussent les gens à décourager l&rsquo;hébergement de mails."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2019-12-15/decentralisons-smtp-pour-le-bien-commun/"><meta property="og:image" content="https://poolp.org/posts/2019-12-15/decentralisons-smtp-pour-le-bien-commun/cover.jpg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-12-15T13:05:00+02:00"><meta property="article:modified_time" content="2019-12-15T13:05:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul><ul class="navbar-nav ml-auto"><li class=nav-item style=margin:5px><a class="mt-1 mb-1" href=/categories/personal><button type=button class="btn btn-sm btn-primary">personal</button></a></li><li class=nav-item style=margin:5px><a class="mt-1 mb-1" href=/categories/technology><button type=button class="btn btn-sm btn-primary">technology</button></a></li></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>Décentralisons SMTP pour le bien commun</h1><span class=author-description><i class="far fa-star"></i>
+Dec 15, 2019
+<i class="far fa-clock clock"></i>
+9 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br><center><img class="featured-image img-fluid" src=https://poolp.org/posts/2019-12-15/decentralisons-smtp-pour-le-bien-commun/cover.jpg alt="thumbnail for this post"></center></div><div class=article-post><pre><code>TL;DR:
+- SMTP est la méthode dont les ordinateurs échangent des e-mails
+- il s'agit d'un protocole décentralisé, ce qui signifie que CHACUN peut héberger un nœud et être indépendant
+- il est en train d'être centralisé dans des sociétés qui ont un passif d'abus
+- il est en train d'être centralisé dans un pays qui a un passif d'abus
+</code></pre><h2 id=où-est-ce-que-jai-déjà-lu-ça->Où est-ce que j&rsquo;ai déjà lu ça ?</h2><p>En Août,
+j&rsquo;ai publié un petit article intitulé &ldquo;<a href=https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/>You should not run your mail server because mail is hard</a>&rdquo; (&ldquo;Vous ne devriez pas héberger votre serveur de mail parce que c&rsquo;est dur&rdquo;) qui était, en gros, mon opinion sur les différentes raisons qui poussent les gens à décourager l&rsquo;hébergement de mails.
+De manière très inattendue,
+l&rsquo;article est devenu assez populaire,
+atteignant 100K lectures et continuant à recevoir des visites et des commentaires plusieurs mois après publication.</p><p>En Septembre,
+j&rsquo;ai publié un autre article beaucoup plus long intitulé &ldquo;<a href=https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/>Setting up a mail server with OpenSMTPD, Dovecot and Rspamd</a>&rdquo; (&ldquo;Installer un serveur de mail avec OpenSMTPD, Dovecot et Rspamd&rdquo;) qui décrivait pas à pas,
+de façon très détaillée,
+les étapes pour installer un serveur de mail complet jusqu&rsquo;à la livraison des e-mails en boîte de réception chez un gros hébergeur de mail américain.
+L&rsquo;article est devenu lui aussi plutôt populaire,
+sans pour autant atteindre le niveau du précedent article moins technique et spécifique,
+mais atteignant 40K lectures et continuant également à recevoir des visites et des commentaires plusieurs mois après publication.</p><p>Le contenu que vous vous apprêtez à lire est extrait de ce second article auquel il n&rsquo;aurait pas dû être rattaché.
+Il est bien trop (géo-)politique pour faire partie d&rsquo;un article technique,
+j&rsquo;ai donc décidé de l&rsquo;en retirer et d&rsquo;en faire un dédié.
+Je ne veux pas que les spécificités d&rsquo;un article sur <strong>OpenSMTPD</strong> aille à l&rsquo;encontre d&rsquo;un message beaucoup plus général.</p><p>C&rsquo;est mon premier article en français depuis des années,
+je vous demande donc un peu d&rsquo;indulgence :
+si vous trouvez des fautes,
+vous pouvez me les remonter pour que je les corrige,
+ou faire une pull request pour les techies.</p><p>N&rsquo;hésitez pas à <strong>partager la publication</strong> à l&rsquo;aide des icones en fin d&rsquo;article et à la commenter &lt;3</p><h2 id=qui-sont-big-mailer-corps->Qui sont Big Mailer Corps ?</h2><p>Je ne vais pas pointer de doigts vers des directions en particulier.
+Concrètement,
+rentrent dans ma définition des Big Mailer Corps,
+toute grosse entreprise qui centralise l&rsquo;hébergement des e-mails d&rsquo;un très grand nombre d&rsquo;utilisateurs :</p><pre><code>- Orange ? SFR ? La Poste ?
+- Non, plus grand, plus mondial, …
+</code></pre><p>Et là, normalement le doute est dissipé,
+pas besoin de citer de nom.
+Vous avez compris qui est visé parce que <strong>TOUT LE MONDE</strong> connait les Big Mailer Corps,
+la plupart d&rsquo;entre vous avez une adresse chez l&rsquo;un d&rsquo;entre eux,
+et la plupart de vos contacts sont hébergés chez l&rsquo;un d&rsquo;entre eux.</p><h2 id=lauto-hébergement-et-encourager-les-petits-fournisseurs-est-meilleur-pour-notre-bien-commun>L&rsquo;auto-hébergement et encourager les petits fournisseurs est meilleur pour notre bien commun</h2><p>Il y a des <strong>conséquences</strong> à la centralisation des services de mail chez les Big Mailer Corps.</p><p>Il n&rsquo;y a aucun sens à ce que Jacques Lambda,
+qui partage des photos de chatons avec sa famille et ses amis,
+se construise une infrastructure d&rsquo;hébergement de mails alors que plusieurs Big Mailer Corps lui offrent,
+&ldquo;gratuitement&rdquo;,
+une qualité de service au top.
+Il peut obtenir une adresse e-mail immédiatement disponible et qui marche de manière parfaitement fiable.
+Il n&rsquo;y a absolument aucun sens à ce que Jacques Lambda n&rsquo;aille pas chez l&rsquo;un des Big Mailer Corps,
+particulièrement quand <strong>même les techies</strong> font ce choix sans hésitation,
+confirmant que c&rsquo;est plutôt une bonne option.</p><p>Il n&rsquo;y a rien de mal à ce que tous les Jacques Lambda choisissent un service qui marche.</p><p>Ce qui est <strong>terriblement mauvais</strong> par contre,
+c&rsquo;est le centralisation d&rsquo;un protocole de <strong>communication</strong> dans les mains d&rsquo;une poignée d&rsquo;entreprises commerciales,
+<strong>CHACUNE D&rsquo;ENTRE ELLES</strong> provenant du même pays (actuellement dirigé par un lunatique qui abuse de son pouvoir et <a href=https://psychcentral.com/blog/the-psychology-of-donald-trump-how-he-speaks/>souffre probablement de trouble de la personnalité narcissique</a>),
+<strong>CHACUNE D&rsquo;ENTRE ELLES</strong> étant apparu dans les informations et/ou dans une cour de tribunal pour tout un assortiment de comportements &ldquo;déplaisants&rdquo; (abus de la vie privée, espionnage, abus de monopole, harcellement professionnel ou sexuel, j&rsquo;en passe… ),
+et <strong>CHACUNE D&rsquo;ENTRE ELLES</strong> faisant croître des bases d&rsquo;utilisateurs qui <strong>dépassent de loin la population totale de plusieurs pays combinés</strong>.</p><p>Mettons un peu de perspective.
+Le plus gros des Big Mailer Corps annonce une base d&rsquo;utilisateur qui dépasse <strong>1.4 MILLARD</strong> d&rsquo;utilisateurs (Avril 2018),
+soit à peu près <strong>la population totale</strong> de la Chine ou de l&rsquo;Inde,
+plus de <strong>quatre fois</strong> la population totale des USA,
+ou plus de <strong>vingt fois</strong> la population totale de la <strong>France</strong>.
+Si vous comptiez les utilisateurs au rythme d&rsquo;un par seconde,
+<strong>il vous faudrait 44 ans pour en faire le tour</strong>.</p><p>Ensuite,
+<strong>très loin derrière</strong>,
+il est suivi par le prochain Big Mailer Corp qui annonce une base de <strong>400 millions</strong> d&rsquo;utilisateurs (2018 également),
+dépassant la population totale des USA,
+atteignant <strong>quatre fois</strong> la population totale de l&rsquo;Égypte,
+et <strong>cinq fois</strong> la population totale de la <strong>France</strong>.</p><p>Dans la plupart des rapports de mailing que j&rsquo;ai pu surveiller,
+le premier des Big Mailer Corps couvre approximativement la moitié des adresse e-mails de destinataires…
+l&rsquo;autre moitié étant également couverte en large partie par <strong>les autres</strong> Big Mailer Corps.</p><p><strong>Ce n&rsquo;est pas sain</strong>.
+Ni ici,
+ni nulle part,
+ni maintenant,
+ni jamais,
+ni dans aucune dimension alternative <em>(insérer &ldquo;sliiiiiiders&rdquo; en chuchotement mental ici)</em>.</p><center><img src=cover.jpg></center><p>Prenez un moment pour bien enregistrer ce qui suit :</p><p>Si ces grosses entreprises étaient contraintes de couper les communications avec un pays pour appliquer des sanctions,
+bien au delà d&rsquo;un <strong>MILLIARD</strong> de personnes seraient hors de portée pour le pays visé.
+Et si vous pensez la crainte exagérée,
+les utilisateurs de Github en Iran,
+en Syrie,
+à Cuba ou en Crimée pourraient vous donner un point de vue différent après
+<a href=https://techcrunch.com/2019/07/29/github-ban-sanctioned-countries/>avoir découvert qu&rsquo;ils étaient mis à la porte</a> pour appliquer les sanctions américaines sur leurs pays.</p><p><strong>Aussi ennuyant soit-il</strong>,
+Git reste un outil de techies qui n&rsquo;impacte principalement que des techies,
+une minorité d&rsquo;humains qui sait trouver facilement des solutions de contournement…
+facilitées par le fait que Git est décentralisé et ne nécessite pas d&rsquo;interconnexions et d&rsquo;interopérabilité :
+les utilisateurs peuvent facilement bouger ailleurs et s&rsquo;auto-héberger.
+Aucun lien coupé avec aucun pays ne peut empêcher ça.</p><p>Le mail fonctionne de façon différente.
+Il impacte <strong>tout le monde</strong>,
+des personnes de tous âges et qui ne sont pas forcément des techies.
+Il est toujours possible de trouver une solution de contournement en cas de blocage,
+mais ce n&rsquo;est pas simple pour tout le monde.
+Et comme il s&rsquo;agit d&rsquo;un protocole pour mettre en relation un émetteur A avec un destinataire B,
+il y a un besoin d&rsquo;interconnexion, un besoin d&rsquo;interopérabilité ET besoin que le lien entre A et B ne soit pas coupé.
+Les conséquences d&rsquo;un blocage similaire à celui de Github chez les Big Mailer Corps seraient plusieurs ordres de magnitude plus durs et visibles : <strong>un pan des utilisateurs d&rsquo;Internet ne serait tout bonnement plus joignable par les citoyens des pays sanctionnés</strong>.</p><p>Les habitants des <a href=https://www.washingtonpost.com/politics/trump-attacks-protections-for-immigrants-from-shithole-countries-in-oval-office-meeting/2018/01/11/bfc0725c-f711-11e7-91af-31ac729add94_story.html>pays de merde</a> ne sont pas tous des techies,
+ils sont des personnes qui ont <strong>BESOIN</strong> d&rsquo;interconnexions et d&rsquo;interopérabilité pour communiquer avec plus d&rsquo;un
+<strong>MILLIARD</strong> de personnes hébergées chez les Big Mailer Corps.
+Le mail permet de connecter les populations mondiales de manière fiable…
+<strong>UNIQUEMENT</strong> si le mail reste <strong>décentralisé</strong>.
+Il ne marche plus s&rsquo;il est centralisé dans une poignée d&rsquo;entreprises toutes localisées dans le même pays.</p><p>Bien sûr cela n&rsquo;arrivera peut être jamais,
+et je metterai même mon billet dessus parce qu'
+<a href=https://en.wikipedia.org/wiki/PRISM_(surveillance_program)>un pays connu pour avoir intercepté et épié les communications mondiales</a>
+a plus d&rsquo;intérêt à conserver le flot des communications qu&rsquo;à le couper,
+mais le seul fait que ce soit <strong><em>TECHNIQUEMENT</em></strong> possible devrait être suffisant pour nous mettre mal à l&rsquo;aise.
+J&rsquo;ignore même volontairement que la raison pour laquelle ils ne le feront pas me rends également mal à l&rsquo;aise.
+Si les Big Mailer Corps étaient hébergés en Chine,
+nous serions déjà en train d&rsquo;envisager les conséquences d&rsquo;une coupure et d&rsquo;envisager un plan de sortie,
+mais nous ne le faisons pas parce que nous <em>pensons</em> que nous sommes du bon côté de la barrière,
+et que <a href=https://www.huffingtonpost.fr/entry/contre-les-sanctions-de-trump-la-france-et-leurope-riposteront_fr_5d95aac7e4b0f5bf796f7feb>des sanctions à notre encontre ne pourraient pas arriver</a>.</p><p>Mais ça,
+c&rsquo;est jusqu&rsquo;à ce que l&rsquo;on soit complètement au pied du mur sans solution.</p><p>À ce stade,
+je pourrais également faire <strong>semblant d&rsquo;ignorer</strong> que le modèle économique de la plupart de certaines de ces entreprises repose sur la création d&rsquo;un profil commercial de leurs utilisateurs et qu&rsquo;avoir à disposition tous les e-mails est une mine d&rsquo;or.</p><p>Certains Big Mailer Corps se <strong><a href=https://www.lesechos.fr/2017/06/google-nexploitera-plus-gmail-pour-faire-de-la-pub-ciblee-174374>défendent</a></strong> d&rsquo;exploiter le contenu des e-mails,
+mais…
+il n&rsquo;y a <strong>pas besoin de connaître le contenu des e-mails</strong> si les expéditeurs et destinataires sont <strong>écrits sur l&rsquo;enveloppe</strong>.
+Il est tout à fait possible de savoir que vous essayer de souscrire un crédit en faisant des comparatifs,
+mais que vous recevez également des remboursements de santé réguliers et que vous recevez des informations concernant un certain type d&rsquo;appareillage médical. Un profil très précis et qui serait très intéressant pour des organismes de prêt ou des assurances peut tout à fait être dressé sans avoir à &ldquo;lire&rdquo; les e-mails…
+mais bon, ce ne sont que des spéculations basées sur <strong>quelque chose de techniquement réalisable</strong>.</p><p>Dans la même idée,
+je vais faire <strong>semblant d&rsquo;ignorer</strong> que tous les documents partagés peuvent être analysés pour détecter des logiciels malveillants,
+que le document soit confidentiel ou non,
+qu&rsquo;il soit stratégique ou non.
+Tout comme les liens échangés par mail,
+qu&rsquo;ils soient stratégiques ou non,
+perdent tout caractère confidentiel lorsqu&rsquo;ils <a href="https://www.npr.org/sections/thetwo-way/2013/08/14/212034992/gmail-users-shouldnt-expect-privacy-google-says-in-filing?t=1576417433323">passent par le webmail d&rsquo;un Big Mailer Corp</a>.</p><p>Alors <strong>OUI</strong>,
+il faut plus de personnes qui s&rsquo;auto-hébergent ou <strong>qui dépendent d&rsquo;hébergeurs géolocalisés</strong>,
+tissant un réseau de communication le plus vaste au-travers de plusieurs opérateurs dans plusieurs pays.
+Je ne pense évidemment pas que tout le monde doit s&rsquo;auto-héberger,
+mais je pense que <strong>DAVANTAGE</strong> de monde doit sortir des Big Mailer Corps pour aller n&rsquo;importe où ailleurs…
+il faut réintroduire de la contrainte chez les les Big Mailer Corps,
+qu&rsquo;ils soient obligés d&rsquo;interagir avec des opérateurs en dehors de leur gang,
+et qu&rsquo;il y ait un risque financier <strong>SI</strong> soudainement ils prenaient des décisions à l&rsquo;encontre des populations.</p><p>Les Big Mailer Corps ne sont pas mauvais ou méchants,
+<strong>j&rsquo;utilise moi-même leurs services régulièrement</strong>,
+et la plupart de leurs employés cherchent probablement le bien commun…
+mais ces entreprises sont devenues trop grosses et puissantes,
+il faut qu&rsquo;il y ait un équilibre parce que l&rsquo;on ne sait pas comment elles évolueront dans les années à venir,
+on ne sait pas non plus comment évoluera la politique de leurs pays d&rsquo;origine dans les années à venir,
+et les informations récentes ne décrivent pas un avenir tout rose dans la bonne direction.</p><p>Je concluerai en vous recommandant de regarder cette <strong>excellente</strong> présentation de Bert Hubert (<a href=https://twitter.com/PowerDNS_Bert>@PowerDNS_Bert</a>) de PowerDNS,
+à propos de problèmes similaires qui sont en train d&rsquo;émerger avec le protocole DNS et les craintes qui en découlent autour de la surveillance.
+De très nombreux points de sa présentation sont tout aussi valides en ce qui concerne les services de mail.</p><center><iframe width=560 height=315 src=https://www.youtube.com/embed/pjin3nv8jAo frameborder=0 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/112>https://github.com/poolpOrg/poolp.org/discussions/112</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2019-12-23/mettre-en-place-un-serveur-de-mail-avec-opensmtpd-dovecot-et-rspamd/>&#171; Mettre en place un serveur de mail avec OpenSMTPD, Dovecot et Rspamd</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/>Decentralised SMTP is for the greater good &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

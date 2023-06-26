@@ -1,8 +1,8 @@
 baseURL = "https://poolp.org"
 languageCode = "en-us"
 title = "poolp.org"
-#theme = "poolp.org_theme"
-theme = "mediumish-gohugo-theme"
+theme = "poolp.org_theme"
+#theme = "mediumish-gohugo-theme"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 publishDir = "docs"

@@ -1,0 +1,107 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>OpenSMTPD new config | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="OpenSMTPD new config"><meta name=twitter:description content="TL;DR: OpenBSD #p2k18 hackathon took place at Epitech in Nantes. I was organizing the hackathon but managed to make progress on OpenSMTPD. As mentionned at EuroBSDCon the one-line per rule config format was a design error. A new configuration grammar is almost ready and the underlying structures are simplified. Refactor removes ~750 lines of code and solves _many_ issues that were side-effects of the design error. New features are going to be unlocked thanks to this."><meta property="og:title" content="OpenSMTPD new config"><meta property="og:description" content="TL;DR: OpenBSD #p2k18 hackathon took place at Epitech in Nantes. I was organizing the hackathon but managed to make progress on OpenSMTPD. As mentionned at EuroBSDCon the one-line per rule config format was a design error. A new configuration grammar is almost ready and the underlying structures are simplified. Refactor removes ~750 lines of code and solves _many_ issues that were side-effects of the design error. New features are going to be unlocked thanks to this."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2018-04-30/opensmtpd-new-config/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-04-30T12:00:00+00:00"><meta property="article:modified_time" content="2018-04-30T12:00:00+00:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/authors/gilles-chehade/gilles-chehade.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description><br></span><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>OpenSMTPD new config</h1><span class=author-description><i class="far fa-star"></i>
+Apr 30, 2018
+<i class="far fa-clock clock"></i>
+8 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br></div><div class=article-post><pre><code>TL;DR:
+OpenBSD #p2k18 hackathon took place at Epitech in Nantes.
+I was organizing the hackathon but managed to make progress on OpenSMTPD.
+As mentionned at EuroBSDCon the one-line per rule config format was a design error.
+A new configuration grammar is almost ready and the underlying structures are simplified.
+Refactor removes ~750 lines of code and solves _many_ issues that were side-effects of the design error.
+New features are going to be unlocked thanks to this.
+</code></pre><h2 id=anatomy-of-a-design-error>Anatomy of a design error</h2><p>OpenSMTPD started ten years ago out of dissatisfaction with other solutions,
+mainly because I considered them way too complex for me not to get things wrong from time to time.</p><p>The initial configuration format was very different,
+I was inspired by pyr@&rsquo;s <code>hoststated</code>,
+which eventually became <code>relayd</code>,
+and designed my configuration format with blocks enclosed by brackets.</p><p>When I first showed OpenSMTPD to pyr@,
+he convinced me that PF-like one-line rules would be awesome,
+and it was awesome indeed.</p><p>It helped us maintain our goal of simple configuration files,
+it helped fight feature creeping,
+it helped us gain popularity and become a relevant MTA,
+it helped us get where we are now 10 years later.</p><p>That being said,
+I believe this was a design error.
+A design error that could not have been predicted until we hit the wall to understand WHY this was an error.
+One-line rules are semantically wrong,
+they are SMTP wrong,
+they are wrong.</p><p>One-line rules are making the entire daemon more complex,
+preventing some features from being implemented,
+making others more complex than they should be,
+they no longer serve our goals.</p><p>To get to the point: we should move to two-line rules :-)</p><h2 id=smtp-is-transactional-protocol>SMTP is transactional protocol</h2><p>SMTP is a transactional protocol which considers each message to be part of a transaction with one or many recipients.</p><p>A message gets assigned a unique transaction identifier when committed to queue:</p><pre><code>250 2.0.0: 8a2e1208 Message accepted for delivery
+</code></pre><p>That identifier (supposedly) guarantees that the message has been written to disk,
+that the mail exchanger will take responsibility not to let it vanish,
+and that all recipients from the same transaction will share the same identifier.</p><p>Similarly,
+recipients may result in aliasing or may have ~/.forward files resulting in new recipients,
+and since all recipients from the same transaction must share the same identifier,
+this implies that all aliases and .forward expansions must be done before accepting a recipient.</p><p>If you must remember only one thing from this section,
+when the message identifier has been replied to the client,
+no new envelope will be generated for this transaction.</p><h2 id=the-problem-with-one-line-rules>The problem with one-line rules</h2><p>OpenSMTPD decides to accept or reject messages based on one-line rules such as:</p><pre><code>accept from any for domain poolp.org deliver to mbox
+</code></pre><p>Which can essentially be split into three units:</p><ul><li>the decision: accept/reject</li><li>the matching: from any for domain poolp.org</li><li>the (default) action: deliver to mbox</li></ul><p>To ensure that we meet the requirements of the transactions,
+the matching must be performed during the SMTP transaction before we take a decision for the recipient.</p><p>Given that the rule is atomic,
+that it doesn&rsquo;t have an identifier and that the action is part of it,
+the two only ways to make sure we can remember the action to take later on at delivery time is to either:</p><ul><li>save the action in the envelope, which is what we do today</li><li>evaluate the envelope <em>again</em> at delivery</li></ul><p>And this this where it gets tricky&mldr; both solutions are NOT ok.</p><p>The first solution,
+which we&rsquo;ve been using for a decade,
+was to save the action within the envelope and kind of carve it in stone.
+This works fine&mldr;
+however it comes with the downsides that errors fixed in configuration files can&rsquo;t be caught up by envelopes,
+that delivery action must be validated way ahead of time during the SMTP transaction which is much trickier,
+that the parsing of delivery methods takes place as the _smtpd user rather than the recipient user,
+and that envelope structures that are passed all over OpenSMTPD carry delivery-time informations,
+and more, and more, and more.
+The code becomes more complex in general,
+less safe in some particular places,
+and some areas are nightmarish to deal with because they have to deal with completely unrelated code that can&rsquo;t be dealt with later in the code path.</p><p>The second solution can&rsquo;t be done.
+An envelope may be the result of nested rules,
+for example an external client, hitting an alias, hitting a user with a .forward file resolving to a user.
+An envelope on disk may no longer match any rule or it may match a completely different rule
+If we could ensure that it matched the same rule,
+evaluating the ruleset may spawn new envelopes which would violate the transaction.
+Trying to imagine how we could work around this leads to more and more and more RFC violations,
+incoherent states,
+duplicate mails,
+etc&mldr;</p><p>There is simply no way to deal with this with atomic rules,
+the matching and the action must be two separate units that are evaluated at two different times,
+failure to do so will necessarily imply that you&rsquo;re either using our first solution and all its downsides,
+or that you are currently in a world of pain trying to figure out why everything is burning around you.
+The minute the action is written to an on-disk envelope,
+you have failed.</p><p>A proper ruleset must define a set of matching patterns resolving to an action identifier that is carved in stone,
+AND a set of named action set that is resolved dynamically at delivery time.</p><pre><code># this is resolved at delivery time
+action my_action mbox
+
+# this is resolved at SMTP transaction time 
+match from any for local action my_action
+</code></pre><h2 id=action-and-match>Action and Match</h2><p>By splitting these,
+we get immediate benefits,
+I will only list a few of the improvements this allowed and why.</p><p>First of all,
+the on-disk envelopes now save the name of the action,
+rather than the action,
+and resolve the action right before delivery.</p><p>The obvious benefit is that if I was wrong and wanted to convert to maildir,
+it would be enough to change the previous example to:</p><pre><code>action my_action maildir
+
+match from any for local action my_action
+</code></pre><p>After a restart,
+all envelopes would immediately catch up change without any need to rewrite anything.
+The same would apply if I got my action wrong:</p><p>   action my_action maildir &ldquo;~/Maildirr&rdquo;</p><p>Which would be unfixable today without going to edit envelopes on-disk manually,
+but would only require fixing smtpd.conf and restarting with the new configuration.</p><p>The other benefit is that code paths like aliases expansion required going down to the action to write the envelope,
+this would involve looking up users,
+expanding .forward variables,
+making sure that the delivery data is fully ready so that the delivery process just has to pass it to the MDA.
+The aliases expansion is already a complex code path by nature,
+throwing a ton of additional delivery-time data to process and craft into structures made some parts really hard to work with.</p><p>The structures involved would not only contain the envelope data,
+they would also contain the delivery data which were passed to all components including the SMTP server, the disk queue, the scheduler, the delivery and finally the mda, when the only processes really needing them were the deivery and mda processes.</p><p>Code parsing user-supplied variables,
+which could be expanded by the user process right before executing the mda command needed to be parsed during the SMTP transaction within an OpenSMTPD owned process.</p><p>I don&rsquo;t know where to end,
+the refactor to move to his new grammar essentially simplified every single process within OpenSMTPD,
+removed over 750 lines of code from the daemon,
+automagically unlocked features that were previously not even doable,
+and makes it possible to move forward with other features which were tricky.</p><h2 id=new-features->New features ?</h2><p>Yes, there are new features which required the grammar change but they are not part of it and will come after.</p><p>The only features the new grammar bring is some matching patterns such as:</p><pre><code>match tls [...]             # to match a session using TLS
+match auth [...]            # to match an authenticated session
+match from socket [...]     # to match sessions issued by the local enqueuer
+match helo foobar [...]     # to match sessions that issues HELO foobar
+</code></pre><h2 id=whats-the-catch->What&rsquo;s the catch ?</h2><p>The code is ready but I haven&rsquo;t finished the man page update which is a pre-requisite to me sending this to OpenBSD developers to get their feedbak on the new grammar.</p><p>In addition,
+the change of behaviour and grammar is absolutely not backward-compatible and will make the older queue incompatible.</p><p>Besides that,
+it has 100% benefits and no downside compared to previous grammar,
+it is cleaner, safer, saner and allows for a brighter future.</p><p>It is currently powering poolp.org and the <a href=mailto:misc@opensmtpd.org>misc@opensmtpd.org</a> mailing list and shows no sign of regression.</p><p>This should hit OpenBSD -current in a few days/weeks and be part of the next OpenBSD (6.4) and OpenSMTPD major release.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/93>https://github.com/poolpOrg/poolp.org/discussions/93</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2018-05-21/switching-to-opensmtpd-new-config/>&#171; switching to OpenSMTPD new config</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2018-01-29/install-openbsd-on-dedibox-with-full-disk-encryption/>Install OpenBSD on dedibox with full-disk encryption &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

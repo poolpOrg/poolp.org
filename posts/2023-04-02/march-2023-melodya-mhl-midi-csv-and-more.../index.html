@@ -1,0 +1,93 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>March 2023: Melodya, MHL, MIDI-csv and more... | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2023-04-02/march-2023-melodya-mhl-midi-csv-and-more.../cover.png"><meta name=twitter:title content="March 2023: Melodya, MHL, MIDI-csv and more..."><meta name=twitter:description content="TL;DR: I played with MIDI and ChatGPT. Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I created a Discord where I hang out and discuss my projects or sometimes screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord."><meta property="og:title" content="March 2023: Melodya, MHL, MIDI-csv and more..."><meta property="og:description" content="TL;DR: I played with MIDI and ChatGPT. Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I created a Discord where I hang out and discuss my projects or sometimes screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2023-04-02/march-2023-melodya-mhl-midi-csv-and-more.../"><meta property="og:image" content="https://poolp.org/posts/2023-04-02/march-2023-melodya-mhl-midi-csv-and-more.../cover.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-04-02T17:29:00+02:00"><meta property="article:modified_time" content="2023-04-02T17:29:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/authors/gilles-chehade/gilles-chehade.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description><br></span><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>March 2023: Melodya, MHL, MIDI-csv and more...</h1><span class=author-description><i class="far fa-star"></i>
+Apr 2, 2023
+<i class="far fa-clock clock"></i>
+5 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br><center><img class="featured-image img-fluid" src=https://poolp.org/posts/2023-04-02/march-2023-melodya-mhl-midi-csv-and-more.../cover.png alt="thumbnail for this post"></center></div><div class=article-post><blockquote><b>TL;DR:</b>
+I played with MIDI and ChatGPT.</blockquote><h1 id=shout-out-to-my-sponsors-x2764xfe0f>Shout out to my sponsors ❤️</h1><p>A <strong>HUGE thanks</strong> goes to my sponsors on <a href=https://github.com/sponsors/poolpOrg>github</a>
+and <a href=https://www.patreon.com/gilles>patreon</a>:
+your continuous support is very much appreciated !</p><p>I created a Discord where I hang out and discuss my projects or sometimes screencast as I work on them.
+Feel free to hop in if you want,
+and feel free to do just like me and share thoughts as you work on your own projects there:
+<strong>this is a virtual hack room for anyone to join</strong>: <a href=https://discord.gg/YC6j4rbvSk>https://discord.gg/YC6j4rbvSk</a></p><p>This is a fairly open server where you can ask random questions about a lot of topics,
+not necessarily related to my own work.</p><h1 id=table-of-content>Table of content</h1><ul><li><a href=#code-unrelated-work>Code-unrelated work</a></li><li><a href=#i-have-not-been-very-active-these-last-three-months>I have not been very active these last three months</a></li><li><a href=#mhl-midi-to-human-language>MHL: MIDI to human language</a></li><li><a href=#go-midicsv-midicsv-implementation-in-golang>go-midicsv: MIDICSV implementation in Golang</a></li><li><a href=#melodya-a-melody-and-music-assistant>Melodya: a melody and music assistant</a></li><li><a href=#whats-next>What’s next ?</a></li></ul><h1 id=code-unrelated-work>Code-unrelated work</h1><p>I began a few week ago a <strong>certified training in music production</strong> which I&rsquo;ll be attending for a couple weeks still,
+and I&rsquo;ll be sharing here some of the things I work on.</p><center><iframe width=560 height=315 src=https://www.youtube.com/embed/Ef8m4stneZ8 title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center>
+<center><iframe width=560 height=315 src=https://www.youtube.com/embed/RrtTNPesJzU title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center><p>Feel free to <a href=https://www.youtube.com/channel/UCU-1Rn7gWhessHWwC3_EsEg>subscribe to my Youtube channel</a>
+where I will not only publish my works in progress but also document my journey in that area.</p><h1 id=i-have-not-been-very-active-these-last-three-months>I have not been very active these last three months</h1><p>I have not been very active these last couple months.
+Partly because of <a href=/posts/2023-03-01/i-love-you/>life events and grieving</a>,
+partly because of general demotivation and partly because the training is draining what&rsquo;s left of my brain.
+I&rsquo;m slowly but surely stepping back in the game.</p><h1 id=mhl-midi-to-human-language>MHL: MIDI to human language</h1><p>For a couple of projects,
+I needed a way to <strong>express MIDI in a human-readable format</strong>.</p><p>Those who have followed my work on <code>earmuff</code> may assume that it can serve this purpose,
+but it doesn&rsquo;t because <strong>it expresses things programatically and at a higher-level</strong>:
+where <code>earmuff</code> works with bars and beats and durations,
+MIDI works with a set of events triggering at absolute ticks,
+where <code>earmuff</code> has repeats blocks to provide &ldquo;loops&rdquo;,
+MIDI &mldr; well, actually repeats events sequentially.</p><p>I wrote a tiny compiler called <code>mhl</code> that allows building an SMF,
+Standard MIDI File,
+from the following input and the other way around to generate MHL output from an SMF:</p><pre tabindex=0><code>track=1 ticks=16080 message=NoteOff channel=0 key=40 velocity=64
+track=1 ticks=16080 message=NoteOn channel=0 key=59 velocity=89
+track=1 ticks=16080 message=NoteOn channel=0 key=55 velocity=89
+track=1 ticks=16080 message=NoteOn channel=0 key=52 velocity=89
+track=1 ticks=16320 message=NoteOff channel=0 key=59 velocity=64
+track=1 ticks=16320 message=NoteOff channel=0 key=55 velocity=64
+track=1 ticks=16320 message=NoteOff channel=0 key=52 velocity=64
+</code></pre><p>Awesome idea, right ?
+nope, wrong.</p><h1 id=go-midicsv-midicsv-implementation-in-golang>go-midicsv: MIDICSV implementation in Golang</h1><p>It turns out that after I was done writing <code>mhl</code>,
+I ran into MIDICSV.</p><p>MIDICSV is a specification to represent MIDI as CSV,
+a human-readable comma-separated format.
+That&rsquo;s exactly what I wanted,
+except that it already existed,
+already covered what I wanted,
+and there were already reference implementations in Perl and Python.
+I did some experimenting with the Python version,
+and since it proved to cover my functional needs,
+<strong>I decided to toss MHL and switch to using MIDICSV</strong>.</p><p>I could not use the python version itself,
+partly because I needed to call it from Golang which was painful,
+but also because <code>py_midicsv</code> insists on using files whereas I need to work on bytes&mldr;
+so I wrote a Golang implementation for my needs.
+This is a work in progress,
+do not use for anything serious,
+but the initial code is <a href=https://github.com/poolpOrg/go-midicsv>already commited and available in a Github repository</a>.</p><p>Long story short,
+the package comes with two commands <code>midi2csv</code> and <code>csv2midi</code>,
+both built using the <code>go-midicsv/encoding</code> package which <strong>provides an Encoder and Decoder</strong>.
+The Encoder reads bytes from an SMF and converts them into a MIDICSV output,
+whereas the Decoder reads a MIDICSV input and converts it into an SMF output.</p><p>The code currently only works for valid SMF files and will likely panic on any invalidly crafted SMF,
+I will make it error out nicely in the upcoming weeks.
+Good enough for my pocs.</p><h1 id=melodya-a-melody-and-music-assistant>Melodya: a melody and music assistant</h1><p>Melodya is a project I&rsquo;ll be working on and off for the next few months:
+it is <strong>a melody and music assistant</strong>,
+helping you write, understand and improve music through the help of AI.
+Unless you&rsquo;ve been hiding under a rock,
+you have probably already seen ChatGPT at work,
+it&rsquo;s impressive af,
+and it can prove really useful in this use-case of assisting music creation.</p><p>Unfortunately,
+it <strong>only understands text so it&rsquo;s hard to have it work with music</strong>:
+it can&rsquo;t take sound or sheet music as input.
+I had already played with this in December,
+<a href=/posts/2022-12-30/december-2022-some-more-earmuff-and-go-harmony/#chatgpt>teaching ChatGPT about <code>earmuff</code></a>
+and having it generate new <code>earmuff</code> source based on instructions.
+It worked,
+it worked insanely well,
+but had some shortcomings because <code>earmuff</code> was invented after the cut-off date for its corpus and doesn&rsquo;t come with enough examples.
+Unless my prompts were very precise,
+it would generate instruments names that aren&rsquo;t recognized,
+sometimes even constructs that it thought existed but didn&rsquo;t,
+and such&mldr;</p><p>Luckily,
+between <code>earmuff</code>, <code>go-harmony</code> and <code>go-midicsv</code>,
+I have written enough code that help deal with music programatically and in human-readable formats that I can use <code>ChatGPT</code> reliably enough for my purpose&mldr;
+so I played tetris.
+I assembled blocks,
+and here&rsquo;s the initial result after a few hours of work.
+A chatbot that understands what I want to do on a musical project,
+that keeps track of the state of my project and that can provide explanations while generating MIDI output:</p><center><img src=melodya.jpg><br><br><img src=melodya2.jpg><br><br></center><p>This was the very first step.</p><p>I would like to implement speech-to-text so I can dictate my needs,
+text-to-speech so it can hear back its answers,
+but I would also like to <strong>accept input coming from a MIDI device</strong> so I can ask it to analyze, correct me or make suggestions,
+just as I&rsquo;d like to allow it to <strong>output to a MIDI device</strong> so I can plug it to a synthesizer or DAW so I can use it more directly.</p><p>In addition,
+because <strong>MIDI can be (indirectly) converted to sheet music</strong>,
+I&rsquo;d like to be able to display the sheet music as it&rsquo;s being worked on and adapted.</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>April will be essentially spent on my training,
+so I don&rsquo;t expect much code to be written.</p><p>If I manage to,
+it&rsquo;ll likely be melodya related.</p><p>Stay tuned !</p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2023-03-01/i-love-you/>I love you &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

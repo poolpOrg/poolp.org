@@ -1,0 +1,218 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>October 2021: mostly Plakar | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2021-10-26/october-2021-mostly-plakar/cover.jpg"><meta name=twitter:title content="October 2021: mostly Plakar"><meta name=twitter:description content="TL;DR: I have a discord now, [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk), feel free to join. I refactored plakar, implemented a local cache, improved parallelism, modified the push strategy, played with fuse and networking. I also did other stuff but let's keep that out of this article. Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I have a discord now I have a rubber duck sitting on my desk&mldr;"><meta property="og:title" content="October 2021: mostly Plakar"><meta property="og:description" content="TL;DR: I have a discord now, [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk), feel free to join. I refactored plakar, implemented a local cache, improved parallelism, modified the push strategy, played with fuse and networking. I also did other stuff but let's keep that out of this article. Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I have a discord now I have a rubber duck sitting on my desk&mldr;"><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2021-10-26/october-2021-mostly-plakar/"><meta property="og:image" content="https://poolp.org/posts/2021-10-26/october-2021-mostly-plakar/cover.jpg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-10-26T07:40:00+02:00"><meta property="article:modified_time" content="2021-10-26T07:40:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/authors/gilles-chehade/gilles-chehade.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description><br></span><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>October 2021: mostly Plakar</h1><span class=author-description><i class="far fa-star"></i>
+Oct 26, 2021
+<i class="far fa-clock clock"></i>
+13 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br><center><img class="featured-image img-fluid" src=https://poolp.org/posts/2021-10-26/october-2021-mostly-plakar/cover.jpg alt="thumbnail for this post"></center></div><div class=article-post><blockquote><b>TL;DR:</b>
+I have a discord now, [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk), feel free to join.
+I refactored plakar, implemented a local cache, improved parallelism, modified the push strategy, played with fuse and networking.
+I also did other stuff but let's keep that out of this article.</blockquote><center><img src="https://c10.patreonusercontent.com/3/eyJ3Ijo2MjB9/patreon-media/p/post/57090945/935b891959ba48c7882d344628fcce0f/1.png?token-time=1636502400&token-hash=IjvroG4kz5D1vOurvBLu3WfaJo-_h4TtikpMnHc4RBk%3D" height=300px></center><h1 id=shout-out-to-my-sponsors-x2764xfe0f>Shout out to my sponsors ❤️</h1><p>A <strong>HUGE thanks</strong> goes to my sponsors on <a href=https://github.com/sponsors/poolpOrg>github</a>
+and <a href=https://www.patreon.com/gilles>patreon</a>:
+your continuous support is very much appreciated !</p><h1 id=i-have-a-discord-now>I have a discord now</h1><p>I have a <a href=https://en.wikipedia.org/wiki/Rubber_duck_debugging>rubber duck</a> sitting on my desk&mldr;</p><center><img src=duck.jpg height=300px></center><p>&mldr;but I also like explaining to my peers what I&rsquo;m doing,
+as I&rsquo;m doing it,
+to <strong>help me get new ideas or spot shortcomings in my reasoning</strong>.
+I used to do it a lot on IRC as I worked on OpenSMTPD,
+with other developers and an active community,
+but I miss that a lot now that I work mostly alone on low-profile projects.
+I do <a href=https://twitter.com/PoolpOrg/status/1448329512253595649>share ideas and progress on Twitter</a> but the tweet size limitation makes it hard to expand much and incite discussion.</p><p>I created a Discord where I&rsquo;ll hang out and discuss my projects as I work on them.
+Feel free to hop in if you want,
+and feel free to do just like me and share thoughts as you work on your own projects there:
+<strong>this is a virtual hack room</strong>.</p><p>Join here: <a href=https://discord.gg/YC6j4rbvSk>https://discord.gg/YC6j4rbvSk</a></p><p>It may not be restricted strictly to code as I have other unrelated projects sometimes :-)</p><h1 id=plakar-refactor>Plakar refactor</h1><p>I have been working on <code>plakar</code> on and off <a href=https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/>for a few months now</a>,
+with <strong>approximately two weeks of cumulative work</strong>,
+and because it was experimental and my first real project in Go,
+I made many mistakes both in design and implementation details.
+I tested a lot of ideas,
+some turned out to be good and I pushed them further whereas others turned out to be crap and I abandoned them.</p><p>For instance,
+I wasn&rsquo;t sure if snapshots should be part of the storage engine or built on top,
+I wasn&rsquo;t sure if encryption/compression should be at the snapshot level or at the storage level,
+or even if it should be possible to encrypt some snapshots and not others within a store.
+All of <strong>these decisions are now settled</strong>,
+but I had to experiment a bit before understanding why I was taking a decision and why I believed it was the right one,
+and this left the code with some weird parts as things weren&rsquo;t always done in the right place.</p><p>Now that I&rsquo;m a bit more comfortable with Go and with how the project will move forward,
+it was time to <strong>scrap the draft</strong> and rewrite it properly.
+I spent an evening in a new branch,
+rewriting all layers by bringing just the bits of code necessary and making sure that each package was not doing anything that should be done elsewhere.
+This allowed me to kill a lot of dead code from older experiments,
+simplifying the logic in all layers and clarifying some boundaries.</p><p>This is still the very early stages of the project with a lot of room for improvement on the code base,
+but at least the foundation is now clean:
+when I work on a feature, it is clear where I should add the feature and I don&rsquo;t risk breaking everything.</p><h1 id=code-made-available-on-github>Code made available on Github</h1><p>Since I&rsquo;m no longer ashamed of what I produced,
+I decided to work in the open and make the code <a href=https://github.com/poolpOrg/plakar>available in a github repository</a>
+so I can reference a commit when I write about <code>plakar</code> here instead of leaving everything to your imagination.</p><p><strong>Don&rsquo;t use the project for anything serious:</strong></p><p>First of all,
+<strong>there are still issues</strong> and you don&rsquo;t want to use something that has issues for your backups.
+Then,
+the utility still evolves a lot with regard to output or CLI,
+and I don&rsquo;t want to provide support regarding last weeks&rsquo; command line or output format when I have a different version on my laptop.
+Finally,
+the storage format hasn&rsquo;t fully stabilized yet as I make minor changes here and there to optimize some operations:
+the <strong>snapshots you make today may not be restorable next week</strong> if I make use of a new metadata or change a data structure.</p><p>Of course,
+I&rsquo;d be <strong>very happy</strong> to have some people test and help me improve the tool,
+so feel free to test and report issues&mldr; as long as this is only for testing and not for your real backups.</p><h1 id=improved-parallelism>Improved parallelism</h1><p>Because of how <code>plakar</code> works,
+many operations involve splitting data into chunks or fetching data from the store to reconstruct objects.</p><p>For example,
+<code>plakar cat deadbeef:/etc/passwd</code> will:</p><ul><li>fetch the index for snapshot <code>deadbeef</code> from the store (or from cache if available)</li><li>resolve <code>/etc/passwd</code> into an object identifier within the store</li><li>fetch the object index from the store (or from cache if available)</li><li>resolve the object into one or many chunks within the store</li><li>fetch the chunks from store and output them in sequence to stdout</li></ul><p>Whereas <code>plakar push /bin</code> will iterate through <code>/bin</code> and:</p><ul><li>open and split every file into chunks</li><li>query the store for which chunks need to be written or have their reference count incremented</li><li>write the missing chunks</li><li>write an object index for every individual object</li><li>write the snapshot index which maps the path names to their backing objects, among other things</li></ul><p>In my initial work on <code>plakar</code>,
+all commands were implemented with a <strong>very sequential approach</strong>,
+operations being performed one after another regardless if they could be parallelized or not.
+There was a tiny bit of parallelism,
+as <code>plakar</code> could work on multiple files at once,
+but it would take a sequential approach for each of these files.</p><p>In many cases,
+this caused it to operate at much slower speed than was possible to reach given the available resources on the host system.
+For instance,
+in the following screenshots,
+it took roughly 55s to push my 2.5GB <code>~/Downloads</code> directory to an empty repository on my ~1000MB/s/writes SSD despite the 8 cores being underused.</p><center><img src=load-no-concurrency.png height=300px></center>
+<center><img src=push-no-concurrency.png height=300px></center><p>I reworked the storage and the snapshot layers to improve parallelism and synchronization so that <code>plakar</code> could safely parallelize every possible operation.
+This allowed it to fully exploit all available cores and avoid idling when it could be doing something,
+like writing multiple chunks in parallel for the same file while processing multiple files,
+and letting disk I/O limit the performances.</p><p>In the screenshots below,
+it took only 14.4s to push the same directory to an empty store while utilizing all cores to their fullest.
+It could certainly be optimized further because <strong>the commit of a snapshot has not gone through optimization yet</strong> and probably consumes <strong>over half of this time</strong>,
+but the difference is already quite impressive.</p><center><img src=load-concurrency.png height=300px></center>
+<center><img src=push-concurrency.png height=300px></center><p>This parallelism improvement is <strong>not restricted to pushing snapshots</strong>,
+but benefits all <code>plakar</code> operations.
+For instance restoring snapshots became significantly faster as it used to restore all files sequentially when it will now parallelize the whole process of rebuilding the file hierachy, creating the files and fetching the chunks.</p><p>I was afraid that the amount of goroutines would be unmanageable as I hit a couple panics when working on directories > 10GB with tens of thousands of files and even more chunks,
+but I came up with a code pattern that ensured I could both <strong>control the amount of concurrent routines</strong> executing a specific task,
+and <strong>that they were all done before beginning a dependent task</strong>.
+I&rsquo;ll probably write about that in a future post as I find this solution very elegant and suitable for many use-cases.</p><p>I will likely be adding an option to specify the amount of parallelism allowed to prevent <code>plakar</code> from hogging all resources at the cost of slower operations,
+but it is a very simple feature that I&rsquo;ll keep for when I want to pretend I worked hard on something :-)</p><h1 id=snapshots-and-objects-caching>Snapshots and objects caching</h1><p>When <code>plakar</code> creates a snapshot,
+it has to scan file hierarchies and <strong>read every files to split them into chunks</strong> that will be checked against the store.
+This isn&rsquo;t something that has to be avoided,
+it is really what I want it to do,
+but it is not <em>always</em> desirable as it is only necessary for files that have changed.
+Unless <code>plakar</code> is able to detect that,
+it has to pay the price of reading all files including the ones that haven&rsquo;t changed.</p><p>I implemented a <strong>local cache</strong> which recalls,
+among other things, the structure of objects that were part of previous snapshots and the inode informations associated to path names.</p><p>Whenever scanning a directory,
+the inode informations for the current file are compared to the last known informations stored in the cache.
+If it is determined that the file has not changed since the last version,
+<code>plakar</code> will reuse the chunk information from the cache and increase the chunks reference count in store.
+This <strong>avoids a full read</strong> during the chunking and <strong>a potential full write</strong> of all chunks to the store.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=err>$</span> <span class=nx>plakar</span> <span class=o>-</span><span class=nx>time</span> <span class=nx>push</span> <span class=err>~</span><span class=o>/</span><span class=nx>Downloads</span>
+</span></span><span class=line><span class=cl><span class=nx>time</span><span class=p>:</span> <span class=mf>13.787579792</span><span class=nx>s</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=nx>plakar</span> <span class=o>-</span><span class=nx>time</span> <span class=nx>push</span> <span class=err>~</span><span class=o>/</span><span class=nx>Downloads</span>
+</span></span><span class=line><span class=cl><span class=nx>time</span><span class=p>:</span> <span class=mf>1.41720375</span><span class=nx>s</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=nx>plakar</span> <span class=o>-</span><span class=nx>time</span> <span class=o>-</span><span class=nx>no</span><span class=o>-</span><span class=nx>cache</span> <span class=nx>push</span> <span class=err>~</span><span class=o>/</span><span class=nx>Downloads</span>
+</span></span><span class=line><span class=cl><span class=nx>time</span><span class=p>:</span> <span class=mf>7.432093292</span><span class=nx>s</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=nx>plakar</span> <span class=nx>ls</span>
+</span></span><span class=line><span class=cl><span class=mi>2021</span><span class=o>-</span><span class=mi>10</span><span class=o>-</span><span class=mi>26</span><span class=nx>T11</span><span class=p>:</span><span class=mi>51</span><span class=p>:</span><span class=mo>01</span><span class=nx>Z</span> <span class=nx>e5c24e03</span><span class=o>-</span><span class=mi>7</span><span class=nx>f72</span><span class=o>-</span><span class=mi>4</span><span class=nx>a9b</span><span class=o>-</span><span class=mi>81</span><span class=nx>d4</span><span class=o>-</span><span class=mi>2</span><span class=nx>b891951f965</span> <span class=mf>2.5</span> <span class=nf>GB</span> <span class=p>(</span><span class=nx>files</span><span class=p>:</span> <span class=mi>1225</span><span class=p>,</span> <span class=nx>dirs</span><span class=p>:</span> <span class=mi>282</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=mi>2021</span><span class=o>-</span><span class=mi>10</span><span class=o>-</span><span class=mi>26</span><span class=nx>T11</span><span class=p>:</span><span class=mi>51</span><span class=p>:</span><span class=mi>20</span><span class=nx>Z</span> <span class=mi>784</span><span class=nx>a2a28</span><span class=o>-</span><span class=mi>0</span><span class=nx>af5</span><span class=o>-</span><span class=mf>45e7</span><span class=o>-</span><span class=nx>b440</span><span class=o>-</span><span class=mi>1246</span><span class=nx>c5691080</span> <span class=mf>2.5</span> <span class=nf>GB</span> <span class=p>(</span><span class=nx>files</span><span class=p>:</span> <span class=mi>1225</span><span class=p>,</span> <span class=nx>dirs</span><span class=p>:</span> <span class=mi>282</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=mi>2021</span><span class=o>-</span><span class=mi>10</span><span class=o>-</span><span class=mi>26</span><span class=nx>T11</span><span class=p>:</span><span class=mi>51</span><span class=p>:</span><span class=mi>26</span><span class=nx>Z</span> <span class=nx>e6a24d44</span><span class=o>-</span><span class=nx>f257</span><span class=o>-</span><span class=mi>4540</span><span class=o>-</span><span class=mi>8</span><span class=nx>ff7</span><span class=o>-</span><span class=mo>04</span><span class=nx>f251acf522</span> <span class=mf>2.5</span> <span class=nf>GB</span> <span class=p>(</span><span class=nx>files</span><span class=p>:</span> <span class=mi>1225</span><span class=p>,</span> <span class=nx>dirs</span><span class=p>:</span> <span class=mi>282</span><span class=p>)</span>
+</span></span></code></pre></div><p>In the example above,
+I pushed my 2.5GB <code>~/Downloads</code> directory in an empty plakar,
+then pushed it again once with caching and once without caching.
+Here,
+the time difference for a push with or without cache is <strong>very significant</strong>,
+but it is highly dependant on the number of directories,
+of files,
+of their redundancy and their sizes.</p><p>Just like for parallelism,
+the local cache <strong>doesn&rsquo;t only benefit the creation of snapshots</strong> but also other operations,
+<strong>though the boost is not as beneficial due to its current implementation</strong>:
+it requires small disk reads for each lookup and while this can save a lot in the snapshot creation code path by avoiding big file reads and tons of writes,
+it is not that interesting in code paths involving mostly the reading of chunks.</p><p>There is still a lot of room for improvement though:</p><p>First of all,
+the structure of informations in cache is <strong>not optimal</strong> and makes it hard to use the cache for some operations that could benefit from it.
+This is something simple to fix,
+it&rsquo;s just that I figured what I should have done differently while I was writing this article :-)</p><p>Then,
+I implemented the cache using individual files to represent snapshots and objects,
+which means <strong>each cache query involves opening, reading and closing a file</strong>.
+This was acceptable to bootstrap the API and start using it but has a lot of overhead which would not exist if the cache was stored in an SQLite database or similar.</p><p>I will continue working on local cache improvements but am already happy with the results of that first naive approach.</p><p>For console pr0n,
+here&rsquo;s a run of a push with an empty cache and empty store:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar -trace push .
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: New<span class=o>()</span>
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: cache.GetPath<span class=o>(</span>./group<span class=o>)</span>: KO
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: cache.PutPath<span class=o>(</span>./group<span class=o>)</span>
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: cache.GetPath<span class=o>(</span>./services<span class=o>)</span>: KO
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: PutChunk<span class=o>(</span>4910bfe2b7e551c4e2085b12c36941d1e1063491b7292cb0dbca7c5fe0854be5<span class=o>)</span>
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: cache.PutPath<span class=o>(</span>./services<span class=o>)</span>
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: cache.GetPath<span class=o>(</span>./passwd<span class=o>)</span>: KO
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: cache.PutPath<span class=o>(</span>./passwd<span class=o>)</span>
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: PutChunk<span class=o>(</span>e45b72f5c0c0b572db4d8d3ab7e97f368ff74e62347a824decb67a84e5224d75<span class=o>)</span>
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: PutChunk<span class=o>(</span>8c6e2a2647ee854f469a3bb798e02ba5a8b1812cab229ff129f073e7a80c1202<span class=o>)</span>
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: PutObject<span class=o>(</span>8c6e2a2647ee854f469a3bb798e02ba5a8b1812cab229ff129f073e7a80c1202<span class=o>)</span>
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: PutObject<span class=o>(</span>4910bfe2b7e551c4e2085b12c36941d1e1063491b7292cb0dbca7c5fe0854be5<span class=o>)</span>
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: PutObject<span class=o>(</span>e45b72f5c0c0b572db4d8d3ab7e97f368ff74e62347a824decb67a84e5224d75<span class=o>)</span>
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: PutIndex<span class=o>()</span>
+</span></span><span class=line><span class=cl>snapshot: cache.PutIndex<span class=o>(</span>332752a6-c220-4d7f-ab22-290a1c67862f<span class=o>)</span>
+</span></span><span class=line><span class=cl>332752a6-c220-4d7f-ab22-290a1c67862f: Commit<span class=o>()</span>
+</span></span></code></pre></div><p>And here&rsquo;s a run of a push using the cache:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar -trace push .          
+</span></span><span class=line><span class=cl>0c8ab5bf-add9-4e20-9790-97d43cde35cc: New<span class=o>()</span>
+</span></span><span class=line><span class=cl>0c8ab5bf-add9-4e20-9790-97d43cde35cc: cache.GetPath<span class=o>(</span>./group<span class=o>)</span>: OK
+</span></span><span class=line><span class=cl>0c8ab5bf-add9-4e20-9790-97d43cde35cc: cache.GetPath<span class=o>(</span>./services<span class=o>)</span>: OK
+</span></span><span class=line><span class=cl>0c8ab5bf-add9-4e20-9790-97d43cde35cc: cache.GetPath<span class=o>(</span>./passwd<span class=o>)</span>: OK
+</span></span><span class=line><span class=cl>0c8ab5bf-add9-4e20-9790-97d43cde35cc: PutIndex<span class=o>()</span>
+</span></span><span class=line><span class=cl>snapshot: cache.PutIndex<span class=o>(</span>0c8ab5bf-add9-4e20-9790-97d43cde35cc<span class=o>)</span>
+</span></span><span class=line><span class=cl>0c8ab5bf-add9-4e20-9790-97d43cde35cc: Commit<span class=o>()</span>
+</span></span></code></pre></div><h1 id=push-strategy>Push strategy</h1><p>When <code>plakar</code> wasn&rsquo;t parallelized and didn&rsquo;t have a cache,
+it was <strong>easier to interact with the store on an object-after-object basis</strong>:
+it would open a file,
+parse it into chunks,
+write the chunks,
+write the object,
+then move to the next object.
+This ensured that the full handling of a file could be isolated in a small process:
+everything that needed to be done with the file would be done in the window of time that it was opened,
+all in a very readable and sequential logic.</p><p>With parallelization and caching,
+<strong>it became more interesting to work in a different way</strong>:
+processing chunks at full speed first,
+THEN processing object indexes at full speed when all chunks are already recorded in the transaction.
+This allowed to simplify the logic by a great deal,
+replacing the sequential pattern of read chunk / write chunk / read next chunk / write next chunk,
+with a channel where chunks are <strong>pushed out of order as they are read</strong> and goroutines concurrently pop from the channel to <strong>write to store as fast as they can</strong>.
+This also had the benefit to ease deduplication of chunks and objects within the snapshot itself.</p><p>The current push implementation is already much more interesting than the previous one but I&rsquo;m not done yet and the good thing is that,
+thanks to the refactor,
+snapshots are built on top of the storage and I&rsquo;m able to experiment knowing that all my changes are isolated in that layer.</p><h1 id=fuse-experiment>FUSE experiment</h1><p>Another feature I&rsquo;m experimenting with is FUSE,
+an API to implement user-space filesystems.</p><p>I&rsquo;m only beginning to play with it but have implemented <code>plakarfs</code>,
+<strong>a read-only user-space filesystem exposing a plakar repository</strong>,
+and <code>plakar mount</code> which allows mounting a <code>plakarfs</code>.
+This makes it possible to browse snapshots and read files,
+<strong>as if all snapshots were restored</strong>, but&mldr;
+without consuming the disk space:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar ls                 
+</span></span><span class=line><span class=cl>2021-10-26T10:43:12Z 9aed1ded-0e0d-4d6c-946a-6757178ec2f3 3.2 MB <span class=o>(</span>files: 248, dirs: 42<span class=o>)</span>
+</span></span><span class=line><span class=cl>2021-10-26T10:43:13Z ecfef47f-24fc-4c6a-9dbc-fdf918f40689 3.2 MB <span class=o>(</span>files: 248, dirs: 42<span class=o>)</span>
+</span></span><span class=line><span class=cl>2021-10-26T10:43:13Z 561edc6a-e531-4770-872a-610432d0a2b9 3.2 MB <span class=o>(</span>files: 248, dirs: 42<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ plakar mount /tmp/plakar <span class=p>&amp;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>1<span class=o>]</span> <span class=m>19253</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ ls -l /tmp/plakar 
+</span></span><span class=line><span class=cl>total <span class=m>18912</span>
+</span></span><span class=line><span class=cl>dr-xr-xr-x  <span class=m>1</span> root  wheel  <span class=m>3224317</span> <span class=m>26</span> Oct 12:43 561edc6a-e531-4770-872a-610432d0a2b9
+</span></span><span class=line><span class=cl>dr-xr-xr-x  <span class=m>1</span> root  wheel  <span class=m>3224317</span> <span class=m>26</span> Oct 12:43 9aed1ded-0e0d-4d6c-946a-6757178ec2f3
+</span></span><span class=line><span class=cl>dr-xr-xr-x  <span class=m>1</span> root  wheel  <span class=m>3224317</span> <span class=m>26</span> Oct 12:43 ecfef47f-24fc-4c6a-9dbc-fdf918f40689
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ tail /tmp/plakar/ecfef47f-24fc-4c6a-9dbc-fdf918f40689/etc/passwd 
+</span></span><span class=line><span class=cl>_logd:*:272:272:Log Daemon:/var/db/diagnostics:/usr/bin/false
+</span></span><span class=line><span class=cl>_appinstalld:*:273:273:App Install Daemon:/var/db/appinstalld:/usr/bin/false
+</span></span><span class=line><span class=cl>_installcoordinationd:*:274:274:Install Coordination Daemon:/var/db/installcoordinationd:/usr/bin/false
+</span></span><span class=line><span class=cl>_demod:*:275:275:Demo Daemon:/var/empty:/usr/bin/false
+</span></span><span class=line><span class=cl>_rmd:*:277:277:Remote Management Daemon:/var/db/rmd:/usr/bin/false
+</span></span><span class=line><span class=cl>_fud:*:278:278:Firmware Update Daemon:/var/db/fud:/usr/bin/false
+</span></span><span class=line><span class=cl>_knowledgegraphd:*:279:279:Knowledge Graph Daemon:/var/db/knowledgegraphd:/usr/bin/false
+</span></span><span class=line><span class=cl>_coreml:*:280:280:CoreML Services:/var/empty:/usr/bin/false
+</span></span><span class=line><span class=cl>_trustd:*:282:282:trustd:/var/empty:/usr/bin/false
+</span></span><span class=line><span class=cl>_oahd:*:441:441:OAH Daemon:/var/empty:/usr/bin/false
+</span></span><span class=line><span class=cl>$
+</span></span></code></pre></div><p>The filesystem hierarchy within the mount is built using snapshot indexes,
+including inode informations such as creation time, uid/gid or file size,
+while file reading is implemented by <strong>fetching the object index</strong> and <strong>just the chunks needed</strong> to service the read,
+so that chunks will be fetched as needed based on the current offset within the file.</p><p>I have a hard time getting around with the proper way to implement plakar as a filesystem,
+so there are still a lot of glitches and a few limitations, but this looks very promising as far as I&rsquo;m concerned.
+In particular because this is built on top of snapshots,
+themselves built on top of the store,
+making this work transparently with encrypted or remote stores.</p><h1 id=remote-plakar>Remote plakar</h1><p>I had already written that I implemented server and client support for <code>plakar</code> <a href=https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/>in this post</a>,
+but the idea behind it was <strong>only to validate that the storage primitives could be used over the network</strong>,
+not to be actually usable.
+The client and server were implemented in a very ugly way,
+hacked as custom storage backends,
+lacking error checking and not designed to handle concurrency within a single snapshot transaction.</p><p>I&rsquo;m now at the point were I want to implement them correctly,
+so I have started looking at the transport and working on the protocol,
+experimenting with different things.
+I tested three PoCs at this point but am not satisfied yet.</p><p>Anyhow,
+I expect this network mode to be working by the end of December as I&rsquo;d like to have a plakar running on my NAS by then :-)</p><h1 id=assorted-other-work>Assorted other work</h1><p>I also worked on other stuff but I didn&rsquo;t want to pollute this post so I will just summarize:</p><p>I submitted a diff to OpenBSD to <a href=https://www.mail-archive.com/tech@openbsd.org/msg65516.html>fix regex support in OpenSMTPD&rsquo;s table_db backend</a> (<a href=https://github.com/openbsd/src/commit/27a76c62b441076b566293aa27febbdb8f958bd4>committed</a>),
+helped <code>eric@</code> fix and review a diff for a bug in SRS (<a href=https://github.com/openbsd/src/commit/8c505924421c15b1062c31a7489530a574db6fc9#diff-6cb46d1f1c7fb0972d7569a29ef930a534cade4034f526f1083e4dfb9f5a6599>committed</a>)
+and am currently reviewing a diff to integrate my table_procexec as the backend to run external tables in OpenSMTPD.</p><p>I worked on a new project that I&rsquo;ll write about in a few months as it is not high priority and I&rsquo;d like to get <code>plakar</code> mostly out of my way first,
+but it involves mobile development,
+something I haven&rsquo;t done in over a decade.</p><p>I also played a bit with Arduino to learn myself some new skills,
+but I didn&rsquo;t do anything newsworthy.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/137>https://github.com/poolpOrg/poolp.org/discussions/137</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2021-10-26/november-2021-a-bit-of-go-ipcmsg-a-bit-of-go-privsep-and-a-ton-of-plakar/>&#171; November 2021: a bit of go-ipcmsg, a bit of go-privsep and a ton of plakar</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2021-08-13/august-2021-taking-a-break/>August 2021: taking a break &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

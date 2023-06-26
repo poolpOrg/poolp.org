@@ -1,0 +1,153 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>May 2019 report | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="May 2019 report"><meta name=twitter:description content="TL;DR: In this post I explain crudely how ca.c works and changes to OpenSMTPD related to ca.c I wrote an ECDSA privsep crypto engine I did some EEG work too This is the first report I will now switch to a monthly report of my tech activities on this blog, and this is the first post in that new format.
+The focus will be put on interesting topics, not necessarily every single commit and bug fix I do (ie: won&rsquo;t mention LMTP bug fix here), this depends on the amount of slacking that ocurred during the month and how much I want to cover it up :-)"><meta property="og:title" content="May 2019 report"><meta property="og:description" content="TL;DR: In this post I explain crudely how ca.c works and changes to OpenSMTPD related to ca.c I wrote an ECDSA privsep crypto engine I did some EEG work too This is the first report I will now switch to a monthly report of my tech activities on this blog, and this is the first post in that new format.
+The focus will be put on interesting topics, not necessarily every single commit and bug fix I do (ie: won&rsquo;t mention LMTP bug fix here), this depends on the amount of slacking that ocurred during the month and how much I want to cover it up :-)"><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2019-06-02/may-2019-report/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-06-02T14:57:00+00:00"><meta property="article:modified_time" content="2019-06-02T14:57:00+00:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>May 2019 report</h1><span class=author-description><i class="far fa-star"></i>
+Jun 2, 2019
+<i class="far fa-clock clock"></i>
+8 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br></div><div class=article-post><pre><code>TL;DR:
+In this post I explain crudely how ca.c works and changes to OpenSMTPD related to ca.c
+I wrote an ECDSA privsep crypto engine
+I did some EEG work too
+</code></pre><h2 id=this-is-the-first-report>This is the first report</h2><p>I will now switch to a monthly report of my tech activities on this blog,
+and this is the first post in that new format.</p><p>The focus will be put on interesting topics,
+not necessarily every single commit and bug fix I do (ie: won&rsquo;t mention LMTP bug fix here),
+this depends on the amount of slacking that ocurred during the month and how much I want to cover it up :-)</p><p>Don&rsquo;t forget to tip me on the link above if you like reading my reports,
+donations cover my random geek expenses and keep me motivated to write about what I do.</p><h2 id=about-opensmtpds-cac-file>About OpenSMTPD&rsquo;s ca.c file</h2><p>A few years ago,
+Neel Mehta blessed us with the Heartbleed bug in the OpenSSL library.
+A bug which ultimately resulted in the disclosure of sensitive data,
+including cryptographic private keys,
+that resided in the memory of OpenSSL&rsquo;s custom allocator.</p><p>A good approach at mitigating the issue was taken by the LibreSSL folks.
+Long story short,
+a custom allocator is a bad idea because it potentially defeats any security measure provided by the standard allocator.
+In OpenBSD,
+the multiple security mechanisms in place to detect memory corruption and invalid access were bypassed by the use of the OpenSSL custom allocator,
+and the first steps taken by LibreSSL were to ensure that functions such as <code>OpenSSL_malloc</code> and <code>OpenSSL_free</code> where REALLY calling <code>malloc</code> and <code>free</code>,
+and not something else trying to be &ldquo;smart&rdquo;.</p><p>Another approach was taken by <code>reyk@</code> and consisted in assuming that private keys in a network facing process was too dangerous.
+To mitigate the risk,
+a good option would be to isolate the crypto operations that required access to the private key in a separate process,
+one that would be fairly isolated from untrusted users.
+Here comes <code>ca.c</code>,
+a process operating privileges separated crypto operations.</p><p>Here&rsquo;s how it works:</p><p>Upon startup,
+OpenSMTPD declares a custom RSA engine which provides its own primitives for crypto operations.
+It then registers that custom engine as the default RSA engine,
+meaning that any use of the OpenSSL API to perform RSA operations will use the new primitives rather than the default ones.</p><p>The primitives provided by the RSA engine are actually of two kind:
+either they rely on the private key in which case they will perform an IPC to the CA (crypti agent) process which will do the operation itself through the default primitive and provide the result,
+or they don&rsquo;t rely on the private key in which case the primitive simply falls back to the default one.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=p>[...]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>int</span>
+</span></span><span class=line><span class=cl><span class=nf>rsae_pub_dec</span><span class=p>(</span><span class=kt>int</span> <span class=n>flen</span><span class=p>,</span><span class=k>const</span> <span class=kt>unsigned</span> <span class=kt>char</span> <span class=o>*</span><span class=n>from</span><span class=p>,</span> <span class=kt>unsigned</span> <span class=kt>char</span> <span class=o>*</span><span class=n>to</span><span class=p>,</span> <span class=n>RSA</span> <span class=o>*</span><span class=n>rsa</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>padding</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nf>log_debug</span><span class=p>(</span><span class=s>&#34;debug: %s: %s&#34;</span><span class=p>,</span> <span class=nf>proc_name</span><span class=p>(</span><span class=n>smtpd_process</span><span class=p>),</span> <span class=n>__func__</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=p>(</span><span class=n>rsa_default</span><span class=o>-&gt;</span><span class=nf>rsa_pub_dec</span><span class=p>(</span><span class=n>flen</span><span class=p>,</span> <span class=n>from</span><span class=p>,</span> <span class=n>to</span><span class=p>,</span> <span class=n>rsa</span><span class=p>,</span> <span class=n>padding</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>int</span>
+</span></span><span class=line><span class=cl><span class=nf>rsae_priv_enc</span><span class=p>(</span><span class=kt>int</span> <span class=n>flen</span><span class=p>,</span> <span class=k>const</span> <span class=kt>unsigned</span> <span class=kt>char</span> <span class=o>*</span><span class=n>from</span><span class=p>,</span> <span class=kt>unsigned</span> <span class=kt>char</span> <span class=o>*</span><span class=n>to</span><span class=p>,</span> <span class=n>RSA</span> <span class=o>*</span><span class=n>rsa</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>padding</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nf>log_debug</span><span class=p>(</span><span class=s>&#34;debug: %s: %s&#34;</span><span class=p>,</span> <span class=nf>proc_name</span><span class=p>(</span><span class=n>smtpd_process</span><span class=p>),</span> <span class=n>__func__</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    	<span class=k>if</span> <span class=p>(</span><span class=nf>RSA_get_ex_data</span><span class=p>(</span><span class=n>rsa</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span> <span class=o>!=</span> <span class=nb>NULL</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        	<span class=k>return</span> <span class=p>(</span><span class=nf>rsae_send_imsg</span><span class=p>(</span><span class=n>flen</span><span class=p>,</span> <span class=n>from</span><span class=p>,</span> <span class=n>to</span><span class=p>,</span> <span class=n>rsa</span><span class=p>,</span> <span class=n>padding</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            		<span class=n>IMSG_CA_PRIVENC</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>    	<span class=p>}</span>
+</span></span><span class=line><span class=cl>    	<span class=k>return</span> <span class=p>(</span><span class=n>rsa_default</span><span class=o>-&gt;</span><span class=nf>rsa_priv_enc</span><span class=p>(</span><span class=n>flen</span><span class=p>,</span> <span class=n>from</span><span class=p>,</span> <span class=n>to</span><span class=p>,</span> <span class=n>rsa</span><span class=p>,</span> <span class=n>padding</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[....]</span>
+</span></span></code></pre></div><p>The idea is that if the network facing process is compromised,
+then no matter how bad the memory corruption and/or info leak is,
+the private keys are not available to that process.</p><h2 id=fix-opensmtpd-cac-build-with-openssl>Fix OpenSMTPD ca.c build with OpenSSL</h2><p>That private key privsep relies on using the OpenSSL crypto engine API.</p><p>Ever since OpenSSL switched to 1.1.x,
+the crypto engine API changed because structures that were public and could be dereferenced would no longer be public.
+They would require a set of getters and setters accessors to make any use of the structure.
+The sad thing is that this is not the case with LibreSSL,
+the structures are still public and accessors are not available.</p><p>This results in the same code not being able to be built for both,
+either you use the opaque structures and build is broken on LibreSSL,
+or you use the public structures and build is broken on OpenSSL.</p><p>I rewrote ca.c to pretend that the structure was opaque,
+not performing any direct deref,
+and added the missing accessors within an ifdef.
+This is not ideal but it reduces the delta between our native branch and portable,
+and as soon as accessors are available in LibreSSL we can simply remove the ifdef-ed part.</p><p>I submitted the diff to my fellow OpenBSD hackers,
+it&rsquo;s pending review at this point,
+should be committed soon.</p><h2 id=turn-most-of-opensmtpds-ssl-structures-opaque>Turn most of OpenSMTPD&rsquo;s SSL structures opaque</h2><p>A lot of other structures that are also opaque did have accessors in LibreSSL,
+notably the EVP interface which we use for encrypted queue support.</p><p>The code used to rely on automatic variables and dereferences,
+I converted the code to heap allocated structures using the opaque structures interface.</p><p>Diff was submitted, okayed and committed.</p><h2 id=add-support-for-opaque-rsa_method-engine-in-libressl>Add support for opaque RSA_METHOD engine in LibreSSL</h2><p>As mentioned earlier,
+code in ca.c was broken due to the fact that LibreSSL considers RSA_METHOD as a public structure that can be dereferenced,
+whereas OpenSSL considers it as an opaque structure that requires accessors.</p><p>Even considering that RSA_METHOD is a public structure,
+this doesn&rsquo;t prevent us from providing accessors to allow a common idiom between LibreSSL and OpenSSL.</p><p>I submitted a diff to the LibreSSL folks to bring the missing accessors,
+which will allow me to write code that builds for both LibreSSL (my target) and OpenSSL.
+This will not be an OpenSMTPD only thing because any OpenBSD daemon that relies or will rely on ca.c and wants to be portable will face the same issue.</p><p>The diff has been reviewed and okayd,
+it will require a LibreSSL (libcrypto, libssl and libtls) minor crank so I&rsquo;m waiting for the appropriate time to do it.
+I&rsquo;m also waiting for an ok from ports to make sure it doesn&rsquo;t break ports as adding new symbols may have some configure scripts uncover other symbols we don&rsquo;t have.</p><h2 id=write-an-ecdsa-privsep-engine-for-opensmtpd>Write an ECDSA privsep engine for OpenSMTPD</h2><p>The crypto privsep engine only supported RSA and this means that starting OpenSMTPD with an ECDSA results in a fatal():</p><pre tabindex=0><code>debug: init private ssl-tree
+debug: SSL library error: ssl_ctx_create: error:06FFF07F:digital envelope routines:CRYPTO_internal:expecting an rsa key
+debug: SSL library error: ssl_ctx_create: error:140AE006:SSL routines:func(174):EVP lib
+pony express: ssl_ctx_create: could not fake private key: Invalid argument
+</code></pre><p>More and more people have complained that we didn&rsquo;t support ECDSA certificates,
+but it was not a trivial one-liner as adding support meant writing a custom ECDSA crypto engine akin to what <code>reyk@</code> did for RSA.
+It took me time to find the motivation,
+but ultimately I came around to implement such an engine this week.</p><pre tabindex=0><code>debug: rsa_engine_init: using RSA privsep engine
+debug: ecdsa_engine_init: using ECDSA privsep engine
+</code></pre><p>The details of how I implemented the ECDSA crypto engine are not that interesting,
+they follow the same pattern as the RSA crypto engine:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>ECDSA_SIG</span> <span class=o>*</span>
+</span></span><span class=line><span class=cl><span class=nf>ecdsae_do_sign</span><span class=p>(</span><span class=k>const</span> <span class=kt>unsigned</span> <span class=kt>char</span> <span class=o>*</span><span class=n>dgst</span><span class=p>,</span> <span class=kt>int</span> <span class=n>dgst_len</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=k>const</span> <span class=n>BIGNUM</span> <span class=o>*</span><span class=n>inv</span><span class=p>,</span> <span class=k>const</span> <span class=n>BIGNUM</span> <span class=o>*</span><span class=n>rp</span><span class=p>,</span> <span class=n>EC_KEY</span> <span class=o>*</span><span class=n>eckey</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nf>log_debug</span><span class=p>(</span><span class=s>&#34;debug: %s: %s&#34;</span><span class=p>,</span> <span class=nf>proc_name</span><span class=p>(</span><span class=n>smtpd_process</span><span class=p>),</span> <span class=n>__func__</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=nf>ECDSA_get_ex_data</span><span class=p>(</span><span class=n>eckey</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span> <span class=o>!=</span> <span class=nb>NULL</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=p>(</span><span class=nf>ecdsae_send_enc_imsg</span><span class=p>(</span><span class=n>dgst</span><span class=p>,</span> <span class=n>dgst_len</span><span class=p>,</span> <span class=n>inv</span><span class=p>,</span> <span class=n>rp</span><span class=p>,</span> <span class=n>eckey</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=p>(</span><span class=n>ecdsa_default</span><span class=o>-&gt;</span><span class=nf>ecdsa_do_sign</span><span class=p>(</span><span class=n>dgst</span><span class=p>,</span> <span class=n>dgst_len</span><span class=p>,</span> <span class=n>inv</span><span class=p>,</span> <span class=n>rp</span><span class=p>,</span> <span class=n>eckey</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>The real challenge was to teach ca.c that multiple crypto engines could coexist,
+figuring out the primitives for ECDSA and doing the proper serialization in IPC.</p><p>On my laptop,
+OpenSMTPD can now load and work with both RSA and ECDSA certificates,
+accepting SMTP sessions on listeners presenting either one:</p><pre tabindex=0><code>9362d76af3ab2882 smtp connected address=127.0.0.1 host=localhost
+debug: looking up pki &#34;localhost&#34;
+debug: session_start_ssl: switching to SSL
+debug: pony: rsae_priv_enc
+9362d76af3ab2882 smtp tls ciphers=TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256
+
+8c25253d498c0990 smtp connected address=127.0.0.1 host=localhost
+debug: looking up pki &#34;localhost&#34;
+debug: session_start_ssl: switching to SSL
+debug: pony: ecdsae_do_sign
+8c25253d498c0990 smtp tls ciphers=TLSv1.2:ECDHE-ECDSA-AES256-GCM-SHA384:256
+</code></pre><p>I have submitted the diff today,
+pending review,
+it should be committed shortly.</p><h2 id=troubleshoot-eegreader-and-write-initial-support-for-an-eegviewer>Troubleshoot <code>eegreader</code> and write initial support for an <code>eegviewer</code></h2><p>A while ago,
+I got interested in reading electroencephalogram data to detect interesting patterns during self-hypnosis sessions.</p><p>I got myself an OpenEEG device and realized there were no simple utilities to extract data from it,
+most were C++ bloated software that didn&rsquo;t build on my laptop and required dependencies.</p><p>I found out that the OpenEEG protocol was very easy to implement and wrote <code>eegreader</code> a utility to output an OpenEEG data stream to stdout,
+displaying sequence, version, the six channels and buttons values.</p><p>There seemed to be a bug because packet loss kept triggering my recovery code,
+skipping bits until finding the alignment for a new packet (eg: packets 53, 56, 58, 5a, 5c are missing in this sample):</p><pre tabindex=0><code>[...]
+4f|2|512|511|505|499|493|487|7
+50|2|532|511|505|500|493|487|7
+51|2|513|65281|63745|62465|60673|59143|5
+53|2|497|511|505|499|493|487|7
+54|2|508|511|505|499|493|487|7
+55|2|513|65281|63745|62465|60929|59143|5
+57|2|514|511|505|500|494|487|5
+59|2|506|511|505|500|494|487|5
+5b|2|535|511|505|500|494|487|5
+5d|2|499|511|505|500|493|487|5
+[...]
+</code></pre><p>I investigated and realized that I didn&rsquo;t have the issue on some other OSes,
+it seems to be an OpenBSD USB bug.
+Furthermore,
+with the latest OpenBSD snapshot,
+I seem to be hitting kernel panics in USB so some investigation is definitely needed.
+I pinged some of the USB gurus, we&rsquo;ll see how I can help.</p><p>I still managed to do something useful as I started the writing of <code>eegviewer</code>,
+which is a <code>libxcb</code> graphical interface displaying the <code>eegreader</code> input as a real-time graph.
+The idea is to simply pipe <code>eegreader</code> into <code>eegviewer</code> to obtain the graphs.</p><p><img src="https://pbs.twimg.com/media/D7pGuTOXkAAiZeg?format=jpg&amp;name=small" alt=device>
+<img src="https://pbs.twimg.com/media/D7pGuTRXsAAPJUd?format=png&amp;name=small" alt=eegreader>
+<img src="https://pbs.twimg.com/media/D7pGuTPW0AAWjMj?format=png&amp;name=small" alt=eegviewer></p><p>The <code>eegreader</code> utility has already been published a while ago on Github under the ISC license.
+I&rsquo;ll publish <code>eegviewer</code> under the same license when I&rsquo;m happy with the code, libxcb not being something I&rsquo;m familiar with.</p><p>Finally,
+I will very likely write an ISC-licensed <code>libeeg</code> which will provide an event-driven interface to OpenEEG data streams,
+allowing callbacks to be triggered upon certain events occuring on certain channels.
+I haven&rsquo;t started that work yet but it is trivial so I might release that soon.</p><h2 id=oculus-quest>Oculus Quest</h2><p>Thanks to my geek donations,
+I got myself an Oculus Quest device :-)</p><p>I&rsquo;m not a gamer but I&rsquo;m genuinely curious what can be done with it,
+when time allows I&rsquo;ll start digging the SDK.</p><h2 id=what-next->What next ?</h2><p>See you in a month for the June report,
+very likely focusing around OpenSMTPD filters !</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/101>https://github.com/poolpOrg/poolp.org/discussions/101</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/>&#171; June 2019 report: fion, bpg and smtpd</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-06-02/happy-new-year-2019-a-personal-post/>happy new year 2019, a personal post &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

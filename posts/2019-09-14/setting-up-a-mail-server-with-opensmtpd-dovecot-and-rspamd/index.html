@@ -1,0 +1,654 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>Setting up a mail server with OpenSMTPD, Dovecot and Rspamd | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/cover.jpg"><meta name=twitter:title content="Setting up a mail server with OpenSMTPD, Dovecot and Rspamd"><meta name=twitter:description content="TL;DR: - NO TL;DR: this time, I spent hours writing, you should spend minutes reading. - OK... I explain in WAY TOO MUCH details how to setup a mail server EDIT (2019-10-26) OpenSMTPD 6.6.0 was released today, the article was updated to reflect that it applies to the current release and no longer a development version.
+EDIT (2019-12-15) I have refactored the article to remove the political aspect behind self-hosting, which is now a standalone article, as well as a blurb on reputation since this will become part of a serie of articles."><meta property="og:title" content="Setting up a mail server with OpenSMTPD, Dovecot and Rspamd"><meta property="og:description" content="TL;DR: - NO TL;DR: this time, I spent hours writing, you should spend minutes reading. - OK... I explain in WAY TOO MUCH details how to setup a mail server EDIT (2019-10-26) OpenSMTPD 6.6.0 was released today, the article was updated to reflect that it applies to the current release and no longer a development version.
+EDIT (2019-12-15) I have refactored the article to remove the political aspect behind self-hosting, which is now a standalone article, as well as a blurb on reputation since this will become part of a serie of articles."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/"><meta property="og:image" content="https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/cover.jpg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-09-14T05:37:00+00:00"><meta property="article:modified_time" content="2019-09-14T05:37:00+00:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/authors/gilles-chehade/gilles-chehade.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description><br></span><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>Setting up a mail server with OpenSMTPD, Dovecot and Rspamd</h1><span class=author-description><i class="far fa-star"></i>
+Sep 14, 2019
+<i class="far fa-clock clock"></i>
+37 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br><center><img class="featured-image img-fluid" src=https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/cover.jpg alt="thumbnail for this post"></center></div><div class=article-post><pre><code>TL;DR:
+- NO TL;DR: this time, I spent hours writing, you should spend minutes reading.
+- OK... I explain in WAY TOO MUCH details how to setup a mail server
+</code></pre><h2 id=edit-2019-10-26>EDIT (2019-10-26)</h2><p><a href=https://www.mail-archive.com/misc@opensmtpd.org/msg04725.html>OpenSMTPD 6.6.0 was released today</a>,
+the article was updated to reflect that it applies to the current release and no longer a development version.</p><h2 id=edit-2019-12-15>EDIT (2019-12-15)</h2><p>I have refactored the article to remove the political aspect behind self-hosting,
+which is now <a href=/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/>a standalone article</a>,
+as well as a blurb on reputation since this will become part of a serie of articles.</p><h2 id=wow-that-was-unexpected>Wow, that was unexpected</h2><p>In <a href=https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/>a previous article</a>,
+I explained why I think the &ldquo;mail is hard&rdquo; myth is unfounded and why I think people shouldn&rsquo;t be discouraged from running their own mail services.
+I didn&rsquo;t know this article would gather so much attention,
+reaching <strong>over 75k reads in three days</strong> (currently past 85k) when my next most read article reached 15k reads&mldr;
+in over a year.</p><p>I wish I had a soundcloud.
+<a href=https://patreon.com/gilles>I have a patreon though</a>.
+I also wish I had entered more into details and not covered things so superficially.</p><p><strong>This article is DENSE</strong> but this is because I will hold hands at an absurd level,
+removing all my blabber will only leave very few technical parts.</p><h2 id=this-is-for-techies-and-sysadmins><a name=begintech></a>
+This is for techies and sysadmins</h2><p>Self-hosting mail requires a minimum of knowledge and dedication,
+it is not a two-clicks thing,
+you need to have some basic knowledge and you have to be willing to pour some time into it.
+If you&rsquo;ve never touched a DNS zone or if you think that taking an hour to setup something is hard,
+then <strong>this will not be easy</strong> and I don&rsquo;t recommend you do it unless you <strong>WANT</strong> to learn a ton of stuff.</p><p>If you&rsquo;re a sysadmin who is familiar with sysadmin work,
+then most of the sysadmin work you already do is considerably harder than setting up a mail instrastructure.
+I&rsquo;ll reiterate it for you: <strong>mail is not hard</strong>.</p><h2 id=ehlo-hypnocat>EHLO hypno.cat</h2><p>For this article,
+we will setup a mail server for <a href=https://hypno.cat>hypno.cat</a>,
+a small website for my thriving (hypothetical) hypnotherapist activity.
+I registered the website years ago because I liked the name,
+but never done anything with it beyond hosting an <strong>awesome</strong> animated file.</p><center><img src=2019-09-01-newdomain.png></center><p>Google, Bing and Yahoo have somehow known about it for years and indexed that front page,
+so they won&rsquo;t consider it as a domain that was just bought by a spammer to start sending mail,
+however it is virtually unknown to anyone on the internet because it has no content,
+doesn&rsquo;t link to anywhere,
+isn&rsquo;t linked from anywhere,
+and has never sent or received mails from or to anyone.
+It is an important detail because it shows how the age of a domain has a huge impact on your reputation.</p><p>I&rsquo;m going to set it up for real as I write the article,
+from the moment I have booted a brand new VPS to the moment I have received mail back and forth to my Gmail account.
+I have chosen that one because it is over-represented in the population and this explains why people complained the most about delivery issues there.
+I personally think that Outlook is worse in terms of interoperability,
+but lets keep that for a future article maybe.</p><p>The mail services for <a href=https://hypno.cat>hypno.cat</a> are going to provide TLS-secured incoming and outgoing e-mail.
+They are also going to allow me to submit messages from my smartphone&rsquo;s IMAP client,
+the Gmail application,
+so my users don&rsquo;t feel much of a change in habits.
+I could just as easily provide a webmail,
+with <a href=https://www.rainloop.net/>Rainloop</a> or <a href=https://www.roundcube.net/>Roundcube</a>,
+or setup <a href=https://www.thunderbird.net/>Thunderbird</a> or <a href=http://mutt.org>mutt</a>.
+Any IMAP client will work just fine so I will not cover this part,
+there are many alternatives and plenty of tutorials on how to set them up already.
+There&rsquo;s even techniques to help mail clients auto-discover their configuration,
+you can figure that out by yourselves.</p><p>My outgoing mail will pass the basic checks at Gmail,
+namely SPF, DKIM and DMARC,
+which are more than enough to get your mail through.
+We could do <strong>a lot more</strong>,
+but the goal here is to find the proper balance between doing enough work to look good and remaining simple.</p><p>Incoming mail will be filtered to reduce the volume of spam,
+either by killing obvious bad senders at session time when they are detected,
+or by providing classification so Spam is in a dedicated folder to avoid cluttering the Inbox.
+I could stop here,
+since that would already be a fairly nice setup,
+but I&rsquo;ll also throw in a bit of configuration to teach Dovecot how to train spam detection through moving mail from
+the Inbox to Spam and the other way around.
+That part is slighly more complex because it relies on Sieve which is not the best piece of engineering,
+feel free to discard if you don&rsquo;t care,
+I did without it for over ten years.
+It&rsquo;s a nice-to-have, not a must-have.</p><h2 id=requirements>Requirements</h2><p>The very first requirement is to figure out where you are going to run your mail server.</p><p>With widepsread permanent connections through DSL or FTTH,
+a home connection may be tempting but it is not a good idea as the IP address spaces of ISP are often blacklisted or suffer from a bad reputation to start with.
+In addition,
+many ISP prevent outgoing SMTP traffic to avoid compromised desktops from becoming spamming bots.
+I find the best option to be renting a dedicated server or a VPS from a hosting company after making sure that SMTP traffic is allowed there.</p><p>I have rented my dedicated servers at <a href=https://www.online.net/>online.net</a> for the last twelve years and am very happy with them.
+You&rsquo;ll even find on this blog <a href=https://poolp.org/posts/2018-01-29/install-openbsd-on-dedibox-with-full-disk-encryption/>instructions to run OpenBSD</a> on their servers as they don&rsquo;t support it natively.
+They do not filter SMTP,
+which is good because you can run an SMTP service right away,
+however the IP addresses may have been previously used by bad senders and you will want to test them.
+If the IP that is automatically allocated to you isn&rsquo;t good,
+you can still order an additional one and pick it in a different range after <a href=https://mxtoolbox.com/blacklists.aspx>checking that it isn&rsquo;t in a blacklist</a>,
+or that it <a href=https://www.senderscore.org>doesn&rsquo;t have a bad reputation already</a>.</p><p>Alternatively,
+for the purpose of creating my own commercial mail services,
+I started building an infrastructure on <a href="https://www.vultr.com/?ref=6831037">vultr.com</a> (that&rsquo;s a referal link).
+I haven&rsquo;t been there for long so I might still change my mind, but <strong>so far</strong> I&rsquo;m very happy with it.
+They filter SMTP by default so you have to open a ticket to explain what you intend to do with mail.
+When I explained that I didn&rsquo;t intend to become an ESP but rather provide hosting services,
+they were helpful and unfiltered the same day.</p><p>It does not matter much where you decide to run your mail server,
+but what you need to check is that:</p><ul><li>the host doesn&rsquo;t have a history of hosting spammers and allows you to do SMTP</li><li>you have an IP address that is dedicated to your mail</li><li>you have control of the reverse DNS for that IP address</li><li>your IP address isn&rsquo;t already in blacklists</li></ul><p>As long as these requirements are met,
+you should be fine.</p><p>It is a good plan to prepare for incidents and this is done by using a backup mail server to take over when the primary one is down. I won&rsquo;t cover this as it&rsquo;s not complex, just a matter of an additional DNS record and an additional mail server routing traffic to the primary one, you&rsquo;ll figure this out by yourselves.
+<strong>HOWEVER</strong>,
+a lot of people mentioned that you can get blacklisted and lose mail,
+so I think now is the right time to recommend that <strong>you don&rsquo;t host your different mail servers at the same place</strong>.
+You don&rsquo;t want the two of them to go down if there&rsquo;s a power or network shortage in your datacenter,
+and you also want to ensure that if your IP range gets blacklisted as collateral damage from an evil neighbor,
+the IP of your backup mail server is &ldquo;far enough&rdquo; to not be blacklisted too.
+This way,
+should your primary mail server be temporarily blocked from sending,
+it can reroute traffic through the backup mail server until the issue is solved.</p><p>I have endured collateral damage on my own setup only once during the last ten years.
+It was annoying for sure because incidents are never fun,
+but I rerouted traffic to my secondary server to unbreak traffic,
+filled the form to delist my IP while providing proof that I was a legitimate sender,
+rerouted traffic back when issue was resolved.
+It was nowhere near the big deal people make out of it.</p><p><strong>No stress for people who plan ahead</strong>.</p><h2 id=the-technical-stack>The technical stack</h2><p>I will spin a new VPS at <a href="https://www.vultr.com/?ref=6831037">vultr.com</a> (that&rsquo;s still a referal link),
+install the latest <a href=https://www.openbsd.org>OpenBSD</a>
+<a href=https://ftp.eu.openbsd.org/pub/OpenBSD/snapshots/amd64/>snapshot</a> because that&rsquo;s how I roll (this will not be covered in this article),
+and build my mail system on top of it.
+I will assume OpenBSD throughout the rest of my writing but besides system-specific commands to install packages the configuration should be similar from a system to another.
+If you&rsquo;re tall enough to run a mail server,
+you should be tall enough to adapt pathnames accordingly or &mldr; just use OpenBSD already !</p><center><img src=https://opensmtpd.org/images/opensmtpd.png></center><p>For the SMTP layer,
+which is in charge of exchanging messages between hosts disregarding what users will use to access their mail,
+I will be using the <a href=https://www.OpenSMTPD.org/>OpenSMTPD</a> software.
+It is the default SMTP daemon for the OpenBSD operating system and has a portable version which is <a href=https://github.com/OpenSMTPD/OpenSMTPD>available on Github</a> with instructions on how to build.
+These instructions are for the <strong>6.6.0 version</strong> or later,
+they <strong>will not work</strong> on earlier versions.</p><center><img src=https://www.dovecot.org/typo3conf/ext/dvc_content/Resources/Public/Images/dovecot_logo_vector.svg></center><p>For the IMAP layer,
+which will allow users to retrieve messages they received and access them from their smartphones or webmails,
+I will use the latest version of <a href=https://www.dovecot.org>Dovecot</a>.
+I will also use the Dovecot-Pigeonhole package,
+which will allow us to train the antispam solution into learning Ham from Spam.
+If you intend to only use a console client over ssh,
+such as <code>mutt</code> for example,
+you can skip that part as OpenSMTPD can deliver in a local mailbox that mails clients can access directly.
+In this article,
+we setup IMAP because we acually want to read mails from a smartphone as that&rsquo;s what the regular people do.</p><center><img src=https://camo.githubusercontent.com/ea57696ebeee9a4a6668347acf7ebd8ef8f74ee7/68747470733a2f2f727370616d642e636f6d2f696d672f727370616d645f6c6f676f5f626c61636b2e706e67></center><p>Finally,
+for the spam filtering layer,
+I will use the excellent <a href=https://www.rspamd.com>Rspamd</a> daemon which is far more than <em>just</em> an antispam solution.
+It provides state of the art spam filtering methods,
+but also provides antivirus integration,
+dkim signing,
+and a ton of modules which you can chose to use or not to fine tune your setup.
+In this article,
+we&rsquo;ll simply use it for its DKIM-signing and spam filtering features which is the bare minimum we need.</p><h2 id=making-myself-reachable>Making myself reachable</h2><p>SMTP is very tighly coupled with DNS and other hosts rely on DNS lookups to find out which machine handle mail for your domain.
+This is done through the lookup of MX (Mail eXchanger) records,
+so the most minimal thing to do for SMTP to work is to declare an MX record for your domain.
+For <code>hypno.cat</code>,
+the zone contains the following:</p><pre tabindex=0><code>;; an A (and AAAA record for IPv6) record is declared to name your mail server
+
+mail.hypno.cat  A       217.69.8.253
+mail.hypno.cat  AAAA    2001:19f0:6801:867:5400:01ff:fee7:7af7
+
+
+;; an MX record is declared to let the world know that mail.hypno.cat handles mail for hypno.cat
+;; 0 is the highest preference, if we had a backup MX we&#39;d set a higher number on it,
+;; let&#39;s keep that for later, shall we ?
+
+hypno.cat.      MX 0    mail.hypno.cat.
+;;hypno.cat.    MX 10   mail-backup.hypno.cat.
+</code></pre><p>I can verify that everything is fine using the <code>host</code> and <code>dig</code> utilities to check that the mail server name resolves and that the MX lookup returns the mail server name:</p><pre tabindex=0><code>$ host mail.hypno.cat
+mail.hypno.cat has address 217.69.8.253
+mail.hypno.cat has IPv6 address 2001:19f0:6801:867:5400:1ff:fee7:7af7
+
+$ dig -t MX hypno.cat +short
+0 mail.hypno.cat.
+</code></pre><p>At this point and with these DNS records,
+other mail servers can already lookup which MX is responsible for <code>hypno.cat</code>,
+and contact it when they want to send mail to any address for that domain.</p><h2 id=making-myself-look-all-fine-and-dandy>Making myself look all fine and dandy</h2><p>That&rsquo;s not enough because nowadays you <strong>MUST</strong> have a reverse DNS (rDNS) <strong>AND</strong> Forward-Confirmed rDNS (FCrDNS).</p><p>There&rsquo;s a reason for that.
+A large number of the hosts spamming the world are compromised machines,
+with a large share of them being home computers behind residential connections.
+Many of these residential connections don&rsquo;t have rDNS,
+don&rsquo;t have FCrDNS,
+or have an rDNS that matches a dynamically allocated IP pattern (ie: <code>123.123.123.123.dyn.adsl.example.com</code>).
+Because they are individually compromised machines,
+and not regular servers under the spammers control,
+rDNS and FCrDNS can&rsquo;t be configured to look nice&mldr;
+so it became a proof-of-work to configure your rDNS and FCrDNS correctly while ensuring that it doesn&rsquo;t look like a dynamically allocated IP pattern.
+In some of the Big Mailer Corps guidelines this is explicitely stated,
+for others you just discover that the hard way.
+Either way,
+it&rsquo;s a BARE MINIMUM,
+make sure that your hostname looks like a REAL mail server (ie: <code>mail.hypno.cat</code>, not <code>www.hypno.cat</code>).</p><p>rDNS is usually out of your control because it&rsquo;s managed in a somewhat special &ldquo;arpa&rdquo; zone owned by the IP address owner.
+ISP usually don&rsquo;t let you configure it but server providers can&rsquo;t realistically expect their customers not to,
+so they generally provide a small form somewhere in their control panels to let you provide the rDNS you want for the IP address they allocated you:</p><center><img src=2019-09-01-vultr-rdns.png></center><p>If I setup my rDNS to be the same as the forward records I configured above, then I automatically pass the FCrDNS test.
+This can be easily verified by looking up the rDNS for an IP address:</p><pre tabindex=0><code>$ host 217.69.8.253   
+253.8.69.217.in-addr.arpa domain name pointer mail.hypno.cat.
+$ host 2001:19f0:6801:867:5400:1ff:fee7:7af7
+7.f.a.7.7.e.e.f.f.f.1.0.0.0.4.5.7.6.8.0.1.0.8.6.0.f.9.1.1.0.0.2.ip6.arpa domain name pointer mail.hypno.cat.
+</code></pre><p>Then looking up the IP address for that rDNS:</p><pre tabindex=0><code>$ host mail.hypno.cat
+mail.hypno.cat has address 217.69.8.253
+mail.hypno.cat has IPv6 address 2001:19f0:6801:867:5400:1ff:fee7:7af7
+</code></pre><p>If they match both ways, then everything&rsquo;s fine.</p><h2 id=advertise-which-machines-are-allowed-to-send-mail-on-behalf-of-my-domain>Advertise which machines are allowed to send mail on behalf of my domain</h2><p>SPF is a mechanism which makes it possible for destination mail servers to determine if a machine was allowed to send mail on behalf of a domain.</p><p>How it works is very simple,
+basically you add a DNS record to the zone for your domain stating which servers will emit mails.
+When a destination mail server receives mail with a sender from your domain,
+it checks if the IP address of the server submitting the e-mail is part of the whitelist.</p><p>SPF is not mandatory but it is one of the things that makes you look good.
+While it is only informative by default,
+not necessarily resulting in mails being junked if they fail the test,
+it does have an impact on computing the likeliness of a message being a spam when added to other factors.
+It is commonly accepted that lack of SPF has a very negative impact on the reputation of a domain,
+so given how simple it is to provide the record,
+there&rsquo;s simply no excuse.</p><p>There are multiple ways to setup SPF,
+in this example I will simply set it up so ONLY my mail server can send mail on my behalf:</p><pre tabindex=0><code>hypno.cat.      IN TXT  &#34;v=spf1 mx -all&#34;
+</code></pre><p>Should hosts receive a mail with a sender <code>@hypno.cat</code> not originating from <code>mail.hypno.cat</code>,
+they will be able to assume,
+or even enforce,
+that it should be rejected.</p><h2 id=prove-that-i-actually-authorized-the-message>Prove that I actually authorized the message</h2><p>DKIM is an authentication mechanism by which you can cryptographically sign mails emitted by your mail server,
+proving that you saw them and took responsibility in letting them transit.
+Hosts receiving these mails can verify that you authorized them,
+by verifying the signature and detect possible forgery.</p><p>Like SPF,
+this is informative by default and failing a DKIM signature or even lacking the mechanism doesn&rsquo;t mean a mail can&rsquo;t inbox,
+however it accounts in the bad points given to a sender and degrades the reputation.
+It is also commonly accepted that lack of DKIM has a very negative impact on the reputation of a domain,
+so again, just do it.</p><p>It is slightly more complex than SPF because,
+although it also relies on DNS,
+for DKIM you have to generate a keypair in order to publish the public key in a DNS record.</p><p><strong>We&rsquo;re in 2019</strong>,
+I will be generating a 1024 bits RSA key,
+<strong>I know</strong>.</p><p>&mdash; BEGIN DIGRESSION &mdash;</p><p>2048 bits RSA public keys do not fit in a DNS TXT record and must be truncated into two records,
+but not everyone is able to cope with these truncated keys so you may lose DKIM benefits by going 2048 if hosts fail to use your (partial) public key and assume you&rsquo;ve failed signing.
+Given that we&rsquo;re not looking into security more than trying to look good at this point,
+we&rsquo;ll just look the other way while excusing the fact that there&rsquo;s a very moderate risk of impersonation when used in conjunction with SPF.
+<strong>This is very bad thinking</strong> but DKIM also has other short-comings and given that virtually everyone does 1024 bits RSA,
+I suggest we argue about the 1024 vs >= 2048 key size when we&rsquo;re already successful at exchanging mails with Big Mailer Corps,
+but I&rsquo;ll just take a moment to stress out,
+without pointing fingers at any,
+that even some security companies that actually work in the mail industry have issues with 2048 bits RSA.</p><p>Companies that actually provide sender reputation scoring.
+Oh, the, irony.</p><p>&mdash; END DIGRESSION &mdash;</p><p>If this genuinely worries you,
+you can still experiment truncating key into two records and see if it suits you,
+adapting my example is trivial,
+just make sure you have a TXT record with a part of the key and another TXT record with the remaining.</p><p>I&rsquo;ll create a directory to hold the keys:</p><pre tabindex=0><code># mkdir /etc/mail/dkim
+</code></pre><p>Then, the following commands will generate the keypair and extract the public key out of the private key:</p><pre tabindex=0><code># openssl genrsa -out /etc/mail/dkim/hypno.cat.key 1024                                       
+Generating RSA private key, 1024 bit long modulus
+..............................++++++
+...............++++++
+e is 65537 (0x10001)
+
+# openssl rsa -in /etc/mail/dkim/hypno.cat.key -pubout -out /etc/mail/dkim/hypno.cat.pub 
+writing RSA key
+
+# cat /etc/mail/dkim/hypno.cat.pub                                                                 
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDThHqiM610nwN1nmV8OMc7PaPO
+uJWVGRDz5bWj4cRjTTmQYjJQd02xrydRNrRhjEKBm2mMDArNWjoM3jvN04ZifqJx
+DmKr7X8jsYi+MPEHz6wZxB8mayDK6glYTCyx//zl1luUdvm26PutA38K8cgnb7iT
+kfVP2OqK6sHAdXjnowIDAQAB
+-----END PUBLIC KEY-----
+</code></pre><p>Finally,
+I can create the DNS TXT record by extracting the public key out of the armor delimiters and formatting the content so it displays as follows:</p><pre tabindex=0><code>20190913._domainkey.hypno.cat.	IN TXT &#34;v=DKIM1;k=rsa;p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDThHqiM610nwN1nmV8OMc7PaPOuJWVGRDz5bWj4cRjTTmQYjJQd02xrydRNrRhjEKBm2mMDArNWjoM3jvN04ZifqJxDmKr7X8jsYi+MPEHz6wZxB8mayDK6glYTCyx//zl1luUdvm26PutA38K8cgnb7iTkfVP2OqK6sHAdXjnowIDAQAB;&#34;
+</code></pre><p>The name of the record should be constructed using this pattern: <code>&lt;selector>._domainkey.&lt;domain>.</code>,
+where <code>&lt;selector></code> is a name you chose and which allows multiple keys to coexist.
+I like to use the date at which I generated the keypair,
+but whatever you chose,
+write it down for later as we&rsquo;ll need it when configuring DKIM signing.</p><p>Also,
+note that the public key doesn&rsquo;t have to be kept in the directory once it&rsquo;s published in DNS.
+It can always be retrieved from the private key should it be needed for some reason,
+however I like keeping it around for fast reference.
+And make sure the private key isn&rsquo;t world-readable if you have local users on your system,
+for some reason OpenSSL thinks private keys should be created <code>rw-r--r--</code>.</p><h2 id=instructing-hosts-what-to-do-with-spf-and-dkim-failures-with-dmarc>Instructing hosts what to do with SPF and DKIM failures with DMARC</h2><p>SPF and DKIM are both fine,
+but if they&rsquo;re informative then it also mean they don&rsquo;t prevent abuses of your domain name.</p><p>DMARC allows instructing a destination mail server what to do with senders that fail SPF and DKIM tests.
+Most notably it allows instructing them to reject such senders.</p><p>There&rsquo;s no clear indicator that providing a reject policy brings any positive points to a domain over not doing anything,
+however there are multiple hints that having a DMARC record has a positive impact over having none,
+even if that record states that nothing should be done about SPF and DKIM failures.</p><p>The format of DMARC records goes beyond this article and you&rsquo;ll find multiple examples in any search engine,
+but a very simple record will simply state a policy (p=) of <code>none</code> (<code>reject</code> if you want to be harsh, <code>quarantine</code> if you need more time to decide).
+The percentage field (pct=) declares how many of these mails should be subjected to the DMARC policy,
+and the Reporting URI of Aggregated field (rua=) is where you should receive DMARC reports should you want to analyze them (before switching from <code>quarantine</code> to <code>reject</code> for example).</p><p>I&rsquo;ll just setup the most dummy record,
+one that will make all Big Mailer Corps see that we care about DMARC even though we don&rsquo;t know what to do with it:</p><pre tabindex=0><code>_dmarc.hypno.cat.   IN TXT    &#34;v=DMARC1;p=none;pct=100;rua=mailto:postmaster@hypno.cat;&#34;
+</code></pre><h2 id=getting-yourself-a-certificate-for-tls>Getting yourself a certificate for TLS</h2><p>There are multiple ways you can obtain a TLS certificate,
+and assuming that you are already familiar with hosting other services,
+I&rsquo;ll just pretend that you already know how to obtain one from your registrar or from <a href=https://letsencrypt.org>letsencrypt</a>.</p><p><strong>If you know how to deal with your certificates, you can just skip this section and go to the next one.</strong></p><p>Since I&rsquo;m really setting up <code>mail.hypno.cat</code>,
+I won&rsquo;t be able to continue this article without obtaining a certificate,
+so as a courtesy to OpenBSD users I&rsquo;ll document how I will generate mine on a brand new OpenBSD install.
+<code>acme-client</code> is a utility that lets you request and renew certificates from the console.
+It relies on an HTTP challenge,
+so it needs to be able to write to a directory that is served over HTTP,
+but luckily OpenBSD also ships with an <code>httpd</code> daemon that we can use for the challenge.
+Because we&rsquo;re EXTRA lucky, it also provides an example configuration file that we can use with almost no change.</p><p>Simply copy the example configuration from <code>/etc/example/httpd.conf</code> to <code>/etc/httpd.conf</code>,
+replace <code>example.com</code> with <code>mail.hypno.cat</code> and remove the tls block since we only care about serving the challenge.
+The file should now read as follow:</p><pre tabindex=0><code>server &#34;mail.hypno.cat&#34; {
+        listen on * port 80
+        location &#34;/.well-known/acme-challenge/*&#34; {
+                root &#34;/acme&#34;
+                request strip 2
+        }
+        location * {
+                block return 302 &#34;https://$HTTP_HOST$REQUEST_URI&#34;
+        }
+}
+</code></pre><p>The <code>httpd</code> daemon can be started with the following command:</p><pre tabindex=0><code># rcctl -f start httpd
+httpd(ok)
+</code></pre><p>The acme-client itself is straighforward to configure,
+again simply copy the example configuration from <code>/etc/example/acme-client.conf</code> to <code>/etc/acme-client.conf</code>,
+replace <code>example.com</code> with <code>mail.hypno.cat</code> and you should end up with a block like this:</p><pre tabindex=0><code>domain mail.hypno.cat {
+        domain key &#34;/etc/ssl/private/mail.hypno.cat.key&#34;
+        domain full chain certificate &#34;/etc/ssl/mail.hypno.cat.fullchain.pem&#34;
+        sign with letsencrypt
+}
+</code></pre><p>at this point you can simply run <code>acme-client</code> on the domain:</p><pre tabindex=0><code># acme-client -v mail.hypno.cat
+[...]
+acme-client: /etc/ssl/mail.hypno.cat.fullchain.pem: created
+</code></pre><p>The certificate and keys are created at the appropriate place,
+we&rsquo;ll later adjust paths in OpenSMTPD and Dovecot to point to the proper files.</p><p>You can keep the httpd running for future renewals and call <code>acme-client</code> from a cron,
+you can shut it down and deal with renewals in another way.
+You sort out how you want to renew with the help of the <code>acme-client(1)</code> man page.</p><h2 id=installing-and-configuring-rspamd>Installing and configuring Rspamd</h2><p>On OpenBSD, Rspamd is packaged and can be installed with a single command.
+We also need to install Redis which is used to store Rspamd statistics and greylisting states (among other things),
+as well as <code>filter-rspamd</code> which is the piece of code that allows OpenSMTPD to work with Rspamd.
+Both of them are also packaged so they can be installed with a single command too.</p><p>As I&rsquo;m writing this,
+<code>filter-rspamd</code> will only be available in the next OpenBSD release due in October,
+so if you want to play with it before then,
+you can simply <a href=https://github.com/poolpOrg/filter-rspamd>obtain it from github</a> and read the README instructing how to build.
+Both Redis and Rspamd are already available in OpenBSD packages so the instructions below are already valid for them.</p><p>First,
+I&rsquo;ll install these packages:</p><pre tabindex=0><code>mail$ doas pkg_add redis rspamd opensmtpd-filter-rspamd
+[...]
+redis-4.0.14: ok
+rspamd-1.9.0: ok
+opensmtpd-filter-rspamd-0.1.1: ok
+The following new rcscripts were installed: /etc/rc.d/redis /etc/rc.d/rspamd
+See rcctl(8) for details.
+</code></pre><p>Rspamd is highly configurable so if you want to do funky things, it&rsquo;s up to you to go <a href=https://rspamd.com/doc/configuration/>read the extensive documentation</a>.
+For the purpose of this article I&rsquo;ll keep it very basic,
+as is the case on my own machines.</p><p>I could edit the configuration in <code>/etc/rspamd/actions.conf</code> to adjust junking thresholds to my liking, but the defaults suit me fine so this was just to show them to you:</p><pre tabindex=0><code>actions {
+    reject = 15;    # Reject when reaching this score
+    add_header = 6; # Add header when reaching this score
+    greylist = 4;   # Apply greylisting when reaching this score (will emit `soft reject action`)
+    [...]
+</code></pre><p>And what I really, really want is for Rspamd to handle my DKIM signing because this is one of the requirements to not look bad to the world.</p><p>This is done by providing the configuration to match the DKIM key I generated earlier in <code>/etc/rspamd/local.d/dkim_signing.conf</code>:</p><pre tabindex=0><code># mkdir /etc/rspamd/local.d
+# cat &lt;&lt; EOF &gt;/etc/rspamd/local.d/dkim_signing.conf
+allow_username_mismatch = true;
+
+domain {
+    hypno.cat {
+        path = &#34;/etc/mail/dkim/hypno.cat.key&#34;;
+        selector = &#34;20190913&#34;;
+    }
+}
+EOF
+</code></pre><p>The <code>allow_username_mismatch</code> configuration is needed here because Rspamd expects usernames to contain the domain name,
+but <strong>in this setup</strong> OpenSMTPD authenticates against simple usernames. Also make sure the dkim key file is
+readable by members of the <code>_rspamd</code> group.</p><p>We&rsquo;re done here, Rspamd and Redis can be enabled so OpenBSD starts them at next reboot:</p><pre tabindex=0><code># rcctl enable redis
+# rcctl enable rspamd
+</code></pre><p>And I can start them right away so we don&rsquo;t have to wait until next reboot:</p><pre tabindex=0><code># rcctl start redis
+redis(ok)
+# rcctl start rspamd
+rspamd(ok)
+</code></pre><h2 id=configuring-opensmtpd>Configuring OpenSMTPD</h2><p>OpenSMTPD is installed by default on OpenBSD so there is no installing phase here.
+If you run a different operating system,
+either someone has packaged it there and you can install using your package manager,
+or you can build from source and install by getting code from <a href=https://github.com/OpenSMTPD/OpenSMTPD>Github mirror</a> and following build instructions.</p><p>As stated earlier,
+<strong>these instructions are only valid for the 6.6.0 release and later</strong>,
+earlier versions don&rsquo;t support filters and some other features described here.</p><p>The default configuration for OpenSMTPD is suitable for local mail server,
+not accepting connections from the outside,
+but able to let local users exchange messages between themselves and to a remote host.
+It looks like this:</p><pre tabindex=0><code>#       $OpenBSD: smtpd.conf,v 1.11 2018/06/04 21:10:58 jmc Exp $
+
+# This is the smtpd server system-wide configuration file.
+# See smtpd.conf(5) for more information.
+
+table aliases file:/etc/mail/aliases
+
+# To accept external mail, replace with: listen on all
+#
+listen on lo0
+
+action &#34;local_mail&#34; mbox alias &lt;aliases&gt;
+action &#34;outbound&#34; relay
+
+# Uncomment the following to accept external mail for domain &#34;example.org&#34;
+#
+# match from any for domain &#34;example.org&#34; action &#34;local_mail&#34;
+match for local action &#34;local_mail&#34;
+match for any action &#34;outbound&#34;
+</code></pre><p>It uses sane defaults as to make it hard to misconfigure,
+so if you&rsquo;re worried about the last line (<code>match for any</code>)
+turning your server into an open-relay,
+don&rsquo;t worry too much as it has an implicit (<code>from local</code>).
+You would have to very explicitely tell your server to <code>match from any for any</code> in order to let spammers abuse you.</p><p>I initially wanted to update the configuration file progressively to hold your hand,
+but this article grew a lot since my first version.
+I&rsquo;ll just put the complete 16 configuration lines configuration file and comment it extensively afterwards:</p><pre tabindex=0><code>pki mail.hypno.cat cert &#34;/etc/ssl/mail.hypno.cat.fullchain.pem&#34;
+pki mail.hypno.cat key &#34;/etc/ssl/private/mail.hypno.cat.key&#34;
+
+filter check_dyndns phase connect match rdns regex { &#39;.*\.dyn\..*&#39;, &#39;.*\.dsl\..*&#39; } \
+    disconnect &#34;550 no residential connections&#34;
+
+filter check_rdns phase connect match !rdns \
+    disconnect &#34;550 no rDNS is so 80s&#34;
+
+filter check_fcrdns phase connect match !fcrdns \
+    disconnect &#34;550 no FCrDNS is so 80s&#34;
+
+filter senderscore \
+    proc-exec &#34;filter-senderscore -blockBelow 10 -junkBelow 70 -slowFactor 5000&#34;
+
+filter rspamd proc-exec &#34;filter-rspamd&#34;
+
+table aliases file:/etc/mail/aliases
+
+listen on all tls pki mail.hypno.cat \
+    filter { check_dyndns, check_rdns, check_fcrdns, senderscore, rspamd }
+
+listen on all port submission tls-require pki mail.hypno.cat auth filter rspamd
+
+action &#34;local_mail&#34; maildir junk alias &lt;aliases&gt;
+action &#34;outbound&#34; relay helo mail.hypno.cat
+
+match from any for domain &#34;hypno.cat&#34; action &#34;local_mail&#34;
+match for local action &#34;local_mail&#34;
+
+match from any auth for any action &#34;outbound&#34;
+match for any action &#34;outbound&#34;
+</code></pre><p>That&rsquo;s all is needed for our complete SMTP setup.</p><p>The first two <code>pki</code> lines declare that <code>mail.hypno.cat</code> will use the certificate and key we generated earlier for TLS.</p><p>The filter lines apply a set of filters to incoming connections,
+<code>check_dyndns</code> will filter if rDNS matches some patterns,
+<code>check_rdns</code> will filter if rDNS is missing,
+<code>check_fcrdns</code> will filter if FCrDNS is missing,
+these are builtin filters in OpenSMTPD that you can tweak to filter at different phases or using other criterias.</p><p><code>senderscore</code> is a custom filter that you can install either through your package manager (<code>pkg_add opensmtpd-filter-senderscore</code> on OpenBSD),
+or obtain from <a href=https://github.com/poolpOrg/filter-senderscore>Github</a>.
+It is not mandatory but I find it particularly useful and will explain why in the next section.
+In this configuration,
+it will reject a sender if its senderscore is below 10, <code>junk</code> message (add X-Spam header) if score is below 70,
+and for my own personal pleasure,
+add a delay to each response that is proportional to how bad the reputation is so bad senders are slowed down.</p><p><code>rspamd</code> is also a custom filter that we installed in the previous section.
+There&rsquo;s no configuration as it is fully controlled from the Rspamd daemon responses,
+all we need to do is declare it.</p><p>If you want to be more conservative and not reject mails to avoid false positives,
+you can assign a <code>junk</code> action rather than <code>disconnect</code> action to builtin filters and remove the <code>-blockBelow</code> option in the <code>senderscore</code> filter:</p><pre tabindex=0><code>filter check_dyndns phase connect match rdns regex { &#39;.*\.dyn\..*&#39;, &#39;.*\.dsl\..*&#39; } junk
+filter check_rdns phase connect match !rdns junk
+filter check_fcrdns phase connect match !fcrdns junk
+filter senderscore proc-exec &#34;filter-senderscore -junkBelow 70 -slowFactor 5000&#34;
+</code></pre><p>This way instead of rejecting sessions,
+OpenSMTPD will simply junk them so they are in your Spam folder.
+By monitoring what ends in your junk folder,
+you can gain confidence and tune settings to match what you really want.</p><p>These simple filters,
+not even counting rspamd,
+are enough to cut most of my Spam turning <em>hundreds</em> of daily spam into a handful.
+The <code>rdns regex</code> one can be tuned as depending on your country,
+you may see patterns that are particularly repetitive and that would never appear in mine.
+To ease maintenance,
+you can store them in a file, one by line and use the following construct:</p><pre tabindex=0><code>table &lt;dyndns&gt; file:/etc/mail/path-to-my-regex-file
+filter check_dyndns phase connect match rdns regex &lt;dyndns&gt; junk
+</code></pre><p>Let&rsquo;s continue dissecting the configuration.</p><p>The <code>table aliases</code> points to a file with&mldr; aliases in two columns.
+The left column has the user-part of an e-mail address you receive,
+the right column has the user to which it should be delivered (ie: <code>root: gilles</code>)
+It is recommended that you have aliases mapping <code>root</code>, <code>abuse</code> and <code>postmaster</code> to an account that you actually read.
+I didn&rsquo;t do that because I&rsquo;m going to trash the install after this article,
+but do it.</p><p>Then comes the <code>listen</code> lines.
+The first one is the public endpoint that other mail servers can contact to send mails to <code>hypno.cat</code>,
+it is configured to offer <code>tls</code> using the certificate and key for <code>mail.hypno.cat</code> and filter incoming sessions through all my filters.
+The second one is the endpoint for my own users,
+on the <code>submission</code> port,
+it requires <code>tls</code> using the same certificates,
+requires <code>auth</code> using system users (the default, can be configured otherwise),
+and filters through the rspamd filter only so we can DKIM-sign our own messages.</p><p>The <code>action</code> lines define an action for local mail which is to deliver to a maildir,
+while classifying junk in a specific folder and resolving aliases,
+the other action is to relay mail and let other host know that we&rsquo;re <code>mail.hypno.cat</code> when we greet ourselves.
+If a server had multiple IP addresses the relay action should also specify the source address to use (with <code>src</code>) to make sure the proper IP address is used,
+here I only have one IP address and it is used for mail so I don&rsquo;t have to.</p><p>Finally,
+the <code>match</code> lines are the ruleset.
+When an envelope enters the SMTP server through one of the <code>listen</code> endpoints,
+it is compared to each <code>match</code> line one after another until a matching <code>action</code> in found or the envelope is rejected.
+The conditions are fairly explicit so I won&rsquo;t describe these four lines,
+you should be able to figure out by yourself what <code>from any for domain "hypno.cat"</code> means otherwise you shouldn&rsquo;t be reading this in the first place.</p><h2 id=a-few-words-about-senderscore>A few words about SenderScore</h2><p>SenderScore is an IP reputation database which associates a score ranging between 0 and 100 to an IP address.
+The score is tied to the volume and behavior observed from these IP addresses,
+and while we can&rsquo;t really know HOW these scores are computed because the methodology is not public,
+a bit of studying allows confirming that they didn&rsquo;t make these numbers out of nowhere:
+they do correlate with delivery and error rates at various Big Mailer Corps and it is possible to influence the scoring with changes of behaviors that also correlate to changes in delivery and error rates.</p><p>It is also <strong>VERY</strong> obvious that to build their reputation score they have access to SMTP session informations that only a destination mail server can have,
+such as the volume of mails observed from an IP address,
+or the ratio of failed vs accepted recipients,
+and since the scoring correlates with delivery and error rates in my observations,
+this implies that they get this information from Big Mailer Corps.
+Do what you want with that bit of information.</p><p>Based on <strong><em>MY</em></strong> understanding,
+it is a very interesting indicator to limit the amount of spam hitting you.
+I don&rsquo;t trust it to be accurate when it comes to good reputations (because I kinda know how to work a bit around)
+but I do trust it to be HIGHLY accurate when it comes to bad reputations,
+because it takes a certain amount of doing bad things in high volumes to see a scoring degrade.
+If you don&rsquo;t do bulk mailing,
+you should definitely either be unknown to them or have a scoring around 95 or above,
+otherwise you&rsquo;re very likely doing something wrong.</p><p>Not everyone is convinced about SenderScore and some delivery experts claim it&rsquo;s bullshit.
+I personally ran months-long experiments graphing daily reputation and volumes,
+then comparing them to delivery graphs,
+and my opinion is quite the opposite:
+to me there is a very significant correlation that definitely helps classify senders.
+I think the best approach is to use the filter for junking,
+not blocking,
+and determining by yourself if you&rsquo;re happy with it.</p><p>SenderScore considers that hosts should have a reputation above 70,
+I would personally assume hosts below 80 to be good junking candidates,
+and hosts below 10 to be obvious rejects.</p><h2 id=installing-and-configuring-dovecot>Installing and configuring Dovecot</h2><p>OpenBSD also has a package for Dovecot which can be installed with a simple command:</p><pre tabindex=0><code>mail# pkg_add dovecot
+dovecot-2.3.7.2v0: ok
+The following new rcscripts were installed: /etc/rc.d/dovecot
+See rcctl(8) for details.
+New and changed readme(s):
+        /usr/local/share/doc/pkg-readmes/dovecot
+[...]
+</code></pre><p>And,
+<strong>specifically for OpenBSD</strong>,
+following instructions from the readme,
+the <code>/etc/login.conf</code> file should contain a <code>dovecot</code> class to bump the resources allowed as Dovecot is very hungry for file descriptors:</p><pre tabindex=0><code>dovecot:\
+    :openfiles-cur=1024:\
+    :openfiles-max=2048:\
+    :tc=daemon:
+</code></pre><p>Once that is done,
+there&rsquo;s really not much to do on the Dovecot side except have it point to the proper TLS certificate we generated earlier.</p><p>I do that by tweaking the <code>ssl_cert</code> and <code>ssl_key</code> configuration keys in the <code>/etc/dovecot/conf.d/10-ssl.conf</code> file so they read as follows:</p><pre tabindex=0><code>ssl_cert = &lt;/etc/ssl/mail.hypno.cat.fullchain.pem
+ssl_key = &lt;/etc/ssl/private/mail.hypno.cat.key
+</code></pre><p>Then Dovecot must be told that mails should be looked up in the user <code>~/Maildir</code> directory as this is where OpenSMTPD drops files.
+I do that by tweaking the <code>mail_location</code> configuration key in the <code>/etc/dovecot/conf.d/10-mail.conf</code> file so it reads as follows:</p><pre tabindex=0><code>mail_location = maildir:~/Maildir
+</code></pre><p>We&rsquo;re all set, we can enable the daemon so it&rsquo;s started at next boot, and start it right away:</p><pre tabindex=0><code>mail# rcctl enable dovecot
+mail# rcctl start dovecot   
+dovecot(ok)
+</code></pre><p>At this point,
+you can already configure any mail client like <code>mutt</code>, <code>thunderbird</code> or even the <code>gmail</code> app on Android,
+so that it uses <code>mail.hypno.cat</code> both for incoming and outgoing mails.</p><center><img src=2019-09-01-smartphone.png></center><h2 id=teaching-dovecot-to-train-rspamd>Teaching Dovecot to train Rspamd</h2><p>You read until here,
+good.</p><p>So this is a bonus section,
+one that&rsquo;s absolutely not mandatory in setting up your mail server,
+but one that I&rsquo;d like to add because it lets users train the spam filtering the same way they&rsquo;re used to already:
+moving a mail to spam, marking a mail as spam or reporting a mail as spam,
+whichever it is called on their interface.
+The good news is that it integrates with IMAP,
+so no matter if they use their smartphone app, a client on their desktop or a webmail,
+the action of reporting a spam will automatically train the filter.</p><p>How you do that is relatively simple in theory,
+it consists of plugging a couple scripts,
+one to handle moving a mail from Inbox to Spam and one to handle moving mail from Spam to elsewhere.
+In pratice,
+Big Mailer Corps filters also detect that you delete a mail without opening it and such,
+but let&rsquo;s not get too excited and start with something that&rsquo;s already good enough.
+How you do that in practice is a bit more complex,
+and that is because we will rely on Sieve which is&mldr;
+how do you put it with diplomacy &mldr;
+&ldquo;overengineered&rdquo;.</p><p><strong>Given that this is not a critical piece of the setup, you are allowed to shut your brain off and follow blindly instructions. Worst than can happen at this point is that it will not train anything.</strong></p><p>To enable imap sieve,
+the Pigeonhole package must be installed,
+and as has been the case throughout this article all I need is a simple command:</p><pre tabindex=0><code>mail# pkg_add dovecot-pigeonhole
+dovecot-pigeonhole-0.5.7.2v1: ok
+
+[...]
+</code></pre><p>And&mldr;
+here comes the tricky part, you need to configure Dovecot to enable imap_sieve,
+and teach it what sieve scripts to use for what actions.</p><p>First, I will need to enable <code>imap_sieve</code> in Dovecot by adding it to the mail plugins for IMAP.
+This is done by tweaking the <code>mail_plugins</code> configuration key in <code>/etc/dovecot/conf.d/20-imap.conf</code>:</p><pre tabindex=0><code>protocol imap {
+    [...]
+
+    mail_plugins = $mail_plugins imap_sieve
+ 
+    [...]
+}
+</code></pre><p>Then to teach Dovecot how to train,
+I&rsquo;ll add the following bit to <code>/etc/dovecot/conf.d/90-plugin.conf</code>,
+telling it that there are sieve scripts to trigger when mail gets moved in and out of Junk mailbox:</p><pre tabindex=0><code>plugin {
+  sieve_plugins = sieve_imapsieve sieve_extprograms
+  sieve_global_extensions = +vnd.dovecot.pipe +vnd.dovecot.environment
+
+  imapsieve_mailbox1_name = Junk
+  imapsieve_mailbox1_causes = COPY APPEND
+  imapsieve_mailbox1_before = file:/usr/local/lib/dovecot/sieve/report-spam.sieve
+
+  imapsieve_mailbox2_name = *
+  imapsieve_mailbox2_from = Junk
+  imapsieve_mailbox2_causes = COPY
+  imapsieve_mailbox2_before = file:/usr/local/lib/dovecot/sieve/report-ham.sieve
+
+  imapsieve_mailbox3_name = Inbox
+  imapsieve_mailbox3_causes = APPEND
+  imapsieve_mailbox3_before = file:/usr/local/lib/dovecot/sieve/report-ham.sieve
+
+  sieve_pipe_bin_dir = /usr/local/lib/dovecot/sieve
+}
+</code></pre><p>Now that dovecot is ready,
+I&rsquo;ll have to prepare the sieve part which relies on two sieve scripts to train spam and ham inside <code>/usr/local/lib/dovecot/sieve</code>:</p><pre tabindex=0><code># cat report-ham.sieve
+
+require [&#34;vnd.dovecot.pipe&#34;, &#34;copy&#34;, &#34;imapsieve&#34;, &#34;environment&#34;, &#34;variables&#34;];
+
+if environment :matches &#34;imap.mailbox&#34; &#34;*&#34; {
+  set &#34;mailbox&#34; &#34;${1}&#34;;
+}
+
+if string &#34;${mailbox}&#34; &#34;Trash&#34; {
+  stop;
+}
+
+if environment :matches &#34;imap.user&#34; &#34;*&#34; {
+  set &#34;username&#34; &#34;${1}&#34;;
+}
+
+pipe :copy &#34;sa-learn-ham.sh&#34; [ &#34;${username}&#34; ];
+</code></pre><pre tabindex=0><code># cat report-spam.sieve
+
+require [&#34;vnd.dovecot.pipe&#34;, &#34;copy&#34;, &#34;imapsieve&#34;, &#34;environment&#34;, &#34;variables&#34;];
+
+if environment :matches &#34;imap.user&#34; &#34;*&#34; {
+  set &#34;username&#34; &#34;${1}&#34;;
+}
+
+pipe :copy &#34;sa-learn-spam.sh&#34; [ &#34;${username}&#34; ];
+</code></pre><p>Because both sieve scripts rely on shell scripts <code>sa-learn-ham.sh</code> and <code>sa-learn-spam.sh</code>,
+I also need to create these shell scripts in <code>/usr/local/lib/dovecot/sieve</code>:</p><pre tabindex=0><code># cat sa-learn-ham.sh
+
+#!/bin/sh
+exec /usr/local/bin/rspamc -d &#34;${1}&#34; learn_ham
+</code></pre><pre tabindex=0><code># cat sa-learn-spam.sh
+
+#!/bin/sh
+exec /usr/local/bin/rspamc -d &#34;${1}&#34; learn_spam
+</code></pre><p>And finally,
+I need to compile the sieve scripts and make the shell scripts executable so that Dovecot can actually use them:</p><pre tabindex=0><code># sievec report-ham.sieve
+# sievec report-spam.sieve
+# chmod 755 sa-learn-ham.sh
+# chmod 755 sa-learn-spam.sh
+</code></pre><p>That&rsquo;s all,
+now moving mails from a folder to another I can see the following lines in the <code>/var/log/rspamd/rspamd.log</code> file:</p><pre tabindex=0><code>2019-09-13 23:59:46 #18598(controller) &lt;1d44bd&gt;; csession; rspamd_controller_learn_fin_task: &lt;127.0.0.1&gt; learned message as ham: CAHPtQbOxQxBCsVd7nUCP4podu74Pa-F6k28z+4BWfNeeqWYiAg@mail.gmail.com
+[...]
+2019-09-14 00:01:57 #18598(controller) &lt;b76e28&gt;; csession; rspamd_controller_learn_fin_task: &lt;127.0.0.1&gt; learned message as spam: CAHPtQbOxQxBCsVd7nUCP4podu74Pa-F6k28z+4BWfNeeqWYiAg@mail.gmail.com
+[...]
+</code></pre><p>I&rsquo;m sure these can be simplified,
+I&rsquo;ll be honest and say that I don&rsquo;t really care because it&rsquo;s just a side-feature,
+I&rsquo;m unlikely to touch the sieve scripts for the next decade,
+I don&rsquo;t think anyone should touch sieve scripts,
+we should just come with something better that doesn&rsquo;t remind me of m4 wankery.</p><h2 id=testing-it-all>Testing it all</h2><p>And now, we&rsquo;ll just test that we can do a round-trip from <code>hypno.cat</code> to <code>gmail.com</code>.</p><p>First,
+I&rsquo;ll craft a mail from my <code>hypno.cat</code> account to my <code>gmail.com</code> account:</p><center><img src=2019-09-01-craft-mail.png></center><p>After sending it,
+I&rsquo;ll check it arrives at <code>gmail.com</code>:</p><center><img src=2019-09-01-gmail-1.png></center><p>Then,
+I&rsquo;ll check that it was sent over a TLS-secured channel:</p><center><img src=2019-09-01-gmail-2.png></center><p>I&rsquo;ll check that <code>gmail.com</code> is happy with our SPF declaration,
+our DKIM signature and that it saw we had a DMARC record.
+You do that by selecting &ldquo;Show original&rdquo; in the menu associated to each mail:</p><center><img src=2019-09-01-gmail-3.png></center><p>And finally,
+I&rsquo;ll reply to the mail just to be sure that it works both ways:</p><center><img src=2019-09-01-received-mail.png></center><h2 id=yay-were-done>Yay, we&rsquo;re done</h2><p>So this article is dense,
+I wanted to <em>explain</em> why we do things,
+if you remove all my blabber and focus on the purely technical aspects you&rsquo;ll realize that we built a working mail infra,
+providing TLS inbound and outbound services,
+with DKIM, SPF and DMARC compliant outgoing traffic,
+and spam-filtered incoming traffic.
+And we did this by:</p><ul><li>adding a couple A records, an MX record and three TXT records to our DNS zone</li><li>making sure rDNS was properly set</li><li>installing TLS certificates</li><li>building a ~15 lines configuration file for an SMTP server</li><li>modifying 3 lines in the default configuration of an IMAP server</li><li>modifying 8 lines in the default configuration of an antispam solution</li></ul><p>And because we were in a very good mood and willing to take an extra step to help users train antispam,
+we implemented ham and spam training of Rspamd by:</p><ul><li>modifying approximately 20 lines in the default configuration of an IMAP server</li><li>copying 4 sieve scripts in a directory</li></ul><p>Agreed,
+it may take a new comer some efforts to come up with these without help,
+but none of these tasks qualify as hard or tricky.
+In addition,
+pretty much all of them are only one-time operations,
+you don&rsquo;t edit the DNS zone or reset your rDNS every two days,
+just like you don&rsquo;t touch your working configuration once in place unless you have a new use-case.
+It may happen that you have to do a maintenance,
+whatever that means,
+but I don&rsquo;t see a scenario where such a maintenance would imply having to do &ldquo;all&rdquo; of that again.</p><p>That being said,
+after you do it a few times,
+it takes about ten minutes to replicate this setup from scratch as you&rsquo;ll know what you&rsquo;re doing,
+because&mldr; you know, mail is not hard.</p><h2 id=so-what-should-you-do-next->So what should you do next ?</h2><p>What you should do next is setup redundancy to ensure that a failure of your mail server does not causes mail loss.</p><p>In practice,
+most mail exchangers will retry if their destination is down,
+so <strong>even</strong> if you endure a downtime,
+most of your mails will be buffered by your sender and resumed when your server is back.</p><p>In theory,
+you still want to do things right,
+and letting others buffer your own messages to cope with your downtimes is fairly impolite as they bear responsibility of your messages far longer than they should&mldr;
+You should investigate how to setup a backup mail exchanger,
+arrange with friends you trust to backup each other,
+or even subscribe to a service that will offer backup mail to you.
+Anything as long as you know a secondary server will be able to cover for you if you have a downtime.</p><p>Then,
+no matter which way you chose to do it,
+it will boil down to:</p><ul><li>adding an additional MX record to the DNS zone</li><li>configuring a backup mail server so it forwards mail for your domains to your mail server</li></ul><p>Rocket, science.</p><h2 id=are-we-done->Are we done ?</h2><p>I will write a serie of articles to discuss reputation,
+as well as some of the mechanisms in place at Big Mailer Corps that can cause people to fail delivery.</p><p>If these topics are of interest and I get positive feedback,
+I might just write more often about deliverability concepts,
+otherwise I&rsquo;ll just resume what I was doing before:
+writing about my monthly opensource contributions.
+It&rsquo;s up to you :-)</p><p>Finally,
+in this article I have described a very simple setup but there are tons of interesting stuff you can do with mail infrastructures if you&rsquo;re not scared of working a bit on it.</p><p>I&rsquo;m currently building an infrastructure for a future mail hosting service which spans over multiple data centers in multiple countries,
+which has a very high tolerance to failures,
+has backup mail servers to cope with very extreme failures of primary mail servers,
+can very easily scale to bursts of volumes,
+that decorrelates incoming and outgoing traffic so it can provide partial services to people,
+that can easily reroute traffic across machines to work around failures,
+while providing IMAP services to virtual accounts on a multitude of domains,
+all with daily backups of all mail directories.
+The infrastructure currently costs me&mldr; less than 75 EUR a month.
+It is also fairly simple with most machines being default installs of OpenBSD with <strong>very few</strong> changes to the base system.</p><p>If reading about how you can build such setups is of any interest,
+I could also write about it to help people build MORE hosting alternatives which is ultimately what I hope for.</p><p>Thanks for reading me,
+I still don&rsquo;t have a soundcloud,
+however <a href=https://patreon.com/gilles>I still have a patreon</a> if you want to support me,
+or <strong>use the widgets right below the comment link</strong> to share this article on social medias.</p><p>If you find errors in this article,
+please let me know so I can fix them,
+I started writing this article late and continued half-way through the night so I might have let errors slip in despite multiple readings.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/106>https://github.com/poolpOrg/poolp.org/discussions/106</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/>&#171; September 2019 report: Jules, OpenSMTPD 6.6.0 upcoming release and related things</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/>You should not run your mail server because mail is hard &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

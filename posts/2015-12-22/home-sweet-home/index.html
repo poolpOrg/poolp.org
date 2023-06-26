@@ -1,0 +1,104 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>Home, sweet home | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="Home, sweet home"><meta name=twitter:description content="TL;DR: OpenSMTPD on github no longer diverges from OpenBSD. Since last episode Sometime this year, we released OpenSMTPD 5.7.1 which was the first version that shipped with the long-awaited experimental filters support. The result of over a year and a half of very very deep refactor in our IO layer and the addition of a very elegant but also very tricky new API.
+This refactor took place outside the OpenBSD tree because it required breaking a lot of code for extended period of times, which spanned over 3 OpenBSD releases."><meta property="og:title" content="Home, sweet home"><meta property="og:description" content="TL;DR: OpenSMTPD on github no longer diverges from OpenBSD. Since last episode Sometime this year, we released OpenSMTPD 5.7.1 which was the first version that shipped with the long-awaited experimental filters support. The result of over a year and a half of very very deep refactor in our IO layer and the addition of a very elegant but also very tricky new API.
+This refactor took place outside the OpenBSD tree because it required breaking a lot of code for extended period of times, which spanned over 3 OpenBSD releases."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2015-12-22/home-sweet-home/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2015-12-22T09:53:01+00:00"><meta property="article:modified_time" content="2015-12-22T09:53:01+00:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/authors/gilles-chehade/gilles-chehade.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description><br></span><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>Home, sweet home</h1><span class=author-description><i class="far fa-star"></i>
+Dec 22, 2015
+<i class="far fa-clock clock"></i>
+6 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br></div><div class=article-post><pre><code>TL;DR:
+OpenSMTPD on github no longer diverges from OpenBSD.
+</code></pre><h2 id=since-last-episode>Since last episode</h2><p>Sometime this year, we released OpenSMTPD 5.7.1 which was the first version that
+shipped with the long-awaited experimental filters support. The result of over a
+year and a half of very very deep refactor in our IO layer and the addition of a
+very elegant but also very tricky new API.</p><p>This refactor took place outside the OpenBSD tree because it required breaking a
+lot of code for extended period of times, which spanned over 3 OpenBSD releases.
+It was near impossible to work in tree as we could not break the base daemon and
+leave it in a weird state for too long, and the changes were so invasive that it
+was also impossible to backout parts of it when a regression was spotted.</p><p>We eventually reached a point where it was very stable but also diverged greatly
+from the daemon in base. We made a &ldquo;checkpoint&rdquo; by releasing 5.7.1 separately of
+OpenBSD and the goal was now to bring the daemon in tree up to date.</p><p>The release was quickly followed by 5.7.2 and 5.7.3, fixing security issues that
+were uncovered by Qualys during a coordinated audit and an issue spotted by an
+independant user.</p><h2 id=bringing-back-opensmtpd-to-the-openbsd-tree>Bringing back OpenSMTPD to the OpenBSD tree</h2><p>Working off-tree came with a lot of burden, first because it cut us off from the
+other OpenBSD hackers but also because it came with extra work.</p><p>For instance, during an internal audit we spotted a way to trigger a denial with
+our control socket. This applied to both the version in OpenBSD and Github. Both
+versions diverged quite a lot so the fix to one would not apply to the other and
+of course it took place at worst point in time, when OpenBSD was so close to its
+new release that 3 stable versions were tagged forcing us to test the fix on all
+stable branches + current branch + github&rsquo;s master + github&rsquo;s portable.</p><p>Not to mention that every time someone submitted a pull request on Github we had
+to adapt it to apply on the older version, and every time an OpenBSD hacker made
+a cleanup to the older version, we had to adapt and apply to Github. This was no
+fun at all, many of the contributions not applying cleanly and increasing a gap.</p><p>On another hand, it was very difficult to bring the changes back to OpenBSD as a
+HUGE part of it was a refactor that could not be split into reviewable minidiffs
+for other to look at it. Many small features could be split, but given that they
+were written on top of the refactor, this implied that even taken independantly,
+they had to be adapted to apply to the old code. This was considerable work that
+caused us to defer, defer, defer, &mldr;</p><p>Finally, we reached a point where it was no longer possible to defer and I dived
+back into this with help from sunil@, jung@ and millert@. I took a few days off,
+spent full-time on this, and we managed to make huge progress that allowed us to
+fully bring OpenBSD&rsquo;s smtpd up-to-date after a two-months effort of spliting the
+delta into small reviewable chunks.</p><p>I owe all of them a very large amount of beer.</p><h2 id=openbsds-pledge>OpenBSD&rsquo;s <code>pledge()</code></h2><p>One of the most notable change that has taken place in the last months is that
+we fully integrated the new OpenBSD <code>pledge()</code> system-call.</p><p>But what is <code>pledge()</code> ?</p><p><code>pledge()</code> is a new system call that will appear with OpenBSD 5.9.
+What it does is allow a program to promise it will only use certain features and
+allow the system to terminate the process if it doesn&rsquo;t stick to them.</p><p>For example, let&rsquo;s imagine the following program which creates a directory:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;sys/stat.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;unistd.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span>
+</span></span><span class=line><span class=cl><span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>argv</span><span class=p>[])</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nf>mkdir</span><span class=p>(</span><span class=s>&#34;/tmp/test&#34;</span><span class=p>,</span> <span class=mo>0700</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>If you execute it, the process creates the directory as expected:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ cc test.c
+</span></span><span class=line><span class=cl>$ ./a.out
+</span></span><span class=line><span class=cl>$ ls -l /tmp<span class=p>|</span>grep <span class=nb>test</span>
+</span></span><span class=line><span class=cl>drwx------  <span class=m>2</span> gilles    wheel    <span class=m>512</span> Dec <span class=m>22</span> 10:44 <span class=nb>test</span>
+</span></span><span class=line><span class=cl>$
+</span></span></code></pre></div><p>But now, let&rsquo;s imagine that the program actually makes a promise that it will
+only use <code>stdio</code> features, essentially IO on previously allocated descriptors
+and memory allocation so the libc basic stuff works:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;sys/stat.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;unistd.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span>
+</span></span><span class=line><span class=cl><span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>argv</span><span class=p>[])</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nf>pledge</span><span class=p>(</span><span class=s>&#34;stdio&#34;</span><span class=p>,</span> <span class=nb>NULL</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=nf>mkdir</span><span class=p>(</span><span class=s>&#34;/tmp/test&#34;</span><span class=p>,</span> <span class=mo>0700</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>We run the program again:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ cc test.c
+</span></span><span class=line><span class=cl>$ ./a.out
+</span></span><span class=line><span class=cl>Abort <span class=nb>trap</span> <span class=o>(</span>core dumped<span class=o>)</span>
+</span></span><span class=line><span class=cl>$
+</span></span></code></pre></div><p>But this time, when the process calls <code>mkdir()</code> the kernel detects that it has
+violated the promises made in the program and aborts execution.</p><h2 id=so-pledge-is-a-security-feature->So <code>pledge()</code> is a security feature ?</h2><p>At first it looks like <code>pledge()</code> is just a security feature to mitigate risks
+and it DOES bring a very effective mitigation mechanism: an attacker who wants
+to run arbitrary code in a compromised process still needs to respect promises
+made by the program&mldr; in that arbitrary code&mldr;</p><p>In practice, it&rsquo;s far from being JUST a security feature, it is also a quality
+feature.</p><p>When a developer converts a program to <code>pledge()</code>, he needs to understand what
+features are being used, why they are being used, when they are being used and
+where they are being used. If there&rsquo;s a wrong assumption, the process dies. In
+addition, the promises can be shortened at runtime to restrict further.</p><p>In a project like OpenSMTPD, this is particularly interesting because it comes
+with a multi-process design where different processes do specific things, each
+being able to declare its own list of very reduced promises.</p><p>The daemon starts with a huge promise list to be able to setup its sockets and
+processes, chroot, change privileges, do some filesystem stuff, then processes
+rapidly reduce their promises down to what they will really use at runtime: in
+many cases <code>stdio</code>.</p><p>Intuitively, having worked on this code base for so long, I had a pretty clear
+idea of what the processes were doing at runtime so I thought it would be very
+straightforward and would &ldquo;just work (c)&rdquo;.</p><p>In practice, <code>pledge()</code> pinpointed a few cases where my promises were not held
+and had me investigate WHY a component needed a particular feature at runtime,
+when it was not part of the promises I intuitively thought off.</p><p>Most cases were really simple to solve and a matter of doing a call just a bit
+too late in the code path, but in some cases it really helped refactor code to
+get rid of a feature that wasn&rsquo;t really needed.</p><p><code>pledge()</code> helps you write better code by getting a very clear feedback that a
+piece of code is doing more than you think it does.</p><h2 id=whats-next->What&rsquo;s next ?</h2><p>The code in Github is now a clone of the OpenBSD CVS tree and the only delta
+is a version check so that it can build on OpenBSD releases that do not have
+the <code>pledge()</code> system call.</p><p>The portable branch has been sync-ed with the CVS tree but it currently does
+not build as it requires a bit of plumbing. We are currently working on this
+so we can resume publishing snapshots.</p><p>We&rsquo;re going to synchronize our releases with OpenBSD again so you can expect
+OpenSMTPD 5.9.1 to be released when OpenBSD 5.9 is released, though there is
+a chance we release an intermediate version so people can run a version that
+benefits from all the cleanups, improvements and safer &ldquo;enqueuer&rdquo; before the
+5.9.1 release in May.</p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2016-09-12/opensmtpd-6.0.0-is-released/>&#171; OpenSMTPD 6.0.0 is released !</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2014-12-12/the-state-of-filters/>The state of filters &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

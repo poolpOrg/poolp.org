@@ -1,0 +1,52 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>OpenSMTPD 5.3 released | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="OpenSMTPD 5.3 released"><meta name=twitter:description content="OHAI !
+I&rsquo;ve stayed silent for the last month as we got ready for the big thing&mldr;
+Charles, Eric and I are proud to announce the release of OpenSMTPD 5.3, our first official production-ready release !
+OpenSMTPD has been in use at poolp.org since 2008 and these last five years have seen a considerable amount of work. At various times we have been contemplating a release then delaying to add that one thing that seemed essential."><meta property="og:title" content="OpenSMTPD 5.3 released"><meta property="og:description" content="OHAI !
+I&rsquo;ve stayed silent for the last month as we got ready for the big thing&mldr;
+Charles, Eric and I are proud to announce the release of OpenSMTPD 5.3, our first official production-ready release !
+OpenSMTPD has been in use at poolp.org since 2008 and these last five years have seen a considerable amount of work. At various times we have been contemplating a release then delaying to add that one thing that seemed essential."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2013-03-17/opensmtpd-5.3-released/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2013-03-17T19:08:55+00:00"><meta property="article:modified_time" content="2013-03-17T19:08:55+00:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/authors/gilles-chehade/gilles-chehade.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description><br></span><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>OpenSMTPD 5.3 released</h1><span class=author-description><i class="far fa-star"></i>
+Mar 17, 2013
+<i class="far fa-clock clock"></i>
+3 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br></div><div class=article-post><p>OHAI !</p><p>I&rsquo;ve stayed silent for the last month as we got ready for the big thing&mldr;</p><p>Charles, Eric and I are proud to announce the release of OpenSMTPD 5.3, our first official production-ready release !</p><p>OpenSMTPD has been in use at poolp.org since 2008 and these last five years have seen a considerable amount of work. At various times we have been contemplating a release then delaying to add that one thing that seemed essential. Today, the code we release is still not perfect but we are very happy with it and it has proved to do the work pretty fine. It will continue to improve and mature from now on, and we hope you will enjoy it ;-)</p><p>Below is a copy of the release mail, see you soon for updates on new features ;-)</p><p>OpenSMTPD 5.3 has just been released.</p><p>OpenSMTPD is a FREE implementation of the SMTP protocol with some common extensions. It allows ordinary machines to exchange e-mails with systems speaking the SMTP protocol. It implements a fairly large part of RFC5321 and can already cover a large range of use-cases.</p><p>OpenSMTPD has been under development for a long time now and many people are already using it in production, but this is our first stable release and if you were waiting for a GO! from us, here it is ;-)</p><p>The archives are now available from the main site at <a href=https://www.OpenSMTPD.org>www.OpenSMTPD.org</a></p><p>We would like to thank the OpenSMTPD community for their help in testing the snapshots, reporting bugs, contributing code and packaging for other systems.</p><p>Features:
+HUMAN READABLE CONFIGURATION
+IPv4 and IPv6 support
+STARTTLS and SMTPS support for both incoming and outgoing sessions
+AUTH support: bsd_auth(3) and crypt(3)
+SIZE support: limit the size of client-submitted messages
+Listener-specific banner hostname
+Listener-specific sessions tagging
+Support for global and per-domain expiry for messages
+Support for customizable delays for bounces
+Support for primary and virtual domains
+Support for alternate user database: db(3), file or smtpd.conf
+Support for aliases and ~/.forward mappings
+Delivery to mbox, maildir or third-party MDA
+Support for LMTP relaying
+Support for smarthost
+Support for sending certificate when connecting to remote host
+Support for backup MX
+Support for relay source address override
+Support for relay HELO override
+Support for SMTP-level sender override
+Support for connections reuse and optimization
+Support for queue backends: filesystem and ram
+Support for lookup backends: db(3), static
+Run-time statistics through &ldquo;smtpctl show stats&rdquo;
+Run-time tracing through &ldquo;smtpctl trace "
+Run-time monitoring through &ldquo;smtpctl monitor&rdquo;
+Experimental:</p><p>SQLite lookup backend
+LDAP lookup backend
+Portable:</p><p>Support for PAM authentication
+Known to build and work on FreeBSD, NetBSD, DragonFlyBSD and Linux
+Limitations:</p><p>No filters support yet (work in progress)
+No masquerading or address rewrite yet
+Checksums:
+SHA256 (opensmtpd-5.3.tar.gz) = 05efe80755e7fa01e79e6bba1a4e89244849406acb1152995d2c1da5e9e3a596</p><p>SHA256 (opensmtpd-5.3p1.tar.gz) = 618092f1f0b5aba5f8d4c933536a76d3a5a8e45c28b599a6420321cd4478f3d9</p><p>Support:
+You are encouraged to register to our general purpose mailing-list: <a href=http://www.opensmtpd.org/list.html>http://www.opensmtpd.org/list.html</a></p><p>The &ldquo;Official&rdquo; IRC channel for the project is at: #OpenSMTPD @ irc.freenode.net</p><p>Reporting Bugs:
+Please read <a href=http://www.opensmtpd.org/report.html>http://www.opensmtpd.org/report.html</a> Security bugs should be reported directly to <a href=mailto:security@opensmtpd.org>security@opensmtpd.org</a> Other bugs may be reported to <a href=mailto:bugs@opensmtpd.org>bugs@opensmtpd.org</a></p><p>OpenSMTPD is brought to you by Gilles Chehade, Eric Faurot and Charles Longeau.</p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2013-04-21/news-from-the-front/>&#171; News from the front</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2013-02-02/opensmtpd-minor-fixes--preparing-release/>OpenSMTPD: minor fixes + preparing release &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

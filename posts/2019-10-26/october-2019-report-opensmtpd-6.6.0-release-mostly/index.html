@@ -1,0 +1,85 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>October 2019 report: OpenSMTPD 6.6.0 release mostly | poolp.org</title><meta name=twitter:card content="summary"><meta name=twitter:title content="October 2019 report: OpenSMTPD 6.6.0 release mostly"><meta name=twitter:description content="TL;DR: - yay, surprise emergency hand surgery... - OpenSMTPD 6.6.0 was tagged and released, including portable version - Merged contributions to fix filter-rspamd bug with DKIM - Work resumed on 6.7.0 feature - An OpenSMTPD book is in the works Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship."><meta property="og:title" content="October 2019 report: OpenSMTPD 6.6.0 release mostly"><meta property="og:description" content="TL;DR: - yay, surprise emergency hand surgery... - OpenSMTPD 6.6.0 was tagged and released, including portable version - Merged contributions to fix filter-rspamd bug with DKIM - Work resumed on 6.7.0 feature - An OpenSMTPD book is in the works Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2019-10-26/october-2019-report-opensmtpd-6.6.0-release-mostly/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-10-26T16:13:00+02:00"><meta property="article:modified_time" content="2019-10-26T16:13:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/authors/gilles-chehade/gilles-chehade.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description><br></span><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>October 2019 report: OpenSMTPD 6.6.0 release mostly</h1><span class=author-description><i class="far fa-star"></i>
+Oct 26, 2019
+<i class="far fa-clock clock"></i>
+6 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br></div><div class=article-post><pre><code>TL;DR:
+- yay, surprise emergency hand surgery...
+- OpenSMTPD 6.6.0 was tagged and released, including portable version
+- Merged contributions to fix filter-rspamd bug with DKIM
+- Work resumed on 6.7.0 feature
+- An OpenSMTPD book is in the works
+</code></pre><h2 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h2><p>As usual,
+a <strong>huge</strong> thanks goes to the people sponsoring me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>, the work in this post was made possible by my <a href=/sponsorship/>sponsorship</a>.</p><h2 id=how-i-landed-in-the-emergencies>How I landed in the emergencies</h2><p>I accidentally cut my hand real bad early October and rushed to the nearest hospital.
+They had a look,
+told me it was superficial and required to be sutured,
+so I was out a few hours later with a few stitches and pain killers.</p><p>A few days later,
+my hand was swell so I rushed to another hospital that was specialized in hand wounds,
+expecting a second advice and maybe some additional drugs.</p><p>Turns out the cut was not superficial at all,
+it had hit joints and needed more than just a few stitches.
+The stitches also lacked propre protection so the wound had infected.
+I was told that I had to undergo immediate surgery because the infection was looking real bad,
+and that I was lucky I took this seriously and came right away.</p><center><img src=/images/2019-10-26-hand.jpg></center><p>So this is how my month of October was ruined.
+It took me two weeks to be able to type back on a keyboard,
+it is still painful and I&rsquo;m still unable to practice music or martial arts as I can&rsquo;t close my fingers entirely.</p><p>Luckily,
+I should be able to recover fully, but&mldr; it will take some time.</p><p>My work this month was obviously impacted,
+<strong>BUT</strong> I managed to pull the OpenSMTPD 6.6.0 release and do some thinking work around redesigns planned for development cycle that just started.
+I will discuss a bit my plan in this article.</p><h2 id=opensmtpd-660-was-released>OpenSMTPD 6.6.0 was released</h2><p>I have published and <a href=https://www.mail-archive.com/misc@opensmtpd.org/msg04725.html>announced the OpenSMTPD 6.6.0 release</a> today.</p><p>It is a very important release for us,
+<strong>probably one of the most important that happened in the last few years</strong>,
+as it brings the filter API and makes it possible to compete with other MTA by interfacing with a wide variety of third party tools.</p><p>It is now possible to do dnsbl,
+interface with antispam solutions such as Rspamd or SpamAssassin,
+perform DKIM signing and verifying at session time,
+rejecting sessions that do not behave as we expect,
+&mldr;</p><p>The API was released as an undocumented experimental feature.
+This doesn&rsquo;t mean it is unstable,
+the code has been used on the OpenSMTPD mail exchanger for over a year,
+used by developers for at least as long,
+and tested by users in the wild for several months.
+The only reason it is considered experimental is that we didn&rsquo;t want to &ldquo;release&rdquo; a stable version of the API with easy access to documentation,
+without having a chance to obtain a first round of feedback over the course of a release with a limited set of filters and developers ;-)</p><p>In addition to filters,
+this is the first release that is considering LibreSSL as its target TLS library <em>while</em> providing support for OpenSSL.
+A lot of distributions remained with ancient OpenSMTPD release because of TLS library issues.
+This release is going to make every distro and system out there able to catch up and use the latest OpenSMTPD release.</p><h2 id=dkim-signing-and-verifying-was-fixed-in-filter-rspamd>DKIM signing and verifying was fixed in filter-rspamd</h2><p>Thanks to Reio Remma <a href=https://github.com/whataboutpereira>@whataboutpereira</a>,
+a bug was fixed in filter-rspamd which would cause some mails to be incorrectly DKIM signed or verified.</p><p>The issue was that filters receive the raw SMTP lines during the DATA phase,
+and the filter didn&rsquo;t account for the escaping of lines starting with a dot,
+leading to some mails being incorrectly signed or verified.</p><p>His fix was committed to github and prompted me to issue a new release,
+before updating the OpenBSD port as well.</p><p>I have received an ok to commit the fix to stable packages and will do so this week-end.</p><h2 id=opensmtpd-67x-work>OpenSMTPD 6.7.x work</h2><p>With my hand out of service,
+I spent time thinking about bits that needed a redesign.</p><p>The smtp-out reporting was almost completed and didn&rsquo;t make it to this release,
+so I will make sure it is completed very soon so it doesn&rsquo;t miss the next release.</p><p>The switch to libtls requires a standalone OpenSSL-based libtls interface to be written,
+I have started taking a look at it too.
+I already have a libtls-based OpenSMTPD in a branch,
+but I don&rsquo;t want to switch to that until we know for sure that we&rsquo;ll be able to provide a portable release,
+so hopefully for 6.7.x in six months and more realistically for 6.8.x in a year.</p><p>The MTA layer needs to be reworked and was discussed at lengths with Eric Faurot,
+this would be a change transparent to users but which would make the daemon MUCH simpler for developers.
+I hope we can pull that for 6.7.x but work has to start very soon to make this happen,
+so we&rsquo;ll see in the next few weeks how this project evolves.</p><p>Finally,
+I&rsquo;d like to replace the current table API with one that&rsquo;s similar to the filter API.
+The current API is a binary protocol relying on the imsg framework,
+requiring C plumbing and making the writing of table backends limited to skilled developers.
+I already discussed with Eric Faurot my feeling that it should be converted to a line-based protocol,
+similar to filters,
+which would allow backends to be written in any language,
+providing the same benefits as filters in terms of privilege separation and memory isolation.
+This would make the OpenSMTPD-extras repository deprecated,
+but given that I&rsquo;m the author for pretty much every addon there,
+I think I can easily replace them with new interface counterparts.</p><h2 id=an-opensmtpd-book-is-in-the-works>An OpenSMTPD book is in the works</h2><p>I had started writing a book about OpenSMTPD <strong>years ago</strong> but,
+because huge reworks were in progress in both configuration and filter areas,
+I kept delaying as I didn&rsquo;t want to write configuration bits that would have to be rewritten from scratch,
+and I didn&rsquo;t want the book to lack a chapter about spam filtering.</p><p>With all of the work that has gone through OpenSMTPD in the last two years,
+I feel that there&rsquo;s no longer a gap to fill and a very complete and useful book can be written.
+I have therefore resumed work and currently have a PDF that&rsquo;s <strong>well over a hundred pages</strong> when fully built,
+describing the history and design of OpenSMTPD,
+large chunks of how SMTP and DNS work,
+how to setup your MX,
+how to configure various setups,
+and much more.</p><center><img src=/images/2019-10-26-book.png></center><p>Needless to say,
+this is a LOT of work.</p><p>It will take months to complete the book and publish something I&rsquo;ll be happy with,
+so if you&rsquo;re interested let me know and if you want to support me and help me get this out the sooner,
+then you know how to show your love and buy me time :-)</p><h2 id=what-next->What next ?</h2><p>I have started writing a new article related to SMTP and reputation,
+I will try to complete it next week and provide early access to my patrons.</p><p>Development cycle for OpenSMTPD as resumed,
+I have a few tickets to tackle on Github and a few ideas that I have to dig,
+but the table API rework is a very high priority thing to do for me.</p><p>I will also resume working on cleaning up the portability layer.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/108>https://github.com/poolpOrg/poolp.org/discussions/108</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/>&#171; November 2019 report: OpenSMTPD 6.6.1p1, filter-greylist and tons of portable cleanup</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/>September 2019 report: Jules, OpenSMTPD 6.6.0 upcoming release and related things &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

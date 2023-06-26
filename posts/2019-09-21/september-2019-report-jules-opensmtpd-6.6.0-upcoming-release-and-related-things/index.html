@@ -1,0 +1,114 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>September 2019 report: Jules, OpenSMTPD 6.6.0 upcoming release and related things | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/cover.jpg"><meta name=twitter:title content="September 2019 report: Jules, OpenSMTPD 6.6.0 upcoming release and related things"><meta name=twitter:description content="TL;DR: - I started writing this post a week ago but got interrupted by a baby, Jules - Spent MANY hours on writing OpenSMTPD-related articles - Enabled continuous integration in the OpenSMTPD portable repository - Managed to get rid of all the blocking issues for OpenSMTPD 6.6.0 release - Added some features and fixed a crash in filter-rspamd Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship."><meta property="og:title" content="September 2019 report: Jules, OpenSMTPD 6.6.0 upcoming release and related things"><meta property="og:description" content="TL;DR: - I started writing this post a week ago but got interrupted by a baby, Jules - Spent MANY hours on writing OpenSMTPD-related articles - Enabled continuous integration in the OpenSMTPD portable repository - Managed to get rid of all the blocking issues for OpenSMTPD 6.6.0 release - Added some features and fixed a crash in filter-rspamd Shout outs to my patrons ! As usual, a huge thanks goes to the people sponsoring me on patreon or github, the work in this post was made possible by my sponsorship."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/"><meta property="og:image" content="https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/cover.jpg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-09-21T07:08:00+02:00"><meta property="article:modified_time" content="2019-09-21T07:08:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/authors/gilles-chehade/gilles-chehade.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description><br></span><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>September 2019 report: Jules, OpenSMTPD 6.6.0 upcoming release and related things</h1><span class=author-description><i class="far fa-star"></i>
+Sep 21, 2019
+<i class="far fa-clock clock"></i>
+7 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br><center><img class="featured-image img-fluid" src=https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/cover.jpg alt="thumbnail for this post"></center></div><div class=article-post><pre><code>TL;DR:
+- I started writing this post a week ago but got interrupted by a baby, Jules
+- Spent MANY hours on writing OpenSMTPD-related articles
+- Enabled continuous integration in the OpenSMTPD portable repository
+- Managed to get rid of all the blocking issues for OpenSMTPD 6.6.0 release
+- Added some features and fixed a crash in filter-rspamd
+</code></pre><h2 id=shout-outs-to-my-patrons->Shout outs to my patrons !</h2><p>As usual,
+a <strong>huge</strong> thanks goes to the people sponsoring me on <a href=https://www.patreon.com/gilles>patreon</a> or <a href=https://github.com/sponsors/poolpOrg>github</a>, the work in this post was made possible by my <a href=/sponsorship/>sponsorship</a>.</p><h2 id=welcome-jules-fork-completed>Welcome Jules, <code>fork()</code> completed</h2><p>In <a href=/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/>my last report from August</a>,
+I concluded not knowing if this report would be published on time.</p><p>The expected date for bringing our little monkey home was the 2nd of October,
+but while I started writing this article the 21st of September,
+he decided not to stick to the plan.</p><center><img src=2019-09-21-baby2.jpg></center><p>This is why I&rsquo;m publishing today an article dated from the 21st,
+which is when I started writing it ;-)</p><p>So my biggest completed project for this September report was the little <code>Jules</code>,
+born Sunday the 22nd of September 2019 at 08:03 AM in the city of Nantes.</p><p>Hopefully a future OpenBSD hacker:</p><center><img src=2019-09-21-baby.jpeg></center><p>Though he can be anything,
+including a unicorn if he wants.
+He cute af.
+The cutest.</p><h2 id=wrote-two-articles-for-the-community>Wrote two articles for the community</h2><p>The first one,
+<a href=https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/>You should not run your mail server because mail is hard</a> was intended to be an MTA-agnostic article,
+debunking some of the common claims that mail is hard.</p><p>The second one,
+<a href=https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/>Setting up a mail server with OpenSMTPD, Dovecot and Rspamd</a> was intended both as a follow up to the previous article,
+to back the claims with a technical setup,
+but also as a mean to promote OpenSMTPD <strong>AND</strong> answer the &ldquo;there&rsquo;s not many OpenSMTPD tutorials out there&rdquo; request.</p><p>The first article took me a couple hours to write,
+whereas the second one took me about ten hours because I wanted to explain everything I did and make it a reference tutorial for OpenSMTPD users.</p><h2 id=deployed-ci-on-our-github-mirror-repository>Deployed CI on our Github mirror repository</h2><p>OpenSMTPD is developed on OpenBSD,
+so we&rsquo;re guaranteed that it builds because we benefit from the HYAYFBTB<sup>1</sup> continuous integration (CI) mechanism.</p><p>The portable branch is different.
+It is mainly maintained by myself and&mldr; I only run OpenBSD and OSX daily.
+Most of the changes are merges from the OpenBSD branch which aren&rsquo;t challenging to portability,
+but occasionally I need to rely on community feedback or spin a server for a specific distribution.</p><p>Sometimes,
+I mess up and the trivial merge from OpenBSD lacks an include or uses a function that I thought was portable,
+until someone reports the build is broken.</p><p>Github enabled CI on our account so I immediately set it up on the OpenSMTPD repository.
+It will still need improvements but at this point,
+every time we commit to the portable branch,
+a <code>bootstrap</code>, <code>configure</code>, <code>make</code> and <code>make install</code> are done,
+and members of the team all get an e-mail if the build is broken.</p><p>While at it,
+I also added CI to the <code>filter-rspamd</code> and <code>filter-senderscore</code> repositories.</p><p><sup>1</sup><em>Hackers Yell At You For Breaking The Build</em></p><h2 id=introduced-junk-action-for-builtin-and-proc-filters>Introduced <code>junk</code> action for builtin and proc filters</h2><p>Until now,
+builtin and proc filters had only 4 possible actions:
+<code>proceed</code> to let other filters handle the session,
+<code>rewrite</code> to man-in-the-middle rewrite parameters to the filter hook,
+<code>reject</code> to reject the phase with a custom SMTP message,
+and <code>disconnect</code> to reject AND disconnect the phase with a custom SMTP message.</p><p>Most filters used <code>reject</code> or <code>disconnect</code> as a mean to kill spammers upfront,
+with builtin filters such as:</p><pre tabindex=0><code>filter check_rdns phase connect match !rdns disconnect &#34;550 GO AWAY&#34;
+</code></pre><p>But I received a lot of feedback from people scared of rejecting legitimate mails by being too harsh,
+and asking if there was a way to junk the messages rather than throw them away.</p><p>I introduced the <code>junk</code> action which flags a session or transaction so messages can proceed,
+but will get an <code>X-Spam: yes</code> header prepended.
+The following builtin filter would match the same session as above but,
+instead of killing the session,
+all messages from the session would be marked as spam:</p><pre tabindex=0><code>filter check_rdns phase connect match !rdns junk
+</code></pre><p>With this new action,
+people can actually build confidence for a while before going stricter.</p><p>As a bonus,
+this makes it easier to write proc-filters that junk messages.
+Before this change,
+filters would have to keep state of junked sessions and register a callback for data-line phase,
+so they could craft the header and prepend it.
+With this change,
+they can simply junk the message right away and let OpenSMTPD prepend the header.</p><h2 id=implemented-sender-rewriting-scheme-support>Implemented Sender Rewriting Scheme support</h2><p>OpenSMTPD lacked Sender Rewriting Scheme (SRS) support.</p><p>Long story short,
+the Sender Policy Framework (SPF) was introduced to let a domain control which hosts can send mail on its behalf.
+This is very nice and all,
+but it doesn&rsquo;t play well with mailing lists and forwarding hosts.</p><p>For example,
+if <code>eric@faurot.net</code> sends mail to <code>misc@opensmtpd.org</code>,
+the <code>opensmtpd.org</code> domain needs to send mail to all subscribers on behalf of <code>faurot.net</code>,
+but&mldr; it is not allowed to do so,
+resulting in an SPF check failure.</p><p>To work around this,
+mailing list software encode the sender address in the protocol so it originates from the mailing list domain,
+and allows them to decode back upon replies:</p><pre tabindex=0><code>bb957901382a5d3f mta delivery evpid=25d3675b29721118 from=&lt;misc+bounces-probe-eric=faurot.net@opensmtpd.org&gt; to=&lt;gilles@poolp.org&gt; rcpt=&lt;-&gt; [...]
+</code></pre><p>The <code>misc+bounces-probe-eric=faurot.net@opensmtpd.org</code> address resolves to <code>misc@opensmtpd.org</code> once you remove the <code>+</code> subaddressing and the mailing list software handling that address uses the subaddressing value <code>bounces-probe-eric=faurot.net</code> to retrieve the original sender.</p><p>So far so good,
+but this only works for mailing lists.
+The <code>openbsd.org</code> domain is essentially a mail forwarder:
+sending mail to <code>eric@openbsd.org</code> really forwards to <code>eric@faurot.net</code> and sending mail to <code>gilles@openbsd.org</code>really forwards to <code>gilles@poolp.org</code>.
+In this case,
+no mailing list software encodes and decodes addresses,
+and this creates problems.</p><p>If <code>eric@faurot.net</code> sends mail to <code>gilles@openbsd.org</code>,
+the <code>openbsd.org</code> mail exchangers accepts the mail and forwards it to <code>poolp.org</code>.
+But the mail exchangers at <code>poolp.org</code> sees a mail originating from <code>faurot.net</code> coming from a mail exchanger that&rsquo;s not the correct one&mldr; the SPF check fails again.</p><p>SRS comes into play and,
+once enabled,
+makes sure that any address forwarded is encoded in such a way that it passes SPF correctly and that replies can be traced back to the original sender.
+I won&rsquo;t detail this much,
+there&rsquo;s a specificiation that can be easily found on a search engine,
+but <strong>it&rsquo;s now supported natively in OpenSMTPD</strong>.</p><p>If your mail exchanger is intended to forward mails on behalf of other domains,
+you can enable SRS using the following configuration:</p><pre tabindex=0><code>srs key secret_key_to_prevent_people_from_impersonating_me
+[...]
+action &#34;outgoing_mails&#34; relay srs
+</code></pre><p>Resulting in:</p><center><img src=2019-09-21-srs.png></center><p>Plain and simple.</p><h2 id=lots-of-minor-stuff-here-and-there>Lots of minor stuff here and there</h2><p>Tons of minor stuff were committed here and there,
+ranging from new reporting events for developers,
+cleanups,
+stricter checks,
+documentation.</p><p>I won&rsquo;t list everything we did because you can <a href=https://github.com/openbsd/src/commits/master/usr.sbin/smtpd>check the history</a>.</p><h2 id=opensmtpd-660>OpenSMTPD 6.6.0</h2><p>OpenSMTPD 6.6.0 is now &ldquo;feature-ready&rdquo; and the only things we&rsquo;ll commit until the release are bug fixes if we find any.
+The upcoming weeks will be stabilization only,
+though&mldr; the last weeks were also stabilization mainly ;-)</p><p>If you hit issues with the portable branch,
+don&rsquo;t worry,
+we tag the release when the OpenBSD version is stable and keep working on improving the portable version after,
+giving it its own tag.
+If you experience issues with portable at the time we tag 6.6.0,
+it doesn&rsquo;t mean the issues will not be fixed before the portable version is released.</p><h2 id=various-improvements-to-filter-rspamd>Various improvements to <code>filter-rspamd</code></h2><p>With the help of Reio Remma <a href=https://github.com/whataboutpereira>@whataboutpereira</a>,
+<code>filter-rspamd</code> got a lot of new features.</p><p>First of all,
+I fixed a concurrency-related crash experienced by two OpenBSD hackers.
+That was quite a mandatory feature. not crashing.</p><p>Then,
+I added an X-Spam-Symbols header as we needed it to provide the same level of informations as the <code>rspamc</code> client,
+which is the alternate way of integrating <a href=https://rspamd.com>Rspamd</a> with OpenSMTPD.</p><p>Reio did a bit of cleanup,
+taught the filter how to notify Rspamd about the MX name,
+how to reuse Rspamd-provided SMTP messages in the reply to SMTP sessions,
+how to add / remove headers based on the Rspamd configuration.
+He basically made it closer to the Rspamd milter that&rsquo;s available to other MTA.</p><h2 id=what-next->What next ?</h2><p>I haven&rsquo;t slept much this week so my mind is a bit blurry about what&rsquo;s on my roadmap,
+but my goal is now to focus on the portable branch to improve it.</p><p>When my next report is due,
+OpenSMTPD 6.6.0 may or may not have been released based on OpenBSD&rsquo;s release plan.</p><p>Depending on what happens,
+either I&rsquo;ll spend the month working on the release or I&rsquo;ll start working on the next big works,
+namely reworking the table layer to work similarly to filters,
+allowing tables to be written in any language.</p><p>I may also be focusing on diapers.</p><hr><p>Comments: <a href=https://github.com/poolpOrg/poolp.org/discussions/107>https://github.com/poolpOrg/poolp.org/discussions/107</a></p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2019-10-26/october-2019-report-opensmtpd-6.6.0-release-mostly/>&#171; October 2019 report: OpenSMTPD 6.6.0 release mostly</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/>Setting up a mail server with OpenSMTPD, Dovecot and Rspamd &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

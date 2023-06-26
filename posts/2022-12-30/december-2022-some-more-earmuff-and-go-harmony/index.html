@@ -1,0 +1,530 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.111.3"><link rel=icon href=/images/poolp_org.png><title>December 2022: some more earmuff and go-harmony | poolp.org</title><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2022-12-30/december-2022-some-more-earmuff-and-go-harmony/cover.png"><meta name=twitter:title content="December 2022: some more earmuff and go-harmony"><meta name=twitter:description content="TL;DR: I worked on earmuff and go-harmony, I played with ChatGPT. Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I created a Discord where I hang out and discuss my projects or sometimes screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord."><meta property="og:title" content="December 2022: some more earmuff and go-harmony"><meta property="og:description" content="TL;DR: I worked on earmuff and go-harmony, I played with ChatGPT. Shout out to my sponsors ❤️ A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !
+I created a Discord where I hang out and discuss my projects or sometimes screencast as I work on them. Feel free to hop in if you want, and feel free to do just like me and share thoughts as you work on your own projects there: this is a virtual hack room for anyone to join: https://discord."><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2022-12-30/december-2022-some-more-earmuff-and-go-harmony/"><meta property="og:image" content="https://poolp.org/posts/2022-12-30/december-2022-some-more-earmuff-and-go-harmony/cover.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-12-30T12:00:00+02:00"><meta property="article:modified_time" content="2022-12-30T12:00:00+02:00"><link href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css rel=stylesheet integrity=sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.0.13/css/all.css integrity=sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp crossorigin=anonymous><link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel=stylesheet><link rel=stylesheet href=https://poolp.org/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo+pyc="><link rel=stylesheet href=https://poolp.org/css/additional.8819b6defcdc6d21280f9b402b00df87ca779135901de6c22e708c62e20184b9.css integrity="sha256-iBm23vzcbSEoD5tAKwDfh8p3kTWQHebCLnCMYuIBhLk="><link rel=stylesheet href=/css/custom.css crossorigin=anonymous media=screen></head><body><nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down"><div class="container pr-0"><a class=navbar-brand href=https://poolp.org/><img src=/images/poolp_org.png alt=logo></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarMediumish aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarMediumish><ul class="navbar-nav ml-auto"></ul></div></div></nav><div class=site-content><div class=container><div class=main-content><div class=container><div class=row><div class="col-md-2 pl-0"><div class="row post-top-meta"><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left mb-4 mb-md-0 md-nopad-right"><img class=author-thumb src=/authors/gilles-chehade/gilles-chehade.jpg alt="Gilles Chehade / جيل شحادة"></div><div class="col-xs-12 col-md-12 col-lg-12 text-center text-md-left md-nopad-left"><a target=_blank class=link-dark>Gilles Chehade / جيل شحادة</a><br><span class=author-description><br></span><br></div></div></div><div class="col-md-8 flex-first flex-md-unordered"><div class=mainheading><h1 class=posttitle>December 2022: some more earmuff and go-harmony</h1><span class=author-description><i class="far fa-star"></i>
+Dec 30, 2022
+<i class="far fa-clock clock"></i>
+17 min read</span><div class=after-post-tags><ul class=tags></ul></div><b><a class="far fa-comment" href=#comments>go to comments</a></b><br><br><center><img class="featured-image img-fluid" src=https://poolp.org/posts/2022-12-30/december-2022-some-more-earmuff-and-go-harmony/cover.png alt="thumbnail for this post"></center></div><div class=article-post><blockquote><b>TL;DR:</b>
+I worked on earmuff and go-harmony,
+I played with ChatGPT.</blockquote><h1 id=shout-out-to-my-sponsors-x2764xfe0f>Shout out to my sponsors ❤️</h1><p>A <strong>HUGE thanks</strong> goes to my sponsors on <a href=https://github.com/sponsors/poolpOrg>github</a>
+and <a href=https://www.patreon.com/gilles>patreon</a>:
+your continuous support is very much appreciated !</p><p>I created a Discord where I hang out and discuss my projects or sometimes screencast as I work on them.
+Feel free to hop in if you want,
+and feel free to do just like me and share thoughts as you work on your own projects there:
+<strong>this is a virtual hack room for anyone to join</strong>: <a href=https://discord.gg/YC6j4rbvSk>https://discord.gg/YC6j4rbvSk</a></p><p>This is a fairly open server where you can ask random questions about a lot of topics,
+not necessarily related to my own work.</p><h1 id=table-of-content>Table of content</h1><ul><li><a href=#re-focusing-on-go-harmony>Re-focusing on go_harmony</a></li><li><a href=#made-various-improvements-to-go-harmony>Made various improvements to go-harmony</a></li><li><a href=#tons-of-changes-in-earmuff>Tons of changes in earmuff</a></li><li><a href=#a-demo>A demo ?</a></li><li><a href=#chatgpt>ChatGPT</a></li><li><a href=#whats-next>What&rsquo;s next ?</a></li></ul><h1 id=re-focusing-on-go-harmony>Re-focusing on go-harmony</h1><p>As you may have read from my previous post,
+I have spent some time porting <code>go-harmony</code> to the Dart language and playing with Flutter to build apps that used <code>dart-harmony</code>.</p><p>It was fun and promising,
+particularly because <strong>I was able to build useful tools right away</strong>,
+but I decided to put this on hold and re-focus on <code>go-harmony</code> as <strong>I had bigger plans</strong> for it than just a bunch of tools.</p><p>Ultimately,
+when it reaches the state I want,
+I can create a <code>dart-harmony</code> that is really a binding and resume making tools but using a far more advanced engine.</p><h1 id=made-various-improvements-to-go-harmony>Made various improvements to go-harmony</h1><h2 id=generic-tuning-interfacev>Generic tuning interfacev</h2><p>First of all,
+I added support for a generic <code>Tuner</code>.</p><p>A <code>Tuner</code> is an object which,
+given a tuning system (Equal Temperament for now) and a tuning (A440, A432, &mldr;):</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=nx>tuner</span> <span class=o>:=</span> <span class=nx>tunings</span><span class=p>.</span><span class=nf>NewTuner</span><span class=p>(</span><span class=nx>tunings</span><span class=p>.</span><span class=nx>EqualTemperament</span><span class=p>,</span> <span class=nx>tunings</span><span class=p>.</span><span class=nx>A440</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>return</span> <span class=nx>tuner</span><span class=p>.</span><span class=nf>Frequency</span><span class=p>(</span><span class=nx>note</span><span class=p>.</span><span class=nf>Position</span><span class=p>())</span>
+</span></span></code></pre></div><p>can compute the sound frequency for any given note:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ harmony -frequency C
+</span></span><span class=line><span class=cl><span class=nv>C4</span> <span class=o>=</span> 261.63
+</span></span><span class=line><span class=cl>$ harmony -frequency D
+</span></span><span class=line><span class=cl><span class=nv>D4</span> <span class=o>=</span> 293.66
+</span></span><span class=line><span class=cl>$ harmony -frequency C3
+</span></span><span class=line><span class=cl><span class=nv>C3</span> <span class=o>=</span> 130.81
+</span></span></code></pre></div><p>It isn&rsquo;t used much within <code>go-harmony</code> but exposing it will allowing building tools that require access to frequencies,
+such as building&mldr;
+a tuner, or a synthesizer or pitch detectors, etc&mldr;
+without resorting to the use of a static table which is what I had previously and want to avoid in the engine.</p><h2 id=naturals-package><code>naturals</code> package</h2><p>I introduced a <code>naturals</code> package to deal with naturals (C, D, E, F, G, A and B).</p><p>The package exposes constants,
+for example <code>naturals.C</code>,
+all of which provide methods to obtain the natural&rsquo;s position and semitones delta relative to C,
+or to cycle through the naturals set with <code>.Next()</code> and <code>.Previous()</code> (ie: <code>naturals.C.Next()</code> will return a <code>naturals.D</code> and <code>naturals.C.Previous()</code> will return a <code>naturals.B</code>).</p><p>Wow, modular arithmetics, how impressive !
+Yeah, I know it doesn&rsquo;t seem like much but this is particularly important because it simplifies intervals computations,
+distances computations,
+chords and scales construction,
+and more&mldr;
+This logic was already implemented in the <code>notes</code> package,
+but having a dedicated package makes this usable more easily in various places of the engine and allowed me to simplify a lot of code.</p><h2 id=octaves-package><code>octaves</code> package</h2><p>The same was done to deal with octaves (C0, C1, C2, C3, C4, C5, C6, C7, C8 and C9).</p><p>The package also exposes constants,
+similarly to <code>naturals</code>,
+with methods to compute <code>.Next()</code> and <code>.Previous()</code> but also to <code>.Add()</code>, <code>.Substract()</code> or obtain an octave constant from an octave position (ie: <code>octaves.FromPosition(4)</code> will return an <code>octaves.C4</code>).</p><p>Again,
+this was mostly due to avoid implementing the logic in the <code>notes</code> package but making it easier to use octaves anywhere in the engine outside of the contxt of a specific note.
+For example,
+coupling this with the <code>Tuner</code> interface,
+it could be possible to generate a table of frequencies for a specific octave without having to build each note individually to have access to octaves.</p><h2 id=adapted-notes-to-make-use-of-naturals-and-octaves>Adapted <code>notes</code> to make use of <code>naturals</code> and <code>octaves</code></h2><p>I adapted the <code>notes</code> package to remove all naturals and octaves computations and rely on the new packages.</p><p>This simplified the logic,
+allowed to shrink the file by removing code that just wasn&rsquo;t in the right place,
+with absolutely no visible change on the outside.</p><h2 id=introduced-notemidi>Introduced <code>Note.MIDI()</code></h2><p>The engine only implements harmony rules and will not be MIDI-aware as it&rsquo;s out of its scope,
+however I decided to implement a <code>MIDI()</code> method on <code>Note</code> that returns its MIDI note value as this can still be VERY useful and is just an offset-ed semitones computation.
+I will likely also implement a <code>Piano(keys uint8)</code> method to return the piano key on keyboards of different sizes because that&rsquo;s also just an offset-ed semitones computation.</p><p>Why add <code>MIDI()</code> ?</p><p>Well,
+when writing code that deals with MIDI,
+you usually know the midi note (the pitch) that&rsquo;s been emitted but you don&rsquo;t necessarily know what note it was meant to be.
+For instance,
+in a MIDI stream I will receive a <code>NoteOn</code> message with a pitch of <code>60</code> which will produce the sound of a <code>C4</code>&mldr;
+but it may have actually been a <code>B#3</code> or a <code>Dbb4</code> if you look at it from a harmonic point of view.</p><p>Depending on the use-case,
+you will not care or you will want to detect the correct note name,
+which will result in having to map notes from <code>go-harmony</code> to notes that share the same pitch in whatever tool is being written.
+Having the engine be able to produce the same <code>.MIDI()</code> value for all enharmonic notes allows to simplify things by a great deal.</p><p>It turns out I made use of this and could shove a lot of code from <code>earmuff</code> :-)</p><p>When Piano keys are also implemented,
+this means that you can convert a stream of <code>Note</code> into their corresponding keyboard keys without having to worry about enharmomic equivalences either.</p><h2 id=extended-intervals>Extended <code>intervals</code></h2><p>Finally,
+I extended the intervals package to support all intervals up to AugmentedFifteenth,
+making it possible to build all extended chords which were not possible before.</p><h1 id=tons-of-changes-in-earmuff>Tons of changes in <code>earmuff</code></h1><h2 id=grammar-updates>Grammar updates</h2><p>Until today,
+the grammar for earmuff source files looked like this:</p><pre tabindex=0><code>project {
+    bpm 80;
+    time 4 4;
+
+    instrument guitar {
+        bar {
+            8th note C# on 3/1;
+            8th note D on 3/2;
+            8th note A on 3/3;
+        }
+        bar {
+            half note F on 1/1;
+            8th note E on 4/2;
+        }
+    }
+
+    instrument piano {
+        bar {}
+        bar { whole chord Eb9 on 1/1; }
+    }
+}
+</code></pre><p>This worked for experimenting,
+but the grammar was very limiting and made it harder to implement some concepts.</p><p>I decided to make some slight adjustments,
+it now looks like this:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>project</span> <span class=s>&#34;my project&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>bpm</span> <span class=mi>80</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>time</span> <span class=mi>4</span> <span class=mi>4</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;lead guitar&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;guitar&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>C</span><span class=err>#</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>D</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>4</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>F</span><span class=err>#</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;rythm piano&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;piano&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>half</span> <span class=n>chord</span> <span class=n>C</span><span class=err>#</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>half</span> <span class=n>chord</span> <span class=n>D</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>chord</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>4</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>chord</span> <span class=n>F</span><span class=err>#</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>It doesn&rsquo;t show yet,
+however this makes some upcoming changes MUCH easier to implement,
+and also simplifies readability as lines read plain english now.</p><p>First,
+it allows naming sections which was not possible before as <code>project</code> didn&rsquo;t take a parameter and <code>instrument</code> was used in place of <code>track</code> to list the MIDI instrument in use rather than being a free field.</p><p>Then,
+the previous grammar used <code>on beat/subdivision</code> for placement and this was so confusing that I even got confused myself after not touching an earmuff file for a couple month.
+Furthermore,
+it came at the end of lines which tied it to the notion of <code>Playable</code> events (sounds, chords) when other events could also require placement (ie: comments, lyrics, cues, &mldr;).
+By moving it upfront,
+parsing gets simplified and it makes it possible to implement <code>Tickable</code> events,
+events that trigger on a specific tick.
+Instead of a fraction,
+<code>on beat</code> accepts either an integer for on-beat events and floats for off-beat events.</p><h2 id=closing-the-gap-with-midi>Closing the gap with MIDI</h2><p><code>earmuff</code> is really tied to MIDI as it compiles its source code to MIDI for both streaming to a synthesizer or generating an SMF file.
+Ideally,
+it should support ALL of MIDI features,
+so that any MIDI can be generated from an <code>earmuff</code> source&mldr;
+so I started closing the gap by implementing missing features.</p><p>First of all,
+I implemented velocity so that any note or chord may be given a velocity,
+which will be reflected in the MIDI output.
+It is now possible to lower or raise the intensity of individual notes and chords:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>C</span><span class=err>#</span> <span class=n>velocity</span> <span class=mi>10</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>D</span> <span class=n>velocity</span> <span class=mi>25</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>on</span> <span class=n>beat</span> <span class=mi>4</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>F</span><span class=err>#</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>I also implemented various MIDI Metas,
+allowing to add <code>copyright</code>, <code>text</code> and others which are emitted in the MIDI output.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>project</span> <span class=s>&#34;my project&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>copyright</span> <span class=s>&#34;Gilles Chehade&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>text</span> <span class=s>&#34;this project sounds like shit&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>bpm</span> <span class=mi>80</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>time</span> <span class=mi>4</span> <span class=mi>4</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;lead guitar&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;guitar&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>C</span><span class=err>#</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>D</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>4</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>F</span><span class=err>#</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;rythm piano&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>copyright</span> <span class=s>&#34;Jules Chehade&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>text</span> <span class=s>&#34;this track however ...&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;piano&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>half</span> <span class=n>chord</span> <span class=n>C</span><span class=err>#</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>half</span> <span class=n>chord</span> <span class=n>D</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>chord</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>4</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>chord</span> <span class=n>F</span><span class=err>#</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>Finally,
+I added support for single and multi-line comments:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>project</span> <span class=s>&#34;my project&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>copyright</span> <span class=s>&#34;Gilles Chehade&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>text</span> <span class=s>&#34;this project sounds like shit&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>bpm</span> <span class=mi>80</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>time</span> <span class=mi>4</span> <span class=mi>4</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;lead guitar&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;guitar&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=c1>// skipping first beat
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=c1>//on beat 1 play 8th note C#;
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>D</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>4</span> <span class=n>play</span> <span class=mi>8</span><span class=n>th</span> <span class=n>note</span> <span class=n>F</span><span class=err>#</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=cm>/* skipping a whole track */</span>
+</span></span><span class=line><span class=cl>    <span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm>        track &#34;rythm piano&#34; {
+</span></span></span><span class=line><span class=cl><span class=cm>            copyright &#34;Jules Chehade&#34;
+</span></span></span><span class=line><span class=cl><span class=cm>            text &#34;this track however ...&#34;;
+</span></span></span><span class=line><span class=cl><span class=cm>            instrument &#34;piano&#34;;
+</span></span></span><span class=line><span class=cl><span class=cm>
+</span></span></span><span class=line><span class=cl><span class=cm>            bar {
+</span></span></span><span class=line><span class=cl><span class=cm>                on beat 1 play half chord C#;
+</span></span></span><span class=line><span class=cl><span class=cm>                on beat 2 play half chord D;
+</span></span></span><span class=line><span class=cl><span class=cm>                on beat 3 play quarter chord A;
+</span></span></span><span class=line><span class=cl><span class=cm>                on beat 4 play quarter chord F#;
+</span></span></span><span class=line><span class=cl><span class=cm>            }
+</span></span></span><span class=line><span class=cl><span class=cm>        }
+</span></span></span><span class=line><span class=cl><span class=cm>    */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h2 id=lots-of-internal-refactor>Lots of internal refactor</h2><p>In anticipation for upcoming features,
+I did a pass of refactor to make it possible to plug things the way I want.</p><p>For instance,
+I&rsquo;d like to be able to emit Meta&rsquo;s on specific Ticks,
+which required reworking the way a project is structured,
+the way a track is structured,
+the way bars are structured,
+the logic to compile MIDI from these structures,
+the logic to playback a MIDI to a synthesizer,
+etc&mldr;</p><p>Lots of small invasive changes.</p><h2 id=initial-attempt-at-muffear-midi-to-earmuff-converter>Initial attempt at muffear, MIDI-to-earmuff converter</h2><p>I started working on a small utility to read a MIDI file and generate an earmuff source from it.</p><p>I had a basic version working yesterday,
+it doesn&rsquo;t cover all aspects obviously and I made grammar changes after so it now generates broken earmuff,
+but I wanted to see if this could be achieved easily.</p><p>Ultimately,
+this will be merged in the earmuff program,
+but while I work on it I&rsquo;d rather have things split apart.</p><p>The idea is that there are various programs than can produce MIDI,
+either from crafting tracks or recording a MIDI source (like any DAW),
+or from a partition expressed in various formats (Guitar Pro, ASCII, MusicXML, &mldr;).
+By allowing to convert MIDI to earmuff,
+I essentially allow converting any of these inputs to earmuff to work on it as code.</p><p>Given that earmuff already exports to MIDI and can produce input for these programs,
+this gives some symmetry.</p><h2 id=a-demo->A demo ?</h2><p>Here&rsquo;s a simple 12-bars blues written in earmuff,
+consisting of a lead piano,
+a rythm guitar and a bass:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>project</span> <span class=s>&#34;12 bars blues&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>bpm</span> <span class=mi>120</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>time</span> <span class=mi>4</span> <span class=mi>4</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;lead piano&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;piano&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>D</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>D</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;rythm guitar&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;guitar&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>C7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>F7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>C7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>C7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>F7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>F7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>C7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>C7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>G7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>F7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>C7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>G7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;bass&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;bass&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>A2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>This can be played through a synthesizer by earmuff,
+producing the following output (encoded in mp3 for this blog):</p><center><audio controls><source src=blues.mp3 type=audio/mpeg>Your browser does not support the audio element.</audio></center><br><p>Or imported into other tools,
+such as Guitar Pro:</p><center><img src=cover.png><br><br></center><p>or Logic Pro X:</p><center><img src=daw.png><br><br></center><h1 id=chatgpt>ChatGPT</h1><p>I tried talking to GPT a bit about earmuff &mldr; it was fun :p</p><p>Because earmuff is a language,
+ChatGPT can learn its grammar,
+understand an input and produce outputs.</p><p>I had it learn how <code>earmuff</code> works,
+had it transpose the 12 bars blues to a perfect fourth,
+make some changes to it and add a tuba for a bar.</p><p>Just imagine when I add speech-to-text to the mix,
+and can dictate what changes I want to apply to a project,
+check that they sound as expected and generate a new sheet from them &lt;3</p><center><img src=chatgpt1.png></center>
+<center><img src=chatgpt2.png></center>
+<center><img src=chatgpt3.png></center>
+[...]
+<center><img src=chatgpt4.png></center>
+<center><img src=chatgpt5.png></center><p>The resulting project is:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>project</span> <span class=s>&#34;12 bars blues&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>bpm</span> <span class=mi>120</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>time</span> <span class=mi>4</span> <span class=mi>4</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;lead piano&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;piano&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>D</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>D</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>D</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>D</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>A</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;rythm guitar&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;guitar&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>G7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>C7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>G7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>G7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>C7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>C7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>G7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>G7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>D7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>C7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>G7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span> <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>D7</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;bass&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;bass&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>D3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>C3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>E3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>G2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>B2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>D3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>quarter</span> <span class=n>note</span> <span class=n>F3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>track</span> <span class=s>&#34;tuba&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>instrument</span> <span class=s>&#34;tuba&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=n>bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>1</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>C7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>2</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>G7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>on</span> <span class=n>beat</span> <span class=mi>3</span> <span class=n>play</span> <span class=n>whole</span> <span class=n>chord</span> <span class=n>D7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>Which resulted in transposed tracks and a new tuba track:</p><center><img src=gp2.png><br><br></center><center><img src=daw-gpt.png><br><br></center><p>which sounds like this:</p><center><audio controls><source src=blues2.mp3 type=audio/mpeg>Your browser does not support the audio element.</audio></center><br><p>I seemingly got a wrong mapping for instruments as this doesn&rsquo;t sound like a tuba at all,
+but it&rsquo;s&mldr; interesting ? :-)</p><h1 id=whats-next->What&rsquo;s next ?</h1><p>A break for New Year,
+then I&rsquo;ll be working most exclusively on <code>go-harmony</code> and <code>earmuff</code> in 2023.</p><p>I&rsquo;ll write a personal retrospective of this year shortly,
+if I don&rsquo;t get to it before the end of the year&mldr;</p><p>HAPPY NEW YEAR TO YOU ALL.</p></div><div class="row PageNavigation d-flex justify-content-between font-weight-bold"><a class="d-block col-md-6" href=https://poolp.org/posts/2023-03-01/i-love-you/>&#171; I love you</a>
+<a class="d-block col-md-6 text-lg-right" href=https://poolp.org/posts/2022-11-30/november-2022-feedchain-go-harmony-dart-harmony-and-harmonee/>November 2022: feedchain, go-harmony, dart-harmony and harmonee &#187;</a><div class=clearfix></div></div></div></div></div><div class=container><div id=comments class="row justify-content-center mb-5"><div class=col-md-8><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div></div></div><footer class=footer><div class=container><div class=row><div class="col-md-6 col-sm-6 text-center text-lg-left">&copy; Copyright poolp.org - All rights reserved</div><div class="col-md-6 col-sm-6 text-center text-lg-right"><a target=_blank rel=noopener href=https://www.wowthemes.net>Mediumish Theme</a> by WowThemes.net</div></div></div></footer></div><script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js integrity=sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut crossorigin=anonymous></script>
+<script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js integrity=sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM crossorigin=anonymous></script>
+<script src=https://poolp.org/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script></body></html>

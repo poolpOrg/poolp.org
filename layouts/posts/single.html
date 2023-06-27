@@ -51,6 +51,13 @@
 	  </p>
       {{ end }}
 
+      {{$images := .Resources.ByType "image"}}
+      {{with $images.GetMatch "*cover*" }}
+          <center>
+              <img class="featured-image img-fluid" src="{{ .Permalink }}" alt="thumbnail for this post">
+          </center>
+      {{end}}
+
       {{ with .Params.images }}
       {{- range first 1 . }}
       <img class="rounded max-w-full mx-auto mb-4" src="{{ . }}" alt="{{ $title }}" />

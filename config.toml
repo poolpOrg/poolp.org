@@ -58,7 +58,7 @@ enableEmoji = true
 #  weight = 4
 [[menu.main]]
   name = 'tech stack'
-  url = '/stack/tech'
+  url = '/stack/technology'
   weight = 5
 
 [[menu.main]]

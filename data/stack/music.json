@@ -1,0 +1,16 @@
+[
+  {
+    "name": "macOS",
+    "description": "macOS is a Unix operating system developed and marketed by Apple Inc. since 2001. It is the primary operating system for Apple's Mac computers.",
+    "link": "https://www.openbsd.org/",
+    "icon": "/images/stack-macos.png",
+    "tag": "OS"
+  },
+  {
+    "name": "Logic Pro X",
+    "description": "Logic Pro is a proprietary digital audio workstation (DAW) and MIDI sequencer software application for the macOS platform developed by Apple Inc.",
+    "link": "https://www.apple.com/logic-pro/",
+    "icon": "/images/stack-logicprox.png",
+    "tag": "DAW"
+  }
+]

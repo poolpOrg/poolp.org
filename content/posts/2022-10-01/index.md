@@ -13,11 +13,6 @@ categories:
 added comments support to the blog, did some music and hypnosis projects, fixed a few bugs in plakar and began a new toy project.
 </blockquote>
 
-<center>
-    <img src="cover.png">
-</center>
-
-
 # Shout out to my sponsors &#x2764;&#xfe0f;
 
 A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)

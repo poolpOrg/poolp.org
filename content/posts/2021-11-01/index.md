@@ -15,12 +15,6 @@ I worked on go-ipcmsg to make it nicer, go-privsep to make it more useable, and 
 </blockquote>
 
 
-
-<center>
-    <img src="cover.png" height="300px">
-</center>
-
-
 # Shout out to my sponsors &#x2764;&#xfe0f;
 
 A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)

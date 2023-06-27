@@ -1,14 +1,10 @@
 baseURL = "https://poolp.org"
 languageCode = "en-us"
 title = "poolp.org"
-#theme = "mediumish-gohugo-theme"
 theme = "digitalgarden"
-#pygmentsCodeFences = true
-#pygmentsUseClasses = true
 publishDir = "docs"
 copyright = "poolp.org - All rights reserved"
 enableEmoji = true
-
 
 [markup]
   [markup.goldmark.renderer]
@@ -16,21 +12,7 @@ enableEmoji = true
   [markup.highlight]
     style = "dracula"
 
-
 [Params]
-	mainSections = ["posts"]
-	logo = "/images/poolp_org.png"
-	commit = false
-	rss = true
-  ShowFullTextinRSS = true
-	comments = true
-	readingTime = true
-	wordCount = true
-	useHLJS = true
-	socialShare = true
-	showRelatedPosts = true
-  alertbar = true
-  #customCSS = ["css/custom.css"]
   description = "My Digital Garden on the Internet"
   images = ['/images/poolp_org.png']
 
@@ -100,27 +82,44 @@ enableEmoji = true
 #  url = '/music/stack'
 #  weight = 22
 
+
+[[menu.main]]
+  name = 'All'
+  params.header = true
+  weight = 90
+[[menu.main]]
+  name = 'all articles'
+  url = '/posts'
+  weight = 91
+
+
+
 [[menu.social]]
   name = 'Twitter'
   url = 'https://twitter.com/poolpOrg'
   weight = 1
 
 [[menu.social]]
+  name = 'Mastodon'
+  url = 'https://social.poolp.org/@gilles'
+  weight = 2
+
+[[menu.social]]
   name = 'GitHub'
   url = 'https://github.com/poolpOrg'
-  weight = 2
+  weight = 3
 
 [[menu.social]]
   name = 'LinkedIn'
   url = 'https://linkedin.com/in/gilleschehade'
-  weight = 3
+  weight = 4
 
 [[menu.social]]
   name = 'Email'
   url = 'mailto:gilles@poolp.org'
-  weight = 4
+  weight = 5
 
 [[menu.social]]
   name = 'RSS'
   url = '/index.xml'
-  weight = 5
+  weight = 6

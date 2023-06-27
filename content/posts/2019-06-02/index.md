@@ -7,10 +7,11 @@ categories:
  - personal
 ---
 
-    TL;DR:
+<blockquote>
+    <b>TL;DR:</b>
     Way too many things happened in a six months timeframe.
     This post won't need a TL;DR as I'll keep it short.
-
+</blockquote>
 
 Generalized anxiety disorder and alexithymia.
 --
@@ -79,6 +80,3 @@ I just wanted to get the non-technical stuff out of the way.
 
 Cheers,
 Gilles
-
---- 
-Comments: https://github.com/poolpOrg/poolp.org/discussions/100](https://github.com/poolpOrg/poolp.org/discussions/100)

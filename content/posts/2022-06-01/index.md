@@ -13,11 +13,6 @@ categories:
 did a lot of music, even while writing code.
 </blockquote>
 
-<center>
-    <img src="cover.png">
-</center>
-
-
 # Shout out to my sponsors &#x2764;&#xfe0f;
 
 A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)

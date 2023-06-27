@@ -8,13 +8,14 @@ categories:
  - personal
 ---
 
-	TL;DR:
-	
+
+<blockquote>
+    <b>TL;DR:</b>
 	Came very close to a burn out late 2016, had to quit former employer.
 	Started working at another company early 2017.
 	Became a student again, currently halfway through second year in psychology.
 	Haven't done much opensource since early 2017, slowly resuming.
-
+</blockquote>
 
 Happy new year !
 ----------------
@@ -49,6 +50,3 @@ so in the meantime...
 
 
 **HAPPY NEW YEAR, ENJOY YOURSELVES, 2018 WILL BE A GOOD YEAR !**
-
----
-Want to comment ? [Open an issue on Github](https://github.com/poolpOrg/poolpOrg.github.io/issues/)

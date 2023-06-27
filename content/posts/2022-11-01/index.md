@@ -15,11 +15,6 @@ as well as a proof of concept code for a reader, a writer, a publishing node, an
 oh and fuck you, elon, you're a dick.
 </blockquote>
 
-<center>
-    <img src="cover.png">
-</center>
-
-
 # Shout out to my sponsors &#x2764;&#xfe0f;
 
 A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)

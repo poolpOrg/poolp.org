@@ -1,16 +1,44 @@
 [
   {
     "name": "OpenBSD",
-    "description": "A FREE, multi-platform 4.4BSD-based UNIX-like operating system.",
-    "link": "https://www.OpenBSD.org",
-    "icon": "https://cdn.icon-icons.com/icons2/2148/PNG/512/openbsd_icon_132131.pn",
+    "description": "OpenBSD is a security-focused, free and open-source, Unix-like operating system based on the Berkeley Software Distribution.",
+    "link": "https://www.openbsd.org/",
+    "icon": "/images/stack-openbsd.gif",
+    "tag": "OS"
+  },
+  {
+    "name": "macOS",
+    "description": "macOS is a Unix operating system developed and marketed by Apple Inc. since 2001. It is the primary operating system for Apple's Mac computers.",
+    "link": "https://www.openbsd.org/",
+    "icon": "/images/stack-macos.png",
     "tag": "OS"
   },
   {
     "name": "GitHub",
-    "description": "Code hosting for all projects",
+    "description": "Code hosting for all projects.",
     "link": "https://github.com/poolpOrg",
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png",
     "tag": "VCS"
+  },
+  {
+    "name": "Go",
+    "description": "Go is a statically typed, compiled high-level programming language designed at Google by Robert Griesemer, Rob Pike, and Ken Thompson. It is syntactically similar to C, but also has memory safety, garbage collection, structural typing, and CSP-style concurrency.",
+    "link": "https://go.dev/",
+    "icon": "/images/stack-go.png",
+    "tag": "lang"
+  },
+  {
+    "name": "Python",
+    "description": "Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation via the off-side rule. Python is dynamically typed and garbage-collected.",
+    "link": "https://www.python.org/",
+    "icon": "/images/stack-python.png",
+    "tag": "lang"
+  },
+  {
+    "name": "Visual Studio Code",
+    "description": "Visual Studio Code, also commonly referred to as VS Code, is a source-code editor made by Microsoft with the Electron Framework, for Windows, Linux and macOS. Features include support for debugging, syntax highlighting, intelligent code completion, snippets, code refactoring, and embedded Git.",
+    "link": "https://code.visualstudio.com/",
+    "icon": "/images/stack-vscode.png",
+    "tag": "IDE"
   }
 ]

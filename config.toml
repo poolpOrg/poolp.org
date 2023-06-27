@@ -47,9 +47,6 @@ enableEmoji = true
   linkedin = "gilleschehade"
   paypal = "poolpOrg"
 
-[permalinks]
-	posts = "/posts/:year-:month-:day/:slug"
-
 [outputs]
 	home = ["HTML", "RSS"]
 	section = ["HTML", "RSS"]
@@ -60,7 +57,19 @@ enableEmoji = true
   tag = "tags"
   category = "categories"
 
+[permalinks]
+  posts = "/posts/:year-:month-:day/:slug"
+
 [menu]
+[[menu.main]]
+  name = 'Personal'
+  params.header = true
+  weight = 1
+[[menu.main]]
+  name = 'personal articles'
+  url = '/categories/personal'
+  weight = 2
+
 [[menu.main]]
   name = 'Home'
   url = '/'
@@ -70,13 +79,26 @@ enableEmoji = true
   params.header = true
   weight = 2
 [[menu.main]]
-  name = 'Articles'
-  url = '/posts'
+  name = 'tech articles'
+  url = '/categories/technology'
   weight = 3
 [[menu.main]]
-  name = 'Stack'
-  url = '/stack'
+  name = 'tech stack'
+  url = '/stack/tech'
   weight = 5
+
+[[menu.main]]
+  name = 'Music'
+  params.header = true
+  weight = 20
+[[menu.main]]
+  name = 'music articles'
+  url = '/categories/music'
+  weight = 21
+#[[menu.main]]
+#  name = 'music stack'
+#  url = '/music/stack'
+#  weight = 22
 
 [[menu.social]]
   name = 'Twitter'

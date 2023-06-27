@@ -2,7 +2,7 @@
 title: "You should not run your mail server because mail is hard"
 date: 2019-08-30 12:00:00
 authors:
- - Gilles Chehad
+ - Gilles Chehade
 categories:
  - technology
 ---

@@ -2,24 +2,21 @@
 title: Homepage
 ---
 
-# Hello, dear stranger 👋
+# Hello, stranger 👋
 <center>
     <img src="/images/me.jpg" alt="me" />
     <br />Gilles Chehade / جيل ابو جول شحادة
 </center>
 
-
-**Welcome to my digital garden!**
-
-A digital garden is like a personal wiki and a knowledge database of thoughts and ideas. Similar to a traditional garden, a digital one will also container various kinds of content (plants), of which may even be unrelated to each other. Ideas are not refined, thoughts are not tailored. Here is an excellent write-up about the [history of digital gardens](https://maggieappleton.com/garden-history)
-
-
-Twitter, for some, is also equivalent to a digital garden. It lets you share thoughts and ideas with everyone. But how often do you go back to those tweets? Not often. That's why you need a space for your ideas on the internet **that you own**. Check out `Digital gardens let you cultivate your own little bit of the internet` [post](https://www.technologyreview.com/2020/09/03/1007716/digital-gardens-let-you-cultivate-your-own-little-bit-of-the-internet/) by MIT technology review 
-
 <hr />
 
-Building your own digital garden is not a fad. It's a necessity. Tools like Roam Research, Obsidian and Notion provided means to interlink content, even over a graphical way. Still not sold? Check out [The Digital Garden](https://dev.to/jbranchaud/the-digital-garden-l10) by Josh Branchaud.
+Welcome to my **Digital Garden**,
+a place where thoughts, ideas, and knowledge intertwine and flourish. Here, you'll find an evolving ecosystem of my ponderings, experiences, and discoveries - a unique blend of the professional, personal, and everything in between.
 
-Start collecting your ideas 💡, curate thought provoking & interesting content 💬&nbsp; and learn.
+Unlike a traditional blog, this space doesn't conform to a linear or chronological order. It's an organic network of interconnected ideas, allowing you to explore and connect the dots in your own way. Think of it as a walk through a garden, where each path might lead you to a new insight or spark a fresh idea.
 
-→ [Read all posts](/posts)
+Just as a gardener cultivates their land, I cultivate this digital space. It's an ongoing project, growing and adapting with time. As I learn and engage with new concepts, this garden evolves. I encourage you to revisit often, as just like in nature, things change and progress.
+
+Remember, this is a space of learning and exploration for both of us. I welcome feedback and contributions, fostering a sense of community and collective growth. This is not just my journey, but ours. So, I invite you to step into my Digital Garden and join me in this never-ending voyage of discovery. Let's cultivate our minds, together.
+
+<hr />

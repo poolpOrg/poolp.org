@@ -69,20 +69,33 @@ enableEmoji = true
   name = 'music articles'
   url = '/categories/music'
   weight = 21
+[[menu.main]]
+  name = 'music stack'
+  url = '/stack/music'
+  weight = 22
+
+
 #[[menu.main]]
-#  name = 'music stack'
-#  url = '/stack/music'
-#  weight = 22
+#  name = 'All'
+#  params.header = true
+#  weight = 90
+#[[menu.main]]
+#  name = 'all articles'
+#  url = '/posts'
+#  weight = 91
+
 
 
 [[menu.main]]
-  name = 'All'
+  name = 'Misc.'
   params.header = true
-  weight = 90
+  weight = 100
 [[menu.main]]
-  name = 'all articles'
-  url = '/posts'
-  weight = 91
+  name = 'about me'
+  url = '/about/me'
+  weight = 101
+
+
 
 
 [[menu.social]]

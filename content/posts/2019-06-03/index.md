@@ -245,9 +245,9 @@ I still managed to do something useful as I started the writing of `eegviewer`,
 which is a `libxcb` graphical interface displaying the `eegreader` input as a real-time graph.
 The idea is to simply pipe `eegreader` into `eegviewer` to obtain the graphs.
 
-![device](https://pbs.twimg.com/media/D7pGuTOXkAAiZeg?format=jpg&name=small)
-![eegreader](https://pbs.twimg.com/media/D7pGuTRXsAAPJUd?format=png&name=small)
-![eegviewer](https://pbs.twimg.com/media/D7pGuTPW0AAWjMj?format=png&name=small)
+![device](device.jpeg)
+![eegreader](eegreader.png)
+![eegviewer](eegviewer.png)
 
 The `eegreader` utility has already been published a while ago on Github under the ISC license.
 I'll publish `eegviewer` under the same license when I'm happy with the code, libxcb not being something I'm familiar with.
@@ -271,6 +271,3 @@ What next ?
 --
 See you in a month for the June report,
 very likely focusing around OpenSMTPD filters !
-
---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/101](https://github.com/poolpOrg/poolp.org/discussions/101)

@@ -5,6 +5,14 @@ BODY {
     font-family: Neucha, Merriweather;
 }
 
+.px-2 {
+    font-size: 1.2rem;
+}
+
+H1 {
+    font-size: 2rem;
+}
+
 STRONG {
     font-weight: bolder;
     color: #000000;

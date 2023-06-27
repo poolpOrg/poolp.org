@@ -48,8 +48,15 @@
 		{{ if ne $lastmod $date}}
 			<br/> Pruned {{ .Lastmod.Format "January 2, 2006" }}
         {{ end }}
-	  </p>
-      {{ end }}
+        by
+        {{ with .Params.Authors }}
+        {{- range first 1 . }}
+        <a href="#">{{.}}</a>
+        {{ end -}}
+        {{ end }}
+      </p>
+    {{ end }}
+    
 
       {{$images := .Resources.ByType "image"}}
       {{with $images.GetMatch "*cover*" }}
@@ -63,7 +70,7 @@
       <img class="rounded max-w-full mx-auto mb-4" src="{{ . }}" alt="{{ $title }}" />
       {{ end -}}
       {{ end }}
-
+      
       {{ .Content }}
 
       <script src="https://giscus.app/client.js"

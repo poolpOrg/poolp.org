@@ -1,5 +1,12 @@
 [
   {
+    "name": "Vultr",
+    "description": "Vultr is a company which provides support for hosting BSD on VPS in multiple zones and at an affordable prices.",
+    "link": "https://www.vultr.com/?ref=6831037",
+    "icon": "/images/stack-vultr.png",
+    "tag": "VPS Hosting"
+  },
+  {
     "name": "OpenBSD",
     "description": "OpenBSD is a security-focused, free and open-source, Unix-like operating system based on the Berkeley Software Distribution.",
     "link": "https://www.openbsd.org/",
@@ -21,10 +28,10 @@
     "tag": "VCS"
   },
   {
-    "name": "Go",
-    "description": "Go is a statically typed, compiled high-level programming language designed at Google by Robert Griesemer, Rob Pike, and Ken Thompson. It is syntactically similar to C, but also has memory safety, garbage collection, structural typing, and CSP-style concurrency.",
-    "link": "https://go.dev/",
-    "icon": "/images/stack-go.png",
+    "name": "C",
+    "description": "C is a general-purpose computer programming language. It was created in the 1970s by Dennis Ritchie, and remains very widely used and influential. By design, C's features cleanly reflect the capabilities of the targeted CPUs.",
+    "link": "https://en.wikipedia.org/wiki/C_(programming_language)",
+    "icon": "/images/stack-c.png",
     "tag": "lang"
   },
   {
@@ -32,6 +39,13 @@
     "description": "Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation via the off-side rule. Python is dynamically typed and garbage-collected.",
     "link": "https://www.python.org/",
     "icon": "/images/stack-python.png",
+    "tag": "lang"
+  },
+  {
+    "name": "Go",
+    "description": "Go is a statically typed, compiled high-level programming language designed at Google by Robert Griesemer, Rob Pike, and Ken Thompson. It is syntactically similar to C, but also has memory safety, garbage collection, structural typing, and CSP-style concurrency.",
+    "link": "https://go.dev/",
+    "icon": "/images/stack-go.png",
     "tag": "lang"
   },
   {

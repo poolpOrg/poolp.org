@@ -11,12 +11,11 @@
     <div class="space-y-2.5">
       {{ range .Data.Pages -}}
       <a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href="{{ .RelPermalink }}">
-
         {{$images := .Resources.ByType "image"}}
         {{with $images.GetMatch "*cover*" }}
         <img class="rounded max-w-full mb-4" src="{{ .Permalink }}" alt="thumbnail for this post" style="height: 100px; width:150px;">
         {{end}}
-
+      
         {{ $title := .Params.title }}
         <h3 class="text-lg font-semibold mb-0.5">{{ $title }}</h3>
         <div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">

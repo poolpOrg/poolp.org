@@ -15,24 +15,12 @@ enableEmoji = true
 [Params]
   description = "My Digital Garden on the Internet"
   images = ['/images/poolp_org.png']
-
-[Params.author]
-  name = "Gilles Chehade"
-  thumbnail = "/images/me.jpg"
-  description = ""
-  website = "https://poolp.org"
-  email = "gilles@poolp.org"
-  facebook = "gilles.chehade"
-  github = "poolpOrg"
-  twitter = "poolpOrg"
-  reddit = "poolpOrg"
-  linkedin = "gilleschehade"
-  paypal = "poolpOrg"
+  enableSearch = true
 
 [outputs]
 	home = ["HTML", "RSS"]
 	section = ["HTML", "RSS"]
-	page = ["HTML"]
+	page = ["HTML", "RSS"]
 
 [taxonomies]
   author = "authors"
@@ -64,6 +52,10 @@ enableEmoji = true
   name = 'tech articles'
   url = '/categories/technology'
   weight = 3
+#[[menu.main]]
+#  name = 'tech projects'
+#  url = '/tech/projects'
+#  weight = 4
 [[menu.main]]
   name = 'tech stack'
   url = '/stack/tech'
@@ -79,7 +71,7 @@ enableEmoji = true
   weight = 21
 #[[menu.main]]
 #  name = 'music stack'
-#  url = '/music/stack'
+#  url = '/stack/music'
 #  weight = 22
 
 
@@ -91,7 +83,6 @@ enableEmoji = true
   name = 'all articles'
   url = '/posts'
   weight = 91
-
 
 
 [[menu.social]]

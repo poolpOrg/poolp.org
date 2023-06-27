@@ -5,7 +5,7 @@ title: Homepage
 # Hello, dear stranger 👋
 <center>
     <img src="/images/me.jpg" alt="me" />
-    <br />Gilles Chehade / حيل ابو جول شحادة
+    <br />Gilles Chehade / جيل ابو جول شحادة
 </center>
 
 

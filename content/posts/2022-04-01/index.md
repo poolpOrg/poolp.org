@@ -13,10 +13,6 @@ categories:
 I refactored internal structures to split metadata from the index, implemented an stdio server and finally added SSH support.
 </blockquote>
 
-<center>
-    <img src="cover.png">
-</center>
-
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

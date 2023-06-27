@@ -3,9 +3,9 @@ title: "Farewell 2021, Welcome 2022: a personal post"
 date: 2021-12-30 08:00:00 +0200
 authors:
  - Gilles Chehade
-language: fr
+language: en
 categories:
- - technology
+ - personal
 ---
 
 <blockquote>
@@ -276,7 +276,3 @@ I'll close this retrospective with a **HAPPY NEW YEAR EVERYONE** !
 I wish you success at everything you attempt and may a ton of good things happen to you in 2022.
 
 Peace.
-
-
----- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/147](https://github.com/poolpOrg/poolp.org/discussions/147)

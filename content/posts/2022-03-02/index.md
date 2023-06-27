@@ -13,11 +13,6 @@ categories:
 I did key and UI stuff, mostly search related. There's going to be plenty of images in this post.
 </blockquote>
 
-<center>
-    <img src="cover.jpeg">
-</center>
-
-
 # Shout out to my sponsors &#x2764;&#xfe0f;
 
 A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)

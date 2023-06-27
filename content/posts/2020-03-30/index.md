@@ -4,13 +4,15 @@ date: 2020-03-30 14:01:00 +0200
 authors:
  - Gilles Chehade
 categories:
- - technology
+ - personal
 ---
-    TL;DR:
+<blockquote>
+    <b>TL;DR:</b>
 	- I took a break to deal with personal stuff
 	- I'm taking a long break from OpenBSD for personal reasons
 	- I may or may not have experienced COVID-19, who knows
 	- resumed work on OpenSMTPD and other projects
+</blockquote>
 
 
 This is a weird report

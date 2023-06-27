@@ -5,19 +5,13 @@ authors:
  - Gilles Chehade
 language: fr
 categories:
- - technology
+ - personal
 ---
 
 <blockquote>
 <b>TL;DR:</b>
 - this is a short article, no TL;DR.
 </blockquote>
-
-
-<center>
-    <img src="cover.jpeg" height="300px">
-</center>
-
 
 # Why so calm ?
 

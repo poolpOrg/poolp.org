@@ -13,10 +13,6 @@ categories:
 implemented cloning and synchronization between plakar repositories
 </blockquote>
 
-<center>
-    <img src="cover.png" height="300px">
-</center>
-
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

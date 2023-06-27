@@ -13,13 +13,6 @@ categories:
 I worked on plakar, go-fastcdc a FastCDC implementation for plakar, and some useless stuff.
 </blockquote>
 
-
-
-<center>
-    <img src="cover.png" height="300px">
-</center>
-
-
 # Shout out to my sponsors &#x2764;&#xfe0f;
 
 A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)

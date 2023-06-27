@@ -9,6 +9,11 @@ BODY {
     font-size: 1.2rem;
 }
 
+.cursor-default {
+    margin: 10px;
+}
+
+
 H1 {
     font-size: 2rem;
 }

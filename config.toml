@@ -57,6 +57,11 @@ enableEmoji = true
   name = 'articles'
   url = '/categories/technology'
   weight = 3
+[[menu.main]]
+  identifier = "technology-books"
+  name = 'books'
+  url = '/books/technology'
+  weight = 4
 #[[menu.main]]
 #  name = 'tech projects'
 #  url = '/tech/projects'
@@ -78,10 +83,15 @@ enableEmoji = true
   url = '/categories/music'
   weight = 21
 [[menu.main]]
+  identifier = "music-books"
+  name = 'books'
+  url = '/books/music'
+  weight = 22
+[[menu.main]]
   identifier = "music-stack"
   name = 'stack'
   url = '/stack/music'
-  weight = 22
+  weight = 23
 
 
 #[[menu.main]]

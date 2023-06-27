@@ -14,7 +14,7 @@
 
         {{$images := .Resources.ByType "image"}}
         {{with $images.GetMatch "*cover*" }}
-        <img class="rounded max-w-full mb-4" src="{{ .Permalink }}" alt="thumbnail for this post">
+        <img class="rounded max-w-full mb-4" src="{{ .Permalink }}" alt="thumbnail for this post" width="200px" height="100px">
         {{end}}
 
         {{ $title := .Params.title }}

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "OpenBSD",
+    "description": "A FREE, multi-platform 4.4BSD-based UNIX-like operating system.",
+    "link": "https://www.OpenBSD.org",
+    "icon": "https://cdn.icon-icons.com/icons2/2148/PNG/512/openbsd_icon_132131.png",
+    "tag": "OS"
+  },
+  {
+    "name": "GitHub",
+    "description": "Code hosting for all projects",
+    "link": "https://github.com/poolpOrg",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png",
+    "tag": "VCS"
+  }
+]

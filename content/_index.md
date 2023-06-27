@@ -3,10 +3,6 @@ title: Homepage
 ---
 
 # Hello, stranger 👋
-<center>
-    <img src="/images/me.jpg" alt="me" />
-    <br />Gilles Chehade / جيل ابو جول شحادة
-</center>
 
 <hr />
 

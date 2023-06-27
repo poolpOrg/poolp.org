@@ -32,24 +32,29 @@ enableEmoji = true
 
 [menu]
 [[menu.main]]
+  identifier = "personal"
   name = 'Personal'
   params.header = true
   weight = 1
 [[menu.main]]
-  name = 'personal articles'
+  identifier = "personal-articles"
+  name = 'articles'
   url = '/categories/personal'
   weight = 2
 
 [[menu.main]]
+  identifier = "home"
   name = 'Home'
   url = '/'
   weight = 1
 [[menu.main]]
+  identifier = "technology"
   name = 'Technology'
   params.header = true
   weight = 2
 [[menu.main]]
-  name = 'tech articles'
+  identifier = "technology-articles"
+  name = 'articles'
   url = '/categories/technology'
   weight = 3
 #[[menu.main]]
@@ -57,20 +62,24 @@ enableEmoji = true
 #  url = '/tech/projects'
 #  weight = 4
 [[menu.main]]
-  name = 'tech stack'
+  identifier = "technology-stack"
+  name = 'stack'
   url = '/stack/technology'
   weight = 5
 
 [[menu.main]]
+  identifier = "music"
   name = 'Music'
   params.header = true
   weight = 20
 [[menu.main]]
-  name = 'music articles'
+  identifier = "music-articles"
+  name = 'articles'
   url = '/categories/music'
   weight = 21
 [[menu.main]]
-  name = 'music stack'
+  identifier = "music-stack"
+  name = 'stack'
   url = '/stack/music'
   weight = 22
 

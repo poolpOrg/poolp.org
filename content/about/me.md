@@ -3,7 +3,7 @@ title: Gilles CHEHADE
 date: 1981-02-03
 images:
 - /images/me.jpg
-description: Foo Bar
+description: Gilles Chehade / جيل ابو جول شحادة
 ---
 
 Roses are red,

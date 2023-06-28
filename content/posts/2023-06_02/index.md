@@ -10,7 +10,8 @@ categories:
 
 <blockquote>
     <b>TL;DR:</b>
-    XXX
+    I'm building a guitar from scratch,
+    picking up every component but skipping the tricky cut and glue bits :-)
 </blockquote>
 
 # About this project

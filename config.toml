@@ -82,11 +82,11 @@ enableEmoji = true
   name = 'articles'
   url = '/categories/music'
   weight = 21
-[[menu.main]]
-  identifier = "music-books"
-  name = 'books'
-  url = '/books/music'
-  weight = 22
+#[[menu.main]]
+#  identifier = "music-books"
+#  name = 'books'
+#  url = '/books/music'
+#  weight = 22
 [[menu.main]]
   identifier = "music-stack"
   name = 'stack'

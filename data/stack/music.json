@@ -12,5 +12,19 @@
     "link": "https://www.apple.com/logic-pro/",
     "icon": "/images/stack-logicprox.png",
     "tag": "DAW"
+  },
+  {
+    "name": "Focusrite Scarlett 2i2 3rd Gen",
+    "description": "The Focusrite Scarlett 2i2 is a high-quality compact USB audio interface for Mac and PC. It features two combined XLR/jack inputs for connecting microphones as well as synthesizers or other line-level audio sources and two balanced outputs for monitoring. It is equipped with two high-grade microphone preamps with switchable 48V phantom power, as well as the new Air Mode. Electric guitars and basses can also be plugged in directly, as the input impedance of the front sockets can be set to Hi-Z.",
+    "link": "https://www.thomann.de/gb/focusrite_scarlett_2i2_3rd_gen.htm",
+    "icon": "/images/stack-music-interface-focusrite-scarlett-2i2-3rd-gen.jpeg",
+    "tag": "interface"
+  },
+  {
+    "name": "Beyerdynamic DT-770 Pro 32 Ohm",
+    "description": "The beyerdynamic DT 770 Pro 32 is a dynamic, closed-back headset with a 32-ohm impedance rating for tracking and monitoring applications, and it has been a firm fixture of studios across the world since it was released. It provides a good impulse response and outstandingly detailed sound, particularly when paired with mobile end devices like smartphones and laptops. The 80 and 250-ohm models are a better choice for professional studios with high-performance headphone amplifiers, however, since these offer an even better sound and a punchier impulse response.",
+    "link": "https://www.thomann.de/gb/beyerdynamic_dt_770_pro_32_ohm.htm",
+    "icon": "/images/stack-music-headphones-beyerdynamic-dt770pro-32ohm.jpeg",
+    "tag": "headphones"
   }
 ]

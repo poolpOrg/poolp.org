@@ -106,15 +106,23 @@ enableEmoji = true
 
 
 [[menu.main]]
-  name = 'Misc.'
+  identifier = "external"
+  name = 'External'
   params.header = true
-  weight = 100
+  weight = 1000
 [[menu.main]]
-  name = 'about me'
-  url = '/about/me'
-  weight = 101
+  identifier = "external-discord"
+  name = 'Discord'
+  url = 'https://discord.gg/YC6j4rbvSk'
+  weight = 1001
+[[menu.main]]
+  identifier = "external-youtube"
+  name = 'Youtube'
+  url = 'https://www.youtube.com/channel/UCU-1Rn7gWhessHWwC3_EsEg'
+  weight = 1002
 
 
+#https://discord.gg/YC6j4rbvSk
 
 
 [[menu.social]]

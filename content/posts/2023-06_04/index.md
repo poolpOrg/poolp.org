@@ -10,8 +10,11 @@ categories:
 
 <blockquote>
     <b>TL;DR:</b>
-    Received the neck...
-    too bad it's not exactly the one I ordered :-)
+    music and unity training,
+    a bit of X programming in Go,
+    began a journey in Jujulang a new languae,
+    wrote a PoC set database called setdb,
+    did some minor OpenSMTPD stuff.
 </blockquote>
 
 

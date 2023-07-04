@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://poolp.org/sitemap.xml

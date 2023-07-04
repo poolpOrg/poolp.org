@@ -109,7 +109,7 @@ ni jamais,
 ni dans aucune dimension alternative _(insérer "sliiiiiiders" en chuchotement mental ici)_.
 
 <center>
-<img src="cover.jpg">
+<img src="feature.jpg">
 </center>
 
 Prenez un moment pour bien enregistrer ce qui suit : 

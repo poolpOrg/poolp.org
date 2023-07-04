@@ -124,7 +124,7 @@ the envelope-from (MAIL FROM) and the envelope-to (RCPT TO).
 So, to pass greylisting, an MX must retry during the proper window of time, coming from the same IP address, identifying with the same HELO/EHLO, from the same MAIL FROM and to the same RCPT TO.
 
 <center>
-<img src="cover.jpg">
+<img src="feature.jpg">
 </center>
 
 The problem with greylisting and Big Mailer Corps

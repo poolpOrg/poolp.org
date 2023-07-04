@@ -305,7 +305,7 @@ I can wear a mask and instantly put a few million kilometers between others and 
 even if just for a few deep breathes and the sight of an asteroid putting this place out of its misery.
 
 <center>
-    <img src="cover.png">
+    <img src="feature.png">
 </center>
 
 I'm not quite there yet but it seems achievable in a more realistic timeframe than my travel to Venus.

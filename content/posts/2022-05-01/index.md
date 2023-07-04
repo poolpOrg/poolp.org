@@ -314,7 +314,7 @@ That's a minor change but one that I really wanted to do and which someone asked
 prompting me to start working on it.
 
 <center>
-    <img src="cover.png">
+    <img src="feature.png">
 </center>
 <br />
 

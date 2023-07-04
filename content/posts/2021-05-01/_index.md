@@ -19,7 +19,7 @@ paving the road for a future article.
 </blockquote>
 
 <center>
-    <img src="cover.png" height="300px">
+    <img src="feature.png" height="300px">
 </center>
 
 # Disclaimer

@@ -535,7 +535,7 @@ Or imported into other tools,
 such as Guitar Pro:
 
 <center>
-    <img src="cover.png" />
+    <img src="feature.png" />
     <br />
     <br />
 </center>

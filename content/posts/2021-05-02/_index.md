@@ -20,7 +20,7 @@ préparant le terrain pour un article à venir.
 
 
 <center>
-    <img src="cover.png" height="300px">
+    <img src="feature.png" height="300px">
 </center>
 
 # Avertissement

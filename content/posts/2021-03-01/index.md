@@ -58,7 +58,7 @@ Once a snapshot has been taken of a directory,
 it can be inspected and restored at will.
 
 <center>
-  <img src="cover.png">
+  <img src="feature.png">
 </center>
 
 # How does it work ?

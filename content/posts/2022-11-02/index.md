@@ -216,7 +216,7 @@ The circle is dynamic,
 clicking on a specific section rotates the circle so the relevant key is exposed on top.
 
 <center>
-    <img src="cover.png" width="50%" />
+    <img src="feature.png" width="50%" />
 </center>
 <br />
 

@@ -137,7 +137,7 @@ it was not a pleasant experience.
 **I'll give it 1 star, do not recommend**.
 
 <center>
-	<img src="cover.jpg" />
+	<img src="feature.jpg" />
 </center>
 
 Resuming work

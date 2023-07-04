@@ -609,7 +609,7 @@ The UI was badly broken due to the many changes I made in the API,
 so I spent a while fixing it and **taking advantage of the new snapshot filesystem view** to provide directory browsing:
 
 <center>
-    <img src="cover.png">
+    <img src="feature.png">
 </center>
 
 I also improved slightly the view for individual resources,

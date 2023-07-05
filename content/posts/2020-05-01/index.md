@@ -2,7 +2,7 @@
 title: "April 2020: worked on a webmail and a bit of OpenSMTPD too"
 date: 2020-05-01 11:37:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

@@ -2,7 +2,7 @@
 title: "November 2022: feedchain, go-harmony, dart-harmony and harmonee"
 date: 2022-11-30 00:00:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: en
 categories:
  - technology

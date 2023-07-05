@@ -3,7 +3,7 @@ title: "OpenSMTPD proc filters & fc-rDNS"
 date: 2018-12-06 21:31:00
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

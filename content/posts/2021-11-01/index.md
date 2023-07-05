@@ -2,7 +2,7 @@
 title: "November 2021: a bit of go-ipcmsg, a bit of go-privsep and a ton of plakar"
 date: 2021-10-26 07:40:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: fr
 categories:
  - technology

@@ -3,7 +3,7 @@ title: "OpenSMTPD 6.0.0 is released !"
 date: 2016-09-12 08:00:00
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

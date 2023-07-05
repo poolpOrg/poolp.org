@@ -3,7 +3,7 @@ title: "Installer OpenBSD sur une dedibox Classic+ Gen2"
 date: 2013-05-08 14:23:43
 category: OpenBSD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

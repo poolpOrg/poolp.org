@@ -3,7 +3,7 @@ title: "OpenSMTPD: crypto_backend and encrypted queue"
 date: 2012-08-29 10:21:59
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

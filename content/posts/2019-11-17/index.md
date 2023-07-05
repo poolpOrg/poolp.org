@@ -2,7 +2,7 @@
 title: "November 2019 report: OpenSMTPD 6.6.1p1, filter-greylist and tons of portable cleanup"
 date: 2019-11-17 22:45:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

@@ -2,7 +2,7 @@
 title: "March 2022: plakar clone and plakar sync"
 date: 2022-03-06 00:51:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: fr
 categories:
  - technology

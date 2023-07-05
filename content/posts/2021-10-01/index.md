@@ -2,7 +2,7 @@
 title: "October 2021: mostly Plakar"
 date: 2021-10-26 07:40:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: fr
 categories:
  - technology

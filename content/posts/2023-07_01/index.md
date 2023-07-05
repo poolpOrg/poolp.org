@@ -3,18 +3,21 @@ title: "Building my own guitar, part 3"
 date: 2023-07-04 12:31:00 +0200
 language: en
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - music
 tags:
  - guitar
+series:
+ - "building my own guitar"
+series_order: 3
 ---
 
-<blockquote>
-    <b>TL;DR:</b>
+{{< lead >}}
+    TL;DR:
     Received the new neck and...
     it fits perfectly !
-</blockquote>
+{{< /lead >}}
 
 
 # The neck

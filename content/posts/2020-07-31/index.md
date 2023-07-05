@@ -2,7 +2,7 @@
 title: "July 2020: webmail, custom MDA and python framework work"
 date: 2020-07-31 22:47:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

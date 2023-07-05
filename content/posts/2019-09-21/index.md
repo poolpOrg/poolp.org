@@ -2,9 +2,11 @@
 title: "September 2019 report: Jules, OpenSMTPD 6.6.0 upcoming release and related things"
 date: 2019-09-21 07:08:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
+tags:
+ - plakar
 ---
     TL;DR:
     - I started writing this post a week ago but got interrupted by a baby, Jules

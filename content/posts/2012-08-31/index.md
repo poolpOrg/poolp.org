@@ -3,7 +3,7 @@ title: "OpenSMTPD: crypto/compress fixes and import initial stab at LDAP"
 date: 2012-08-31 15:21:39
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

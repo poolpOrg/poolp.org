@@ -3,7 +3,7 @@ title: "OpenSMTPD: plenty of news"
 date: 2012-08-21 22:22:00
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

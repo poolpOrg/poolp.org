@@ -3,7 +3,7 @@ title: "OpenSMTPD new config"
 date: 2018-04-30 12:00:00
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

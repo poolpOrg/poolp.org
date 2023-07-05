@@ -2,7 +2,7 @@
 title: "May 2022: yet again, tons of plakar stuff "
 date: 2022-05-22 13:27:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: fr
 categories:
  - technology

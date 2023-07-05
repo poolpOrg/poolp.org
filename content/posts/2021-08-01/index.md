@@ -2,7 +2,7 @@
 title: "August 2021: taking a break"
 date: 2021-08-13 08:53:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: fr
 categories:
  - personal

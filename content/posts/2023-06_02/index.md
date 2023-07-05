@@ -3,18 +3,21 @@ title: "Building my own guitar, part 1"
 date: 2023-06-28 13:42:00 +0200
 language: en
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - music
 tags:
  - guitar
+series:
+ - "building my own guitar"
+series_order: 1
 ---
 
-<blockquote>
-    <b>TL;DR:</b>
+{{< lead >}}
+    TL;DR:
     I'm building a guitar from scratch,
     picking up every component but skipping the tricky cut and glue bits :-)
-</blockquote>
+{{< /lead >}}
 
 # About this project
 

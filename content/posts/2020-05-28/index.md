@@ -2,7 +2,7 @@
 title: "May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs"
 date: 2020-05-28 01:57:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

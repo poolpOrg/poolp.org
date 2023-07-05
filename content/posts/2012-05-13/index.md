@@ -3,7 +3,7 @@ title: "OpenSMTPD, map_compare() and K_NETADDR"
 date: 2012-05-13 03:09:16
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

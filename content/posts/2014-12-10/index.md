@@ -3,7 +3,7 @@ title: "Some OpenSMTPD overview, part 3"
 date: 2014-12-10 12:38:26
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

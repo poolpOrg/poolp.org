@@ -3,7 +3,7 @@ title: "News from the front !"
 date: 2018-01-08 12:11:00
 category: myLife
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - personal
 ---

@@ -2,7 +2,7 @@
 title: "OpenSMTPD advisory dissected"
 date: 2020-01-30 23:36:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

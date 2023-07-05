@@ -2,7 +2,7 @@
 title: "Mettre en place un serveur de mail avec OpenSMTPD, Dovecot et Rspamd"
 date: 2019-12-23 07:57:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

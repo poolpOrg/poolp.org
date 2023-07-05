@@ -3,7 +3,7 @@ title: "g2k12: OpenBSD hackathon"
 date: 2012-07-09 23:52:31
 category: OpenBSD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

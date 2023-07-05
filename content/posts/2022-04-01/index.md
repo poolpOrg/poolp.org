@@ -2,7 +2,7 @@
 title: "April 2022: plakar.io, plakar refactor and ssh support"
 date: 2022-04-24 17:24:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: fr
 categories:
  - technology

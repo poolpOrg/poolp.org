@@ -3,7 +3,7 @@ title: "Mind hacking: understanding how our mind works"
 date: 2021-05-12 00:47:00 +0200
 category: psychology
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

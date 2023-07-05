@@ -2,7 +2,7 @@
 title: "SPF-aware greylisting et filter-greylist"
 date: 2019-12-26 14:15:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

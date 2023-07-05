@@ -3,7 +3,7 @@ title: "OpenSMTPD: SSL & relay stuff"
 date: 2012-12-28 20:11:23
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

@@ -2,7 +2,7 @@
 title: "June 2022: go-harmony and earmuff"
 date: 2022-06-14 12:27:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: fr
 categories:
  - technology

@@ -80,8 +80,8 @@ disableImageOptimization = false
   # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
   layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
-  showBreadcrumbs = false
-  showSummary = false
+  showBreadcrumbs = true
+  showSummary = true
   showViews = false
   showLikes = false
   showTableOfContents = false
@@ -115,23 +115,10 @@ disableImageOptimization = false
   cardView = false
   cardViewScreenWidth = false
 
-[firebase]
-  # apiKey = "XXXXXX"
-  # authDomain = "XXXXXX"
-  # projectId = "XXXXXX"
-  # storageBucket = "XXXXXX"
-  # messagingSenderId = "XXXXXX"
-  # appId = "XXXXXX"
-  # measurementId = "XXXXXX"
-
-[fathomAnalytics]
-  # site = "ABC12345"
-  # domain = "llama.yoursite.com"
-
 [buymeacoffee]
   identifier = "poolporg"
   globalWidget = true
-  # globalWidgetMessage = "Hello"
+   globalWidgetMessage = "Support me !"
   # globalWidgetColor = "#FFDD00"
   # globalWidgetPosition = "Right"
 

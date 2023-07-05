@@ -2,7 +2,7 @@
 title: "Anxiety, OpenBSD break, COVID-19 and resuming work"
 date: 2020-03-30 14:01:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - personal
 ---

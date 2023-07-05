@@ -2,7 +2,7 @@
 title: "what the fsck did just happen"
 date: 2014-11-24 18:01:51
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

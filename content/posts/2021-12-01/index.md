@@ -2,7 +2,7 @@
 title: "December 2021: a bit of plakar, a bit of go-fastcdc and some useless stuff"
 date: 2021-12-13 07:40:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: fr
 categories:
  - technology

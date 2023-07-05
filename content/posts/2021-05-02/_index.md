@@ -2,7 +2,7 @@
 title: "Mind hacking: comprendre comment fonctionne notre esprit"
 date: 2021-05-17 22:52:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: fr
 categories:
  - technology

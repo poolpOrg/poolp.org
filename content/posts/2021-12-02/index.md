@@ -2,7 +2,7 @@
 title: "Farewell 2021, Welcome 2022: a personal post"
 date: 2021-12-30 08:00:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: en
 categories:
  - personal

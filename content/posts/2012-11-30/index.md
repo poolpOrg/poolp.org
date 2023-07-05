@@ -3,7 +3,7 @@ title: "OpenSMTPD: more features, more cleanup, more more"
 date: 2012-11-30 22:13:25
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

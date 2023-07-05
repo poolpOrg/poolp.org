@@ -3,7 +3,7 @@ title: "OpenSMTPD REST queue"
 date: 2012-06-06 14:44:10
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

@@ -3,7 +3,7 @@ title: "OpenSMTPD relay maps & new url syntax"
 date: 2012-05-14 09:55:52
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

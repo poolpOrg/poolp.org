@@ -2,7 +2,7 @@
 title: "Writing a custom Mail Delivery Agent"
 date: 2020-12-29 01:01:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

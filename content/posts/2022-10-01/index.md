@@ -2,7 +2,7 @@
 title: "October 2022: blog comments, a bit of plakar and the streamchain project"
 date: 2022-10-18 11:11:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: fr
 categories:
  - technology

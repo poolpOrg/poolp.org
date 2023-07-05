@@ -3,7 +3,7 @@ title: "OpenSMTPD: gentlemen, fasten your seatbelt"
 date: 2013-01-25 23:01:47
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

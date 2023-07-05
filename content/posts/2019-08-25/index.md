@@ -3,9 +3,11 @@ title: "August 2019 report: Fion, Plakar and OpenSMTPD"
 date: 2019-08-25 04:00:00
 author: Gilles Chehade
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
+tags:
+ - plakar
 ---
 
     Tl;DR:

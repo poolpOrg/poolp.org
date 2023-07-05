@@ -3,7 +3,7 @@ title: "2023-Q2: music, unity, xgb, jujulang, setdb and opensmtpd"
 date: 2023-06-30 18:21:00 +0200
 language: en
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---
@@ -281,6 +281,8 @@ For now, the code is a moving target, so unless you know what you're doing, don'
 Otherwise, look at the example implementations in cmd/, one implements a server and the other a command line tool that also ships a client.
 
 Code is available in my Github repository for [go-setdb](https://github.com/poolpOrg/go-setdb).
+
+{{< github repo="poolpOrg/go-setdb" >}}
 
 
 # Jujulang

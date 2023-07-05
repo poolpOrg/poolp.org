@@ -2,7 +2,7 @@
 title: "December 2022: some more earmuff and go-harmony"
 date: 2022-12-30 12:00:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: en
 categories:
  - technology

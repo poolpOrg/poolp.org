@@ -3,7 +3,7 @@ title: "News from the front"
 date: 2013-04-21 17:15:21
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

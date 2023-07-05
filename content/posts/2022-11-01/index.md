@@ -2,7 +2,7 @@
 title: "Feedchain is a standalone news feed project"
 date: 2022-11-20 12:01:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 language: fr
 categories:
  - technology

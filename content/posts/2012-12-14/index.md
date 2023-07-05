@@ -3,7 +3,7 @@ title: "OpenSMTPD: LDAP support, selectable source, DKIM and Goodies"
 date: 2012-12-14 21:43:44
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

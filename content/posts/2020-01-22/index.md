@@ -2,7 +2,7 @@
 title: "January 2020: OpenSMTPD work - libasr and libtls"
 date: 2020-01-22 06:51:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

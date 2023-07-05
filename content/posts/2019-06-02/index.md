@@ -2,7 +2,7 @@
 title: "happy new year 2019, a personal post"
 date: 2019-06-02 13:42:00
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - personal
 ---

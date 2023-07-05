@@ -2,7 +2,7 @@
 title: "December 2019: OpenSMTPD and filters work, articles and goodies"
 date: 2019-12-24 09:31:00 +0200
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

@@ -3,7 +3,7 @@ title: "OpenSMTPD meets SQLite"
 date: 2012-05-12 14:23:54
 category: OpenSMTPD
 authors:
- - Gilles Chehade
+ - "gilles"
 categories:
  - technology
 ---

@@ -25,7 +25,7 @@ disableImageOptimization = false
 # smartTOCHideUnfocusedChildren = true
 
 [header]
-  layout = "basic" # valid options: basic, fixed, fixed-fill, fixed-fill-blur
+  layout = "fixed-fill-blur" # valid options: basic, fixed, fixed-fill, fixed-fill-blur
 
 [footer]
   showMenu = true
@@ -35,10 +35,11 @@ disableImageOptimization = false
   showScrollToTop = true
 
 [homepage]
-  layout = "profile" # valid options: page, profile, hero, card, background, custom
-  #homepageImage = "IMAGE.jpg" # used in: hero, and card
+  #layout = "profile" # valid options: page, profile, hero, card, background, custom
+  layout = "background" # valid options: page, profile, hero, card, background, custom
+  homepageImage = "img/poolp_org.png" # used in: hero, and card
   showRecent = true
-  showRecentItems = 5
+  showRecentItems = 6
   showMoreLink = true
   showMoreLinkDest = "/posts"
   cardView = true
@@ -87,7 +88,7 @@ disableImageOptimization = false
   showTableOfContents = false
   showCards = false
   groupByYear = true
-  cardView = false
+  cardView = true
   cardViewScreenWidth = false
   constrainItemsWidth = false
 

@@ -1,7 +1,6 @@
 languageCode = "en"
 languageName = "English"
 weight = 1
-title = "poolp.org"
 
 [params]
   displayName = "EN"
@@ -11,4 +10,4 @@ title = "poolp.org"
   logo = "img/poolp_org.png"
   # secondaryLogo = "img/secondary-logo.png"
   # description = "My awesome website"
-  # copyright = "Copy, _right?_ :thinking_face:"
+  copyright = "Copyright &copy; Gilles Chehade - poolp.org"

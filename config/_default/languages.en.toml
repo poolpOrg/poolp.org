@@ -1,6 +1,7 @@
 languageCode = "en"
 languageName = "English"
 weight = 1
+title = "poolp.org"
 
 [params]
   displayName = "EN"

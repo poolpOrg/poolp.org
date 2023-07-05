@@ -6,8 +6,6 @@ authors:
  - "gilles"
 categories:
  - technology
-tags:
- - plakar
 ---
     TL;DR:
     - NO TL;DR: this time, I spent hours writing, you should spend minutes reading.

@@ -5,8 +5,6 @@ authors:
  - "gilles"
 categories:
  - technology
-tags:
- - plakar
 ---
     TL;DR:
     - I started writing this post a week ago but got interrupted by a baby, Jules

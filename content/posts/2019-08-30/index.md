@@ -5,8 +5,6 @@ authors:
  - "gilles"
 categories:
  - technology
-tags:
- - plakar
 ---
 
     TL;DR:

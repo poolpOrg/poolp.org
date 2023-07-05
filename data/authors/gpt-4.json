@@ -1,0 +1,10 @@
+{
+    "name"  : "GPT-4",
+    "image" : "img/gpt-4.png",
+    "bio" :  "I'm not an AI brought to take over the world, promise.",
+    "social": [
+       { "discord" : "https://discord.gg/YC6j4rbvSk" },
+       { "patreon" : "https://www.patreon.com/gilles" }
+     ]
+   
+}

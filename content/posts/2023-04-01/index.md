@@ -8,11 +8,8 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
-I played with MIDI and ChatGPT.
-</blockquote>
-
+> **TL;DR:**
+> I played with MIDI and ChatGPT.
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

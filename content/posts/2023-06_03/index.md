@@ -14,11 +14,9 @@ series:
 series_order: 2
 ---
 
-{{< lead >}}
-    TL;DR:
-    Received the neck...
-    too bad it's not exactly the one I ordered :-)
-{{< /lead >}}
+> **TL;DR:**
+> Received the neck...
+> too bad it's not exactly the one I ordered :-)
 
 
 # The neck

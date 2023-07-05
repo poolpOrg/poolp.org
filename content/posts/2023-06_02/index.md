@@ -14,11 +14,10 @@ series:
 series_order: 1
 ---
 
-{{< lead >}}
-    TL;DR:
-    I'm building a guitar from scratch,
-    picking up every component but skipping the tricky cut and glue bits :-)
-{{< /lead >}}
+> **TL;DR:**
+> I'm building a guitar from scratch,
+> picking up every component but skipping the tricky cut and glue bits :-)
+
 
 # About this project
 

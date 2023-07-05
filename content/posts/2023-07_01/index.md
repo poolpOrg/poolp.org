@@ -8,16 +8,15 @@ categories:
  - music
 tags:
  - guitar
+ - dyi
 series:
  - "building my own guitar"
 series_order: 3
 ---
 
-{{< lead >}}
-    TL;DR:
-    Received the new neck and...
-    it fits perfectly !
-{{< /lead >}}
+> **TL;DR:**
+> Received the new neck and...
+> it fits perfectly !
 
 
 # The neck

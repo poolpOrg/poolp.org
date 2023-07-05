@@ -8,10 +8,8 @@ categories:
  - music
 ---
 
-<blockquote>
-    <b>TL;DR:</b>
-    I will be discussing music on this blog from now on.
-</blockquote>
+> **TL;DR:**
+> I will be discussing music on this blog from now on.
 
 # This blog is a musical blog too
 

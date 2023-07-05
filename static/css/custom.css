@@ -2,20 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Neucha|Patrick+Hand+SC);
 BODY {
     text-align: justify;
-    font-family: Neucha, Merriweather;
-}
-
-.px-2 {
-    font-size: 1.2rem;
-}
-
-.cursor-default {
-    margin: 10px;
-}
-
-
-H1 {
-    font-size: 2rem;
+ /*   font-family: Neucha, Merriweather;*/
 }
 
 STRONG {

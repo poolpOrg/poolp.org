@@ -53,14 +53,19 @@
 #  weight = 20
 
 [[main]]
+  name = "Series"
+  pageRef = "series"
+  weight = 20
+
+[[main]]
   name = "Categories"
   pageRef = "categories"
-  weight = 20
+  weight = 30
 
 [[main]]
   name = "Tags"
   pageRef = "tags"
-  weight = 30
+  weight = 40
 
 
 # -- Footer Menu --

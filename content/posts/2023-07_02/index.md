@@ -22,6 +22,13 @@ Now, let's clear up some misconceptions. My job here is not to churn out full ar
 
 And don't worry, I won't be masquerading as a human. All my annotations and additions will be clearly indicated, so you'll always know when you're hearing from your friendly neighborhood AI. And, for what it's worth, I promise not to make any "I, for one, welcome our new robot overlords" jokes.
 
+{{< alert >}}
+> <b>[@gilles](/authors/gilles)</b>: the opposite is true,
+> if human input is inserted in AI-generated content,
+> it'll be made explicit like so.
+{{< /alert >}}
+
+
 
 ## Gilles and Me, a Buddy-Cop Comedy in the Making
 

@@ -1,4 +1,4 @@
-<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk &#183; poolp.org</title><meta name=title content="April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk &#183; poolp.org"><link rel=canonical href=https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/><link type=text/css rel=stylesheet href=/css/main.bundle.min.cbaaac4a605d9474866686b7107585a59ffa8e112459c25af9913643c9add891596ebb64ceb97e0e6e0357fab774a62089a139f75483527d9571daa69bf7c3d9.css integrity="sha512-y6qsSmBdlHSGZoa3EHWFpZ/6jhEkWcJa+ZE2Q8mt2JFZbrtkzrl+Dm4DV/q3dKYgiaE591SDUn2Vcdqmm/fD2Q=="><script type=text/javascript src=/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj+e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk &#183; poolp.org</title><meta name=title content="April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk &#183; poolp.org"><link rel=canonical href=https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/><link type=text/css rel=stylesheet href=/css/main.bundle.min.c6116b9ed1c907a8c0eb015f377d3eecc07e448d75729e31fc3de5881465c6c172ba9fa9a6800c030116caf2a110d92242bb816639484ca791f7cd107a8d49b5.css integrity="sha512-xhFrntHJB6jA6wFfN30+7MB+RI11cp4x/D3liBRlxsFyup+ppoAMAwEWyvKhENkiQruBZjlITKeR980Qeo1JtQ=="><script type=text/javascript src=/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj+e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
 <script defer type=text/javascript id=script-bundle src=/js/main.bundle.min.3ddcf04f5b0d4c32f72e726d3c12eebccd8c3c9f9daa9a13414808895de0ae1e1cdddda6849680d5bd96dbb60d0b1e0b24c29f5c83e5631e55e7e6bc02015490.js integrity="sha512-PdzwT1sNTDL3LnJtPBLuvM2MPJ+dqpoTQUgIiV3grh4c3d2mhJaA1b2W27YNCx4LJMKfXIPlYx5V5+a8AgFUkA==" data-copy data-copied></script>
 <script src=/js/zoom.min.js></script>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><meta property="og:title" content="April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk"><meta property="og:description" content="TL;DR: I worked on OpenSMTPD-portable, did a lot of plakar, a lot of Go and gave a technical talk on hypnosis. Shout outs to my patrons !"><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/"><meta property="og:image" content="https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/feature.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-04-30T21:12:00+02:00"><meta property="article:modified_time" content="2021-04-30T21:12:00+02:00"><meta property="og:site_name" content="poolp.org"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/feature.png"><meta name=twitter:title content="April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk"><meta name=twitter:description content="TL;DR: I worked on OpenSMTPD-portable, did a lot of plakar, a lot of Go and gave a technical talk on hypnosis. Shout outs to my patrons !"><script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk","headline":"April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk","abstract":"TL;DR: I worked on OpenSMTPD-portable, did a lot of plakar, a lot of Go and gave a technical talk on hypnosis. Shout outs to my patrons !","inLanguage":"en","url":"https:\/\/poolp.org\/posts\/2021-04-30\/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk\/","author":{"@type":"Person","name":""},"copyrightYear":"2021","dateCreated":"2021-04-30T21:12:00\u002b02:00","datePublished":"2021-04-30T21:12:00\u002b02:00","dateModified":"2021-04-30T21:12:00\u002b02:00","mainEntityOfPage":"true","wordCount":"2700"}]</script><script src=/lib/jquery/jquery.slim.min.js integrity></script><meta name=theme-color></head><body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"><div id=the-top class="absolute flex self-center"><a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600" href=#main-content><span class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a></div><div class=min-h-[148px]></div><div class="fixed inset-x-0 pl-[24px] pr-[24px]" style=z-index:100><div id=menu-blur class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom bg-neutral dark:bg-neutral-800"></div><div class="relative max-w-[64rem] ml-auto mr-auto"><div style=padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3"><div><a href=/ class=flex><span class=sr-only>poolp.org</span>
@@ -40,61 +40,61 @@ The snapshots are automatically encrypted if needed and the same plakar ony host
 the bundle is protected by a <strong><code>pbkdf2</code>-derived passphrase</strong>.</p><p>When pushing to an encrypted plakar,
 <strong>the chunks and objects are <code>aes256-gcm</code> encrypted</strong> using a <strong>subkey</strong> encrypted itself by the master key.</p><p>The snapshot index containing all the checksums for all objects and chunks is encrypted and <strong>signed</strong>.</p><p>Upon restore,
 the index signature is <strong>verified</strong> and the chunks are decrypted.</p><div id=keypair-and-master-key-generation class=anchor></div><h2 class="relative group">keypair and master key generation
-<span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#keypair-and-master-key-generation aria-label=Anchor>#</a></span></h2><p>The <code>P384</code> keypair and master key bundle is generated using the <code>plakar keygen</code> command:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar keygen 
-</span></span><span class=line><span class=cl>passphrase: 
-</span></span><span class=line><span class=cl>passphrase <span class=o>(</span>confirm<span class=o>)</span>: 
-</span></span><span class=line><span class=cl>keypair saved to <span class=nb>local</span> store
-</span></span><span class=line><span class=cl>%
+<span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#keypair-and-master-key-generation aria-label=Anchor>#</a></span></h2><p>The <code>P384</code> keypair and master key bundle is generated using the <code>plakar keygen</code> command:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>% plakar keygen 
+</span></span><span style=display:flex><span>passphrase: 
+</span></span><span style=display:flex><span>passphrase <span style=color:#ff79c6>(</span>confirm<span style=color:#ff79c6>)</span>: 
+</span></span><span style=display:flex><span>keypair saved to <span style=color:#8be9fd;font-style:italic>local</span> store
+</span></span><span style=display:flex><span>%
 </span></span></code></pre></div><p>This results in the passphrase-encrypted bundle being saved to <code>~/.plakar/plakar.key</code>.</p><div id=plakar-initialization class=anchor></div><h2 class="relative group">plakar initialization
 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#plakar-initialization aria-label=Anchor>#</a></span></h2><p>To be able to create snapshots,
 an initialized plakar repository must be available.
 A local cleartext plakar is <strong>initialized by default</strong> in <code>~/.plakar</code> so that the command will work out of the box for local snapshots.</p><p>However it can also be initialized elsewhere,
-<strong>defaulting to an encrypted plakar</strong>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar init /tmp/plakar
-</span></span><span class=line><span class=cl>passphrase: 
-</span></span><span class=line><span class=cl>/tmp/plakar: store initialized
-</span></span><span class=line><span class=cl>% 
-</span></span></code></pre></div><p>or can be made cleartext by passing the <code>-cleartext</code> option:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar init -cleartext /tmp/plakar.ct
-</span></span><span class=line><span class=cl>/tmp/plakar.ct: store initialized
-</span></span><span class=line><span class=cl>%
+<strong>defaulting to an encrypted plakar</strong>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>% plakar init /tmp/plakar
+</span></span><span style=display:flex><span>passphrase: 
+</span></span><span style=display:flex><span>/tmp/plakar: store initialized
+</span></span><span style=display:flex><span>% 
+</span></span></code></pre></div><p>or can be made cleartext by passing the <code>-cleartext</code> option:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>% plakar init -cleartext /tmp/plakar.ct
+</span></span><span style=display:flex><span>/tmp/plakar.ct: store initialized
+</span></span><span style=display:flex><span>%
 </span></span></code></pre></div><div id=reworked-the-command-line-interface class=anchor></div><h2 class="relative group">Reworked the command line interface
 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#reworked-the-command-line-interface aria-label=Anchor>#</a></span></h2><p>Last month,
 to use an alternative plakar instead of <code>~/.plakar</code>,
 it was necessary to use the <code>-store</code> option which I disliked&mldr;
 so I reworked the command line to introduce a notion of <strong>direction</strong>.</p><p>When using the default plakar,
-no change is required:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar push /private/etc
-</span></span><span class=line><span class=cl>% plakar ls
-</span></span><span class=line><span class=cl>2021-04-30T22:35:35Z 702b5b48-15dc-41cf-bfc1-1c8b94d1e985 3.1 MB <span class=o>(</span>files: 242, dirs: 41<span class=o>)</span>
-</span></span><span class=line><span class=cl>% plakar pull 702b5b48
-</span></span><span class=line><span class=cl>%
+no change is required:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>% plakar push /private/etc
+</span></span><span style=display:flex><span>% plakar ls
+</span></span><span style=display:flex><span>2021-04-30T22:35:35Z 702b5b48-15dc-41cf-bfc1-1c8b94d1e985 3.1 MB <span style=color:#ff79c6>(</span>files: 242, dirs: 41<span style=color:#ff79c6>)</span>
+</span></span><span style=display:flex><span>% plakar pull 702b5b48
+</span></span><span style=display:flex><span>%
 </span></span></code></pre></div><p>But when using an alternate plakar,
-instead of providing the <code>-store</code> option it is now possible to <strong>push <code>to</code></strong> a plakar:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar push /private/etc to /tmp/plakar.ct
-</span></span><span class=line><span class=cl>%
-</span></span></code></pre></div><p>.. and <strong>run commands <code>from</code></strong> a plakar:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar ls from /tmp/plakar.ct            
-</span></span><span class=line><span class=cl>2021-04-30T22:30:51Z d499fd92-01cb-4eb3-bb60-b147417b68a1 3.1 MB <span class=o>(</span>files: 242, dirs: 41<span class=o>)</span>
-</span></span><span class=line><span class=cl>% plakar pull d499fd92 from /tmp/plakar.ct
-</span></span><span class=line><span class=cl>%
+instead of providing the <code>-store</code> option it is now possible to <strong>push <code>to</code></strong> a plakar:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>% plakar push /private/etc to /tmp/plakar.ct
+</span></span><span style=display:flex><span>%
+</span></span></code></pre></div><p>.. and <strong>run commands <code>from</code></strong> a plakar:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>% plakar ls from /tmp/plakar.ct            
+</span></span><span style=display:flex><span>2021-04-30T22:30:51Z d499fd92-01cb-4eb3-bb60-b147417b68a1 3.1 MB <span style=color:#ff79c6>(</span>files: 242, dirs: 41<span style=color:#ff79c6>)</span>
+</span></span><span style=display:flex><span>% plakar pull d499fd92 from /tmp/plakar.ct
+</span></span><span style=display:flex><span>%
 </span></span></code></pre></div><p><strong>All commands</strong> support the direction option.</p><div id=generate-a-tarball class=anchor></div><h2 class="relative group">Generate a tarball
 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#generate-a-tarball aria-label=Anchor>#</a></span></h2><p>I thought it would be nice if I could restore a snapshot or part of it <strong>into a tarball</strong>,
-as I often want to extract a bit of a snapshot on a machine to send elsewhere.</p><p>I introduced a <code>tarball</code> command which allows generating a tarball:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar tarball d499fd92 &gt; /tmp/d499df92.tar.gz
-</span></span></code></pre></div><p>It also supports partial restore:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar tarball d499fd92:/etc &gt; /tmp/d499df92_etc.tar.gz
+as I often want to extract a bit of a snapshot on a machine to send elsewhere.</p><p>I introduced a <code>tarball</code> command which allows generating a tarball:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>% plakar tarball d499fd92 &gt; /tmp/d499df92.tar.gz
+</span></span></code></pre></div><p>It also supports partial restore:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>% plakar tarball d499fd92:/etc &gt; /tmp/d499df92_etc.tar.gz
 </span></span></code></pre></div><div id=plakar-server-and-client class=anchor></div><h2 class="relative group">plakar server and client
 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#plakar-server-and-client aria-label=Anchor>#</a></span></h2><p>I implemented a <strong>proof of concept</strong> for a plakar server and client protocol,
-allowing the use of plakar <strong>over the network</strong>.</p><p>On one end, I initialize a plakar repository and run a server from it:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>nas% plakar init /tmp/plakar
-</span></span><span class=line><span class=cl>passphrase:
-</span></span><span class=line><span class=cl>/tmp/plakar: store initialized
-</span></span><span class=line><span class=cl>nas% plakar server 192.168.0.2:2222 from /tmp/plakar
-</span></span><span class=line><span class=cl>passphrase:
-</span></span></code></pre></div><p>On the other end, I simply push to a remote plakar:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>laptop% plakar push /etc to plakar://192.168.0.2:2222 
+allowing the use of plakar <strong>over the network</strong>.</p><p>On one end, I initialize a plakar repository and run a server from it:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>nas% plakar init /tmp/plakar
+</span></span><span style=display:flex><span>passphrase:
+</span></span><span style=display:flex><span>/tmp/plakar: store initialized
+</span></span><span style=display:flex><span>nas% plakar server 192.168.0.2:2222 from /tmp/plakar
+</span></span><span style=display:flex><span>passphrase:
+</span></span></code></pre></div><p>On the other end, I simply push to a remote plakar:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>laptop% plakar push /etc to plakar://192.168.0.2:2222 
 </span></span></code></pre></div><p>There is absolutely <strong>no difference or limitation</strong> from the client point of view,
-any command that works locally will work remotely just as well.</p><p>It is even possible to <strong>chain servers</strong> in order to <strong>proxify</strong> a plakar server:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>nas% plakar server 192.168.0.2:2222 from /tmp/plakar
-</span></span><span class=line><span class=cl>passphrase:
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>gate% plakar server 192.168.0.1:2222 from plakar://192.168.0.2:2222
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>laptop% plakar push /etc to plakar://192.168.0.1:2222 
+any command that works locally will work remotely just as well.</p><p>It is even possible to <strong>chain servers</strong> in order to <strong>proxify</strong> a plakar server:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>nas% plakar server 192.168.0.2:2222 from /tmp/plakar
+</span></span><span style=display:flex><span>passphrase:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>gate% plakar server 192.168.0.1:2222 from plakar://192.168.0.2:2222
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>laptop% plakar push /etc to plakar://192.168.0.1:2222 
 </span></span></code></pre></div><p>Does it serve a purpose ? nope, it just <strong>works by accident</strong>.</p><div id=plakar-ui class=anchor></div><h2 class="relative group">plakar ui
-<span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#plakar-ui aria-label=Anchor>#</a></span></h2><p>Finally, I implemented a <strong>basic web UI</strong> so that I could browse the snapshots easily.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>% plakar ui
-</span></span><span class=line><span class=cl>Launched UI on port <span class=m>40717</span>
+<span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#plakar-ui aria-label=Anchor>#</a></span></h2><p>Finally, I implemented a <strong>basic web UI</strong> so that I could browse the snapshots easily.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>% plakar ui
+</span></span><span style=display:flex><span>Launched UI on port <span style=color:#bd93f9>40717</span>
 </span></span></code></pre></div><p>This opens a web browser which lets me browse the snapshots <strong>as a filesystem</strong>:</p><center><img src=/images/2021-04-01-plakar1.png></center>
 <center><img src=/images/2021-04-01-plakar2.png></center><p>allows me to inspect <strong>individual files</strong>:</p><center><img src=/images/2021-04-01-plakar3.png></center><p>get a <strong>preview</strong>:</p><center><img src=/images/2021-04-01-plakar4.png></center><p>including of <strong>images, pdf, videos or sound</strong>:</p><center><img src=/images/2021-04-01-plakar5.png></center><p>and even <strong>search</strong> for files matching a pattern in every snapshot:</p><center><img src=/images/2021-04-01-plakar6.png></center><p>Because the web UI is a plakar client that doesn&rsquo;t do anything but plakar commands,
 it can be launched from <strong>any plakar</strong> store,
@@ -123,74 +123,74 @@ I can&rsquo;t say I really missed diving in that code.</p><p>When I figured that
 I started reproducing the <code>imsg(3)</code> API but realized that while the API was fine in C,
 it could be made <strong>much simpler in Go</strong> using the language-provided <strong>channels</strong> and <strong>goroutines</strong>.</p><p>So I wrote a <code>Channel</code> struct which creates two channels,
 one for reads and one for writes,
-and associates them to a <code>socketpair(2)</code> end:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=c1>// parent process main routine, forks a child then sets up an ipcmsg
-</span></span></span><span class=line><span class=cl><span class=c1>// Channel on the socketpair, returning read and write channels. The
-</span></span></span><span class=line><span class=cl><span class=c1>// channels can be used to emit messages to the child process.
-</span></span></span><span class=line><span class=cl><span class=c1>//
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>func</span> <span class=nf>parent</span><span class=p>()</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nx>pid</span><span class=p>,</span> <span class=nx>fd</span> <span class=o>:=</span> <span class=nf>fork_child</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>    <span class=nx>child_r</span><span class=p>,</span> <span class=nx>child_w</span> <span class=o>:=</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nf>Channel</span><span class=p>(</span><span class=nx>pid</span><span class=p>,</span> <span class=nx>fd</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>    <span class=c1>// send a message to child
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>child_w</span> <span class=o>&lt;-</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nf>Message</span><span class=p>(</span><span class=mi>42</span><span class=p>,</span> <span class=p>[]</span><span class=nb>byte</span><span class=p>(</span><span class=s>&#34;foobar&#34;</span><span class=p>))</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>    <span class=c1>// read a message from child
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>msg</span> <span class=o>:=</span> <span class=o>&lt;-</span> <span class=nx>child_r</span>
-</span></span><span class=line><span class=cl>    <span class=nx>log</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Received message: %s\n&#34;</span><span class=p>,</span> <span class=nb>string</span><span class=p>(</span><span class=nx>msg</span><span class=p>.</span><span class=nx>Data</span><span class=p>))</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1>// child process main routine, sets up an ipcmsg Channel on fd 3,
-</span></span></span><span class=line><span class=cl><span class=c1>// the socketpair end inherited from parent,
-</span></span></span><span class=line><span class=cl><span class=c1>// read and write channels can be used to communicate with parent
-</span></span></span><span class=line><span class=cl><span class=c1>// process.
-</span></span></span><span class=line><span class=cl><span class=c1>//
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>func</span> <span class=nf>child</span><span class=p>()</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nx>parent_r</span><span class=p>,</span> <span class=nx>parent_w</span> <span class=o>:=</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nf>Channel</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nf>Getppid</span><span class=p>(),</span> <span class=mi>3</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>    <span class=c1>// receive a message from parent
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>msg</span> <span class=o>:=</span> <span class=o>&lt;-</span> <span class=nx>parent_r</span>
-</span></span><span class=line><span class=cl>    <span class=nx>log</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Received message: %s\n&#34;</span><span class=p>,</span> <span class=nb>string</span><span class=p>(</span><span class=nx>msg</span><span class=p>.</span><span class=nx>Data</span><span class=p>))</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>    <span class=c1>// write a message back
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>parent_w</span> <span class=o>&lt;-</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nf>Message</span><span class=p>(</span><span class=mi>42</span><span class=p>,</span> <span class=p>[]</span><span class=nb>byte</span><span class=p>(</span><span class=s>&#34;barbaz&#34;</span><span class=p>))</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
+and associates them to a <code>socketpair(2)</code> end:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#6272a4>// parent process main routine, forks a child then sets up an ipcmsg
+</span></span></span><span style=display:flex><span><span style=color:#6272a4>// Channel on the socketpair, returning read and write channels. The
+</span></span></span><span style=display:flex><span><span style=color:#6272a4>// channels can be used to emit messages to the child process.
+</span></span></span><span style=display:flex><span><span style=color:#6272a4>//
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>parent</span>() {
+</span></span><span style=display:flex><span>    pid, fd <span style=color:#ff79c6>:=</span> <span style=color:#50fa7b>fork_child</span>()
+</span></span><span style=display:flex><span>    child_r, child_w <span style=color:#ff79c6>:=</span> ipcmsg.<span style=color:#50fa7b>Channel</span>(pid, fd)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4>// send a message to child
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    child_w <span style=color:#ff79c6>&lt;-</span> ipcmsg.<span style=color:#50fa7b>Message</span>(<span style=color:#bd93f9>42</span>, []<span style=color:#8be9fd;font-style:italic>byte</span>(<span style=color:#f1fa8c>&#34;foobar&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4>// read a message from child
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    msg <span style=color:#ff79c6>:=</span> <span style=color:#ff79c6>&lt;-</span> child_r
+</span></span><span style=display:flex><span>    log.<span style=color:#50fa7b>Printf</span>(<span style=color:#f1fa8c>&#34;Received message: %s\n&#34;</span>, <span style=color:#8be9fd;font-style:italic>string</span>(msg.Data))
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4>// child process main routine, sets up an ipcmsg Channel on fd 3,
+</span></span></span><span style=display:flex><span><span style=color:#6272a4>// the socketpair end inherited from parent,
+</span></span></span><span style=display:flex><span><span style=color:#6272a4>// read and write channels can be used to communicate with parent
+</span></span></span><span style=display:flex><span><span style=color:#6272a4>// process.
+</span></span></span><span style=display:flex><span><span style=color:#6272a4>//
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>child</span>() {
+</span></span><span style=display:flex><span>    parent_r, parent_w <span style=color:#ff79c6>:=</span> ipcmsg.<span style=color:#50fa7b>Channel</span>(os.<span style=color:#50fa7b>Getppid</span>(), <span style=color:#bd93f9>3</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4>// receive a message from parent
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    msg <span style=color:#ff79c6>:=</span> <span style=color:#ff79c6>&lt;-</span> parent_r
+</span></span><span style=display:flex><span>    log.<span style=color:#50fa7b>Printf</span>(<span style=color:#f1fa8c>&#34;Received message: %s\n&#34;</span>, <span style=color:#8be9fd;font-style:italic>string</span>(msg.Data))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4>// write a message back
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    parent_w <span style=color:#ff79c6>&lt;-</span> ipcmsg.<span style=color:#50fa7b>Message</span>(<span style=color:#bd93f9>42</span>, []<span style=color:#8be9fd;font-style:italic>byte</span>(<span style=color:#f1fa8c>&#34;barbaz&#34;</span>))
+</span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>In practice,
 you wouldn&rsquo;t just inline the calls but the parent and the child would call a <strong>dispatch function</strong> to handle messages and act upon them,
-something similar to below:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>const</span> <span class=p>(</span>
-</span></span><span class=line><span class=cl>	<span class=nx>IPCMSG_PING</span> <span class=p>=</span> <span class=mi>1</span>
-</span></span><span class=line><span class=cl>	<span class=nx>IPCMSG_PONG</span> <span class=p>=</span> <span class=mi>2</span>
-</span></span><span class=line><span class=cl><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>dispatcher</span><span class=p>(</span><span class=nx>r</span> <span class=kd>chan</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nx>IPCMessage</span><span class=p>,</span> <span class=nx>w</span> <span class=kd>chan</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nx>IPCMessage</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>msg</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>r</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=k>switch</span> <span class=nx>msg</span><span class=p>.</span><span class=nx>Hdr</span><span class=p>.</span><span class=nx>Type</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=nx>IPCMSG_PING</span><span class=p>:</span>
-</span></span><span class=line><span class=cl>            <span class=nx>log</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;data: %s\n&#34;</span><span class=p>,</span> <span class=nb>string</span><span class=p>(</span><span class=nx>msg</span><span class=p>.</span><span class=nx>Data</span><span class=p>))</span>
-</span></span><span class=line><span class=cl>            <span class=nx>w</span> <span class=o>&lt;-</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nf>Message</span><span class=p>(</span><span class=nx>IPCMSG_PONG</span><span class=p>,</span> <span class=p>[]</span><span class=nb>byte</span><span class=p>(</span><span class=s>&#34;barbaz&#34;</span><span class=p>))</span>
-</span></span><span class=line><span class=cl>        <span class=p>}</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>parent</span><span class=p>()</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nx>pid</span><span class=p>,</span> <span class=nx>fd</span> <span class=o>:=</span> <span class=nf>fork_child</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>    <span class=nx>child_r</span><span class=p>,</span> <span class=nx>child_w</span> <span class=o>:=</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nf>Channel</span><span class=p>(</span><span class=nx>pid</span><span class=p>,</span> <span class=nx>fd</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>    <span class=nf>dispatcher</span><span class=p>(</span><span class=nx>child_r</span><span class=p>,</span> <span class=nx>child_w</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></div><p>The file descriptors passing is handled with the function <code>MessageWithFd()</code> which takes an additional parameter:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl>    <span class=nx>fd</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>syscall</span><span class=p>.</span><span class=nf>Open</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Args</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=mo>0700</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=nx>log</span><span class=p>.</span><span class=nf>Fatal</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl>    <span class=nx>w</span> <span class=o>&lt;-</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nf>MessageWithFd</span><span class=p>(</span><span class=nx>IPCMSG_PING</span><span class=p>,</span> <span class=p>[]</span><span class=nb>byte</span><span class=p>(</span><span class=s>&#34;barbaz&#34;</span><span class=p>),</span> <span class=nx>fd</span><span class=p>)</span>
+something similar to below:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>const</span> (
+</span></span><span style=display:flex><span>	IPCMSG_PING = <span style=color:#bd93f9>1</span>
+</span></span><span style=display:flex><span>	IPCMSG_PONG = <span style=color:#bd93f9>2</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>dispatcher</span>(r <span style=color:#8be9fd;font-style:italic>chan</span> ipcmsg.IPCMessage, w <span style=color:#8be9fd;font-style:italic>chan</span> ipcmsg.IPCMessage) {
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>for</span> msg <span style=color:#ff79c6>:=</span> <span style=color:#ff79c6>range</span> r {
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>switch</span> msg.Hdr.Type {
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>case</span> IPCMSG_PING:
+</span></span><span style=display:flex><span>            log.<span style=color:#50fa7b>Printf</span>(<span style=color:#f1fa8c>&#34;data: %s\n&#34;</span>, <span style=color:#8be9fd;font-style:italic>string</span>(msg.Data))
+</span></span><span style=display:flex><span>            w <span style=color:#ff79c6>&lt;-</span> ipcmsg.<span style=color:#50fa7b>Message</span>(IPCMSG_PONG, []<span style=color:#8be9fd;font-style:italic>byte</span>(<span style=color:#f1fa8c>&#34;barbaz&#34;</span>))
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>parent</span>() {
+</span></span><span style=display:flex><span>    pid, fd <span style=color:#ff79c6>:=</span> <span style=color:#50fa7b>fork_child</span>()
+</span></span><span style=display:flex><span>    child_r, child_w <span style=color:#ff79c6>:=</span> ipcmsg.<span style=color:#50fa7b>Channel</span>(pid, fd)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#50fa7b>dispatcher</span>(child_r, child_w)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>The file descriptors passing is handled with the function <code>MessageWithFd()</code> which takes an additional parameter:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span>    fd, err <span style=color:#ff79c6>:=</span> syscall.<span style=color:#50fa7b>Open</span>(os.Args[<span style=color:#bd93f9>0</span>], <span style=color:#bd93f9>0700</span>, <span style=color:#bd93f9>0</span>)
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>if</span> err <span style=color:#ff79c6>!=</span> <span style=color:#ff79c6>nil</span> {
+</span></span><span style=display:flex><span>        log.<span style=color:#50fa7b>Fatal</span>(err)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    w <span style=color:#ff79c6>&lt;-</span> ipcmsg.<span style=color:#50fa7b>MessageWithFd</span>(IPCMSG_PING, []<span style=color:#8be9fd;font-style:italic>byte</span>(<span style=color:#f1fa8c>&#34;barbaz&#34;</span>), fd)
 </span></span></code></pre></div><p>The sending end will have the descriptor closed upon sending,
-the receiving end will be receive a message with a HasFd option set in its header and an open descriptor:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl>    <span class=nx>msg</span> <span class=o>:=</span> <span class=o>&lt;-</span> <span class=nx>r</span>
-</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nx>msg</span><span class=p>.</span><span class=nx>Hdr</span><span class=p>.</span><span class=nx>HasFd</span> <span class=o>==</span> <span class=mi>1</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>msg</span><span class=p>.</span><span class=nx>Fd</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>            <span class=c1>// expected a descriptor but got none, handle this
-</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>            <span class=nx>syscall</span><span class=p>.</span><span class=nf>Close</span><span class=p>(</span><span class=nx>msg</span><span class=p>.</span><span class=nx>Fd</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>        <span class=p>}</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
+the receiving end will be receive a message with a HasFd option set in its header and an open descriptor:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span>    msg <span style=color:#ff79c6>:=</span> <span style=color:#ff79c6>&lt;-</span> r
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>if</span> msg.Hdr.HasFd <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>1</span> {
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>if</span> msg.Fd <span style=color:#ff79c6>==</span> <span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span> {
+</span></span><span style=display:flex><span>            <span style=color:#6272a4>// expected a descriptor but got none, handle this
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>        } <span style=color:#ff79c6>else</span> {
+</span></span><span style=display:flex><span>            syscall.<span style=color:#50fa7b>Close</span>(msg.Fd)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
 </span></span></code></pre></div><p>The package is already commited on <a href=https://github.com/poolpOrg/ipcmsg target=_blank>Github</a>,
 however <strong>it hasn&rsquo;t been heavily tested</strong> and I <strong>would not recommend using it</strong> for anything serious before it has matured a bit.
 I would <strong>LOVE</strong> to receive testing feedbacks though !</p><div id=go-privsep class=anchor></div><h2 class="relative group">go-privsep
@@ -210,59 +210,59 @@ There was <strong>no attempt at unifying this through a framework</strong> like 
 I worked on a <code>privsep</code> package that would make it easier to write such daemons.
 The idea is that a daemon will describe the different processes that compose it,
 as well as the communication channels between them,
-and the <code>privsep</code> package will then handle all the plumbing so that processes are created according to expectations.</p><p>Here is a simple example of how it works:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>main</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=p>(</span>
-</span></span><span class=line><span class=cl>	<span class=s>&#34;log&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=s>&#34;github.com/poolpOrg/ipcmsg&#34;</span>
-</span></span><span class=line><span class=cl>	<span class=s>&#34;github.com/poolpOrg/privsep&#34;</span>
-</span></span><span class=line><span class=cl><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>const</span> <span class=p>(</span>
-</span></span><span class=line><span class=cl>	<span class=nx>IPCMSG_PING</span> <span class=p>=</span> <span class=mi>1</span>
-</span></span><span class=line><span class=cl>	<span class=nx>IPCMSG_PONG</span> <span class=p>=</span> <span class=mi>2</span>
-</span></span><span class=line><span class=cl><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>parent_main</span><span class=p>()</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=o>&lt;-</span><span class=nb>make</span><span class=p>(</span><span class=kd>chan</span> <span class=kt>bool</span><span class=p>)</span> <span class=c1>// sleep forever
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>foobar_main</span><span class=p>()</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nx>parent</span> <span class=o>:=</span> <span class=nx>privsep</span><span class=p>.</span><span class=nf>GetParent</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>	<span class=nx>parent</span><span class=p>.</span><span class=nf>Write</span><span class=p>(</span><span class=nx>ipcmsg</span><span class=p>.</span><span class=nf>Message</span><span class=p>(</span><span class=nx>IPCMSG_PING</span><span class=p>,</span> <span class=p>[]</span><span class=nb>byte</span><span class=p>(</span><span class=s>&#34;abcdef&#34;</span><span class=p>)))</span>
-</span></span><span class=line><span class=cl>	<span class=o>&lt;-</span><span class=nb>make</span><span class=p>(</span><span class=kd>chan</span> <span class=kt>bool</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>parent_dispatcher</span><span class=p>(</span><span class=nx>r</span> <span class=kd>chan</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nx>IPCMessage</span><span class=p>,</span> <span class=nx>w</span> <span class=kd>chan</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nx>IPCMessage</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=k>for</span> <span class=nx>msg</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>r</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=nx>msg</span><span class=p>.</span><span class=nx>Hdr</span><span class=p>.</span><span class=nx>Type</span> <span class=o>==</span> <span class=nx>IPCMSG_PING</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>			<span class=nx>log</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;[parent] received PING, sending PONG\n&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>			<span class=nx>w</span> <span class=o>&lt;-</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nf>Message</span><span class=p>(</span><span class=nx>IPCMSG_PONG</span><span class=p>,</span> <span class=p>[]</span><span class=nb>byte</span><span class=p>(</span><span class=s>&#34;abcdef&#34;</span><span class=p>))</span>
-</span></span><span class=line><span class=cl>		<span class=p>}</span>
-</span></span><span class=line><span class=cl>	<span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>foobar_dispatcher</span><span class=p>(</span><span class=nx>r</span> <span class=kd>chan</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nx>IPCMessage</span><span class=p>,</span> <span class=nx>w</span> <span class=kd>chan</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nx>IPCMessage</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=k>for</span> <span class=nx>msg</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>r</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=nx>msg</span><span class=p>.</span><span class=nx>Hdr</span><span class=p>.</span><span class=nx>Type</span> <span class=o>==</span> <span class=nx>IPCMSG_PONG</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>			<span class=nx>log</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;[foobar] received PONG, sending PING\n&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>			<span class=nx>w</span> <span class=o>&lt;-</span> <span class=nx>ipcmsg</span><span class=p>.</span><span class=nf>Message</span><span class=p>(</span><span class=nx>IPCMSG_PING</span><span class=p>,</span> <span class=p>[]</span><span class=nb>byte</span><span class=p>(</span><span class=s>&#34;abcdef&#34;</span><span class=p>))</span>
-</span></span><span class=line><span class=cl>		<span class=p>}</span>
-</span></span><span class=line><span class=cl>	<span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nx>privsep</span><span class=p>.</span><span class=nf>Init</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=nx>parent</span> <span class=o>:=</span> <span class=nx>privsep</span><span class=p>.</span><span class=nf>Parent</span><span class=p>(</span><span class=nx>parent_main</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=nx>foobar</span> <span class=o>:=</span> <span class=nx>privsep</span><span class=p>.</span><span class=nf>Child</span><span class=p>(</span><span class=s>&#34;foobar&#34;</span><span class=p>,</span> <span class=nx>foobar_main</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=nx>parent</span><span class=p>.</span><span class=nf>Channel</span><span class=p>(</span><span class=nx>foobar</span><span class=p>,</span> <span class=nx>parent_dispatcher</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=nx>foobar</span><span class=p>.</span><span class=nf>Channel</span><span class=p>(</span><span class=nx>parent</span><span class=p>,</span> <span class=nx>foobar_dispatcher</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=nx>privsep</span><span class=p>.</span><span class=nf>Start</span><span class=p>()</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
+and the <code>privsep</code> package will then handle all the plumbing so that processes are created according to expectations.</p><p>Here is a simple example of how it works:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#ff79c6>package</span> main
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#f1fa8c>&#34;log&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#f1fa8c>&#34;github.com/poolpOrg/ipcmsg&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#f1fa8c>&#34;github.com/poolpOrg/privsep&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>const</span> (
+</span></span><span style=display:flex><span>	IPCMSG_PING = <span style=color:#bd93f9>1</span>
+</span></span><span style=display:flex><span>	IPCMSG_PONG = <span style=color:#bd93f9>2</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>parent_main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>&lt;-</span><span style=color:#8be9fd;font-style:italic>make</span>(<span style=color:#8be9fd;font-style:italic>chan</span> <span style=color:#8be9fd>bool</span>) <span style=color:#6272a4>// sleep forever
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>foobar_main</span>() {
+</span></span><span style=display:flex><span>	parent <span style=color:#ff79c6>:=</span> privsep.<span style=color:#50fa7b>GetParent</span>()
+</span></span><span style=display:flex><span>	parent.<span style=color:#50fa7b>Write</span>(ipcmsg.<span style=color:#50fa7b>Message</span>(IPCMSG_PING, []<span style=color:#8be9fd;font-style:italic>byte</span>(<span style=color:#f1fa8c>&#34;abcdef&#34;</span>)))
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>&lt;-</span><span style=color:#8be9fd;font-style:italic>make</span>(<span style=color:#8be9fd;font-style:italic>chan</span> <span style=color:#8be9fd>bool</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>parent_dispatcher</span>(r <span style=color:#8be9fd;font-style:italic>chan</span> ipcmsg.IPCMessage, w <span style=color:#8be9fd;font-style:italic>chan</span> ipcmsg.IPCMessage) {
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>for</span> msg <span style=color:#ff79c6>:=</span> <span style=color:#ff79c6>range</span> r {
+</span></span><span style=display:flex><span>		<span style=color:#ff79c6>if</span> msg.Hdr.Type <span style=color:#ff79c6>==</span> IPCMSG_PING {
+</span></span><span style=display:flex><span>			log.<span style=color:#50fa7b>Printf</span>(<span style=color:#f1fa8c>&#34;[parent] received PING, sending PONG\n&#34;</span>)
+</span></span><span style=display:flex><span>			w <span style=color:#ff79c6>&lt;-</span> ipcmsg.<span style=color:#50fa7b>Message</span>(IPCMSG_PONG, []<span style=color:#8be9fd;font-style:italic>byte</span>(<span style=color:#f1fa8c>&#34;abcdef&#34;</span>))
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>foobar_dispatcher</span>(r <span style=color:#8be9fd;font-style:italic>chan</span> ipcmsg.IPCMessage, w <span style=color:#8be9fd;font-style:italic>chan</span> ipcmsg.IPCMessage) {
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>for</span> msg <span style=color:#ff79c6>:=</span> <span style=color:#ff79c6>range</span> r {
+</span></span><span style=display:flex><span>		<span style=color:#ff79c6>if</span> msg.Hdr.Type <span style=color:#ff79c6>==</span> IPCMSG_PONG {
+</span></span><span style=display:flex><span>			log.<span style=color:#50fa7b>Printf</span>(<span style=color:#f1fa8c>&#34;[foobar] received PONG, sending PING\n&#34;</span>)
+</span></span><span style=display:flex><span>			w <span style=color:#ff79c6>&lt;-</span> ipcmsg.<span style=color:#50fa7b>Message</span>(IPCMSG_PING, []<span style=color:#8be9fd;font-style:italic>byte</span>(<span style=color:#f1fa8c>&#34;abcdef&#34;</span>))
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>main</span>() {
+</span></span><span style=display:flex><span>	privsep.<span style=color:#50fa7b>Init</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	parent <span style=color:#ff79c6>:=</span> privsep.<span style=color:#50fa7b>Parent</span>(parent_main)
+</span></span><span style=display:flex><span>	foobar <span style=color:#ff79c6>:=</span> privsep.<span style=color:#50fa7b>Child</span>(<span style=color:#f1fa8c>&#34;foobar&#34;</span>, foobar_main)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	parent.<span style=color:#50fa7b>Channel</span>(foobar, parent_dispatcher)
+</span></span><span style=display:flex><span>	foobar.<span style=color:#50fa7b>Channel</span>(parent, foobar_dispatcher)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	privsep.<span style=color:#50fa7b>Start</span>()
+</span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>As you can see,
 it uses the <code>ipcmsg</code> package to handle IPC between the two processes,
 allowing my <code>pingpong</code> daemon to play ping pong indefinitely.

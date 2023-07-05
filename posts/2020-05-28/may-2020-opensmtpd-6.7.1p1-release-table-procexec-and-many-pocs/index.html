@@ -1,4 +1,4 @@
-<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs &#183; poolp.org</title><meta name=title content="May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs &#183; poolp.org"><link rel=canonical href=https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/><link type=text/css rel=stylesheet href=/css/main.bundle.min.cbaaac4a605d9474866686b7107585a59ffa8e112459c25af9913643c9add891596ebb64ceb97e0e6e0357fab774a62089a139f75483527d9571daa69bf7c3d9.css integrity="sha512-y6qsSmBdlHSGZoa3EHWFpZ/6jhEkWcJa+ZE2Q8mt2JFZbrtkzrl+Dm4DV/q3dKYgiaE591SDUn2Vcdqmm/fD2Q=="><script type=text/javascript src=/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj+e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs &#183; poolp.org</title><meta name=title content="May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs &#183; poolp.org"><link rel=canonical href=https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/><link type=text/css rel=stylesheet href=/css/main.bundle.min.c6116b9ed1c907a8c0eb015f377d3eecc07e448d75729e31fc3de5881465c6c172ba9fa9a6800c030116caf2a110d92242bb816639484ca791f7cd107a8d49b5.css integrity="sha512-xhFrntHJB6jA6wFfN30+7MB+RI11cp4x/D3liBRlxsFyup+ppoAMAwEWyvKhENkiQruBZjlITKeR980Qeo1JtQ=="><script type=text/javascript src=/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj+e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
 <script defer type=text/javascript id=script-bundle src=/js/main.bundle.min.3ddcf04f5b0d4c32f72e726d3c12eebccd8c3c9f9daa9a13414808895de0ae1e1cdddda6849680d5bd96dbb60d0b1e0b24c29f5c83e5631e55e7e6bc02015490.js integrity="sha512-PdzwT1sNTDL3LnJtPBLuvM2MPJ+dqpoTQUgIiV3grh4c3d2mhJaA1b2W27YNCx4LJMKfXIPlYx5V5+a8AgFUkA==" data-copy data-copied></script>
 <script src=/js/zoom.min.js></script>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><meta property="og:title" content="May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs"><meta property="og:description" content="TL;DR: Worked on the OpenSMTPD 6.7 release; Did a lot of work on the new table API; Wrote several PoCs; WARNING:
@@ -184,43 +184,43 @@ I&rsquo;ll leave this as an exercise to the reader.</p><div id=go-opensmtpd clas
 testing the new table API required a PoC so I decided to start with a Go implementation.</p><p>The <code>go-opensmtpd/table</code> package provides a work-in-progress implementation of the protocol parser,
 as well as a table API to ease development.
 Writing a table backend in Go using this package is simple,
-here&rsquo;s a simple dummy example of a table that only contains my e-mail address:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>main</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=p>(</span>
-</span></span><span class=line><span class=cl>	<span class=s>&#34;github.com/poolpOrg/go-opensmtpd/table&#34;</span>
-</span></span><span class=line><span class=cl><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>check</span><span class=p>(</span><span class=nx>token</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>service</span> <span class=nx>table</span><span class=p>.</span><span class=nx>LookupService</span><span class=p>,</span> <span class=nx>key</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>key</span> <span class=o>==</span> <span class=s>&#34;gilles@poolp.org&#34;</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>		<span class=c1>// found in table
-</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Boolean</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=kc>true</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>		<span class=c1>// not found
-</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Boolean</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=kc>false</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>lookup</span><span class=p>(</span><span class=nx>token</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>service</span> <span class=nx>table</span><span class=p>.</span><span class=nx>LookupService</span><span class=p>,</span> <span class=nx>key</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>service</span> <span class=o>==</span> <span class=s>&#34;alias&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>key</span> <span class=o>==</span> <span class=s>&#34;root&#34;</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>		<span class=c1>// if looking up alias for root, return my address
-</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Result</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=s>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>		<span class=c1>// empty result, not-found
-</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=nx>table</span><span class=p>.</span><span class=nf>Result</span><span class=p>(</span><span class=nx>token</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>fetch</span><span class=p>(</span><span class=nx>token</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>service</span> <span class=nx>table</span><span class=p>.</span><span class=nx>LookupService</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=c1>// only my address is in the set
-</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=nx>table</span><span class=p>.</span><span class=nf>Result</span><span class=p>(</span><span class=nx>token</span><span class=p>,</span> <span class=s>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nx>table</span><span class=p>.</span><span class=nf>OnCheck</span><span class=p>(</span><span class=nx>check</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=nx>table</span><span class=p>.</span><span class=nf>OnLookup</span><span class=p>(</span><span class=nx>lookup</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=nx>table</span><span class=p>.</span><span class=nf>OnFetch</span><span class=p>(</span><span class=nx>fetch</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=nx>table</span><span class=p>.</span><span class=nf>Dispatch</span><span class=p>()</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
+here&rsquo;s a simple dummy example of a table that only contains my e-mail address:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#ff79c6>package</span> main
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#f1fa8c>&#34;github.com/poolpOrg/go-opensmtpd/table&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>check</span>(token <span style=color:#8be9fd>string</span>, service table.LookupService, key <span style=color:#8be9fd>string</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> key <span style=color:#ff79c6>==</span> <span style=color:#f1fa8c>&#34;gilles@poolp.org&#34;</span> {
+</span></span><span style=display:flex><span>		<span style=color:#6272a4>// found in table
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>		table.<span style=color:#50fa7b>Boolean</span>(token, <span style=color:#ff79c6>true</span>)
+</span></span><span style=display:flex><span>	} <span style=color:#ff79c6>else</span> {
+</span></span><span style=display:flex><span>		<span style=color:#6272a4>// not found
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>		table.<span style=color:#50fa7b>Boolean</span>(token, <span style=color:#ff79c6>false</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>lookup</span>(token <span style=color:#8be9fd>string</span>, service table.LookupService, key <span style=color:#8be9fd>string</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> service <span style=color:#ff79c6>==</span> <span style=color:#f1fa8c>&#34;alias&#34;</span> <span style=color:#ff79c6>&amp;&amp;</span> key <span style=color:#ff79c6>==</span> <span style=color:#f1fa8c>&#34;root&#34;</span> {
+</span></span><span style=display:flex><span>		<span style=color:#6272a4>// if looking up alias for root, return my address
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>		table.<span style=color:#50fa7b>Result</span>(token, <span style=color:#f1fa8c>&#34;gilles@poolp.org&#34;</span>)
+</span></span><span style=display:flex><span>	} <span style=color:#ff79c6>else</span> {
+</span></span><span style=display:flex><span>		<span style=color:#6272a4>// empty result, not-found
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>		table.<span style=color:#50fa7b>Result</span>(token)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>fetch</span>(token <span style=color:#8be9fd>string</span>, service table.LookupService) {
+</span></span><span style=display:flex><span>	<span style=color:#6272a4>// only my address is in the set
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>	table.<span style=color:#50fa7b>Result</span>(token, <span style=color:#f1fa8c>&#34;gilles@poolp.org&#34;</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>main</span>() {
+</span></span><span style=display:flex><span>	table.<span style=color:#50fa7b>OnCheck</span>(check)
+</span></span><span style=display:flex><span>	table.<span style=color:#50fa7b>OnLookup</span>(lookup)
+</span></span><span style=display:flex><span>	table.<span style=color:#50fa7b>OnFetch</span>(fetch)
+</span></span><span style=display:flex><span>	table.<span style=color:#50fa7b>Dispatch</span>()
+</span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>Note that the Dispatch() function never returns as it is the event loop for the protocol parser.
 I don&rsquo;t have much to add here, this is trivial to understand.</p><p>The package is a work in progress,
 it is already <a href=https://github.com/poolpOrg/go-opensmtpd target=_blank>available in a Github repository</a> but expect it to change every few days at this point,
@@ -229,31 +229,31 @@ don&rsquo;t use it unless you are ready to suffer.</p><div id=py-opensmtpd class
 testing with a different language required another PoC so I decided to go with Python this time.</p><p>The <code>py-opensmtpd/table</code> module also provides a work-in-progress implementation of the protocol parser,
 as well as a table API to ease development.
 Writing a table backend in Python using this module is no more complex than in Go,
-here&rsquo;s the exact same dummy example of a table that only contains my e-mail address:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>opensmtpd</span> <span class=kn>import</span> <span class=n>table</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>check</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>tableName</span><span class=p>,</span> <span class=n>service</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
-</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=n>key</span> <span class=o>==</span> <span class=s2>&#34;gilles@poolp.org&#34;</span><span class=p>:</span>
-</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>boolean</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>true</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>boolean</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>false</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>lookup</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>tableName</span><span class=p>,</span> <span class=n>service</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
-</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=n>service</span> <span class=o>==</span> <span class=s2>&#34;alias&#34;</span> <span class=ow>and</span> <span class=n>key</span> <span class=o>==</span> <span class=s2>&#34;root&#34;</span><span class=p>:</span>
-</span></span><span class=line><span class=cl>		<span class=c1># if looking up alias for root, return my address</span>
-</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>result</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=s2>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=n>table</span><span class=o>.</span><span class=n>result</span><span class=p>(</span><span class=n>token</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>fetch</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=n>tableName</span><span class=p>,</span> <span class=n>service</span><span class=p>):</span>
-</span></span><span class=line><span class=cl>	<span class=c1># only my address is in the set</span>
-</span></span><span class=line><span class=cl>	<span class=n>table</span><span class=o>.</span><span class=n>result</span><span class=p>(</span><span class=n>token</span><span class=p>,</span> <span class=s2>&#34;gilles@poolp.org&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
-</span></span><span class=line><span class=cl>	<span class=n>table</span><span class=o>.</span><span class=n>on_check</span><span class=p>(</span><span class=n>check</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=n>table</span><span class=o>.</span><span class=n>on_lookup</span><span class=p>(</span><span class=n>lookup</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=n>table</span><span class=o>.</span><span class=n>on_fetch</span><span class=p>(</span><span class=n>fetch</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=n>table</span><span class=o>.</span><span class=n>dispatch</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
-</span></span><span class=line><span class=cl>	<span class=n>main</span><span class=p>()</span>
+here&rsquo;s the exact same dummy example of a table that only contains my e-mail address:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>from</span> opensmtpd <span style=color:#ff79c6>import</span> table
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>check</span>(token, tableName, service, key):
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> key <span style=color:#ff79c6>==</span> <span style=color:#f1fa8c>&#34;gilles@poolp.org&#34;</span>:
+</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> table<span style=color:#ff79c6>.</span>boolean(token, true)
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> table<span style=color:#ff79c6>.</span>boolean(token, false)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>lookup</span>(token, tableName, service, key):
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> service <span style=color:#ff79c6>==</span> <span style=color:#f1fa8c>&#34;alias&#34;</span> <span style=color:#ff79c6>and</span> key <span style=color:#ff79c6>==</span> <span style=color:#f1fa8c>&#34;root&#34;</span>:
+</span></span><span style=display:flex><span>		<span style=color:#6272a4># if looking up alias for root, return my address</span>
+</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> table<span style=color:#ff79c6>.</span>result(token, <span style=color:#f1fa8c>&#34;gilles@poolp.org&#34;</span>)
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> table<span style=color:#ff79c6>.</span>result(token)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>fetch</span>(token, tableName, service):
+</span></span><span style=display:flex><span>	<span style=color:#6272a4># only my address is in the set</span>
+</span></span><span style=display:flex><span>	table<span style=color:#ff79c6>.</span>result(token, <span style=color:#f1fa8c>&#34;gilles@poolp.org&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>main</span>():
+</span></span><span style=display:flex><span>	table<span style=color:#ff79c6>.</span>on_check(check)
+</span></span><span style=display:flex><span>	table<span style=color:#ff79c6>.</span>on_lookup(lookup)
+</span></span><span style=display:flex><span>	table<span style=color:#ff79c6>.</span>on_fetch(fetch)
+</span></span><span style=display:flex><span>	table<span style=color:#ff79c6>.</span>dispatch()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>if</span> __name__ <span style=color:#ff79c6>==</span> <span style=color:#f1fa8c>&#34;__main__&#34;</span>:
+</span></span><span style=display:flex><span>	main()
 </span></span></code></pre></div><p>Again, the dispatch() function never returns as it is the event loop for the protocol parser.
 The interface is the exact same as what I did with <code>go-opensmtpd</code>.</p><p>The package is also a work in progress,
 it is also already <a href=https://github.com/poolpOrg/py-opensmtpd target=_blank>available in a Github repository</a> but expect it to change every few days,

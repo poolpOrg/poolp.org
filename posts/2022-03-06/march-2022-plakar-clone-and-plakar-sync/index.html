@@ -1,4 +1,4 @@
-<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>March 2022: plakar clone and plakar sync &#183; poolp.org</title><meta name=title content="March 2022: plakar clone and plakar sync &#183; poolp.org"><link rel=canonical href=https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/><link type=text/css rel=stylesheet href=/css/main.bundle.min.cbaaac4a605d9474866686b7107585a59ffa8e112459c25af9913643c9add891596ebb64ceb97e0e6e0357fab774a62089a139f75483527d9571daa69bf7c3d9.css integrity="sha512-y6qsSmBdlHSGZoa3EHWFpZ/6jhEkWcJa+ZE2Q8mt2JFZbrtkzrl+Dm4DV/q3dKYgiaE591SDUn2Vcdqmm/fD2Q=="><script type=text/javascript src=/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj+e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>March 2022: plakar clone and plakar sync &#183; poolp.org</title><meta name=title content="March 2022: plakar clone and plakar sync &#183; poolp.org"><link rel=canonical href=https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/><link type=text/css rel=stylesheet href=/css/main.bundle.min.c6116b9ed1c907a8c0eb015f377d3eecc07e448d75729e31fc3de5881465c6c172ba9fa9a6800c030116caf2a110d92242bb816639484ca791f7cd107a8d49b5.css integrity="sha512-xhFrntHJB6jA6wFfN30+7MB+RI11cp4x/D3liBRlxsFyup+ppoAMAwEWyvKhENkiQruBZjlITKeR980Qeo1JtQ=="><script type=text/javascript src=/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj+e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
 <script defer type=text/javascript id=script-bundle src=/js/main.bundle.min.3ddcf04f5b0d4c32f72e726d3c12eebccd8c3c9f9daa9a13414808895de0ae1e1cdddda6849680d5bd96dbb60d0b1e0b24c29f5c83e5631e55e7e6bc02015490.js integrity="sha512-PdzwT1sNTDL3LnJtPBLuvM2MPJ+dqpoTQUgIiV3grh4c3d2mhJaA1b2W27YNCx4LJMKfXIPlYx5V5+a8AgFUkA==" data-copy data-copied></script>
 <script src=/js/zoom.min.js></script>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><meta property="og:title" content="March 2022: plakar clone and plakar sync"><meta property="og:description" content="TL;DR: implemented cloning and synchronization between plakar repositories Shout out to my sponsors ❤️ # A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !"><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/"><meta property="og:image" content="https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/feature.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-03-06T00:51:00+02:00"><meta property="article:modified_time" content="2022-03-06T00:51:00+02:00"><meta property="og:site_name" content="poolp.org"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/feature.png"><meta name=twitter:title content="March 2022: plakar clone and plakar sync"><meta name=twitter:description content="TL;DR: implemented cloning and synchronization between plakar repositories Shout out to my sponsors ❤️ # A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !"><script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"March 2022: plakar clone and plakar sync","headline":"March 2022: plakar clone and plakar sync","abstract":"TL;DR: implemented cloning and synchronization between plakar repositories Shout out to my sponsors ❤️ # A HUGE thanks goes to my sponsors on github and patreon: your continuous support is very much appreciated !","inLanguage":"en","url":"https:\/\/poolp.org\/posts\/2022-03-06\/march-2022-plakar-clone-and-plakar-sync\/","author":{"@type":"Person","name":""},"copyrightYear":"2022","dateCreated":"2022-03-06T00:51:00\u002b02:00","datePublished":"2022-03-06T00:51:00\u002b02:00","dateModified":"2022-03-06T00:51:00\u002b02:00","mainEntityOfPage":"true","wordCount":"905"}]</script><script src=/lib/jquery/jquery.slim.min.js integrity></script><meta name=theme-color></head><body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"><div id=the-top class="absolute flex self-center"><a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600" href=#main-content><span class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a></div><div class=min-h-[148px]></div><div class="fixed inset-x-0 pl-[24px] pr-[24px]" style=z-index:100><div id=menu-blur class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom bg-neutral dark:bg-neutral-800"></div><div class="relative max-w-[64rem] ml-auto mr-auto"><div style=padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3"><div><a href=/ class=flex><span class=sr-only>poolp.org</span>
@@ -34,14 +34,14 @@ A lot of tasks can rely on the snapshot index,
 so when a chunk or an object are missing or incorrectly referenced for example,
 the cloned repository can still handle a lot of commands as if there was no issue.
 This is where <code>plakar check</code> came in handy,
-letting me know right away that something was off.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar create -no-encryption
-</span></span><span class=line><span class=cl>$ plakar push /bin
-</span></span><span class=line><span class=cl>$ plakar ls
-</span></span><span class=line><span class=cl>2022-03-05T22:30:58Z  3a5769ff-3353-4ae9-ae64-13fc0fc0b6ac     <span class=m>13</span> MB /bin
-</span></span><span class=line><span class=cl>$ plakar clone /tmp/plakar-copy
-</span></span><span class=line><span class=cl>$ plakar on /tmp/plakar-copy ls
-</span></span><span class=line><span class=cl>2022-03-05T22:30:58Z  3a5769ff-3353-4ae9-ae64-13fc0fc0b6ac     <span class=m>13</span> MB /bin
-</span></span><span class=line><span class=cl>$ 
+letting me know right away that something was off.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ plakar create -no-encryption
+</span></span><span style=display:flex><span>$ plakar push /bin
+</span></span><span style=display:flex><span>$ plakar ls
+</span></span><span style=display:flex><span>2022-03-05T22:30:58Z  3a5769ff-3353-4ae9-ae64-13fc0fc0b6ac     <span style=color:#bd93f9>13</span> MB /bin
+</span></span><span style=display:flex><span>$ plakar clone /tmp/plakar-copy
+</span></span><span style=display:flex><span>$ plakar on /tmp/plakar-copy ls
+</span></span><span style=display:flex><span>2022-03-05T22:30:58Z  3a5769ff-3353-4ae9-ae64-13fc0fc0b6ac     <span style=color:#bd93f9>13</span> MB /bin
+</span></span><span style=display:flex><span>$ 
 </span></span></code></pre></div><p>As you can see in the example above,
 <strong>the clone retains snapshots UUID</strong> as this is not a new snapshot being copied from another one in a new transaction,
 but really the exact same snapshot copied using lower level primitives.</p><p>As of today,
@@ -59,17 +59,17 @@ To achieve synchronization,
 <code>plakar</code> opens a source repository and a destination repository,
 then compares which chunks, objects and indexes are available in the source one but missing from the destination one to <strong>compute a delta</strong>.
 It then performs a cloning of that delta,
-<strong>only exchanging the missing bits</strong> and doing the hard links magic.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar create -no-encryption
-</span></span><span class=line><span class=cl>$ plakar clone /tmp/bleh.t1   
-</span></span><span class=line><span class=cl>$ plakar ls                   
-</span></span><span class=line><span class=cl>$ plakar on /tmp/bleh.t1 ls   
-</span></span><span class=line><span class=cl>$ plakar push /bin            
-</span></span><span class=line><span class=cl>$ plakar ls                
-</span></span><span class=line><span class=cl>2022-03-05T23:24:08Z  480e6781-4f51-4289-9983-17f0e5962cc9     <span class=m>13</span> MB /bin
-</span></span><span class=line><span class=cl>$ plakar sync /tmp/bleh.t1 
-</span></span><span class=line><span class=cl>$ plakar on /tmp/bleh.t1 ls
-</span></span><span class=line><span class=cl>2022-03-05T23:24:08Z  480e6781-4f51-4289-9983-17f0e5962cc9     <span class=m>13</span> MB /bin
-</span></span><span class=line><span class=cl>$ 
+<strong>only exchanging the missing bits</strong> and doing the hard links magic.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ plakar create -no-encryption
+</span></span><span style=display:flex><span>$ plakar clone /tmp/bleh.t1   
+</span></span><span style=display:flex><span>$ plakar ls                   
+</span></span><span style=display:flex><span>$ plakar on /tmp/bleh.t1 ls   
+</span></span><span style=display:flex><span>$ plakar push /bin            
+</span></span><span style=display:flex><span>$ plakar ls                
+</span></span><span style=display:flex><span>2022-03-05T23:24:08Z  480e6781-4f51-4289-9983-17f0e5962cc9     <span style=color:#bd93f9>13</span> MB /bin
+</span></span><span style=display:flex><span>$ plakar sync /tmp/bleh.t1 
+</span></span><span style=display:flex><span>$ plakar on /tmp/bleh.t1 ls
+</span></span><span style=display:flex><span>2022-03-05T23:24:08Z  480e6781-4f51-4289-9983-17f0e5962cc9     <span style=color:#bd93f9>13</span> MB /bin
+</span></span><span style=display:flex><span>$ 
 </span></span></code></pre></div><p>In the example above,
 I create a new empty repository and clone it.
 Then I push <code>/bin</code> to the source plakar,

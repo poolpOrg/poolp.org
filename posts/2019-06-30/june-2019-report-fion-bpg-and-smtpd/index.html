@@ -1,4 +1,4 @@
-<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>June 2019 report: fion, bpg and smtpd &#183; poolp.org</title><meta name=title content="June 2019 report: fion, bpg and smtpd &#183; poolp.org"><link rel=canonical href=https://poolp.org/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/><link type=text/css rel=stylesheet href=/css/main.bundle.min.cbaaac4a605d9474866686b7107585a59ffa8e112459c25af9913643c9add891596ebb64ceb97e0e6e0357fab774a62089a139f75483527d9571daa69bf7c3d9.css integrity="sha512-y6qsSmBdlHSGZoa3EHWFpZ/6jhEkWcJa+ZE2Q8mt2JFZbrtkzrl+Dm4DV/q3dKYgiaE591SDUn2Vcdqmm/fD2Q=="><script type=text/javascript src=/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj+e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>June 2019 report: fion, bpg and smtpd &#183; poolp.org</title><meta name=title content="June 2019 report: fion, bpg and smtpd &#183; poolp.org"><link rel=canonical href=https://poolp.org/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/><link type=text/css rel=stylesheet href=/css/main.bundle.min.c6116b9ed1c907a8c0eb015f377d3eecc07e448d75729e31fc3de5881465c6c172ba9fa9a6800c030116caf2a110d92242bb816639484ca791f7cd107a8d49b5.css integrity="sha512-xhFrntHJB6jA6wFfN30+7MB+RI11cp4x/D3liBRlxsFyup+ppoAMAwEWyvKhENkiQruBZjlITKeR980Qeo1JtQ=="><script type=text/javascript src=/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj+e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
 <script defer type=text/javascript id=script-bundle src=/js/main.bundle.min.3ddcf04f5b0d4c32f72e726d3c12eebccd8c3c9f9daa9a13414808895de0ae1e1cdddda6849680d5bd96dbb60d0b1e0b24c29f5c83e5631e55e7e6bc02015490.js integrity="sha512-PdzwT1sNTDL3LnJtPBLuvM2MPJ+dqpoTQUgIiV3grh4c3d2mhJaA1b2W27YNCx4LJMKfXIPlYx5V5+a8AgFUkA==" data-copy data-copied></script>
 <script src=/js/zoom.min.js></script>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><meta property="og:title" content="June 2019 report: fion, bpg and smtpd"><meta property="og:description" content="TL;DR: - started working on FION, a static tile window manager - revived BPG, a PGP parser - converted OpenSMTPD to libtls - wrote a library to make writing of native C OpenSMTPD filters easy - started writing a filter-rspamd Thanks to my patrons !"><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-06-30T07:42:00+00:00"><meta property="article:modified_time" content="2019-06-30T07:42:00+00:00"><meta property="og:site_name" content="poolp.org"><meta name=twitter:card content="summary"><meta name=twitter:title content="June 2019 report: fion, bpg and smtpd"><meta name=twitter:description content="TL;DR: - started working on FION, a static tile window manager - revived BPG, a PGP parser - converted OpenSMTPD to libtls - wrote a library to make writing of native C OpenSMTPD filters easy - started writing a filter-rspamd Thanks to my patrons !"><script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"June 2019 report: fion, bpg and smtpd","headline":"June 2019 report: fion, bpg and smtpd","abstract":"TL;DR: - started working on FION, a static tile window manager - revived BPG, a PGP parser - converted OpenSMTPD to libtls - wrote a library to make writing of native C OpenSMTPD filters easy - started writing a filter-rspamd Thanks to my patrons !","inLanguage":"en","url":"https:\/\/poolp.org\/posts\/2019-06-30\/june-2019-report-fion-bpg-and-smtpd\/","author":{"@type":"Person","name":""},"copyrightYear":"2019","dateCreated":"2019-06-30T07:42:00\u002b00:00","datePublished":"2019-06-30T07:42:00\u002b00:00","dateModified":"2019-06-30T07:42:00\u002b00:00","mainEntityOfPage":"true","wordCount":"3530"}]</script><script src=/lib/jquery/jquery.slim.min.js integrity></script><meta name=theme-color></head><body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"><div id=the-top class="absolute flex self-center"><a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600" href=#main-content><span class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a></div><div class=min-h-[148px]></div><div class="fixed inset-x-0 pl-[24px] pr-[24px]" style=z-index:100><div id=menu-blur class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom bg-neutral dark:bg-neutral-800"></div><div class="relative max-w-[64rem] ml-auto mr-auto"><div style=padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3"><div><a href=/ class=flex><span class=sr-only>poolp.org</span>
@@ -92,43 +92,43 @@ implementation and how interesting it is for people to have another PGP utility.
 I will release the parser for sure since the code is already here and maybe it&rsquo;s
 going to be useful to someone but I&rsquo;m unsure if I should move project forward at
 this point. Oh and I need a new name anyways because bpg is already taken and it
-is certainly not going to be OpenBPG to avoid confusion with OpenBGP :-)</p><p>I have quickly written code to generate RSA keypairs just for fun:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>laptop$ bpg key gen rsa <span class=m>2048</span> &gt; /tmp/rsa2048.bpg
-</span></span><span class=line><span class=cl>..........................................+++...................+++.
-</span></span><span class=line><span class=cl>laptop$ bpg debug parse /tmp/rsa2048.bpg
-</span></span><span class=line><span class=cl><span class=c1>## 05 : New format Secret-Key packet (920 bytes)</span>
-</span></span><span class=line><span class=cl>        version: <span class=m>4</span>
-</span></span><span class=line><span class=cl>        algorithm: RSA <span class=o>(</span>encrypt or sign<span class=o>)</span>
-</span></span><span class=line><span class=cl>        keyid: e60e44654c3409be
-</span></span><span class=line><span class=cl>        fingerprint: 7bfd297855a9c0d22a492ba2e60e44654c3409be
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1>## 0d : New format User ID packet (16 bytes)</span>
-</span></span><span class=line><span class=cl>        content: test@example.com
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>laptop$ cat /tmp/rsa2048.bpg
-</span></span><span class=line><span class=cl>-----BEGIN PGP PRIVATE KEY BLOCK-----
-</span></span><span class=line><span class=cl>Version: BPG v0.1 <span class=o>(</span>OpenBSD<span class=o>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>xcLYBF0YccABCACzay1zxLQzD9WvOaF5DZXKIx5nmwP70+ff4XceepFnylwe7iKzTUF6W4kv
-</span></span><span class=line><span class=cl>QxOF++z9SQ5mF0melyj0+TkJXUSs7MzNjuwb4OhDLiM9uVJ2J1wxA3KivY0pVjvJPtPTlMpZ
-</span></span><span class=line><span class=cl>D7Ebb1CnagP75DEcgpdzWHDSzBbgHN89ct6M7fPZ756iDxHdnhO8syr9sB4GOJyj8hC2dC4y
-</span></span><span class=line><span class=cl>qJvn7G7/BdQwDov23FUGcddWXIyPMs4GGbE+mpV1U6jqZbNUkGPl+Kh8CfRU15D2/60PsrgD
-</span></span><span class=line><span class=cl>3OSDo3J/DwGd2/NiVRRWVSOOtpzm4sc4j1J76nwrUJvvWRlH+AMOfDxoDu03bY2Jb/NtABEB
-</span></span><span class=line><span class=cl>AAEAB/9Pw8ZhQYIbcV6+mBCBkNiXFSXfSbtrqbncfpBGrJcYXY628YfbzuzdSPSkXl2/o1Cp
-</span></span><span class=line><span class=cl>CmGsYY4JQ4qh3mrNDvoJJv2mJXQysLqRo2Fnf4x5muYRpEbCsyKezgemYJgr6GpNTfyfBc4F
-</span></span><span class=line><span class=cl>n8xFoB11X1mVniwKi1FgMXXOC9OFNATFTlK2EjiBCBN1g+AbO31ykqDyhuVjAisQXlrpvRSr
-</span></span><span class=line><span class=cl>Jlk3zwNDgyu8jd9NyqCj3wUbp5GTj9/N+JVqm4lxqRAXUJk804w9q4Vn1x5f+lxyOw70m6vV
-</span></span><span class=line><span class=cl>9xKZqKB/g2CmqFNVn8nzparvZQ45FSwKFkCz8Z0XrCJG8HvxkS0fBewu2BLBBADvAzcqblpX
-</span></span><span class=line><span class=cl>9ygSDsOF/JDt9nhduLcVDgFzOagfZvh9eAny0YGQZ7rue2Vd3DKbMRBkybpn3jKpRbJC8+96
-</span></span><span class=line><span class=cl>6AVaaxtoaHt7jKxZMHdjlxRPe6f9rFqETgL4a0+xyGzGd72t2OZG9pXNbydrwJPo0PSybkvR
-</span></span><span class=line><span class=cl>hkyd7vP3886X1EkdrwQAwCupzj3qSKf06ATAy+31rKoIUgsHD7OuyrNl7I1FZIMWNttaEl1C
-</span></span><span class=line><span class=cl>Z0bYaKHaTZbtoNk9EsISxSIXf3HB7nisKmGDe+LfXD06q9Bk1Tpjoj+zMXhJAm/NOQfbWXgJ
-</span></span><span class=line><span class=cl>3/1b6EbI63o1JcBlZDXbrGv5IOY+c7gZqbOc3hD8EThHA6MD/0fQC4TuqH9nkJVyiDp0G+48
-</span></span><span class=line><span class=cl>nq2oFDiDEfJ58TiSFlws/K+nuy2uGGO91iJLA6go5B87b0ihvl6A1Z4XFXuopRMcVp87n9gH
-</span></span><span class=line><span class=cl>qqRLhvoBqhMdVlfPnYr8JZYu0HkzmFtCnwuQOIA8EH8FQ65ImrP5PopazIHiUwhunrTzoAWp
-</span></span><span class=line><span class=cl>/4JOulbNEHRlc3RAZXhhbXBsZS5jb20<span class=o>=</span>
-</span></span><span class=line><span class=cl><span class=o>=</span>0fuz
-</span></span><span class=line><span class=cl>-----END PGP PRIVATE KEY BLOCK-----
-</span></span><span class=line><span class=cl>laptop$
+is certainly not going to be OpenBPG to avoid confusion with OpenBGP :-)</p><p>I have quickly written code to generate RSA keypairs just for fun:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>laptop$ bpg key gen rsa <span style=color:#bd93f9>2048</span> &gt; /tmp/rsa2048.bpg
+</span></span><span style=display:flex><span>..........................................+++...................+++.
+</span></span><span style=display:flex><span>laptop$ bpg debug parse /tmp/rsa2048.bpg
+</span></span><span style=display:flex><span><span style=color:#6272a4>## 05 : New format Secret-Key packet (920 bytes)</span>
+</span></span><span style=display:flex><span>        version: <span style=color:#bd93f9>4</span>
+</span></span><span style=display:flex><span>        algorithm: RSA <span style=color:#ff79c6>(</span>encrypt or sign<span style=color:#ff79c6>)</span>
+</span></span><span style=display:flex><span>        keyid: e60e44654c3409be
+</span></span><span style=display:flex><span>        fingerprint: 7bfd297855a9c0d22a492ba2e60e44654c3409be
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4>## 0d : New format User ID packet (16 bytes)</span>
+</span></span><span style=display:flex><span>        content: test@example.com
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>laptop$ cat /tmp/rsa2048.bpg
+</span></span><span style=display:flex><span>-----BEGIN PGP PRIVATE KEY BLOCK-----
+</span></span><span style=display:flex><span>Version: BPG v0.1 <span style=color:#ff79c6>(</span>OpenBSD<span style=color:#ff79c6>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>xcLYBF0YccABCACzay1zxLQzD9WvOaF5DZXKIx5nmwP70+ff4XceepFnylwe7iKzTUF6W4kv
+</span></span><span style=display:flex><span>QxOF++z9SQ5mF0melyj0+TkJXUSs7MzNjuwb4OhDLiM9uVJ2J1wxA3KivY0pVjvJPtPTlMpZ
+</span></span><span style=display:flex><span>D7Ebb1CnagP75DEcgpdzWHDSzBbgHN89ct6M7fPZ756iDxHdnhO8syr9sB4GOJyj8hC2dC4y
+</span></span><span style=display:flex><span>qJvn7G7/BdQwDov23FUGcddWXIyPMs4GGbE+mpV1U6jqZbNUkGPl+Kh8CfRU15D2/60PsrgD
+</span></span><span style=display:flex><span>3OSDo3J/DwGd2/NiVRRWVSOOtpzm4sc4j1J76nwrUJvvWRlH+AMOfDxoDu03bY2Jb/NtABEB
+</span></span><span style=display:flex><span>AAEAB/9Pw8ZhQYIbcV6+mBCBkNiXFSXfSbtrqbncfpBGrJcYXY628YfbzuzdSPSkXl2/o1Cp
+</span></span><span style=display:flex><span>CmGsYY4JQ4qh3mrNDvoJJv2mJXQysLqRo2Fnf4x5muYRpEbCsyKezgemYJgr6GpNTfyfBc4F
+</span></span><span style=display:flex><span>n8xFoB11X1mVniwKi1FgMXXOC9OFNATFTlK2EjiBCBN1g+AbO31ykqDyhuVjAisQXlrpvRSr
+</span></span><span style=display:flex><span>Jlk3zwNDgyu8jd9NyqCj3wUbp5GTj9/N+JVqm4lxqRAXUJk804w9q4Vn1x5f+lxyOw70m6vV
+</span></span><span style=display:flex><span>9xKZqKB/g2CmqFNVn8nzparvZQ45FSwKFkCz8Z0XrCJG8HvxkS0fBewu2BLBBADvAzcqblpX
+</span></span><span style=display:flex><span>9ygSDsOF/JDt9nhduLcVDgFzOagfZvh9eAny0YGQZ7rue2Vd3DKbMRBkybpn3jKpRbJC8+96
+</span></span><span style=display:flex><span>6AVaaxtoaHt7jKxZMHdjlxRPe6f9rFqETgL4a0+xyGzGd72t2OZG9pXNbydrwJPo0PSybkvR
+</span></span><span style=display:flex><span>hkyd7vP3886X1EkdrwQAwCupzj3qSKf06ATAy+31rKoIUgsHD7OuyrNl7I1FZIMWNttaEl1C
+</span></span><span style=display:flex><span>Z0bYaKHaTZbtoNk9EsISxSIXf3HB7nisKmGDe+LfXD06q9Bk1Tpjoj+zMXhJAm/NOQfbWXgJ
+</span></span><span style=display:flex><span>3/1b6EbI63o1JcBlZDXbrGv5IOY+c7gZqbOc3hD8EThHA6MD/0fQC4TuqH9nkJVyiDp0G+48
+</span></span><span style=display:flex><span>nq2oFDiDEfJ58TiSFlws/K+nuy2uGGO91iJLA6go5B87b0ihvl6A1Z4XFXuopRMcVp87n9gH
+</span></span><span style=display:flex><span>qqRLhvoBqhMdVlfPnYr8JZYu0HkzmFtCnwuQOIA8EH8FQ65ImrP5PopazIHiUwhunrTzoAWp
+</span></span><span style=display:flex><span>/4JOulbNEHRlc3RAZXhhbXBsZS5jb20<span style=color:#ff79c6>=</span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>=</span>0fuz
+</span></span><span style=display:flex><span>-----END PGP PRIVATE KEY BLOCK-----
+</span></span><span style=display:flex><span>laptop$
 </span></span></code></pre></div><p>They are not valid, generating a valid key that can be imported to
 gnupg requires adding a signature packet which means I have to write the
 signing code to do that.</p><p>So there we go, either the project ends up as a PGP parsing library that others
@@ -213,332 +213,332 @@ report|1|1561888072.466481|smtp-in|link-disconnect|d812eceafa0ae39e
 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#libopensmtpd aria-label=Anchor>#</a></span></h2><p>The filters protocol is a very simple line-based protocol that I already explained in previous blog posts,
 but while writing filters in various scripting languages is simple,
 writing a filter in C was still a bit tedious.</p><p>I started writing a <code>libopensmtpd</code> to provide a straightforward method for writing native C filters.
-It is not ready yet for publishing but it is already functional and works enough to trigger all hooks.</p><p>All it takes is:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ cc -o /tmp/filter-debug debug.c -lopensmtpd
-</span></span><span class=line><span class=cl>$
-</span></span></code></pre></div><p>To make the following filter usable:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cm>/*
-</span></span></span><span class=line><span class=cl><span class=cm> * Copyright (c) 2019 Gilles Chehade &lt;gilles@poolp.org&gt;
-</span></span></span><span class=line><span class=cl><span class=cm> *
-</span></span></span><span class=line><span class=cl><span class=cm> * Permission to use, copy, modify, and distribute this software for any
-</span></span></span><span class=line><span class=cl><span class=cm> * purpose with or without fee is hereby granted, provided that the above
-</span></span></span><span class=line><span class=cl><span class=cm> * copyright notice and this permission notice appear in all copies.
-</span></span></span><span class=line><span class=cl><span class=cm> *
-</span></span></span><span class=line><span class=cl><span class=cm> * THE SOFTWARE IS PROVIDED &#34;AS IS&#34; AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-</span></span></span><span class=line><span class=cl><span class=cm> * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-</span></span></span><span class=line><span class=cl><span class=cm> * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-</span></span></span><span class=line><span class=cl><span class=cm> * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-</span></span></span><span class=line><span class=cl><span class=cm> * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-</span></span></span><span class=line><span class=cl><span class=cm> * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-</span></span></span><span class=line><span class=cl><span class=cm> * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-</span></span></span><span class=line><span class=cl><span class=cm> */</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;err.h&gt;</span><span class=cp>
-</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;inttypes.h&gt;</span><span class=cp>
-</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;stdlib.h&gt;</span><span class=cp>
-</span></span></span><span class=line><span class=cl><span class=cp></span>
-</span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&#34;opensmtpd.h&#34;</span><span class=cp>
-</span></span></span><span class=line><span class=cl><span class=cp></span>
-</span></span><span class=line><span class=cl><span class=k>extern</span> <span class=kt>char</span> <span class=o>*</span><span class=n>__progname</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=cm>/* reporting */</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_link_connect</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>rdns</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>fcrdns</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>src</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>dest</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_link_connect: rdns=%s, fcrdns=%s, src=%s, dest=%s&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>rdns</span><span class=p>,</span> <span class=n>fcrdns</span><span class=p>,</span> <span class=n>src</span><span class=p>,</span> <span class=n>dest</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_link_disconnect</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_link_disconnect&#34;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_link_identify</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>helo_name</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_link_identify: helo_name=%s&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>		<span class=n>helo_name</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_link_tls</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>tls_line</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_link_tls: tls_line=%s&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>tls_line</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_tx_begin</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>msgid</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_tx_begin: msgid=%08x&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>msgid</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_tx_mail</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>msgid</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>mail_from</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>result</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_tx_mail: msgid=%08x, mail_from=%s, result=%s&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>msgid</span><span class=p>,</span> <span class=n>mail_from</span><span class=p>,</span> <span class=n>result</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_tx_rcpt</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>msgid</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>rcpt_to</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>result</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_tx_rcpt: msgid=%08x, mail_from=%s, result=%s&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>msgid</span><span class=p>,</span> <span class=n>rcpt_to</span><span class=p>,</span> <span class=n>result</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_tx_envelope</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>msgid</span><span class=p>,</span> <span class=kt>uint64_t</span> <span class=n>evpid</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_tx_envelope: msgid=%08x, evpid=%016&#34;</span><span class=n>PRIx64</span><span class=s>&#34;&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>msgid</span><span class=p>,</span> <span class=n>evpid</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_tx_commit</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>msgid</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_tx_commit: msgid=%08x&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>msgid</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_tx_data</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>msgid</span><span class=p>,</span> <span class=kt>size_t</span> <span class=n>msg_size</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_tx_data: msgid=%08x, msg_size=%zd&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>msgid</span><span class=p>,</span> <span class=n>msg_size</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_tx_rollback</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>msgid</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_tx_rollback: msgid=%08x&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>msgid</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_protocol_client</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>line</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_protocol_client: line=%s&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>line</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_protocol_server</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>line</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_protocol_server: line=%s&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>line</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_filter_response</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>phase</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>response</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_filter_response: phase=%s, response=%s&#34;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>	    <span class=n>phase</span><span class=p>,</span> <span class=n>response</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>report_timeout</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;report_timeout&#34;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=cm>/* filtering */</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_connect</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>rdns</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_connect: rdns=%s, arg=%s&#34;</span><span class=p>,</span> <span class=n>rdns</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_helo</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_helo: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_ehlo</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_ehlo: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_starttls</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_starttls: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_auth</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_auth: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_mail_from</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_mail_from: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_rcpt_to</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_rcpt_to: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_data</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_data: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_data_line</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_data_line: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>dataline</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_rset</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_rset: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_quit</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_quit: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_noop</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_noop: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_help</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_help: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_wiz</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_wiz: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>void</span>
-</span></span><span class=line><span class=cl><span class=nf>filter_commit</span><span class=p>(</span><span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>arg</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nf>warnx</span><span class=p>(</span><span class=s>&#34;filter_commit: arg=%s&#34;</span><span class=p>,</span> <span class=n>arg</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>proceed</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=kt>int</span>
-</span></span><span class=line><span class=cl><span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>argv</span><span class=p>[])</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=kt>opensmtpd_ctx_t</span> <span class=o>*</span><span class=n>ctx</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>!=</span> <span class=mi>1</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>		<span class=nf>errx</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=s>&#34;usage: %s&#34;</span><span class=p>,</span> <span class=n>__progname</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_init</span><span class=p>(</span><span class=o>&amp;</span><span class=n>ctx</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;link-connect&#34;</span><span class=p>,</span> <span class=n>report_link_connect</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;link-disconnect&#34;</span><span class=p>,</span> <span class=n>report_link_disconnect</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;link-identify&#34;</span><span class=p>,</span> <span class=n>report_link_identify</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;link-tls&#34;</span><span class=p>,</span> <span class=n>report_link_tls</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;tx-begin&#34;</span><span class=p>,</span> <span class=n>report_tx_begin</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;tx-mail&#34;</span><span class=p>,</span> <span class=n>report_tx_mail</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;tx-rcpt&#34;</span><span class=p>,</span> <span class=n>report_tx_rcpt</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;tx-envelope&#34;</span><span class=p>,</span> <span class=n>report_tx_envelope</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;tx-data&#34;</span><span class=p>,</span> <span class=n>report_tx_data</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;tx-commit&#34;</span><span class=p>,</span> <span class=n>report_tx_commit</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;tx-rollback&#34;</span><span class=p>,</span> <span class=n>report_tx_rollback</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;protocol-client&#34;</span><span class=p>,</span> <span class=n>report_protocol_client</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;protocol-server&#34;</span><span class=p>,</span> <span class=n>report_protocol_server</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;filter-response&#34;</span><span class=p>,</span> <span class=n>report_filter_response</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_report</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;timeout&#34;</span><span class=p>,</span> <span class=n>report_timeout</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;connect&#34;</span><span class=p>,</span> <span class=n>filter_connect</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;helo&#34;</span><span class=p>,</span> <span class=n>filter_helo</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;ehlo&#34;</span><span class=p>,</span> <span class=n>filter_ehlo</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;starttls&#34;</span><span class=p>,</span> <span class=n>filter_starttls</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;auth&#34;</span><span class=p>,</span> <span class=n>filter_auth</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;mail-from&#34;</span><span class=p>,</span> <span class=n>filter_mail_from</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;rcpt-to&#34;</span><span class=p>,</span> <span class=n>filter_rcpt_to</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;data&#34;</span><span class=p>,</span> <span class=n>filter_data</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;rset&#34;</span><span class=p>,</span> <span class=n>filter_rset</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;quit&#34;</span><span class=p>,</span> <span class=n>filter_quit</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;noop&#34;</span><span class=p>,</span> <span class=n>filter_noop</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;help&#34;</span><span class=p>,</span> <span class=n>filter_help</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;wiz&#34;</span><span class=p>,</span> <span class=n>filter_wiz</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;commit&#34;</span><span class=p>,</span> <span class=n>filter_commit</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=nf>smtpd_on_filter</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=s>&#34;smtp-in&#34;</span><span class=p>,</span> <span class=s>&#34;data-line&#34;</span><span class=p>,</span> <span class=n>filter_data_line</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=o>!</span> <span class=nf>smtpd_event_loop</span><span class=p>(</span><span class=n>ctx</span><span class=p>))</span>
-</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></div><p>and register all hooks:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>laptop$ /tmp/filter-debug
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>filter-response
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>link-connect
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>link-disconnect
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>link-identify
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>link-tls
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>protocol-client
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>protocol-server
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>timeout
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>tx-begin
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>tx-commit
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>tx-data
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>tx-envelope
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>tx-mail
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>tx-rcpt
-</span></span><span class=line><span class=cl>register<span class=p>|</span>report<span class=p>|</span>smtp-in<span class=p>|</span>tx-rollback
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>auth
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>commit
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>connect
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>data
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>data-line
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>ehlo
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>helo
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span><span class=nb>help</span>
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>mail-from
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>noop
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>quit
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>rcpt-to
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>rset
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>starttls
-</span></span><span class=line><span class=cl>register<span class=p>|</span>filter<span class=p>|</span>smtp-in<span class=p>|</span>wiz
-</span></span><span class=line><span class=cl>register<span class=p>|</span>ready
-</span></span><span class=line><span class=cl>^C
-</span></span><span class=line><span class=cl>laptop$
+It is not ready yet for publishing but it is already functional and works enough to trigger all hooks.</p><p>All it takes is:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ cc -o /tmp/filter-debug debug.c -lopensmtpd
+</span></span><span style=display:flex><span>$
+</span></span></code></pre></div><p>To make the following filter usable:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#6272a4>/*
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * Copyright (c) 2019 Gilles Chehade &lt;gilles@poolp.org&gt;
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> *
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * Permission to use, copy, modify, and distribute this software for any
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * purpose with or without fee is hereby granted, provided that the above
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * copyright notice and this permission notice appear in all copies.
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> *
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * THE SOFTWARE IS PROVIDED &#34;AS IS&#34; AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> */</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;err.h&gt;</span><span style=color:#ff79c6>
+</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;inttypes.h&gt;</span><span style=color:#ff79c6>
+</span></span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&lt;stdlib.h&gt;</span><span style=color:#ff79c6>
+</span></span></span><span style=display:flex><span><span style=color:#ff79c6></span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>#include</span> <span style=color:#ff79c6>&#34;opensmtpd.h&#34;</span><span style=color:#ff79c6>
+</span></span></span><span style=display:flex><span><span style=color:#ff79c6></span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>extern</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>__progname;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4>/* reporting */</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_link_connect</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>rdns, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>fcrdns, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>src, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>dest)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_link_connect: rdns=%s, fcrdns=%s, src=%s, dest=%s&#34;</span>,
+</span></span><span style=display:flex><span>	    rdns, fcrdns, src, dest);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_link_disconnect</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_link_disconnect&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_link_identify</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>helo_name)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_link_identify: helo_name=%s&#34;</span>,
+</span></span><span style=display:flex><span>		helo_name);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_link_tls</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>tls_line)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_link_tls: tls_line=%s&#34;</span>,
+</span></span><span style=display:flex><span>	    tls_line);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_tx_begin</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#8be9fd>uint32_t</span> msgid)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_tx_begin: msgid=%08x&#34;</span>,
+</span></span><span style=display:flex><span>	    msgid);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_tx_mail</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#8be9fd>uint32_t</span> msgid, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>mail_from, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>result)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_tx_mail: msgid=%08x, mail_from=%s, result=%s&#34;</span>,
+</span></span><span style=display:flex><span>	    msgid, mail_from, result);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_tx_rcpt</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#8be9fd>uint32_t</span> msgid, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>rcpt_to, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>result)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_tx_rcpt: msgid=%08x, mail_from=%s, result=%s&#34;</span>,
+</span></span><span style=display:flex><span>	    msgid, rcpt_to, result);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_tx_envelope</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#8be9fd>uint32_t</span> msgid, <span style=color:#8be9fd>uint64_t</span> evpid)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_tx_envelope: msgid=%08x, evpid=%016&#34;</span>PRIx64<span style=color:#f1fa8c>&#34;&#34;</span>,
+</span></span><span style=display:flex><span>	    msgid, evpid);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_tx_commit</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#8be9fd>uint32_t</span> msgid)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_tx_commit: msgid=%08x&#34;</span>,
+</span></span><span style=display:flex><span>	    msgid);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_tx_data</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#8be9fd>uint32_t</span> msgid, <span style=color:#8be9fd>size_t</span> msg_size)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_tx_data: msgid=%08x, msg_size=%zd&#34;</span>,
+</span></span><span style=display:flex><span>	    msgid, msg_size);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_tx_rollback</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#8be9fd>uint32_t</span> msgid)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_tx_rollback: msgid=%08x&#34;</span>,
+</span></span><span style=display:flex><span>	    msgid);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_protocol_client</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>line)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_protocol_client: line=%s&#34;</span>,
+</span></span><span style=display:flex><span>	    line);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_protocol_server</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>line)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_protocol_server: line=%s&#34;</span>,
+</span></span><span style=display:flex><span>	    line);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_filter_response</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>phase, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>response)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_filter_response: phase=%s, response=%s&#34;</span>,
+</span></span><span style=display:flex><span>	    phase, response);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>report_timeout</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;report_timeout&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4>/* filtering */</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_connect</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>rdns, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_connect: rdns=%s, arg=%s&#34;</span>, rdns, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_helo</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_helo: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_ehlo</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_ehlo: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_starttls</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_starttls: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_auth</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_auth: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_mail_from</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_mail_from: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_rcpt_to</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_rcpt_to: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_data</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_data: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_data_line</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_data_line: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>dataline</span>(ctx, arg);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_rset</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_rset: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_quit</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_quit: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_noop</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_noop: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_help</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_help: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_wiz</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_wiz: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>static</span> <span style=color:#8be9fd>void</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>filter_commit</span>(<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx, <span style=color:#ff79c6>const</span> <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>arg)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>warnx</span>(<span style=color:#f1fa8c>&#34;filter_commit: arg=%s&#34;</span>, arg);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>proceed</span>(ctx);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd>int</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>main</span>(<span style=color:#8be9fd>int</span> argc, <span style=color:#8be9fd>char</span> <span style=color:#ff79c6>*</span>argv[])
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	<span style=color:#8be9fd>opensmtpd_ctx_t</span> <span style=color:#ff79c6>*</span>ctx;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> (argc <span style=color:#ff79c6>!=</span> <span style=color:#bd93f9>1</span>)
+</span></span><span style=display:flex><span>		<span style=color:#50fa7b>errx</span>(<span style=color:#bd93f9>1</span>, <span style=color:#f1fa8c>&#34;usage: %s&#34;</span>, __progname);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_init</span>(<span style=color:#ff79c6>&amp;</span>ctx);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;link-connect&#34;</span>, report_link_connect);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;link-disconnect&#34;</span>, report_link_disconnect);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;link-identify&#34;</span>, report_link_identify);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;link-tls&#34;</span>, report_link_tls);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;tx-begin&#34;</span>, report_tx_begin);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;tx-mail&#34;</span>, report_tx_mail);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;tx-rcpt&#34;</span>, report_tx_rcpt);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;tx-envelope&#34;</span>, report_tx_envelope);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;tx-data&#34;</span>, report_tx_data);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;tx-commit&#34;</span>, report_tx_commit);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;tx-rollback&#34;</span>, report_tx_rollback);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;protocol-client&#34;</span>, report_protocol_client);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;protocol-server&#34;</span>, report_protocol_server);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;filter-response&#34;</span>, report_filter_response);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_report</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;timeout&#34;</span>, report_timeout);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;connect&#34;</span>, filter_connect);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;helo&#34;</span>, filter_helo);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;ehlo&#34;</span>, filter_ehlo);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;starttls&#34;</span>, filter_starttls);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;auth&#34;</span>, filter_auth);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;mail-from&#34;</span>, filter_mail_from);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;rcpt-to&#34;</span>, filter_rcpt_to);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;data&#34;</span>, filter_data);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;rset&#34;</span>, filter_rset);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;quit&#34;</span>, filter_quit);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;noop&#34;</span>, filter_noop);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;help&#34;</span>, filter_help);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;wiz&#34;</span>, filter_wiz);
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;commit&#34;</span>, filter_commit);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#50fa7b>smtpd_on_filter</span>(ctx, <span style=color:#f1fa8c>&#34;smtp-in&#34;</span>, <span style=color:#f1fa8c>&#34;data-line&#34;</span>, filter_data_line);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> (<span style=color:#ff79c6>!</span> <span style=color:#50fa7b>smtpd_event_loop</span>(ctx))
+</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> <span style=color:#bd93f9>1</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> <span style=color:#bd93f9>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>and register all hooks:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>laptop$ /tmp/filter-debug
+</span></span><span style=display:flex><span>register|report|smtp-in|filter-response
+</span></span><span style=display:flex><span>register|report|smtp-in|link-connect
+</span></span><span style=display:flex><span>register|report|smtp-in|link-disconnect
+</span></span><span style=display:flex><span>register|report|smtp-in|link-identify
+</span></span><span style=display:flex><span>register|report|smtp-in|link-tls
+</span></span><span style=display:flex><span>register|report|smtp-in|protocol-client
+</span></span><span style=display:flex><span>register|report|smtp-in|protocol-server
+</span></span><span style=display:flex><span>register|report|smtp-in|timeout
+</span></span><span style=display:flex><span>register|report|smtp-in|tx-begin
+</span></span><span style=display:flex><span>register|report|smtp-in|tx-commit
+</span></span><span style=display:flex><span>register|report|smtp-in|tx-data
+</span></span><span style=display:flex><span>register|report|smtp-in|tx-envelope
+</span></span><span style=display:flex><span>register|report|smtp-in|tx-mail
+</span></span><span style=display:flex><span>register|report|smtp-in|tx-rcpt
+</span></span><span style=display:flex><span>register|report|smtp-in|tx-rollback
+</span></span><span style=display:flex><span>register|filter|smtp-in|auth
+</span></span><span style=display:flex><span>register|filter|smtp-in|commit
+</span></span><span style=display:flex><span>register|filter|smtp-in|connect
+</span></span><span style=display:flex><span>register|filter|smtp-in|data
+</span></span><span style=display:flex><span>register|filter|smtp-in|data-line
+</span></span><span style=display:flex><span>register|filter|smtp-in|ehlo
+</span></span><span style=display:flex><span>register|filter|smtp-in|helo
+</span></span><span style=display:flex><span>register|filter|smtp-in|<span style=color:#8be9fd;font-style:italic>help</span>
+</span></span><span style=display:flex><span>register|filter|smtp-in|mail-from
+</span></span><span style=display:flex><span>register|filter|smtp-in|noop
+</span></span><span style=display:flex><span>register|filter|smtp-in|quit
+</span></span><span style=display:flex><span>register|filter|smtp-in|rcpt-to
+</span></span><span style=display:flex><span>register|filter|smtp-in|rset
+</span></span><span style=display:flex><span>register|filter|smtp-in|starttls
+</span></span><span style=display:flex><span>register|filter|smtp-in|wiz
+</span></span><span style=display:flex><span>register|ready
+</span></span><span style=display:flex><span>^C
+</span></span><span style=display:flex><span>laptop$
 </span></span></code></pre></div><p>In OpenSMTPD, with the following config:</p><pre tabindex=0><code>[...]
 filter foobar proc-exec &#34;/tmp/filter-debug&#34;
 

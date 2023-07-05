@@ -1,4 +1,4 @@
-<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>OpenSMTPD advisory dissected &#183; poolp.org</title><meta name=title content="OpenSMTPD advisory dissected &#183; poolp.org"><link rel=canonical href=https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/><link type=text/css rel=stylesheet href=/css/main.bundle.min.cbaaac4a605d9474866686b7107585a59ffa8e112459c25af9913643c9add891596ebb64ceb97e0e6e0357fab774a62089a139f75483527d9571daa69bf7c3d9.css integrity="sha512-y6qsSmBdlHSGZoa3EHWFpZ/6jhEkWcJa+ZE2Q8mt2JFZbrtkzrl+Dm4DV/q3dKYgiaE591SDUn2Vcdqmm/fD2Q=="><script type=text/javascript src=/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj+e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>OpenSMTPD advisory dissected &#183; poolp.org</title><meta name=title content="OpenSMTPD advisory dissected &#183; poolp.org"><link rel=canonical href=https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/><link type=text/css rel=stylesheet href=/css/main.bundle.min.c6116b9ed1c907a8c0eb015f377d3eecc07e448d75729e31fc3de5881465c6c172ba9fa9a6800c030116caf2a110d92242bb816639484ca791f7cd107a8d49b5.css integrity="sha512-xhFrntHJB6jA6wFfN30+7MB+RI11cp4x/D3liBRlxsFyup+ppoAMAwEWyvKhENkiQruBZjlITKeR980Qeo1JtQ=="><script type=text/javascript src=/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj+e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
 <script defer type=text/javascript id=script-bundle src=/js/main.bundle.min.3ddcf04f5b0d4c32f72e726d3c12eebccd8c3c9f9daa9a13414808895de0ae1e1cdddda6849680d5bd96dbb60d0b1e0b24c29f5c83e5631e55e7e6bc02015490.js integrity="sha512-PdzwT1sNTDL3LnJtPBLuvM2MPJ+dqpoTQUgIiV3grh4c3d2mhJaA1b2W27YNCx4LJMKfXIPlYx5V5+a8AgFUkA==" data-copy data-copied></script>
 <script src=/js/zoom.min.js></script>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><meta property="og:title" content="OpenSMTPD advisory dissected"><meta property="og:description" content="TL;DR: - Qualys released an advisory for a bad, bad vulnerability - an MTA is a very bad software to have a vulnerability in - hole was plugged but that's not enough, similar bugs should be mitigated in the future - article discusses what could have prevented escalation despite the bug What happened ?"><meta property="og:type" content="article"><meta property="og:url" content="https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/"><meta property="og:image" content="https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/feature.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-01-30T23:36:00+02:00"><meta property="article:modified_time" content="2020-01-30T23:36:00+02:00"><meta property="og:site_name" content="poolp.org"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/feature.png"><meta name=twitter:title content="OpenSMTPD advisory dissected"><meta name=twitter:description content="TL;DR: - Qualys released an advisory for a bad, bad vulnerability - an MTA is a very bad software to have a vulnerability in - hole was plugged but that's not enough, similar bugs should be mitigated in the future - article discusses what could have prevented escalation despite the bug What happened ?"><script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"OpenSMTPD advisory dissected","headline":"OpenSMTPD advisory dissected","abstract":"TL;DR: - Qualys released an advisory for a bad, bad vulnerability - an MTA is a very bad software to have a vulnerability in - hole was plugged but that\u0027s not enough, similar bugs should be mitigated in the future - article discusses what could have prevented escalation despite the bug What happened ?","inLanguage":"en","url":"https:\/\/poolp.org\/posts\/2020-01-30\/opensmtpd-advisory-dissected\/","author":{"@type":"Person","name":""},"copyrightYear":"2020","dateCreated":"2020-01-30T23:36:00\u002b02:00","datePublished":"2020-01-30T23:36:00\u002b02:00","dateModified":"2020-01-30T23:36:00\u002b02:00","mainEntityOfPage":"true","wordCount":"4750"}]</script><script src=/lib/jquery/jquery.slim.min.js integrity></script><meta name=theme-color></head><body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"><div id=the-top class="absolute flex self-center"><a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600" href=#main-content><span class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a></div><div class=min-h-[148px]></div><div class="fixed inset-x-0 pl-[24px] pr-[24px]" style=z-index:100><div id=menu-blur class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom bg-neutral dark:bg-neutral-800"></div><div class="relative max-w-[64rem] ml-auto mr-auto"><div style=padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3"><div><a href=/ class=flex><span class=sr-only>poolp.org</span>
@@ -60,48 +60,48 @@ an address that was rejected due to an invalid local part gets accepted again if
 
 MAIL FROM:&lt;gilles;test&gt;
 250 2.0.0 Ok
-</code></pre><p>This mistake was introduced five years ago with the following diff:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl><span class=gh>===================================================================
-</span></span></span><span class=line><span class=cl><span class=gh></span>RCS file: /cvs/src/usr.sbin/smtpd/smtp_session.c,v
-</span></span><span class=line><span class=cl>retrieving revision 1.215
-</span></span><span class=line><span class=cl>retrieving revision 1.216
-</span></span><span class=line><span class=cl><span class=gh>diff -u -r1.215 -r1.216
-</span></span></span><span class=line><span class=cl><span class=gh></span><span class=gd>--- src/usr.sbin/smtpd/smtp_session.c	2014/07/09 12:44:54	1.215
-</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+++ src/usr.sbin/smtpd/smtp_session.c	2014/10/02 21:27:54	1.216
-</span></span></span><span class=line><span class=cl><span class=gi></span><span class=gu>@@ -1,4 +1,4 @@
-</span></span></span><span class=line><span class=cl><span class=gu></span><span class=gd>-/*	$OpenBSD: smtp_session.c,v 1.215 2014/07/09 12:44:54 eric Exp $	*/
-</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+/*	$OpenBSD: smtp_session.c,v 1.216 2014/10/02 21:27:54 gilles Exp $	*/
-</span></span></span><span class=line><span class=cl><span class=gi></span> 
-</span></span><span class=line><span class=cl> /*
-</span></span><span class=line><span class=cl>  * Copyright (c) 2008 Gilles Chehade &lt;gilles@poolp.org&gt;
-</span></span><span class=line><span class=cl><span class=gu>@@ -1758,21 +1758,20 @@
-</span></span></span><span class=line><span class=cl><span class=gu></span> 
-</span></span><span class=line><span class=cl> 	if (!valid_localpart(maddr-&gt;user) ||
-</span></span><span class=line><span class=cl> 	    !valid_domainpart(maddr-&gt;domain)) {
-</span></span><span class=line><span class=cl><span class=gd>-		/* We accept empty sender for MAIL FROM */
-</span></span></span><span class=line><span class=cl><span class=gd>-		if (mailfrom &amp;&amp;
-</span></span></span><span class=line><span class=cl><span class=gd>-		    maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp;
-</span></span></span><span class=line><span class=cl><span class=gd>-		    maddr-&gt;domain[0] == &#39;\0&#39;)
-</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+		/* accept empty return-path in MAIL FROM, required for bounces */
-</span></span></span><span class=line><span class=cl><span class=gi>+		if (mailfrom &amp;&amp; maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;)
-</span></span></span><span class=line><span class=cl><span class=gi></span> 			return (1);
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=gd>-		/* We accept empty domain for RCPT TO if user is postmaster */
-</span></span></span><span class=line><span class=cl><span class=gd>-		if (!mailfrom &amp;&amp;
-</span></span></span><span class=line><span class=cl><span class=gd>-		    strcasecmp(maddr-&gt;user, &#34;postmaster&#34;) == 0 &amp;&amp;
-</span></span></span><span class=line><span class=cl><span class=gd>-		    maddr-&gt;domain[0] == &#39;\0&#39;) {
-</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+		/* no user-part, reject */
-</span></span></span><span class=line><span class=cl><span class=gi>+		if (maddr-&gt;user[0] == &#39;\0&#39;)
-</span></span></span><span class=line><span class=cl><span class=gi>+			return (0);
-</span></span></span><span class=line><span class=cl><span class=gi>+
-</span></span></span><span class=line><span class=cl><span class=gi>+		/* no domain, local user */
-</span></span></span><span class=line><span class=cl><span class=gi>+		if (maddr-&gt;domain[0] == &#39;\0&#39;) {
-</span></span></span><span class=line><span class=cl><span class=gi></span> 			(void)strlcpy(maddr-&gt;domain, domain,
-</span></span><span class=line><span class=cl> 			    sizeof(maddr-&gt;domain));
-</span></span><span class=line><span class=cl> 			return (1);
-</span></span><span class=line><span class=cl> 		}
-</span></span><span class=line><span class=cl><span class=gd>-			
-</span></span></span><span class=line><span class=cl><span class=gd></span> 		return (0);
-</span></span><span class=line><span class=cl> 	}
+</code></pre><p>This mistake was introduced five years ago with the following diff:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span><span style=font-weight:700>===================================================================
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span>RCS file: /cvs/src/usr.sbin/smtpd/smtp_session.c,v
+</span></span><span style=display:flex><span>retrieving revision 1.215
+</span></span><span style=display:flex><span>retrieving revision 1.216
+</span></span><span style=display:flex><span><span style=font-weight:700>diff -u -r1.215 -r1.216
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>--- src/usr.sbin/smtpd/smtp_session.c	2014/07/09 12:44:54	1.215
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+++ src/usr.sbin/smtpd/smtp_session.c	2014/10/02 21:27:54	1.216
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span><span style=font-weight:700>@@ -1,4 +1,4 @@
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>-/*	$OpenBSD: smtp_session.c,v 1.215 2014/07/09 12:44:54 eric Exp $	*/
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+/*	$OpenBSD: smtp_session.c,v 1.216 2014/10/02 21:27:54 gilles Exp $	*/
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 
+</span></span><span style=display:flex><span> /*
+</span></span><span style=display:flex><span>  * Copyright (c) 2008 Gilles Chehade &lt;gilles@poolp.org&gt;
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1758,21 +1758,20 @@
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 
+</span></span><span style=display:flex><span> 	if (!valid_localpart(maddr-&gt;user) ||
+</span></span><span style=display:flex><span> 	    !valid_domainpart(maddr-&gt;domain)) {
+</span></span><span style=display:flex><span><span style=color:#f55>-		/* We accept empty sender for MAIL FROM */
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		if (mailfrom &amp;&amp;
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		    maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp;
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		    maddr-&gt;domain[0] == &#39;\0&#39;)
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+		/* accept empty return-path in MAIL FROM, required for bounces */
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		if (mailfrom &amp;&amp; maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;)
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 			return (1);
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#f55>-		/* We accept empty domain for RCPT TO if user is postmaster */
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		if (!mailfrom &amp;&amp;
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		    strcasecmp(maddr-&gt;user, &#34;postmaster&#34;) == 0 &amp;&amp;
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		    maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+		/* no user-part, reject */
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		if (maddr-&gt;user[0] == &#39;\0&#39;)
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			return (0);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		/* no domain, local user */
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		if (maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 			(void)strlcpy(maddr-&gt;domain, domain,
+</span></span><span style=display:flex><span> 			    sizeof(maddr-&gt;domain));
+</span></span><span style=display:flex><span> 			return (1);
+</span></span><span style=display:flex><span> 		}
+</span></span><span style=display:flex><span><span style=color:#f55>-			
+</span></span></span><span style=display:flex><span><span style=color:#f55></span> 		return (0);
+</span></span><span style=display:flex><span> 	}
 </span></span></code></pre></div><p>Back then,
 the mistake had no consequences as OpenSMTPD had a very different implementation for delivery.
 It didn&rsquo;t handle MDA through external utilities,
@@ -142,71 +142,71 @@ and which opens the door to escalation if a bug manages to be exploited in that 
 I hurried to produce a fix as soon as possible then ended with two diffs that I showed Qualys:
 a quick fix that just plugged the hole,
 and a better fix that plugged the hole by rewriting the <code>smtp_mailaddr()</code> function differently.</p><p>The quick fix is straightforward and can be implemented as a one-liner,
-it just tested <code>valid_localpart()</code> again when handling the missing domain case:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl><span class=gd>--- src/usr.sbin/smtpd/smtp_session.c	2019/10/04 08:34:29	1.415
-</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+++ smtp_session.c	2020-01-30 08:51:31.000000000 +0100
-</span></span></span><span class=line><span class=cl><span class=gi></span><span class=gu>@@ -2247,7 +2247,7 @@ smtp_mailaddr(struct mailaddr *maddr, ch
-</span></span></span><span class=line><span class=cl><span class=gu></span> 			return (0);
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl> 		/* no domain, local user */
-</span></span><span class=line><span class=cl><span class=gd>-		if (maddr-&gt;domain[0] == &#39;\0&#39;) {
-</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+		if (valid_localpart(maddr-&gt;user) &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;) {
-</span></span></span><span class=line><span class=cl><span class=gi></span> 			(void)strlcpy(maddr-&gt;domain, domain,
-</span></span><span class=line><span class=cl> 			    sizeof(maddr-&gt;domain));
-</span></span><span class=line><span class=cl> 			return (1);
+it just tested <code>valid_localpart()</code> again when handling the missing domain case:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span><span style=color:#f55>--- src/usr.sbin/smtpd/smtp_session.c	2019/10/04 08:34:29	1.415
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+++ smtp_session.c	2020-01-30 08:51:31.000000000 +0100
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span><span style=font-weight:700>@@ -2247,7 +2247,7 @@ smtp_mailaddr(struct mailaddr *maddr, ch
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 			return (0);
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> 		/* no domain, local user */
+</span></span><span style=display:flex><span><span style=color:#f55>-		if (maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+		if (valid_localpart(maddr-&gt;user) &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 			(void)strlcpy(maddr-&gt;domain, domain,
+</span></span><span style=display:flex><span> 			    sizeof(maddr-&gt;domain));
+</span></span><span style=display:flex><span> 			return (1);
 </span></span></code></pre></div><p>The better fix however rearranged the function in a different way that is less error-prone,
 and less likely to reintroduce similar mistakes.
 It did so by not grouping validators into a common block,
-but handling each case separately:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl><span class=gh>===================================================================
-</span></span></span><span class=line><span class=cl><span class=gh></span>RCS file: /cvs/src/usr.sbin/smtpd/smtp_session.c,v
-</span></span><span class=line><span class=cl>retrieving revision 1.415
-</span></span><span class=line><span class=cl>retrieving revision 1.415.2.1
-</span></span><span class=line><span class=cl><span class=gh>diff -u -r1.415 -r1.415.2.1
-</span></span></span><span class=line><span class=cl><span class=gh></span><span class=gd>--- src/usr.sbin/smtpd/smtp_session.c	2019/10/04 08:34:29	1.415
-</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+++ src/usr.sbin/smtpd/smtp_session.c	2020/01/28 21:39:20	1.415.2.1
-</span></span></span><span class=line><span class=cl><span class=gi></span><span class=gu>@@ -1,4 +1,4 @@
-</span></span></span><span class=line><span class=cl><span class=gu></span><span class=gd>-/*	$OpenBSD: smtp_session.c,v 1.415 2019/10/04 08:34:29 gilles Exp $	*/
-</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+/*	$OpenBSD: smtp_session.c,v 1.415.2.1 2020/01/28 21:39:20 gilles Exp $	*/
-</span></span></span><span class=line><span class=cl><span class=gi></span> 
-</span></span><span class=line><span class=cl> /*
-</span></span><span class=line><span class=cl>  * Copyright (c) 2008 Gilles Chehade &lt;gilles@poolp.org&gt;
-</span></span><span class=line><span class=cl><span class=gu>@@ -2215,24 +2215,22 @@
-</span></span></span><span class=line><span class=cl><span class=gu></span> 		memmove(maddr-&gt;user, p, strlen(p) + 1);
-</span></span><span class=line><span class=cl> 	}
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=gd>-	if (!valid_localpart(maddr-&gt;user) ||
-</span></span></span><span class=line><span class=cl><span class=gd>-	    !valid_domainpart(maddr-&gt;domain)) {
-</span></span></span><span class=line><span class=cl><span class=gd>-		/* accept empty return-path in MAIL FROM, required for bounces */
-</span></span></span><span class=line><span class=cl><span class=gd>-		if (mailfrom &amp;&amp; maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;)
-</span></span></span><span class=line><span class=cl><span class=gd>-			return (1);
-</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+	/* accept empty return-path in MAIL FROM, required for bounces */
-</span></span></span><span class=line><span class=cl><span class=gi>+	if (mailfrom &amp;&amp; maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;)
-</span></span></span><span class=line><span class=cl><span class=gi>+		return (1);
-</span></span></span><span class=line><span class=cl><span class=gi></span> 
-</span></span><span class=line><span class=cl><span class=gd>-		/* no user-part, reject */
-</span></span></span><span class=line><span class=cl><span class=gd>-		if (maddr-&gt;user[0] == &#39;\0&#39;)
-</span></span></span><span class=line><span class=cl><span class=gd>-			return (0);
-</span></span></span><span class=line><span class=cl><span class=gd>-
-</span></span></span><span class=line><span class=cl><span class=gd>-		/* no domain, local user */
-</span></span></span><span class=line><span class=cl><span class=gd>-		if (maddr-&gt;domain[0] == &#39;\0&#39;) {
-</span></span></span><span class=line><span class=cl><span class=gd>-			(void)strlcpy(maddr-&gt;domain, domain,
-</span></span></span><span class=line><span class=cl><span class=gd>-			    sizeof(maddr-&gt;domain));
-</span></span></span><span class=line><span class=cl><span class=gd>-			return (1);
-</span></span></span><span class=line><span class=cl><span class=gd>-		}
-</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+	/* no or invalid user-part, reject */
-</span></span></span><span class=line><span class=cl><span class=gi>+	if (maddr-&gt;user[0] == &#39;\0&#39; || !valid_localpart(maddr-&gt;user))
-</span></span></span><span class=line><span class=cl><span class=gi></span> 		return (0);
-</span></span><span class=line><span class=cl><span class=gi>+
-</span></span></span><span class=line><span class=cl><span class=gi>+	/* no domain part, local user */
-</span></span></span><span class=line><span class=cl><span class=gi>+	if (maddr-&gt;domain[0] == &#39;\0&#39;) {
-</span></span></span><span class=line><span class=cl><span class=gi>+		(void)strlcpy(maddr-&gt;domain, domain,
-</span></span></span><span class=line><span class=cl><span class=gi>+			sizeof(maddr-&gt;domain));
-</span></span></span><span class=line><span class=cl><span class=gi></span> 	}
-</span></span><span class=line><span class=cl><span class=gi>+
-</span></span></span><span class=line><span class=cl><span class=gi>+	if (!valid_domainpart(maddr-&gt;domain))
-</span></span></span><span class=line><span class=cl><span class=gi>+		return (0);
-</span></span></span><span class=line><span class=cl><span class=gi></span> 
-</span></span><span class=line><span class=cl> 	return (1);
-</span></span><span class=line><span class=cl> }
+but handling each case separately:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span><span style=font-weight:700>===================================================================
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span>RCS file: /cvs/src/usr.sbin/smtpd/smtp_session.c,v
+</span></span><span style=display:flex><span>retrieving revision 1.415
+</span></span><span style=display:flex><span>retrieving revision 1.415.2.1
+</span></span><span style=display:flex><span><span style=font-weight:700>diff -u -r1.415 -r1.415.2.1
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>--- src/usr.sbin/smtpd/smtp_session.c	2019/10/04 08:34:29	1.415
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+++ src/usr.sbin/smtpd/smtp_session.c	2020/01/28 21:39:20	1.415.2.1
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span><span style=font-weight:700>@@ -1,4 +1,4 @@
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>-/*	$OpenBSD: smtp_session.c,v 1.415 2019/10/04 08:34:29 gilles Exp $	*/
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+/*	$OpenBSD: smtp_session.c,v 1.415.2.1 2020/01/28 21:39:20 gilles Exp $	*/
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 
+</span></span><span style=display:flex><span> /*
+</span></span><span style=display:flex><span>  * Copyright (c) 2008 Gilles Chehade &lt;gilles@poolp.org&gt;
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -2215,24 +2215,22 @@
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 		memmove(maddr-&gt;user, p, strlen(p) + 1);
+</span></span><span style=display:flex><span> 	}
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#f55>-	if (!valid_localpart(maddr-&gt;user) ||
+</span></span></span><span style=display:flex><span><span style=color:#f55>-	    !valid_domainpart(maddr-&gt;domain)) {
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		/* accept empty return-path in MAIL FROM, required for bounces */
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		if (mailfrom &amp;&amp; maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;)
+</span></span></span><span style=display:flex><span><span style=color:#f55>-			return (1);
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+	/* accept empty return-path in MAIL FROM, required for bounces */
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (mailfrom &amp;&amp; maddr-&gt;user[0] == &#39;\0&#39; &amp;&amp; maddr-&gt;domain[0] == &#39;\0&#39;)
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return (1);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 
+</span></span><span style=display:flex><span><span style=color:#f55>-		/* no user-part, reject */
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		if (maddr-&gt;user[0] == &#39;\0&#39;)
+</span></span></span><span style=display:flex><span><span style=color:#f55>-			return (0);
+</span></span></span><span style=display:flex><span><span style=color:#f55>-
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		/* no domain, local user */
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		if (maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span></span></span><span style=display:flex><span><span style=color:#f55>-			(void)strlcpy(maddr-&gt;domain, domain,
+</span></span></span><span style=display:flex><span><span style=color:#f55>-			    sizeof(maddr-&gt;domain));
+</span></span></span><span style=display:flex><span><span style=color:#f55>-			return (1);
+</span></span></span><span style=display:flex><span><span style=color:#f55>-		}
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+	/* no or invalid user-part, reject */
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (maddr-&gt;user[0] == &#39;\0&#39; || !valid_localpart(maddr-&gt;user))
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 		return (0);
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	/* no domain part, local user */
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (maddr-&gt;domain[0] == &#39;\0&#39;) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		(void)strlcpy(maddr-&gt;domain, domain,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			sizeof(maddr-&gt;domain));
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	}
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (!valid_domainpart(maddr-&gt;domain))
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return (0);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 
+</span></span><span style=display:flex><span> 	return (1);
+</span></span><span style=display:flex><span> }
 </span></span></code></pre></div><p>There is room for improvement and I think this function should be rewritten in a different style to make it harder to introduce bugs.
 But this version works,
 it was tested,
@@ -323,9 +323,9 @@ so I think these are critical to implement in order to avoid future bugs from ha
 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#switching-back-mail-delivery-agents-to-execle aria-label=Anchor>#</a></span></h2><p>This doesn&rsquo;t solve the underlying issue of having a privileged process for <code>mbox</code>,
 but it would have prevented this specific attack.</p><p>Moving <strong>all</strong> mail delivery agents to <code>execle()</code> is tricky but we&rsquo;re going to got that way.
 I have already written a diff to switch <code>mbox</code> and it will be committed shortly.
-The <code>maildir</code> and <code>lmtp</code> will be similarly converted.</p><p>The only issue with that move is that some mail delivery agents expect a command-line interface that&rsquo;s more complex than ours:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cfg data-lang=cfg><span class=line><span class=cl><span class=na>action foobar mda &#34;/usr/local/bin/procmail -a -ton -of -options \&#34;with quotes and escaping\&#34;&#34;</span>
-</span></span></code></pre></div><p>or it&rsquo;s <code>~/.forward</code> variant:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cfg data-lang=cfg><span class=line><span class=cl><span class=na>|/usr/local/bin/procmail -a -ton -of -options &#34;with quotes and \&#34;escaping\&#34;&#34;</span>
-</span></span></code></pre></div><p>or even it&rsquo;s <code>/etc/mail/aliases</code> variant:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cfg data-lang=cfg><span class=line><span class=cl><span class=na>lists:		|/usr/local/bin/mailing-list.py -a -ton -of -options</span>
+The <code>maildir</code> and <code>lmtp</code> will be similarly converted.</p><p>The only issue with that move is that some mail delivery agents expect a command-line interface that&rsquo;s more complex than ours:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cfg data-lang=cfg><span style=display:flex><span><span style=color:#50fa7b>action foobar mda &#34;/usr/local/bin/procmail -a -ton -of -options \&#34;with quotes and escaping\&#34;&#34;</span>
+</span></span></code></pre></div><p>or it&rsquo;s <code>~/.forward</code> variant:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cfg data-lang=cfg><span style=display:flex><span><span style=color:#50fa7b>|/usr/local/bin/procmail -a -ton -of -options &#34;with quotes and \&#34;escaping\&#34;&#34;</span>
+</span></span></code></pre></div><p>or even it&rsquo;s <code>/etc/mail/aliases</code> variant:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cfg data-lang=cfg><span style=display:flex><span><span style=color:#50fa7b>lists:		|/usr/local/bin/mailing-list.py -a -ton -of -options</span>
 </span></span></code></pre></div><p>I doubt anyone wants to see these go away,
 and switching them to <code>execle()</code> implies reimplementing a command-line parser with shell-like semantics,
 then using the parsed command line to call the <code>execle()</code> function.
@@ -351,11 +351,11 @@ supporting commands in aliases is also a bad idea from a security point of view.
 It doesn&rsquo;t come with the same level of risks,
 but it also opens the potential for abuse and I&rsquo;ve been willing to get rid of that for years.
 I don&rsquo;t know of ANY use-case of executing a command from aliases that can&rsquo;t be solved from a <code>~/.forward</code> file in a safer way.
-It&rsquo;s less convenient and it requires a dedicated user, but it&rsquo;s safer.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl>			<span class=cm>/* this battle needs to be fought ... */</span>
-</span></span><span class=line><span class=cl>			<span class=k>if</span> <span class=p>(</span><span class=n>xn</span><span class=o>-&gt;</span><span class=n>type</span> <span class=o>==</span> <span class=n>EXPAND_FILTER</span> <span class=o>&amp;&amp;</span>
-</span></span><span class=line><span class=cl>			    <span class=nf>strcmp</span><span class=p>(</span><span class=n>ep</span><span class=o>-&gt;</span><span class=n>mda_user</span><span class=p>,</span> <span class=n>SMTPD_USER</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>				<span class=nf>log_warnx</span><span class=p>(</span><span class=s>&#34;commands executed from aliases &#34;</span>
-</span></span><span class=line><span class=cl>				    <span class=s>&#34;run with %s privileges&#34;</span><span class=p>,</span> <span class=n>SMTPD_USER</span><span class=p>);</span>
+It&rsquo;s less convenient and it requires a dedicated user, but it&rsquo;s safer.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>			<span style=color:#6272a4>/* this battle needs to be fought ... */</span>
+</span></span><span style=display:flex><span>			<span style=color:#ff79c6>if</span> (xn<span style=color:#ff79c6>-&gt;</span>type <span style=color:#ff79c6>==</span> EXPAND_FILTER <span style=color:#ff79c6>&amp;&amp;</span>
+</span></span><span style=display:flex><span>			    <span style=color:#50fa7b>strcmp</span>(ep<span style=color:#ff79c6>-&gt;</span>mda_user, SMTPD_USER) <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>0</span>)
+</span></span><span style=display:flex><span>				<span style=color:#50fa7b>log_warnx</span>(<span style=color:#f1fa8c>&#34;commands executed from aliases &#34;</span>
+</span></span><span style=display:flex><span>				    <span style=color:#f1fa8c>&#34;run with %s privileges&#34;</span>, SMTPD_USER);
 </span></span></code></pre></div><div id=managing-to-somehow-run-maillocal-without-privileges class=anchor></div><h2 class="relative group">managing to somehow run <code>mail.local</code> without privileges
 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#managing-to-somehow-run-maillocal-without-privileges aria-label=Anchor>#</a></span></h2><p>Disabling deliveries to privileged users is the right thing to do,
 however this is not sufficient if <code>mail.local</code> still requires privileges to deliver to <code>gilles</code>.

@@ -156,10 +156,10 @@ It supported functions,
 expressions,
 flow control,
 loops, etc&mldr;
-and it was all fun&mldr;</p><pre tabindex=0><code>fn main() {
-    println(&#39;hello world !&#39;)
-}
-</code></pre><p>until I decided that it was not so fun to rely only on an AST evaluator,
+and it was all fun&mldr;</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span>fn <span style=color:#50fa7b>main</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>println</span>(&#39;hello world !&#39;)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>until I decided that it was not so fun to rely only on an AST evaluator,
 but I should rather <strong>make this language compiled</strong>.
 So I managed to have it generate LLVM IR,
 then I managed to build a small native executable for a simple main with just a return value, then I realized it was quite hard and I needed some help so here I am now.</p><p>I bought myself two books (<a href=/books/technology>

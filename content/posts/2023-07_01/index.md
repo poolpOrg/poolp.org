@@ -6,6 +6,8 @@ authors:
  - Gilles Chehade
 categories:
  - music
+tags:
+ - guitar
 ---
 
 <blockquote>

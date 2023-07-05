@@ -39,7 +39,7 @@
 
 [[subnavigation]]
   name = "Music"
-  pageRef = "tags/music"
+  pageRef = "categories/music"
   weight = 30
 
 [[subnavigation]]

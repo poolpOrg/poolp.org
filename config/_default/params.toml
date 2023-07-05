@@ -73,7 +73,7 @@ disableImageOptimization = false
   showTaxonomies = true
   showAuthorsBadges = true
   showWordCount = true
-  showSummary = true
+  showSummary = false
   sharingLinks = [ "linkedin", "twitter", "reddit", "pinterest", "facebook", "email", "whatsapp", "telegram"]
 
 [list]
@@ -85,7 +85,7 @@ disableImageOptimization = false
   showSummary = true
   showViews = false
   showLikes = false
-  showTableOfContents = false
+  showTableOfContents = true
   showCards = false
   groupByYear = true
   cardView = true

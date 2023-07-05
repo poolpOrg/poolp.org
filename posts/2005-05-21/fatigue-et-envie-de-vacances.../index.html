@@ -38,7 +38,7 @@ que se passe-t&rsquo;il lorsqu&rsquo;un programme demande l&rsquo;execution de n
 </span></span><span class=line><span class=cl>    <span class=k>default</span><span class=o>:</span>  <span class=cm>/* return different de zero (et de cas particuliers) */</span>
 </span></span><span class=line><span class=cl>    <span class=nl>bad</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>p</span><span class=o>-&gt;</span><span class=n>p_emul</span><span class=o>-&gt;</span><span class=n>e_errno</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=n>error</span> <span class=o>=</span> <span class=n>p</span><span class=o>-&gt;</span><span class=n>p_emul</span><span class=o>-&gt;</span><span class=n>e_errno</span><span class=p>[</span><span class=n>error</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>	      <span class=n>error</span> <span class=o>=</span> <span class=n>p</span><span class=o>-&gt;</span><span class=n>p_emul</span><span class=o>-&gt;</span><span class=n>e_errno</span><span class=p>[</span><span class=n>error</span><span class=p>];</span>
 </span></span><span class=line><span class=cl>        <span class=n>frame</span><span class=p>.</span><span class=n>tf_eax</span> <span class=o>=</span> <span class=n>error</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>        <span class=n>frame</span><span class=p>.</span><span class=n>tf_eflags</span> <span class=o>|=</span> <span class=n>PSL_C</span><span class=p>;</span>       <span class=cm>/* carry bit */</span>
 </span></span><span class=line><span class=cl>        <span class=k>break</span><span class=p>;</span>

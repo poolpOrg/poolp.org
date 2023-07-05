@@ -292,7 +292,7 @@ flow control,
 loops, etc...
 and it was all fun...
 
-```
+```go
 fn main() {
     println('hello world !')
 }

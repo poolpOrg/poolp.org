@@ -121,12 +121,8 @@ I began working on a window manager called [fion](https://github.com/poolpOrg/fi
 I came up with **something that did work** as these screenshots show:
 
 <center>
-<a href="/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/2019-06-30-fion_1.png" target="_blank">
-   <img src="/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/2019-06-30-fion_1.png" />
-</a>
-<a href="/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/2019-06-30-fion_2.png" target="_blank">
-    <img src="/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/2019-06-30-fion_2.png" />
-</a>
+<img src="/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/2019-06-30-fion_1.png" />
+<img src="/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/2019-06-30-fion_2.png" />
 </center>
 
 It looked as I wanted,

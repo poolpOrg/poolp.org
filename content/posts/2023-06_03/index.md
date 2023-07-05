@@ -8,6 +8,7 @@ categories:
  - music
 tags:
  - guitar
+ - dyi
 series:
  - "building my own guitar"
 series_order: 2

@@ -70,7 +70,7 @@ Quand on regarde ce qu'elle fait, on comprends mieux. Quelques morceaux choisis:
     default:  /* return different de zero (et de cas particuliers) */
     bad:
     if (p->p_emul->e_errno)
-	error = p->p_emul->e_errno[error];
+	      error = p->p_emul->e_errno[error];
         frame.tf_eax = error;
         frame.tf_eflags |= PSL_C;       /* carry bit */
         break;

@@ -17,3 +17,8 @@ blockquote {
     font-style: italic;
     color: rgba(0, 0, 0, .5);
 }
+
+.prose :where(strong):not(:where([class~="not-prose"] *)) {
+    color: #000;
+    font-weight: 600;
+}

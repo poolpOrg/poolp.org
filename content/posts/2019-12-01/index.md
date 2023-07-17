@@ -13,10 +13,19 @@ categories:
     - SPF-aware greylisting makes greylisting usable again
 
 
-Shout outs to my sponsors !
---
-As usual,
-a **huge** thanks goes to the people sponsoring me on [patreon](https://www.patreon.com/gilles) or [github](https://github.com/sponsors/poolpOrg), the work in this post was made possible by my [sponsorship](/sponsorship/).
+# Shout out to my sponsors &#x2764;&#xfe0f;
+
+A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
+and [patreon](https://www.patreon.com/gilles):
+your continuous support is very much appreciated !
+
+I created a Discord where I hang out and discuss my projects or sometimes screencast as I work on them.
+Feel free to hop in if you want,
+and feel free to do just like me and share thoughts as you work on your own projects there:
+**this is a virtual hack room for anyone to join**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
+
+This is a fairly open server where you can ask random questions about a lot of topics,
+not necessarily related to my own work.
 
 SMTP failures in a nutshell
 --

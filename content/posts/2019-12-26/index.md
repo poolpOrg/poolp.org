@@ -24,8 +24,8 @@ en faisant des fois du partage d'écran pendant que je bosse dessus.
 N'hésitez pas à rejoindre et partager vos idées et projets:
 **c'est une hackroom virtuel, un espace de coworking en quelques sortes**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
 
-This is a fairly open server where you can ask random questions about a lot of topics,
-not necessarily related to my own work.
+Il s'agit d'un serveur assez ouvert où vous pouvez poser des questions au hasard sur de nombreux sujets,
+et pas nécessairement relative à mon travail.
 
 Où est-ce que j'ai déjà lu ça ?
 --
@@ -172,11 +172,6 @@ en provenance de la même IP source,
 en utilisant le même nom d'hôte à l'identification,
 depuis le même émetteur et pour le même destinataire.
 
-<center>
-<img src="/images/2019-12-01-spam.jpg">
-</center>
-
-
 Le problème avec le greylisting et les Big Mailer Corps
 --
 Pour de petits émetteurs,
@@ -220,7 +215,7 @@ Lorsque la retransmission a bien lieu plusieurs fois par le même MX sortant,
 ils passent le test du greylisting sans souci.
 
 Très bien,
-ajoutons les à la whitelist alors…
+ajoutons-les à la whitelist alors…
 mais comment ?
 
 Pendant un moment,
@@ -228,7 +223,7 @@ j'ai utilisé une approche naïve consistant à whitelister le `/24` de n'import
 Après quelques temps,
 ma liste était suffisamment grande pour que de nouveaux MX soient rarement hors de ma whitelist.
 C'était pénible,
-ça ne couvrait pas le cas de nouveaux MX me contactant depuis de nouveaux ranges,
+ça ne couvrait pas le cas de nouveaux MX me contactant depuis de nouvelles plages d'adresses IP,
 et j'ai fini par aggréger les listes de différentes personnes à la mienne pour être sûr d'en avoir le plus possible.
 Le résultat était une **whitelist en augmentation constante**.
 
@@ -241,8 +236,8 @@ j'ai écrit `spfwalk` (maintenant une sous-commande de `smtpctl`) en Janvier 201
 un outil qui permet de faire une énumération dans l'enregistrement SPF d'un domaine et extraire un maximum d'adresse IP possible.
 Il y a un [article en anglais à propos de spfwalk](/posts/2018-01-08/spfwalk/) sur ce blog si ça vous intéresse.
 L'outil avait pour vocation de remplacer mon approche naïve,
-il n'est en loin parfait,
-c'est du _best effort_.
+il est loin d'être parfait,
+j'ai fait _mon mieux_.
 
 La façon dont fonctionne SPF permet de vérifier facilement si une adresse IP est autorisée,
 mais ne permet pas d'extraire facilement une liste d'adresse pour une vérification ultérieure.
@@ -287,7 +282,7 @@ ceux qui publient des enregistrements SPF et ceux qui n'en publient pas.
 Les MX qui **ne publient pas d'enregistrement SPF** sont **greylistés par adresse IP source**,
 comme cela serait le cas avec un greylisting traditionnel.
 Commes les Big Mailer Corps requièrent que les émetteurs fournissent un enregistrement SPF pour ne pas dégrader leur réputation,
-et parceque la plupart des gens veulent pouvoir émettre vers les Big Mailer Corps,
+et parce que la plupart des gens veulent pouvoir émettre vers les Big Mailer Corps,
 la plupart des émetteurs légitimes ne devraient pas rentrer dans ce cas.
 Ne devraient rentrer dans ce cas que des petits émetteurs qui n'émettent pas depuis un grand nombre d'adresse,
 et dont le greylisting serait identique qu'il soit par adresse IP ou domaine.
@@ -324,7 +319,7 @@ Si elle ne l'est pas,
 il peut supposer qu'elle ne provient pas du domaine émetteur,
 le filtre va là encore procéder à un greylisting **par adresse IP source**.
 Une approche plus stricte pourrait être de rejeter la session,
-mais ce n'est pas le but d'un filtre de greylisting que de décider si la violation SPF est acceptable ou non.
+mais ce n'est pas le but d'un filtre de greylisting de décider si la violation SPF est acceptable ou non.
 
 Si en revanche **l'adresse IP source est valide pour l'enregistrement SPF**,
 au lieu de garder trace de l'adresse IP source,
@@ -355,7 +350,7 @@ Je ne sais pas trop mais je ne pense pas que l'on puisse radicalement améliorer
 
 Il y a surement quelques petites améliorations à faire à la marge,
 mais je ne pense pas que l'on puisse faire de grosses grosses avancées :
-un SPF-aware greylisting résouds le problème du greylisting chez les Big Mailer Corps, ni plus, ni moins.
+un SPF-aware greylisting résout le problème du greylisting chez les Big Mailer Corps, ni plus, ni moins.
 Aujourd'hui avec ce filtre,
 je ne vois aucune différence de traitement entre Gmail et le petit domaine du coin.
 Les deux passent le greylisting assez rapidement et sans que l'on ne se rende vraiment compte qu'il y a eu retransmission.
@@ -363,8 +358,8 @@ Les deux passent le greylisting assez rapidement et sans que l'on ne se rende vr
 En gardant en tête que le spam est une industrie du volume,
 je pense que du travail plus intéressant peut être fait en augmentant le coût de l'envoi de masse :
 de la même manière que les spammeurs n'aiment pas la retransmission,
-ils n'aiment **PAS DU TOUT** les hôtes lents parce qu'ils ont un impact **ÉNORME** sur la capacité à distribuer et la taille de la queue.
-J'ai déjà implémenté des fonctionnalités dans cette veine au sein d'autres filtres en corrélant les temps de réponse à la réputation d'un domaine.
+ils n'aiment **PAS DU TOUT** les hôtes lents parce qu'ils ont un impact **ÉNORME** sur la capacité à distribuer et sur la taille de la queue.
+J'ai déjà implémenté des fonctionnalités dans ce sens au sein d'autres filtres en corrélant les temps de réponse à la réputation d'un domaine.
 
 Si je passe plus de temps à essayer de faire d'OpenSMTPD une cible difficile pour les spammeurs,
 il est certain que mes prochains travaux seront dans la lignée des sanctions par délais.

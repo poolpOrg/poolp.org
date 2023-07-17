@@ -13,11 +13,19 @@ categories:
     - le SPF-aware greylisting rend le greylisting utilisable à nouveau
 
 
-Merci à mes sponsors !
---
-Un **énorme** merci aux gens qui me sponsorisent sur [patreon](https://www.patreon.com/gilles) ou [github](https://github.com/sponsors/poolpOrg),
-le temps consacré à la rédaction et traduction de cet article a été rendu possible par mon [sponsorat](/sponsorship/).
+# Shout out a mes sponsors &#x2764;&#xfe0f;
 
+Un **GRAND MERCI** à mes sponsors sur [github](https://github.com/sponsors/poolpOrg)
+et [patreon](https://www.patreon.com/gilles):
+votre soutien est grandement apprécié !
+
+J'ai crée un Discord où je traine et discute de mes projets,
+en faisant des fois du partage d'écran pendant que je bosse dessus.
+N'hésitez pas à rejoindre et partager vos idées et projets:
+**c'est une hackroom virtuel, un espace de coworking en quelques sortes**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
+
+This is a fairly open server where you can ask random questions about a lot of topics,
+not necessarily related to my own work.
 
 Où est-ce que j'ai déjà lu ça ?
 --

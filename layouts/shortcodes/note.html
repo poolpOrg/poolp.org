@@ -1,0 +1,22 @@
+{{ $.Scratch.Set "icon" "ghost" }}
+{{ $.Scratch.Set "author" (.Get "author") }}
+
+
+<div
+  class="flex px-4 py-3 rounded-md"
+  style="background-color: #f5f5dc;">
+
+  <span
+      class="ltr:pr-3 rtl:pl-3 flex items-center"
+      style="color: #1d3557"
+    >
+    {{ partial "icon.html" ($.Scratch.Get "icon") }}
+    &nbsp;{{ $.Scratch.Get "author" }}
+  </span>
+
+  <span style="color: #000000;">
+    <blockquote>
+    {{- .Inner | markdownify -}}
+    </blockquote>
+  </span>
+</div>

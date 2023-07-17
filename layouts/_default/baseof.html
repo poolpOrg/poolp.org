@@ -22,7 +22,7 @@
   {{ partial "partials/header/basic.html" . }}
   {{ end }}
   <div class="relative flex flex-col grow">
-    <main id="main-content" class="grow">
+    <main id="main-content" class="grow">  
       {{ block "main" . }}{{ end }}
       {{ if and (.Site.Params.footer.showScrollToTop | default true) (gt .WordCount 1) }}
       {{- partial "scroll-to-top.html" . -}}
@@ -39,4 +39,5 @@
   data-id="{{ .Site.Params.buymeacoffee.identifier }}" data-description="Support me on Buy me a coffee!" data-message="{{ .Site.Params.buymeacoffee.globalWidgetMessage | default "" }}"
   data-color="{{ .Site.Params.buymeacoffee.globalWidgetColor | default "#FFDD00" }}" data-position="{{ .Site.Params.buymeacoffee.globalWidgetPosition | default "Left" }}" data-x_margin="18" data-y_margin="18"></script>
 {{ end }}
+
 </html>

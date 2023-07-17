@@ -33,6 +33,7 @@ disableImageOptimization = false
   showThemeAttribution = true
   showAppearanceSwitcher = true
   showScrollToTop = true
+  enableSearch = true
 
 [homepage]
   #layout = "profile" # valid options: page, profile, hero, card, background, custom

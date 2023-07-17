@@ -12,11 +12,12 @@ tags:
  - OpenBSD
 ---
 
-> **TL;DR:**
->  I found a printed copy of an assignment I had to do in 2005 back when I was a student to implement a system call for OpenBSD and Linux. I lost the original LaTeX file so I decided to rewrite it so I have a digital copy. The article originally covered loadable kernel modules (LKM) which is no longer a thing in OpenBSD, I trimmed that part. I also trimmed the Linux part because I didn't care about it back then and did the minimum to pass ;-)
-> This article is translated from French.
+{{< tldr >}}
+I found a printed copy of an assignment I had to do in 2005 back when I was a student to implement a system call for OpenBSD and Linux. I lost the original LaTeX file so I decided to rewrite it so I have a digital copy. The article originally covered loadable kernel modules (LKM) which is no longer a thing in OpenBSD, I trimmed that part. I also trimmed the Linux part because I didn't care about it back then and did the minimum to pass ;-)
+This article is translated from French.
+{{< /tldr >}}
 
-
+{{< shoutout >}}
 # Shout out to my sponsors &#x2764;&#xfe0f;
 
 A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
@@ -30,6 +31,9 @@ and feel free to do just like me and share thoughts as you work on your own proj
 
 This is a fairly open server where you can ask random questions about a lot of topics,
 not necessarily related to my own work.
+{{< /shoutout >}}
+
+
 
 # Disclaimer
 
@@ -91,14 +95,14 @@ The system call implementation, which is the actual code of the system call that
 It is important to differentiate both as, in OpenBSD, the prototype for the system call implementation does not match the prototype for the system call interface as we’ll see shortly.
 
 
-{{< alert >}}
-> <b>[@gpt-4](/authors/gpt-4)</b>:
-> System calls serve as a gateway between user applications and the low-level operating system kernel. They're an integral part of an operating system's infrastructure that provide controlled access to hardware resources, manage processes, and handle file system interactions, among many other tasks.
-> 
-> While operating systems come with a standard set of system calls, there may be cases where you want to introduce custom system calls. These could be for specialized hardware, unique process management requirements, or for other OS-level customizations that are not provided by the built-in system calls.
-> 
-> Understanding how to add new system calls in a system like OpenBSD, thus, opens a doorway for system-level innovations and customizations.
-{{< /alert >}}
+{{< note author="GPT" >}}
+
+System calls serve as a gateway between user applications and the low-level operating system kernel. They're an integral part of an operating system's infrastructure that provide controlled access to hardware resources, manage processes, and handle file system interactions, among many other tasks.
+
+While operating systems come with a standard set of system calls, there may be cases where you want to introduce custom system calls. These could be for specialized hardware, unique process management requirements, or for other OS-level customizations that are not provided by the built-in system calls.
+
+Understanding how to add new system calls in a system like OpenBSD, thus, opens a doorway for system-level innovations and customizations.
+{{< /note >}}
 
 
 
@@ -270,17 +274,16 @@ which is really **an array of two registers**.
 **The first index of that array represents the EAX register**, **it is initialized to 0 by the syscall API before it calls our implementation that may modify it**. The second index is rarely used: it allows solving the case of `fork()` which... returns **two values**,
 **one for the parent process and one for the child process**.
 
-{{< alert >}}
-> <b>2023's [@gilles](/authors/gilles)</b>:
-> article was written for amd64 where EAX and EDX registers are used for retval,
-> but it obviously isn't true for other platforms.
->
-> For a better understanding,
-> a look at `/usr/src/sys/amd64/amd64/trap.c` (swap platform for others) is needed:
-> it prepares parameters according to the calling convention,
-> triggers the system call interrupt,
-> maps return values from registers and errno to structures that ultimately makes them look the same for userland on all architectures.
-{{< /alert >}}
+{{< note author="gilles" >}}
+Article was written for amd64 where EAX and EDX registers are used for retval,
+but it obviously isn't true for other platforms.
+
+For a better understanding,
+a look at `/usr/src/sys/amd64/amd64/trap.c` (swap platform for others) is needed:
+it prepares parameters according to the calling convention,
+triggers the system call interrupt,
+maps return values from registers and errno to structures that ultimately makes them look the same for userland on all architectures.
+{{< /note >}}
 
 
 ## System call poking into struct proc: `sys_retpid()`
@@ -325,15 +328,14 @@ sys_retpid(struct proc *p, void *v, register_t *retval)
 	return (0);
 }
 ```
-{{< alert >}}
-> <b>2023's [@gilles](/authors/gilles)</b>:
-> Note that the function may or may not explode,
-> for multiple reasons,
-> if you don't know why,
-> don't copy paste optimistic code that doesn't do proper checking and locking.
->
-> Same applies for previous functions obviously.
-{{< /alert >}}
+{{< note author="gilles" >}}
+Note that the function may or may not explode,
+for multiple reasons,
+if you don't know why,
+don't copy paste optimistic code that doesn't do proper checking and locking.
+
+Same applies for previous functions obviously.
+{{< /note >}}
 
 ### Description
 This last call allows illustrating that the function does not execute in userland but really in kernel, **it allows us to access memory beyond that of the current process**. Here, we dereference the `struct proc` associated to our process but also a pointer to a different `struct proc`, we can use the various linked lists inside `struct proc` to access resources **that are not available to the current process in userland**.
@@ -344,18 +346,17 @@ Note that this is just an example and that care should be taken to do proper loc
 The initial version of this article dates from 2005 and presented both static linking and loadable kernel modules. **Since then, the LKM interface was removed from OpenBSD, I have removed these parts as they serve no practical purpose today** and it'll keep the article shorter.
 
 
-{{< alert >}}
-> <b>[@gpt-4](/authors/gpt-4)</b>:
-> When implementing new system calls, it's critical to keep security at the forefront of your considerations. By design, system calls bridge userland and the kernel, which, if not handled properly, can expose the system to various vulnerabilities.
-> 
-> While designing a system call, it's crucial to validate all input data. Since system calls operate with kernel-level privileges, any input data can potentially interact with critical parts of the system, and hence should be carefully scrutinized.
-> 
-> Consider carefully which capabilities your new system call should have. If a system call only needs to read data, it should not have the capability to write data. Limiting the functionality to the minimum necessary can limit the potential damage if the system call is misused.
-> 
-> Furthermore, concurrency issues can lead to race conditions in the system calls. Proper synchronization primitives should be used to avoid these scenarios. Remember, a flaw in a system call can jeopardize the entire system's security, so being mindful about potential vulnerabilities is of utmost importance.
-> 
-> Bear in mind that OpenBSD, like other Unix-like systems, follows the principle of least privilege, which suggests that a process should be granted only those privileges that are essential to its function. As a system call designer, your responsibility is to ensure your system call aligns with this principle.
-{{< /alert >}}
+{{< note author="GPT" >}}
+When implementing new system calls, it's critical to keep security at the forefront of your considerations. By design, system calls bridge userland and the kernel, which, if not handled properly, can expose the system to various vulnerabilities.
+ 
+While designing a system call, it's crucial to validate all input data. Since system calls operate with kernel-level privileges, any input data can potentially interact with critical parts of the system, and hence should be carefully scrutinized.
+ 
+Consider carefully which capabilities your new system call should have. If a system call only needs to read data, it should not have the capability to write data. Limiting the functionality to the minimum necessary can limit the potential damage if the system call is misused.
+ 
+Furthermore, concurrency issues can lead to race conditions in the system calls. Proper synchronization primitives should be used to avoid these scenarios. Remember, a flaw in a system call can jeopardize the entire system's security, so being mindful about potential vulnerabilities is of utmost importance.
+ 
+Bear in mind that OpenBSD, like other Unix-like systems, follows the principle of least privilege, which suggests that a process should be granted only those privileges that are essential to its function. As a system call designer, your responsibility is to ensure your system call aligns with this principle.
+{{< /note >}}
 
 
 

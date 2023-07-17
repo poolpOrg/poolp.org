@@ -25,7 +25,7 @@ N'hésitez pas à rejoindre et partager vos idées et projets:
 **c'est une hackroom virtuel, un espace de coworking en quelques sortes**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
 
 Il s'agit d'un serveur assez ouvert où vous pouvez poser des questions au hasard sur de nombreux sujets,
-et pas nécessairement relative à mon travail.
+et pas nécessairement relatives à mon travail.
 
 Où est-ce que j'ai déjà lu ça ?
 --

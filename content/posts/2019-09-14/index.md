@@ -12,6 +12,20 @@ categories:
     - OK... I explain in WAY TOO MUCH details how to setup a mail server
 
 
+# Shout out to my sponsors &#x2764;&#xfe0f;
+
+A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
+and [patreon](https://www.patreon.com/gilles):
+your continuous support is very much appreciated !
+
+I created a Discord where I hang out and discuss my projects or sometimes screencast as I work on them.
+Feel free to hop in if you want,
+and feel free to do just like me and share thoughts as you work on your own projects there:
+**this is a virtual hack room for anyone to join**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
+
+This is a fairly open server where you can ask random questions about a lot of topics,
+not necessarily related to my own work.
+
 EDIT (2019-10-26)
 --
 [OpenSMTPD 6.6.0 was released today](https://www.mail-archive.com/misc@opensmtpd.org/msg04725.html),

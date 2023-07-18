@@ -21,15 +21,6 @@ A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/po
 and [patreon](https://www.patreon.com/gilles):
 your continuous support is very much appreciated !
 
-I created a Discord where I hang out and discuss my projects or sometimes screencast as I work on them.
-Feel free to hop in if you want,
-and feel free to do just like me and share thoughts as you work on your own projects there:
-**this is a virtual hack room for anyone to join**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
-
-This is a fairly open server where you can ask random questions about a lot of topics,
-not necessarily related to my own work.
-
-
 
 # Table of content
 
@@ -296,14 +287,3 @@ meaning I won't have much time to work on anything beyond my noon breaks and sle
 
 I'll probably keep working a bit on `dart-harmony` as time allows and will write my yearly retrospective late December,
 don't expect too much done before 2023 !
-
-
-# Engage !
-Feel free to **submit your ideas and comments below**,
-and also to [join my discord](https://discord.gg/YC6j4rbvSk) where you'll stay updated as I communicate a lot there as I work on projects.
-
-You can also support me on [github](https://github.com/sponsors/poolpOrg) or/and [patreon](https://www.patreon.com/gilles).
-
-You can follow me on [twitter](https://twitter.com/poolpOrg) where you can share my articles if you think they are worthy.
-
-

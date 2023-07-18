@@ -18,11 +18,6 @@ A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/po
 and [patreon](https://www.patreon.com/gilles):
 your continuous support is very much appreciated !
 
-I created a Discord where I hang out and discuss my projects or screencast as I work on them.
-Feel free to hop in if you want,
-and feel free to do just like me and share thoughts as you work on your own projects there:
-**this is a virtual hack room for anyone to join**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
-
 
 # Code-unrelated work
 As last month,
@@ -536,10 +531,6 @@ Next is **A DAMN BREAK** cause I said last month I'd take a couple months and co
 I'll be marrying in a couple weeks,
 going on vacations a few weeks later,
 and got plenty of code-unrelated things to finish.
-
-Feel free to [join my discord](https://discord.gg/YC6j4rbvSk),
-engage on [twitter](https://twitter.com/poolpOrg) or 
-support me on [github](https://github.com/sponsors/poolpOrg) or/and [patreon](https://www.patreon.com/gilles).
 
 Take care,
 stay tuned,

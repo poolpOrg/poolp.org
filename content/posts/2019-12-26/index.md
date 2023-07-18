@@ -20,14 +20,6 @@ Un **GRAND MERCI** à mes sponsors sur [github](https://github.com/sponsors/pool
 et [patreon](https://www.patreon.com/gilles):
 votre soutien est grandement apprécié !
 
-J'ai crée un Discord où je traine et discute de mes projets,
-en faisant des fois du partage d'écran pendant que je bosse dessus.
-N'hésitez pas à rejoindre et partager vos idées et projets:
-**c'est une hackroom virtuel, un espace de coworking en quelques sortes**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
-
-Il s'agit d'un serveur assez ouvert où vous pouvez poser des questions au hasard sur de nombreux sujets,
-et pas nécessairement relatives à mon travail.
-
 Où est-ce que j'ai déjà lu ça ?
 --
 Cet article est une traduction de l'article "[SPF-aware greylisting and filter-greylist](/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/)",

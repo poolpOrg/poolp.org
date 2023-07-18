@@ -20,15 +20,6 @@ A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/po
 and [patreon](https://www.patreon.com/gilles):
 your continuous support is very much appreciated !
 
-I created a Discord where I hang out and discuss my projects or sometimes screencast as I work on them.
-Feel free to hop in if you want,
-and feel free to do just like me and share thoughts as you work on your own projects there:
-**this is a virtual hack room for anyone to join**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
-
-This is a fairly open server where you can ask random questions about a lot of topics,
-not necessarily related to my own work.
-
-
 
 # Table of content
 
@@ -363,15 +354,10 @@ so there's plenty of iterations to do on it to make it nicer.
 There's code to write in Golang,
 there's code to write in JavaScript,
 there's code to write in Dart,
-and **you could implement feedchain in your favorite language** using the examples from the proof-of-concept and asking question on [my discord](https://discord.gg/YC6j4rbvSk).
+and **you could implement feedchain in your favorite language** using the examples from the proof-of-concept and asking question on my discord.
 
 Is it tricky ?
 Nope.
 I implemented the initial proof of concept in Golang,
 I knew nothing about Dart and wrote a full implementation for it in just a few hours,
 so anyone could probably implement feedchain in whatever language of their choice in a really short timeframe.
-
-Feel free to [join my discord](https://discord.gg/YC6j4rbvSk) where there's a feedchain channel,
-engage on [twitter](https://twitter.com/poolpOrg) (gosh, this is killing me),
-in the [comments](#comments) below,
-or support me on [github](https://github.com/sponsors/poolpOrg) or/and [patreon](https://www.patreon.com/gilles).

@@ -9,7 +9,7 @@ categories:
 ---
 
 {{< tldr >}}
-I have a discord now, [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk), feel free to join.
+I have a discord now, feel free to join.
 I refactored plakar, implemented a local cache, improved parallelism, modified the push strategy, played with fuse and networking.
 I also did other stuff but let's keep that out of this article.
 {{< /tldr >}}
@@ -48,8 +48,6 @@ I created a Discord where I'll hang out and discuss my projects as I work on the
 Feel free to hop in if you want,
 and feel free to do just like me and share thoughts as you work on your own projects there:
 **this is a virtual hack room**.
-
-Join here: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
 
 It may not be restricted strictly to code as I have other unrelated projects sometimes :-)
 

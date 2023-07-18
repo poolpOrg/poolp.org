@@ -19,11 +19,6 @@ A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/po
 and [patreon](https://www.patreon.com/gilles):
 your continuous support is very much appreciated !
 
-I created a Discord where I hang out and discuss my projects or screencast as I work on them.
-Feel free to hop in if you want,
-and feel free to do just like me and share thoughts as you work on your own projects there:
-**this is a virtual hack room for anyone to join**: [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk)
-
 
 # The [plakar.io](https://plakar.io) website
 
@@ -397,7 +392,7 @@ I **no longer have to worry about known hosts & such**, they are already handled
 ```
 
 It took me hours to implement various SSH proof of concepts,
-people [on the discord channel](https://discord.gg/YC6j4rbvSk) have endured me quite a lot,
+people on the discord channel have endured me quite a lot,
 but this last version... **took only two minutes to implement** using a few lines of code.
 
 It was both **very satisfying** and **very frustrating** :-)

@@ -923,4 +923,3 @@ Si lire à propos de ce genre de mises en place vous intéresse, je peux écrire
 
 Merci de m'avoir lu, je n'ai pas de soundcloud, mais [j'ai un patreon](https://patreon.com/gilles) et un [github](https://github.com/sponsors/poolpOrg) si vous voulez me sponsoriser, ou **utiliser les icones en dessous du lien de commentaires** pour partager cet article sur les reseaux sociaux.
 
----- 

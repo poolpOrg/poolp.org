@@ -134,4 +134,3 @@ to help make plakar as friendly as possible to operators.
 It will be time to start working on a website too :-)
 
 
----- 

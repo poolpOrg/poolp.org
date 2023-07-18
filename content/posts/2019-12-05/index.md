@@ -204,4 +204,3 @@ De très nombreux points de sa présentation sont tout aussi valides en ce qui c
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pjin3nv8jAo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
 
----- 

@@ -689,4 +689,3 @@ After a month of learning,
 I can now play **Ode to Joy**, **Autumn Leaves**, and **And I love her** on the piano, that required some assorted work.
 
 
----- 

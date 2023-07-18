@@ -250,4 +250,3 @@ allowing tables to be written in any language.
 
 I may also be focusing on diapers.
 
----- 

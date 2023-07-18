@@ -226,4 +226,3 @@ I intend to publish a technical article in March regarding software design and d
 
 I might unveil a project that's unrelated to computer programming too :-)
 
----- 

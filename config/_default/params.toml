@@ -122,7 +122,7 @@ disableImageOptimization = false
   globalWidget = true
    globalWidgetMessage = "Support me !"
   # globalWidgetColor = "#FFDD00"
-  # globalWidgetPosition = "Right"
+  globalWidgetPosition = "left"
 
 [verification]
   # google = ""

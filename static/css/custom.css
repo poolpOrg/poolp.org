@@ -44,4 +44,48 @@ blockquote {
 .note-comment code {
     background: rgba(var(--color-neutral-700),var(--tw-text-opacity));
     color: #F5F5DC;
-} 
+}
+
+
+/**/
+
+	#notify-bar .alert-wrapper{
+		padding:5px;
+	}
+	#notify-bar .icon-wrap{
+		height: 25px;
+		display: inline-flex;
+		width: 20px;
+		margin: 5px 20px 0 0;
+	}
+	#notify-bar .notification-title{
+		display: inline-flex;
+		color:#fff;
+		vertical-align: top;
+		margin-top: 5px;
+	}
+	#notify-bar .icon-wrap svg{
+		width: inherit;
+		height: inherit;
+		fill:#fff;
+		padding-top:5px;
+	}
+	#notify-bar{
+		text-align: center;
+		/*background: #FF9700;*/
+		background: #335599;
+
+    }
+	@media only screen and (max-width: 600px) {
+			#notify-bar .icon-wrap{
+				float:left;
+				margin: 15px 20px 0 15px;
+			}
+			#notify-bar .notification-title{
+				display: block;
+				margin-top: 5px;
+				left: 50px;
+				top: -30px;
+				margin-right: 30px;
+			}
+	}

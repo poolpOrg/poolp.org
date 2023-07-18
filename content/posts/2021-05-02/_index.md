@@ -772,3 +772,4 @@ quelle est la logique et le raisonnement derrière chacun de ses composants,
 et je l'appliquerai à différents états de conscience pour comparer ce que l'on observe avec ce que le modèle prédit.
 
 
+---- 

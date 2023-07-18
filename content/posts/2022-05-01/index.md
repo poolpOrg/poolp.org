@@ -15,12 +15,6 @@ performances,
 clone & sync and fuse.
 {{< /tldr >}}
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
 
 # Code-unrelated work
 I'll start with code unrelated work !

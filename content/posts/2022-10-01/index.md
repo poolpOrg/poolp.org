@@ -12,22 +12,6 @@ categories:
 added comments support to the blog, did some music and hypnosis projects, fixed a few bugs in plakar and began a new toy project.
 {{< /tldr >}}
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
-
-# Table of content
-
-- [Learnt myself some Swift](#learnt-myself-some-swift)
-- [Added table of content and comments support to the blog](#added-table-of-content-and-comments-support-to-the-blog)
-- [Music-related work](#music-related-work)
-- [Hypnosis-related work](#hypnosis-related-work)
-- [A bit of plakar work](#a-bit-of-plakar-work)
-- [A new project: Streamchain](#a-new-project-streamchain)
-
 
 # Learnt myself some Swift
 Got myself a book on the Swift programming language,

@@ -24,11 +24,6 @@ By the time you're reading this, they will likely no longer work or reflect real
 
 ---
 
-# Shout outs to my patrons !
-As usual,
-a **huge** thanks goes to the people **sponsoring me** on **[patreon](https://www.patreon.com/gilles)** or **[github](https://github.com/sponsors/poolpOrg)**, the work in this post was made possible by my **[sponsorship](/sponsorship/)**.
-
-
 # OpenSMTPD 6.7.1p1 release
 
 On May 19, 2020 was released [OpenBSD 6.7](https://www.openbsd.org/67.html) which ships OpenSMTPD 6.7,

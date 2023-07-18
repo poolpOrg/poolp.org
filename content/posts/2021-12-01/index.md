@@ -12,12 +12,6 @@ categories:
 I worked on plakar, go-fastcdc a FastCDC implementation for plakar, and some useless stuff.
 {{< /tldr >}}
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
 
 # This activity report will be short
 

@@ -13,13 +13,6 @@ I worked on OpenSMTPD-portable, did a lot of plakar, a lot of Go and gave a tech
 {{< /tldr >}}
 
 
-# Shout outs to my patrons !
-
-A **huge** thanks goes to the people **sponsoring me** on **[patreon](https://www.patreon.com/gilles)**,
-**[github](https://github.com/sponsors/poolpOrg)** or **[liberaPay](https://liberapay.com/poolpOrg)**,
-the work in this post was made possible by my sponsors.
-
-
 # Let's start with some LoFi
 
 Relax.

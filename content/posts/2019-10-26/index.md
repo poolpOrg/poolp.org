@@ -15,12 +15,6 @@ categories:
     - An OpenSMTPD book is in the works
 {{< /tldr >}}
 
-Shout outs to my patrons !
---
-As usual,
-a **huge** thanks goes to the people sponsoring me on [patreon](https://www.patreon.com/gilles) or [github](https://github.com/sponsors/poolpOrg), the work in this post was made possible by my [sponsorship](/sponsorship/).
-
-
 How I landed in the emergencies
 --
 I accidentally cut my hand real bad early October and rushed to the nearest hospital.

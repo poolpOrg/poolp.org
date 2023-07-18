@@ -14,13 +14,6 @@ I worked on go-ipcmsg to make it nicer, go-privsep to make it more useable, and 
 {{< /tldr >}}
 
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
-
 # Go-ipcmsg
 [In April](/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/#go-ipcmsg),
 I wrote about [`go-ipcmsg`](https://github.com/poolpOrg/go-ipcmsg),

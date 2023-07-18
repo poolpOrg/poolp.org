@@ -17,11 +17,6 @@ categories:
     - wrote 2 chapters for my book
 {{< /tldr >}}
 
-Shout outs to my sponsors !
---
-As usual,
-a **huge** thanks goes to the people sponsoring me on [patreon](https://www.patreon.com/gilles) or [github](https://github.com/sponsors/poolpOrg), the work in this post was made possible by my [sponsorship](/sponsorship/).
-
 
 Got myself a pinebook pro
 --

@@ -13,10 +13,6 @@ implemented folder pinning,
 worked on my webmail.
 {{< /tldr >}}
 
-# Shout outs to my patrons !
-As usual,
-a **huge** thanks goes to the people **sponsoring me** on **[patreon](https://www.patreon.com/gilles)** or **[github](https://github.com/sponsors/poolpOrg)**, the work in this post was made possible by my **[sponsorship](/sponsorship/)**.
-
 
 # poolp.org infrastructure rework
 

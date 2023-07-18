@@ -14,23 +14,6 @@ as well as a proof of concept code for a reader, a writer, a publishing node, an
 oh and fuck you, elon, you're a dick.
 {{< /tldr >}}
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
-
-# Table of content
-
-- [This is not my activity report](#this-is-not-my-activity-report)
-- [The problem...](#the-problem)
-- [I worked on a new little project...](#i-worked-on-a-new-little-project)
-- [I have a working PoC](#i-have-a-working-poc)
-- [About the format](#about-the-format)
-- [Limitations and rationale](#limitations-and-rationale)
-- [But it means you keep rebuilding and uploading the whole feed ?](#but-it-means-you-keep-rebuilding-and-uploading-the-whole-feed)
-- [Next steps](#next-steps)
 
 # This is not my activity report
 

@@ -14,13 +14,6 @@ I played with ChatGPT.
 {{< /tldr >}}
 
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
-
 # Table of content
 - [Re-focusing on go_harmony](#re-focusing-on-go-harmony)
 - [Made various improvements to go-harmony](#made-various-improvements-to-go-harmony)

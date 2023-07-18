@@ -15,10 +15,6 @@ categories:
     - Added some features and fixed a crash in filter-rspamd
 {{< /tldr >}}
 
-Shout outs to my patrons !
---
-As usual,
-a **huge** thanks goes to the people sponsoring me on [patreon](https://www.patreon.com/gilles) or [github](https://github.com/sponsors/poolpOrg), the work in this post was made possible by my [sponsorship](/sponsorship/).
 
 Welcome Jules, `fork()` completed
 --

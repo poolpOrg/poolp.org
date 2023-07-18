@@ -15,26 +15,6 @@ both related to music.
 {{< /tldr >}}
 
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
-
-# Table of content
-
-- [Music-related stuff](#music-related-stuff)
-- [Hypnosis-related stuff](#hypnosis-related-stuff)
-- [I worked a lot on the feedchain project](#i-worked-a-lot-on-the-feedchain-project)
-- [go-harmony](#go-harmony)
-- [dart-harmony, wait what ?](#dart-harmony-wait-what)
-- [Harmonee (the name might change)](#harmonee-the-name-might-change)
-
-
-
-
-
 # Music-related stuff
 No music productions this month,
 I lacked time,

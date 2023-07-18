@@ -13,13 +13,6 @@ I refactored internal structures to split metadata from the index, implemented a
 {{< /tldr >}}
 
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
-
 # The [plakar.io](https://plakar.io) website
 
 A project needs a website so...

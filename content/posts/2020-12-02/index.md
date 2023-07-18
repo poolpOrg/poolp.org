@@ -12,10 +12,6 @@ In this article, I explain what is an MDA and how to write a custom one from scr
 {{< /tldr >}}
 
 
-# Shout outs to my patrons !
-As usual, a **huge** thanks goes to the people **sponsoring me** on **[patreon](https://www.patreon.com/gilles)**, **[github](https://github.com/sponsors/poolpOrg)** or **[liberaPay](https://liberapay.com/poolpOrg)**, the work in this post was made possible by my **[sponsorship](/sponsorship/)**.
-
-
 # What is a Mail Delivery Agent (MDA) ?
 When a mail enters an SMTP server it is initially stored in the server queue before being moved to its next destination.
 

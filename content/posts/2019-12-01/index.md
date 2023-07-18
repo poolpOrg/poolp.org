@@ -14,13 +14,6 @@ categories:
     - SPF-aware greylisting makes greylisting usable again
 {{< /tldr >}}
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
-
 SMTP failures in a nutshell
 --
 SMTP is a fail-safe protocol which attempts very hard to ensure that messages do not get lost once they are in transit.

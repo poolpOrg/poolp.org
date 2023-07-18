@@ -12,16 +12,6 @@ categories:
     - documented filters and improved reporting
 {{< /tldr >}}
 
-Shout outs to my sponsors !
---
-As usual,
-a **huge** thanks goes to the people sponsoring me on [patreon](https://www.patreon.com/gilles) or [github](https://github.com/sponsors/poolpOrg), the work in this post was made possible by my [sponsorship](/sponsorship/).
-
-If you like my work,
-you can join my sponsors or share my reports and articles to help me find more people willing to sponsor me !
-
-**<font color="red"><3</font>** **<font color="red"><3</font>** **<font color="red"><3</font>** 
-
 
 No shiny feature this month, ungrateful work
 --

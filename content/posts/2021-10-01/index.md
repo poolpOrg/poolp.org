@@ -15,19 +15,6 @@ I also did other stuff but let's keep that out of this article.
 {{< /tldr >}}
 
 
-
-<center>
-    <img src="https://c10.patreonusercontent.com/3/eyJ3Ijo2MjB9/patreon-media/p/post/57090945/935b891959ba48c7882d344628fcce0f/1.png?token-time=1636502400&token-hash=IjvroG4kz5D1vOurvBLu3WfaJo-_h4TtikpMnHc4RBk%3D" height="300px">
-</center>
-
-
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
-
 # I have a discord now
 
 I have a [rubber duck](https://en.wikipedia.org/wiki/Rubber_duck_debugging) sitting on my desk...

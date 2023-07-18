@@ -14,8 +14,7 @@ categories:
 
 Merci à mes sponsors !
 --
-Un **énorme** merci aux gens qui me sponsorisent sur [patreon](https://www.patreon.com/gilles) ou [github](https://github.com/sponsors/poolpOrg),
-le temps consacré à la rédaction et traduction de cet article a été rendu possible par mon [sponsorat](/sponsorship/).
+Un **énorme** merci aux gens qui me sponsorisent sur [patreon](https://www.patreon.com/gilles) ou [github](https://github.com/sponsors/poolpOrg).
 
 Où est-ce que j'ai déjà lu ça ?
 --

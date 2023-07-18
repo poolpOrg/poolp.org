@@ -14,12 +14,6 @@ categories:
     - It's ok that people have their e-mails hosted at Big Mailer Corps as long as there's enough people outside too
 {{< /tldr >}}
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
 
 EDIT (2019-12-15)
 --

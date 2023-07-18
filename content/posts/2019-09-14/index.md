@@ -13,12 +13,6 @@ categories:
     - OK... I explain in WAY TOO MUCH details how to setup a mail server
 {{< /tldr >}}
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
 
 EDIT (2019-10-26)
 --

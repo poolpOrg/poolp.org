@@ -12,13 +12,6 @@ I wrote a backup utility called plakar.
 {{< /tldr >}}
 
 
-# Shout outs to my patrons !
-
-As usual, a **huge** thanks goes to the people **sponsoring me** on **[patreon](https://www.patreon.com/gilles)**,
-**[github](https://github.com/sponsors/poolpOrg)** or **[liberaPay](https://liberapay.com/poolpOrg)**,
-the work in this post was made possible by my **[sponsorship](/sponsorship/)**.
-
-
 # Let's start with some LoFi
 
 Relax.

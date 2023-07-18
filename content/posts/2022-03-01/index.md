@@ -12,12 +12,6 @@ categories:
 implemented cloning and synchronization between plakar repositories
 {{< /tldr >}}
 
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-
 
 # Slacked a bit
 Shortly after I published my [yearly retrospective](/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/),

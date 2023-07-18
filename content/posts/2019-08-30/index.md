@@ -374,6 +374,5 @@ In a few days I'll publish a _practical_ description of how to setup a host simi
 providing spam protection for incoming mail,
 and basic proof of work to make most Big Mailer Corps happy.
 
---- 
 If you like my work, [support me on patreon](https://patreon.com/gilles) !
 

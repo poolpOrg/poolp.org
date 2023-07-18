@@ -349,4 +349,3 @@ fixing the portable layer which has grown a monster,
 and ultimately doing a full release cycle of...
 cosmethic cleanup so code is pleasing to read ;-)
 
---- 

@@ -229,4 +229,3 @@ My next focus is the filtering of the DATA phase which is the requirement for us
 Work has already started but I will probably not commit any code related to this before the end of November.
 
 
---- 

@@ -30,6 +30,8 @@ blockquote {
     background: #f5f5dc;
 }
 
+.note-author { color:#1d3557;width:500px; } 
+
 /* for the span */
 .note-name {
     background: #f5f5dc;

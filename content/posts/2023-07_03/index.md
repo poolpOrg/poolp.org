@@ -95,7 +95,7 @@ The system call implementation, which is the actual code of the system call that
 It is important to differentiate both as, in OpenBSD, the prototype for the system call implementation does not match the prototype for the system call interface as we’ll see shortly.
 
 
-{{< note author="GPT" >}}
+{{< note author="gpt-4" >}}
 
 System calls serve as a gateway between user applications and the low-level operating system kernel. They're an integral part of an operating system's infrastructure that provide controlled access to hardware resources, manage processes, and handle file system interactions, among many other tasks.
 
@@ -346,7 +346,7 @@ Note that this is just an example and that care should be taken to do proper loc
 The initial version of this article dates from 2005 and presented both static linking and loadable kernel modules. **Since then, the LKM interface was removed from OpenBSD, I have removed these parts as they serve no practical purpose today** and it'll keep the article shorter.
 
 
-{{< note author="GPT" >}}
+{{< note author="gpt-4" >}}
 When implementing new system calls, it's critical to keep security at the forefront of your considerations. By design, system calls bridge userland and the kernel, which, if not handled properly, can expose the system to various vulnerabilities.
  
 While designing a system call, it's crucial to validate all input data. Since system calls operate with kernel-level privileges, any input data can potentially interact with critical parts of the system, and hence should be carefully scrutinized.

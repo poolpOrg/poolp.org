@@ -22,3 +22,26 @@ blockquote {
     color: #000;
     font-weight: 600;
 }
+
+
+/* for the main div */
+.note {
+    border: 1px solid #a00;
+    background: #f5f5dc;
+}
+
+/* for the span */
+.note-name {
+    background: #f5f5dc;
+    color: #1d3557;
+}
+
+/* for the span parent blockquote */
+.note-comment {
+    background: #f5f5dc;
+    color: #000;
+}
+.note-comment code {
+    background: rgba(var(--color-neutral-700),var(--tw-text-opacity));
+    color: #F5F5DC;
+} 

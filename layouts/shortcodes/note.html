@@ -1,24 +1,21 @@
 {{ $.Scratch.Set "icon" "ghost" }}
 {{ $.Scratch.Set "author" (.Get "author") }}
 
-
 <div
-  class="flex px-4 py-3 rounded-md"
-  style="background-color: #f5f5dc;">
-
+  class="flex px-4 py-3 rounded-md note">
+  <!--style="background-color: #f5f5dc;">-->
+  
   <span
       class="ltr:pr-3 rtl:pl-3 flex items-center"
-      style="color: #1d3557"
-    >
-    {{ partial "icon.html" ($.Scratch.Get "icon") }}
-    &nbsp;{{ $.Scratch.Get "author" }}
+      style="color: #1d3557; width: 500px;">
+    <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96px" height="96px"
+      alt="{{ $.Scratch.Get "author" }}" src="/authors/{{ $.Scratch.Get "author" }}/profile.png" />
   </span>
 
-  <span style="color: #000000;">
-    <blockquote>
-      <font color="#000000">
-    {{- .Inner | markdownify -}}
-      </font>
-  </blockquote>
+  <span>
+    <blockquote class="note-comment">
+        {{- .Inner | markdownify -}}
+        -- <a href="/authors/{{ $.Scratch.Get "author" }}">@{{ $.Scratch.Get "author" }}</a> 
+    </blockquote>
   </span>
 </div>

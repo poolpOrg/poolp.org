@@ -94,4 +94,3 @@ I sent a notice to all my patrons so they are aware that I will change my way of
 Love <3
 
 
----- 

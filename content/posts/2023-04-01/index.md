@@ -8,8 +8,9 @@ categories:
  - technology
 ---
 
-> **TL;DR:**
-> I played with MIDI and ChatGPT.
+{{< tldr >}}
+I played with MIDI and ChatGPT.
+{{< /tldr >}}
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

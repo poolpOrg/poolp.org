@@ -7,10 +7,11 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     In this post I explain crudely how ca.c works and changes to OpenSMTPD related to ca.c
     I wrote an ECDSA privsep crypto engine
     I did some EEG work too
+{{< /tldr >}}
 
 
 This is the first report

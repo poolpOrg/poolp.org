@@ -8,10 +8,9 @@ categories:
  - personal
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 A retrospective of 2021
-</blockquote>
+{{< /tldr >}}
 
 
 # 2021 was a good year overall

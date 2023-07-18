@@ -8,15 +8,14 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 J'explique superficiellement comment fonctionne notre esprit,
 en partant du corps,
 puis de notre sens de la réalité,
 avant de finir par les états de conscience et personnalités.
 Je plonge brièvement dans les rêves et l'hypnose,
 préparant le terrain pour un article à venir.
-</blockquote>
+{{< /tldr >}}
 
 
 <center>

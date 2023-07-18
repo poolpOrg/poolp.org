@@ -8,10 +8,9 @@ categories:
  - personal
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 - this is a short article, no TL;DR.
-</blockquote>
+{{< /tldr >}}
 
 # Why so calm ?
 

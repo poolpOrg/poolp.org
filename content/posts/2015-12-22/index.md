@@ -8,9 +8,9 @@ categories:
  - technology
 ---
 
-	TL;DR:
+{{< tldr >}}
 	OpenSMTPD on github no longer diverges from OpenBSD.
-
+{{< /tldr >}}
 
 Since last episode
 ------------------

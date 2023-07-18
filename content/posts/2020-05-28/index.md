@@ -6,12 +6,12 @@ authors:
 categories:
  - technology
 ---
-<blockquote>
-<b>TL;DR:</b>
+
+{{< tldr >}}
 Worked on the <mark>OpenSMTPD 6.7</mark> release;
 Did a lot of work on <mark>the new table API</mark>;
 Wrote several PoCs;
-</blockquote>
+{{< /tldr >}}
 
 ---
 <font color="red"><b>WARNING:</b></font>

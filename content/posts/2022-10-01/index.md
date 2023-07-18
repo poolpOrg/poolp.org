@@ -8,10 +8,9 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 added comments support to the blog, did some music and hypnosis projects, fixed a few bugs in plakar and began a new toy project.
-</blockquote>
+{{< /tldr >}}
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

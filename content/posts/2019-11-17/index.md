@@ -6,7 +6,8 @@ authors:
 categories:
  - technology
 ---
-    TL;DR:
+
+{{< tldr >}}
     - our CI was improved
     - a new OpenSMTPD release, 6.6.1p1 took place to deal with portable issues
     - multiple portability issues were adressed
@@ -14,6 +15,7 @@ categories:
     - filter-rspamd and filter-senderscore were improved
     - filter-greylist proof-of-concept published
     - wrote 2 chapters for my book
+{{< /tldr >}}
 
 Shout outs to my sponsors !
 --

@@ -8,10 +8,9 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 I worked on plakar, go-fastcdc a FastCDC implementation for plakar, and some useless stuff.
-</blockquote>
+{{< /tldr >}}
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

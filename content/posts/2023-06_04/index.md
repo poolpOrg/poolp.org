@@ -8,12 +8,13 @@ categories:
  - technology
 ---
 
-> **TL;DR:**
-> music and unity training,
-> a bit of X programming in Go,
-> began a journey in Jujulang a new languae,
-> wrote a PoC set database called setdb,
-> did some minor OpenSMTPD stuff.
+{{< tldr >}}
+music and unity training,
+a bit of X programming in Go,
+began a journey in Jujulang a new languae,
+wrote a PoC set database called setdb,
+did some minor OpenSMTPD stuff.
+{{< /tldr >}}
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

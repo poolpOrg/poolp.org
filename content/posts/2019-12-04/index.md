@@ -7,12 +7,12 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     - SMTP is the way computers exchange e-mails
     - it is a decentralised protocol meaning that ANYONE can run a node and be independant
     - it is being centralised at companies that have a history of abuse
     - it is being centralised in a country that has a history of abuse
-
+{{< /tldr >}}
 
 Where did you read this already ?
 --

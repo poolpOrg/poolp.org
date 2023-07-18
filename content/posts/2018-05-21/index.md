@@ -8,12 +8,12 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     Switching to new config is not too hard and can be done in minutes.
     The new config is also a new queue that is not backwards compatible.
     The easiest way is to flush the mail queue before switching.
     We came up with a solution to help maintainers of more complex setups.
-
+{{< /tldr >}}
 
 Switching from old config to new config
 --

@@ -8,11 +8,10 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 I still have a discord, [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk), feel free to join.
 I worked on go-ipcmsg to make it nicer, go-privsep to make it more useable, and A LOT on plakar to make it plakar.
-</blockquote>
+{{< /tldr >}}
 
 
 # Shout out to my sponsors &#x2764;&#xfe0f;

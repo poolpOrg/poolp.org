@@ -7,13 +7,12 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 I do LoFi now,
 eric@ revived some libtls conversion work I did a while back,
 I worked on UNIX-domain sockets support in OpenSMTPD,
 a few words about nooSMTPD
-</blockquote>
+{{< /tldr >}}
 
 
 # Shout outs to my patrons !

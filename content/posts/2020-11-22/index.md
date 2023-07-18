@@ -8,11 +8,10 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 Haven't posted since July but I wasn't slacking,
 got temporarily context-switched out of opensource stuff.
-</blockquote>
+{{< /tldr >}}
 
 
 # I tanked a year in work psychology

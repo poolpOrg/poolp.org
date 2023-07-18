@@ -8,11 +8,11 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     The reporting mechanism has been described shortly in my previous article about both reporting and filters.
     Let's focus a bit more on the reporting bits this time.
     The format is improving further and has extended to outgoing trafic reporting.
-
+{{< /tldr >}}
 
 Reporting
 --

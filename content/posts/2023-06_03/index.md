@@ -14,10 +14,10 @@ series:
 series_order: 2
 ---
 
-> **TL;DR:**
-> Received the neck...
-> too bad it's not exactly the one I ordered :-)
-
+{{< tldr >}}
+Received the neck...
+too bad it's not exactly the one I ordered :-)
+{{< /tldr >}}
 
 # The neck
 For the neck,

@@ -8,10 +8,9 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 I did key and UI stuff, mostly search related. There's going to be plenty of images in this post.
-</blockquote>
+{{< /tldr >}}
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

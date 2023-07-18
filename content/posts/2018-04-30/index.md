@@ -8,13 +8,14 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     OpenBSD #p2k18 hackathon took place at Epitech in Nantes.
     I was organizing the hackathon but managed to make progress on OpenSMTPD.
     As mentionned at EuroBSDCon the one-line per rule config format was a design error.
     A new configuration grammar is almost ready and the underlying structures are simplified.
     Refactor removes ~750 lines of code and solves _many_ issues that were side-effects of the design error.
     New features are going to be unlocked thanks to this.
+{{< /tldr >}}
 
 
 Anatomy of a design error

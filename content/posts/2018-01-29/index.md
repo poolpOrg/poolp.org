@@ -8,11 +8,13 @@ categories:
  - technology
 ---
 
-	TL;DR:
+{{< tldr >}}
 	I run several "dedibox" servers at online.net, all powered by OpenBSD.
 	OpenBSD is not officially supported so you have to work-around.
 	Running full-disk encrypted OpenBSD there is a piece of cake.
 	As a bonus, my first steps within a brand new booted machine ;-)
+{{< /tldr >}}
+
 
 Step #0: choosing your server
 --

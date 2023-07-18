@@ -8,13 +8,12 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 tons of plakar work,
 most notably on indexes,
 performances,
 clone & sync and fuse.
-</blockquote>
+{{< /tldr >}}
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

@@ -10,11 +10,11 @@ tags:
  - plakar
 ---
 
-    Tl;DR:
+{{< tldr >}}
     - small inprovements to the fion window manager
     - plakar is a backup utility I wrote a long time ago that I will share
     - tons of opensmtpd stuff, mostly filters and issues handling
-
+{{< /tldr >}}
 
 Shout outs to my patrons !
 --

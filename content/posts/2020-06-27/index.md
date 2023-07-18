@@ -6,12 +6,12 @@ authors:
 categories:
  - technology
 ---
-<blockquote>
-<b>TL;DR:</b>
+
+{{< tldr >}}
 Reworked my infrastructure at poolp.org,
 implemented folder pinning,
 worked on my webmail.
-</blockquote>
+{{< /tldr >}}
 
 # Shout outs to my patrons !
 As usual,

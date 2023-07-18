@@ -7,13 +7,12 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 - Crafted the OpenSMTPD 6.8.0p1 release
 - Fixed several bugs in the way
 - Proposed a few OpenSMTPD improvements to OpenBSD
 - Working on my OpenSMTPD book
-</blockquote>
+{{< /tldr >}}
 
 
 # Shout outs to my patrons !

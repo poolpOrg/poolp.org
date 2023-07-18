@@ -7,11 +7,12 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     - SMTP est la méthode dont les ordinateurs échangent des e-mails
     - il s'agit d'un protocole décentralisé, ce qui signifie que CHACUN peut héberger un nœud et être indépendant
     - il est en train d'être centralisé dans des sociétés qui ont un passif d'abus
     - il est en train d'être centralisé dans un pays qui a un passif d'abus
+{{< /tldr >}}
 
 Où est-ce que j'ai déjà lu ça ?
 --

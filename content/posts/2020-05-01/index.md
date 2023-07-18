@@ -6,11 +6,11 @@ authors:
 categories:
  - technology
 ---
-<blockquote>
-<b>TL;DR:</b>
+
+{{< tldr >}}
 Worked on my <mark>webmail</mark>;
 Did a bit of <mark>OpenSMTPD</mark> work;
-</blockquote>
+{{< /tldr >}}
 
 # Shout outs to my patrons !
 As usual,

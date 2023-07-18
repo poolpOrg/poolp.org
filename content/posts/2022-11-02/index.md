@@ -8,12 +8,11 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 busy month, did a lot of non tech stuff, but also worked on a new project called feedchain,
 fixed issues and added new features to go-harmony, and started two projects called dart-harmony and harmonee,
 both related to music.
-</blockquote>
+{{< /tldr >}}
 
 
 # Shout out to my sponsors &#x2764;&#xfe0f;

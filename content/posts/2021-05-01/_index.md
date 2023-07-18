@@ -8,15 +8,14 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 I explain very superficially how our minds work,
 starting from our body,
 following with our sense of reality,
 and ending with our states of consciousness and personalities.
 I dive briefly into dreams and hypnosis,
 paving the road for a future article.
-</blockquote>
+{{< /tldr >}}
 
 <center>
     <img src="feature.png" height="300px">

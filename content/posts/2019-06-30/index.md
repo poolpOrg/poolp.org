@@ -8,13 +8,13 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     - started working on FION, a static tile window manager
     - revived BPG, a PGP parser
     - converted OpenSMTPD to libtls
     - wrote a library to make writing of native C OpenSMTPD filters easy
     - started writing a filter-rspamd
-
+{{< /tldr >}}
 
 Thanks to my patrons !
 --

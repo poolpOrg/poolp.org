@@ -6,13 +6,14 @@ authors:
 categories:
  - technology
 ---
-    TL;DR:
+
+{{< tldr >}}
     - yay, surprise emergency hand surgery...
     - OpenSMTPD 6.6.0 was tagged and released, including portable version
     - Merged contributions to fix filter-rspamd bug with DKIM
     - Work resumed on 6.7.0 feature
     - An OpenSMTPD book is in the works
-
+{{< /tldr >}}
 
 Shout outs to my patrons !
 --

@@ -7,11 +7,9 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 I converted nooSMTPD to libtls and implemented SMTP ciphers, curves and protocols selection.
-</blockquote>
-
+{{< /tldr >}}
 
 # Shout outs to my patrons !
 

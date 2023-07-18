@@ -8,12 +8,11 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 I have a discord now, [https://discord.gg/YC6j4rbvSk](https://discord.gg/YC6j4rbvSk), feel free to join.
 I refactored plakar, implemented a local cache, improved parallelism, modified the push strategy, played with fuse and networking.
 I also did other stuff but let's keep that out of this article.
-</blockquote>
+{{< /tldr >}}
 
 
 

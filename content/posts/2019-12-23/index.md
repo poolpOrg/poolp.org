@@ -6,10 +6,11 @@ authors:
 categories:
  - technology
 ---
-    TL;DR:
+
+{{< tldr >}}
     - Pas de résumé, j'ai passé des heures à traduire, vous allez passer des minutes à lire ;)
     - OK… J'ai expliqué avec BIEN TROP DE DÉTAILS comment mettre en place un serveur de mail
-
+{{< /tldr >}}
 
 Merci à mes sponsors !
 --

@@ -7,11 +7,10 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 worked on my webmail,
 on a custom MDA and on a python framework for API development.
-</blockquote>
+{{< /tldr >}}
 
 # Shout outs to my patrons !
 As usual,

@@ -7,10 +7,11 @@ authors:
 categories:
  - technology
 ---
-    TL;DR:
+
+{{< tldr >}}
     - NO TL;DR: this time, I spent hours writing, you should spend minutes reading.
     - OK... I explain in WAY TOO MUCH details how to setup a mail server
-
+{{< /tldr >}}
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

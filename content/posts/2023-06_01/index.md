@@ -8,8 +8,9 @@ categories:
  - music
 ---
 
-> **TL;DR:**
-> I will be discussing music on this blog from now on.
+{{< tldr >}}
+I will be discussing music on this blog from now on.
+{{< /tldr >}}
 
 # This blog is a musical blog too
 

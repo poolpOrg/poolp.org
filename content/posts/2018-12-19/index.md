@@ -8,10 +8,10 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     Not this time, pal/gal, I took hours writing this post, you'll take a few minutes reading it all.
     Oh, and merry X-mas :-*
-
+{{< /tldr >}}
 
 A bit of short-sighted history
 --

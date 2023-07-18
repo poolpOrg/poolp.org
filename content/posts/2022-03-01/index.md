@@ -8,11 +8,9 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 implemented cloning and synchronization between plakar repositories
-</blockquote>
-
+{{< /tldr >}}
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

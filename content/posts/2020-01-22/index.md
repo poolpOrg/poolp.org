@@ -6,11 +6,11 @@ authors:
 categories:
  - technology
 ---
-    TL;DR:
+{{< tldr >}}
     - brought back libasr to OpenSMTPD, it is no longer an external dependency
     - libtls-enabled OpenSMTPD is now a thing
     - documented filters and improved reporting
-
+{{< /tldr >}}
 
 Shout outs to my sponsors !
 --

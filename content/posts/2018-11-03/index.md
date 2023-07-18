@@ -8,11 +8,12 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     Filters have been a (the most ?) long awaited feature in OpenSMTPD.
     I finally committed most of the filters code to OpenBSD.
     There is still a bit of work required but the trickiest parts are done.
     This article describes how filters are implemented and what to expect.
+{{< /tldr >}}
 
 
 ![Good news, everyone!](https://brillianceinsight.files.wordpress.com/2014/02/card-2-24-2014-1_thumb.jpg)

@@ -6,10 +6,11 @@ authors:
 categories:
  - technology
 ---
-    TL;DR:
+{{< tldr >}}
     - wrote, reworked and translated multiple articles this month
     - got some goodies ready for my patrons
     - lots of work in OpenSMTPD's grammar, documentation and filters protocol
+{{< /tldr >}}
 
 ---
 <font color="red"><b>WARNING:</b></font>

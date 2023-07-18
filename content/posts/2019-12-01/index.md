@@ -6,12 +6,13 @@ authors:
 categories:
  - technology
 ---
-    TL;DR:
+
+{{< tldr >}}
     - greylisting is a sound idea
     - yet it is not really practical today
     - people tend to disable it or find work-arounds
     - SPF-aware greylisting makes greylisting usable again
-
+{{< /tldr >}}
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

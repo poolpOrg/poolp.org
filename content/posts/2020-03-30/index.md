@@ -6,13 +6,13 @@ authors:
 categories:
  - personal
 ---
-<blockquote>
-    <b>TL;DR:</b>
+
+{{< tldr >}}
 	- I took a break to deal with personal stuff
 	- I'm taking a long break from OpenBSD for personal reasons
 	- I may or may not have experienced COVID-19, who knows
 	- resumed work on OpenSMTPD and other projects
-</blockquote>
+{{< /tldr >}}
 
 
 This is a weird report

@@ -6,12 +6,13 @@ authors:
 categories:
  - technology
 ---
-    TL;DR:
+
+{{< tldr >}}
     - Qualys released an advisory for a bad, bad vulnerability
 	- an MTA is a very bad software to have a vulnerability in
     - hole was plugged but that's not enough, similar bugs should be mitigated in the future
 	- article discusses what could have prevented escalation despite the bug
-
+{{< /tldr >}}
 
 What happened ?
 --

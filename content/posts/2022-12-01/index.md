@@ -8,11 +8,10 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 I worked on earmuff and go-harmony,
 I played with ChatGPT.
-</blockquote>
+{{< /tldr >}}
 
 
 # Shout out to my sponsors &#x2764;&#xfe0f;

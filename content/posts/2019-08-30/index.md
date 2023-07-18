@@ -7,12 +7,12 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     - Mail is not hard: people keep repeating that because they read it, not because they tried it
     - Big Mailer Corps are quite happy with that myth, it keeps their userbase growing
     - Big Mailer Corps control a large percentage of the e-mail address space which is good for none of us
     - It's ok that people have their e-mails hosted at Big Mailer Corps as long as there's enough people outside too
-
+{{< /tldr >}}
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

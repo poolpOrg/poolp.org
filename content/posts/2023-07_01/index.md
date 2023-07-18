@@ -14,10 +14,10 @@ series:
 series_order: 3
 ---
 
-> **TL;DR:**
-> Received the new neck and...
-> it fits perfectly !
-
+{{< tldr >}}
+Received the new neck and...
+it fits perfectly !
+{{< /tldr >}}
 
 # The neck
 UPS just delivered the new neck,

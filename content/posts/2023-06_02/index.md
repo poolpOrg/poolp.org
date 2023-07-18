@@ -14,10 +14,10 @@ series:
 series_order: 1
 ---
 
-> **TL;DR:**
-> I'm building a guitar from scratch,
-> picking up every component but skipping the tricky cut and glue bits :-)
-
+{{< tldr >}}
+I'm building a guitar from scratch,
+picking up every component but skipping the tricky cut and glue bits :-)
+{{< /tldr >}}
 
 # About this project
 

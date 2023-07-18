@@ -8,9 +8,11 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     I *FINALFUCKINGLY* commited proc filters support allowing full filtering in OpenSMTPD.
     eric@ implemented fc-rDNS lookups.
+{{< /tldr >}}
+
 
 fc-rDNS
 --

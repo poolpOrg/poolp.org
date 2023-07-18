@@ -7,10 +7,9 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 I wrote a backup utility called plakar.
-</blockquote>
+{{< /tldr >}}
 
 
 # Shout outs to my patrons !

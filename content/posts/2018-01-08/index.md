@@ -9,13 +9,12 @@ categories:
 ---
 
 
-<blockquote>
-    <b>TL;DR:</b>
+{{< tldr >}}
 	Came very close to a burn out late 2016, had to quit former employer.
 	Started working at another company early 2017.
 	Became a student again, currently halfway through second year in psychology.
 	Haven't done much opensource since early 2017, slowly resuming.
-</blockquote>
+{{< /tldr >}}
 
 Happy new year !
 ----------------

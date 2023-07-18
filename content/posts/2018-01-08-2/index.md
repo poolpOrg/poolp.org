@@ -7,12 +7,12 @@ categories:
  - technology
 ---
 
-	TL;DR:
+{{< tldr >}}
 	deraadt@ thought it would be nice to have a spf fetch utility in base.
 	Aaron Poffenberger wrote a shell-based `spf_fetch` utility.
 	I wrote a C-based `spfwalk` utility that's `pledge()`-ed.
 	The `spfwalk` utility got merged to `smtpctl`.
-
+{{< /tldr >}}
 
 What's SPF in a few words
 -------------------------

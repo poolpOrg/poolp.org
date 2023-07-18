@@ -8,10 +8,11 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     regex table lookups were introduced for builtin filters.
     After a few weeks of working solely on filters, I wanted to work on something else.
     Using the same mechanism, all match criterias using tables can support regex.
+{{< /tldr >}}
 
 
 K_REGEX lookups

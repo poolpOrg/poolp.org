@@ -7,11 +7,10 @@ categories:
  - personal
 ---
 
-<blockquote>
-    <b>TL;DR:</b>
+{{< tldr >}}
     Way too many things happened in a six months timeframe.
     This post won't need a TL;DR as I'll keep it short.
-</blockquote>
+{{< /tldr >}}
 
 Generalized anxiety disorder and alexithymia.
 --

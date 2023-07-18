@@ -8,10 +8,9 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 I worked on OpenSMTPD-portable, did a lot of plakar, a lot of Go and gave a technical talk on hypnosis.
-</blockquote>
+{{< /tldr >}}
 
 
 # Shout outs to my patrons !

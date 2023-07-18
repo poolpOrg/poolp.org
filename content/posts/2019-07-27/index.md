@@ -8,12 +8,12 @@ categories:
  - technology
 ---
 
-    TL;DR:
+{{< tldr >}}
     - not much work outside of OpenSMTPD this week
     - OpenSMTPD portable builds with OpenSSL 1.1.x again
     - smtp-out reporting is working correctly on my laptop
     - wrote two filters that I'm actually using as you read this
-
+{{< /tldr >}}
 
 Shout outs to my patrons !
 --

@@ -6,13 +6,14 @@ authors:
 categories:
  - technology
 ---
-    TL;DR:
+
+{{< tldr >}}
     - I started writing this post a week ago but got interrupted by a baby, Jules
     - Spent MANY hours on writing OpenSMTPD-related articles
     - Enabled continuous integration in the OpenSMTPD portable repository
     - Managed to get rid of all the blocking issues for OpenSMTPD 6.6.0 release
     - Added some features and fixed a crash in filter-rspamd
-
+{{< /tldr >}}
 
 Shout outs to my patrons !
 --

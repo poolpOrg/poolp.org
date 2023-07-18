@@ -7,10 +7,9 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 In this article, I explain what is an MDA and how to write a custom one from scratch using only shell scripting.
-</blockquote>
+{{< /tldr >}}
 
 
 # Shout outs to my patrons !

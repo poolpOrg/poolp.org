@@ -8,10 +8,10 @@ categories:
  - technology
 ---
 
-	TL;DR:
+{{< tldr >}}
 	We just released OpenSMTPD 6.0.0 and it's quite different from former releases.
 	Turns out most of the changes are not visible.
-
+{{< /tldr >}}
 
 A featureless release
 ---------------------

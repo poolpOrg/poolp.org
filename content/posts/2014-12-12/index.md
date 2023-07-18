@@ -8,8 +8,9 @@ categories:
  - technology
 ---
 
-	TL;DR:
+{{< tldr >}}
 	yeeeees, filters are coming. don't believe us ? here's an example. be patient.
+{{< /tldr >}}
 
 On my death bed
 ---------------

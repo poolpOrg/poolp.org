@@ -8,12 +8,11 @@ categories:
  - technology
 ---
 
-<blockquote>
-<b>TL;DR:</b>
+{{< tldr >}}
 I implemented a file format to support a standalone feed of news similar to what I have on Twitter,
 as well as a proof of concept code for a reader, a writer, a publishing node, and some more.
 oh and fuck you, elon, you're a dick.
-</blockquote>
+{{< /tldr >}}
 
 # Shout out to my sponsors &#x2764;&#xfe0f;
 

@@ -26,11 +26,11 @@ blockquote {
 
 /* for the main div */
 .note {
-    border: 1px solid #a00;
     background: #f5f5dc;
 }
 
-.note-author { color:#1d3557;width:500px; } 
+.note-author { color:#1d3557; font-weight: bold;} 
+
 
 /* for the span */
 .note-name {

@@ -521,4 +521,3 @@ however they grow really big really fast,
 I need to find how to properly split.
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/109](https://github.com/poolpOrg/poolp.org/discussions/109)

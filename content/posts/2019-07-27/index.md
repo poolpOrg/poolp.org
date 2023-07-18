@@ -457,4 +457,3 @@ making it easier for people to actually start playing with it.
 If you like my work, [support me on patreon](https://patreon.com/gilles) !
 
 --- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/103](https://github.com/poolpOrg/poolp.org/discussions/103)

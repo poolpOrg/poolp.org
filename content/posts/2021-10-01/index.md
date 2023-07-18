@@ -394,4 +394,3 @@ I also played a bit with Arduino to learn myself some new skills,
 but I didn't do anything newsworthy.
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/137](https://github.com/poolpOrg/poolp.org/discussions/137)

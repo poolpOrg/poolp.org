@@ -324,4 +324,3 @@ happy Xmas,
 happy new year and may life bring you joy and happiness.
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/144](https://github.com/poolpOrg/poolp.org/discussions/144)

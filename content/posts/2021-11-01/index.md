@@ -690,4 +690,3 @@ I can now play **Ode to Joy**, **Autumn Leaves**, and **And I love her** on the 
 
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/140](https://github.com/poolpOrg/poolp.org/discussions/140)

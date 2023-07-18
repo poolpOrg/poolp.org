@@ -95,4 +95,3 @@ Love <3
 
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/133](https://github.com/poolpOrg/poolp.org/discussions/133)

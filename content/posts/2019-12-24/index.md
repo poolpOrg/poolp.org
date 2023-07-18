@@ -473,4 +473,3 @@ I will take a few days off from computers then resume writing code maybe next we
 hopefully finishing some of my pending works in progress so I can disclose them :-)
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/114](https://github.com/poolpOrg/poolp.org/discussions/114)

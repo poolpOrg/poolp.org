@@ -377,4 +377,3 @@ and basic proof of work to make most Big Mailer Corps happy.
 --- 
 If you like my work, [support me on patreon](https://patreon.com/gilles) !
 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/105](https://github.com/poolpOrg/poolp.org/discussions/105)

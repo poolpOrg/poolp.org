@@ -171,4 +171,3 @@ but the table API rework is a very high priority thing to do for me.
 I will also resume working on cleaning up the portability layer.
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/108](https://github.com/poolpOrg/poolp.org/discussions/108)

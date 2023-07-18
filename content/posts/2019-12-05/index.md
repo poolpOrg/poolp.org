@@ -205,4 +205,3 @@ De très nombreux points de sa présentation sont tout aussi valides en ce qui c
 </center>
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/112](https://github.com/poolpOrg/poolp.org/discussions/112)

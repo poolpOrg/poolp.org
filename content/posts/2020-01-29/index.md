@@ -619,4 +619,3 @@ I have a few weeks in front of me and there may be some very quick wins to do he
 
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/117](https://github.com/poolpOrg/poolp.org/discussions/117)

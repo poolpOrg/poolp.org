@@ -202,4 +202,3 @@ so... **don't expect any code to be written before September**.
 Have a nice month !
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/122](https://github.com/poolpOrg/poolp.org/discussions/122)

@@ -150,4 +150,3 @@ I intend to write some tutorials too.
 See you in December !
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/123](https://github.com/poolpOrg/poolp.org/discussions/123)

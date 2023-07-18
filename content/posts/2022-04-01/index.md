@@ -441,4 +441,3 @@ so I may be going back and forth depending on the mood.
 
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/151](https://github.com/poolpOrg/poolp.org/discussions/151)

@@ -318,4 +318,3 @@ achieving stateless tarpitting for low reputation senders.
 If I'm spending more time making OpenSMTPD a hard target to spammers it will be through time-penalty for sure.
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/110](https://github.com/poolpOrg/poolp.org/discussions/110)

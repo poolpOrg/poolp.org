@@ -240,4 +240,3 @@ This is already doable in the CLI but it needs some user-friendliness in the UI.
 Voila.
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/150](https://github.com/poolpOrg/poolp.org/discussions/150)

@@ -227,4 +227,3 @@ I intend to publish a technical article in March regarding software design and d
 I might unveil a project that's unrelated to computer programming too :-)
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/127](https://github.com/poolpOrg/poolp.org/discussions/127)

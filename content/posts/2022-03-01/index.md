@@ -135,4 +135,3 @@ It will be time to start working on a website too :-)
 
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/149](https://github.com/poolpOrg/poolp.org/discussions/149)

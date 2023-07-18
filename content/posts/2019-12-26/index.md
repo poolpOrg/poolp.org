@@ -366,4 +366,3 @@ Si je passe plus de temps à essayer de faire d'OpenSMTPD une cible difficile po
 il est certain que mes prochains travaux seront dans la lignée des sanctions par délais.
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/115](https://github.com/poolpOrg/poolp.org/discussions/115)

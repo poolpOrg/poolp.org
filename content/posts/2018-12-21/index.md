@@ -61,4 +61,3 @@ You can already play with that feature which has been documented in the `smtpd.c
 So ... NOW, I'm taking a break until next week because I did everything I wanted to do for this year ;-)
 
 --- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/99](https://github.com/poolpOrg/poolp.org/discussions/99)

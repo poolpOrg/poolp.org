@@ -1149,4 +1149,3 @@ please let me know so I can fix them,
 I started writing this article late and continued half-way through the night so I might have let errors slip in despite multiple readings.
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/106](https://github.com/poolpOrg/poolp.org/discussions/106)

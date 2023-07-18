@@ -546,4 +546,3 @@ stay tuned,
 I'll post as soon as I resume my work !
 
 ---- 
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/153](https://github.com/poolpOrg/poolp.org/discussions/153)

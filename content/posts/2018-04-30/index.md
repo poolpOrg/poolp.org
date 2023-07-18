@@ -214,4 +214,3 @@ It is currently powering poolp.org and the misc@opensmtpd.org mailing list and s
 This should hit OpenBSD -current in a few days/weeks and be part of the next OpenBSD (6.4) and OpenSMTPD major release.
 
 ---
-Comments: [https://github.com/poolpOrg/poolp.org/discussions/93](https://github.com/poolpOrg/poolp.org/discussions/93)

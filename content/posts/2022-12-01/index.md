@@ -13,15 +13,6 @@ I worked on earmuff and go-harmony,
 I played with ChatGPT.
 {{< /tldr >}}
 
-
-# Table of content
-- [Re-focusing on go_harmony](#re-focusing-on-go-harmony)
-- [Made various improvements to go-harmony](#made-various-improvements-to-go-harmony)
-- [Tons of changes in earmuff](#tons-of-changes-in-earmuff)
-- [A demo ?](#a-demo)
-- [ChatGPT](#chatgpt)
-- [What's next ?](#whats-next)
-
 # Re-focusing on go-harmony
 As you may have read from my previous post,
 I have spent some time porting `go-harmony` to the Dart language and playing with Flutter to build apps that used `dart-harmony`.

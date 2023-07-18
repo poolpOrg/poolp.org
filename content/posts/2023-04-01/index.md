@@ -13,15 +13,6 @@ I played with MIDI and ChatGPT.
 {{< /tldr >}}
 
 
-# Table of content
-- [Code-unrelated work](#code-unrelated-work)
-- [I have not been very active these last three months](#i-have-not-been-very-active-these-last-three-months)
-- [MHL: MIDI to human language](#mhl-midi-to-human-language)
-- [go-midicsv: MIDICSV implementation in Golang](#go-midicsv-midicsv-implementation-in-golang)
-- [Melodya: a melody and music assistant](#melodya-a-melody-and-music-assistant)
-- [What’s next ?](#whats-next)
-
-
 # Code-unrelated work
 I began a few week ago a **certified training in music production** which I'll be attending for a couple weeks still,
 and I'll be sharing here some of the things I work on.

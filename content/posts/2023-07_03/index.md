@@ -17,15 +17,6 @@ I found a printed copy of an assignment I had to do in 2005 back when I was a st
 This article is translated from French.
 {{< /tldr >}}
 
-{{< shoutout >}}
-# Shout out to my sponsors &#x2764;&#xfe0f;
-
-A **HUGE thanks** goes to my sponsors on [github](https://github.com/sponsors/poolpOrg)
-and [patreon](https://www.patreon.com/gilles):
-your continuous support is very much appreciated !
-{{< /shoutout >}}
-
-
 
 # Disclaimer
 

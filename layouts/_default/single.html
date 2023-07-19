@@ -13,6 +13,7 @@
   {{ end }}
   {{ end }}
 
+  {{ if .Params.sponsoring | default true }}
   <br />
   <div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900">
     <span class="dark:text-neutral-300 text-sm">
@@ -22,6 +23,7 @@
       your support keeps my motivation, website and projects running !
     </span>
   </div>
+  {{ end }}
   
 
   <header id="single_header" class="mt-5 max-w-prose">
@@ -70,7 +72,7 @@
   
   </header>
   
-  
+  {{ if .Params.helpneeded | default true }}
   <div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900">
     <span class="dark:text-neutral-300 text-sm">
       <b>WANT TO HELP ?</b>
@@ -87,6 +89,7 @@
       {{ partial "sharing-links.html" . }}
     </span>
   </div>
+  {{ end }}
   
   <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
     {{ if or (and (.Params.showTableOfContents | default (.Site.Params.article.showTableOfContents | default false)) (in

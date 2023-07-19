@@ -6,6 +6,8 @@ authors:
 language: en
 categories:
  - personal
+shoutout: false
+needhelp: false
 ---
 
 Almost four years ago,

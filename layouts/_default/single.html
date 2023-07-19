@@ -13,7 +13,7 @@
   {{ end }}
   {{ end }}
 
-  {{ if .Params.sponsoring | default true }}
+  {{ if .Params.shoutout | default true }}
   <br />
   <div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900">
     <span class="dark:text-neutral-300 text-sm">
@@ -72,7 +72,7 @@
   
   </header>
   
-  {{ if .Params.helpneeded | default true }}
+  {{ if .Params.needhelp | default true }}
   <div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900">
     <span class="dark:text-neutral-300 text-sm">
       <b>WANT TO HELP ?</b>

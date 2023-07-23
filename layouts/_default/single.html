@@ -121,12 +121,26 @@
     </section>
   <footer class="pt-8 max-w-prose print:hidden">
 
+    {{ if .Params.needhelp | default true }}
+    <div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900">
+      <span class="dark:text-neutral-300 text-sm">
+        <b>Again...</b>
+        <br />
+        <br />If you reached the end of this article,
+        <b>please ❤️</b> consider <b>sharing on social networks</b> to boost its visibility !
+        <br />
+        Also <b>consider leaving <u><a href="#comments">comments</a></u></b> below,
+        if only to let me know if you liked it or not.
+        Don't forget,
+        <b>there's a <u><a href="https://discord.com/invite/YC6j4rbvSk">Discord</a></u> server too</b>,
+        feel free to hop in !
+      </span>
+    </div>
+    {{ end }}
+
     
     {{ partial "sharing-links.html" . }}
 
-    {{ partial "related.html" . }}
-
-    {{ partial "article-pagination.html" . }}
     {{ if .Params.showComments | default (.Site.Params.article.showComments | default false) }}
     {{ if templates.Exists "partials/comments.html" }}
     <div class="pt-3">
@@ -139,6 +153,11 @@
     {{ warnf "[BLOWFISH] Comments are enabled for %s but no comments partial exists." .File.Path }}
     {{ end }}
     {{ end }}
+
+
+    {{ partial "related.html" . }}
+
+    {{ partial "article-pagination.html" . }}
   </footer>
 </article>
 {{ end }}

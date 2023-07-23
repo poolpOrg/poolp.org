@@ -141,6 +141,8 @@
     
     {{ partial "sharing-links.html" . }}
 
+    {{ partial "related.html" . }}
+
     {{ if .Params.showComments | default (.Site.Params.article.showComments | default false) }}
     {{ if templates.Exists "partials/comments.html" }}
     <div class="pt-3">
@@ -153,9 +155,6 @@
     {{ warnf "[BLOWFISH] Comments are enabled for %s but no comments partial exists." .File.Path }}
     {{ end }}
     {{ end }}
-
-
-    {{ partial "related.html" . }}
 
     {{ partial "article-pagination.html" . }}
   </footer>

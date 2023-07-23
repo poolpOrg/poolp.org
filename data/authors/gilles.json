@@ -4,14 +4,11 @@
     "bio" :  "I'm not a cat.",
     "social": [
        { "email" : "mailto:gilles@poolp.org" },
-       { "discord" : "https://discord.gg/YC6j4rbvSk" },
        { "github" : "https://github.com/poolpOrg" },
        { "linkedin" : "https://linkedin.com/in/gilleschehade" },
        { "mastodon" : "https://social.poolp.org/@gilles" },
-       { "patreon" : "https://www.patreon.com/gilles" },
-       { "reddit" : "https://reddit.com/user/poolpOrg" },
-       { "twitter" : "https://twitter.com/poolpOrg" },
-       { "youtube" : "https://www.youtube.com/gilleschehade" }
+       { "youtube" : "https://www.youtube.com/gilleschehade" },
+       { "twitch" : "https://twitch.tv/poolporg" }
      ]
    
 }

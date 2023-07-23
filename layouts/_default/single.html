@@ -75,17 +75,10 @@
   {{ if .Params.needhelp | default true }}
   <div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900">
     <span class="dark:text-neutral-300 text-sm">
-      <b>WANT TO HELP ?</b>
-      <br />
-      <br />If you like this article or if you don't like it but still value my work,
-      <b>please ❤️</b> consider <b>sharing on social networks</b> to boost its visibility:
-      this can land me freelance gigs and sponsorships,
-      which buys me more time to write new articles and work on new projects.
-      Also <b>consider leaving <u><a href="#comments">comments</a></u></b> at the bottom of the article,
-      even if just for feedback,
-      this helps make the website more... lively ? 😊
-      OH... almost forgot but <b>there's a <u><a href="https://discord.com/invite/YC6j4rbvSk">Discord</a></u> server too</b>,
-      feel free to hop in !
+      If you like my work,
+      <b>please ❤️</b> consider <b>sharing on social networks</b> to increase its visibility:
+      this helps me get freelance gigs and sponsorships,
+      buying me more time to write articles and work on projects.
       {{ partial "sharing-links.html" . }}
     </span>
   </div>
@@ -124,16 +117,13 @@
     {{ if .Params.needhelp | default true }}
     <div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900">
       <span class="dark:text-neutral-300 text-sm">
-        <b>Again...</b>
+        You reached the end of this article,
+        <b>CONGRATULATIONS</b> !
         <br />
-        <br />If you reached the end of this article,
-        <b>please ❤️</b> consider <b>sharing on social networks</b> to boost its visibility !
         <br />
-        Also <b>consider leaving <u><a href="#comments">comments</a></u></b> below,
-        if only to let me know if you liked it or not.
-        Don't forget,
-        <b>there's a <u><a href="https://discord.com/invite/YC6j4rbvSk">Discord</a></u> server too</b>,
-        feel free to hop in !
+        <b>Please ❤️</b> consider <b>sharing on social networks</b> to increase its visibility,
+        and don't hesitate to <b>leave a <u><a href="#comments">comment</a></u></b> below,
+        if only to let me know if you liked it or not !
       </span>
     </div>
     {{ end }}

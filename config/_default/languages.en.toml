@@ -8,7 +8,9 @@ title = "poolp.org"
   isoCode = "en"
   rtl = false
   dateFormat = "2 January 2006"
-  logo = "img/poolp_org.png"
+  #logo = "img/poolp_org.png"
+  logo = "img/poolp_bing.png"
   # secondaryLogo = "img/secondary-logo.png"
   # description = "My awesome website"
   copyright = "Copyright &copy; Gilles Chehade - poolp.org"
+

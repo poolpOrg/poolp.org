@@ -37,8 +37,8 @@ disableImageOptimization = false
 
 [homepage]
   #layout = "profile" # valid options: page, profile, hero, card, background, custom
-  layout = "background" # valid options: page, profile, hero, card, background, custom
-  homepageImage = "img/poolp_org.png" # used in: hero, and card
+  layout = "hero" # valid options: page, profile, hero, card, background, custom
+  homepageImage = "img/poolp_bing.png" # used in: hero, and card
   showRecent = true
   showRecentItems = 6
   showMoreLink = true

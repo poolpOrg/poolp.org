@@ -2,6 +2,7 @@ languageCode = "en"
 languageName = "English"
 weight = 1
 title = "poolp.org"
+#motto = "test"
 
 [params]
   displayName = "EN"

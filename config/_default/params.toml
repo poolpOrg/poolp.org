@@ -9,6 +9,8 @@ colorScheme = "blowfish"
 defaultAppearance = "light" # valid options: light or dark
 autoSwitchAppearance = true
 
+motto = "code, lex and fun."
+showMotto = true
 enableSearch = true
 enableCodeCopy = true
 

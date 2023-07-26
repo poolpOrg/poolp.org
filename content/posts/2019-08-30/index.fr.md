@@ -32,7 +32,7 @@ Je construit des solutions open source et propriétaires liées au mail.
 Dans cet article,
 je vais volontairement utiliser le terme `mail` parce qu'il est assez vague pour englober protocoles et logiciels.
 Ce n'est pas un article très technique et je ne veux pas plonger dans les détails,
-je veux que les gens qui n'ont jamais travaillé avec le mail puisse tout comprendre.
+je veux que les gens qui n'ont jamais travaillé avec le mail puissent tout comprendre.
 
 Je ne vais pas non plus expliquer comment j'accomplis les tâches que je décris comme simples.
 Je veux que cet article se concentre sur le mythe "le mail est dur",

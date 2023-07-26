@@ -504,3 +504,11 @@ J'ai écrit un devoir là dessus aussi,
 implémentant _exactement_ les mêmes appels systèmes en décrivant le cheminement,
 mais j'ai trouvé ça pénible au possible et ça se ressentait dans l'article :laughing:
 
+
+# Lectures en rapport...
+
+Je recommande la lecture de ces deux livres sur le sujet:
+
+| | |
+|---|---|
+| <iframe sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin" style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-eu.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=FR&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=poolporg07-21&language=fr_FR&marketplace=amazon&region=FR&placement=B00O56CFEE&asins=B00O56CFEE&linkId=a08afca27d9380d55d64d3ca0474379c&show_border=true&link_opens_in_new_window=true"></iframe> | <iframe sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin" style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-eu.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=FR&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=poolporg07-21&language=fr_FR&marketplace=amazon&region=FR&placement=B002MZAR6I&asins=B002MZAR6I&linkId=f8c0f0b545e506479897b17244cc5c62&show_border=true&link_opens_in_new_window=true"></iframe> |

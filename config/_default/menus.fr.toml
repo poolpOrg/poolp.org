@@ -1,0 +1,92 @@
+# -- Main Menu --
+# The main menu is displayed in the header at the top of the page.
+# Acceptable parameters are name, pageRef, page, url, title, weight.
+# 
+# The simplest menu configuration is to provide:
+#   name = The name to be displayed for this menu link
+#   pageRef = The identifier of the page or section to link to
+#
+# By default the menu is ordered alphabetically. This can be
+# overridden by providing a weight value. The menu will then be
+# ordered by weight from lowest to highest.
+
+[[main]]
+  name = "Github"
+  pageRef = "github"
+  url = "https://github.com/poolpOrg/"
+  weight = 10
+
+
+#[[main]]
+#  name = "Blog"
+#  pageRef = "posts"
+#  weight = 10
+
+#[[main]]
+#  name = "Parent"
+#  weight = 20
+#
+#[[main]]
+#  name = "example sub-menu 1"
+#  parent = "Parent"
+#  pageRef = "posts"
+#  weight = 20
+#
+#[[main]]
+#  name = "example sub-menu 2"
+#  parent = "Parent"
+#  pageRef = "posts"
+#  weight = 20
+
+
+[[subnavigation]]
+  name = "Technologie"
+  pageRef = "categories/technologie"
+  weight = 20
+
+[[subnavigation]]
+  name = "Musique"
+  pageRef = "categories/musique"
+  weight = 30
+
+#[[subnavigation]]
+#  name = "Personal"
+#  pageRef = "categories/personal"
+#  weight = 50
+
+
+#[[subnavigation]]
+#  name = "My Awesome Category"
+#  pre = "github"
+#  pageRef = "categories/awesome"
+#  weight = 20
+
+#[[main]]
+#  name = "Series"
+#  pageRef = "series"
+#  weight = 20
+
+#[[main]]
+#  name = "Categories"
+#  pageRef = "categories"
+#  weight = 30
+
+#[[main]]
+#  name = "Tags"
+#  pageRef = "tags"
+#  weight = 40
+
+
+# -- Footer Menu --
+# The footer menu is displayed at the bottom of the page, just before
+# the copyright notice. Configure as per the main menu above.
+
+#[[footer]]
+#    name = "Tags"
+#    pageRef = "tags"
+#    weight = 10
+
+#[[footer]]
+#    name = "Categories"
+#    pageRef = "categories"
+#    weight = 20

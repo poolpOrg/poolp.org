@@ -4,7 +4,7 @@ slug: decentralisons-smtp-pour-le-bien-commun
 date: 2019-12-15 13:05:00 +0200
 author: Gilles Chehade
 categories:
- - technology
+ - technologie
 ---
 
 {{< tldr >}}

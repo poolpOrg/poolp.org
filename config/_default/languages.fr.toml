@@ -1,0 +1,16 @@
+languageCode = "fr"
+languageName = "Français"
+weight = 2
+title = "poolp.org"
+
+[params]
+  displayName = "FR"
+  isoCode = "fr"
+  rtl = false
+  dateFormat = "2 Janvier 2006"
+  #logo = "img/poolp_org.png"
+  logo = "img/poolp_bing.png"
+  # secondaryLogo = "img/secondary-logo.png"
+  # description = "My awesome website"
+  copyright = "Copyright &copy; Gilles Chehade - poolp.org"
+

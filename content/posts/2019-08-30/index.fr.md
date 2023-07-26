@@ -17,7 +17,7 @@ categories:
 
 EDIT (2019-12-15)
 --
-Un guide practice pour [installer un serveur de mail](/fr/posts/2019-12-23/mettre-en-place-un-serveur-de-mail-avec-opensmtpd-dovecot-et-rspamd/) a été publié sur ce blog.
+Un guide pratique pour [installer un serveur de mail](/fr/posts/2019-12-23/mettre-en-place-un-serveur-de-mail-avec-opensmtpd-dovecot-et-rspamd/) a été publié sur ce blog.
 
 
 # Avertissement

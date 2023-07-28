@@ -9,9 +9,9 @@ categories:
 
 {{< tldr >}}
 - Le mail n'est pas dur: les gens répètent ça parce qu'ils l'ont lu, pas parce qu'ils ont essayé
-- Les Big Mailer Corps sont content de ce mythe, ça fait grossir leur base d'utilisateurs
+- Les Big Mailer Corps sont contents de ce mythe, ça fait grossir leur base d'utilisateurs
 - Les Big Mailer Corps contrôlent un large pourcentage de l'espace d'adressage des e-mails ce qui n'est bon pour personne
-- C'est ok que des gens aient leurs adresses e-mails hébergés chez des Big Mailer Corps tant qu'il y a assez de gens en dehors
+- C'est ok que des gens aient leurs adresses e-mail hébergées chez des Big Mailer Corps tant qu'il y a assez de gens en dehors
 {{< /tldr >}}
 
 
@@ -24,10 +24,10 @@ Un guide pratique pour [installer un serveur de mail](/fr/posts/2019-12-23/mettr
 
 **<font color="red">CECI EST POUR LES SYSADMINS AVEC UNE COMPRÉHENSION TECH ET QUI SAVENT HÉBERGER DES SERVICES</font>.**
 **L'auto-hébergement n'est pas DUR mais requiert du TRAVAIL, deux choss différentes.**
-**Mettre en place une infrastructure de mail demande beaucoup de travail en amont, puis de la maintenance très basqie sur le long terme.**
+**Mettre en place une infrastructure de mail demande beaucoup de travail en amont, puis de la maintenance très basique sur le long terme.**
 
 Je travaille sur un serveur SMTP open source.
-Je construit des solutions open source et propriétaires liées au mail.
+Je construis des solutions open source et propriétaires liées au mail.
 
 Dans cet article,
 je vais volontairement utiliser le terme `mail` parce qu'il est assez vague pour englober protocoles et logiciels.
@@ -37,7 +37,7 @@ je veux que les gens qui n'ont jamais travaillé avec le mail puissent tout comp
 Je ne vais pas non plus expliquer comment j'accomplis les tâches que je décris comme simples.
 Je veux que cet article se concentre sur le mythe "le mail est dur",
 mettant de côté les solutions techniques utilisées pour les implémenter.
-Je veux que les personnes qui lisent ceci puisse se renseigner sur [Postfix](http://www.postfix.org),
+Je veux que les personnes qui lisent ceci puissent se renseigner sur [Postfix](http://www.postfix.org),
 [Notqmail](https://github.com/notqmail/notqmail),
 [Exim](https://www.exim.org) et [OpenSMTPD](https://www.OpenSMTPD.org),
 et pas simplement aller directement sur OpenSMTPD parce que j'aurais donné des exemples.
@@ -45,29 +45,29 @@ et pas simplement aller directement sur OpenSMTPD parce que j'aurais donné des 
 J'écrirais ensuite un article pour y faire suite,
 cette fois-ci en montrant comment je fais les choses avec OpenSMTPD.
 Si des personnes écrivent des articles similaires pour d'autres solutions,
-transmettez-les moi et j'en linkerai quelques uns.
+transmettez-les-moi et j'en linkerai quelques-uns.
 Cet article sera mis à jour de temps en temps au fil des changements,
 revenez de temps à autre.
 
 Enfin,
 Le nom Big Mailer Corps représente les fournisseurs d'e-mails principaux.
 Je me veux pas en viser un spécifique,
-vous pouvez concrètement remplacer Big Mailer Corps n'importe où dans ce texte par le nom d'un fournisseur qui détient plusieurs centaines de millions d'adresse de destinataires.
+vous pouvez concrètement remplacer Big Mailer Corps n'importe où dans ce texte par le nom d'un fournisseur qui détient plusieurs centaines de millions d'adresses de destinataires.
 Gardez aussi à l'esprit que certains Big Mailer Corps permettent d'héberger sous votre propre nom de domaine,
 donc quand je parle d'espace d'adressage e-mail,
-si vous possédez un domain mais qu'il est hosté par un Big Mailer Corp,
+si vous possédez un domaine mais qu'il est hosté par un Big Mailer Corp,
 alors votre domaine et vos adresses font partie de leur espace d'adressage.
 
 
 # Il était une fois, "le mail est dur"
-Lorsque vous commencez à cherchez à devenir indépendant pour vos e-mails,
-dès lors que vous demandez de l'aide pour "monter un serveur de mail" sur un media tech, les gens vont invariablement sauter dans la discussion pour vous décourager d'essayer parce que "le mail est dur".
+Lorsque vous commencez à chercher à devenir indépendant pour vos e-mails,
+dès lors que vous demandez de l'aide pour "monter un serveur de mail" sur un média tech, les gens vont invariablement sauter dans la discussion pour vous décourager d'essayer parce que "le mail est dur".
 
-Non seulement "le mail est dur" mais il semblerai aussi que "les Big Mailer Corps ont déjà gagnés", que "tous les mails que vous enverrez à vos destinataires vont terminer en boite à spam", et que "vous serez inondés de spammers" qui vont "abuser de votre serveur pour lui faire relayer du spam au monde".
+Non seulement "le mail est dur" mais il semblerait aussi que "les Big Mailer Corps ont déjà gagnés", que "tous les mails que vous enverrez à vos destinataires vont terminer en boite à spam", et que "vous serez inondés de spammers" qui vont "abuser de votre serveur pour lui faire relayer du spam au monde".
 
 Wow, ça fait beaucoup là non ? :-|
 
-Vous vouliez juste envoyer et recevoir du mail parce que ça semblai une bonne idée,
+Vous vouliez juste envoyer et recevoir du mail parce que ça semblait une bonne idée,
 et c'est devenu la pire des décisions de votre vie. Mais est-ce que ça l'est vraiment ?
 
 
@@ -95,13 +95,13 @@ La configuration se lit presque en anglais et un fichier de configuration utilis
 [full screen](/images/2019-08-30-tweet.png)
 
 Je n'ai pas d'expérience avec les autres,
-mais la plupart des systèmes d'expoloitation et des distributions fournissent plusieurs alternatives, pré-packagées pour pouvoir être installiées en une seule commande.
+mais la plupart des systèmes d'exploitation et des distributions fournissent plusieurs alternatives, pré-packagées pour pouvoir être installées en une seule commande.
 
 Les logiciels de mail ne sont pas durs.
 Ils ne le sont que si vous avez arrêté de regarder dans les années 90.
 
 
-# OK, les logiciels ne sont pas dur mais gérer le SPAM si
+# OK, les logiciels ne sont pas durs mais gérer le SPAM si
 
 Le mythe continue en annonçant que le mail est difficile parce que dès lors que l'on fait tourner son propre serveur de mail,
 les spammers débarquent en hordes et que gérer le spam devient un cauchemar quotidien.
@@ -111,7 +111,7 @@ Maintenant qu'on se connait un peu et que nous avons établi un peu de confiance
 je ne vais pas vous mentir: il y a des hordes de spammers.
 
 Lorsque vous branchez votre serveur sur internet,
-vous allez voir des connections aléatoires de différentes sources essayer de faire passer du mail à travers votre serveur.
+vous allez voir des connexions aléatoires de différentes sources essayer de faire passer du mail à travers votre serveur.
 Vous les verrez venir depuis des connections domestiques,
 depuis des pays lointains,
 depuis des adresses IP qui partagent la même plage IP,
@@ -121,12 +121,12 @@ Mais concrètement,
 elles entreront dans deux catégories:
 
 - des clients qui essaient d'abuser votre serveur pour s'en servir en relai et spammer le monde
-- des clients qui essaient de vous spammer vous après avoir obtenir votre adresse e-mail d'une certaine façon
+- des clients qui essaient de vous spammer après avoir obtenu votre adresse e-mail d'une certaine façon
 
-Ceux de la première catégorie sont les plus simple à gérer:
-**IGNOREZ LES**.
+Ceux de la première catégorie sont les plus simples à gérer:
+**IGNOREZ-LES**.
 Ils cherchent des serveurs mal configurés et tentent des choses qui sont rejetées par un serveur correctement configuré,
-où tentent de s'authentifier avec des attaques par dictionnaire qui sont garanties d'échouer si vous avez une politique de bons mots de passes.
+où tentent de s'authentifier avec des attaques par dictionnaire qui sont garanties d'échouer si vous avez une politique de bons mots de passe.
 Ce sont les équivalents des moustiques un soir d'été,
 ils sont ennuyeux mais... mouais.
 
@@ -142,21 +142,21 @@ c1a89cb9441966e7 smtp failed-command command="AUTH LOGIN" result="503 5.5.1 Inva
 c1a89cb9441966e7 smtp disconnected reason=disconnect
 ```
 
-Si vraiment, vraiment ils vous embettent ou que vous ne supportiez pas de voir ces tentatives échouées dans vos logs, écrivez un script qui détecte ces motifs dans les logs et ajoute les clients indélicats dans vos règles de firewall.
+Si vraiment, vraiment ils vous embêtent ou que vous ne supportiez pas de voir ces tentatives échouées dans vos logs, écrivez un script qui détecte ces motifs dans les logs et ajoute les clients indélicats dans vos règles de firewall.
 Par pure flemme,
 je n'ai jamais utilisé de scripts comme cela en vingt ans d'hébergement de serveurs de mails et... je suis encore là pour vous en parler.
 Tant que vous les voyez pas tenter quelque chose de surprenant,
-contentez vous de les ignorer.
+contentez-vous de les ignorer.
 
 Ceux de la seconde catégorie sont un peu plus ennuyants parce que si vous les ignorez,
-votre boite mail se retrouve pleine de spam.
+votre boite mail se retrouve pleine de spams.
 Heureusement,
 ils ne sont pas si durs que cela à filtrer au travers de plusieurs méthodes **simples** et il est très facile de réduire le spam à quelques mails,
 de temps à autre,
 le plus souvent classés dans la boite à Spam.
 Je ne prends absolument aucune précaution pour cacher mon adresse e-mail,
 [gilles@poolp.org](mailto:gilles@poolp.org),
-et j'ai de temps en temps quelques spams qui arrivent dans ma boite a spam.
+et j'ai de temps en temps quelques spams qui arrivent dans ma boite à spam.
 Non seulement ce n'est pas un cauchemar quotidien,
 mais c'est en réalité moins que ce que je reçois sur mon compte Big Mailer Corp... que je ne communique pas autant et qui a pourtant entre trois et cinq fois la quantité quotidienne de spam.
 
@@ -170,7 +170,7 @@ a56dec6ffdb2caef smtp failed-command command="" result="421 you must have rDNS t
 a56dec895475b9bf smtp failed-command command="" result="421 you must have FCrDNS to contact this MX"
 ```
 
-Je vais le dire une bonne fois pour toute:
+Je vais le dire une bonne fois pour toutes:
 **Vous n'atteindrez jamais le 0 absolu en spam**,
 ça a déjà été prouvé dans les années 2000s (je n'ai plus la référence, désolé),
 mais la quantité que vous recevrez en étant auto-hébergé peut être aussi basse,
@@ -190,10 +190,10 @@ Aucun des deux n'a de spam en Inbox.
 
 # OK le SPAM n'est pas le souci mais mes mails n'atteindront pas les Big Mailer Corps
 Un autre mythe,
-avec un peu plus de substance celui là,
-est qu'envoyer un e-mail depuis une adresse qui n'est pas un Big Mailer Corp va nécessairement se retrouver rejetée ou en spam.
+avec un peu plus de substance celui-là,
+est qu'envoyer un e-mail depuis une adresse qui n'est pas un Big Mailer Corp va nécessairement se retrouver rejeté ou en spam.
 
-Laissez moi vous dire un secret:
+Laissez-moi vous dire un secret:
 Les Big Mailer Corps ne sont pas inquiets de vos mails mais de ceux des gros émetteurs qui harcellent leurs utilisateurs.
 Ils ne se soucient pas de serveurs personnels qui envoient quelques mails,
 même si ce sont quelques milliers par mois.
@@ -213,7 +213,7 @@ Alors pourquoi j'ai dit que ce mythe avait plus de substance que les autres ?
 Volontairement ou non,
 les Big Mailer Corps ont introduit une preuve de travail dans les échanges de mail.
 
-Contrairement aux émetteurs légitimes qui tentent d'atteindre un utilisateur specifique,
+Contrairement aux émetteurs légitimes qui tentent d'atteindre un utilisateur spécifique,
 les spammers veulent atteindre une tonne d'utilisateurs quels qu'ils soient,
 parce que statistiquement certains vont tomber dans le panneau qui est dressé.
 Parmi ces spammers,
@@ -230,13 +230,13 @@ vous n'avez pas idée des astuces employées pour faire mécaniquement monter le
 vous avez les émetteurs légitimes qui visent des destinataires spécifiques et ne peuvent pas simplement envoyer ailleurs. Des émetteurs qui vont nécessairement devoir faire ce qu'il faut pour que ça marche, quitte à bosser un peu plus.
 
 Sachant cela,
-les Big Mailer Corps sont arrivés avec un jeu de règles sur ce qu'un Bon Émetteur devrait faire pour pouvoir communiquer avec eux.
+les Big Mailer Corps sont arrivés avec un jeu de règles sur ce qu'un Bon émetteur devrait faire pour pouvoir communiquer avec eux.
 Ces listes de règles sont concrètement une preuve de travail:
 elles ne garantissent pas que vous pourrez envoyer vers eux,
 elles ne garantissent pas que vous irez en inbox et pas en spam,
 mais elles sont l'ensemble minimal qu'il faut faire pour prouver que vous ne vous en foutez pas...
 et comme certains spammers font de leur mieux pour paraitre sous un meilleur jour,
-si vous ne le faites pas vous même ça veut concrètement dire que vous ne voulez même pas faire mieux que les spammers.
+si vous ne le faites pas vous-même ça veut concrètement dire que vous ne voulez même pas faire mieux que les spammers.
 
 Ces règles ne sont pas là pour vous embêter,
 elles sont même très efficaces:
@@ -244,8 +244,8 @@ certaines règles ne peuvent pas être respectées par un spammer qui aurait com
 Ce paradigme de la preuve de travail est ennuyant parce qu'il augmente (en temps) le coût d'entrée,
 mais il permet aussi à tous de bénéficier de ce travail pour tuer le spam.
 Puisque les Bons Émetteurs veulent clairement passez chez les Big Mailer Corps,
-si vous recevez des connections de clients qui ne font pas le minimum pour pouvoir livrer du mail chez eux,
-vous pouvez probablement considérer qu'ils peuvent être pénalisés parce qu'ils sont déjà pénalisé sur la plus grosse portion de l'espace d'adressage.
+si vous recevez des connexions de clients qui ne font pas le minimum pour pouvoir livrer du mail chez eux,
+vous pouvez probablement considérer qu'ils peuvent être pénalisés parce qu'ils sont déjà pénalisés sur la plus grosse portion de l'espace d'adressage.
 
 C'est pour cela que je dis que ce mythe a plus de substance que les autres.
 C'est vrai que **SI** l'ont ne fait pas le minimum de travail,
@@ -253,7 +253,7 @@ C'est vrai que **SI** l'ont ne fait pas le minimum de travail,
 
 En pratique,
 une notion de réputation est aussi en jeu.
-Certaines personnes n'essaient même pas mais sont très n dessous des radars...
+Certaines personnes n'essaient même pas mais sont très en dessous des radars...
 et peuvent se permettre d'envoyer n'importe quoi sans souci.
 J'envoie souvent du mail vers mon compte Big Mailer Corp depuis un ordinateur portable de développement,
 sur ma connexion domestique loin d'êtres correctement configurée,
@@ -272,7 +272,7 @@ Pour citer quelqu'un sur Twitter:
 > Reverse DNS + SPF/DKIM et c'est bon. [...].
 > Je crois que le plus dur à gérer est le spam entrant.
 
-Je rajouterai bien deux ou trois choses à sa liste mais ça montre bien que pour certaine personnes, c'est déjà bon avec juste du rDNS, SPF et DKIM.
+Je rajouterai bien deux ou trois choses à sa liste mais ça montre bien que pour certaines personnes, c'est déjà bon avec juste du rDNS, SPF et DKIM.
 La partie sur le spam entrant,
 on en a discuté juste avant ;-)
 
@@ -287,57 +287,57 @@ et ça se traduit par plus de mails qui peuvent être analysés pour de la publi
 
 Plus les gens sont découragés,
 plus les gens vont éventuellement s'inscrire à leurs services,
-et comme ils contrôle déjà une grosse portion de l'adressage,
+et comme ils contrôlent déjà une grosse portion de l'adressage,
 ils peuvent rendre le mail encore un petit peu plus difficile en augmentant leurs pré-requis (plus difficile, PAS difficile).
 Ce n'est **PAS** quelque chose qu'ils font par conspiration,
 c'est juste la conséquence stratégique de leur donner plus de pouvoir parce que les gens s'éloignent de l'auto-hébergement.
 
 Une autre raison est parce que ça a été dur il y a très longtemps.
-Des gens ont été traumatisés par le niveau de difficulté pour ne pas rater et n'ont jamais réévalués la situation.
+Des gens ont été traumatisés par le niveau de difficulté pour ne pas rater et n'ont jamais réévalué la situation.
 De nombreuses personnes aujourd'hui découragent d'autres de se lancer en citant des difficultés rencontrées il y a des décennies alors que beaucoup d'outils à disposition aujourd'hui n'existaient pas et que le paysage a bien changé.
 
-Et finallement,
-une autre raison est que des gens répètent ce qu ils ont entendu sans jamais essayer eux-mêmes.
+Et finalement,
+une autre raison est que des gens répètent ce qu’ils ont entendu sans jamais essayer eux-mêmes.
 Je le sais parce que des gens m'ont dit que le mail est dur ces dix dernières années et que chaque fois que j'ai demandé ce qu'ils trouvaient dur pour essayer de comprendre et améliorer la situation.
-La **GRANDE** majorité des gens ont confessés ne jamais avoir vraiment essayé:
-ils ont lu ou enten du que c'était dur,
+La **GRANDE** majorité des gens ont confessé ne jamais avoir vraiment essayé:
+ils ont lu ou entendu que c'était dur,
 souvent depuis une source de confiance,
 ils ont accepté cela comme un fait et commencés à répéter à leur tour que le mail est dur.
 On ne peut pas vraiment leur reprocher quand le mythe a été présent aussi longtemps,
 si je n'avais pas de connaissances préalables et que je faisais une recherche rapide pour monter mon serveur de mail,
-je déciderai probabelement que la complexité n'en vaut pas le bénéfice vu ce qu'en disent les gens.
+je déciderai probablement que la complexité n'en vaut pas le bénéfice vu ce qu'en disent les gens.
 
 
 # Alors on fait quoi maintenant ?
 On doit récupérer le mail.
 Je ne veux pas dire que personne ne doit être hébergé par Big Mailer Corps,
-mais que ça ne devrait pas être le réflexe Pavlovien à la question "où est-ce que je peux ouvrir une boite mail ?".
+mais que ça ne devrait pas être le réflexe pavlovien à la question "où est-ce que je peux ouvrir une boite mail ?".
 
 Tant qu'il y a assez de serveurs de mail dehors,
 Big Mailer Corps **DOIT** rester amical parce que leurs utilisateurs peuvent se plaindre que du mail légitime est perdu ou bloqué,
-ce qui risque de faire fuire des utilisateurs ailleurs,
+ce qui risque de faire fuir des utilisateurs ailleurs,
 moins d'e-mails,
 moins de ciblage,
 moins de $$$.
 
-Si le nombre de serveurs de mail se réduit au point que le trafic ne provenant pas d'un Big Mailer Corps est insignificant,
+Si le nombre de serveurs de mail se réduit au point que le trafic ne provenant pas d'un Big Mailer Corps est insignifiant,
 alors cela devient leur protocole et ils peuvent inventer de nouvelles règles qui ne sont plus soutenables par personne à part eux.
 
 Encore une fois,
 ce n'est **PAS** une théorie du complot mais un effet secondaire d'être une poignée aux manettes:
-pourquoi se plier à des standards qui fonctionneraient pour tous et s'assurer une interopérabilité... si la plupart du trafic est déjà chez moi et que je peux customiser pour offrir des services qui vérouilleront les utilisateurs chez moi ?
+pourquoi se plier à des standards qui fonctionneraient pour tous et s'assurer une interopérabilité... si la plupart du trafic est déjà chez moi et que je peux customiser pour offrir des services qui verrouilleront les utilisateurs chez moi ?
 
-C'est déjà en train de se produire avec l'un des Big Mailer Corp qui requiert que les e-mails soient envoyés depuis l'un de ses copains pour être inboxé... ou alors que les émetteurs fassent partie du carnet de contact (hébergé chez lui bien sûr) pour less autres.
-Tout autre émetteurs commencera par faire un petit séjour en spambox avant d'éventuellement passer en inbox.
+C'est déjà en train de se produire avec l'un des Big Mailer Corp qui requièrent que les e-mails soient envoyés depuis l'un de ses copains pour être inboxé... ou alors que les émetteurs fassent partie du carnet de contact (hébergé chez lui bien sûr) pour les autres.
+Tout autre émetteur commencera par faire un petit séjour en spambox avant d'éventuellement passer en inbox.
 
 On ne peut pas laisser cela se produire:
 autoriser les e-mails à être complètement controlés par une petite poignée d'entreprises privées revient à accepter qu'ils puissent imposer toutes les règles de la communication par e-mail.
 
-Il est très important que l'on ne laisse pas le mythe se propagager plus.
+Il est très important que l'on ne laisse pas le mythe se propager plus.
 Notre intérêt est d'avoir une GRANDE variété de choix de fournisseurs d'e-mail,
 petits et grands,
 commerciaux ou non.
-Il faut augmenter le nombre de fournisseurs pour que le nombre d'adresse e-mail en dehors des Big Mailer Corps reste significatif.
+Il faut augmenter le nombre de fournisseurs pour que le nombre d'adresses e-mail en dehors des Big Mailer Corps reste significatif.
 
 Et surtout,
 **il ne faut pas pousser tout le monde systématiquement à utiliser Big Mailer Corps**,
@@ -346,7 +346,7 @@ ils pourraient utiliser presque n'importe quel fournisseur et être contents.
 
 J'espère que mon point sera entendu,
 partagez cela où vous voulez et avec qui vous voulez,
-redirigez vers cet article ou reproduisez le ailleurs.
+redirigez vers cet article ou reproduisez-le ailleurs.
 
 Dans quelques jours,
 je publierai un guide _pratique_ pour mettre en place un serveur similaire au mien,

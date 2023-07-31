@@ -4,7 +4,7 @@ date: 2019-12-23 07:57:00 +0200
 authors:
  - "gilles"
 categories:
- - technology
+ - technologie
 ---
 
 {{< tldr >}}

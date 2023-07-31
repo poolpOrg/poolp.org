@@ -4,14 +4,14 @@ date: 2019-12-26 14:15:00 +0200
 authors:
  - "gilles"
 categories:
- - technology
+ - technologie
 ---
 
 {{< tldr >}}
-    - le greylisting est une bonne idée
-    - ce n'est pas très pratique aujourd'hui
-    - beaucoup de gens se passent du greylisting ou trouvent des contournements
-    - le SPF-aware greylisting rend le greylisting utilisable à nouveau
+- le greylisting est une bonne idée
+- ce n'est pas très pratique aujourd'hui
+- beaucoup de gens se passent du greylisting ou trouvent des contournements
+- le SPF-aware greylisting rend le greylisting utilisable à nouveau
 {{< /tldr >}}
 
 # Shout out a mes sponsors &#x2764;&#xfe0f;

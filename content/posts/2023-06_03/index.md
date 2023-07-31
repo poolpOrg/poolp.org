@@ -57,7 +57,7 @@ For the bridge,
 I want a floating bridge that is NOT a floyd rose because I already have one,
 I like them but the drawbacks makes me want a different design for this additional guitar.
 I currently am looking into Gotoh 1502 and 1802 tremolo bridges,
-haven't decided yet if I'll stick to this idea but Iwill also post a more lenghty article once I settle.
+haven't decided yet if I'll stick to this idea but I will also post a more lenghty article once I settle.
 
 
 Finally,

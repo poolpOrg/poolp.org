@@ -21,16 +21,6 @@ Luckily,
 I could get some that weren't too expensive.
 {{< /tldr >}}
 
-
-{{< alert cardColor="#FFDAB9" iconColor="#FF6347">}}
-Links I provide in this serie may (or not) be part of an affiliation program.
-If you decide to buy from them,
-it'll cost the same price as if you went directly to the merchant store,
-but I will receive a small reward from the merchant.
-Please consider using them if you decide you want to buy the same things I did.
-{{< /alert >}}
-
-
 # Working on the head
 I had ordered and received this neck,
 which fits nicely,

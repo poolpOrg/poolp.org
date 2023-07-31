@@ -19,14 +19,6 @@ Received the new neck and...
 it fits perfectly !
 {{< /tldr >}}
 
-{{< alert cardColor="#FFDAB9" iconColor="#FF6347">}}
-Links I provide in this serie may (or not) be part of an affiliation program.
-If you decide to buy from them,
-it'll cost the same price as if you went directly to the merchant store,
-but I will receive a small reward from the merchant.
-Please consider using them if you decide you want to buy the same things I did.
-{{< /alert >}}
-
 # The neck
 UPS just delivered the new neck,
 which is a 24 frets PRS clone:
@@ -119,7 +111,7 @@ what is sure is that it will have black, blue and glow.
 # Tuners
 For the tuners,
 I have settled on [Graph Tech Ratio Locking](https://thmn.to/thoprod/532247?offid=1&affid=2189),
-which also come in black and which one I'll pick will depend on what color the guitar head ends up to be.
+which also come in silver and which one I'll pick will depend on what color the guitar head ends up to be.
 
 
 <center>

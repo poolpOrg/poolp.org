@@ -152,5 +152,5 @@ I definitely want a kill switch.
 
 # What's next ?
 I won't be able to do much until late July as I have stuff coming,
-and am waiting for the pain anyways,
+and am waiting for the paint anyways,
 but I'll keep you updated.

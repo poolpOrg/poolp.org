@@ -6,6 +6,9 @@ authors:
  - "gilles"
 categories:
  - technology
+tags:
+ - plakar
+ - backups
 ---
 
 {{< tldr >}}

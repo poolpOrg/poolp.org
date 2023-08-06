@@ -6,6 +6,9 @@ authors:
 language: fr
 categories:
  - technology
+tags:
+ - plakar
+ - backups
 ---
 
 {{< tldr >}}

@@ -303,14 +303,14 @@ $ plakar push -tag wip /Users/gilles/Wip
 and restore it in an `s3` bucket for example:
 
 ```
-$ plakar pull wip s3://minioadmin:minioadmin@localhost/wip
+$ plakar pull wip to s3://minioadmin:minioadmin@localhost/wip
 ```
 
 or I could transfer data from a place to another:
 
 ```
 $ plakar push -tag wip s3://minioadmin:minioadmin@cloud1/wip
-$ plakar pull wip s3://minioadmin:minioadmin@cloud2/wip
+$ plakar pull wip to s3://minioadmin:minioadmin@cloud2/wip
 ```
 
 A multi-purpose rsync ?

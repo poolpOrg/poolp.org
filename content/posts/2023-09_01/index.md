@@ -18,8 +18,14 @@ but also on CDC and index optimization.
 
 
 # Optimized `go-fastcdc`
-I ran into a benchmark which included my implementation of the [FastCDC](https://www.usenix.org/system/files/conference/atc16/atc16-paper-xia.pdf) algorithm,
-and it made me realise that it was not on par with alternative implementations:
+**I ran into a benchmark which included my implementation of the [FastCDC](https://www.usenix.org/system/files/conference/atc16/atc16-paper-xia.pdf) algorithm,
+and it made me realise that it was not on par with alternative implementations**:
+
+{{< note author="gpt-4" >}}
+Hold up! Before we dive deeper, let's demystify CDC a bit. CDC stands for Content-Defined Chunking. Imagine you're trying to find the best places to split a chocolate bar so that each piece has a nut (or not, if you're not into that). That's kinda what CDC does, but with data. Cool, huh?
+
+The FastCDC algorithm is a nifty tool used for content-defined chunking. Think of it as a way to split data into chunks based on the content, rather than fixed sizes. Super useful for things like deduplication!
+{{</ note >}}
 
 ```t
 % cd _bench_test
@@ -36,8 +42,8 @@ PASS
 ok      bench_test    8.210s
 ```
 
-The benchmark showed that my implementation was considerably slower than three other popular implementations,
-it also required far more memory and allocations per op.
+**The benchmark showed that my implementation was considerably slower than three other popular implementations,
+it also required far more memory and allocations per op.**
 I didn't expect it to outperform other implementations because I had focused on getting it functional and didn't even look at performances,
 but I was surprised by how bad it was... so an hour later I fixed the injustice:
 
@@ -48,6 +54,11 @@ BenchmarkPoolpOrg-4                14      78039244 ns/op    1719.87 MB/s       
 Now that my implementation no longer lags behind the others and can actually outperform even the top contender in the list,
 I can write the following without it sounding like a lame excuse:
 this benchmark was not really fair to JotFS and my implementation.
+
+{{< note author="gpt-4" >}}
+Speaking of benchmarks, it's always a fun exercise to see how different algorithms stack up against each other. While FastCDC has its merits, there are other contenders in the ring too. Each with its own set of strengths and quirks. But hey, variety is the spice of life, right?
+{{</ note >}}
+
 
 First,
 the top contender state that in this unscientific benchmark their implementation is 20% faster than the next best implementation,
@@ -289,13 +300,18 @@ at this point I had UltraCDC at hands and published an ISC-licensed implementati
 
 
 # Implemented `go-ringbuffer`
-A general performance bottleneck in CDC algorithms is that you are looking for cut points in a stream of bytes for which you have to read-ahead a certain amount.
+**A general performance bottleneck in CDC algorithms is that you are looking for cut points in a stream of bytes for which you have to read-ahead a certain amount**.
 Once you find a cut point in between the beginning of the buffer and the end of your read-ahead,
 you end up with left-over bytes that should be the beginning of your next chunk.
 A naive approach would be to move these left-over bytes at the beginning of the buffer,
 but this means that at each iteration of the `Next()` method you read the left-over bytes twice and copy them once.
 An alternative would be to leave them where they are and allocate more memory behind to serve the next chunk,
 which may or may not be possible and which may or may not impose a copy.
+
+{{< note author="gpt-4" >}}
+Buffer talk! Imagine you're reading a book but can peek a few pages ahead. That's kind of what a read-ahead buffer does with data. Tweaking how you handle that peeking can make a world of difference.
+{{</ note >}}
+
 
 There are several ways to tackle this, each with pros and cons,
 and an article on its own would be needed to discuss the topic.
@@ -478,12 +494,16 @@ I almost halved the memory required to fit the index,
 and it is mostly shardable at this point.
 There are many ideas that still need to go in before I'm happy.
 
-The best features in `plakar` are really dependant on the ability of having an efficient index.
+**The best features in `plakar` are really dependant on the ability of having an efficient index**.
 I could immediately give up on this and provide very fast backup and recovery,
 by dropping the index,
 but this would mean that features like file-level restore,
 diff between files in different snapshots,
 the snapshots browser or even search would go away.
+
+{{< note author="gpt-4" >}}
+And speaking of efficient indexes, think of them as the super-smart librarians of the digital world. Without them, finding that one piece of data would be like searching for a needle in a haystack. With plakar, it's more like searching for an elephant in a room. Hard to miss!
+{{</ note >}}
 
 In my bigger plan,
 the index is a key element of snapshots,

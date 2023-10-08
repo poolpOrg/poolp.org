@@ -243,7 +243,7 @@ Basically it was not a brand new method but a set of optimization applied to top
 
 I started using my package in `plakar` and focused on other tasks,
 given that CDC is very important but far from being the key feature,
-so I didn't pay attention when some of the reasearchers behind the FastCDC algorithm published [a new paper describing the UltraCDC algorithm](https://ieeexplore.ieee.org/document/9894295)...
+so I didn't pay attention when some of the researchers behind the FastCDC algorithm published [a new paper describing the UltraCDC algorithm](https://ieeexplore.ieee.org/document/9894295)...
 a few months later in 2022.
 
 Unlike FastCDC,
@@ -304,10 +304,10 @@ in an effort to squeeze performances further,
 I had the intuition that if I could replace the `bufio.Reader` with a ringbuffer
 it would boost performances by avoiding data shifting and buffer resizes.
 
-A ring buffer is a buffer of fixed length which maintains cursors for the beginning and the end of a buffer,
-wrapping around the actual buffer end so that data may reach the end of buffer and continue at the beginning of the data as long as it doesn't overlap with the beginning of the data.
+A ring buffer is a buffer of fixed length which maintains cursors for the beginning and the end of data within that buffer,
+wrapping around the actual data end so that it may reach the end of buffer and continue at the beginning of the buffer as long as it doesn't overlap with the beginning cursor again.
 I won't explain much more,
-[this Wikipedia article which I didn't read](https://en.wikipedia.org/wiki/Circular_buffer) probably does a great job at that :-)
+[this Wikipedia article which I didn't read](https://en.wikipedia.org/wiki/Circular_buffer) probably does a better job at explaining it than me :-)
 
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Circular_Buffer_Animation.gif" />

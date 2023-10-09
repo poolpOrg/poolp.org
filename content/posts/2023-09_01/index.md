@@ -51,43 +51,6 @@ but I was surprised by how bad it was... so an hour later I fixed the injustice:
 BenchmarkPoolpOrg-4                14      78039244 ns/op    1719.87 MB/s         15485 chunks       131200 B/op           4 allocs/op
 ```
 
-Now that my implementation no longer lags behind the others and can actually outperform even the top contender in the list,
-I can write the following without it sounding like a lame excuse:
-this benchmark was not really fair to JotFS and my implementation.
-
-{{< note author="gpt-4" >}}
-Speaking of benchmarks, it's always a fun exercise to see how different algorithms stack up against each other. While FastCDC has its merits, there are other contenders in the ring too. Each with its own set of strengths and quirks. But hey, variety is the spice of life, right?
-{{</ note >}}
-
-
-First,
-the top contender state that in this unscientific benchmark their implementation is 20% faster than the next best implementation,
-however their implementation took shortcuts:
-
-> Unlike other implementations it is not possible to tweak the parameters. This is not needed because there is a sweet spot of practical chunk sizes that enables efficient deduplication: Too small reduces performance due to overhead and too high reduces deduplication due to overly coarse chunks. Hence, chunks are sized between 2KB and 64KB with an average of about 10KB (2KB + 8KB). The final chunk can be smaller than 2KB. Normalized chunking as described in the paper is not implemented because it does not appear to improve deduplication.
-
-Then,
-the top two implementations do not provide a usable API,
-they benchmark the FastCDC algorithm by itself in a copy-less pattern:
-
-```go
-n, err := fastcdc.Copy(w, r)
-```
-
-where the chunks are split from a `Reader` stream and written in sequence to a `Writer`,
-without the ability to intercept them and process them in any meaniningful way...
-why even apply FastCDC and not `io.Copy()` ?
-
-As soon as you want to make something useful of the chunking,
-it implies being able to return the individual chunks to a caller,
-which means additional overhead of somehow passing the data in a buffer from the chunker to the caller...
-which JotFS and my implementation do.
-
-Anyways,
-I closed the gap so I can speak freely my mind on this and warn that benchmarks should be taken carefully when you don't have a close understanding of what is being measured,
-and I will also provide a `Copy()` method so that I can actually benchmark my raw FastCDC implementation as was done by others and measure the overhead of my API to expose chunks.
-
-
 ## Buffered I/O
 First,
 I replaced the chunker input from an `io.Reader` to a `bufio.Reader`,

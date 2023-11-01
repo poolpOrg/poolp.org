@@ -194,7 +194,7 @@ These instructions are for the **6.6.0 version** or later,
 they **will not work** on earlier versions.
 
 <center>
-  <img src="https://www.dovecot.org/typo3conf/ext/dvc_content/Resources/Public/Images/dovecot_logo_vector.svg">
+  <img src="https://www.dovecot.org/wp-content/uploads/2021/09/dovecot_logo.png">
 </center>
 
 For the IMAP layer,

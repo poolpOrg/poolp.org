@@ -188,6 +188,4 @@ I might do something with that.
 I also want to learn more about music theory and composition,
 and I want to learn more about VR development.
 
-Oh.
-And my wife is pregnant again.
-I hope this time it will be a good year.
+I hope 2024 will be a good year.

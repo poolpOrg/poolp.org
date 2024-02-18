@@ -1,6 +1,6 @@
 ---
 title: "Bilan final"
-date: 2024-02-18 16:21:00 +0200
+date: 2024-02-18 16:21:00 +0100
 authors:
  - "gilles"
 categories:

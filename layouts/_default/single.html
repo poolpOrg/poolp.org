@@ -97,10 +97,10 @@
       </div>
       {{ end }}
       <div class="min-w-0 min-h-0 max-w-prose">
-        {{ partial "series.html" . }}
+        {{ partial "series/series.html" . }}
         {{ .Content | emojify }}
         </br></br>
-        {{ partial "series-closed.html" . }}
+        {{ partial "series/series-closed.html" . }}
       </div>
      
      <script>

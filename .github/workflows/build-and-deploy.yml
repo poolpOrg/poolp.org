@@ -13,7 +13,6 @@ jobs:
         uses: actions/checkout@master
         with:
           submodules: true
-      - name: Publish Site
-        uses: chabad360/hugo-gh-pages@master
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Hugo Publish
+        uses: avinassh/hugo-publish@0.0.1
+            

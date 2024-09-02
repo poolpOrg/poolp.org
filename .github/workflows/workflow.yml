@@ -15,6 +15,7 @@ jobs:
         with:
           submodules: true
       - name: Publish Site
-        uses: poolpOrg/hugo-gh-pages@master
+        uses: chabad360/hugo-gh-pages@master
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          hugoVersion: 'v0.133.1'

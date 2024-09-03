@@ -1,0 +1,917 @@
+<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en-US"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><title>Out of my cave, lots of updates &#183; poolp.org</title>
+<meta name=title content="Out of my cave, lots of updates &#183; poolp.org"><meta name=keywords content="OpenBSD,OpenSMTPD,plakar,backups,"><link rel=canonical href=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/><link type=text/css rel=stylesheet href=/css/main.bundle.min.aae4ab0954fc7f7114dd14fabe5a76a6cf645fd2fabe5cef37d61d1fd5d62e9e65e2793e72c6cc5d3da9792419995b3533cbbdc333bc3897f31f77d72a4a27f7.css integrity="sha512-quSrCVT8f3EU3RT6vlp2ps9kX9L6vlzvN9YdH9XWLp5l4nk+csbMXT2peSQZmVs1M8u9wzO8OJfzH3fXKkon9w=="><script type=text/javascript src=/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj+e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script><script defer type=text/javascript id=script-bundle src=/js/main.bundle.min.cab249ec2f87c8efdec1594e650838fcb9837dff59bf06c71a79fe5e0a7a0f19fcca05399fe094d181e68eb57354ed0b2328cfe53accab2b24257f0beda841a9.js integrity="sha512-yrJJ7C+HyO/ewVlOZQg4/LmDff9ZvwbHGnn+Xgp6Dxn8ygU5n+CU0YHmjrVzVO0LIyjP5TrMqyskJX8L7ahBqQ==" data-copy data-copied></script><script src=/lib/zoom/zoom.min.37d2094687372da3f7343a221a470f6b8806f7891aa46a5a03966af7f0ebd38b9fe536cb154e6ad28f006d184b294525a7c4054b6bbb4be62d8b453b42db99bd.js integrity="sha512-N9IJRoc3LaP3NDoiGkcPa4gG94kapGpaA5Zq9/Dr04uf5TbLFU5q0o8AbRhLKUUlp8QFS2u7S+Yti0U7QtuZvQ=="></script><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><meta property="og:url" content="https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/"><meta property="og:site_name" content="poolp.org"><meta property="og:title" content="Out of my cave, lots of updates"><meta property="og:description" content="TL;DR: I have been silent for a while due to personal matters but I did a ton of stuff on OpenSMTPD, plakar and a handful of other projects."><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-06-11T21:00:00+01:00"><meta property="article:modified_time" content="2024-06-11T21:00:00+01:00"><meta property="article:tag" content="OpenBSD"><meta property="article:tag" content="OpenSMTPD"><meta property="article:tag" content="Plakar"><meta property="article:tag" content="Backups"><meta property="og:image" content="https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/featured.webp"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/featured.webp"><meta name=twitter:title content="Out of my cave, lots of updates"><meta name=twitter:description content="TL;DR: I have been silent for a while due to personal matters but I did a ton of stuff on OpenSMTPD, plakar and a handful of other projects."><script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"Out of my cave, lots of updates","headline":"Out of my cave, lots of updates","abstract":"TL;DR: I have been silent for a while due to personal matters but I did a ton of stuff on OpenSMTPD, plakar and a handful of other projects.","inLanguage":"en-US","url":"https:\/\/poolp.org\/posts\/2024-06-11\/out-of-my-cave-lots-of-updates\/","author":{"@type":"Person","name":""},"copyrightYear":"2024","dateCreated":"2024-06-11T21:00:00\u002b01:00","datePublished":"2024-06-11T21:00:00\u002b01:00","dateModified":"2024-06-11T21:00:00\u002b01:00","keywords":["OpenBSD","OpenSMTPD","plakar","backups"],"mainEntityOfPage":"true","wordCount":"6280"}]</script><script src=/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script><link rel=stylesheet href=/css/syntax.css><link rel=stylesheet href=/css/custom.css><script>for(var elements=document.querySelectorAll(".discord-dialog__close-button, .discord-dialog"),i=0;i<elements.length;i++)elements[i].addEventListener("click",function(){toggle(".discord-dialog")})</script><style>@import "https://fonts.cdnfonts.com/css/whitney-2";.discord-dialog *,.discord-dialog :after,.discord-dialog :before{box-sizing:inherit}.discord-dialog a{text-decoration:none}@keyframes discord-dialog__transition{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translateY(0)}}.discord-dialog{-webkit-tap-highlight-color:transparent;box-sizing:border-box;display:none;z-index:2147483647;position:fixed;max-width:288px;right:0;bottom:0;margin:18px;border-radius:10px;font-family:Whitney,sans-serif;background:#2e3136;color:#72767d;box-shadow:0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.4);transition:opacity .3s cubic-bezier(.25,.8,.25,1),transform .3s cubic-bezier(.25,.8,.25,1);animation:discord-dialog__transition .2s}.discord-dialog--active{display:block}.discord-dialog__container{font-size:14px;line-height:1.2;color:#99aab5;padding:8px 28px 28px}.discord-dialog__logo{display:none;width:auto;margin-top:5px;height:24px}.discord-dialog__logo path{fill:#fff}.discord-dialog__close-button{position:absolute;right:0;padding:16px;cursor:pointer}.discord-dialog__close-button svg{height:20px;width:20px}.discord-dialog__close-button svg path{fill:#ccc}.discord-dialog__close-button:hover{opacity:.8}.discord-dialog__close-button:active{opacity:.4}.discord-dialog__footer{padding:10px 20px}.discord-dialog__guild-icon{border-radius:50%;width:64px;display:block;height:auto;margin:16px 0}.discord-dialog__guild{font-size:24px;line-height:30px;margin-bottom:12px;font-weight:700;color:#fff}.discord-dialog__btn{background:#7289da;color:#fff;text-align:center;display:block;border-radius:1px;margin:8px;font-size:16px;line-height:24px;border-radius:3px;text-align:center;padding:12px 16px;position:relative;top:-6px;box-shadow:0 2px 4px rgba(0,0,0,.3);transition:box-shadow .3s cubic-bezier(.25,.8,.25,1),background .3s cubic-bezier(.25,.8,.25,1)}.discord-dialog__btn:hover{background:#8095de}.discord-dialog__btn:active{background:#677bc4}.discord-dialog__explainer{display:block;margin:2px 8px;color:#7289da;font-size:12px;text-align:right;top:-6px}.discord-dialog__explainer:hover{opacity:.8}.discord-dialog__explainer:active{opacity:.6}.discord-button{-webkit-tap-highlight-color:transparent;box-sizing:border-box;box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);position:fixed;bottom:0;right:0;z-index:50;margin:23.5px;padding:15.5px;border-radius:50%;background:#7289da;cursor:pointer;transition:box-shadow .3s cubic-bezier(.25,.8,.25,1),background .3s cubic-bezier(.25,.8,.25,1);display:flex;text-align:center;align-items:center;justify-content:center}.discord-button svg{height:28px;width:28px;transition:background .3s cubic-bezier(.25,.8,.25,1)}.discord-button svg path{fill:#fff}.discord-button:hover{box-shadow:0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23)}.discord-button:hover svg{opacity:.6}.discord-button:active{box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23)}.discord-button:active svg{opacity:.4}</style><meta name=theme-color></head><body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"><div id=the-top class="absolute flex self-center"><a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600" href=#main-content><span class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a></div><div class=min-h-[148px]></div><div class="fixed inset-x-0 pl-[24px] pr-[24px]" style=z-index:100><div id=menu-blur class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom bg-neutral dark:bg-neutral-800"></div><div class="relative max-w-[64rem] ml-auto mr-auto"><div style=padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3"><div><a href=/ class=flex><span class=sr-only>poolp.org</span>
+<img src=/img/poolp_bing.png width=512 height=512 class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt=poolp.org></a></div><div class="flex flex-1 items-center justify-between"><nav class="flex space-x-3"><a href=/ class="text-base font-bold text-gray-500 hover:text-gray-900">poolp.org</a><div class="text-sm text-neutral-700 dark:text-neutral-400"><br>Code, build and run.</div></nav><nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12"><a href=https://github.com/poolpOrg/ target=_blank class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400"><p class="text-base font-medium" title>Github</p></a><button id=search-button aria-label=Search class="text-base hover:text-primary-600 dark:hover:text-primary-400 h-12" title>
+<span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentcolor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span></button><div class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"><button id=appearance-switcher aria-label="Dark mode switcher" type=button><div class="flex items-center justify-center h-12 dark:hidden"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M32 256C32 132.2 132.3 32 255.8 32c11.36.0 29.7 1.668 40.9 3.746 9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3 9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480 132.1 480 32 379.6 32 256z"/></svg></span></div><div class="items-center justify-center hidden h-12 dark:flex"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M256 159.1c-53.02.0-95.1 42.98-95.1 95.1s41.2 96.9 95.1 96.9 95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347l-63.2-91.9 63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89 164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6 12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256 2.74 347.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7 19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109 109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69.0-127.1-57.31-127.1-127.1.0-70.69 57.31-127.1 127.1-127.1S383.1 186.2 383.1 256c0 70.7-56.4 127.1-127.1 127.1z"/></svg></span></div></button></div></nav><div class="flex md:hidden items-center space-x-5 md:ml-12"><span></span>
+<button id=search-button-mobile aria-label=Search class="text-base hover:text-primary-600 dark:hover:text-primary-400" title>
+<span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentcolor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span></button>
+<button id=appearance-switcher-mobile aria-label="Dark mode switcher" type=button style=margin-right:5px><div class="flex items-center justify-center h-12 dark:hidden"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M32 256C32 132.2 132.3 32 255.8 32c11.36.0 29.7 1.668 40.9 3.746 9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3 9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480 132.1 480 32 379.6 32 256z"/></svg></span></div><div class="items-center justify-center hidden h-12 dark:flex"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M256 159.1c-53.02.0-95.1 42.98-95.1 95.1s41.2 96.9 95.1 96.9 95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347l-63.2-91.9 63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89 164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6 12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256 2.74 347.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7 19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109 109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69.0-127.1-57.31-127.1-127.1.0-70.69 57.31-127.1 127.1-127.1S383.1 186.2 383.1 256c0 70.7-56.4 127.1-127.1 127.1z"/></svg></span></div></button></div></div><div class="-my-2 -mr-2 md:hidden"><label id=menu-button for=menu-controller class=block><input type=checkbox id=menu-controller class=hidden><div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400"><span class="relative block icon"><svg viewBox="0 0 448 512"><path fill="currentcolor" d="M0 96C0 78.33 14.33 64 32 64H416c17.7.0 32 14.33 32 32 0 17.7-14.3 32-32 32H32C14.33 128 0 113.7.0 96zM0 256c0-17.7 14.33-32 32-32H416c17.7.0 32 14.3 32 32s-14.3 32-32 32H32c-17.67.0-32-14.3-32-32zM416 448H32c-17.67.0-32-14.3-32-32s14.33-32 32-32H416c17.7.0 32 14.3 32 32s-14.3 32-32 32z"/></svg></span></div><div id=menu-wrapper style=padding-top:5px class="fixed inset-0 z-30 invisible w-screen h-screen m-auto overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50"><ul class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl"><li><span class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400"><span class="relative block icon"><svg viewBox="0 0 320 512"><path fill="currentcolor" d="M310.6 361.4c12.5 12.5 12.5 32.75.0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3 54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75.0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75.0-45.25s32.75-12.5 45.25.0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25.0s12.5 32.75.0 45.25l-105.4 105.4L310.6 361.4z"/></svg></span></span></li><li class=mt-1><a href=https://github.com/poolpOrg/ target=_blank class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400"><p class="text-bg font-bg" title>Github</p></a></li></ul><hr><ul class="flex mt-4 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl"><li class=mb-1><a href=/categories/technology/ class="flex items-center"><p class="text-sm font-sm text-gray-500 hover:text-gray-900" title>Technology</p></a></li><li class=mb-1><a href=/categories/music/ class="flex items-center"><p class="text-sm font-sm text-gray-500 hover:text-gray-900" title>Music</p></a></li><li class=mb-1><a href=/categories/personal/ class="flex items-center"><p class="text-sm font-sm text-gray-500 hover:text-gray-900" title>Personal</p></a></li></ul></div></label></div></div><div class="main-menu flex pb-3 flex-col items-end justify-between md:justify-start space-x-3" style=margin-top:-15px><div class="hidden md:flex items-center space-x-5"><a href=/categories/technology/ class="flex items-center"><p class="text-xs font-light text-gray-500 hover:text-gray-900" title>Technology</p></a><a href=/categories/music/ class="flex items-center"><p class="text-xs font-light text-gray-500 hover:text-gray-900" title>Music</p></a><a href=/categories/personal/ class="flex items-center"><p class="text-xs font-light text-gray-500 hover:text-gray-900" title>Personal</p></a></div></div></div></div><script>window.addEventListener("scroll",function(){var t=window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0,n=document.getElementById("menu-blur");n.style.opacity=t/300})</script><div class="relative flex flex-col grow"><main id=main-content class=grow><article><div class="w-full h-36 md:h-56 lg:h-72 single_hero_basic nozoom" style=background-image:url(/posts/2024-06-11/out-of-my-cave-lots-of-updates/featured_hu3349463824292497486.webp)></div><br><div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"><span class="dark:text-neutral-300 text-sm">Message to
+<u><b><a href=https://github.com/sponsors/poolpOrg>github</a></b></u> and
+<u><b><a href=https://www.patreon.com/gilles>patreon</a></b></u> sponsors:
+<b>THANK YOU ❤️</b></span></div><header id=single_header class="mt-5 max-w-prose"><ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden"><li class="inline hidden"><a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href=/>poolp.org</a><span class="px-1 text-primary-500">/</span></li><li class=inline><a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href=/posts/>Posts</a><span class="px-1 text-primary-500">/</span></li><li class="inline hidden"><a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href=/posts/2024-06-11/out-of-my-cave-lots-of-updates/>Out of my cave, lots of updates</a><span class="px-1 text-primary-500">/</span></li></ol><h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Out of my cave, lots of updates</h1><div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden"><div class="flex flex-row flex-wrap items-center"><time datetime=2024-06-11T21:00:00+01:00>11 June 2024</time><span class="px-2 text-primary-500">&#183;</span><span>6280 words</span><span class="px-2 text-primary-500">&#183;</span><span title="Reading time">30 mins</span><span class="px-2 text-primary-500">&#183;</span>
+<span class=mb-[2px]><a href=https://github.com/poolpOrg/poolp.org/tree/master/content/posts/2024-06_02/index.md class="text-lg hover:text-primary-500" rel="noopener noreferrer" target=_blank title="Edit content"><span class="inline-block align-text-bottom"><span class="relative block icon"><svg height="1em" viewBox="0 0 512 512"><path fill="currentcolor" d="M441 58.9 453.1 71c9.4 9.4 9.4 24.6.0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9.0zM209.8 256.2 344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1L186.9 325l16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25 175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 1e2c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l1e2-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7.0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4.0 152V424c0 48.6 39.4 88 88 88H360c48.6.0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1.0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H2e2c13.3.0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg></span></span></a></span></div><div class="flex flex-row flex-wrap items-center"><div style=cursor:pointer onclick='window.open("/authors/gilles/","_self")'>Gilles Chehade</div></div><div class="flex flex-row flex-wrap items-center"><span style=margin-top:.5rem class=mr-2 onclick='window.open("/categories/technology/","_self")'><span class=flex style=cursor:pointer><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Technology
+</span></span></span><span style=margin-top:.5rem class=mr-2 onclick='window.open("/tags/openbsd/","_self")'><span class=flex style=cursor:pointer><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">OpenBSD
+</span></span></span><span style=margin-top:.5rem class=mr-2 onclick='window.open("/tags/opensmtpd/","_self")'><span class=flex style=cursor:pointer><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">OpenSMTPD
+</span></span></span><span style=margin-top:.5rem class=mr-2 onclick='window.open("/tags/plakar/","_self")'><span class=flex style=cursor:pointer><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Plakar
+</span></span></span><span style=margin-top:.5rem class=mr-2 onclick='window.open("/tags/backups/","_self")'><span class=flex style=cursor:pointer><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Backups</span></span></span></div></div><div class="flex author"><div class=place-self-center><div class="text-2xl sm:text-lg"></div></div></div><div class="flex author author-extra mt-4"><img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width=96 height=96 src=/img/gilles_hu8275017791684824193.jpg><div class=place-self-center><div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">Author</div><a href=https://poolp.org//authors/gilles class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">Gilles Chehade</a><div class="text-sm text-neutral-700 dark:text-neutral-400">I&rsquo;m not a cat.</div><div class="text-2xl sm:text-lg"><div class="flex flex-wrap text-neutral-400 dark:text-neutral-500"><a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=mailto:gilles@poolp.org target=_blank aria-label=Email rel="me noopener noreferrer"><span class="inline-block align-text-bottom"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1-27.64 140.9 68.65 266.2 199.1 285.1 19.01 2.888 36.17-12.26 36.17-31.49l1e-4-.6631c0-15.74-11.44-28.88-26.84-31.24-84.35-12.98-149.2-86.13-149.2-174.2.0-102.9 88.61-185.5 193.4-175.4 91.54 8.869 158.6 91.25 158.6 183.2v16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98.0036c-7.299.0-13.2 4.992-15.12 11.68-24.85-12.15-54.24-16.38-86.06-5.106-38.75 13.73-68.12 48.91-73.72 89.64-9.483 69.01 43.81 128 110.9 128 26.44.0 50.43-9.544 69.59-24.88 24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3c0-149.2-133.9-265.632-287.3-235.57zM239.1 304.3c-26.47.0-48-21.56-48-48.05s21.53-48.05 48-48.05 48 21.56 48 48.05-20.6 48.05-48 48.05z"/></svg>
+</span></span></a><a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://github.com/poolpOrg target=_blank aria-label=Github rel="me noopener noreferrer"><span class="inline-block align-text-bottom"><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></span></a><a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://linkedin.com/in/gilleschehade target=_blank aria-label=Linkedin rel="me noopener noreferrer"><span class="inline-block align-text-bottom"><span class="relative block icon"><svg viewBox="0 0 448 512"><path fill="currentcolor" d="M416 32H31.9C14.3 32 0 46.5.0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6.0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3.0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2.0 38.5 17.3 38.5 38.5.0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6.0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2.0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span></span></a><a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://social.poolp.org/@gilles target=_blank aria-label=Mastodon rel="me noopener noreferrer"><span class="inline-block align-text-bottom"><span class="relative block icon"><svg viewBox="0 0 448 512"><path fill="currentcolor" d="M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48.0.0.0-63.72 28.5-63.72 125.7.0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33 11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.54 102.54.0 01-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9 9.8-49.8 9-121.5 9-121.5zm-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9 18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8 103.83-6.1 23.71 27.3 18.4 53 18.4 175z"/></svg>
+</span></span></a><a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://www.youtube.com/gilleschehade target=_blank aria-label=Youtube rel="me noopener noreferrer"><span class="inline-block align-text-bottom"><span class="relative block icon"><svg viewBox="0 0 576 512"><path fill="currentcolor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78.0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+</span></span></a><a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://twitch.tv/poolporg target=_blank aria-label=Twitch rel="me noopener noreferrer"><span class="inline-block align-text-bottom"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M391.17 103.47H352.54v109.7h38.63zM285 103H246.37V212.75H285zM120.83.0 24.31 91.42V420.58H140.14V512l96.53-91.42h77.25L487.69 256V0zM449.07 237.75l-77.22 73.12H294.61l-67.6 64v-64H140.14V36.58H449.07z"/></svg></span></span></a></div></div></div></div><div class=mb-5></div></header><div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"><span class="dark:text-neutral-300 text-sm">If you like reading articles on this website,
+<b>please ❤️</b> consider <b>sharing on social networks</b> to help increase visibility:
+<b>this helps buy time for new articles and projects</b> !<section class="flex flex-row flex-wrap justify-center pt-4 text-xl"><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;title=Out%20of%20my%20cave,%20lots%20of%20updates" title="Share on LinkedIn" aria-label="Share on LinkedIn"><span class="relative block icon"><svg viewBox="0 0 448 512"><path fill="currentcolor" d="M416 32H31.9C14.3 32 0 46.5.0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6.0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3.0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2.0 38.5 17.3 38.5 38.5.0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6.0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2.0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://twitter.com/intent/tweet/?url=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;text=Out%20of%20my%20cave,%20lots%20of%20updates" title="Tweet on Twitter" aria-label="Tweet on Twitter"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://reddit.com/submit/?url=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;resubmit=true&amp;title=Out%20of%20my%20cave,%20lots%20of%20updates" title="Submit to Reddit" aria-label="Submit to Reddit"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M201.5 305.5c-13.8.0-24.9-11.1-24.9-24.6.0-13.8 11.1-24.9 24.9-24.9 13.6.0 24.6 11.1 24.6 24.9.0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4.0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8.0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7.0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9.0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5.0 52.6 59.2 95.2 132 95.2 73.1.0 132.3-42.6 132.3-95.2.0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6.0-2.2-2.2-6.1-2.2-8.3.0-2.5 2.5-2.5 6.4.0 8.6 22.8 22.8 87.3 22.8 110.2.0 2.5-2.2 2.5-6.1.0-8.6-2.2-2.2-6.1-2.2-8.3.0zm7.7-75c-13.6.0-24.6 11.1-24.6 24.9.0 13.6 11.1 24.6 24.6 24.6 13.8.0 24.9-11.1 24.9-24.6.0-13.8-11-24.9-24.9-24.9z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://pinterest.com/pin/create/bookmarklet/?url=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;description=Out%20of%20my%20cave,%20lots%20of%20updates" title="Pin on Pinterest" aria-label="Pin on Pinterest"><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M496 256c0 137-111 248-248 248-25.6.0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8.0 128.7-68.8 128.7-154.3.0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1.0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6.0-54.7 41.4-107.6 112-107.6 60.9.0 103.6 41.5 103.6 100.9.0 67.1-33.9 113.6-78 113.6-24.3.0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6.0-19-10.2-34.9-31.4-34.9-24.9.0-44.9 25.7-44.9 60.2.0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9.0 361.1.0 256 0 119 111 8 248 8s248 111 248 248z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://www.facebook.com/sharer/sharer.php?u=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;quote=Out%20of%20my%20cave,%20lots%20of%20updates" title="Share on Facebook" aria-label="Share on Facebook"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14.0 55.52 4.84 55.52 4.84v61h-31.28c-30.8.0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="mailto:?body=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;subject=Out%20of%20my%20cave,%20lots%20of%20updates" title="Send via email" aria-label="Send via email"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1-27.64 140.9 68.65 266.2 199.1 285.1 19.01 2.888 36.17-12.26 36.17-31.49l1e-4-.6631c0-15.74-11.44-28.88-26.84-31.24-84.35-12.98-149.2-86.13-149.2-174.2.0-102.9 88.61-185.5 193.4-175.4 91.54 8.869 158.6 91.25 158.6 183.2v16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98.0036c-7.299.0-13.2 4.992-15.12 11.68-24.85-12.15-54.24-16.38-86.06-5.106-38.75 13.73-68.12 48.91-73.72 89.64-9.483 69.01 43.81 128 110.9 128 26.44.0 50.43-9.544 69.59-24.88 24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3c0-149.2-133.9-265.632-287.3-235.57zM239.1 304.3c-26.47.0-48-21.56-48-48.05s21.53-48.05 48-48.05 48 21.56 48 48.05-20.6 48.05-48 48.05z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://api.whatsapp.com/send?text=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;resubmit=true&amp;title=Out%20of%20my%20cave,%20lots%20of%20updates" title aria-label><span class="relative block icon"><svg viewBox="0 0 448 512"><path fill="currentcolor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4.0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3.0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2.0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2.0-101.7 82.8-184.5 184.6-184.5 49.3.0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5.0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.3 18-17.6 21.8c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 19-19.4 46.3.0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://t.me/share/url?url=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;resubmit=true&amp;title=Out%20of%20my%20cave,%20lots%20of%20updates" title aria-label><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M248 8C111.033 8 0 119.033.0 256S111.033 504 248 504 496 392.967 496 256 384.967 8 248 8zM362.952 176.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452.0 013.53 6.716A43.765 43.765.0 01362.952 176.66z"/></svg></span></a></section></span></div><section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row"><div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs ltr:lg:pl-8 rtl:lg:pr-8"><div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-10"><details open id=TOCView class="toc-right mt-0 overflow-y-scroll overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block"><summary class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">Table of Contents</summary><div class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600"><nav id=TableOfContents><ul><li><a href=#why-the-silence->Why the silence ?</a></li><li><a href=#openbsd-and-opensmtpd>OpenBSD and OpenSMTPD</a><ul><li><a href=#back-in-the-game>Back in the game</a></li><li><a href=#opensmtpd-security-improvements>OpenSMTPD security improvements</a></li><li><a href=#opensmtpd-750p0-released>OpenSMTPD 7.5.0p0 released</a></li><li><a href=#new-table-api-protocol>New table API protocol</a></li><li><a href=#new-k_auth-table-lookup-service>New K_AUTH table lookup service</a></li><li><a href=#return-of-the-kicker>Return of the kicker</a></li><li><a href=#unofficial-opensmtpd-framework>Unofficial OpenSMTPD framework</a></li><li><a href=#filter-kicker>filter-kicker</a></li></ul></li><li><a href=#plakar>Plakar</a><ul><li><a href=#began-working-on-adaptative-resources-consumption>Began working on adaptative resources consumption</a></li><li><a href=#backup-exclusions>Backup exclusions</a></li><li><a href=#exporters-fs-and-s3>Exporters: fs and s3</a></li><li><a href=#teach-ls-how-to-list-tags>Teach ls how to list tags</a></li><li><a href=#teach-rm-how-to-rm-tags-and-old-snapshots>Teach rm how to rm tags and old snapshots</a></li><li><a href=#agent-mode>Agent mode</a></li><li><a href=#plakman>Plakman</a></li></ul></li><li><a href=#assorted-side-projects>Assorted side projects</a><ul><li><a href=#wrote-an-article-for-a-french-security-magazine>Wrote an article for a french security magazine</a></li><li><a href=#go-cdc-chunkers>go-cdc-chunkers</a></li><li><a href=#go-urlwatcher>go-urlwatcher</a></li><li><a href=#go-ipcmsg>go-ipcmsg</a></li><li><a href=#go-agentbuilder>go-agentbuilder</a></li></ul></li><li><a href=#whats-next->What&rsquo;s next ?</a></li></ul></nav></div></details><details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden"><summary class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">Table of Contents</summary><div class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600"><nav id=TableOfContents><ul><li><a href=#why-the-silence->Why the silence ?</a></li><li><a href=#openbsd-and-opensmtpd>OpenBSD and OpenSMTPD</a><ul><li><a href=#back-in-the-game>Back in the game</a></li><li><a href=#opensmtpd-security-improvements>OpenSMTPD security improvements</a></li><li><a href=#opensmtpd-750p0-released>OpenSMTPD 7.5.0p0 released</a></li><li><a href=#new-table-api-protocol>New table API protocol</a></li><li><a href=#new-k_auth-table-lookup-service>New K_AUTH table lookup service</a></li><li><a href=#return-of-the-kicker>Return of the kicker</a></li><li><a href=#unofficial-opensmtpd-framework>Unofficial OpenSMTPD framework</a></li><li><a href=#filter-kicker>filter-kicker</a></li></ul></li><li><a href=#plakar>Plakar</a><ul><li><a href=#began-working-on-adaptative-resources-consumption>Began working on adaptative resources consumption</a></li><li><a href=#backup-exclusions>Backup exclusions</a></li><li><a href=#exporters-fs-and-s3>Exporters: fs and s3</a></li><li><a href=#teach-ls-how-to-list-tags>Teach ls how to list tags</a></li><li><a href=#teach-rm-how-to-rm-tags-and-old-snapshots>Teach rm how to rm tags and old snapshots</a></li><li><a href=#agent-mode>Agent mode</a></li><li><a href=#plakman>Plakman</a></li></ul></li><li><a href=#assorted-side-projects>Assorted side projects</a><ul><li><a href=#wrote-an-article-for-a-french-security-magazine>Wrote an article for a french security magazine</a></li><li><a href=#go-cdc-chunkers>go-cdc-chunkers</a></li><li><a href=#go-urlwatcher>go-urlwatcher</a></li><li><a href=#go-ipcmsg>go-ipcmsg</a></li><li><a href=#go-agentbuilder>go-agentbuilder</a></li></ul></li><li><a href=#whats-next->What&rsquo;s next ?</a></li></ul></nav></div></details><script>var margin=200,marginError=50;(function(){var t=$(window),e=$("#TOCView"),s=e.height();function n(){var n=t.height()-margin;s>=n?(e.css("overflow-y","scroll"),e.css("max-height",n+marginError+"px")):(e.css("overflow-y","hidden"),e.css("max-height","9999999px"))}t.on("resize",n),$(document).ready(n)})()</script></div></div><div class="min-w-0 min-h-0 max-w-prose"><blockquote><b>TL;DR:</b><br>I have been silent for a while due to personal matters but I did a ton of stuff on OpenSMTPD, plakar and a handful of other projects.</blockquote><h1 class="relative group">Why the silence ?<div id=why-the-silence- class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#why-the-silence- aria-label=Anchor>#</a></span></h1><p>My last post was a bit unusual,
+far off from the usual light tone,
+and followed by months of silence despite my habit of writing almost monthly.</p><p>Quite frankly, I don&rsquo;t want to expand on why so I&rsquo;ll keep it short.</p><p>I had a very, very, very rough year and a half on the personal plan.
+I did a ton of things to keep my mind busy,
+I had a ton of things to write about,
+but I just couldn&rsquo;t be fucked to sit down in front of an empty page and pour the contents of my brain for these last few months.</p><p><strong>I&rsquo;m back on track now.</strong></p><p>As I haven&rsquo;t written anything in a long time,
+I have content for multiple articles&mldr;
+but I know that I won&rsquo;t find time to write several of them.
+I&rsquo;d rather braindump a ton of things in this article,
+even if it is a bit dense,
+so I can log what I did and renew with writing.</p><p>Feel free to use the table of contents to skip over topics.</p><h1 class="relative group">OpenBSD and OpenSMTPD<div id=openbsd-and-opensmtpd class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#openbsd-and-opensmtpd aria-label=Anchor>#</a></span></h1><h2 class="relative group">Back in the game<div id=back-in-the-game class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#back-in-the-game aria-label=Anchor>#</a></span></h2><p>You may have noticed that <strong>I reappeared on the OpenBSD and OpenSMTPD mailing lists</strong>,
+and I even committed a handful of things in both projects.
+I will not be as active as I used to,
+but won&rsquo;t be as inactive as these last few years,
+I&rsquo;ll figure a balance between contributing there and working on my own personal projects.</p><h2 class="relative group">OpenSMTPD security improvements<div id=opensmtpd-security-improvements class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#opensmtpd-security-improvements aria-label=Anchor>#</a></span></h2><p>Early March,
+someone posted a question on the <a href=mailto:misc@opensmtpd.org>misc@opensmtpd.org</a> mailing-list.</p><p>I had not been active on the list for a while and didn&rsquo;t pay much attention as members of the community tends to answer most questions now.
+In this case,
+however,
+the behavior contradicted what I recalled writing a few years ago and immediately struck me as being buggy.</p><p>For some reason,
+delivery through LMTP had been changed to use the daemon user rather than the end-user account which was not the finest idea as I knew this meant a local DoS was possible for any LMTP-enabled setup (not the default).</p><p>I notified OpenBSD and provided a diff to revert the behavior back to what it was and since I was looking at that code again, I suggested two additional improvements which were accepted and commited.</p><p><strong>The first improvement was to push for disallowing the evaluation of <code>.forward </code>files for users that do not match the destination user in an action.</strong></p><p>Basically, if the delivery user is <code>gilles</code> then if a <code>.forward</code> file is found that&rsquo;s not owned by <code>gilles</code>, it should be skipped even if part of the aliases expansion. In most cases, you don&rsquo;t run into this kind of situation, but occasionally, if you have setups with alternate delivery users, like:</p><pre><code>action foobar lmtp ... user _foobar
+</code></pre><p>&mldr; then mailing <code>gilles@</code> would look at <code>gilles</code>&rsquo; .forward file if found, which is not desired as only <code>_foobar</code> should be looked at. This probably qualifies more as a bug than an &ldquo;improvement&rdquo; to be honest but noone ever complained, I just happened to have a good rationale for why it&rsquo;s a bad idea: this would have prevented the DoS that was introduced with the LMTP behavior change, making OpenSMTPD a tiny bit more robust.</p><p><strong>The second improvement was to push for the killing of commands in <code>root</code>&rsquo;s <code>.forward</code> file.</strong></p><p>The root account should really not be allowed to receive mail and should be aliased but it is hard to achieve because it is the only account you know exists out of the box. OpenSMTPD disallowed the execution of any command as <code>root</code> except for the hardcoded constant string <code>mail.local</code>, but I realised that there was a way to bypass this: <code>.forward</code> files.</p><p>The <code>.forward</code> files allow plugging custom commands to be ran as the delivery user, so <code>root</code> could technically plug any command there that would be ran as <code>root</code>. This also meant that if a hacker managed to alter the <code>.forward</code> file with arbitrary content OR to corrupt memory so that the <code>.forward</code> file parser got fed with arbitrary content, they could get a command executed as <code>root</code> and bypass the <code>mail.local</code> restriction.</p><p>I made an argument that there&rsquo;s no reason <code>root</code> should be allowed to execute any command in OpenSMTPD so we should kill the ability for root to put anything but e-mail addresses or local accounts in <code>.forward</code> files and this got committed, increasing considerably the security of the daemon by locking <code>root</code> to <code>mail.local</code>.</p><p>We verified by injecting envelopes that attempted to execute code as <code>root</code> through custom MDA but also by instrumenting code to &ldquo;patch&rdquo; the delivery command as if a memory corruption had rewritten it.</p><p><strong>Security improved by a great bunch with these minor changes.</strong></p><h2 class="relative group">OpenSMTPD 7.5.0p0 released<div id=opensmtpd-750p0-released class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#opensmtpd-750p0-released aria-label=Anchor>#</a></span></h2><p>Omar Polo (op@) did a great job <strong>reviving OpenSMTPD-portable</strong>,
+bringing all OpenBSD changes to it and testing on various systems.</p><p>Seeing him take care of this,
+which is something I <em>had</em> to do by myself in the past,
+was very pleasing.
+He took care of everything by himself,
+I offered minor guidance and help with understanding prior technical decisions,
+but he single-handedly took care of bringing back OpenSMTPD-portable.</p><p><strong>All I had to do was&mldr;
+proof-read him and sign his tarballs</strong>.
+That was lovely :-)</p><p>OpenSMTPD 7.5.0 was <a href=https://www.mail-archive.com/misc@opensmtpd.org/msg06238.html target=_blank>announced</a> the 10th of April,
+I&rsquo;ll let you read the changelog.</p><h2 class="relative group">New table API protocol<div id=new-table-api-protocol class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#new-table-api-protocol aria-label=Anchor>#</a></span></h2><p>Since I was reading Omar&rsquo;s work,
+I rejoined the #OpenSMTPD IRC channel,
+and caught a discussion about table_ldap.</p><p>For history,
+<strong>I wrote table_ldap as a proof of concept</strong> that OpenSMTPD could provide LDAP support through OpenBSD&rsquo;s aldap API&mldr;
+but I could not care less about LDAP: <strong>I don&rsquo;t use LDAP</strong>.
+I wrote the most basic working implementation I could in hope someone with actual need would care for it,
+but noone ever did.</p><p>A user was starting to improve on it but the table was part of a bigger repository with a ton of outdated code which I considered deprecated and unmaintained.</p><p>I explained that we had in mind to <strong>convert the table protocol into one similar to the filter protocol</strong>, switching from the <code>imsg(3)</code> API to an stdio-based API that would allow writing table backends very easily in any language by splitting lines coming to stdin and providing responses to stdout. The model has proved to be very nice for filters and tables are considerably simpler.</p><p>I had a <strong>3-steps plans</strong> for it:</p><ul><li>implement a table_stdio that would convert the imsg protocol to new stdio protocol</li><li>convert tables from imsg to new protocol, considering that there was already an API abstracting it, this was just changing the plumbing to convert binary packets to string packets</li><li>have a chat with the OpenBSD crowd to convince them that first step could be done in the daemon to skip the need for a custom table proxying old protocol to new protocol.</li></ul><p>Omar bought the idea and implemented&mldr; the three steps.</p><p>I sent a mail to explain the rationale to OpenBSD hackers,
+there was no opposition so we moved forward:
+Omar created ports for the table backends we supported,
+and committed both the ports and the protocol change in OpenSMTPD.</p><p>I <a href=https://www.mail-archive.com/misc@opensmtpd.org/msg06266.html target=_blank>sent a mail with more details</a> to the <a href=mailto:misc@opensmtpd.org>misc@opensmtpd.org</a> list to explain.</p><h2 class="relative group">New K_AUTH table lookup service<div id=new-k_auth-table-lookup-service class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#new-k_auth-table-lookup-service aria-label=Anchor>#</a></span></h2><p>Authentication in OpenSMTPD is done in two ways.</p><p>The first one is the system authentication,
+which uses the <code>bsd_auth(3)</code> framework on OpenBSD,
+the <code>pam</code> framework on other systems where it&rsquo;s available,
+and falls back to <code>crypt(3)</code>-ed validation of <code>getpwnam(3)</code>&rsquo;s <code>pw->pw_passwd</code> field.</p><p>The second one is the table authentication,
+where credentials are not matched against the system but against a table backend,
+like for instance if you decided to store your users&rsquo; passwords in a database of some sort (sqlite, mysql, postgrsql, ldap, &mldr; or even a file).</p><p>In that second case,
+OpenSMTPD performs a <code>K_CREDENTIALS</code> lookup through the table API which will retrieve a <code>crypt(3)</code>-ed password from the table backend,
+and it&rsquo;ll do the <code>crypt(3)</code> password validation itself so table backends do not have to implement the logic.</p><p>While this works and has the benefit of allowing any backend to propose <code>K_CREDENTIALS</code> lookup as long as they can store a key-value pair,
+the problem is that some backends have more custom ways of authenticating users and we didn&rsquo;t take advantatge of them.</p><p>I suggested that we implement a new <code>K_AUTH</code> lookup services to <strong>offload authentication to a table backend</strong>.
+If a table implements <code>K_AUTH</code>,
+instead of being requested for credentials through <code>K_CREDENTIALS</code>,
+OpenSMTPD will request a <code>K_AUTH</code> check of a username and password pair.
+The table will then be responsible of confirming if they match or not without exposing the underlying logic,
+allowing them to implement authentication in any suitable way.</p><p>The diff is very simple.
+It declares a new K_AUTH lookup service.
+It introduces it in the table protocol so tables can register the service.
+Then when an authentication is requested,
+it checks if the table supports <code>K_AUTH</code> and does the new lookup,
+or it falls back to what it has done until now:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span><span style=font-weight:700>Index: lka.c
+</span></span></span><span style=display:flex><span><span style=font-weight:700>===================================================================
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span>RCS file: /cvs/src/usr.sbin/smtpd/lka.c,v
+</span></span><span style=display:flex><span><span style=font-weight:700>diff -u -p -r1.248 lka.c
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>--- lka.c	20 Jan 2024 09:01:03 -0000	1.248
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+++ lka.c	26 May 2024 20:56:02 -0000
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span><span style=font-weight:700>@@ -720,6 +720,7 @@ static int
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> lka_authenticate(const char *tablename, const char *user, const char *password)
+</span></span><span style=display:flex><span> {
+</span></span><span style=display:flex><span> 	struct table		*table;
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	char	       		 offloadkey[LINE_MAX];
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	union lookup		 lk;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> 	log_debug(&#34;debug: lka: authenticating for %s:%s&#34;, tablename, user);
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -730,7 +731,27 @@ lka_authenticate(const char *tablename, 
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 		return (LKA_TEMPFAIL);
+</span></span><span style=display:flex><span> 	}
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#f55>-	switch (table_lookup(table, K_CREDENTIALS, user, &amp;lk)) {
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+	/* table backend supports authentication offloading */
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (table_check_service(table, K_AUTH)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		if (!bsnprintf(offloadkey, sizeof(offloadkey), &#34;%s:%s&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			user, password)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			log_warnx(&#34;warn: key serialization failed for %s:%s&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			    tablename, user);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			return (LKA_TEMPFAIL);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		switch (table_match(table, K_AUTH, offloadkey)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		case -1:
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			log_warnx(&#34;warn: user credentials lookup fail for %s:%s&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			    tablename, user);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			return (LKA_TEMPFAIL);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		case 0:
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			return (LKA_PERMFAIL);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		default:
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			return (LKA_OK);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	switch (table_lookup(table, K_CREDENTIALS, user, &amp;lk)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	case -1:
+</span></span><span style=display:flex><span> 		log_warnx(&#34;warn: user credentials lookup fail for %s:%s&#34;,
+</span></span><span style=display:flex><span> 		    tablename, user);
+</span></span><span style=display:flex><span><span style=font-weight:700>Index: smtpd-api.h
+</span></span></span><span style=display:flex><span><span style=font-weight:700>===================================================================
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span>RCS file: /cvs/src/usr.sbin/smtpd/smtpd-api.h,v
+</span></span><span style=display:flex><span><span style=font-weight:700>diff -u -p -r1.36 smtpd-api.h
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>--- smtpd-api.h	23 Dec 2018 16:06:24 -0000	1.36
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+++ smtpd-api.h	26 May 2024 20:56:03 -0000
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span><span style=font-weight:700>@@ -135,8 +135,9 @@ enum table_service {
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 	K_RELAYHOST	= 0x200,	/* returns struct relayhost	*/
+</span></span><span style=display:flex><span> 	K_STRING	= 0x400,
+</span></span><span style=display:flex><span> 	K_REGEX		= 0x800,
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	K_AUTH		= 0x1000,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> };
+</span></span><span style=display:flex><span><span style=color:#f55>-#define K_ANY		  0xfff
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+#define K_ANY		  0xffff
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 
+</span></span><span style=display:flex><span> enum {
+</span></span><span style=display:flex><span> 	PROC_TABLE_OK,
+</span></span><span style=display:flex><span><span style=font-weight:700>Index: table.c
+</span></span></span><span style=display:flex><span><span style=font-weight:700>===================================================================
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span>RCS file: /cvs/src/usr.sbin/smtpd/table.c,v
+</span></span><span style=display:flex><span><span style=font-weight:700>diff -u -p -r1.52 table.c
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>--- table.c	7 May 2024 12:10:06 -0000	1.52
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+++ table.c	26 May 2024 20:56:03 -0000
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span><span style=font-weight:700>@@ -83,6 +83,7 @@ table_service_name(enum table_service s)
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 	case K_RELAYHOST:	return &#34;relayhost&#34;;
+</span></span><span style=display:flex><span> 	case K_STRING:		return &#34;string&#34;;
+</span></span><span style=display:flex><span> 	case K_REGEX:		return &#34;regex&#34;;
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	case K_AUTH:		return &#34;auth&#34;;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	}
+</span></span><span style=display:flex><span> 	return &#34;???&#34;;
+</span></span><span style=display:flex><span> }
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -116,6 +117,8 @@ table_service_from_name(const char *serv
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 		return K_STRING;
+</span></span><span style=display:flex><span> 	if (!strcmp(service, &#34;regex&#34;))
+</span></span><span style=display:flex><span> 		return K_REGEX;
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (!strcmp(service, &#34;auth&#34;))
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return K_AUTH;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	return (-1);
+</span></span><span style=display:flex><span> }
+</span></span></code></pre></div><h2 class="relative group">Return of the kicker<div id=return-of-the-kicker class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#return-of-the-kicker aria-label=Anchor>#</a></span></h2><p>There is a problem with OpenSMTPD which is that <strong>clients can keep sessions alive indefinitely as long as they are active</strong>,
+hogging a connection unnecessarily.</p><p>In theory,
+since the number of transactions allowed in a session is limited,
+so you&rsquo;d expect a disconnection to happen because a limit is hit&mldr;
+but in practice the SMTP protocol allows clients to play various sequences that are legal RFC-wise and that maintain a session active without submitting messages.
+For example,
+a client could do a NOOP loop,
+or it could do a RSET loop,
+or it could do a NOOP-RSET loop,
+or it could begin a transaction then RSET it without a commit,
+or it could AUTH-RSET loop,
+&mldr; you get the idea.</p><p>You can use firewall and rate-limiting to block misbehaving clients,
+but this is a bit painful on the postmaster side,
+and you have to tackle this differently on different systems with different firewall and rate-limiting mechanisms.</p><p>A loooooong time ago (about 12 years), eric@ and I introduced a mechanism called the kicker.</p><p>The philosophy was simple:</p><ul><li>a session is supposed to move forward with exchanging messages</li><li>each SMTP command transitions the session from a state to another</li><li>each transition can be considered as a backwards move, an idle move or a forward move in the session progression</li><li>if we detect a pattern that implies the session is not progressing enough, we kick the offender out</li></ul><p>The mechanism was backed out 8 years ago for what I consider to be bad reasons,
+and since I was unhappy with the decision I didn&rsquo;t work on trying to bring it back.</p><p>Time has passed,
+now <a href="https://undeadly.org/cgi?action=article;sid=20240607042157" target=_blank>OpenSSH introduces options to penalize undesirable behavior</a>,
+so I made a suggestion to work on bringing it back which was well received.</p><p>I wrote two versions of the feature,
+one that plugs right into the smtp session layer,
+and one that works as a builtin filter.</p><p>I turns out that <strong>plugging it as a builtin filter</strong>,
+which is intuitively the right place,
+has several downsides and is <strong>considerably more complex than slapping a handful of conditions in the smtp session layer</strong>.</p><p>Anyways,
+the idea is that the kicker is a feature you can now enable/disable globally or on specific listeners:</p><pre tabindex=0><code class=language-conf data-lang=conf>smtp kicker on
+
+listen on all kicker off
+</code></pre><p>It uses a kickcount counter which gets increased with every command and reset whenever a session is progressing.
+If the kickcount reaches a certain threshold,
+it means that too many commands have been supplied without making a move forward:</p><pre tabindex=0><code class=language-term data-lang=term>$ nc mx-in.poolp.org 25
+220 mx-in.poolp.org ESMTP OpenSMTPD
+NOOP
+250 2.0.0 Ok
+NOOP
+250 2.0.0 Ok
+NOOP
+250 2.0.0 Ok
+NOOP
+421 4.4.2 4.0.0 Other/Undefined: Session terminated due to lack of progress
+
+$ nc mx-in.poolp.org 25
+220 mx-in.poolp.org ESMTP OpenSMTPD
+HELO localhost
+250 mx-in.poolp.org Hello localhost [82.65.169.200], pleased to meet you
+MAIL FROM:&lt;gilles&gt;
+250 2.0.0 Ok
+RSET
+250 2.0.0 Reset state
+MAIL FROM:&lt;gilles&gt;
+250 2.0.0 Ok
+RSET
+250 2.0.0 Reset state
+MAIL FROM:&lt;gilles&gt;
+250 2.0.0 Ok
+RSET
+250 2.0.0 Reset state
+MAIL FROM:&lt;gilles&gt;
+250 2.0.0 Ok
+RSET
+421 4.4.2 4.0.0 Other/Undefined: Session terminated due to lack of progress
+</code></pre><p>The diff is still a work in progress,
+it hasn&rsquo;t even been proposed yet as I&rsquo;m currently running it on my own mail server:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span><span style=font-weight:700>Index: parse.y
+</span></span></span><span style=display:flex><span><span style=font-weight:700>===================================================================
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span>RCS file: /cvs/src/usr.sbin/smtpd/parse.y,v
+</span></span><span style=display:flex><span><span style=font-weight:700>diff -u -p -r1.299 parse.y
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>--- parse.y	19 Feb 2024 21:00:19 -0000	1.299
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+++ parse.y	8 Jun 2024 23:23:19 -0000
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span><span style=font-weight:700>@@ -98,8 +98,8 @@ static uint32_t		 last_dynchain_id = 1;
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 
+</span></span><span style=display:flex><span> enum listen_options {
+</span></span><span style=display:flex><span> 	LO_FAMILY	= 0x000001,
+</span></span><span style=display:flex><span><span style=color:#f55>-	LO_PORT		= 0x000002,
+</span></span></span><span style=display:flex><span><span style=color:#f55>-	LO_SSL		= 0x000004,
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+	LO_PORT	       	= 0x000002,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	LO_SSL 		= 0x000004,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	LO_FILTER      	= 0x000008,
+</span></span><span style=display:flex><span> 	LO_PKI      	= 0x000010,
+</span></span><span style=display:flex><span> 	LO_AUTH      	= 0x000020,
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -107,12 +107,14 @@ enum listen_options {
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 	LO_HOSTNAME   	= 0x000080,
+</span></span><span style=display:flex><span> 	LO_HOSTNAMES   	= 0x000100,
+</span></span><span style=display:flex><span> 	LO_MASKSOURCE  	= 0x000200,
+</span></span><span style=display:flex><span><span style=color:#f55>-	LO_NODSN	= 0x000400,
+</span></span></span><span style=display:flex><span><span style=color:#f55>-	LO_SENDERS	= 0x000800,
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+	LO_NODSN		= 0x000400,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	LO_SENDERS		= 0x000800,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	LO_RECEIVEDAUTH = 0x001000,
+</span></span><span style=display:flex><span> 	LO_MASQUERADE	= 0x002000,
+</span></span><span style=display:flex><span><span style=color:#f55>-	LO_CA		= 0x004000,
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+	LO_CA			= 0x004000,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	LO_PROXY       	= 0x008000,
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	LO_KICKER_ON	= 0x010000,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	LO_KICKER_OFF	= 0x020000,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> };
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> #define PKI_MAX	32
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -174,11 +176,11 @@ typedef struct {
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> %token	HELO HELO_SRC HOST HOSTNAME HOSTNAMES
+</span></span><span style=display:flex><span> %token	INCLUDE INET4 INET6
+</span></span><span style=display:flex><span> %token	JUNK
+</span></span><span style=display:flex><span><span style=color:#f55>-%token	KEY
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+%token	KEY KICKER
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> %token	LIMIT LISTEN LMTP LOCAL
+</span></span><span style=display:flex><span> %token	MAIL_FROM MAILDIR MASK_SRC MASQUERADE MATCH MAX_MESSAGE_SIZE MAX_DEFERRED MBOX MDA MTA MX
+</span></span><span style=display:flex><span> %token	NO_DSN NO_VERIFY NOOP
+</span></span><span style=display:flex><span><span style=color:#f55>-%token	ON
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+%token	OFF ON
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> %token	PHASE PKI PORT PROC PROC_EXEC PROTOCOLS PROXY_V2
+</span></span><span style=display:flex><span> %token	QUEUE QUIT
+</span></span><span style=display:flex><span> %token	RCPT_TO RDNS RECIPIENT RECEIVEDAUTH REGEX RELAY REJECT REPORT REWRITE RSET
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -543,6 +545,12 @@ SMTP LIMIT limits_smtp
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 	}
+</span></span><span style=display:flex><span> 	conf-&gt;sc_subaddressing_delim = $3;
+</span></span><span style=display:flex><span> }
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+| SMTP KICKER ON {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	conf-&gt;sc_smtp_kicker = 1;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+| SMTP KICKER OFF {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	conf-&gt;sc_smtp_kicker = 0;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> ;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> srs:
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -2490,6 +2498,22 @@ opt_if_listen : INET4 {
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 			}
+</span></span><span style=display:flex><span> 			listen_opts.sendertable = t;
+</span></span><span style=display:flex><span> 		}
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		| KICKER ON {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			if (listen_opts.options &amp; (LO_KICKER_ON|LO_KICKER_OFF)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+				yyerror(&#34;kicker already specified&#34;);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+				YYERROR;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			listen_opts.options |= LO_KICKER_ON;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			listen_opts.flags |= F_KICKER;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		| KICKER OFF {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			if (listen_opts.options &amp; (LO_KICKER_ON|LO_KICKER_OFF)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+				yyerror(&#34;kicker already specified&#34;);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+				YYERROR;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			listen_opts.options |= LO_KICKER_OFF;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			listen_opts.flags &amp;= ~F_KICKER;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 		;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> listener_type	: socket_listener
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -2686,6 +2710,7 @@ lookup(char *s)
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 		{ &#34;inet6&#34;,		INET6 },
+</span></span><span style=display:flex><span> 		{ &#34;junk&#34;,		JUNK },
+</span></span><span style=display:flex><span> 		{ &#34;key&#34;,		KEY },
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		{ &#34;kicker&#34;,		KICKER },
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 		{ &#34;limit&#34;,		LIMIT },
+</span></span><span style=display:flex><span> 		{ &#34;listen&#34;,		LISTEN },
+</span></span><span style=display:flex><span> 		{ &#34;lmtp&#34;,		LMTP },
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -2704,6 +2729,7 @@ lookup(char *s)
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 		{ &#34;no-dsn&#34;,		NO_DSN },
+</span></span><span style=display:flex><span> 		{ &#34;no-verify&#34;,		NO_VERIFY },
+</span></span><span style=display:flex><span> 		{ &#34;noop&#34;,		NOOP },
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		{ &#34;off&#34;,		OFF },
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 		{ &#34;on&#34;,			ON },
+</span></span><span style=display:flex><span> 		{ &#34;phase&#34;,		PHASE },
+</span></span><span style=display:flex><span> 		{ &#34;pki&#34;,		PKI },
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -3239,6 +3265,7 @@ create_sock_listener(struct listen_opts 
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 	l-&gt;ss.ss_len = sizeof(struct sockaddr *);
+</span></span><span style=display:flex><span> 	l-&gt;local = 1;
+</span></span><span style=display:flex><span> 	conf-&gt;sc_sock_listener = l;
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	config_listener(l, lo);
+</span></span><span style=display:flex><span> }
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -3358,12 +3385,17 @@ config_listener(struct listener *h,  str
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 			h-&gt;flags |= F_MASQUERADE;
+</span></span><span style=display:flex><span> 	}
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (lo-&gt;options &amp; LO_KICKER_ON)
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		h-&gt;flags |= F_KICKER;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	else if (conf-&gt;sc_smtp_kicker &amp;&amp; !(lo-&gt;options &amp; LO_KICKER_OFF))
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		h-&gt;flags |= F_KICKER;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	if (lo-&gt;ssl &amp; F_TLS_VERIFY)
+</span></span><span style=display:flex><span> 		h-&gt;flags |= F_TLS_VERIFY;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> 	if (lo-&gt;ssl &amp; F_STARTTLS_REQUIRE)
+</span></span><span style=display:flex><span> 		h-&gt;flags |= F_STARTTLS_REQUIRE;
+</span></span><span style=display:flex><span><span style=color:#f55>-	
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	if (h != conf-&gt;sc_sock_listener)
+</span></span><span style=display:flex><span> 		TAILQ_INSERT_TAIL(conf-&gt;sc_listeners, h, entry);
+</span></span><span style=display:flex><span> }
+</span></span><span style=display:flex><span><span style=font-weight:700>Index: smtp_session.c
+</span></span></span><span style=display:flex><span><span style=font-weight:700>===================================================================
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span>RCS file: /cvs/src/usr.sbin/smtpd/smtp_session.c,v
+</span></span><span style=display:flex><span><span style=font-weight:700>diff -u -p -r1.442 smtp_session.c
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>--- smtp_session.c	20 Mar 2024 17:52:43 -0000	1.442
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+++ smtp_session.c	8 Jun 2024 23:23:20 -0000
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span><span style=font-weight:700>@@ -145,6 +145,9 @@ struct smtp_session {
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 	const char		*filter_param;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> 	uint8_t			 junk;
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+#define MAX_KICKER_SCORE 3
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	uint8_t			 kicker_score;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> };
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> #define ADVERTISE_TLS(s) \
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -180,6 +183,7 @@ static void smtp_command(struct smtp_ses
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> static void smtp_rfc4954_auth_plain(struct smtp_session *, char *);
+</span></span><span style=display:flex><span> static void smtp_rfc4954_auth_login(struct smtp_session *, char *);
+</span></span><span style=display:flex><span> static void smtp_free(struct smtp_session *, const char *);
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+static int smtp_kicker(struct smtp_session *);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> static const char *smtp_strstate(int);
+</span></span><span style=display:flex><span> static void smtp_auth_failure_pause(struct smtp_session *);
+</span></span><span style=display:flex><span> static void smtp_auth_failure_resume(int, short, void *);
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1231,6 +1235,8 @@ smtp_command(struct smtp_session *s, cha
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 	char			       *args;
+</span></span><span style=display:flex><span> 	int				cmd, i;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	log_trace(TRACE_KICKER, &#34;smtp: kicker progression score=%d&#34;, s-&gt;kicker_score);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	log_trace(TRACE_SMTP, &#34;smtp: %p: &lt;&lt;&lt; %s&#34;, s, line);
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> 	/*
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1276,6 +1282,10 @@ smtp_command(struct smtp_session *s, cha
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 			break;
+</span></span><span style=display:flex><span> 		}
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	/*  do not increase kicker_score, they progress session */
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (cmd != CMD_RCPT_TO &amp;&amp; cmd != CMD_MAIL_FROM)
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		s-&gt;kicker_score++;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	s-&gt;last_cmd = cmd;
+</span></span><span style=display:flex><span> 	switch (cmd) {
+</span></span><span style=display:flex><span> 	/*
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1742,6 +1752,10 @@ smtp_filter_phase(enum filter_phase phas
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> static void
+</span></span><span style=display:flex><span> smtp_proceed_rset(struct smtp_session *s, const char *args)
+</span></span><span style=display:flex><span> {
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (smtp_kicker(s)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	smtp_reply(s, &#34;250 %s Reset state&#34;,
+</span></span><span style=display:flex><span> 	    esc_code(ESC_STATUS_OK, ESC_OTHER_STATUS));
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1755,6 +1769,11 @@ smtp_proceed_rset(struct smtp_session *s
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> static void
+</span></span><span style=display:flex><span> smtp_proceed_helo(struct smtp_session *s, const char *args)
+</span></span><span style=display:flex><span> {
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (smtp_kicker(s)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	s-&gt;kicker_score = 0;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	(void)strlcpy(s-&gt;helo, args, sizeof(s-&gt;helo));
+</span></span><span style=display:flex><span> 	s-&gt;flags &amp;= SF_SECURE | SF_AUTHENTICATED | SF_VERIFIED;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1773,6 +1792,11 @@ smtp_proceed_helo(struct smtp_session *s
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> static void
+</span></span><span style=display:flex><span> smtp_proceed_ehlo(struct smtp_session *s, const char *args)
+</span></span><span style=display:flex><span> {
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (smtp_kicker(s)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	s-&gt;kicker_score = 0;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	(void)strlcpy(s-&gt;helo, args, sizeof(s-&gt;helo));
+</span></span><span style=display:flex><span> 	s-&gt;flags &amp;= SF_SECURE | SF_AUTHENTICATED | SF_VERIFIED;
+</span></span><span style=display:flex><span> 	s-&gt;flags |= SF_EHLO;
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1806,6 +1830,11 @@ smtp_proceed_auth(struct smtp_session *s
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 	char tmp[SMTP_LINE_MAX];
+</span></span><span style=display:flex><span> 	char *eom, *method;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (smtp_kicker(s)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	s-&gt;kicker_score = 0;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	(void)strlcpy(tmp, args, sizeof tmp);
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> 	method = tmp;
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1828,6 +1857,11 @@ smtp_proceed_auth(struct smtp_session *s
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> static void
+</span></span><span style=display:flex><span> smtp_proceed_starttls(struct smtp_session *s, const char *args)
+</span></span><span style=display:flex><span> {
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (smtp_kicker(s)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	s-&gt;kicker_score = 0;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	smtp_reply(s, &#34;220 %s Ready to start TLS&#34;,
+</span></span><span style=display:flex><span> 	    esc_code(ESC_STATUS_OK, ESC_OTHER_STATUS));
+</span></span><span style=display:flex><span> 	smtp_enter_state(s, STATE_TLS);
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1842,7 +1876,7 @@ smtp_proceed_mail_from(struct smtp_sessi
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 	(void)strlcpy(tmp, args, sizeof tmp);
+</span></span><span style=display:flex><span> 	copy = tmp;
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#f55>-       	if (!smtp_tx(s)) {
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+	if (!smtp_tx(s)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 		smtp_reply(s, &#34;421 %s Temporary Error&#34;,
+</span></span><span style=display:flex><span> 		    esc_code(ESC_STATUS_TEMPFAIL, ESC_OTHER_MAIL_SYSTEM_STATUS));
+</span></span><span style=display:flex><span> 		smtp_enter_state(s, STATE_QUIT);
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1883,6 +1917,10 @@ smtp_proceed_quit(struct smtp_session *s
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> static void
+</span></span><span style=display:flex><span> smtp_proceed_noop(struct smtp_session *s, const char *args)
+</span></span><span style=display:flex><span> {
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (smtp_kicker(s)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	smtp_reply(s, &#34;250 %s Ok&#34;,
+</span></span><span style=display:flex><span> 	    esc_code(ESC_STATUS_OK, ESC_OTHER_STATUS));
+</span></span><span style=display:flex><span> }
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1892,6 +1930,10 @@ smtp_proceed_help(struct smtp_session *s
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> {
+</span></span><span style=display:flex><span> 	const char *code = esc_code(ESC_STATUS_OK, ESC_OTHER_STATUS);
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (smtp_kicker(s)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	smtp_reply(s, &#34;214-%s This is &#34; SMTPD_NAME, code);
+</span></span><span style=display:flex><span> 	smtp_reply(s, &#34;214-%s To report bugs in the implementation, &#34;
+</span></span><span style=display:flex><span> 	    &#34;please contact bugs@openbsd.org&#34;, code);
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1902,6 +1944,10 @@ smtp_proceed_help(struct smtp_session *s
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> static void
+</span></span><span style=display:flex><span> smtp_proceed_wiz(struct smtp_session *s, const char *args)
+</span></span><span style=display:flex><span> {
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (smtp_kicker(s)) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	smtp_reply(s, &#34;500 %s %s: this feature is not supported yet ;-)&#34;,
+</span></span><span style=display:flex><span> 	    esc_code(ESC_STATUS_PERMFAIL, ESC_INVALID_COMMAND),
+</span></span><span style=display:flex><span> 	    esc_description(ESC_INVALID_COMMAND));
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -1910,6 +1956,8 @@ smtp_proceed_wiz(struct smtp_session *s,
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> static void
+</span></span><span style=display:flex><span> smtp_proceed_commit(struct smtp_session *s, const char *args)
+</span></span><span style=display:flex><span> {
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	s-&gt;kicker_score = 0;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	smtp_message_end(s-&gt;tx);
+</span></span><span style=display:flex><span> }
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -2085,6 +2133,7 @@ smtp_send_banner(struct smtp_session *s)
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> {
+</span></span><span style=display:flex><span> 	smtp_reply(s, &#34;220 %s ESMTP %s&#34;, s-&gt;smtpname, SMTPD_NAME);
+</span></span><span style=display:flex><span> 	s-&gt;banner_sent = 1;
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	s-&gt;kicker_score = 0;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 	smtp_report_link_greeting(s, s-&gt;smtpname);
+</span></span><span style=display:flex><span> }
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -2213,6 +2262,18 @@ smtp_free(struct smtp_session *s, const 
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 	free(s);
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> 	smtp_collect();
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+static int
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+smtp_kicker(struct smtp_session *s) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	if (s-&gt;kicker_score &gt; MAX_KICKER_SCORE) {
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		smtp_reply(s, &#34;421 4.4.2 %s %s: Session terminated due to lack of progress&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		    esc_code(ESC_STATUS_TEMPFAIL, ESC_OTHER_STATUS),
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		    esc_description(ESC_OTHER_STATUS));
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		smtp_enter_state(s, STATE_QUIT);
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+		return 1;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	}
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	return 0;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> }
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> static int
+</span></span><span style=display:flex><span><span style=font-weight:700>Index: smtpd.c
+</span></span></span><span style=display:flex><span><span style=font-weight:700>===================================================================
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span>RCS file: /cvs/src/usr.sbin/smtpd/smtpd.c,v
+</span></span><span style=display:flex><span><span style=font-weight:700>diff -u -p -r1.351 smtpd.c
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>--- smtpd.c	7 May 2024 12:10:06 -0000	1.351
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+++ smtpd.c	8 Jun 2024 23:23:20 -0000
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span><span style=font-weight:700>@@ -555,6 +555,8 @@ main(int argc, char *argv[])
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 				tracing |= TRACE_TABLES;
+</span></span><span style=display:flex><span> 			else if (!strcmp(optarg, &#34;queue&#34;))
+</span></span><span style=display:flex><span> 				tracing |= TRACE_QUEUE;
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+			else if (!strcmp(optarg, &#34;kicker&#34;))
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+				tracing |= TRACE_KICKER;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 			else if (!strcmp(optarg, &#34;all&#34;))
+</span></span><span style=display:flex><span> 				tracing |= ~TRACE_DEBUG;
+</span></span><span style=display:flex><span> 			else if (!strcmp(optarg, &#34;profstat&#34;))
+</span></span><span style=display:flex><span><span style=font-weight:700>Index: smtpd.conf.5
+</span></span></span><span style=display:flex><span><span style=font-weight:700>===================================================================
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span>RCS file: /cvs/src/usr.sbin/smtpd/smtpd.conf.5,v
+</span></span><span style=display:flex><span><span style=font-weight:700>diff -u -p -r1.271 smtpd.conf.5
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>--- smtpd.conf.5	24 Mar 2024 06:22:18 -0000	1.271
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+++ smtpd.conf.5	8 Jun 2024 23:23:20 -0000
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span><span style=font-weight:700>@@ -478,6 +478,10 @@ The
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> table contains a mapping of IP addresses to hostnames.
+</span></span><span style=display:flex><span> If the address on which the connection arrives appears in the mapping,
+</span></span><span style=display:flex><span> the associated hostname is used.
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+.It Cm kicker Ar on | Ar off
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+Enable or disable the SMTP kicker mechanism for the current listener.
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+When enabled, sessions that do not progress for too long are terminated.
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+Inherits the global setting by default.
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> .It Cm mask-src
+</span></span><span style=display:flex><span> Omit the
+</span></span><span style=display:flex><span> .Sy from
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -909,6 +913,12 @@ string for
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> .Xr SSL_CTX_set_cipher_list 3 .
+</span></span><span style=display:flex><span> The default is
+</span></span><span style=display:flex><span> .Qq HIGH:!aNULL:!MD5 .
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+.It Ic smtp kicker Ar on | Ar off
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+Enable or disable the SMTP kicker mechanism globally.
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+When enabled, the kicker will terminate sessions that do not progress
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+towards submission of a message.
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+The default is
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+.Ar on .
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> .It Ic smtp limit Cm max-mails Ar count
+</span></span><span style=display:flex><span> Limit the number of messages to
+</span></span><span style=display:flex><span> .Ar count
+</span></span><span style=display:flex><span><span style=font-weight:700>Index: smtpd.h
+</span></span></span><span style=display:flex><span><span style=font-weight:700>===================================================================
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span>RCS file: /cvs/src/usr.sbin/smtpd/smtpd.h,v
+</span></span><span style=display:flex><span><span style=font-weight:700>diff -u -p -r1.686 smtpd.h
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span><span style=color:#f55>--- smtpd.h	2 Jun 2024 23:26:39 -0000	1.686
+</span></span></span><span style=display:flex><span><span style=color:#f55></span><span style=color:#50fa7b;font-weight:700>+++ smtpd.h	8 Jun 2024 23:23:20 -0000
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span><span style=font-weight:700>@@ -89,6 +89,7 @@
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> #define	F_MASQUERADE		0x1000
+</span></span><span style=display:flex><span> #define	F_FILTERED		0x2000
+</span></span><span style=display:flex><span> #define	F_PROXY			0x4000
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+#define F_KICKER		0x8000
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 
+</span></span><span style=display:flex><span> #define RELAY_TLS_OPPORTUNISTIC	0
+</span></span><span style=display:flex><span> #define RELAY_TLS_STARTTLS	1
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -626,6 +627,7 @@ struct smtpd {
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> 	char				       *sc_srs_key;
+</span></span><span style=display:flex><span> 	char				       *sc_srs_key_backup;
+</span></span><span style=display:flex><span> 	int				        sc_srs_ttl;
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+	int				        sc_smtp_kicker;
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 
+</span></span><span style=display:flex><span> 	char				       *sc_admd;
+</span></span><span style=display:flex><span> };
+</span></span><span style=display:flex><span><span style=font-weight:700>@@ -645,6 +647,7 @@ struct smtpd {
+</span></span></span><span style=display:flex><span><span style=font-weight:700></span> #define	TRACE_EXPAND	0x1000
+</span></span><span style=display:flex><span> #define	TRACE_TABLES	0x2000
+</span></span><span style=display:flex><span> #define	TRACE_QUEUE	0x4000
+</span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700>+#define TRACE_KICKER 0x8000
+</span></span></span><span style=display:flex><span><span style=color:#50fa7b;font-weight:700></span> 
+</span></span><span style=display:flex><span> #define PROFILE_TOSTAT	0x0001
+</span></span><span style=display:flex><span> #define PROFILE_IMSG	0x0002
+</span></span></code></pre></div><h2 class="relative group">Unofficial OpenSMTPD framework<div id=unofficial-opensmtpd-framework class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#unofficial-opensmtpd-framework aria-label=Anchor>#</a></span></h2><p>I have <strong>ideas for some filters I really want to implement</strong>,
+but I also <strong>have to maintain several ones</strong> among which some are fairly popular like <code>filter-rspamd</code> and <code>filter-senderscore</code>,
+thanks to my 2019 article: <a href=https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/ target=_blank>Setting up a mail server with OpenSMTPD, Dovecot and Rspamd</a>.</p><p>These filters were the first ones I wrote,
+they do their own parsing of the wire protocol,
+and whenever there&rsquo;s a low-level change to the filters API&mldr;
+I have to make sure they don&rsquo;t break.</p><p>I have been wanting to <strong>write an OpenSMTPD framework for developing extensions</strong> in Golang,
+one that would abstract low-level details,
+and I finally got around to do it:</p><a id=github-0a60fa41127513f740d82d792c9c9e9d target=_blank href=https://github.com/poolpOrg/OpenSMTPD-framework class=cursor-pointer><div class="w-full md:w-auto pt-3 p-5 border border-neutral-200 dark:border-neutral-700 border rounded-md shadow-2xl"><div class="flex items-center"><span class="text-2xl text-neutral-800 dark:text-neutral" style=margin-right:10px><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span></span><div id=github-0a60fa41127513f740d82d792c9c9e9d-full_name class="m-0 font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral">poolpOrg/OpenSMTPD-framework</div></div><p id=github-0a60fa41127513f740d82d792c9c9e9d-description class="m-0 mt-2 text-md text-neutral-800 dark:text-neutral"></p><div class="m-0 mt-2 flex items-center"><span class="mr-1 inline-block h-3 w-3 rounded-full" style=background-color:#00add8></span><div class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">Go</div><span class="text-md mr-1 text-neutral-800 dark:text-neutral"><span class="relative block icon"><svg viewBox="0 0 576 512"><path fill="currentcolor" d="M287.9.0C297.1.0 305.5 5.25 309.5 13.52L378.1 154.8l153.3 22.7C540.4 178.8 547.8 185.1 550.7 193.7 553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4l26.3 155.5C461.4 492.9 457.7 502.1 450.2 507.4 442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9 150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4 118.2 502.1 114.5 492.9 115.1 483.9l27.1-155.5L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7 28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8 266.3 13.52C270.4 5.249 278.7.0 287.9.0zm0 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9 184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7l105.2-56.2C283.7 383.7 292.2 383.7 299.2 387.5l105.2 56.2-20.2-119.6C382.9 316.4 385.5 308.5 391 303l85.9-85.1-118.3-17.4C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"/></svg></span></span><div id=github-0a60fa41127513f740d82d792c9c9e9d-stargazers class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">4</div><span class="text-md mr-1 text-neutral-800 dark:text-neutral"><span class="relative block icon"><svg viewBox="0 0 448 512"><path fill="currentcolor" d="M80 104c13.3.0 24-10.7 24-24S93.3 56 80 56 56 66.7 56 80s10.7 24 24 24zm80-24c0 32.8-19.7 61-48 73.3V192c0 17.7 14.3 32 32 32H304c17.7.0 32-14.3 32-32V153.3C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V192c0 53-43 96-96 96H256v70.7c28.3 12.3 48 40.5 48 73.3.0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V288H144c-53 0-96-43-96-96V153.3C19.7 141 0 112.8.0 80 0 35.8 35.8.0 80 0s80 35.8 80 80zm208 24c13.3.0 24-10.7 24-24s-10.7-24-24-24-24 10.7-24 24 10.7 24 24 24zM248 432c0-13.3-10.7-24-24-24s-24 10.7-24 24 10.7 24 24 24 24-10.7 24-24z"/></svg></span></span><div id=github-0a60fa41127513f740d82d792c9c9e9d-forks class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">1</div></div></div><script>fetch("https://api.github.com/repos/poolpOrg/OpenSMTPD-framework",{headers:new Headers({"User-agent":"Mozilla/4.0 Custom User Agent"})}).then(e=>e.json()).then(e=>{document.getElementById("github-0a60fa41127513f740d82d792c9c9e9d-full_name").innerHTML=e.full_name,document.getElementById("github-0a60fa41127513f740d82d792c9c9e9d-description").innerHTML=e.description,document.getElementById("github-0a60fa41127513f740d82d792c9c9e9d-stargazers").innerHTML=e.stargazers_count,document.getElementById("github-0a60fa41127513f740d82d792c9c9e9d-forks").innerHTML=e.forks}).catch(e=>console.error(e))</script></a><p>Using this framework,
+which is still a work in progress,
+you can easily <strong>write a table or filter backend by declaring what function should be called on what event</strong>.
+The registration of hooks,
+the parsing of wire protocol,
+and even the handling of sessions and concurrency locking is handled transparently.</p><p>I included a tool to help test table implementations and am currently struggling with making a similar tool for filters,
+since the API is considerably larger,
+but it&rsquo;ll improve and I intend to port my existing filters to it shortly.</p><p>I also included an example table and an example filter which can be used as templates to implement your owns.</p><h2 class="relative group">filter-kicker<div id=filter-kicker class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#filter-kicker aria-label=Anchor>#</a></span></h2><p>Using the OpenSMTPD-framework,
+I have implemented <strong>a clone of my kicker feature described above</strong>:</p><a id=github-9a4a6e5c78674a48c3370ccabf3a8693 target=_blank href=https://github.com/poolpOrg/filter-kicker class=cursor-pointer><div class="w-full md:w-auto pt-3 p-5 border border-neutral-200 dark:border-neutral-700 border rounded-md shadow-2xl"><div class="flex items-center"><span class="text-2xl text-neutral-800 dark:text-neutral" style=margin-right:10px><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span></span><div id=github-9a4a6e5c78674a48c3370ccabf3a8693-full_name class="m-0 font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral">poolpOrg/filter-kicker</div></div><p id=github-9a4a6e5c78674a48c3370ccabf3a8693-description class="m-0 mt-2 text-md text-neutral-800 dark:text-neutral"></p><div class="m-0 mt-2 flex items-center"><span class="mr-1 inline-block h-3 w-3 rounded-full" style=background-color:#00add8></span><div class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">Go</div><span class="text-md mr-1 text-neutral-800 dark:text-neutral"><span class="relative block icon"><svg viewBox="0 0 576 512"><path fill="currentcolor" d="M287.9.0C297.1.0 305.5 5.25 309.5 13.52L378.1 154.8l153.3 22.7C540.4 178.8 547.8 185.1 550.7 193.7 553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4l26.3 155.5C461.4 492.9 457.7 502.1 450.2 507.4 442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9 150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4 118.2 502.1 114.5 492.9 115.1 483.9l27.1-155.5L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7 28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8 266.3 13.52C270.4 5.249 278.7.0 287.9.0zm0 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9 184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7l105.2-56.2C283.7 383.7 292.2 383.7 299.2 387.5l105.2 56.2-20.2-119.6C382.9 316.4 385.5 308.5 391 303l85.9-85.1-118.3-17.4C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"/></svg></span></span><div id=github-9a4a6e5c78674a48c3370ccabf3a8693-stargazers class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">1</div><span class="text-md mr-1 text-neutral-800 dark:text-neutral"><span class="relative block icon"><svg viewBox="0 0 448 512"><path fill="currentcolor" d="M80 104c13.3.0 24-10.7 24-24S93.3 56 80 56 56 66.7 56 80s10.7 24 24 24zm80-24c0 32.8-19.7 61-48 73.3V192c0 17.7 14.3 32 32 32H304c17.7.0 32-14.3 32-32V153.3C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V192c0 53-43 96-96 96H256v70.7c28.3 12.3 48 40.5 48 73.3.0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V288H144c-53 0-96-43-96-96V153.3C19.7 141 0 112.8.0 80 0 35.8 35.8.0 80 0s80 35.8 80 80zm208 24c13.3.0 24-10.7 24-24s-10.7-24-24-24-24 10.7-24 24 10.7 24 24 24zM248 432c0-13.3-10.7-24-24-24s-24 10.7-24 24 10.7 24 24 24 24-10.7 24-24z"/></svg></span></span><div id=github-9a4a6e5c78674a48c3370ccabf3a8693-forks class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">0</div></div></div><script>fetch("https://api.github.com/repos/poolpOrg/filter-kicker",{headers:new Headers({"User-agent":"Mozilla/4.0 Custom User Agent"})}).then(e=>e.json()).then(e=>{document.getElementById("github-9a4a6e5c78674a48c3370ccabf3a8693-full_name").innerHTML=e.full_name,document.getElementById("github-9a4a6e5c78674a48c3370ccabf3a8693-description").innerHTML=e.description,document.getElementById("github-9a4a6e5c78674a48c3370ccabf3a8693-stargazers").innerHTML=e.stargazers_count,document.getElementById("github-9a4a6e5c78674a48c3370ccabf3a8693-forks").innerHTML=e.forks}).catch(e=>console.error(e))</script></a><p>It took me twenty minutes from scratch,
+while fixing shortcomings in the framework,
+and <strong>I ended with a working proof of concept</strong> that I can include in this article since it&rsquo;s so small:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#ff79c6>package</span> main
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4>/*
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * Copyright (c) 2024 Gilles Chehade &lt;gilles@poolp.org&gt;
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> *
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * Permission to use, copy, modify, and distribute this software for any
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * purpose with or without fee is hereby granted, provided that the above
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * copyright notice and this permission notice appear in all copies.
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> *
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * THE SOFTWARE IS PROVIDED &#34;AS IS&#34; AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+</span></span></span><span style=display:flex><span><span style=color:#6272a4> */</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#f1fa8c>&#34;net&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#f1fa8c>&#34;time&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#f1fa8c>&#34;github.com/poolpOrg/OpenSMTPD-framework/filter&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>type</span> SessionData <span style=color:#8be9fd;font-style:italic>struct</span> {
+</span></span><span style=display:flex><span>	kickcount <span style=color:#8be9fd>int</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>kicker</span>(session filter.Session) filter.Response {
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount <span style=color:#ff79c6>&gt;=</span> <span style=color:#bd93f9>3</span> {
+</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> filter.<span style=color:#50fa7b>Disconnect</span>(<span style=color:#f1fa8c>&#34;421 4.7.0 Too many commands without progressing, goodbye.&#34;</span>)
+</span></span><span style=display:flex><span>	} <span style=color:#ff79c6>else</span> {
+</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> filter.<span style=color:#50fa7b>Proceed</span>()
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterConnectCb</span>(timestamp time.Time, session filter.Session, rdns <span style=color:#8be9fd>string</span>, src net.Addr) filter.Response {
+</span></span><span style=display:flex><span>	session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount = <span style=color:#bd93f9>0</span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> filter.<span style=color:#50fa7b>Proceed</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterHeloCb</span>(timestamp time.Time, session filter.Session, helo <span style=color:#8be9fd>string</span>) filter.Response {
+</span></span><span style=display:flex><span>	session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount = <span style=color:#bd93f9>0</span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> filter.<span style=color:#50fa7b>Proceed</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterEhloCb</span>(timestamp time.Time, session filter.Session, helo <span style=color:#8be9fd>string</span>) filter.Response {
+</span></span><span style=display:flex><span>	session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount = <span style=color:#bd93f9>0</span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> filter.<span style=color:#50fa7b>Proceed</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterStartTLSCb</span>(timestamp time.Time, session filter.Session, tls <span style=color:#8be9fd>string</span>) filter.Response {
+</span></span><span style=display:flex><span>	session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount = <span style=color:#bd93f9>0</span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> filter.<span style=color:#50fa7b>Proceed</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterAuthCb</span>(timestamp time.Time, session filter.Session, mechanism <span style=color:#8be9fd>string</span>) filter.Response {
+</span></span><span style=display:flex><span>	session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount = <span style=color:#bd93f9>0</span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> filter.<span style=color:#50fa7b>Proceed</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterMailFromCb</span>(timestamp time.Time, session filter.Session, from <span style=color:#8be9fd>string</span>) filter.Response {
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> filter.<span style=color:#50fa7b>Proceed</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterRcptToCb</span>(timestamp time.Time, session filter.Session, to <span style=color:#8be9fd>string</span>) filter.Response {
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> filter.<span style=color:#50fa7b>Proceed</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterDataCb</span>(timestamp time.Time, session filter.Session) filter.Response {
+</span></span><span style=display:flex><span>	session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount = <span style=color:#bd93f9>0</span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> filter.<span style=color:#50fa7b>Proceed</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterCommitCb</span>(timestamp time.Time, session filter.Session) filter.Response {
+</span></span><span style=display:flex><span>	session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount = <span style=color:#bd93f9>0</span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> filter.<span style=color:#50fa7b>Proceed</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterNoopCb</span>(timestamp time.Time, session filter.Session) filter.Response {
+</span></span><span style=display:flex><span>	session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount <span style=color:#ff79c6>+=</span> <span style=color:#bd93f9>1</span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> <span style=color:#50fa7b>kicker</span>(session)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterRsetCb</span>(timestamp time.Time, session filter.Session) filter.Response {
+</span></span><span style=display:flex><span>	session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount <span style=color:#ff79c6>+=</span> <span style=color:#bd93f9>1</span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> <span style=color:#50fa7b>kicker</span>(session)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterHelpCb</span>(timestamp time.Time, session filter.Session) filter.Response {
+</span></span><span style=display:flex><span>	session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount <span style=color:#ff79c6>+=</span> <span style=color:#bd93f9>1</span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> <span style=color:#50fa7b>kicker</span>(session)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>filterWizCb</span>(timestamp time.Time, session filter.Session) filter.Response {
+</span></span><span style=display:flex><span>	session.<span style=color:#50fa7b>Get</span>().(<span style=color:#ff79c6>*</span>SessionData).kickcount <span style=color:#ff79c6>+=</span> <span style=color:#bd93f9>1</span>
+</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> <span style=color:#50fa7b>kicker</span>(session)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>main</span>() {
+</span></span><span style=display:flex><span>	filter.<span style=color:#50fa7b>Init</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>SessionAllocator</span>(<span style=color:#8be9fd;font-style:italic>func</span>() filter.SessionData {
+</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> <span style=color:#ff79c6>&amp;</span>SessionData{}
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>ConnectRequest</span>(filterConnectCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>HeloRequest</span>(filterHeloCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>EhloRequest</span>(filterEhloCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>StartTLSRequest</span>(filterStartTLSCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>AuthRequest</span>(filterAuthCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>MailFromRequest</span>(filterMailFromCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>RcptToRequest</span>(filterRcptToCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>DataRequest</span>(filterDataCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>CommitRequest</span>(filterCommitCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>NoopRequest</span>(filterNoopCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>RsetRequest</span>(filterRsetCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>HelpRequest</span>(filterHelpCb)
+</span></span><span style=display:flex><span>	filter.SMTP_IN.<span style=color:#50fa7b>WizRequest</span>(filterWizCb)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	filter.<span style=color:#50fa7b>Dispatch</span>()
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>The code is straightforward:
+a custom session data structure is allocated and attached to the actual session,
+the kickcount is increased or reset upon various events,
+the <code>kicker()</code> function determines if the session needs to be kicked or if it can continue based on the kickcount value.</p><p>The filter is built as a standalone executable which can be copied to OpenSMTPD&rsquo;s libexec directory,
+then plugged in the configuration as follows:</p><pre tabindex=0><code class=language-conf data-lang=conf>filter kicker proc-exec filter-kicker
+
+listen on all filter kicker
+</code></pre><h1 class="relative group">Plakar<div id=plakar class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#plakar aria-label=Anchor>#</a></span></h1><p>The other big project I worked on was <code>plakar</code>,
+my project for a backup solution.</p><p>In no particular order,
+here&rsquo;s a list of what I did in this first semester.</p><h2 class="relative group">Began working on adaptative resources consumption<div id=began-working-on-adaptative-resources-consumption class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#began-working-on-adaptative-resources-consumption aria-label=Anchor>#</a></span></h2><p>First of all,
+I began instrumenting code to <strong>obtain runtime statistics about CPU, memory and I/O consumption</strong>.
+The goal being to teach <code>plakar</code> how to play nice on a machine,
+avoid exhausting resources and <strong>detect when it should slow down</strong> because it is putting too much pressure on the host system.</p><p>I have figured various control points.
+These are positions in the code path where I can look at a specific statistics and adapt either parallelism or introduce artificial latency to slow down plakar and reduce pressure on a specific resource.</p><p>I haven&rsquo;t done anything worthy of an article yet,
+but I prepared the mechanism and wrote the plumbing so that I can later focus on the algorithm to trigger it.</p><h2 class="relative group">Backup exclusions<div id=backup-exclusions class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#backup-exclusions aria-label=Anchor>#</a></span></h2><p>I introduce an exclusion mechanism so that <code>plakar push</code> can be passed a file holding patterns of files to exclude from the backup while performing a snapshot.</p><p>I decided to go with <strong>a globbing format</strong>,
+it has been tested lightly,
+I&rsquo;ll have to test on real use-cases to see if it is complete or if it should be improved.</p><h2 class="relative group">Exporters: fs and s3<div id=exporters-fs-and-s3 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#exporters-fs-and-s3 aria-label=Anchor>#</a></span></h2><p>About a year ago,
+I wrote on <a href=https://poolp.org/posts/2023-08-06/plakar-vfs-importer-interface/#the-vfs-importer-interface target=_blank>VFS importers</a>,
+connectors that <strong>allow importing data from an external data source</strong> into a plakar snapshot.
+I ended the article saying that <strong>an exporter interface would be nice to be able to restore snapshots on an external data store</strong>.</p><p>I eventually came up with a VFS exporters interface,
+reimplemented the filesystem restore logic into an FS exporter and adapted <code>plakar</code> to use that exporter instead of accessing the filesystem directly,
+allowing me to have&mldr; made no change at all.</p><p>Except&mldr;</p><p>Except that now I was able to write an S3 exporter and restore a filesystem snapshot to an S3 bucket,
+just like I was able to snapshot an S3 bucket and restore the filesystem.
+<strong>What the exporter interface brought is a filesystem-agnostic <code>plakar</code> that can snapshot from any importer,
+store in any repository backend and restore to any exporter</strong>.</p><h2 class="relative group">Teach ls how to list tags<div id=teach-ls-how-to-list-tags class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#teach-ls-how-to-list-tags aria-label=Anchor>#</a></span></h2><p>A very small and minor feature but:
+snapshots supported carrying tags but there was no way to list all snapshots carrying a tag.
+It&rsquo;s now doable.</p><h2 class="relative group">Teach rm how to rm tags and old snapshots<div id=teach-rm-how-to-rm-tags-and-old-snapshots class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#teach-rm-how-to-rm-tags-and-old-snapshots aria-label=Anchor>#</a></span></h2><p>Until now, <code>plakar rm</code> had to be called with one or many snapshot prefixes.
+The only way to garbage collect snapshots was using the <code>plakar keep</code> command to keep the <code>n</code> latest snapshots or write a scrip to call <code>plakar rm</code> on snapshots conditionally.</p><p>I improved <code>plakar rm</code> so it would accept an <code>-older</code> option that can take a human-formatted date or a duration in various formats,
+so you can delete snapshots older than a threshold.</p><p>Below is an example of <strong>deleting all snapshots older than 15 minutes</strong>:</p><pre tabindex=0><code class=language-term data-lang=term>$ plakar ls
+2024-06-12T08:36:10Z  51b910e6     38 MB        0s /Users/gilles/wip/github.com/PlakarLabs/plakar/cmd/plakar
+2024-06-12T08:36:12Z  bed7e7c3     38 MB        0s /Users/gilles/wip/github.com/PlakarLabs/plakar/cmd/plakar
+2024-06-12T08:36:12Z  d682a721     38 MB        0s /Users/gilles/wip/github.com/PlakarLabs/plakar/cmd/plakar
+2024-06-12T08:36:13Z  4317a1bb     38 MB        0s /Users/gilles/wip/github.com/PlakarLabs/plakar/cmd/plakar
+2024-06-12T08:36:13Z  3e8fb86f     38 MB        0s /Users/gilles/wip/github.com/PlakarLabs/plakar/cmd/plakar
+2024-06-12T08:36:13Z  9df0d74d     38 MB        0s /Users/gilles/wip/github.com/PlakarLabs/plakar/cmd/plakar
+2024-06-12T08:36:14Z  a3777787     38 MB        0s /Users/gilles/wip/github.com/PlakarLabs/plakar/cmd/plakar
+2024-06-12T08:36:14Z  a9a4f028     38 MB        0s /Users/gilles/wip/github.com/PlakarLabs/plakar/cmd/plakar
+$ plakar rm --older 15m
+deleting snapshot 51b910e6-1667-4fcb-be7e-4c4cea5a6e26
+deleting snapshot bed7e7c3-a0e5-4804-b2ac-f4efd792f1cc
+deleting snapshot d682a721-044e-40e2-8807-6fe6c454b1b4
+deleting snapshot 4317a1bb-d3d2-45cf-8c75-f3a59a1142b5
+deleting snapshot 3e8fb86f-7690-45c0-87fb-6a43fd4fd771
+deleting snapshot 9df0d74d-4575-4dea-bf1c-7b96fe714355
+deleting snapshot a3777787-f737-4592-b6cc-05074a4e9111
+deleting snapshot a9a4f028-856f-45b4-b2cd-2d02595bf62e
+$
+</code></pre><p>I also introduced the ability to delete by a tag:</p><pre tabindex=0><code>$ plakar ls           
+$ plakar push         
+$ plakar push
+$ plakar push -tag foobar 
+$ plakar ls
+2024-06-12T08:55:29Z  d7c98f67     38 MB        0s /Users/gilles/wip/github.com/PlakarLabs/plakar/cmd/plakar
+2024-06-12T08:55:31Z  d085d68b     38 MB        0s /Users/gilles/wip/github.com/PlakarLabs/plakar/cmd/plakar
+2024-06-12T08:55:40Z  dae33fa4     38 MB        0s /Users/gilles/wip/github.com/PlakarLabs/plakar/cmd/plakar
+$ plakar rm -tag foobar
+deleting snapshot dae33fa4-5b64-4f98-bc84-12a2f357b303
+$
+</code></pre><p>And these options can be used mutually to remove old snapshots carrying a specific tag,
+I&rsquo;ll skip the example as you should be able to figure out what it does ;-)</p><h2 class="relative group">Agent mode<div id=agent-mode class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#agent-mode aria-label=Anchor>#</a></span></h2><p>An additional feature that was introduced is the agent mode which allows <code>plakar</code> to run as a daemon with a configuration of tasks to perform:</p><pre tabindex=0><code>tasks:
+ - name: &#34;task-1&#34;
+   source: &#34;/private/etc&#34;
+   interval: &#34;10s&#34;
+   keep: &#34;2m&#34;
+
+ - name: &#34;task-2&#34;
+   source: &#34;/Users/gilles/Wip/github.com&#34;
+   interval: &#34;1m&#34;
+   keep: &#34;5m&#34;
+</code></pre><p>I won&rsquo;t expand much on this.
+For now,
+think of it as a glorified crontab embedded in <code>plakar</code>,
+and I&rsquo;ll talk about agents more in details in a future article.</p><h2 class="relative group">Plakman<div id=plakman class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#plakman aria-label=Anchor>#</a></span></h2><p>Since I had an agent mode,
+I wrote the <code>plakman</code> server.</p><p>The <code>plakman</code> server controls a set of authenticated <code>plakar</code> agents,
+<strong>distributing them tasks and waiting for completion notifications</strong>.</p><p>This will be the topic of a dedicated article so,
+I&rsquo;ll leave it there.</p><h1 class="relative group">Assorted side projects<div id=assorted-side-projects class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#assorted-side-projects aria-label=Anchor>#</a></span></h1><p>And finally,
+here&rsquo;s a list of <strong>assorted stuff I did in no particular order</strong> over the last few months.</p><h2 class="relative group">Wrote an article for a french security magazine<div id=wrote-an-article-for-a-french-security-magazine class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#wrote-an-article-for-a-french-security-magazine aria-label=Anchor>#</a></span></h2><p>As part of a freelance gig,
+I wrote an article for a French security magazine.</p><p>The article covers the philosophy of mitigations on OpenBSD,
+the introduction of the <code>pledge(2)</code> system call on OpenBSD 5.9 several years ago,
+how userland applications can make use of it but also how it is implemented on the kernel side.</p><p>If they publish it and order other ones,
+I&rsquo;ll probably discuss other techniques used in OpenBSD development,
+and if they don&rsquo;t I might just write them for this blog instead.</p><p>Reading back into OpenBSD code was very enjoyable,
+and despite generally knowing how it worked I had not looked at the kernel side of <code>pledge(2)</code> so it was lots of fun to study.</p><h2 class="relative group">go-cdc-chunkers<div id=go-cdc-chunkers class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#go-cdc-chunkers aria-label=Anchor>#</a></span></h2><p>The <code>plakar</code> project has been using the FastCDC chunking algorithm for a long time,
+but I have bought a copy of the UltraCDC algorithm paper and made an implementation for it.</p><p>Since this has uses outside of <code>plakar</code>,
+I decided to create the <code>go-cdc-chunkers</code> package to <strong>abstract CDC chunking algorithms as I play with them</strong>.
+I released the package standalone and you are free to use it.
+There are examples.</p><p>There were improvements done to FastCDC and UltraCDC since papers were published.
+I haven&rsquo;t had the time yet to read them,
+let alone implement them,
+but I&rsquo;ll work on this package as it is a critical dependency for <code>plakar</code>.</p><h2 class="relative group">go-urlwatcher<div id=go-urlwatcher class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#go-urlwatcher aria-label=Anchor>#</a></span></h2><p>The <code>go-urlwatcher</code> package allows you to <strong>watch URLs and notify you when their content changes</strong>.</p><p>I figured I kept hitting that same need over and over on different projects,
+both at work and at home,
+so I took the opportunity on a week-end to implement it and release under the ISC license so that I could use it at work on the next Monday.</p><p>Not much to say about it, here&rsquo;s an example of use:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#ff79c6>package</span> main
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>import</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;fmt&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;time&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;crypto/sha256&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    urlwatcher <span style=color:#f1fa8c>&#34;github.com/poolpOrg/go-urlwatcher&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>notifyMe</span>(timestamp time.Time, key <span style=color:#8be9fd>string</span>, data []<span style=color:#8be9fd>byte</span>) {
+</span></span><span style=display:flex><span>    fmt.<span style=color:#50fa7b>Printf</span>(<span style=color:#f1fa8c>&#34;%s: content has changed at %s, new checksum: %x\n&#34;</span>,
+</span></span><span style=display:flex><span>        timestamp, key, sha256.<span style=color:#50fa7b>Sum256</span>(data))
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>main</span>() {
+</span></span><span style=display:flex><span>    r <span style=color:#ff79c6>:=</span> urlwatcher.<span style=color:#50fa7b>NewWatcher</span>(<span style=color:#ff79c6>&amp;</span>urlwatcher.DefaultWatcherConfig)
+</span></span><span style=display:flex><span>    r.<span style=color:#50fa7b>Watch</span>(<span style=color:#f1fa8c>&#34;https://poolp.org&#34;</span>)
+</span></span><span style=display:flex><span>    r.<span style=color:#50fa7b>Watch</span>(<span style=color:#f1fa8c>&#34;https://poolp.org/test&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4>// notify me forever of any change in https://poolp.org content
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    r.<span style=color:#50fa7b>Subscribe</span>(<span style=color:#f1fa8c>&#34;https://poolp.org&#34;</span>, notifyMe)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4>// notify me of all changes in https://poolp.org/test ...
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    unsubscribe <span style=color:#ff79c6>:=</span> r.<span style=color:#50fa7b>Subscribe</span>(<span style=color:#f1fa8c>&#34;https://poolp.org/test&#34;</span>, notifyMe)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4>// ... and in a minute, I&#39;ll unsubscribe from these events
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    time.<span style=color:#50fa7b>Sleep</span>(<span style=color:#bd93f9>1</span> <span style=color:#ff79c6>*</span> time.Minute)
+</span></span><span style=display:flex><span>    <span style=color:#50fa7b>unsubscribe</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#6272a4>// wait forever
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    <span style=color:#ff79c6>&lt;-</span><span style=color:#8be9fd;font-style:italic>make</span>(<span style=color:#8be9fd;font-style:italic>chan</span> <span style=color:#8be9fd;font-style:italic>struct</span>{})
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 class="relative group">go-ipcmsg<div id=go-ipcmsg class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#go-ipcmsg aria-label=Anchor>#</a></span></h2><p>I <a href=https://poolp.org/posts/2021-10-26/november-2021-a-bit-of-go-ipcmsg-a-bit-of-go-privsep-and-a-ton-of-plakar/ target=_blank>already wrote</a> on the <code>go-ipcmsg</code> package in the past,
+it provides a simplified interface to do imsg-like (but incompatible) IPC in Golang.</p><p>I brought various improvements to it,
+both in terms of interface and reliability.
+It&rsquo;s not necessarily interesting to develop them in this article,
+though I&rsquo;d appreciate feedback if you play with it.</p><p>Unfortunately,
+I&rsquo;m using it for a project on macOS and <strong>there seems to be a kernel bug that makes intensive fd passing unreliable</strong>.
+In theory,
+when doing fd passing,
+<code>sendmsg(2)</code> should ensure that the descriptor is properly referenced in the kernel side so that the sending process can <code>close(2)</code> it without preventing <code>recvmsg(2)</code> from obtaining it in the receiving process (assuming descriptors limits are correct and both <code>sendmsg(2)</code> and <code>recvmsg(2)</code> succeeded).</p><p>Yeah, well no. It seems that this is not so much guaranteed on macOS.</p><p>I hit a bug where the receiving process obtained &mldr; a closed descriptor.
+I am able to 100% reproduce the bug, with this package but also with C code, and even with OpenSMTPD.
+I could also make the bug go away by deferring the <code>close(2)</code> on the sending side or by leaking descriptors there.
+I have used intensive fd passing code on macOS in the past so I was surprised,
+until I managed to pinpoint the bug to a specific kernel function&mldr; and see that it had been refactored not too long ago.</p><p>It may or may not be that,
+I may be wrong despite my observations,
+but either way the XNU kernel is considerably harder to test for me as I have no idea how I can build it and how I can boot a usable system with it.
+My kernel skills are very limited and rusty,
+so if I invest time troubleshooting one&mldr; it might as well be for a system I want to contribute to.</p><p>For the time being,
+the project I wrote this package for is on hold,
+so I don&rsquo;t expect any short-term improvement to <code>go-ipcmsg</code> unless there are users requesting them.</p><h2 class="relative group">go-agentbuilder<div id=go-agentbuilder class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#go-agentbuilder aria-label=Anchor>#</a></span></h2><p>For some of my needs, I wanted a package that allows me to quickly implement small clients and mono process servers to be embedded in other projects.
+The <code>go-agentbuilder</code> package provides a small framework for building clients and servers with a simple protocol for exchanging packets.</p><p>It uses <code>gob</code> encoding for exchanges and lets you declare what kind of structures are to be exchanged,
+how to respond upon receiving them,
+and supports a method for responding to a specific message with a different message while ensuring the packets are matched even if the response is asynchronous.</p><p>I discourage you from using it because there are probably nicer ways to achieve this in your own projects,
+but it&rsquo;s tailored to my own use and there&rsquo;s no reason I don&rsquo;t publish it so&mldr; there you go.</p><h1 class="relative group">What&rsquo;s next ?<div id=whats-next- class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#whats-next- aria-label=Anchor>#</a></span></h1><p>I&rsquo;m expecting a little girl in the upcoming weeks.</p><p>A summer slow down is in order but&mldr;
+I don&rsquo;t sleep so much and my son was a heavy sleeper when he was born,
+so there&rsquo;s hope I can take care of the baby and still find time to hack on stuff ;-)</p><p>I&rsquo;m also spending considerable time improving <code>plakar</code> with the idea to build a commercial project out of it,
+so there&rsquo;s that.</p></br></br></div><script>var oid="views_posts/2024-06_02/index.md",oid_likes="likes_posts/2024-06_02/index.md"</script><script type=text/javascript src=/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q+oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script></section><footer class="pt-8 max-w-prose print:hidden"><div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"><span class="dark:text-neutral-300 text-sm">You reached the end of this article,
+<b>CONGRATULATIONS</b> !<br><br><b>Please ❤️</b> consider <b>sharing on social networks</b> to increase its visibility.<br><br>You can also help by
+<b>commenting the article</u></b>,
+if only to let me know if you liked it or not !</span></div><section class="flex flex-row flex-wrap justify-center pt-4 text-xl"><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;title=Out%20of%20my%20cave,%20lots%20of%20updates" title="Share on LinkedIn" aria-label="Share on LinkedIn"><span class="relative block icon"><svg viewBox="0 0 448 512"><path fill="currentcolor" d="M416 32H31.9C14.3 32 0 46.5.0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6.0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3.0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2.0 38.5 17.3 38.5 38.5.0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6.0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2.0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://twitter.com/intent/tweet/?url=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;text=Out%20of%20my%20cave,%20lots%20of%20updates" title="Tweet on Twitter" aria-label="Tweet on Twitter"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://reddit.com/submit/?url=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;resubmit=true&amp;title=Out%20of%20my%20cave,%20lots%20of%20updates" title="Submit to Reddit" aria-label="Submit to Reddit"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M201.5 305.5c-13.8.0-24.9-11.1-24.9-24.6.0-13.8 11.1-24.9 24.9-24.9 13.6.0 24.6 11.1 24.6 24.9.0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4.0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8.0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7.0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9.0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5.0 52.6 59.2 95.2 132 95.2 73.1.0 132.3-42.6 132.3-95.2.0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6.0-2.2-2.2-6.1-2.2-8.3.0-2.5 2.5-2.5 6.4.0 8.6 22.8 22.8 87.3 22.8 110.2.0 2.5-2.2 2.5-6.1.0-8.6-2.2-2.2-6.1-2.2-8.3.0zm7.7-75c-13.6.0-24.6 11.1-24.6 24.9.0 13.6 11.1 24.6 24.6 24.6 13.8.0 24.9-11.1 24.9-24.6.0-13.8-11-24.9-24.9-24.9z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://pinterest.com/pin/create/bookmarklet/?url=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;description=Out%20of%20my%20cave,%20lots%20of%20updates" title="Pin on Pinterest" aria-label="Pin on Pinterest"><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M496 256c0 137-111 248-248 248-25.6.0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8.0 128.7-68.8 128.7-154.3.0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1.0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6.0-54.7 41.4-107.6 112-107.6 60.9.0 103.6 41.5 103.6 100.9.0 67.1-33.9 113.6-78 113.6-24.3.0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6.0-19-10.2-34.9-31.4-34.9-24.9.0-44.9 25.7-44.9 60.2.0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9.0 361.1.0 256 0 119 111 8 248 8s248 111 248 248z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://www.facebook.com/sharer/sharer.php?u=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;quote=Out%20of%20my%20cave,%20lots%20of%20updates" title="Share on Facebook" aria-label="Share on Facebook"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14.0 55.52 4.84 55.52 4.84v61h-31.28c-30.8.0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="mailto:?body=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;subject=Out%20of%20my%20cave,%20lots%20of%20updates" title="Send via email" aria-label="Send via email"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1-27.64 140.9 68.65 266.2 199.1 285.1 19.01 2.888 36.17-12.26 36.17-31.49l1e-4-.6631c0-15.74-11.44-28.88-26.84-31.24-84.35-12.98-149.2-86.13-149.2-174.2.0-102.9 88.61-185.5 193.4-175.4 91.54 8.869 158.6 91.25 158.6 183.2v16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98.0036c-7.299.0-13.2 4.992-15.12 11.68-24.85-12.15-54.24-16.38-86.06-5.106-38.75 13.73-68.12 48.91-73.72 89.64-9.483 69.01 43.81 128 110.9 128 26.44.0 50.43-9.544 69.59-24.88 24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3c0-149.2-133.9-265.632-287.3-235.57zM239.1 304.3c-26.47.0-48-21.56-48-48.05s21.53-48.05 48-48.05 48 21.56 48 48.05-20.6 48.05-48 48.05z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://api.whatsapp.com/send?text=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;resubmit=true&amp;title=Out%20of%20my%20cave,%20lots%20of%20updates" title aria-label><span class="relative block icon"><svg viewBox="0 0 448 512"><path fill="currentcolor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4.0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3.0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2.0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2.0-101.7 82.8-184.5 184.6-184.5 49.3.0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5.0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.3 18-17.6 21.8c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 19-19.4 46.3.0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</span></a><a target=_blank class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" href="https://t.me/share/url?url=https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/&amp;resubmit=true&amp;title=Out%20of%20my%20cave,%20lots%20of%20updates" title aria-label><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M248 8C111.033 8 0 119.033.0 256S111.033 504 248 504 496 392.967 496 256 384.967 8 248 8zM362.952 176.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452.0 013.53 6.716A43.765 43.765.0 01362.952 176.66z"/></svg></span></a></section><div class=pt-3><hr class="border-dotted border-neutral-300 dark:border-neutral-600"><div class=pt-3><div id=comments><script src=https://giscus.app/client.js data-repo=poolpOrg/poolp.org data-repo-id="MDEwOlJlcG9zaXRvcnkxMjYxODk2MjA=" data-category=Articles data-category-id=DIC_kwDOB4WANM4B-Zf1 data-mapping=og:title data-strict=0 data-reactions-enabled=1 data-emit-metadata=1 data-input-position=top data-theme=light data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div></div><div class=pt-8><hr class="border-dotted border-neutral-300 dark:border-neutral-600"><div class="flex justify-between pt-3"><span><a class="flex group mr-3" href=/posts/2024-02-18/fuck-you-2023.-be-nice-2024./><span class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400">&larr;</span>
+<span class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400">&rarr;</span>
+<span class="flex flex-col"><span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500">Fuck you, 2023. Be nice, 2024.</span>
+<span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400"><time datetime=2024-02-18T20:42:00+02:00>18 February 2024</time>
+</span></span></a></span><span></span></div></div></footer></article><div id=top-scroller class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0"><a href=#the-top class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400" aria-label="Scroll to top" title="Scroll to top">&uarr;</a></div></main><footer id=site-footer class="py-10 print:hidden"><div class="flex items-center justify-between"><p class="text-sm text-neutral-500 dark:text-neutral-400">Copyright © Gilles Chehade - poolp.org
+-
+<u><a href=/legal/>Legal notice</a></u></p><p class="text-xs text-neutral-500 dark:text-neutral-400">Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href=https://blowfish.page/ target=_blank rel="noopener noreferrer">Blowfish</a></p></div><script>mediumZoom(document.querySelectorAll("img:not(.nozoom)"),{margin:24,background:"rgba(0,0,0,0.5)",scrollOffset:0})</script><script type=text/javascript src=/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh+sCQ0E53ghYrxgYqw+0GCRyIEpA=="></script></footer><div id=search-wrapper class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]" data-url=https://poolp.org/ style=z-index:500><div id=search-modal class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"><header class="relative z-10 flex items-center justify-between flex-none px-2"><form class="flex items-center flex-auto min-w-0"><div class="flex items-center justify-center w-8 h-8 text-neutral-400"><span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentcolor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span></div><input type=search id=search-query class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent" placeholder=Search tabindex=0></form><button id=close-search-button class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400" title="Close (Esc)">
+<span class="relative block icon"><svg viewBox="0 0 320 512"><path fill="currentcolor" d="M310.6 361.4c12.5 12.5 12.5 32.75.0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3 54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75.0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75.0-45.25s32.75-12.5 45.25.0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25.0s12.5 32.75.0 45.25l-105.4 105.4L310.6 361.4z"/></svg></span></button></header><section class="flex-auto px-2 overflow-auto"><ul id=search-results></ul></section></div></div></div></body><script data-name=BMC-Widget data-cfasync=false src=https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js data-id=poolporg data-description="Support me on Buy me a coffee!" data-message="Support me !" data-color=#FFDD00 data-position=left data-x_margin=18 data-y_margin=18></script><div class=discord-button onclick='document.querySelector(".discord-dialog").className="discord-dialog discord-dialog--active"'><svg class="discord-button__icon" viewBox="0 0 24 24"><path d="M22 24l-5.25-5L17.38 21H4.5A2.5 2.5.0 012 18.5V3.5A2.5 2.5.0 014.5 1h15A2.5 2.5.0 0122 3.5V24M12 6.8c-2.68.0-4.56 1.15-4.56 1.15 1.03-.92 2.83-1.45 2.83-1.45l-.17-.17C8.41 6.36 6.88 7.53 6.88 7.53c-1.72 3.59-1.61 6.69-1.61 6.69 1.4 1.81 3.48 1.68 3.48 1.68L9.46 15c-1.25-.27-2.04-1.38-2.04-1.38S9.3 14.9 12 14.9s4.58-1.28 4.58-1.28S15.79 14.73 14.54 15L15.25 15.9S17.33 16.03 18.73 14.22C18.73 14.22 18.84 11.12 17.12 7.53c0 0-1.53-1.17-3.22-1.2l-.17.17s1.8.53 2.83 1.45c0 0-1.88-1.15-4.56-1.15M9.93 10.59c.65.0 1.18.57 1.17 1.27C11.1 12.55 10.58 13.13 9.93 13.13 9.29 13.13 8.77 12.55 8.77 11.86 8.77 11.16 9.28 10.59 9.93 10.59m4.17.0c.65.0 1.17.57 1.17 1.27C15.27 12.55 14.75 13.13 14.1 13.13 13.46 13.13 12.94 12.55 12.94 11.86 12.94 11.16 13.45 10.59 14.1 10.59z"/></svg></div><div class=discord-dialog><div class=discord-dialog__header><a href=https://discordapp.com><svg class="discord-dialog__logo" viewBox="0 0 532 130"><path d="M53.2 20.3H20v37.6l22.1 20V41.4H54c7.5.0 11.2 3.7 11.2 9.5v27.9c0 5.8-3.5 9.7-11.2 9.7H20v21.2h33.2c17.8.1 34.5-8.8 34.5-29.4V50.2c0-20.8-16.7-29.9-34.5-29.9zM227.3 80.4V49.6c0-11.1 19.8-13.7 25.8-2.5l18.3-7.5C264.3 23.7 251.1 19 240.2 19c-17.8.0-35.4 10.4-35.4 30.6v30.8c0 20.3 17.6 30.6 35 30.6 11.2.0 24.6-5.6 32-20.1l-19.6-9.1C247.4 94.2 227.3 91.2 227.3 80.4zM166.7 53.8c-6.9-1.5-11.5-4-11.8-8.3.4-10.4 16.3-10.7 25.6-.8l14.7-11.4C186 22 175.6 19 164.8 19c-16.3.0-32.1 9.2-32.1 26.8.0 17.1 13 26.2 27.3 28.4 7.3 1 15.4 3.9 15.2 9-.6 9.6-20.2 9.1-29.1-1.8L132 94.8c8.3 10.7 19.6 16.2 30.2 16.2 16.3.0 34.4-9.5 35.1-26.8C198.3 62.2 182.5 56.7 166.7 53.8zM99.8 109.7h22.4V20.3H99.8v89.4zM477.5 20.3h-33.2v37.6l22.1 20V41.4h11.8c7.5.0 11.2 3.7 11.2 9.5v27.9c0 5.8-3.5 9.7-11.2 9.7h-34v21.2h33.2c17.8.1 34.5-8.8 34.5-29.4V50.2C512 29.4 495.3 20.3 477.5 20.3zM314.6 19c-18.4.0-36.7 10.1-36.7 30.7v30.6c0 20.5 18.4 30.7 36.9 30.7 18.4.0 36.7-10.2 36.7-30.7V49.7C351.5 29.2 333 19 314.6 19zM329 80.3c0 6.4-7.2 9.7-14.3 9.7-7.2.0-14.4-3.2-14.4-9.7V49.7c0-6.6 7-10.1 14-10.1 7.3.0 14.7 3.2 14.7 10.1V80.3zM431.8 49.7c-.5-21-14.7-29.4-33-29.4h-35.5v89.5H386V81.3h4l20.6 28.4h28L414.4 79C425.2 75.6 431.8 66.3 431.8 49.7zM399.2 61.8H386V41.4h13.2c14.2.0 14.2 20.4.0 20.4z"/></svg></a></div><div class=discord-dialog__close-button onclick='document.querySelector(".discord-dialog").className="discord-dialog"'><svg viewBox="0 0 24 24"><path fill="#000" d="M13.46 12 19 17.54V19H17.54L12 13.46 6.46 19H5V17.54L10.54 12 5 6.46V5H6.46L12 10.54 17.54 5H19V6.46L13.46 12z"/></svg></div><div class=discord-dialog__container><div class=discord-dialog__guild>You're invited to join my Discord server</div>This is a chat server where I hang out, discuss my projects and sometimes screencast as I work on them.<br><br>Feel free to hop in, talk about your own projects, share your thoughts:
+<b>this is a virtual coworking room for anyone to join</b>.</div><div class=discord-dialog__footer><a href=https://discord.gg/YC6j4rbvSk class=discord-dialog__btn>Join the server now</a></div></div></html>

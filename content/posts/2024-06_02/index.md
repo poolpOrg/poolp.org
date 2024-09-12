@@ -27,7 +27,7 @@ Quite frankly, I don't want to expand on why so I'll keep it short.
 I had a very, very, very rough year and a half on the personal plan.
 I did a ton of things to keep my mind busy,
 I had a ton of things to write about,
-but I just couldn't be fucked to sit down in front of an empty page and pour the contents of my brain for these last few months.
+but I just couldn't be bothered to sit down in front of an empty page and pour the contents of my brain for these last few months.
 
 **I'm back on track now.**
 

@@ -1,5 +1,5 @@
 ---
-title: "Fuck you, 2023. Be nice, 2024."
+title: "2023, a retrospective."
 date: 2024-02-18 20:42:00 +0200
 authors:
  - "gilles"
@@ -15,11 +15,11 @@ A personal retrospective of 2023
 {{< /tldr >}}
 
 
-# 2023 was a shit year
+# 2023 was a rough year
 I usually enjoy doing these yearly posts,
 looking back at what I did and planning what I'll do,
-but 2023 was a shit year.
-Fuck 2023.
+but 2023 was a rough year.
+I'm glad it's over.
 
 # Took trainings
 In France,

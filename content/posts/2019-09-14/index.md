@@ -571,6 +571,63 @@ The `allow_username_mismatch` configuration is needed here because Rspamd expect
 but **in this setup** OpenSMTPD authenticates against simple usernames. Also make sure the dkim key file is
 readable by members of the `_rspamd` group.
 
+Optional: Only accept mail in certain languages
+-
+Rspamd is very configurable, and you can add your own rules. I have found the default rules are generally pretty
+good for a generic mail server, however I get a lot of foreign language spam. If you are certain what languages
+people using your server are able to understand I have found it very helpful to add a filter to mark mail read
+in languages I do not understand as spam I have done this with the following lua rule.
+
+```cat << EOF >/usr/local/share/rspamd/rules/rspamd-local.lua
+local rspamd_logger = require 'rspamd_logger'
+
+local ok_langs = {
+        ['en'] = true,
+        ['fr'] = true,
+}
+
+rspamd_config.LANG_FILTER = {
+        callback = function(task)
+                local any_ok = false
+                local lang_seen = false
+                local parts = task:get_text_parts()
+                for i, p in ipairs(parts) do
+                        local ln = p:get_language() or ''
+                        local dash = ln:find('-')
+                        if dash then
+                                -- from zh-cn to zh
+                                ln = ln:sub(1, dash-1)
+                        end
+                        lang_seen = true
+                        rspamd_logger.infox("lang for %1 is %2", i, ln)
+                        if ok_langs[ln] then
+                                any_ok = true
+                        end
+                end
+                if any_ok then
+                        return 0.1
+                end
+                if not (lang_seen) then
+                        rspamd_logger.infox("no language seen")
+                        return 0.1
+                end
+                return 1.0
+        end,
+        score = 6.0,
+        description = 'no ok languages',
+}
+EOF
+```
+
+You will need to edit the above added file if you understand different languages than
+english and french. To activate it, add a line to /usr/local/share/rspamd/rules/rspamd.lua:
+
+```
+dofile(local_rules .. '/rspamd-local.lua')
+```
+
+Enable and start redis and rspamd
+-
 We're done here, Rspamd and Redis can be enabled so OpenBSD starts them at next reboot:
 ```
 # rcctl enable redis

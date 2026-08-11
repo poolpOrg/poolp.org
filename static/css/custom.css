@@ -1,8 +1,13 @@
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Neucha|Patrick+Hand+SC);
-BODY {
+/* Justify the article prose only.  This used to sit on BODY, where it
+   inherited into everything -- headings, the TOC, nav, card titles -- and
+   stretched short lines out.  .article-content wraps just .Content, and the
+   article <h1> lives outside it in the header, so titles are unaffected. */
+.article-content p,
+.article-content li,
+.article-content blockquote {
     text-align: justify;
- /*   font-family: Neucha, Merriweather;*/
 }
 
 /* black on the yellow highlight, which is the same in both themes */

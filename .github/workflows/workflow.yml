@@ -4,6 +4,15 @@ on:
   push:
     branches:
       - master
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
 
 jobs:
   build-deploy:
@@ -11,11 +20,25 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
         with:
-          submodules: true
-      - name: Publish Site
-        uses: poolpOrg/hugo-gh-pages@master
+          submodules: recursive
+          fetch-depth: 0 # .Lastmod / .GitInfo need the full history
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          hugoVersion: 'extended_0.133.1'
+          # blowfish v2.105.0 requires extended, >= 0.158.0 and <= 0.164.0
+          hugo-version: '0.160.1'
+          extended: true
+
+      - name: Build
+        run: hugo --gc --minify --cleanDestinationDir
+
+      - name: Publish to gh-pages
+        if: github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public

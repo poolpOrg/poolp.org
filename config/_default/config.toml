@@ -4,6 +4,10 @@
 
 theme = "blowfish"
 baseURL = "https://poolp.org"
+
+# Replaces the per-template `| emojify` calls that used to live in our
+# layout overrides -- Hugo now renders :shortcodes: site-wide.
+enableEmoji = true
 defaultContentLanguage = "en"
 languageCode = "en-US"
 languageName = "English"
@@ -11,7 +15,6 @@ languageName = "English"
 # pluralizeListTitles = "true" # hugo function useful for non-english languages, find out more in  https://gohugo.io/getting-started/configuration/#pluralizelisttitles
 
 enableRobotsTXT = true
-paginate = 10
 summaryLength = 25
 
 buildDrafts = false
@@ -68,3 +71,9 @@ buildFuture = false
       name = 'fragmentrefs'
       type = 'fragments'
       weight = 10
+
+# replaces `paginate = 10`, a key Hugo removed in v0.128 -- it had been
+# silently ignored ever since, so this just makes the existing behaviour
+# (Hugo's default of 10) explicit again
+[pagination]
+  pagerSize = 10

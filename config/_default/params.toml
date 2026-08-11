@@ -38,9 +38,10 @@ disableImageOptimization = false
   enableSearch = true
 
 [homepage]
-  #layout = "profile" # valid options: page, profile, hero, card, background, custom
-  layout = "hero" # valid options: page, profile, hero, card, background, custom
-  homepageImage = "img/poolp_bing.png" # used in: hero, and card
+  layout = "page" # valid options: page, profile, hero, card, background, custom
+  # homepageImage is only read by the hero/card/background layouts, so it no
+  # longer applies -- the mascot stays as the header logo and the favicons.
+  # The in-article hero is separate ([article] showHero) and is untouched.
   showRecent = true
   showRecentItems = 6
   showMoreLink = true
@@ -131,3 +132,7 @@ disableImageOptimization = false
   # bing = ""
   # pinterest = ""
   # yandex = ""
+
+# Discord invite widget (markup in layouts/partials/extend-footer.html)
+[discord]
+  enable = true

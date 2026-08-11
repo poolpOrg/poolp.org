@@ -4,6 +4,10 @@
 
 theme = "blowfish"
 baseURL = "https://poolp.org"
+
+# Replaces the per-template `| emojify` calls that used to live in our
+# layout overrides -- Hugo now renders :shortcodes: site-wide.
+enableEmoji = true
 defaultContentLanguage = "en"
 languageCode = "en-US"
 languageName = "English"

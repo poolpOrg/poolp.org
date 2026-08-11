@@ -131,3 +131,7 @@ disableImageOptimization = false
   # bing = ""
   # pinterest = ""
   # yandex = ""
+
+# Discord invite widget (markup in layouts/partials/extend-footer.html)
+[discord]
+  enable = true

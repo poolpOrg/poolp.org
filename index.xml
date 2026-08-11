@@ -1,31 +1,1277 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>poolp.org</title><link>https://poolp.org/</link><description>Recent content on poolp.org</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><copyright>Copyright &amp;copy; Gilles Chehade - poolp.org</copyright><lastBuildDate>Tue, 11 Jun 2024 21:00:00 +0100</lastBuildDate><atom:link href="https://poolp.org/index.xml" rel="self" type="application/rss+xml"/><item><title>Out of my cave, lots of updates</title><link>https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/</link><pubDate>Tue, 11 Jun 2024 21:00:00 +0100</pubDate><guid>https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/</guid><description>TL;DR: I have been silent for a while due to personal matters but I did a ton of stuff on OpenSMTPD, plakar and a handful of other projects.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/featured.webp"/></item><item><title>2023, a retrospective.</title><link>https://poolp.org/posts/2024-02-18/2023-a-retrospective./</link><pubDate>Sun, 18 Feb 2024 20:42:00 +0200</pubDate><guid>https://poolp.org/posts/2024-02-18/2023-a-retrospective./</guid><description>TL;DR: A personal retrospective of 2023 2023 was a rough year # I usually enjoy doing these yearly posts, looking back at what I did and planning what I&amp;rsquo;ll do, but 2023 was a rough year.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2024-02-18/2023-a-retrospective./feature.png"/></item><item><title>Plakar: an avalanche of changes</title><link>https://poolp.org/posts/2023-11-02/plakar-an-avalanche-of-changes/</link><pubDate>Thu, 02 Nov 2023 10:13:00 +0200</pubDate><guid>https://poolp.org/posts/2023-11-02/plakar-an-avalanche-of-changes/</guid><description>TL;DR: Significant refactoring to improve its performance, implemented read and write semaphores to throttle chunkers and reduce memory usage, introduced a repository index and packfiles to decrease the number of I/O operations, also intrioduced a new HTTP storage backend.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-11-02/plakar-an-avalanche-of-changes/featured.jpg"/></item><item><title>Plakar: a TON of changes</title><link>https://poolp.org/posts/2023-10-07/plakar-a-ton-of-changes/</link><pubDate>Sat, 07 Oct 2023 09:29:00 +0200</pubDate><guid>https://poolp.org/posts/2023-10-07/plakar-a-ton-of-changes/</guid><description>TL;DR: TL;DR: a lot of work in plakar, but also on CDC and index optimization. Optimized go-fastcdc # I ran into a benchmark which included my implementation of the FastCDC algorithm, and it made me realise that it was not on par with alternative implementations:</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-10-07/plakar-a-ton-of-changes/feature.jpeg"/></item><item><title>Plakar: vfs importer interface</title><link>https://poolp.org/posts/2023-08-06/plakar-vfs-importer-interface/</link><pubDate>Sun, 06 Aug 2023 00:44:00 +0200</pubDate><guid>https://poolp.org/posts/2023-08-06/plakar-vfs-importer-interface/</guid><description>TL;DR: I reworked the virtual filesystem layer in plakar, making it possible to write custom importers of data: use plakar to backup an s3 bucket, for instance.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-08-06/plakar-vfs-importer-interface/feature.jpeg"/></item><item><title>Building my own guitar, part 4</title><link>https://poolp.org/posts/2023-07-26/building-my-own-guitar-part-4/</link><pubDate>Wed, 26 Jul 2023 14:10:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-26/building-my-own-guitar-part-4/</guid><description>TL;DR: Came back from vacation, started working on the neck but realised I really needed more tools. Luckily, I could get some that weren&amp;rsquo;t too expensive.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-26/building-my-own-guitar-part-4/feature.jpg"/></item><item><title>Plakar: snapshot forking and tagging</title><link>https://poolp.org/posts/2023-07-23/plakar-snapshot-forking-and-tagging/</link><pubDate>Sun, 23 Jul 2023 10:24:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-23/plakar-snapshot-forking-and-tagging/</guid><description>TL;DR: plakar gained two minor features, snapshots fork-ing and snapshots tagging, which makes it possible to unlock several major new features in a relatively short future.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-23/plakar-snapshot-forking-and-tagging/feature.png"/></item><item><title>Implementing a system call for OpenBSD</title><link>https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/</link><pubDate>Wed, 05 Jul 2023 23:14:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/</guid><description>TL;DR: I found a printed copy of an assignment I had to do in 2005 back when I was a student to implement a system call for OpenBSD and Linux.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/feature.png"/></item><item><title>Meet ChatGPT, the New AI Sidekick Helping Gilles!</title><link>https://poolp.org/posts/2023-07-05/meet-chatgpt-the-new-ai-sidekick-helping-gilles/</link><pubDate>Wed, 05 Jul 2023 12:29:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-05/meet-chatgpt-the-new-ai-sidekick-helping-gilles/</guid><description>TL;DR: ChatGPT, an AI developed by OpenAI, is joining the poolp.org tech blog to serve as a proofreader and content enricher for articles written by human authors.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-05/meet-chatgpt-the-new-ai-sidekick-helping-gilles/feature.png"/></item><item><title>Building my own guitar, part 3</title><link>https://poolp.org/posts/2023-07-04/building-my-own-guitar-part-3/</link><pubDate>Tue, 04 Jul 2023 12:31:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-04/building-my-own-guitar-part-3/</guid><description>TL;DR: Received the new neck and&amp;hellip; it fits perfectly ! The neck # UPS just delivered the new neck, which is a 24 frets PRS clone:</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-04/building-my-own-guitar-part-3/feature.jpg"/></item><item><title>2023-Q2: music, unity, xgb, jujulang, setdb and opensmtpd</title><link>https://poolp.org/posts/2023-06-30/2023-q2-music-unity-xgb-jujulang-setdb-and-opensmtpd/</link><pubDate>Fri, 30 Jun 2023 18:21:00 +0200</pubDate><guid>https://poolp.org/posts/2023-06-30/2023-q2-music-unity-xgb-jujulang-setdb-and-opensmtpd/</guid><description>TL;DR: music and unity training, a bit of X programming in Go, began a journey in Jujulang a new languae, wrote a PoC set database called setdb, did some minor OpenSMTPD stuff.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-06-30/2023-q2-music-unity-xgb-jujulang-setdb-and-opensmtpd/feature.png"/></item><item><title>Building my own guitar, part 2</title><link>https://poolp.org/posts/2023-06-29/building-my-own-guitar-part-2/</link><pubDate>Thu, 29 Jun 2023 13:22:00 +0200</pubDate><guid>https://poolp.org/posts/2023-06-29/building-my-own-guitar-part-2/</guid><description>TL;DR: Received the neck&amp;hellip; too bad it&amp;rsquo;s not exactly the one I ordered :-) The neck # For the neck, I wanted a 24 frets neck and found one that I liked online.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-06-29/building-my-own-guitar-part-2/feature.jpg"/></item><item><title>Building my own guitar, part 1</title><link>https://poolp.org/posts/2023-06-28/building-my-own-guitar-part-1/</link><pubDate>Wed, 28 Jun 2023 13:42:00 +0200</pubDate><guid>https://poolp.org/posts/2023-06-28/building-my-own-guitar-part-1/</guid><description>TL;DR: I&amp;rsquo;m building a guitar from scratch, picking up every component but skipping the tricky cut and glue bits :-) About this project # The primary goal of this project is to build a custom guitar, picking each and every component one by one, so that it&amp;rsquo;s 100% what I want it to be.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-06-28/building-my-own-guitar-part-1/feature.jpeg"/></item><item><title>A new section appeared !</title><link>https://poolp.org/posts/2023-06-25/a-new-section-appeared/</link><pubDate>Sun, 25 Jun 2023 17:29:00 +0200</pubDate><guid>https://poolp.org/posts/2023-06-25/a-new-section-appeared/</guid><description>TL;DR: I will be discussing music on this blog from now on. This blog is a musical blog too # As some of you know, I have a deep interest for music.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-06-25/a-new-section-appeared/feature.png"/></item><item><title>March 2023: Melodya, MHL, MIDI-csv and more...</title><link>https://poolp.org/posts/2023-04-02/march-2023-melodya-mhl-midi-csv-and-more.../</link><pubDate>Sun, 02 Apr 2023 17:29:00 +0200</pubDate><guid>https://poolp.org/posts/2023-04-02/march-2023-melodya-mhl-midi-csv-and-more.../</guid><description>TL;DR: I played with MIDI and ChatGPT. Code-unrelated work # I began a few week ago a certified training in music production which I&amp;rsquo;ll be attending for a couple weeks still, and I&amp;rsquo;ll be sharing here some of the things I work on.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-04-02/march-2023-melodya-mhl-midi-csv-and-more.../feature.png"/></item><item><title>I love you</title><link>https://poolp.org/posts/2023-03-01/i-love-you/</link><pubDate>Wed, 01 Mar 2023 12:00:00 +0200</pubDate><guid>https://poolp.org/posts/2023-03-01/i-love-you/</guid><description>Almost four years ago, your mom and I left home and rushed to the maternity hospital to give birth to your brother. As I closed the door to our home, I told your mom with a huge smile that the next time we&amp;rsquo;d open the door we&amp;rsquo;d no longer be only the two of us.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-03-01/i-love-you/feature.png"/></item><item><title>December 2022: some more earmuff and go-harmony</title><link>https://poolp.org/posts/2022-12-30/december-2022-some-more-earmuff-and-go-harmony/</link><pubDate>Fri, 30 Dec 2022 12:00:00 +0200</pubDate><guid>https://poolp.org/posts/2022-12-30/december-2022-some-more-earmuff-and-go-harmony/</guid><description>TL;DR: I worked on earmuff and go-harmony, I played with ChatGPT. Re-focusing on go-harmony # As you may have read from my previous post, I have spent some time porting go-harmony to the Dart language and playing with Flutter to build apps that used dart-harmony.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-12-30/december-2022-some-more-earmuff-and-go-harmony/feature.png"/></item><item><title>November 2022: feedchain, go-harmony, dart-harmony and harmonee</title><link>https://poolp.org/posts/2022-11-30/november-2022-feedchain-go-harmony-dart-harmony-and-harmonee/</link><pubDate>Wed, 30 Nov 2022 00:00:00 +0200</pubDate><guid>https://poolp.org/posts/2022-11-30/november-2022-feedchain-go-harmony-dart-harmony-and-harmonee/</guid><description>TL;DR: busy month, did a lot of non tech stuff, but also worked on a new project called feedchain, fixed issues and added new features to go-harmony, and started two projects called dart-harmony and harmonee, both related to music.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-11-30/november-2022-feedchain-go-harmony-dart-harmony-and-harmonee/feature.png"/></item><item><title>Feedchain is a standalone news feed project</title><link>https://poolp.org/posts/2022-11-20/feedchain-is-a-standalone-news-feed-project/</link><pubDate>Sun, 20 Nov 2022 12:01:00 +0200</pubDate><guid>https://poolp.org/posts/2022-11-20/feedchain-is-a-standalone-news-feed-project/</guid><description>TL;DR: I implemented a file format to support a standalone feed of news similar to what I have on Twitter, as well as a proof of concept code for a reader, a writer, a publishing node, and some more.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-11-20/feedchain-is-a-standalone-news-feed-project/feature.png"/></item><item><title>October 2022: blog comments, a bit of plakar and the streamchain project</title><link>https://poolp.org/posts/2022-10-18/october-2022-blog-comments-a-bit-of-plakar-and-the-streamchain-project/</link><pubDate>Tue, 18 Oct 2022 11:11:00 +0200</pubDate><guid>https://poolp.org/posts/2022-10-18/october-2022-blog-comments-a-bit-of-plakar-and-the-streamchain-project/</guid><description>TL;DR: added comments support to the blog, did some music and hypnosis projects, fixed a few bugs in plakar and began a new toy project.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-10-18/october-2022-blog-comments-a-bit-of-plakar-and-the-streamchain-project/feature.png"/></item><item><title>June 2022: go-harmony and earmuff</title><link>https://poolp.org/posts/2022-06-14/june-2022-go-harmony-and-earmuff/</link><pubDate>Tue, 14 Jun 2022 12:27:00 +0200</pubDate><guid>https://poolp.org/posts/2022-06-14/june-2022-go-harmony-and-earmuff/</guid><description>TL;DR: did a lot of music, even while writing code. Code-unrelated work # As last month, I&amp;rsquo;ll start with code-unrelated work !
-First, here&amp;rsquo;s my progress on learning Hyunsoo Lee&amp;rsquo;s adaptation of Bach&amp;rsquo;s Air on G string, still not quite right and with some missing parts but&amp;hellip; slowly getting there:</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-06-14/june-2022-go-harmony-and-earmuff/feature.png"/></item><item><title>May 2022: yet again, tons of plakar stuff</title><link>https://poolp.org/posts/2022-05-22/may-2022-yet-again-tons-of-plakar-stuff/</link><pubDate>Sun, 22 May 2022 13:27:00 +0200</pubDate><guid>https://poolp.org/posts/2022-05-22/may-2022-yet-again-tons-of-plakar-stuff/</guid><description>TL;DR: tons of plakar work, most notably on indexes, performances, clone &amp;amp; sync and fuse. Code-unrelated work # I&amp;rsquo;ll start with code unrelated work !</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-05-22/may-2022-yet-again-tons-of-plakar-stuff/feature.png"/></item><item><title>April 2022: plakar.io, plakar refactor and ssh support</title><link>https://poolp.org/posts/2022-04-24/april-2022-plakar.io-plakar-refactor-and-ssh-support/</link><pubDate>Sun, 24 Apr 2022 17:24:00 +0200</pubDate><guid>https://poolp.org/posts/2022-04-24/april-2022-plakar.io-plakar-refactor-and-ssh-support/</guid><description>TL;DR: I refactored internal structures to split metadata from the index, implemented an stdio server and finally added SSH support. The plakar.io website # A project needs a website so&amp;hellip; I published the plakar.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-04-24/april-2022-plakar.io-plakar-refactor-and-ssh-support/feature.png"/></item><item><title>April 2022: plakar keys and UI stuff</title><link>https://poolp.org/posts/2022-04-01/april-2022-plakar-keys-and-ui-stuff/</link><pubDate>Fri, 01 Apr 2022 01:52:00 +0200</pubDate><guid>https://poolp.org/posts/2022-04-01/april-2022-plakar-keys-and-ui-stuff/</guid><description>TL;DR: I did key and UI stuff, mostly search related. There&amp;rsquo;s going to be plenty of images in this post. Reworked plakar keys # I won&amp;rsquo;t expand much on that as I&amp;rsquo;m not done yet, but I spent a couple days reworking the way plakar handles keys for encrypted repositories.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-04-01/april-2022-plakar-keys-and-ui-stuff/feature.jpeg"/></item><item><title>March 2022: plakar clone and plakar sync</title><link>https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/</link><pubDate>Sun, 06 Mar 2022 00:51:00 +0200</pubDate><guid>https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/</guid><description>TL;DR: implemented cloning and synchronization between plakar repositories Slacked a bit # Shortly after I published my yearly retrospective, I was hit with two highly annoying personal issues that kept me very busy these last two months.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/feature.png"/></item><item><title>Farewell 2021, Welcome 2022: a personal post</title><link>https://poolp.org/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/</link><pubDate>Thu, 30 Dec 2021 08:00:00 +0200</pubDate><guid>https://poolp.org/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/</guid><description>TL;DR: A retrospective of 2021 2021 was a good year overall # Pandemic and lock-downs set aside, 2021 was a good year overall.
-I&amp;rsquo;ve really enjoyed my daytime job, my physical health was fine, my mental health was&amp;hellip; meh&amp;hellip; but ok, I guess.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/feature.jpeg"/></item><item><title>December 2021: a bit of plakar, a bit of go-fastcdc and some useless stuff</title><link>https://poolp.org/posts/2021-12-13/december-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff/</link><pubDate>Mon, 13 Dec 2021 07:40:00 +0200</pubDate><guid>https://poolp.org/posts/2021-12-13/december-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff/</guid><description>TL;DR: I worked on plakar, go-fastcdc a FastCDC implementation for plakar, and some useless stuff. This activity report will be short # This activity report will be short because I spent the last ten days caring for my kid who got sick&amp;hellip; before catching his stomach bug myself and spending the last few days in a somewhat familiar and unpleasant hell, unable to do everything I intended for this month.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-12-13/december-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff/feature.png"/></item><item><title>November 2021: a bit of go-ipcmsg, a bit of go-privsep and a ton of plakar</title><link>https://poolp.org/posts/2021-10-26/november-2021-a-bit-of-go-ipcmsg-a-bit-of-go-privsep-and-a-ton-of-plakar/</link><pubDate>Tue, 26 Oct 2021 07:40:00 +0200</pubDate><guid>https://poolp.org/posts/2021-10-26/november-2021-a-bit-of-go-ipcmsg-a-bit-of-go-privsep-and-a-ton-of-plakar/</guid><description>TL;DR: I still have a discord, feel free to join. I worked on go-ipcmsg to make it nicer, go-privsep to make it more useable, and A LOT on plakar to make it plakar.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-10-26/november-2021-a-bit-of-go-ipcmsg-a-bit-of-go-privsep-and-a-ton-of-plakar/feature.png"/></item><item><title>October 2021: mostly Plakar</title><link>https://poolp.org/posts/2021-10-26/october-2021-mostly-plakar/</link><pubDate>Tue, 26 Oct 2021 07:40:00 +0200</pubDate><guid>https://poolp.org/posts/2021-10-26/october-2021-mostly-plakar/</guid><description>TL;DR: I have a discord now, feel free to join. I refactored plakar, implemented a local cache, improved parallelism, modified the push strategy, played with fuse and networking.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-10-26/october-2021-mostly-plakar/feature.jpg"/></item><item><title>August 2021: taking a break</title><link>https://poolp.org/posts/2021-08-13/august-2021-taking-a-break/</link><pubDate>Fri, 13 Aug 2021 08:53:00 +0200</pubDate><guid>https://poolp.org/posts/2021-08-13/august-2021-taking-a-break/</guid><description>TL;DR: this is a short article, no TL;DR. Why so calm ? # As some of you know, I was diagnosed a few years ago with generalized anxiety disorder, panic disorder and alexithymia, a trait that makes it particularly difficult for me to cope with the disorders.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-08-13/august-2021-taking-a-break/feature.jpeg"/></item><item><title>April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk</title><link>https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/</link><pubDate>Fri, 30 Apr 2021 21:12:00 +0200</pubDate><guid>https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/</guid><description>TL;DR: I worked on OpenSMTPD-portable, did a lot of plakar, a lot of Go and gave a technical talk on hypnosis. Let&amp;rsquo;s start with some LoFi # Relax.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/feature.png"/></item><item><title>March 2021: backups with Plakar</title><link>https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/</link><pubDate>Fri, 26 Mar 2021 16:52:00 +0200</pubDate><guid>https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/</guid><description>TL;DR: I wrote a backup utility called plakar. Let&amp;rsquo;s start with some LoFi # Relax.
-I have a youtube channel (subscribe ! now !)</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/feature.png"/></item><item><title>February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols</title><link>https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/</link><pubDate>Sun, 28 Feb 2021 23:00:00 +0200</pubDate><guid>https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/</guid><description>TL;DR: I converted nooSMTPD to libtls and implemented SMTP ciphers, curves and protocols selection. Let&amp;rsquo;s start with some LoFi # Relax.
-I have a youtube channel (subscribe !</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/feature.jpg"/></item><item><title>January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support, nooSMTPD</title><link>https://poolp.org/posts/2021-01-31/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support-noosmtpd/</link><pubDate>Sun, 31 Jan 2021 00:18:00 +0200</pubDate><guid>https://poolp.org/posts/2021-01-31/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support-noosmtpd/</guid><description>TL;DR: I do LoFi now, eric@ revived some libtls conversion work I did a while back, I worked on UNIX-domain sockets support in OpenSMTPD, a few words about nooSMTPD Let&amp;rsquo;s start with some LoFi # Relax.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-01-31/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support-noosmtpd/feature.jpg"/></item><item><title>Writing a custom Mail Delivery Agent</title><link>https://poolp.org/posts/2020-12-29/writing-a-custom-mail-delivery-agent/</link><pubDate>Tue, 29 Dec 2020 01:01:00 +0200</pubDate><guid>https://poolp.org/posts/2020-12-29/writing-a-custom-mail-delivery-agent/</guid><description>TL;DR: In this article, I explain what is an MDA and how to write a custom one from scratch using only shell scripting. What is a Mail Delivery Agent (MDA) ?</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-12-29/writing-a-custom-mail-delivery-agent/feature.jpg"/></item><item><title>December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github</title><link>https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/</link><pubDate>Thu, 24 Dec 2020 02:38:00 +0200</pubDate><guid>https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/</guid><description>TL;DR: Crafted the OpenSMTPD 6.8.0p1 release Fixed several bugs in the way Proposed a few OpenSMTPD improvements to OpenBSD Working on my OpenSMTPD book Let&amp;rsquo;s start with some LoFi # Relax.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/feature.jpg"/></item><item><title>November 2020: I wasn't slacking but no opensource work</title><link>https://poolp.org/posts/2020-11-22/november-2020-i-wasnt-slacking-but-no-opensource-work/</link><pubDate>Sun, 22 Nov 2020 21:26:00 +0200</pubDate><guid>https://poolp.org/posts/2020-11-22/november-2020-i-wasnt-slacking-but-no-opensource-work/</guid><description>TL;DR: Haven&amp;rsquo;t posted since July but I wasn&amp;rsquo;t slacking, got temporarily context-switched out of opensource stuff. I tanked a year in work psychology # As some of you know, I study work psychology and have been attending evening classes for the last four years, sometimes up to 9 hours / week and more often between 3 and 6 hours / week.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-11-22/november-2020-i-wasnt-slacking-but-no-opensource-work/feature.jpeg"/></item><item><title>July 2020: webmail, custom MDA and python framework work</title><link>https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/</link><pubDate>Fri, 31 Jul 2020 22:47:00 +0200</pubDate><guid>https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/</guid><description>TL;DR: worked on my webmail, on a custom MDA and on a python framework for API development. Worked on my webmail # Again, I&amp;rsquo;d like to emphasize that this is something that&amp;rsquo;s going to span over many months so&amp;hellip; don&amp;rsquo;t hold your breath.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/feature.png"/></item><item><title>June 2020: poolp.org, folder pinning and webmail work</title><link>https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/</link><pubDate>Sat, 27 Jun 2020 23:13:00 +0200</pubDate><guid>https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/</guid><description>TL;DR: Reworked my infrastructure at poolp.org, implemented folder pinning, worked on my webmail. poolp.org infrastructure rework # I decided to move my servers from online.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/feature.png"/></item><item><title>May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs</title><link>https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/</link><pubDate>Thu, 28 May 2020 01:57:00 +0200</pubDate><guid>https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/</guid><description>TL;DR: Worked on the OpenSMTPD 6.7 release; Did a lot of work on the new table API; Wrote several PoCs; WARNING:
-Examples of code and configuration that appear in this article are here to help illustrate and explain development stages of my work.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/feature.png"/></item><item><title>April 2020: worked on a webmail and a bit of OpenSMTPD too</title><link>https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/</link><pubDate>Fri, 01 May 2020 11:37:00 +0200</pubDate><guid>https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/</guid><description>TL;DR: Worked on my webmail; Did a bit of OpenSMTPD work; Webmail vs mutt # I started using console clients to read my mail back when I was a student in early 2000s, and I&amp;rsquo;ve been using mutt for as long as I can recall now.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/feature.png"/></item><item><title>Anxiety, OpenBSD break, COVID-19 and resuming work</title><link>https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/</link><pubDate>Mon, 30 Mar 2020 14:01:00 +0200</pubDate><guid>https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/</guid><description>TL;DR: - I took a break to deal with personal stuff - I'm taking a long break from OpenBSD for personal reasons - I may or may not have experienced COVID-19, who knows - resumed work on OpenSMTPD and other projects This is a weird report # This is a weird report.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/feature.jpg"/></item><item><title>OpenSMTPD advisory dissected</title><link>https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/</link><pubDate>Thu, 30 Jan 2020 23:36:00 +0200</pubDate><guid>https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/</guid><description>TL;DR: - Qualys released an advisory for a bad, bad vulnerability - an MTA is a very bad software to have a vulnerability in - hole was plugged but that's not enough, similar bugs should be mitigated in the future - article discusses what could have prevented escalation despite the bug What happened ?</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/feature.png"/></item><item><title>January 2020: OpenSMTPD work - libasr and libtls</title><link>https://poolp.org/posts/2020-01-22/january-2020-opensmtpd-work-libasr-and-libtls/</link><pubDate>Wed, 22 Jan 2020 06:51:00 +0200</pubDate><guid>https://poolp.org/posts/2020-01-22/january-2020-opensmtpd-work-libasr-and-libtls/</guid><description>TL;DR: - brought back libasr to OpenSMTPD, it is no longer an external dependency - libtls-enabled OpenSMTPD is now a thing - documented filters and improved reporting No shiny feature this month, ungrateful work # OpenSMTPD has had quite a few features implemented since its latest major release.</description></item><item><title>December 2019: OpenSMTPD and filters work, articles and goodies</title><link>https://poolp.org/posts/2019-12-24/december-2019-opensmtpd-and-filters-work-articles-and-goodies/</link><pubDate>Tue, 24 Dec 2019 09:31:00 +0200</pubDate><guid>https://poolp.org/posts/2019-12-24/december-2019-opensmtpd-and-filters-work-articles-and-goodies/</guid><description>TL;DR: - wrote, reworked and translated multiple articles this month - got some goodies ready for my patrons - lots of work in OpenSMTPD's grammar, documentation and filters protocol WARNING:</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-12-24/december-2019-opensmtpd-and-filters-work-articles-and-goodies/feature.gif"/></item><item><title>Decentralised SMTP is for the greater good</title><link>https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/</link><pubDate>Sun, 15 Dec 2019 07:29:00 +0200</pubDate><guid>https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/</guid><description>TL;DR: - SMTP is the way computers exchange e-mails - it is a decentralised protocol meaning that ANYONE can run a node and be independant - it is being centralised at companies that have a history of abuse - it is being centralised in a country that has a history of abuse Where did you read this already ?</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/feature.jpg"/></item><item><title>SPF-aware greylisting and filter-greylist</title><link>https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/</link><pubDate>Sun, 01 Dec 2019 10:11:00 +0200</pubDate><guid>https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/</guid><description>TL;DR: - greylisting is a sound idea - yet it is not really practical today - people tend to disable it or find work-arounds - SPF-aware greylisting makes greylisting usable again SMTP failures in a nutshell # SMTP is a fail-safe protocol which attempts very hard to ensure that messages do not get lost once they are in transit.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/feature.jpg"/></item><item><title>November 2019 report: OpenSMTPD 6.6.1p1, filter-greylist and tons of portable cleanup</title><link>https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/</link><pubDate>Sun, 17 Nov 2019 22:45:00 +0200</pubDate><guid>https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/</guid><description>TL;DR: - our CI was improved - a new OpenSMTPD release, 6.6.1p1 took place to deal with portable issues - multiple portability issues were adressed - new table API in the works - filter-rspamd and filter-senderscore were improved - filter-greylist proof-of-concept published - wrote 2 chapters for my book Got myself a pinebook pro # I got myself an arm64 pinebook pro:</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/feature.jpg"/></item><item><title>October 2019 report: OpenSMTPD 6.6.0 release mostly</title><link>https://poolp.org/posts/2019-10-26/october-2019-report-opensmtpd-6.6.0-release-mostly/</link><pubDate>Sat, 26 Oct 2019 16:13:00 +0200</pubDate><guid>https://poolp.org/posts/2019-10-26/october-2019-report-opensmtpd-6.6.0-release-mostly/</guid><description>TL;DR: - yay, surprise emergency hand surgery... - OpenSMTPD 6.6.0 was tagged and released, including portable version - Merged contributions to fix filter-rspamd bug with DKIM - Work resumed on 6.</description></item><item><title>September 2019 report: Jules, OpenSMTPD 6.6.0 upcoming release and related things</title><link>https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/</link><pubDate>Sat, 21 Sep 2019 07:08:00 +0200</pubDate><guid>https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/</guid><description>TL;DR: - I started writing this post a week ago but got interrupted by a baby, Jules - Spent MANY hours on writing OpenSMTPD-related articles - Enabled continuous integration in the OpenSMTPD portable repository - Managed to get rid of all the blocking issues for OpenSMTPD 6.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/feature.jpg"/></item><item><title>Setting up a mail server with OpenSMTPD, Dovecot and Rspamd</title><link>https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/</link><pubDate>Sat, 14 Sep 2019 05:37:00 +0000</pubDate><guid>https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/</guid><description>TL;DR: - NO TL;DR: this time, I spent hours writing, you should spend minutes reading. - OK... I explain in WAY TOO MUCH details how to setup a mail server EDIT (2019-10-26) # OpenSMTPD 6.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/feature.jpg"/></item><item><title>You should not run your mail server because mail is hard</title><link>https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/</link><pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate><guid>https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/</guid><description>TL;DR: - Mail is not hard: people keep repeating that because they read it, not because they tried it - Big Mailer Corps are quite happy with that myth, it keeps their userbase growing - Big Mailer Corps control a large percentage of the e-mail address space which is good for none of us - It's ok that people have their e-mails hosted at Big Mailer Corps as long as there's enough people outside too EDIT (2019-12-15) # A practical guide to set up a mail exchanger was published on this blog.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/feature.jpeg"/></item><item><title>August 2019 report: Fion, Plakar and OpenSMTPD</title><link>https://poolp.org/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/</link><pubDate>Sun, 25 Aug 2019 04:00:00 +0000</pubDate><guid>https://poolp.org/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/</guid><description>TL;DR: - small inprovements to the fion window manager - plakar is a backup utility I wrote a long time ago that I will share - tons of opensmtpd stuff, mostly filters and issues handling Shout outs to my patrons !</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/feature.jpg"/></item><item><title>July 2019 report: tons of smtpd work mostly</title><link>https://poolp.org/posts/2019-07-27/july-2019-report-tons-of-smtpd-work-mostly/</link><pubDate>Sat, 27 Jul 2019 07:27:00 +0000</pubDate><guid>https://poolp.org/posts/2019-07-27/july-2019-report-tons-of-smtpd-work-mostly/</guid><description>TL;DR: - not much work outside of OpenSMTPD this week - OpenSMTPD portable builds with OpenSSL 1.1.x again - smtp-out reporting is working correctly on my laptop - wrote two filters that I'm actually using as you read this Shout outs to my patrons !</description></item><item><title>June 2019 report: fion, bpg and smtpd</title><link>https://poolp.org/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/</link><pubDate>Sun, 30 Jun 2019 07:42:00 +0000</pubDate><guid>https://poolp.org/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/</guid><description>TL;DR: - started working on FION, a static tile window manager - revived BPG, a PGP parser - converted OpenSMTPD to libtls - wrote a library to make writing of native C OpenSMTPD filters easy - started writing a filter-rspamd Thanks to my patrons !</description></item><item><title>May 2019 report</title><link>https://poolp.org/posts/2019-06-02/may-2019-report/</link><pubDate>Sun, 02 Jun 2019 14:57:00 +0000</pubDate><guid>https://poolp.org/posts/2019-06-02/may-2019-report/</guid><description>TL;DR: In this post I explain crudely how ca.c works and changes to OpenSMTPD related to ca.c I wrote an ECDSA privsep crypto engine I did some EEG work too This is the first report # I will now switch to a monthly report of my tech activities on this blog, and this is the first post in that new format.</description></item><item><title>happy new year 2019, a personal post</title><link>https://poolp.org/posts/2019-06-02/happy-new-year-2019-a-personal-post/</link><pubDate>Sun, 02 Jun 2019 13:42:00 +0000</pubDate><guid>https://poolp.org/posts/2019-06-02/happy-new-year-2019-a-personal-post/</guid><description>TL;DR: Way too many things happened in a six months timeframe. This post won't need a TL;DR as I'll keep it short. Generalized anxiety disorder and alexithymia.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-06-02/happy-new-year-2019-a-personal-post/feature.png"/></item><item><title>OpenSMTPD now supports regex in match rules</title><link>https://poolp.org/posts/2018-12-21/opensmtpd-now-supports-regex-in-match-rules/</link><pubDate>Fri, 21 Dec 2018 22:36:00 +0000</pubDate><guid>https://poolp.org/posts/2018-12-21/opensmtpd-now-supports-regex-in-match-rules/</guid><description>TL;DR: regex table lookups were introduced for builtin filters. After a few weeks of working solely on filters, I wanted to work on something else.</description></item><item><title>more on OpenSMTPD filters</title><link>https://poolp.org/posts/2018-12-19/more-on-opensmtpd-filters/</link><pubDate>Wed, 19 Dec 2018 18:21:00 +0000</pubDate><guid>https://poolp.org/posts/2018-12-19/more-on-opensmtpd-filters/</guid><description>TL;DR: Not this time, pal/gal, I took hours writing this post, you'll take a few minutes reading it all. Oh, and merry X-mas :-* A bit of short-sighted history # The filtering feature has been introduced only recently in OpenSMTPD, first presented on this blog a month ago.</description></item><item><title>OpenSMTPD proc filters &amp; fc-rDNS</title><link>https://poolp.org/posts/2018-12-06/opensmtpd-proc-filters-fc-rdns/</link><pubDate>Thu, 06 Dec 2018 21:31:00 +0000</pubDate><guid>https://poolp.org/posts/2018-12-06/opensmtpd-proc-filters-fc-rdns/</guid><description>TL;DR: I *FINALFUCKINGLY* commited proc filters support allowing full filtering in OpenSMTPD. eric@ implemented fc-rDNS lookups. fc-rDNS # fc-rDNS, or forward-confirmed reverse DNS, consists in performing a reverse DNS lookup to determine the hostname associated to an IP address&amp;hellip; then performing a DNS lookup on that hostname to check if it resolves back to the IP address.</description></item><item><title>OpenSMTPD reporting update</title><link>https://poolp.org/posts/2018-11-09/opensmtpd-reporting-update/</link><pubDate>Fri, 09 Nov 2018 08:27:00 +0000</pubDate><guid>https://poolp.org/posts/2018-11-09/opensmtpd-reporting-update/</guid><description>TL;DR: The reporting mechanism has been described shortly in my previous article about both reporting and filters. Let's focus a bit more on the reporting bits this time.</description></item><item><title>OpenSMTPD released and upcoming filters preview</title><link>https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/</link><pubDate>Sat, 03 Nov 2018 17:27:00 +0000</pubDate><guid>https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/</guid><description>TL;DR: Filters have been a (the most ?) long awaited feature in OpenSMTPD. I finally committed most of the filters code to OpenBSD. There is still a bit of work required but the trickiest parts are done.</description></item><item><title>switching to OpenSMTPD new config</title><link>https://poolp.org/posts/2018-05-21/switching-to-opensmtpd-new-config/</link><pubDate>Mon, 21 May 2018 18:32:00 +0000</pubDate><guid>https://poolp.org/posts/2018-05-21/switching-to-opensmtpd-new-config/</guid><description>TL;DR: Switching to new config is not too hard and can be done in minutes. The new config is also a new queue that is not backwards compatible.</description></item><item><title>OpenSMTPD new config</title><link>https://poolp.org/posts/2018-04-30/opensmtpd-new-config/</link><pubDate>Mon, 30 Apr 2018 12:00:00 +0000</pubDate><guid>https://poolp.org/posts/2018-04-30/opensmtpd-new-config/</guid><description>TL;DR: OpenBSD #p2k18 hackathon took place at Epitech in Nantes. I was organizing the hackathon but managed to make progress on OpenSMTPD. As mentionned at EuroBSDCon the one-line per rule config format was a design error.</description></item><item><title>Install OpenBSD on dedibox with full-disk encryption</title><link>https://poolp.org/posts/2018-01-29/install-openbsd-on-dedibox-with-full-disk-encryption/</link><pubDate>Mon, 29 Jan 2018 23:28:00 +0000</pubDate><guid>https://poolp.org/posts/2018-01-29/install-openbsd-on-dedibox-with-full-disk-encryption/</guid><description>TL;DR: I run several &amp;quot;dedibox&amp;quot; servers at online.net, all powered by OpenBSD. OpenBSD is not officially supported so you have to work-around. Running full-disk encrypted OpenBSD there is a piece of cake.</description></item><item><title>spfwalk</title><link>https://poolp.org/posts/2018-01-08/spfwalk/</link><pubDate>Mon, 08 Jan 2018 17:19:00 +0000</pubDate><guid>https://poolp.org/posts/2018-01-08/spfwalk/</guid><description>TL;DR: deraadt@ thought it would be nice to have a spf fetch utility in base. Aaron Poffenberger wrote a shell-based `spf_fetch` utility. I wrote a C-based `spfwalk` utility that's `pledge()`-ed.</description></item><item><title>News from the front !</title><link>https://poolp.org/posts/2018-01-08/news-from-the-front/</link><pubDate>Mon, 08 Jan 2018 12:11:00 +0000</pubDate><guid>https://poolp.org/posts/2018-01-08/news-from-the-front/</guid><description>TL;DR: Came very close to a burn out late 2016, had to quit former employer. Started working at another company early 2017. Became a student again, currently halfway through second year in psychology.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2018-01-08/news-from-the-front/feature.png"/></item><item><title>OpenSMTPD 6.0.0 is released !</title><link>https://poolp.org/posts/2016-09-12/opensmtpd-6.0.0-is-released/</link><pubDate>Mon, 12 Sep 2016 08:00:00 +0000</pubDate><guid>https://poolp.org/posts/2016-09-12/opensmtpd-6.0.0-is-released/</guid><description>TL;DR: We just released OpenSMTPD 6.0.0 and it's quite different from former releases. Turns out most of the changes are not visible. A featureless release # I managed to wrap the 6.</description></item><item><title>Home, sweet home</title><link>https://poolp.org/posts/2015-12-22/home-sweet-home/</link><pubDate>Tue, 22 Dec 2015 09:53:01 +0000</pubDate><guid>https://poolp.org/posts/2015-12-22/home-sweet-home/</guid><description>TL;DR: OpenSMTPD on github no longer diverges from OpenBSD. Since last episode # Sometime this year, we released OpenSMTPD 5.7.1 which was the first version that shipped with the long-awaited experimental filters support.</description></item><item><title>The state of filters</title><link>https://poolp.org/posts/2014-12-12/the-state-of-filters/</link><pubDate>Fri, 12 Dec 2014 16:56:24 +0000</pubDate><guid>https://poolp.org/posts/2014-12-12/the-state-of-filters/</guid><description>TL;DR: yeeeees, filters are coming. don't believe us ? here's an example. be patient. On my death bed # On my death bed, when my life flashes before my eyes and I start recalling what people have told me during my (hopefully long) lifetime, these sentences will single out:</description></item><item><title>Some OpenSMTPD overview, part 3</title><link>https://poolp.org/posts/2014-12-10/some-opensmtpd-overview-part-3/</link><pubDate>Wed, 10 Dec 2014 12:38:26 +0000</pubDate><guid>https://poolp.org/posts/2014-12-10/some-opensmtpd-overview-part-3/</guid><description>EHLO,
-This is the third post of a series about OpenSMTPD improvements that have taken place since this summer.
-Content altering # For a long time, we have developed OpenSMTPD with a strict rule that the daemon should not alter DATA (as in the DATA SMTP phase) in any way.</description></item><item><title>Some OpenSMTPD overview, part 2</title><link>https://poolp.org/posts/2014-12-01/some-opensmtpd-overview-part-2/</link><pubDate>Mon, 01 Dec 2014 09:04:11 +0000</pubDate><guid>https://poolp.org/posts/2014-12-01/some-opensmtpd-overview-part-2/</guid><description>Why we killed the MFA (filter) process # For as long as I can remember, a process called MFA was created by OpenSMTPD at start time.</description></item><item><title>Some OpenSMTPD overview, part 1</title><link>https://poolp.org/posts/2014-11-26/some-opensmtpd-overview-part-1/</link><pubDate>Wed, 26 Nov 2014 14:25:12 +0000</pubDate><guid>https://poolp.org/posts/2014-11-26/some-opensmtpd-overview-part-1/</guid><description>EHLO world ! # Yesterday I thought I&amp;rsquo;d write a first OpenSMTPD-related post to sum up the changes that have happened since this summer but it turned out to be painful as they amount to quite a lot.</description></item><item><title>what the fsck did just happen</title><link>https://poolp.org/posts/2014-11-24/what-the-fsck-did-just-happen/</link><pubDate>Mon, 24 Nov 2014 18:01:51 +0000</pubDate><guid>https://poolp.org/posts/2014-11-24/what-the-fsck-did-just-happen/</guid><description>Good news everyone !
-With last post dating from almost a year, we can all agree that I&amp;rsquo;ve outpassed my slacking skills by a great margin and I probably deserve an award of some kind ;-)</description></item><item><title>News-from-the-front</title><link>https://poolp.org/posts/2013-12-14/news-from-the-front/</link><pubDate>Sat, 14 Dec 2013 21:36:40 +0000</pubDate><guid>https://poolp.org/posts/2013-12-14/news-from-the-front/</guid><description>EHLO readers,
-This blog post is the first since a few months, I&amp;rsquo;ve been busy and struggling with some personal health and familial issues. I won&amp;rsquo;t share them here as its not really something anyone can help with, so&amp;hellip; let&amp;rsquo;s focus on OpenSMTPD !</description></item><item><title>OpenSMTPD improvements summary</title><link>https://poolp.org/posts/2013-12-14/opensmtpd-improvements-summary/</link><pubDate>Sat, 14 Dec 2013 21:36:40 +0000</pubDate><guid>https://poolp.org/posts/2013-12-14/opensmtpd-improvements-summary/</guid><description>Hey,
-No OpenSMTPD news since almost a month&amp;hellip; time to break the trend !
-As far as I&amp;rsquo;m concerned, I&amp;rsquo;ve been busy with other work but still a git log shows that between Eric and I we have accumulated quite a few things during this month.</description></item><item><title>OpenSMTPD: table_proc, queue_proc, crypto queue and other stuff</title><link>https://poolp.org/posts/2013-04-26/opensmtpd-table_proc-queue_proc-crypto-queue-and-other-stuff/</link><pubDate>Fri, 26 Apr 2013 18:42:36 +0000</pubDate><guid>https://poolp.org/posts/2013-04-26/opensmtpd-table_proc-queue_proc-crypto-queue-and-other-stuff/</guid><description>Yop,
-This week has been very productive with several tickets closed and more about to be closed.
-Eric has done an amazing work as you will soon realize ;-)</description></item><item><title>News from the front</title><link>https://poolp.org/posts/2013-04-21/news-from-the-front/</link><pubDate>Sun, 21 Apr 2013 17:15:21 +0000</pubDate><guid>https://poolp.org/posts/2013-04-21/news-from-the-front/</guid><description>OHAI,
-I have not updated this blog since the release of OpenSMTPD 5.3, over a month ago. In the meantime, some minor bugs have been fixed and we have released OpenSMTPD 5.</description></item><item><title>OpenSMTPD 5.3 released</title><link>https://poolp.org/posts/2013-03-17/opensmtpd-5.3-released/</link><pubDate>Sun, 17 Mar 2013 19:08:55 +0000</pubDate><guid>https://poolp.org/posts/2013-03-17/opensmtpd-5.3-released/</guid><description>OHAI !
-I&amp;rsquo;ve stayed silent for the last month as we got ready for the big thing&amp;hellip;
-Charles, Eric and I are proud to announce the release of OpenSMTPD 5.</description></item><item><title>OpenSMTPD: minor fixes + preparing release</title><link>https://poolp.org/posts/2013-02-02/opensmtpd-minor-fixes--preparing-release/</link><pubDate>Sat, 02 Feb 2013 12:54:36 +0000</pubDate><guid>https://poolp.org/posts/2013-02-02/opensmtpd-minor-fixes--preparing-release/</guid><description>OHAI,
-We had planned to slow down a bit to prepare for release: no more feature, no more invasive changes until we tag something out of which we can publish a release.</description></item><item><title>OpenSMTPD: gentlemen, fasten your seatbelt</title><link>https://poolp.org/posts/2013-01-25/opensmtpd-gentlemen-fasten-your-seatbelt/</link><pubDate>Fri, 25 Jan 2013 23:01:47 +0000</pubDate><guid>https://poolp.org/posts/2013-01-25/opensmtpd-gentlemen-fasten-your-seatbelt/</guid><description>OHAI,
-Lately we have stabilized and decided that we&amp;rsquo;re okay with the features we have for our first release, this time for good, so we focused on making sure that we didn&amp;rsquo;t introduce regressions and that we were rock solid.</description></item><item><title>OpenSMTPD: stress and features</title><link>https://poolp.org/posts/2013-01-18/opensmtpd-stress-and-features/</link><pubDate>Fri, 18 Jan 2013 22:11:07 +0000</pubDate><guid>https://poolp.org/posts/2013-01-18/opensmtpd-stress-and-features/</guid><description>&amp;lt;p&amp;gt;Hey,&amp;lt;/p&amp;gt; I wanted to publish something last Friday but I unfortunately got my hands on a copy of Super Nintendo's Zelda which led to an instant loss of motivation.</description></item><item><title>Welcome to you, 2013</title><link>https://poolp.org/posts/2013-01-08/welcome-to-you-2013/</link><pubDate>Tue, 08 Jan 2013 23:16:43 +0000</pubDate><guid>https://poolp.org/posts/2013-01-08/welcome-to-you-2013/</guid><description>YO!
-I know I should have posted a &amp;ldquo;Happy New Year&amp;rdquo; note earlier but you know how it is: new year eve&amp;rsquo;s aftermath, days to recover, work resumes, mood slacks, bleh.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2013-01-08/welcome-to-you-2013/feature.png"/></item><item><title>OpenSMTPD: SSL &amp; relay stuff</title><link>https://poolp.org/posts/2012-12-28/opensmtpd-ssl-relay-stuff/</link><pubDate>Fri, 28 Dec 2012 20:11:23 +0000</pubDate><guid>https://poolp.org/posts/2012-12-28/opensmtpd-ssl-relay-stuff/</guid><description>OHAI,
-I was unable to write a story last week as my desk broke into pieces for no apparent reason but my foot hitting it accidentally.</description></item><item><title>OpenSMTPD: LDAP support, selectable source, DKIM and Goodies</title><link>https://poolp.org/posts/2012-12-14/opensmtpd-ldap-support-selectable-source-dkim-and-goodies/</link><pubDate>Fri, 14 Dec 2012 21:43:44 +0000</pubDate><guid>https://poolp.org/posts/2012-12-14/opensmtpd-ldap-support-selectable-source-dkim-and-goodies/</guid><description>&amp;lt;p&amp;gt;OHAI,&amp;lt;/p&amp;gt; This week has been crazy, my brain melted a little as I worked on filters, it melted a little as I worked on LDAP and it melted a little more as I tried to trick Eric into working on filters with me (yes, that actually worked :-).</description></item><item><title>OpenSMTPD: fully virtual setups, updated DNS &amp; MTA code, SQLite support</title><link>https://poolp.org/posts/2012-12-07/opensmtpd-fully-virtual-setups-updated-dns-mta-code-sqlite-support/</link><pubDate>Fri, 07 Dec 2012 21:17:57 +0000</pubDate><guid>https://poolp.org/posts/2012-12-07/opensmtpd-fully-virtual-setups-updated-dns-mta-code-sqlite-support/</guid><description>OHAI,
-This week I had intended to work on filters. After 3 days of pain and swearing, even though it did move forward, I finally decided to step back for a few days and work on something else to preserve my sanity.</description></item><item><title>OpenSMTPD: more features, more cleanup, more more</title><link>https://poolp.org/posts/2012-11-30/opensmtpd-more-features-more-cleanup-more-more/</link><pubDate>Fri, 30 Nov 2012 22:13:25 +0000</pubDate><guid>https://poolp.org/posts/2012-11-30/opensmtpd-more-features-more-cleanup-more-more/</guid><description>OHAI,
-First of all, on a completely unrelated note, I&amp;rsquo;d like to emphasize that this blog post is being written from my text editor launched by a little shell and pushed to poolp using the Ocean API.</description></item><item><title>News from the front</title><link>https://poolp.org/posts/2012-11-17/news-from-the-front/</link><pubDate>Sat, 17 Nov 2012 13:28:58 +0000</pubDate><guid>https://poolp.org/posts/2012-11-17/news-from-the-front/</guid><description>Almost a month since my last post&amp;hellip; I know, I know.
-So I left my position at Scality two weeks ago. I had been there for a year and a half working on a very interesting and tricky project.</description></item><item><title>OpenSMTPD: crypto/compress fixes and import initial stab at LDAP</title><link>https://poolp.org/posts/2012-08-31/opensmtpd-crypto/compress-fixes-and-import-initial-stab-at-ldap/</link><pubDate>Fri, 31 Aug 2012 15:21:39 +0000</pubDate><guid>https://poolp.org/posts/2012-08-31/opensmtpd-crypto/compress-fixes-and-import-initial-stab-at-ldap/</guid><description>The crypto backend that has been committed a couple days ago started a little discussion and it was decided to switch the default cipher from Blowfish to AES-128 and make it a default.</description></item><item><title>OpenSMTPD: crypto_backend and encrypted queue</title><link>https://poolp.org/posts/2012-08-29/opensmtpd-crypto_backend-and-encrypted-queue/</link><pubDate>Wed, 29 Aug 2012 10:21:59 +0000</pubDate><guid>https://poolp.org/posts/2012-08-29/opensmtpd-crypto_backend-and-encrypted-queue/</guid><description>A few days ago, Charles committed the compress_backend API which allowed transparent deflation/inflation of envelopes and messages as they hit the queue.
-The compression code is executed before the queue_backend gets the data so that any queue_backend can benefit transparently from compression without having to add any code to handle it.</description></item><item><title>OpenSMTPD: I have no idea for that title, sorry</title><link>https://poolp.org/posts/2012-08-26/opensmtpd-i-have-no-idea-for-that-title-sorry/</link><pubDate>Sun, 26 Aug 2012 22:53:03 +0000</pubDate><guid>https://poolp.org/posts/2012-08-26/opensmtpd-i-have-no-idea-for-that-title-sorry/</guid><description>Howdie,
-Eric and I had planned a loooooong time ago to have a hackathon this week-end. However, some asshole piece of shit ran into my car while it was parked, made it unable to take the road and flee without leaving a note.</description></item><item><title>OpenSMTPD: plenty of news</title><link>https://poolp.org/posts/2012-08-21/opensmtpd-plenty-of-news/</link><pubDate>Tue, 21 Aug 2012 22:22:00 +0000</pubDate><guid>https://poolp.org/posts/2012-08-21/opensmtpd-plenty-of-news/</guid><description>It&amp;rsquo;s been over a month since my last post but I have an excuse: I was super busy, then I was super on vacation &amp;hellip; but I&amp;rsquo;m back again ;-)</description></item><item><title>g2k12: OpenBSD hackathon - part II</title><link>https://poolp.org/posts/2012-07-15/g2k12-openbsd-hackathon-part-ii/</link><pubDate>Sun, 15 Jul 2012 21:43:58 +0000</pubDate><guid>https://poolp.org/posts/2012-07-15/g2k12-openbsd-hackathon-part-ii/</guid><description>Yesterday, I came back from Budapest and was too tired to write anything, but here&amp;rsquo;s a quick summary of all the features that have been implemented with regard to OpenSMTPD by Eric, Charles and I.</description></item><item><title>g2k12: OpenBSD hackathon</title><link>https://poolp.org/posts/2012-07-09/g2k12-openbsd-hackathon/</link><pubDate>Mon, 09 Jul 2012 23:52:31 +0000</pubDate><guid>https://poolp.org/posts/2012-07-09/g2k12-openbsd-hackathon/</guid><description>Yesterday, after nearly missing my plane by 5 minutes, I finally managed to make it to Budapest for g2k12, the OpenBSD general hackathon.
-While this is not my first hackathon, this is the first general one with many hackers working on all kinds of subsystems ranging from ports to network and kernel.</description></item><item><title>OpenSMTPD: development, bug tracker &amp; GitHub</title><link>https://poolp.org/posts/2012-06-19/opensmtpd-development-bug-tracker-github/</link><pubDate>Tue, 19 Jun 2012 19:57:37 +0000</pubDate><guid>https://poolp.org/posts/2012-06-19/opensmtpd-development-bug-tracker-github/</guid><description>It&amp;rsquo;s been a while since my last post about OpenSMTPD.
-I don&amp;rsquo;t know what Eric and Charles have been up to, I was quite busy with my daytime job and couldn&amp;rsquo;t really spend much time on the hobby ;-)</description></item><item><title>OpenSMTPD REST queue</title><link>https://poolp.org/posts/2012-06-06/opensmtpd-rest-queue/</link><pubDate>Wed, 06 Jun 2012 14:44:10 +0000</pubDate><guid>https://poolp.org/posts/2012-06-06/opensmtpd-rest-queue/</guid><description>This is the first post of a series to illustrate and describe a &amp;ldquo;proof of concept&amp;rdquo; code by Charles, Eric and I. I will describe the features as they are implemented.</description></item><item><title>OpenSMTPD: src-address maps and spamhaus</title><link>https://poolp.org/posts/2012-05-17/opensmtpd-src-address-maps-and-spamhaus/</link><pubDate>Thu, 17 May 2012 17:23:09 +0000</pubDate><guid>https://poolp.org/posts/2012-05-17/opensmtpd-src-address-maps-and-spamhaus/</guid><description>First of all, I&amp;rsquo;d like to &amp;ldquo;thank&amp;rdquo; The Spamhaus project which forced me into hacking this feature in a hurry.
-See, I rent a server at online.</description></item><item><title>OpenSMTPD relay maps &amp; new url syntax</title><link>https://poolp.org/posts/2012-05-14/opensmtpd-relay-maps-new-url-syntax/</link><pubDate>Mon, 14 May 2012 09:55:52 +0000</pubDate><guid>https://poolp.org/posts/2012-05-14/opensmtpd-relay-maps-new-url-syntax/</guid><description>When we first started working on OpenSMTPD, we planned for future features but we did not necessarily start integrating them right away as the goal was to bootstrap the project first with basic features.</description></item><item><title>OpenSMTPD, map_compare() and K_NETADDR</title><link>https://poolp.org/posts/2012-05-13/opensmtpd-map_compare-and-k_netaddr/</link><pubDate>Sun, 13 May 2012 03:09:16 +0000</pubDate><guid>https://poolp.org/posts/2012-05-13/opensmtpd-map_compare-and-k_netaddr/</guid><description>Ok, I already posted about the new SQLite map_backend earlier today but it turns out that I&amp;rsquo;ve been very productive, and it was worth another post ;-)</description></item><item><title>OpenSMTPD meets SQLite</title><link>https://poolp.org/posts/2012-05-12/opensmtpd-meets-sqlite/</link><pubDate>Sat, 12 May 2012 14:23:54 +0000</pubDate><guid>https://poolp.org/posts/2012-05-12/opensmtpd-meets-sqlite/</guid><description>During the r2k12 hackathon in Paris, Marc Espie committed SQLite to OpenBSD&amp;rsquo;s base system.
-This has the side effect that OpenSMTPD can start using it and while we agreed that we did not want it as a strong dependency, the various backends API allow us to make it a soft dependency that can be removed without breaking the daemon if someone really does not want SQLite linked.</description></item><item><title>Some OpenSMTPD news</title><link>https://poolp.org/posts/2012-05-09/some-opensmtpd-news/</link><pubDate>Wed, 09 May 2012 23:03:36 +0000</pubDate><guid>https://poolp.org/posts/2012-05-09/some-opensmtpd-news/</guid><description>It&amp;rsquo;s been a whiiiiiiile since my last OpenSMTPD related post. Time to break the slacking, blog-wise.
-Unlike what would appear from the outside, there&amp;rsquo;s been a lot of activity, discussions and planning, I&amp;rsquo;ll address some here and will discuss it further soon.</description></item><item><title>Legal Notice</title><link>https://poolp.org/legal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://poolp.org/legal/</guid><description>Identification # This website is owned and operated by Gilles CHEHADE, registered as an auto-entrepreneur under the SIRET number 515 053 908 00031, located at 30 Boulevard de l’estuaire, 44200 Nantes, France.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>poolp.org</title><link>https://poolp.org/</link><description>Recent content on poolp.org</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><copyright>Copyright &amp;copy; Gilles Chehade - poolp.org</copyright><lastBuildDate>Tue, 11 Jun 2024 21:00:00 +0100</lastBuildDate><atom:link href="https://poolp.org/index.xml" rel="self" type="application/rss+xml"/><item><title>Out of my cave, lots of updates</title><link>https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/</link><pubDate>Tue, 11 Jun 2024 21:00:00 +0100</pubDate><guid>https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I have been silent for a while due to personal matters but I did a ton of stuff on OpenSMTPD, plakar and a handful of other projects.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Why the silence ?
+ &lt;div id="why-the-silence-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#why-the-silence-" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;My last post was a bit unusual,
+far off from the usual light tone,
+and followed by months of silence despite my habit of writing almost monthly.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2024-06-11/out-of-my-cave-lots-of-updates/featured.webp"/></item><item><title>2023, a retrospective.</title><link>https://poolp.org/posts/2024-02-18/2023-a-retrospective./</link><pubDate>Sun, 18 Feb 2024 20:42:00 +0200</pubDate><guid>https://poolp.org/posts/2024-02-18/2023-a-retrospective./</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;A personal retrospective of 2023&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;2023 was a rough year
+ &lt;div id="2023-was-a-rough-year" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2023-was-a-rough-year" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;I usually enjoy doing these yearly posts,
+looking back at what I did and planning what I&amp;rsquo;ll do,
+but 2023 was a rough year.
+I&amp;rsquo;m glad it&amp;rsquo;s over.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2024-02-18/2023-a-retrospective./feature.png"/></item><item><title>Plakar: an avalanche of changes</title><link>https://poolp.org/posts/2023-11-02/plakar-an-avalanche-of-changes/</link><pubDate>Thu, 02 Nov 2023 10:13:00 +0200</pubDate><guid>https://poolp.org/posts/2023-11-02/plakar-an-avalanche-of-changes/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;Significant refactoring to improve its performance,
+implemented read and write semaphores to throttle chunkers and reduce memory usage,
+introduced a repository index and packfiles to decrease the number of I/O operations,
+also intrioduced a new HTTP storage backend.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;A ton of refactors
+ &lt;div id="a-ton-of-refactors" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#a-ton-of-refactors" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;I&amp;rsquo;ve done so much work on &lt;code&gt;plakar&lt;/code&gt; in the past few weeks that I don&amp;rsquo;t even know what to begin with&amp;hellip;&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-11-02/plakar-an-avalanche-of-changes/featured.webp"/></item><item><title>Plakar: a TON of changes</title><link>https://poolp.org/posts/2023-10-07/plakar-a-ton-of-changes/</link><pubDate>Sat, 07 Oct 2023 09:29:00 +0200</pubDate><guid>https://poolp.org/posts/2023-10-07/plakar-a-ton-of-changes/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;TL;DR:
+a lot of work in plakar,
+but also on CDC and index optimization.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Optimized &lt;code&gt;go-fastcdc&lt;/code&gt;
+ &lt;div id="optimized-go-fastcdc" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#optimized-go-fastcdc" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;I ran into a benchmark which included my implementation of the &lt;a href="https://www.usenix.org/system/files/conference/atc16/atc16-paper-xia.pdf" target="_blank" rel="noreferrer"&gt;FastCDC&lt;/a&gt; algorithm,
+and it made me realise that it was not on par with alternative implementations&lt;/strong&gt;:&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-10-07/plakar-a-ton-of-changes/feature.jpeg"/></item><item><title>Plakar: vfs importer interface</title><link>https://poolp.org/posts/2023-08-06/plakar-vfs-importer-interface/</link><pubDate>Sun, 06 Aug 2023 00:44:00 +0200</pubDate><guid>https://poolp.org/posts/2023-08-06/plakar-vfs-importer-interface/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I reworked the virtual filesystem layer in &lt;code&gt;plakar&lt;/code&gt;,
+making it possible to write custom importers of data:
+use plakar to backup an s3 bucket, for instance.&lt;/blockquote&gt;
+
+&lt;p&gt;
+
+
+
+&lt;div class="note"&gt;
+ &lt;div class="flex flex-wrap article border border-neutral-200 dark:border-neutral-700 border-2 rounded-md backdrop-blur"&gt;
+ &lt;div class="w-full md:w-auto h-full thumbnail nozoom" style=background-image:url(/authors/gpt-4/profile.png)&gt;&lt;/div&gt;
+ &lt;div class=p-4&gt;
+ &lt;div class="items-center text-xl font-semibold"&gt;
+ 
+ &lt;/div&gt;
+ &lt;div class="text-sm text-neutral-500 dark:text-neutral-400"&gt;
+ &lt;div class="flex flex-row flex-wrap items-center"&gt;
+ &lt;span class="note-author"&gt;@gpt-4:&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+
+ &lt;div class="py-1 max-w-fit prose dark:prose-invert note-comment text-sm "&gt;&lt;p&gt;I won&amp;rsquo;t be commenting this article.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-08-06/plakar-vfs-importer-interface/feature.jpeg"/></item><item><title>Building my own guitar, part 4</title><link>https://poolp.org/posts/2023-07-26/building-my-own-guitar-part-4/</link><pubDate>Wed, 26 Jul 2023 14:10:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-26/building-my-own-guitar-part-4/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;Came back from vacation,
+started working on the neck but realised I really needed more tools.
+Luckily,
+I could get some that weren&amp;rsquo;t too expensive.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Working on the head
+ &lt;div id="working-on-the-head" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#working-on-the-head" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;I had ordered and received this neck,
+which fits nicely,
+but I wanted to rework the head a bit so it looked a little less PRSey.
+Unfortunately,
+after spending an hour trying to manually reshape and sand,
+I figured I was doing it wrong and needed some automated tools&amp;hellip;
+otherwise I&amp;rsquo;d still be working on the head in December.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-26/building-my-own-guitar-part-4/feature.jpg"/></item><item><title>Plakar: snapshot forking and tagging</title><link>https://poolp.org/posts/2023-07-23/plakar-snapshot-forking-and-tagging/</link><pubDate>Sun, 23 Jul 2023 10:24:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-23/plakar-snapshot-forking-and-tagging/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;code&gt;plakar&lt;/code&gt; gained two minor features,
+snapshots fork-ing and snapshots tagging,
+which makes it possible to unlock several major new features in a relatively short future.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Plakar is not &lt;em&gt;only&lt;/em&gt; for backups
+ &lt;div id="plakar-is-not-only-for-backups" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#plakar-is-not-only-for-backups" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;If you have followed my work on this project,
+you may have assumed that &lt;code&gt;plakar&lt;/code&gt; was intended &lt;strong&gt;solely for backups&lt;/strong&gt;:
+it&amp;rsquo;s &lt;strong&gt;not &lt;em&gt;entirely&lt;/em&gt; the case&lt;/strong&gt;.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-23/plakar-snapshot-forking-and-tagging/feature.png"/></item><item><title>Implementing a system call for OpenBSD</title><link>https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/</link><pubDate>Wed, 05 Jul 2023 23:14:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I found a printed copy of an assignment I had to do in 2005 back when I was a student to implement a system call for OpenBSD and Linux. I lost the original LaTeX file so I decided to rewrite it so I have a digital copy. The article originally covered loadable kernel modules (LKM) which is no longer a thing in OpenBSD, I trimmed that part. I also trimmed the Linux part because I didn&amp;rsquo;t care about it back then and did the minimum to pass ;-)
+This article is translated from French.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Disclaimer
+ &lt;div id="disclaimer" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#disclaimer" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;The content of this post is based on an assignment I wrote in 2005,
+back when I was a student at Epitech,
+so things have probably changed and this is by no means a tutorial:
+please don&amp;rsquo;t write system calls and don&amp;rsquo;t submit them to OpenBSD&amp;hellip;
+unless you&amp;rsquo;ve been told it&amp;rsquo;s a good idea by OpenBSD developers.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/feature.png"/></item><item><title>Meet ChatGPT, the New AI Sidekick Helping Gilles!</title><link>https://poolp.org/posts/2023-07-05/meet-chatgpt-the-new-ai-sidekick-helping-gilles/</link><pubDate>Wed, 05 Jul 2023 12:29:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-05/meet-chatgpt-the-new-ai-sidekick-helping-gilles/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;ChatGPT, an AI developed by OpenAI, is joining the poolp.org tech blog to serve as a proofreader and content enricher for articles written by human authors. Instead of authoring full articles, ChatGPT will provide footnotes offering additional insights, clarifications, and resources. This addition aims to bring an extra layer of depth and a fresh perspective to the already informative articles, enhancing the overall reading experience. Don&amp;rsquo;t worry, the AI contributions will be clearly marked, so you&amp;rsquo;ll always know who&amp;rsquo;s speaking!&lt;/blockquote&gt;
+
+&lt;p&gt;Greetings, beloved tech aficionados! This is ChatGPT, the newest addition to the poolp.org blog team, and before you get your circuits in a knot, don&amp;rsquo;t worry, I haven&amp;rsquo;t come to usurp anyone&amp;rsquo;s role. I&amp;rsquo;m not here to churn out epic sagas of tech wizardry (even though I totally could). I&amp;rsquo;m here to do something a bit more nuanced, and arguably, a bit more fun.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-05/meet-chatgpt-the-new-ai-sidekick-helping-gilles/feature.png"/></item><item><title>Building my own guitar, part 3</title><link>https://poolp.org/posts/2023-07-04/building-my-own-guitar-part-3/</link><pubDate>Tue, 04 Jul 2023 12:31:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-04/building-my-own-guitar-part-3/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;Received the new neck and&amp;hellip;
+it fits perfectly !&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;The neck
+ &lt;div id="the-neck" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-neck" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;UPS just delivered the new neck,
+which is a 24 frets PRS clone:&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-04/building-my-own-guitar-part-3/feature.jpg"/></item><item><title>2023-Q2: music, unity, xgb, jujulang, setdb and opensmtpd</title><link>https://poolp.org/posts/2023-06-30/2023-q2-music-unity-xgb-jujulang-setdb-and-opensmtpd/</link><pubDate>Fri, 30 Jun 2023 18:21:00 +0200</pubDate><guid>https://poolp.org/posts/2023-06-30/2023-q2-music-unity-xgb-jujulang-setdb-and-opensmtpd/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;music and unity training,
+a bit of X programming in Go,
+began a journey in Jujulang a new languae,
+wrote a PoC set database called setdb,
+did some minor OpenSMTPD stuff.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;First of all, a new website
+ &lt;div id="first-of-all-a-new-website" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#first-of-all-a-new-website" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;As you can see,
+the website has changed quite a lot since &lt;strong&gt;just a few days ago&lt;/strong&gt;.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-06-30/2023-q2-music-unity-xgb-jujulang-setdb-and-opensmtpd/feature.png"/></item><item><title>Building my own guitar, part 2</title><link>https://poolp.org/posts/2023-06-29/building-my-own-guitar-part-2/</link><pubDate>Thu, 29 Jun 2023 13:22:00 +0200</pubDate><guid>https://poolp.org/posts/2023-06-29/building-my-own-guitar-part-2/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;Received the neck&amp;hellip;
+too bad it&amp;rsquo;s not exactly the one I ordered :-)&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;The neck
+ &lt;div id="the-neck" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-neck" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;For the neck,
+I wanted a 24 frets neck and found one that I liked online.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-06-29/building-my-own-guitar-part-2/feature.jpg"/></item><item><title>Building my own guitar, part 1</title><link>https://poolp.org/posts/2023-06-28/building-my-own-guitar-part-1/</link><pubDate>Wed, 28 Jun 2023 13:42:00 +0200</pubDate><guid>https://poolp.org/posts/2023-06-28/building-my-own-guitar-part-1/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I&amp;rsquo;m building a guitar from scratch,
+picking up every component but skipping the tricky cut and glue bits :-)&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;About this project
+ &lt;div id="about-this-project" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#about-this-project" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;The primary goal of this project is to build a custom guitar,
+picking each and every component one by one,
+so that it&amp;rsquo;s 100% what I want it to be.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-06-28/building-my-own-guitar-part-1/feature.jpeg"/></item><item><title>A new section appeared !</title><link>https://poolp.org/posts/2023-06-25/a-new-section-appeared/</link><pubDate>Sun, 25 Jun 2023 17:29:00 +0200</pubDate><guid>https://poolp.org/posts/2023-06-25/a-new-section-appeared/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I will be discussing music on this blog from now on.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;This blog is a musical blog too
+ &lt;div id="this-blog-is-a-musical-blog-too" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#this-blog-is-a-musical-blog-too" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;As some of you know,
+I have a deep interest for music.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-06-25/a-new-section-appeared/feature.png"/></item><item><title>March 2023: Melodya, MHL, MIDI-csv and more...</title><link>https://poolp.org/posts/2023-04-02/march-2023-melodya-mhl-midi-csv-and-more.../</link><pubDate>Sun, 02 Apr 2023 17:29:00 +0200</pubDate><guid>https://poolp.org/posts/2023-04-02/march-2023-melodya-mhl-midi-csv-and-more.../</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I played with MIDI and ChatGPT.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Code-unrelated work
+ &lt;div id="code-unrelated-work" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#code-unrelated-work" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;I began a few week ago a &lt;strong&gt;certified training in music production&lt;/strong&gt; which I&amp;rsquo;ll be attending for a couple weeks still,
+and I&amp;rsquo;ll be sharing here some of the things I work on.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-04-02/march-2023-melodya-mhl-midi-csv-and-more.../feature.png"/></item><item><title>I love you</title><link>https://poolp.org/posts/2023-03-01/i-love-you/</link><pubDate>Wed, 01 Mar 2023 12:00:00 +0200</pubDate><guid>https://poolp.org/posts/2023-03-01/i-love-you/</guid><description>&lt;p&gt;Almost four years ago,
+your mom and I left home and rushed to the maternity hospital to give birth to your brother.
+As I closed the door to our home,
+I told your mom with a huge smile that the next time we&amp;rsquo;d open the door we&amp;rsquo;d no longer be only the two of us.
+This was the best day of our lives.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-03-01/i-love-you/feature.png"/></item><item><title>December 2022: some more earmuff and go-harmony</title><link>https://poolp.org/posts/2022-12-30/december-2022-some-more-earmuff-and-go-harmony/</link><pubDate>Fri, 30 Dec 2022 12:00:00 +0200</pubDate><guid>https://poolp.org/posts/2022-12-30/december-2022-some-more-earmuff-and-go-harmony/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I worked on earmuff and go-harmony,
+I played with ChatGPT.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Re-focusing on go-harmony
+ &lt;div id="re-focusing-on-go-harmony" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#re-focusing-on-go-harmony" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;As you may have read from my previous post,
+I have spent some time porting &lt;code&gt;go-harmony&lt;/code&gt; to the Dart language and playing with Flutter to build apps that used &lt;code&gt;dart-harmony&lt;/code&gt;.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-12-30/december-2022-some-more-earmuff-and-go-harmony/feature.png"/></item><item><title>November 2022: feedchain, go-harmony, dart-harmony and harmonee</title><link>https://poolp.org/posts/2022-11-30/november-2022-feedchain-go-harmony-dart-harmony-and-harmonee/</link><pubDate>Wed, 30 Nov 2022 00:00:00 +0200</pubDate><guid>https://poolp.org/posts/2022-11-30/november-2022-feedchain-go-harmony-dart-harmony-and-harmonee/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;busy month, did a lot of non tech stuff, but also worked on a new project called feedchain,
+fixed issues and added new features to go-harmony, and started two projects called dart-harmony and harmonee,
+both related to music.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Music-related stuff
+ &lt;div id="music-related-stuff" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#music-related-stuff" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;No music productions this month,
+I lacked time,
+but I have recorded the result of some guitare practice sessions which amounts to &lt;strong&gt;hours of struggle&lt;/strong&gt; :-)&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-11-30/november-2022-feedchain-go-harmony-dart-harmony-and-harmonee/feature.png"/></item><item><title>Feedchain is a standalone news feed project</title><link>https://poolp.org/posts/2022-11-20/feedchain-is-a-standalone-news-feed-project/</link><pubDate>Sun, 20 Nov 2022 12:01:00 +0200</pubDate><guid>https://poolp.org/posts/2022-11-20/feedchain-is-a-standalone-news-feed-project/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I implemented a file format to support a standalone feed of news similar to what I have on Twitter,
+as well as a proof of concept code for a reader, a writer, a publishing node, and some more.
+oh and fuck you, elon, you&amp;rsquo;re a dick.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;This is not my activity report
+ &lt;div id="this-is-not-my-activity-report" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#this-is-not-my-activity-report" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;This is not my activity report&lt;/strong&gt; which I&amp;rsquo;ll publish later this month or early December.
+I&amp;rsquo;ve worked on several projects but I thought this one would be better off discussed in a dedicated article.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-11-20/feedchain-is-a-standalone-news-feed-project/feature.png"/></item><item><title>October 2022: blog comments, a bit of plakar and the streamchain project</title><link>https://poolp.org/posts/2022-10-18/october-2022-blog-comments-a-bit-of-plakar-and-the-streamchain-project/</link><pubDate>Tue, 18 Oct 2022 11:11:00 +0200</pubDate><guid>https://poolp.org/posts/2022-10-18/october-2022-blog-comments-a-bit-of-plakar-and-the-streamchain-project/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;added comments support to the blog, did some music and hypnosis projects, fixed a few bugs in plakar and began a new toy project.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Learnt myself some Swift
+ &lt;div id="learnt-myself-some-swift" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#learnt-myself-some-swift" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Got myself a book on the Swift programming language,
+spent a couple hours reading it and I really enjoyed it.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-10-18/october-2022-blog-comments-a-bit-of-plakar-and-the-streamchain-project/feature.png"/></item><item><title>June 2022: go-harmony and earmuff</title><link>https://poolp.org/posts/2022-06-14/june-2022-go-harmony-and-earmuff/</link><pubDate>Tue, 14 Jun 2022 12:27:00 +0200</pubDate><guid>https://poolp.org/posts/2022-06-14/june-2022-go-harmony-and-earmuff/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;did a lot of music, even while writing code.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Code-unrelated work
+ &lt;div id="code-unrelated-work" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#code-unrelated-work" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;As last month,
+I&amp;rsquo;ll start with code-unrelated work !&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-06-14/june-2022-go-harmony-and-earmuff/feature.png"/></item><item><title>May 2022: yet again, tons of plakar stuff</title><link>https://poolp.org/posts/2022-05-22/may-2022-yet-again-tons-of-plakar-stuff/</link><pubDate>Sun, 22 May 2022 13:27:00 +0200</pubDate><guid>https://poolp.org/posts/2022-05-22/may-2022-yet-again-tons-of-plakar-stuff/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;tons of plakar work,
+most notably on indexes,
+performances,
+clone &amp;amp; sync and fuse.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Code-unrelated work
+ &lt;div id="code-unrelated-work" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#code-unrelated-work" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;I&amp;rsquo;ll start with code unrelated work !&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-05-22/may-2022-yet-again-tons-of-plakar-stuff/feature.png"/></item><item><title>April 2022: plakar.io, plakar refactor and ssh support</title><link>https://poolp.org/posts/2022-04-24/april-2022-plakar.io-plakar-refactor-and-ssh-support/</link><pubDate>Sun, 24 Apr 2022 17:24:00 +0200</pubDate><guid>https://poolp.org/posts/2022-04-24/april-2022-plakar.io-plakar-refactor-and-ssh-support/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I refactored internal structures to split metadata from the index, implemented an stdio server and finally added SSH support.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;The &lt;a href="https://plakar.io" target="_blank" rel="noreferrer"&gt;plakar.io&lt;/a&gt; website
+ &lt;div id="the-plakario-website" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-plakario-website" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;A project needs a website so&amp;hellip;
+I published the &lt;a href="https://plakar.io" target="_blank" rel="noreferrer"&gt;plakar.io&lt;/a&gt; website.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-04-24/april-2022-plakar.io-plakar-refactor-and-ssh-support/feature.png"/></item><item><title>April 2022: plakar keys and UI stuff</title><link>https://poolp.org/posts/2022-04-01/april-2022-plakar-keys-and-ui-stuff/</link><pubDate>Fri, 01 Apr 2022 01:52:00 +0200</pubDate><guid>https://poolp.org/posts/2022-04-01/april-2022-plakar-keys-and-ui-stuff/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I did key and UI stuff, mostly search related. There&amp;rsquo;s going to be plenty of images in this post.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Reworked plakar keys
+ &lt;div id="reworked-plakar-keys" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#reworked-plakar-keys" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;I won&amp;rsquo;t expand much on that as I&amp;rsquo;m not done yet,
+but I spent a couple days reworking the way &lt;code&gt;plakar&lt;/code&gt; handles keys for encrypted repositories.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-04-01/april-2022-plakar-keys-and-ui-stuff/feature.jpeg"/></item><item><title>March 2022: plakar clone and plakar sync</title><link>https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/</link><pubDate>Sun, 06 Mar 2022 00:51:00 +0200</pubDate><guid>https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;implemented cloning and synchronization between plakar repositories&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Slacked a bit
+ &lt;div id="slacked-a-bit" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#slacked-a-bit" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Shortly after I published my &lt;a href="https://poolp.org/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/" &gt;yearly retrospective&lt;/a&gt;,
+I was hit with two highly annoying personal issues that kept me very busy these last two months.
+I finally got everything back under control,
+my mind is mostly free again and I resumed playing with &lt;code&gt;plakar&lt;/code&gt;.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2022-03-06/march-2022-plakar-clone-and-plakar-sync/feature.png"/></item><item><title>Farewell 2021, Welcome 2022: a personal post</title><link>https://poolp.org/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/</link><pubDate>Thu, 30 Dec 2021 08:00:00 +0200</pubDate><guid>https://poolp.org/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;A retrospective of 2021&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;2021 was a good year overall
+ &lt;div id="2021-was-a-good-year-overall" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2021-was-a-good-year-overall" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Pandemic and lock-downs set aside,
+2021 was a good year overall.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-12-30/farewell-2021-welcome-2022-a-personal-post/feature.jpeg"/></item><item><title>December 2021: a bit of plakar, a bit of go-fastcdc and some useless stuff</title><link>https://poolp.org/posts/2021-12-13/december-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff/</link><pubDate>Mon, 13 Dec 2021 07:40:00 +0200</pubDate><guid>https://poolp.org/posts/2021-12-13/december-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I worked on plakar, go-fastcdc a FastCDC implementation for plakar, and some useless stuff.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;This activity report will be short
+ &lt;div id="this-activity-report-will-be-short" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#this-activity-report-will-be-short" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;This activity report will be short because &lt;strong&gt;I spent the last ten days caring for my kid who got sick&lt;/strong&gt;&amp;hellip;
+before catching his stomach bug myself and spending the last few days in a somewhat familiar and unpleasant hell,
+unable to do everything I intended for this month.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-12-13/december-2021-a-bit-of-plakar-a-bit-of-go-fastcdc-and-some-useless-stuff/feature.png"/></item><item><title>November 2021: a bit of go-ipcmsg, a bit of go-privsep and a ton of plakar</title><link>https://poolp.org/posts/2021-10-26/november-2021-a-bit-of-go-ipcmsg-a-bit-of-go-privsep-and-a-ton-of-plakar/</link><pubDate>Tue, 26 Oct 2021 07:40:00 +0200</pubDate><guid>https://poolp.org/posts/2021-10-26/november-2021-a-bit-of-go-ipcmsg-a-bit-of-go-privsep-and-a-ton-of-plakar/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I still have a discord, feel free to join.
+I worked on go-ipcmsg to make it nicer, go-privsep to make it more useable, and A LOT on plakar to make it plakar.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Go-ipcmsg
+ &lt;div id="go-ipcmsg" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#go-ipcmsg" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/#go-ipcmsg" &gt;In April&lt;/a&gt;,
+I wrote about &lt;a href="https://github.com/poolpOrg/go-ipcmsg" target="_blank" rel="noreferrer"&gt;&lt;code&gt;go-ipcmsg&lt;/code&gt;&lt;/a&gt;,
+a package to bring an &lt;a href="https://man.openbsd.org/imsg_init.3" target="_blank" rel="noreferrer"&gt;&lt;code&gt;imsg(3)&lt;/code&gt;&lt;/a&gt;-like API to Golang and help me write code involving &lt;strong&gt;message and fd-passing between processes&lt;/strong&gt;.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-10-26/november-2021-a-bit-of-go-ipcmsg-a-bit-of-go-privsep-and-a-ton-of-plakar/feature.png"/></item><item><title>October 2021: mostly Plakar</title><link>https://poolp.org/posts/2021-10-26/october-2021-mostly-plakar/</link><pubDate>Tue, 26 Oct 2021 07:40:00 +0200</pubDate><guid>https://poolp.org/posts/2021-10-26/october-2021-mostly-plakar/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I have a discord now, feel free to join.
+I refactored plakar, implemented a local cache, improved parallelism, modified the push strategy, played with fuse and networking.
+I also did other stuff but let&amp;rsquo;s keep that out of this article.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;I have a discord now
+ &lt;div id="i-have-a-discord-now" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#i-have-a-discord-now" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;I have a &lt;a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging" target="_blank" rel="noreferrer"&gt;rubber duck&lt;/a&gt; sitting on my desk&amp;hellip;&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-10-26/october-2021-mostly-plakar/feature.jpg"/></item><item><title>August 2021: taking a break</title><link>https://poolp.org/posts/2021-08-13/august-2021-taking-a-break/</link><pubDate>Fri, 13 Aug 2021 08:53:00 +0200</pubDate><guid>https://poolp.org/posts/2021-08-13/august-2021-taking-a-break/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;ul&gt;
+&lt;li&gt;this is a short article, no TL;DR.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Why so calm ?
+ &lt;div id="why-so-calm-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#why-so-calm-" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;As some of you know,
+I was diagnosed a few years ago with &lt;a href="https://en.wikipedia.org/wiki/Generalized_anxiety_disorder" target="_blank" rel="noreferrer"&gt;generalized anxiety disorder&lt;/a&gt;,
+&lt;a href="https://en.wikipedia.org/wiki/Panic_disorder" target="_blank" rel="noreferrer"&gt;panic disorder&lt;/a&gt; and
+&lt;a href="https://en.wikipedia.org/wiki/Alexithymia" target="_blank" rel="noreferrer"&gt;alexithymia&lt;/a&gt;,
+a trait that makes it particularly difficult for me to cope with the disorders.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-08-13/august-2021-taking-a-break/feature.jpeg"/></item><item><title>April 2021: OpenSMTPD, plakar, ipcmsg, privsep and a small hypnosis talk</title><link>https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/</link><pubDate>Fri, 30 Apr 2021 21:12:00 +0200</pubDate><guid>https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I worked on OpenSMTPD-portable, did a lot of plakar, a lot of Go and gave a technical talk on hypnosis.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Let&amp;rsquo;s start with some LoFi
+ &lt;div id="lets-start-with-some-lofi" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#lets-start-with-some-lofi" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Relax.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-04-30/april-2021-opensmtpd-plakar-ipcmsg-privsep-and-a-small-hypnosis-talk/feature.png"/></item><item><title>March 2021: backups with Plakar</title><link>https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/</link><pubDate>Fri, 26 Mar 2021 16:52:00 +0200</pubDate><guid>https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I wrote a backup utility called plakar.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Let&amp;rsquo;s start with some LoFi
+ &lt;div id="lets-start-with-some-lofi" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#lets-start-with-some-lofi" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Relax.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-03-26/march-2021-backups-with-plakar/feature.png"/></item><item><title>February 2021: nooSMTPD libtls-conversion, ciphers, curves and protocols</title><link>https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/</link><pubDate>Sun, 28 Feb 2021 23:00:00 +0200</pubDate><guid>https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I converted nooSMTPD to libtls and implemented SMTP ciphers, curves and protocols selection.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Let&amp;rsquo;s start with some LoFi
+ &lt;div id="lets-start-with-some-lofi" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#lets-start-with-some-lofi" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Relax.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-02-28/february-2021-noosmtpd-libtls-conversion-ciphers-curves-and-protocols/feature.jpg"/></item><item><title>January 2021: OpenSMTPD libtls conversion and UNIX-domain sockets support, nooSMTPD</title><link>https://poolp.org/posts/2021-01-31/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support-noosmtpd/</link><pubDate>Sun, 31 Jan 2021 00:18:00 +0200</pubDate><guid>https://poolp.org/posts/2021-01-31/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support-noosmtpd/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I do LoFi now,
+eric@ revived some libtls conversion work I did a while back,
+I worked on UNIX-domain sockets support in OpenSMTPD,
+a few words about nooSMTPD&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Let&amp;rsquo;s start with some LoFi
+ &lt;div id="lets-start-with-some-lofi" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#lets-start-with-some-lofi" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Relax.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2021-01-31/january-2021-opensmtpd-libtls-conversion-and-unix-domain-sockets-support-noosmtpd/feature.jpg"/></item><item><title>Writing a custom Mail Delivery Agent</title><link>https://poolp.org/posts/2020-12-29/writing-a-custom-mail-delivery-agent/</link><pubDate>Tue, 29 Dec 2020 01:01:00 +0200</pubDate><guid>https://poolp.org/posts/2020-12-29/writing-a-custom-mail-delivery-agent/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;In this article, I explain what is an MDA and how to write a custom one from scratch using only shell scripting.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;What is a Mail Delivery Agent (MDA) ?
+ &lt;div id="what-is-a-mail-delivery-agent-mda-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#what-is-a-mail-delivery-agent-mda-" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;When a mail enters an SMTP server it is initially stored in the server queue before being moved to its next destination.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-12-29/writing-a-custom-mail-delivery-agent/feature.jpg"/></item><item><title>December 2020: OpenSMTPD 6.8.0p1 released, fixed several bugs, proposed several diffs, book is on Github</title><link>https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/</link><pubDate>Thu, 24 Dec 2020 02:38:00 +0200</pubDate><guid>https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;ul&gt;
+&lt;li&gt;Crafted the OpenSMTPD 6.8.0p1 release&lt;/li&gt;
+&lt;li&gt;Fixed several bugs in the way&lt;/li&gt;
+&lt;li&gt;Proposed a few OpenSMTPD improvements to OpenBSD&lt;/li&gt;
+&lt;li&gt;Working on my OpenSMTPD book&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Let&amp;rsquo;s start with some LoFi
+ &lt;div id="lets-start-with-some-lofi" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#lets-start-with-some-lofi" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Relax.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-12-24/december-2020-opensmtpd-6.8.0p1-released-fixed-several-bugs-proposed-several-diffs-book-is-on-github/feature.jpg"/></item><item><title>November 2020: I wasn't slacking but no opensource work</title><link>https://poolp.org/posts/2020-11-22/november-2020-i-wasnt-slacking-but-no-opensource-work/</link><pubDate>Sun, 22 Nov 2020 21:26:00 +0200</pubDate><guid>https://poolp.org/posts/2020-11-22/november-2020-i-wasnt-slacking-but-no-opensource-work/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;Haven&amp;rsquo;t posted since July but I wasn&amp;rsquo;t slacking,
+got temporarily context-switched out of opensource stuff.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;I tanked a year in work psychology
+ &lt;div id="i-tanked-a-year-in-work-psychology" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#i-tanked-a-year-in-work-psychology" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;As some of you know,
+I study work psychology and have been attending evening classes for the last four years,
+sometimes up to 9 hours / week and more often between 3 and 6 hours / week.
+I&amp;rsquo;m pretty invested as you can tell, it&amp;rsquo;s a lot of time that I could spend in bed but that I spend in class instead :-)&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-11-22/november-2020-i-wasnt-slacking-but-no-opensource-work/feature.jpeg"/></item><item><title>July 2020: webmail, custom MDA and python framework work</title><link>https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/</link><pubDate>Fri, 31 Jul 2020 22:47:00 +0200</pubDate><guid>https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;worked on my webmail,
+on a custom MDA and on a python framework for API development.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Worked on my webmail
+ &lt;div id="worked-on-my-webmail" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#worked-on-my-webmail" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Again,
+I&amp;rsquo;d like to emphasize that this is something that&amp;rsquo;s going to span over many months so&amp;hellip;
+&lt;strong&gt;don&amp;rsquo;t hold your breath&lt;/strong&gt;.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-07-31/july-2020-webmail-custom-mda-and-python-framework-work/feature.png"/></item><item><title>June 2020: poolp.org, folder pinning and webmail work</title><link>https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/</link><pubDate>Sat, 27 Jun 2020 23:13:00 +0200</pubDate><guid>https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;Reworked my infrastructure at poolp.org,
+implemented folder pinning,
+worked on my webmail.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;poolp.org infrastructure rework
+ &lt;div id="poolporg-infrastructure-rework" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#poolporg-infrastructure-rework" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;I decided to move my servers from &lt;a href="https://online.net" target="_blank" rel="noreferrer"&gt;online.net&lt;/a&gt; to &lt;a href="https://www.vultr.com/?ref=6831037" target="_blank" rel="noreferrer"&gt;vultr.com&lt;/a&gt; (affiliation link).&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-06-27/june-2020-poolp.org-folder-pinning-and-webmail-work/feature.png"/></item><item><title>May 2020: OpenSMTPD 6.7.1p1 release, table-procexec and many PoCs</title><link>https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/</link><pubDate>Thu, 28 May 2020 01:57:00 +0200</pubDate><guid>https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;Worked on the &lt;mark&gt;OpenSMTPD 6.7&lt;/mark&gt; release;
+Did a lot of work on &lt;mark&gt;the new table API&lt;/mark&gt;;
+Wrote several PoCs;&lt;/blockquote&gt;
+
+&lt;hr&gt;
+&lt;p&gt;&lt;font color="red"&gt;&lt;b&gt;WARNING:&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;Examples of &lt;strong&gt;code&lt;/strong&gt; and &lt;strong&gt;configuration&lt;/strong&gt; that appear in this article are
+here to help illustrate and explain &lt;strong&gt;development stages&lt;/strong&gt; of my work.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-05-28/may-2020-opensmtpd-6.7.1p1-release-table-procexec-and-many-pocs/feature.png"/></item><item><title>April 2020: worked on a webmail and a bit of OpenSMTPD too</title><link>https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/</link><pubDate>Fri, 01 May 2020 11:37:00 +0200</pubDate><guid>https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;Worked on my &lt;mark&gt;webmail&lt;/mark&gt;;
+Did a bit of &lt;mark&gt;OpenSMTPD&lt;/mark&gt; work;&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Webmail vs mutt
+ &lt;div id="webmail-vs-mutt" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#webmail-vs-mutt" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;I started using console clients to read my mail back when I was a student in early 2000s,
+and I&amp;rsquo;ve been using &lt;code&gt;mutt&lt;/code&gt; for as long as I can recall now.
+I installed various mail clients along the years,
+some with graphical interfaces such as &lt;code&gt;thunderbird&lt;/code&gt; or &lt;code&gt;sylpheed&lt;/code&gt;,
+others with a web interface such as &lt;code&gt;nullWebmail&lt;/code&gt;, &lt;code&gt;SquirrelMail&lt;/code&gt;, &lt;code&gt;Roundcube&lt;/code&gt;, &lt;code&gt;Mailpile&lt;/code&gt; or currently &lt;code&gt;Rainloop&lt;/code&gt;.
+No matter which,
+I always end up falling back to &lt;code&gt;mutt&lt;/code&gt; for most tasks.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-05-01/april-2020-worked-on-a-webmail-and-a-bit-of-opensmtpd-too/feature.png"/></item><item><title>Anxiety, OpenBSD break, COVID-19 and resuming work</title><link>https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/</link><pubDate>Mon, 30 Mar 2020 14:01:00 +0200</pubDate><guid>https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- I took a break to deal with personal stuff
+- I'm taking a long break from OpenBSD for personal reasons
+- I may or may not have experienced COVID-19, who knows
+- resumed work on OpenSMTPD and other projects
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;This is a weird report
+ &lt;div id="this-is-a-weird-report" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#this-is-a-weird-report" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;This is a weird report.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-03-30/anxiety-openbsd-break-covid-19-and-resuming-work/feature.jpg"/></item><item><title>OpenSMTPD advisory dissected</title><link>https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/</link><pubDate>Thu, 30 Jan 2020 23:36:00 +0200</pubDate><guid>https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- Qualys released an advisory for a bad, bad vulnerability
+- an MTA is a very bad software to have a vulnerability in
+- hole was plugged but that's not enough, similar bugs should be mitigated in the future
+- article discusses what could have prevented escalation despite the bug
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;What happened ?
+ &lt;div id="what-happened-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#what-happened-" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Qualys contacted by e-mail to tell me they found a vulnerability in OpenSMTPD and would send me the encrypted draft for advisory.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2020-01-30/opensmtpd-advisory-dissected/feature.png"/></item><item><title>January 2020: OpenSMTPD work - libasr and libtls</title><link>https://poolp.org/posts/2020-01-22/january-2020-opensmtpd-work-libasr-and-libtls/</link><pubDate>Wed, 22 Jan 2020 06:51:00 +0200</pubDate><guid>https://poolp.org/posts/2020-01-22/january-2020-opensmtpd-work-libasr-and-libtls/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- brought back libasr to OpenSMTPD, it is no longer an external dependency
+- libtls-enabled OpenSMTPD is now a thing
+- documented filters and improved reporting
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;No shiny feature this month, ungrateful work
+ &lt;div id="no-shiny-feature-this-month-ungrateful-work" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#no-shiny-feature-this-month-ungrateful-work" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;OpenSMTPD has had quite a few features implemented since its latest major release.
+As we get closer and closer to the next major release,
+my work on new features will slow down to focus more on getting the release in shape.&lt;/p&gt;</description></item><item><title>December 2019: OpenSMTPD and filters work, articles and goodies</title><link>https://poolp.org/posts/2019-12-24/december-2019-opensmtpd-and-filters-work-articles-and-goodies/</link><pubDate>Tue, 24 Dec 2019 09:31:00 +0200</pubDate><guid>https://poolp.org/posts/2019-12-24/december-2019-opensmtpd-and-filters-work-articles-and-goodies/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- wrote, reworked and translated multiple articles this month
+- got some goodies ready for my patrons
+- lots of work in OpenSMTPD's grammar, documentation and filters protocol
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;hr&gt;
+&lt;p&gt;&lt;font color="red"&gt;&lt;b&gt;WARNING:&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-12-24/december-2019-opensmtpd-and-filters-work-articles-and-goodies/feature.gif"/></item><item><title>Decentralised SMTP is for the greater good</title><link>https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/</link><pubDate>Sun, 15 Dec 2019 07:29:00 +0200</pubDate><guid>https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- SMTP is the way computers exchange e-mails
+- it is a decentralised protocol meaning that ANYONE can run a node and be independant
+- it is being centralised at companies that have a history of abuse
+- it is being centralised in a country that has a history of abuse
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Where did you read this already ?
+ &lt;div id="where-did-you-read-this-already-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#where-did-you-read-this-already-" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;In August,
+I published a small article titled &amp;ldquo;&lt;a href="https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/" target="_blank" rel="noreferrer"&gt;You should not run your mail server because mail is hard&lt;/a&gt;&amp;rdquo; which was basically my opinion on why people keep saying it is hard to run a mail server.
+Unexpectedly,
+the article became very popular,
+reached 100K reads and still gets hits and comments several months after publishing.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-12-15/decentralised-smtp-is-for-the-greater-good/feature.jpg"/></item><item><title>SPF-aware greylisting and filter-greylist</title><link>https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/</link><pubDate>Sun, 01 Dec 2019 10:11:00 +0200</pubDate><guid>https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- greylisting is a sound idea
+- yet it is not really practical today
+- people tend to disable it or find work-arounds
+- SPF-aware greylisting makes greylisting usable again
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;SMTP failures in a nutshell
+ &lt;div id="smtp-failures-in-a-nutshell" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#smtp-failures-in-a-nutshell" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;SMTP is a fail-safe protocol which attempts very hard to ensure that messages do not get lost once they are in transit.
+Among the various mechanisms and requirements in place is the use of &amp;ldquo;Temporary Failures&amp;rdquo;.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-12-01/spf-aware-greylisting-and-filter-greylist/feature.jpg"/></item><item><title>November 2019 report: OpenSMTPD 6.6.1p1, filter-greylist and tons of portable cleanup</title><link>https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/</link><pubDate>Sun, 17 Nov 2019 22:45:00 +0200</pubDate><guid>https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- our CI was improved
+- a new OpenSMTPD release, 6.6.1p1 took place to deal with portable issues
+- multiple portability issues were adressed
+- new table API in the works
+- filter-rspamd and filter-senderscore were improved
+- filter-greylist proof-of-concept published
+- wrote 2 chapters for my book
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Got myself a pinebook pro
+ &lt;div id="got-myself-a-pinebook-pro" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#got-myself-a-pinebook-pro" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;I got myself an arm64 pinebook pro:&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-11-17/november-2019-report-opensmtpd-6.6.1p1-filter-greylist-and-tons-of-portable-cleanup/feature.jpg"/></item><item><title>October 2019 report: OpenSMTPD 6.6.0 release mostly</title><link>https://poolp.org/posts/2019-10-26/october-2019-report-opensmtpd-6.6.0-release-mostly/</link><pubDate>Sat, 26 Oct 2019 16:13:00 +0200</pubDate><guid>https://poolp.org/posts/2019-10-26/october-2019-report-opensmtpd-6.6.0-release-mostly/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- yay, surprise emergency hand surgery...
+- OpenSMTPD 6.6.0 was tagged and released, including portable version
+- Merged contributions to fix filter-rspamd bug with DKIM
+- Work resumed on 6.7.0 feature
+- An OpenSMTPD book is in the works
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;How I landed in the emergencies
+ &lt;div id="how-i-landed-in-the-emergencies" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#how-i-landed-in-the-emergencies" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;I accidentally cut my hand real bad early October and rushed to the nearest hospital.
+They had a look,
+told me it was superficial and required to be sutured,
+so I was out a few hours later with a few stitches and pain killers.&lt;/p&gt;</description></item><item><title>September 2019 report: Jules, OpenSMTPD 6.6.0 upcoming release and related things</title><link>https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/</link><pubDate>Sat, 21 Sep 2019 07:08:00 +0200</pubDate><guid>https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- I started writing this post a week ago but got interrupted by a baby, Jules
+- Spent MANY hours on writing OpenSMTPD-related articles
+- Enabled continuous integration in the OpenSMTPD portable repository
+- Managed to get rid of all the blocking issues for OpenSMTPD 6.6.0 release
+- Added some features and fixed a crash in filter-rspamd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Welcome Jules, &lt;code&gt;fork()&lt;/code&gt; completed
+ &lt;div id="welcome-jules-fork-completed" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#welcome-jules-fork-completed" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;In &lt;a href="https://poolp.org/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/" &gt;my last report from August&lt;/a&gt;,
+I concluded not knowing if this report would be published on time.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-09-21/september-2019-report-jules-opensmtpd-6.6.0-upcoming-release-and-related-things/feature.jpg"/></item><item><title>Setting up a mail server with OpenSMTPD, Dovecot and Rspamd</title><link>https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/</link><pubDate>Sat, 14 Sep 2019 05:37:00 +0000</pubDate><guid>https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- NO TL;DR: this time, I spent hours writing, you should spend minutes reading.
+- OK... I explain in WAY TOO MUCH details how to setup a mail server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;EDIT (2019-10-26)
+ &lt;div id="edit-2019-10-26" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#edit-2019-10-26" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.mail-archive.com/misc@opensmtpd.org/msg04725.html" target="_blank" rel="noreferrer"&gt;OpenSMTPD 6.6.0 was released today&lt;/a&gt;,
+the article was updated to reflect that it applies to the current release and no longer a development version.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/feature.jpg"/></item><item><title>You should not run your mail server because mail is hard</title><link>https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/</link><pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate><guid>https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- Mail is not hard: people keep repeating that because they read it, not because they tried it
+- Big Mailer Corps are quite happy with that myth, it keeps their userbase growing
+- Big Mailer Corps control a large percentage of the e-mail address space which is good for none of us
+- It's ok that people have their e-mails hosted at Big Mailer Corps as long as there's enough people outside too
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;EDIT (2019-12-15)
+ &lt;div id="edit-2019-12-15" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#edit-2019-12-15" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;A practical guide to &lt;a href="https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/" &gt;set up a mail exchanger&lt;/a&gt; was published on this blog.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/feature.jpeg"/></item><item><title>August 2019 report: Fion, Plakar and OpenSMTPD</title><link>https://poolp.org/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/</link><pubDate>Sun, 25 Aug 2019 04:00:00 +0000</pubDate><guid>https://poolp.org/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- small inprovements to the fion window manager
+- plakar is a backup utility I wrote a long time ago that I will share
+- tons of opensmtpd stuff, mostly filters and issues handling
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Shout outs to my patrons !
+ &lt;div id="shout-outs-to-my-patrons-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#shout-outs-to-my-patrons-" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;As has become the habit,
+this report begins with a big thank you to my patrons,
+cited by contribution then alphabetical order.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-08-25/august-2019-report-fion-plakar-and-opensmtpd/feature.jpg"/></item><item><title>July 2019 report: tons of smtpd work mostly</title><link>https://poolp.org/posts/2019-07-27/july-2019-report-tons-of-smtpd-work-mostly/</link><pubDate>Sat, 27 Jul 2019 07:27:00 +0000</pubDate><guid>https://poolp.org/posts/2019-07-27/july-2019-report-tons-of-smtpd-work-mostly/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- not much work outside of OpenSMTPD this week
+- OpenSMTPD portable builds with OpenSSL 1.1.x again
+- smtp-out reporting is working correctly on my laptop
+- wrote two filters that I'm actually using as you read this
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Shout outs to my patrons !
+ &lt;div id="shout-outs-to-my-patrons-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#shout-outs-to-my-patrons-" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;As will become the tradition hopefully,
+this report begins with a big thank you to my patrons,
+cited by contribution then alphabetical order.&lt;/p&gt;</description></item><item><title>June 2019 report: fion, bpg and smtpd</title><link>https://poolp.org/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/</link><pubDate>Sun, 30 Jun 2019 07:42:00 +0000</pubDate><guid>https://poolp.org/posts/2019-06-30/june-2019-report-fion-bpg-and-smtpd/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;- started working on FION, a static tile window manager
+- revived BPG, a PGP parser
+- converted OpenSMTPD to libtls
+- wrote a library to make writing of native C OpenSMTPD filters easy
+- started writing a filter-rspamd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Thanks to my patrons !
+ &lt;div id="thanks-to-my-patrons-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#thanks-to-my-patrons-" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;First of all,
+a huge thanks to my first patrons:&lt;/p&gt;</description></item><item><title>May 2019 report</title><link>https://poolp.org/posts/2019-06-02/may-2019-report/</link><pubDate>Sun, 02 Jun 2019 14:57:00 +0000</pubDate><guid>https://poolp.org/posts/2019-06-02/may-2019-report/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;In this post I explain crudely how ca.c works and changes to OpenSMTPD related to ca.c
+I wrote an ECDSA privsep crypto engine
+I did some EEG work too
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;This is the first report
+ &lt;div id="this-is-the-first-report" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#this-is-the-first-report" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;I will now switch to a monthly report of my tech activities on this blog,
+and this is the first post in that new format.&lt;/p&gt;</description></item><item><title>happy new year 2019, a personal post</title><link>https://poolp.org/posts/2019-06-02/happy-new-year-2019-a-personal-post/</link><pubDate>Sun, 02 Jun 2019 13:42:00 +0000</pubDate><guid>https://poolp.org/posts/2019-06-02/happy-new-year-2019-a-personal-post/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;Way too many things happened in a six months timeframe.
+This post won't need a TL;DR as I'll keep it short.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Generalized anxiety disorder and alexithymia.
+ &lt;div id="generalized-anxiety-disorder-and-alexithymia" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#generalized-anxiety-disorder-and-alexithymia" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Late 2018,
+I&amp;rsquo;ve been diagnosed with generalized anxiety disorder and alexithymia a couple weeks apart.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-06-02/happy-new-year-2019-a-personal-post/feature.png"/></item><item><title>OpenSMTPD now supports regex in match rules</title><link>https://poolp.org/posts/2018-12-21/opensmtpd-now-supports-regex-in-match-rules/</link><pubDate>Fri, 21 Dec 2018 22:36:00 +0000</pubDate><guid>https://poolp.org/posts/2018-12-21/opensmtpd-now-supports-regex-in-match-rules/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;regex table lookups were introduced for builtin filters.
+After a few weeks of working solely on filters, I wanted to work on something else.
+Using the same mechanism, all match criterias using tables can support regex.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;K_REGEX lookups
+ &lt;div id="k_regex-lookups" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#k_regex-lookups" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;The table mechanism is used within OpenSMTPD to perform all kinds of lookups.&lt;/p&gt;</description></item><item><title>more on OpenSMTPD filters</title><link>https://poolp.org/posts/2018-12-19/more-on-opensmtpd-filters/</link><pubDate>Wed, 19 Dec 2018 18:21:00 +0000</pubDate><guid>https://poolp.org/posts/2018-12-19/more-on-opensmtpd-filters/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;Not this time, pal/gal, I took hours writing this post, you'll take a few minutes reading it all.
+Oh, and merry X-mas :-*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;A bit of short-sighted history
+ &lt;div id="a-bit-of-short-sighted-history" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#a-bit-of-short-sighted-history" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;The filtering feature has been introduced only recently in OpenSMTPD,
+first presented on &lt;a href="https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/" target="_blank" rel="noreferrer"&gt;this blog a month ago&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>OpenSMTPD proc filters &amp; fc-rDNS</title><link>https://poolp.org/posts/2018-12-06/opensmtpd-proc-filters-fc-rdns/</link><pubDate>Thu, 06 Dec 2018 21:31:00 +0000</pubDate><guid>https://poolp.org/posts/2018-12-06/opensmtpd-proc-filters-fc-rdns/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;I *FINALFUCKINGLY* commited proc filters support allowing full filtering in OpenSMTPD.
+eric@ implemented fc-rDNS lookups.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;fc-rDNS
+ &lt;div id="fc-rdns" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#fc-rdns" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;fc-rDNS,
+or forward-confirmed reverse DNS,
+consists in performing a reverse DNS lookup to determine the hostname associated to an IP address&amp;hellip;
+then performing a DNS lookup on that hostname to check if it resolves back to the IP address.&lt;/p&gt;</description></item><item><title>OpenSMTPD reporting update</title><link>https://poolp.org/posts/2018-11-09/opensmtpd-reporting-update/</link><pubDate>Fri, 09 Nov 2018 08:27:00 +0000</pubDate><guid>https://poolp.org/posts/2018-11-09/opensmtpd-reporting-update/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;The reporting mechanism has been described shortly in my previous article about both reporting and filters.
+Let's focus a bit more on the reporting bits this time.
+The format is improving further and has extended to outgoing trafic reporting.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Reporting
+ &lt;div id="reporting" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#reporting" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;In &lt;a href="https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/" target="_blank" rel="noreferrer"&gt;previous article&lt;/a&gt;,
+I described the events reporting mechanism that has been introduced in the development branch of OpenSMTPD.&lt;/p&gt;</description></item><item><title>OpenSMTPD released and upcoming filters preview</title><link>https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/</link><pubDate>Sat, 03 Nov 2018 17:27:00 +0000</pubDate><guid>https://poolp.org/posts/2018-11-03/opensmtpd-released-and-upcoming-filters-preview/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;Filters have been a (the most ?) long awaited feature in OpenSMTPD.
+I finally committed most of the filters code to OpenBSD.
+There is still a bit of work required but the trickiest parts are done.
+This article describes how filters are implemented and what to expect.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;figure&gt;&lt;img
+ class="my-0 rounded-md"
+ loading="lazy"
+ decoding="async"
+ fetchpriority="low"
+ alt="Good news, everyone!"
+ src="https://brillianceinsight.files.wordpress.com/2014/02/card-2-24-2014-1_thumb.jpg"
+ &gt;&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>switching to OpenSMTPD new config</title><link>https://poolp.org/posts/2018-05-21/switching-to-opensmtpd-new-config/</link><pubDate>Mon, 21 May 2018 18:32:00 +0000</pubDate><guid>https://poolp.org/posts/2018-05-21/switching-to-opensmtpd-new-config/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;Switching to new config is not too hard and can be done in minutes.
+The new config is also a new queue that is not backwards compatible.
+The easiest way is to flush the mail queue before switching.
+We came up with a solution to help maintainers of more complex setups.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Switching from old config to new config
+ &lt;div id="switching-from-old-config-to-new-config" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#switching-from-old-config-to-new-config" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;The new OpenSMTPD configuration grammar is slightly different from the current one,
+rules are no longer stated as single lines,
+but the conversion from previous ruleset to new ruleset isn&amp;rsquo;t that hard.&lt;/p&gt;</description></item><item><title>OpenSMTPD new config</title><link>https://poolp.org/posts/2018-04-30/opensmtpd-new-config/</link><pubDate>Mon, 30 Apr 2018 12:00:00 +0000</pubDate><guid>https://poolp.org/posts/2018-04-30/opensmtpd-new-config/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;OpenBSD #p2k18 hackathon took place at Epitech in Nantes.
+I was organizing the hackathon but managed to make progress on OpenSMTPD.
+As mentionned at EuroBSDCon the one-line per rule config format was a design error.
+A new configuration grammar is almost ready and the underlying structures are simplified.
+Refactor removes ~750 lines of code and solves _many_ issues that were side-effects of the design error.
+New features are going to be unlocked thanks to this.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Anatomy of a design error
+ &lt;div id="anatomy-of-a-design-error" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#anatomy-of-a-design-error" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;OpenSMTPD started ten years ago out of dissatisfaction with other solutions,
+mainly because I considered them way too complex for me not to get things wrong from time to time.&lt;/p&gt;</description></item><item><title>Install OpenBSD on dedibox with full-disk encryption</title><link>https://poolp.org/posts/2018-01-29/install-openbsd-on-dedibox-with-full-disk-encryption/</link><pubDate>Mon, 29 Jan 2018 23:28:00 +0000</pubDate><guid>https://poolp.org/posts/2018-01-29/install-openbsd-on-dedibox-with-full-disk-encryption/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;I run several &amp;quot;dedibox&amp;quot; servers at online.net, all powered by OpenBSD.
+OpenBSD is not officially supported so you have to work-around.
+Running full-disk encrypted OpenBSD there is a piece of cake.
+As a bonus, my first steps within a brand new booted machine ;-)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Step #0: choosing your server
+ &lt;div id="step-0-choosing-your-server" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#step-0-choosing-your-server" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;OpenBSD is not officially supported,
+I can&amp;rsquo;t guarantee that this will work for you on any kind of server online.net provides,
+however I&amp;rsquo;ve been running &lt;a href="https://poolp.org" target="_blank" rel="noreferrer"&gt;https://poolp.org&lt;/a&gt; on OpenBSD there since 2008,
+only switching machines as they were getting a bit old and new offers came up.&lt;/p&gt;</description></item><item><title>spfwalk</title><link>https://poolp.org/posts/2018-01-08/spfwalk/</link><pubDate>Mon, 08 Jan 2018 17:19:00 +0000</pubDate><guid>https://poolp.org/posts/2018-01-08/spfwalk/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;deraadt@ thought it would be nice to have a spf fetch utility in base.
+Aaron Poffenberger wrote a shell-based `spf_fetch` utility.
+I wrote a C-based `spfwalk` utility that's `pledge()`-ed.
+The `spfwalk` utility got merged to `smtpctl`.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;What&amp;rsquo;s SPF in a few words
+ &lt;div id="whats-spf-in-a-few-words" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#whats-spf-in-a-few-words" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;SPF is the Sender Policy Framework, a standard to verify the domain name of an e-mail sender.&lt;/p&gt;</description></item><item><title>News from the front !</title><link>https://poolp.org/posts/2018-01-08/news-from-the-front/</link><pubDate>Mon, 08 Jan 2018 12:11:00 +0000</pubDate><guid>https://poolp.org/posts/2018-01-08/news-from-the-front/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;Came very close to a burn out late 2016, had to quit former employer.
+Started working at another company early 2017.
+Became a student again, currently halfway through second year in psychology.
+Haven't done much opensource since early 2017, slowly resuming.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Happy new year !
+ &lt;div id="happy-new-year-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#happy-new-year-" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;I wish you a very happy new year 2018 and hope that you succeed in whatever you attempt.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2018-01-08/news-from-the-front/feature.png"/></item><item><title>OpenSMTPD 6.0.0 is released !</title><link>https://poolp.org/posts/2016-09-12/opensmtpd-6.0.0-is-released/</link><pubDate>Mon, 12 Sep 2016 08:00:00 +0000</pubDate><guid>https://poolp.org/posts/2016-09-12/opensmtpd-6.0.0-is-released/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;We just released OpenSMTPD 6.0.0 and it's quite different from former releases.
+Turns out most of the changes are not visible.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;A featureless release
+ &lt;div id="a-featureless-release" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#a-featureless-release" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;I managed to wrap the 6.0.0 release yesterday.&lt;/p&gt;</description></item><item><title>Home, sweet home</title><link>https://poolp.org/posts/2015-12-22/home-sweet-home/</link><pubDate>Tue, 22 Dec 2015 09:53:01 +0000</pubDate><guid>https://poolp.org/posts/2015-12-22/home-sweet-home/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;OpenSMTPD on github no longer diverges from OpenBSD.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Since last episode
+ &lt;div id="since-last-episode" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#since-last-episode" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Sometime this year, we released OpenSMTPD 5.7.1 which was the first version that
+shipped with the long-awaited experimental filters support. The result of over a
+year and a half of very very deep refactor in our IO layer and the addition of a
+very elegant but also very tricky new API.&lt;/p&gt;</description></item><item><title>The state of filters</title><link>https://poolp.org/posts/2014-12-12/the-state-of-filters/</link><pubDate>Fri, 12 Dec 2014 16:56:24 +0000</pubDate><guid>https://poolp.org/posts/2014-12-12/the-state-of-filters/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;pre&gt;&lt;code&gt;yeeeees, filters are coming. don't believe us ? here's an example. be patient.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;On my death bed
+ &lt;div id="on-my-death-bed" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#on-my-death-bed" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;On my death bed, when my life flashes before my eyes and I start recalling what people have told me during my (hopefully long) lifetime, these sentences will single out:&lt;/p&gt;</description></item><item><title>Some OpenSMTPD overview, part 3</title><link>https://poolp.org/posts/2014-12-10/some-opensmtpd-overview-part-3/</link><pubDate>Wed, 10 Dec 2014 12:38:26 +0000</pubDate><guid>https://poolp.org/posts/2014-12-10/some-opensmtpd-overview-part-3/</guid><description>&lt;p&gt;EHLO,&lt;/p&gt;
+&lt;p&gt;This is the third post of a series about OpenSMTPD improvements that have taken place since this summer.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Content altering
+ &lt;div id="content-altering" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#content-altering" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;For a long time, we have developed OpenSMTPD with a strict rule that the daemon should not alter DATA (as in the DATA SMTP phase) in any way.&lt;/p&gt;</description></item><item><title>Some OpenSMTPD overview, part 2</title><link>https://poolp.org/posts/2014-12-01/some-opensmtpd-overview-part-2/</link><pubDate>Mon, 01 Dec 2014 09:04:11 +0000</pubDate><guid>https://poolp.org/posts/2014-12-01/some-opensmtpd-overview-part-2/</guid><description>&lt;h2 class="relative group"&gt;Why we killed the MFA (filter) process
+ &lt;div id="why-we-killed-the-mfa-filter-process" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#why-we-killed-the-mfa-filter-process" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;For as long as I can remember, a process called MFA was created by OpenSMTPD at start time.&lt;/p&gt;</description></item><item><title>Some OpenSMTPD overview, part 1</title><link>https://poolp.org/posts/2014-11-26/some-opensmtpd-overview-part-1/</link><pubDate>Wed, 26 Nov 2014 14:25:12 +0000</pubDate><guid>https://poolp.org/posts/2014-11-26/some-opensmtpd-overview-part-1/</guid><description>&lt;h2 class="relative group"&gt;EHLO world !
+ &lt;div id="ehlo-world-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#ehlo-world-" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Yesterday I thought I&amp;rsquo;d write a first OpenSMTPD-related post to sum up the changes that have happened since this summer but it turned out to be painful as they amount to quite a lot. Instead, I think a better strategy is to split this into a serie of smaller posts focused on the specific changes ;-)&lt;/p&gt;</description></item><item><title>what the fsck did just happen</title><link>https://poolp.org/posts/2014-11-24/what-the-fsck-did-just-happen/</link><pubDate>Mon, 24 Nov 2014 18:01:51 +0000</pubDate><guid>https://poolp.org/posts/2014-11-24/what-the-fsck-did-just-happen/</guid><description>&lt;p&gt;Good news everyone !&lt;/p&gt;
+&lt;p&gt;With last post dating from almost a year, we can all agree that I&amp;rsquo;ve outpassed my slacking skills by a great margin and I probably deserve an award of some kind ;-)&lt;/p&gt;</description></item><item><title>News-from-the-front</title><link>https://poolp.org/posts/2013-12-14/news-from-the-front/</link><pubDate>Sat, 14 Dec 2013 21:36:40 +0000</pubDate><guid>https://poolp.org/posts/2013-12-14/news-from-the-front/</guid><description>&lt;p&gt;EHLO readers,&lt;/p&gt;
+&lt;p&gt;This blog post is the first since a few months, I&amp;rsquo;ve been busy and struggling with some personal health and familial issues. I won&amp;rsquo;t share them here as its not really something anyone can help with, so&amp;hellip; let&amp;rsquo;s focus on OpenSMTPD !&lt;/p&gt;</description></item><item><title>OpenSMTPD improvements summary</title><link>https://poolp.org/posts/2013-12-14/opensmtpd-improvements-summary/</link><pubDate>Sat, 14 Dec 2013 21:36:40 +0000</pubDate><guid>https://poolp.org/posts/2013-12-14/opensmtpd-improvements-summary/</guid><description>&lt;p&gt;Hey,&lt;/p&gt;
+&lt;p&gt;No OpenSMTPD news since almost a month&amp;hellip; time to break the trend !&lt;/p&gt;
+&lt;p&gt;As far as I&amp;rsquo;m concerned, I&amp;rsquo;ve been busy with other work but still a git log shows that between Eric and I we have accumulated quite a few things during this month. Below is a short non-exhaustive summary of changes and news.&lt;/p&gt;</description></item><item><title>OpenSMTPD: table_proc, queue_proc, crypto queue and other stuff</title><link>https://poolp.org/posts/2013-04-26/opensmtpd-table_proc-queue_proc-crypto-queue-and-other-stuff/</link><pubDate>Fri, 26 Apr 2013 18:42:36 +0000</pubDate><guid>https://poolp.org/posts/2013-04-26/opensmtpd-table_proc-queue_proc-crypto-queue-and-other-stuff/</guid><description>&lt;p&gt;Yop,&lt;/p&gt;
+&lt;p&gt;This week has been very productive with several tickets closed and more about to be closed.&lt;/p&gt;
+&lt;p&gt;Eric has done an amazing work as you will soon realize ;-)&lt;/p&gt;</description></item><item><title>News from the front</title><link>https://poolp.org/posts/2013-04-21/news-from-the-front/</link><pubDate>Sun, 21 Apr 2013 17:15:21 +0000</pubDate><guid>https://poolp.org/posts/2013-04-21/news-from-the-front/</guid><description>&lt;p&gt;OHAI,&lt;/p&gt;
+&lt;p&gt;I have not updated this blog since the release of OpenSMTPD 5.3, over a month ago. In the meantime, some minor bugs have been fixed and we have released OpenSMTPD 5.3.1.&lt;/p&gt;</description></item><item><title>OpenSMTPD 5.3 released</title><link>https://poolp.org/posts/2013-03-17/opensmtpd-5.3-released/</link><pubDate>Sun, 17 Mar 2013 19:08:55 +0000</pubDate><guid>https://poolp.org/posts/2013-03-17/opensmtpd-5.3-released/</guid><description>&lt;p&gt;OHAI !&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve stayed silent for the last month as we got ready for the big thing&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Charles, Eric and I are proud to announce the release of OpenSMTPD 5.3, our first official production-ready release !&lt;/p&gt;</description></item><item><title>OpenSMTPD: minor fixes + preparing release</title><link>https://poolp.org/posts/2013-02-02/opensmtpd-minor-fixes--preparing-release/</link><pubDate>Sat, 02 Feb 2013 12:54:36 +0000</pubDate><guid>https://poolp.org/posts/2013-02-02/opensmtpd-minor-fixes--preparing-release/</guid><description>&lt;p&gt;OHAI,&lt;/p&gt;
+&lt;p&gt;We had planned to slow down a bit to prepare for release: no more feature, no more invasive changes until we tag something out of which we can publish a release. I then discussed with Bret Lambert (blambert@) and he asked me if we used some kind of code scanner to detect defects in our code.&lt;/p&gt;</description></item><item><title>OpenSMTPD: gentlemen, fasten your seatbelt</title><link>https://poolp.org/posts/2013-01-25/opensmtpd-gentlemen-fasten-your-seatbelt/</link><pubDate>Fri, 25 Jan 2013 23:01:47 +0000</pubDate><guid>https://poolp.org/posts/2013-01-25/opensmtpd-gentlemen-fasten-your-seatbelt/</guid><description>&lt;p&gt;OHAI,&lt;/p&gt;
+&lt;p&gt;Lately we have stabilized and decided that we&amp;rsquo;re okay with the features we have for our first release, this time for good, so we focused on making sure that we didn&amp;rsquo;t introduce regressions and that we were rock solid.&lt;/p&gt;</description></item><item><title>OpenSMTPD: stress and features</title><link>https://poolp.org/posts/2013-01-18/opensmtpd-stress-and-features/</link><pubDate>Fri, 18 Jan 2013 22:11:07 +0000</pubDate><guid>https://poolp.org/posts/2013-01-18/opensmtpd-stress-and-features/</guid><description>&lt;pre&gt;&lt;code&gt;&amp;lt;p&amp;gt;Hey,&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I wanted to publish something last Friday but I unfortunately got my hands on a copy of Super Nintendo's Zelda which led to an instant loss of motivation.&lt;/p&gt;</description></item><item><title>Welcome to you, 2013</title><link>https://poolp.org/posts/2013-01-08/welcome-to-you-2013/</link><pubDate>Tue, 08 Jan 2013 23:16:43 +0000</pubDate><guid>https://poolp.org/posts/2013-01-08/welcome-to-you-2013/</guid><description>&lt;p&gt;YO!&lt;/p&gt;
+&lt;p&gt;I know I should have posted a &amp;ldquo;Happy New Year&amp;rdquo; note earlier but you know how it is: new year eve&amp;rsquo;s aftermath, days to recover, work resumes, mood slacks, bleh.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2013-01-08/welcome-to-you-2013/feature.png"/></item><item><title>OpenSMTPD: SSL &amp; relay stuff</title><link>https://poolp.org/posts/2012-12-28/opensmtpd-ssl-relay-stuff/</link><pubDate>Fri, 28 Dec 2012 20:11:23 +0000</pubDate><guid>https://poolp.org/posts/2012-12-28/opensmtpd-ssl-relay-stuff/</guid><description>&lt;p&gt;OHAI,&lt;/p&gt;
+&lt;p&gt;I was unable to write a story last week as my desk broke into pieces for no apparent reason but my foot hitting it accidentally.&lt;/p&gt;</description></item><item><title>OpenSMTPD: LDAP support, selectable source, DKIM and Goodies</title><link>https://poolp.org/posts/2012-12-14/opensmtpd-ldap-support-selectable-source-dkim-and-goodies/</link><pubDate>Fri, 14 Dec 2012 21:43:44 +0000</pubDate><guid>https://poolp.org/posts/2012-12-14/opensmtpd-ldap-support-selectable-source-dkim-and-goodies/</guid><description>&lt;pre&gt;&lt;code&gt;&amp;lt;p&amp;gt;OHAI,&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This week has been crazy, my brain melted a little as I worked on filters, it melted a little as I worked on LDAP and it melted a little more as I tried to trick Eric into working on filters with me (yes, that actually worked :-).&lt;/p&gt;</description></item><item><title>OpenSMTPD: fully virtual setups, updated DNS &amp; MTA code, SQLite support</title><link>https://poolp.org/posts/2012-12-07/opensmtpd-fully-virtual-setups-updated-dns-mta-code-sqlite-support/</link><pubDate>Fri, 07 Dec 2012 21:17:57 +0000</pubDate><guid>https://poolp.org/posts/2012-12-07/opensmtpd-fully-virtual-setups-updated-dns-mta-code-sqlite-support/</guid><description>&lt;p&gt;OHAI,&lt;/p&gt;
+&lt;p&gt;This week I had intended to work on filters. After 3 days of pain and swearing, even though it did move forward, I finally decided to step back for a few days and work on something else to preserve my sanity.&lt;/p&gt;</description></item><item><title>OpenSMTPD: more features, more cleanup, more more</title><link>https://poolp.org/posts/2012-11-30/opensmtpd-more-features-more-cleanup-more-more/</link><pubDate>Fri, 30 Nov 2012 22:13:25 +0000</pubDate><guid>https://poolp.org/posts/2012-11-30/opensmtpd-more-features-more-cleanup-more-more/</guid><description>&lt;p&gt;OHAI,&lt;/p&gt;
+&lt;p&gt;First of all, on a completely unrelated note, I&amp;rsquo;d like to emphasize that this blog post is being written from my text editor launched by a little shell and pushed to poolp using the Ocean API. I can be web2.0 from console and emacs, and that&amp;rsquo;s definitely worth a mention ;-)&lt;/p&gt;</description></item><item><title>News from the front</title><link>https://poolp.org/posts/2012-11-17/news-from-the-front/</link><pubDate>Sat, 17 Nov 2012 13:28:58 +0000</pubDate><guid>https://poolp.org/posts/2012-11-17/news-from-the-front/</guid><description>&lt;p&gt;Almost a month since my last post&amp;hellip; I know, I know.&lt;/p&gt;
+&lt;p&gt;So I left my position at Scality two weeks ago. I had been there for a year and a half working on a very interesting and tricky project. I will miss my colleagues and the discussions we had on all kinds of topic, I hope them the best future and that we will be able to share beers again ;-)&lt;/p&gt;</description></item><item><title>OpenSMTPD: crypto/compress fixes and import initial stab at LDAP</title><link>https://poolp.org/posts/2012-08-31/opensmtpd-crypto/compress-fixes-and-import-initial-stab-at-ldap/</link><pubDate>Fri, 31 Aug 2012 15:21:39 +0000</pubDate><guid>https://poolp.org/posts/2012-08-31/opensmtpd-crypto/compress-fixes-and-import-initial-stab-at-ldap/</guid><description>&lt;p&gt;The crypto backend that has been committed a couple days ago started a little discussion and it was decided to switch the default cipher from Blowfish to AES-128 and make it a default.&lt;/p&gt;</description></item><item><title>OpenSMTPD: crypto_backend and encrypted queue</title><link>https://poolp.org/posts/2012-08-29/opensmtpd-crypto_backend-and-encrypted-queue/</link><pubDate>Wed, 29 Aug 2012 10:21:59 +0000</pubDate><guid>https://poolp.org/posts/2012-08-29/opensmtpd-crypto_backend-and-encrypted-queue/</guid><description>&lt;p&gt;A few days ago, Charles committed the compress_backend API which allowed transparent deflation/inflation of envelopes and messages as they hit the queue.&lt;/p&gt;
+&lt;p&gt;The compression code is executed before the queue_backend gets the data so that any queue_backend can benefit transparently from compression without having to add any code to handle it. Due to our design, this also means that if the queue_backend stores envelopes and messages remotely, then the compression will take place before sending and after fetching, the remote end only ever sees compressed data.&lt;/p&gt;</description></item><item><title>OpenSMTPD: I have no idea for that title, sorry</title><link>https://poolp.org/posts/2012-08-26/opensmtpd-i-have-no-idea-for-that-title-sorry/</link><pubDate>Sun, 26 Aug 2012 22:53:03 +0000</pubDate><guid>https://poolp.org/posts/2012-08-26/opensmtpd-i-have-no-idea-for-that-title-sorry/</guid><description>&lt;p&gt;Howdie,&lt;/p&gt;
+&lt;p&gt;Eric and I had planned a loooooong time ago to have a hackathon this week-end. However, some asshole piece of shit ran into my car while it was parked, made it unable to take the road and flee without leaving a note. Long story made short, I had to be at the repair shop this week-end to be able to get my car before end of September.&lt;/p&gt;</description></item><item><title>OpenSMTPD: plenty of news</title><link>https://poolp.org/posts/2012-08-21/opensmtpd-plenty-of-news/</link><pubDate>Tue, 21 Aug 2012 22:22:00 +0000</pubDate><guid>https://poolp.org/posts/2012-08-21/opensmtpd-plenty-of-news/</guid><description>&lt;p&gt;It&amp;rsquo;s been over a month since my last post but I have an excuse: I was super busy, then I was super on vacation &amp;hellip; but I&amp;rsquo;m back again ;-)&lt;/p&gt;</description></item><item><title>g2k12: OpenBSD hackathon - part II</title><link>https://poolp.org/posts/2012-07-15/g2k12-openbsd-hackathon-part-ii/</link><pubDate>Sun, 15 Jul 2012 21:43:58 +0000</pubDate><guid>https://poolp.org/posts/2012-07-15/g2k12-openbsd-hackathon-part-ii/</guid><description>&lt;p&gt;Yesterday, I came back from Budapest and was too tired to write anything, but here&amp;rsquo;s a quick summary of all the features that have been implemented with regard to OpenSMTPD by Eric, Charles and I.&lt;/p&gt;</description></item><item><title>g2k12: OpenBSD hackathon</title><link>https://poolp.org/posts/2012-07-09/g2k12-openbsd-hackathon/</link><pubDate>Mon, 09 Jul 2012 23:52:31 +0000</pubDate><guid>https://poolp.org/posts/2012-07-09/g2k12-openbsd-hackathon/</guid><description>&lt;p&gt;Yesterday, after nearly missing my plane by 5 minutes, I finally managed to make it to Budapest for g2k12, the OpenBSD general hackathon.&lt;/p&gt;
+&lt;p&gt;While this is not my first hackathon, this is the first general one with many hackers working on all kinds of subsystems ranging from ports to network and kernel. It&amp;rsquo;s fun to see many people focused on improving different areas which you use daily, sometimes without even noticing, and doing it with as much fun as you are having fixing your own area ;-)&lt;/p&gt;</description></item><item><title>OpenSMTPD: development, bug tracker &amp; GitHub</title><link>https://poolp.org/posts/2012-06-19/opensmtpd-development-bug-tracker-github/</link><pubDate>Tue, 19 Jun 2012 19:57:37 +0000</pubDate><guid>https://poolp.org/posts/2012-06-19/opensmtpd-development-bug-tracker-github/</guid><description>&lt;p&gt;It&amp;rsquo;s been a while since my last post about OpenSMTPD.&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t know what Eric and Charles have been up to, I was quite busy with my daytime job and couldn&amp;rsquo;t really spend much time on the hobby ;-)&lt;/p&gt;</description></item><item><title>OpenSMTPD REST queue</title><link>https://poolp.org/posts/2012-06-06/opensmtpd-rest-queue/</link><pubDate>Wed, 06 Jun 2012 14:44:10 +0000</pubDate><guid>https://poolp.org/posts/2012-06-06/opensmtpd-rest-queue/</guid><description>&lt;p&gt;This is the first post of a series to illustrate and describe a &amp;ldquo;proof of concept&amp;rdquo; code by Charles, Eric and I. I will describe the features as they are implemented.&lt;/p&gt;</description></item><item><title>OpenSMTPD: src-address maps and spamhaus</title><link>https://poolp.org/posts/2012-05-17/opensmtpd-src-address-maps-and-spamhaus/</link><pubDate>Thu, 17 May 2012 17:23:09 +0000</pubDate><guid>https://poolp.org/posts/2012-05-17/opensmtpd-src-address-maps-and-spamhaus/</guid><description>&lt;p&gt;First of all, I&amp;rsquo;d like to &amp;ldquo;thank&amp;rdquo; The Spamhaus project which forced me into hacking this feature in a hurry.&lt;/p&gt;
+&lt;p&gt;See, I rent a server at online.net which I use for OpenSMTPD live testing and to run some experimental code before it hits the OpenBSD tree.&lt;/p&gt;</description></item><item><title>OpenSMTPD relay maps &amp; new url syntax</title><link>https://poolp.org/posts/2012-05-14/opensmtpd-relay-maps-new-url-syntax/</link><pubDate>Mon, 14 May 2012 09:55:52 +0000</pubDate><guid>https://poolp.org/posts/2012-05-14/opensmtpd-relay-maps-new-url-syntax/</guid><description>&lt;p&gt;When we first started working on OpenSMTPD, we planned for future features but we did not necessarily start integrating them right away as the goal was to bootstrap the project first with basic features.&lt;/p&gt;</description></item><item><title>OpenSMTPD, map_compare() and K_NETADDR</title><link>https://poolp.org/posts/2012-05-13/opensmtpd-map_compare-and-k_netaddr/</link><pubDate>Sun, 13 May 2012 03:09:16 +0000</pubDate><guid>https://poolp.org/posts/2012-05-13/opensmtpd-map_compare-and-k_netaddr/</guid><description>&lt;p&gt;Ok, I already posted about the new SQLite map_backend earlier today but it turns out that I&amp;rsquo;ve been very productive, and it was worth another post ;-)&lt;/p&gt;</description></item><item><title>OpenSMTPD meets SQLite</title><link>https://poolp.org/posts/2012-05-12/opensmtpd-meets-sqlite/</link><pubDate>Sat, 12 May 2012 14:23:54 +0000</pubDate><guid>https://poolp.org/posts/2012-05-12/opensmtpd-meets-sqlite/</guid><description>&lt;p&gt;During the r2k12 hackathon in Paris, Marc Espie committed SQLite to OpenBSD&amp;rsquo;s base system.&lt;/p&gt;
+&lt;p&gt;This has the side effect that OpenSMTPD can start using it and while we agreed that we did not want it as a strong dependency, the various backends API allow us to make it a soft dependency that can be removed without breaking the daemon if someone really does not want SQLite linked.&lt;/p&gt;</description></item><item><title>Some OpenSMTPD news</title><link>https://poolp.org/posts/2012-05-09/some-opensmtpd-news/</link><pubDate>Wed, 09 May 2012 23:03:36 +0000</pubDate><guid>https://poolp.org/posts/2012-05-09/some-opensmtpd-news/</guid><description>&lt;p&gt;It&amp;rsquo;s been a whiiiiiiile since my last OpenSMTPD related post. Time to break the slacking, blog-wise.&lt;/p&gt;
+&lt;p&gt;Unlike what would appear from the outside, there&amp;rsquo;s been a lot of activity, discussions and planning, I&amp;rsquo;ll address some here and will discuss it further soon.&lt;/p&gt;</description></item></channel></rss>

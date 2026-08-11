@@ -1,1 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kernel on poolp.org</title><link>https://poolp.org/tags/kernel/</link><description>Recent content in Kernel on poolp.org</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><copyright>Copyright &amp;copy; Gilles Chehade - poolp.org</copyright><lastBuildDate>Wed, 05 Jul 2023 23:14:00 +0200</lastBuildDate><atom:link href="https://poolp.org/tags/kernel/index.xml" rel="self" type="application/rss+xml"/><item><title>Implementing a system call for OpenBSD</title><link>https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/</link><pubDate>Wed, 05 Jul 2023 23:14:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/</guid><description>TL;DR: I found a printed copy of an assignment I had to do in 2005 back when I was a student to implement a system call for OpenBSD and Linux.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/feature.png"/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kernel on poolp.org</title><link>https://poolp.org/tags/kernel/</link><description>Recent content in Kernel on poolp.org</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><copyright>Copyright &amp;copy; Gilles Chehade - poolp.org</copyright><lastBuildDate>Wed, 05 Jul 2023 23:14:00 +0200</lastBuildDate><atom:link href="https://poolp.org/tags/kernel/index.xml" rel="self" type="application/rss+xml"/><item><title>Implementing a system call for OpenBSD</title><link>https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/</link><pubDate>Wed, 05 Jul 2023 23:14:00 +0200</pubDate><guid>https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;I found a printed copy of an assignment I had to do in 2005 back when I was a student to implement a system call for OpenBSD and Linux. I lost the original LaTeX file so I decided to rewrite it so I have a digital copy. The article originally covered loadable kernel modules (LKM) which is no longer a thing in OpenBSD, I trimmed that part. I also trimmed the Linux part because I didn&amp;rsquo;t care about it back then and did the minimum to pass ;-)
+This article is translated from French.&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Disclaimer
+ &lt;div id="disclaimer" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#disclaimer" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;The content of this post is based on an assignment I wrote in 2005,
+back when I was a student at Epitech,
+so things have probably changed and this is by no means a tutorial:
+please don&amp;rsquo;t write system calls and don&amp;rsquo;t submit them to OpenBSD&amp;hellip;
+unless you&amp;rsquo;ve been told it&amp;rsquo;s a good idea by OpenBSD developers.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/feature.png"/></item></channel></rss>

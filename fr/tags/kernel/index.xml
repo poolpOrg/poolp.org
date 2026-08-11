@@ -1,1 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kernel on poolp.org</title><link>https://poolp.org/fr/tags/kernel/</link><description>Recent content in Kernel on poolp.org</description><generator>Hugo -- gohugo.io</generator><language>fr-FR</language><copyright>Copyright &amp;copy; Gilles Chehade - poolp.org</copyright><lastBuildDate>Tue, 25 Jul 2023 23:22:00 +0200</lastBuildDate><atom:link href="https://poolp.org/fr/tags/kernel/index.xml" rel="self" type="application/rss+xml"/><item><title>Implementer un appel système pour OpenBSD</title><link>https://poolp.org/fr/posts/2023-07-25/implementer-un-appel-syst%C3%A8me-pour-openbsd/</link><pubDate>Tue, 25 Jul 2023 23:22:00 +0200</pubDate><guid>https://poolp.org/fr/posts/2023-07-25/implementer-un-appel-syst%C3%A8me-pour-openbsd/</guid><description>TL;DR: J&amp;rsquo;ai retrouvé une copie imprimée d&amp;rsquo;un devoir que j&amp;rsquo;ai eu à faire en 2005, quand j&amp;rsquo;étais encore étudiant, pour implémenter un appel système sous OpenBSD et Linux.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/feature.png"/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kernel on poolp.org</title><link>https://poolp.org/fr/tags/kernel/</link><description>Recent content in Kernel on poolp.org</description><generator>Hugo -- gohugo.io</generator><language>fr-FR</language><copyright>Copyright &amp;copy; Gilles Chehade - poolp.org</copyright><lastBuildDate>Tue, 25 Jul 2023 23:22:00 +0200</lastBuildDate><atom:link href="https://poolp.org/fr/tags/kernel/index.xml" rel="self" type="application/rss+xml"/><item><title>Implementer un appel système pour OpenBSD</title><link>https://poolp.org/fr/posts/2023-07-25/implementer-un-appel-syst%C3%A8me-pour-openbsd/</link><pubDate>Tue, 25 Jul 2023 23:22:00 +0200</pubDate><guid>https://poolp.org/fr/posts/2023-07-25/implementer-un-appel-syst%C3%A8me-pour-openbsd/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;J&amp;rsquo;ai retrouvé une copie imprimée d&amp;rsquo;un devoir que j&amp;rsquo;ai eu à faire en 2005,
+quand j&amp;rsquo;étais encore étudiant,
+pour implémenter un appel système sous OpenBSD et Linux.
+J&amp;rsquo;ai perdu le fichier source LaTeX alors j&amp;rsquo;ai décidé de le retaper pour en avoir une copie numérique.
+À l&amp;rsquo;origine,
+l&amp;rsquo;article couvrait les &amp;ldquo;loadable kernel modules&amp;rdquo; (LKM) qui ne font plus partie d&amp;rsquo;OpenBSD,
+j&amp;rsquo;ai donc supprimé cette partie.
+J&amp;rsquo;ai aussi supprimé la partie Linux parce qu&amp;rsquo;elle ne m&amp;rsquo;intéressait pas à l&amp;rsquo;époque,
+que j&amp;rsquo;ai écrit le minimum vital pour mon devoir et que ce n&amp;rsquo;est donc pas très intéressant à lire ;-)&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Avertissement
+ &lt;div id="avertissement" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#avertissement" aria-label="Ancre"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Le contenu de cet article est basé sur un devoir que j&amp;rsquo;ai rédigé en 2005,
+lorsque j&amp;rsquo;étais encore étudiant à Epitech,
+donc les choses ont probablement changé et ce n&amp;rsquo;est pas un tutoriel:
+s&amp;rsquo;il vous plait,
+n&amp;rsquo;écrivez pas d&amp;rsquo;appels systèmes et ne les soumettez pas à OpenBSD&amp;hellip;
+sauf si les développeurs d&amp;rsquo;OpenBSD vous ont demandé de le faire et vous ont dit que c&amp;rsquo;était une bonne idée.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/feature.png"/></item></channel></rss>

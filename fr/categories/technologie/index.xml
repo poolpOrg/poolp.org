@@ -1,1 +1,112 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Technologie on poolp.org</title><link>https://poolp.org/fr/categories/technologie/</link><description>Recent content in Technologie on poolp.org</description><generator>Hugo -- gohugo.io</generator><language>fr-FR</language><copyright>Copyright &amp;copy; Gilles Chehade - poolp.org</copyright><lastBuildDate>Tue, 25 Jul 2023 23:22:00 +0200</lastBuildDate><atom:link href="https://poolp.org/fr/categories/technologie/index.xml" rel="self" type="application/rss+xml"/><item><title>Implementer un appel système pour OpenBSD</title><link>https://poolp.org/fr/posts/2023-07-25/implementer-un-appel-syst%C3%A8me-pour-openbsd/</link><pubDate>Tue, 25 Jul 2023 23:22:00 +0200</pubDate><guid>https://poolp.org/fr/posts/2023-07-25/implementer-un-appel-syst%C3%A8me-pour-openbsd/</guid><description>TL;DR: J&amp;rsquo;ai retrouvé une copie imprimée d&amp;rsquo;un devoir que j&amp;rsquo;ai eu à faire en 2005, quand j&amp;rsquo;étais encore étudiant, pour implémenter un appel système sous OpenBSD et Linux.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/feature.png"/></item><item><title>SPF-aware greylisting et filter-greylist</title><link>https://poolp.org/fr/posts/2019-12-26/spf-aware-greylisting-et-filter-greylist/</link><pubDate>Thu, 26 Dec 2019 14:15:00 +0200</pubDate><guid>https://poolp.org/fr/posts/2019-12-26/spf-aware-greylisting-et-filter-greylist/</guid><description>TL;DR: le greylisting est une bonne idée ce n&amp;rsquo;est pas très pratique aujourd&amp;rsquo;hui beaucoup de gens se passent du greylisting ou trouvent des contournements le SPF-aware greylisting rend le greylisting utilisable à nouveau Shout out a mes sponsors ❤️ # Un GRAND MERCI à mes sponsors sur github et patreon: votre soutien est grandement apprécié !</description></item><item><title>Mettre en place un serveur de mail avec OpenSMTPD, Dovecot et Rspamd</title><link>https://poolp.org/fr/posts/2019-12-23/mettre-en-place-un-serveur-de-mail-avec-opensmtpd-dovecot-et-rspamd/</link><pubDate>Mon, 23 Dec 2019 07:57:00 +0200</pubDate><guid>https://poolp.org/fr/posts/2019-12-23/mettre-en-place-un-serveur-de-mail-avec-opensmtpd-dovecot-et-rspamd/</guid><description>TL;DR: Pas de résumé, j&amp;rsquo;ai passé des heures à traduire, vous allez passer des minutes à lire ;) OK… J&amp;rsquo;ai expliqué avec BIEN TROP DE DÉTAILS comment mettre en place un serveur de mail Merci à mes sponsors !</description></item><item><title>Décentralisons SMTP pour le bien commun</title><link>https://poolp.org/fr/posts/2019-12-15/decentralisons-smtp-pour-le-bien-commun/</link><pubDate>Sun, 15 Dec 2019 13:05:00 +0200</pubDate><guid>https://poolp.org/fr/posts/2019-12-15/decentralisons-smtp-pour-le-bien-commun/</guid><description>TL;DR: SMTP est la méthode dont les ordinateurs échangent des e-mails il s&amp;rsquo;agit d&amp;rsquo;un protocole décentralisé, ce qui signifie que CHACUN peut héberger un nœud et être indépendant il est en train d&amp;rsquo;être centralisé dans des sociétés qui ont un passif d&amp;rsquo;abus il est en train d&amp;rsquo;être centralisé dans un pays qui a un passif d&amp;rsquo;abus Où est-ce que j&amp;rsquo;ai déjà lu ça ?</description></item><item><title>Vous ne devriez pas faire tourner votre serveur de mail parce que c'est dur</title><link>https://poolp.org/fr/posts/2019-08-30/vous-ne-devriez-pas-faire-tourner-votre-serveur-de-mail-parce-que-cest-dur/</link><pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate><guid>https://poolp.org/fr/posts/2019-08-30/vous-ne-devriez-pas-faire-tourner-votre-serveur-de-mail-parce-que-cest-dur/</guid><description>TL;DR: Le mail n&amp;rsquo;est pas dur: les gens répètent ça parce qu&amp;rsquo;ils l&amp;rsquo;ont lu, pas parce qu&amp;rsquo;ils ont essayé Les Big Mailer Corps sont contents de ce mythe, ça fait grossir leur base d&amp;rsquo;utilisateurs Les Big Mailer Corps contrôlent un large pourcentage de l&amp;rsquo;espace d&amp;rsquo;adressage des e-mails ce qui n&amp;rsquo;est bon pour personne C&amp;rsquo;est ok que des gens aient leurs adresses e-mail hébergées chez des Big Mailer Corps tant qu&amp;rsquo;il y a assez de gens en dehors EDIT (2019-12-15) # Un guide pratique pour installer un serveur de mail a été publié sur ce blog.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/feature.jpeg"/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Technologie on poolp.org</title><link>https://poolp.org/fr/categories/technologie/</link><description>Recent content in Technologie on poolp.org</description><generator>Hugo -- gohugo.io</generator><language>fr-FR</language><copyright>Copyright &amp;copy; Gilles Chehade - poolp.org</copyright><lastBuildDate>Tue, 25 Jul 2023 23:22:00 +0200</lastBuildDate><atom:link href="https://poolp.org/fr/categories/technologie/index.xml" rel="self" type="application/rss+xml"/><item><title>Implementer un appel système pour OpenBSD</title><link>https://poolp.org/fr/posts/2023-07-25/implementer-un-appel-syst%C3%A8me-pour-openbsd/</link><pubDate>Tue, 25 Jul 2023 23:22:00 +0200</pubDate><guid>https://poolp.org/fr/posts/2023-07-25/implementer-un-appel-syst%C3%A8me-pour-openbsd/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;J&amp;rsquo;ai retrouvé une copie imprimée d&amp;rsquo;un devoir que j&amp;rsquo;ai eu à faire en 2005,
+quand j&amp;rsquo;étais encore étudiant,
+pour implémenter un appel système sous OpenBSD et Linux.
+J&amp;rsquo;ai perdu le fichier source LaTeX alors j&amp;rsquo;ai décidé de le retaper pour en avoir une copie numérique.
+À l&amp;rsquo;origine,
+l&amp;rsquo;article couvrait les &amp;ldquo;loadable kernel modules&amp;rdquo; (LKM) qui ne font plus partie d&amp;rsquo;OpenBSD,
+j&amp;rsquo;ai donc supprimé cette partie.
+J&amp;rsquo;ai aussi supprimé la partie Linux parce qu&amp;rsquo;elle ne m&amp;rsquo;intéressait pas à l&amp;rsquo;époque,
+que j&amp;rsquo;ai écrit le minimum vital pour mon devoir et que ce n&amp;rsquo;est donc pas très intéressant à lire ;-)&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Avertissement
+ &lt;div id="avertissement" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#avertissement" aria-label="Ancre"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Le contenu de cet article est basé sur un devoir que j&amp;rsquo;ai rédigé en 2005,
+lorsque j&amp;rsquo;étais encore étudiant à Epitech,
+donc les choses ont probablement changé et ce n&amp;rsquo;est pas un tutoriel:
+s&amp;rsquo;il vous plait,
+n&amp;rsquo;écrivez pas d&amp;rsquo;appels systèmes et ne les soumettez pas à OpenBSD&amp;hellip;
+sauf si les développeurs d&amp;rsquo;OpenBSD vous ont demandé de le faire et vous ont dit que c&amp;rsquo;était une bonne idée.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2023-07-05/implementing-a-system-call-for-openbsd/feature.png"/></item><item><title>SPF-aware greylisting et filter-greylist</title><link>https://poolp.org/fr/posts/2019-12-26/spf-aware-greylisting-et-filter-greylist/</link><pubDate>Thu, 26 Dec 2019 14:15:00 +0200</pubDate><guid>https://poolp.org/fr/posts/2019-12-26/spf-aware-greylisting-et-filter-greylist/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;ul&gt;
+&lt;li&gt;le greylisting est une bonne idée&lt;/li&gt;
+&lt;li&gt;ce n&amp;rsquo;est pas très pratique aujourd&amp;rsquo;hui&lt;/li&gt;
+&lt;li&gt;beaucoup de gens se passent du greylisting ou trouvent des contournements&lt;/li&gt;
+&lt;li&gt;le SPF-aware greylisting rend le greylisting utilisable à nouveau&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h1 class="relative group"&gt;Shout out a mes sponsors ❤️
+ &lt;div id="shout-out-a-mes-sponsors-x2764xfe0f" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#shout-out-a-mes-sponsors-x2764xfe0f" aria-label="Ancre"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Un &lt;strong&gt;GRAND MERCI&lt;/strong&gt; à mes sponsors sur &lt;a href="https://github.com/sponsors/poolpOrg" target="_blank" rel="noreferrer"&gt;github&lt;/a&gt;
+et &lt;a href="https://www.patreon.com/gilles" target="_blank" rel="noreferrer"&gt;patreon&lt;/a&gt;:
+votre soutien est grandement apprécié !&lt;/p&gt;</description></item><item><title>Mettre en place un serveur de mail avec OpenSMTPD, Dovecot et Rspamd</title><link>https://poolp.org/fr/posts/2019-12-23/mettre-en-place-un-serveur-de-mail-avec-opensmtpd-dovecot-et-rspamd/</link><pubDate>Mon, 23 Dec 2019 07:57:00 +0200</pubDate><guid>https://poolp.org/fr/posts/2019-12-23/mettre-en-place-un-serveur-de-mail-avec-opensmtpd-dovecot-et-rspamd/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;ul&gt;
+&lt;li&gt;Pas de résumé, j&amp;rsquo;ai passé des heures à traduire, vous allez passer des minutes à lire ;)&lt;/li&gt;
+&lt;li&gt;OK… J&amp;rsquo;ai expliqué avec BIEN TROP DE DÉTAILS comment mettre en place un serveur de mail&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Merci à mes sponsors !
+ &lt;div id="merci-à-mes-sponsors-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#merci-%c3%a0-mes-sponsors-" aria-label="Ancre"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Un &lt;strong&gt;énorme&lt;/strong&gt; merci aux gens qui me sponsorisent sur &lt;a href="https://www.patreon.com/gilles" target="_blank" rel="noreferrer"&gt;patreon&lt;/a&gt; ou &lt;a href="https://github.com/sponsors/poolpOrg" target="_blank" rel="noreferrer"&gt;github&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Décentralisons SMTP pour le bien commun</title><link>https://poolp.org/fr/posts/2019-12-15/decentralisons-smtp-pour-le-bien-commun/</link><pubDate>Sun, 15 Dec 2019 13:05:00 +0200</pubDate><guid>https://poolp.org/fr/posts/2019-12-15/decentralisons-smtp-pour-le-bien-commun/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;ul&gt;
+&lt;li&gt;SMTP est la méthode dont les ordinateurs échangent des e-mails&lt;/li&gt;
+&lt;li&gt;il s&amp;rsquo;agit d&amp;rsquo;un protocole décentralisé, ce qui signifie que CHACUN peut héberger un nœud et être indépendant&lt;/li&gt;
+&lt;li&gt;il est en train d&amp;rsquo;être centralisé dans des sociétés qui ont un passif d&amp;rsquo;abus&lt;/li&gt;
+&lt;li&gt;il est en train d&amp;rsquo;être centralisé dans un pays qui a un passif d&amp;rsquo;abus&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Où est-ce que j&amp;rsquo;ai déjà lu ça ?
+ &lt;div id="où-est-ce-que-jai-déjà-lu-ça-" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#o%c3%b9-est-ce-que-jai-d%c3%a9j%c3%a0-lu-%c3%a7a-" aria-label="Ancre"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;En Août,
+j&amp;rsquo;ai publié un petit article intitulé &amp;ldquo;&lt;a href="https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/" target="_blank" rel="noreferrer"&gt;You should not run your mail server because mail is hard&lt;/a&gt;&amp;rdquo; (&amp;ldquo;Vous ne devriez pas héberger votre serveur de mail parce que c&amp;rsquo;est dur&amp;rdquo;) qui était, en gros, mon opinion sur les différentes raisons qui poussent les gens à décourager l&amp;rsquo;hébergement de mails.
+De manière très inattendue,
+l&amp;rsquo;article est devenu assez populaire,
+atteignant 100K lectures et continuant à recevoir des visites et des commentaires plusieurs mois après publication.&lt;/p&gt;</description></item><item><title>Vous ne devriez pas faire tourner votre serveur de mail parce que c'est dur</title><link>https://poolp.org/fr/posts/2019-08-30/vous-ne-devriez-pas-faire-tourner-votre-serveur-de-mail-parce-que-cest-dur/</link><pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate><guid>https://poolp.org/fr/posts/2019-08-30/vous-ne-devriez-pas-faire-tourner-votre-serveur-de-mail-parce-que-cest-dur/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;&lt;ul&gt;
+&lt;li&gt;Le mail n&amp;rsquo;est pas dur: les gens répètent ça parce qu&amp;rsquo;ils l&amp;rsquo;ont lu, pas parce qu&amp;rsquo;ils ont essayé&lt;/li&gt;
+&lt;li&gt;Les Big Mailer Corps sont contents de ce mythe, ça fait grossir leur base d&amp;rsquo;utilisateurs&lt;/li&gt;
+&lt;li&gt;Les Big Mailer Corps contrôlent un large pourcentage de l&amp;rsquo;espace d&amp;rsquo;adressage des e-mails ce qui n&amp;rsquo;est bon pour personne&lt;/li&gt;
+&lt;li&gt;C&amp;rsquo;est ok que des gens aient leurs adresses e-mail hébergées chez des Big Mailer Corps tant qu&amp;rsquo;il y a assez de gens en dehors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;EDIT (2019-12-15)
+ &lt;div id="edit-2019-12-15" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#edit-2019-12-15" aria-label="Ancre"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Un guide pratique pour &lt;a href="https://poolp.org/fr/posts/2019-12-23/mettre-en-place-un-serveur-de-mail-avec-opensmtpd-dovecot-et-rspamd/" &gt;installer un serveur de mail&lt;/a&gt; a été publié sur ce blog.&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2019-08-30/you-should-not-run-your-mail-server-because-mail-is-hard/feature.jpeg"/></item></channel></rss>

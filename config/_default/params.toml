@@ -40,7 +40,10 @@ disableImageOptimization = false
 [homepage]
   #layout = "profile" # valid options: page, profile, hero, card, background, custom
   layout = "hero" # valid options: page, profile, hero, card, background, custom
-  homepageImage = "img/poolp_bing.png" # used in: hero, and card
+  homepageImage = "img/poolp_platypus.png" # used in: hero, and card
+  # the hero normally multiplies a primary/secondary gradient over the image,
+  # which turns the mascot into a murky silhouette -- show it as-is instead
+  disableHeroImageFilter = true
   showRecent = true
   showRecentItems = 6
   showMoreLink = true

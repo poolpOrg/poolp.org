@@ -6,9 +6,7 @@
        { "email" : "mailto:gilles@poolp.org" },
        { "github" : "https://github.com/poolpOrg" },
        { "linkedin" : "https://linkedin.com/in/gilleschehade" },
-       { "mastodon" : "https://social.poolp.org/@gilles" },
        { "youtube" : "https://www.youtube.com/gilleschehade" },
        { "twitch" : "https://twitch.tv/poolporg" }
-     ]
-   
+     ]  
 }

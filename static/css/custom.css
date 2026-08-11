@@ -5,6 +5,7 @@ BODY {
  /*   font-family: Neucha, Merriweather;*/
 }
 
+/* black on the yellow highlight, which is the same in both themes */
 STRONG {
     font-weight: bolder;
     color: #000000;
@@ -15,9 +16,18 @@ blockquote {
     border-left: 4px solid #a00;
     padding: 0 20px;
     font-style: italic;
+}
+
+html:not(.dark) blockquote {
     color: rgba(0, 0, 0, .5);
 }
 
+/* black on the dark navy background sits at ~1.4:1, unreadable */
+html.dark blockquote {
+    color: rgba(229, 231, 235, .75);
+}
+
+/* stays black: it inherits the yellow STRONG highlight in both themes */
 .prose :where(strong):not(:where([class~="not-prose"] *)) {
     color: #000;
     font-weight: 600;

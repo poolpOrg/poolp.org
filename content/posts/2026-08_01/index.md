@@ -455,7 +455,7 @@ and that you need to be aware of it.
 
 Not taking preventive maintenance seriously was already a bad idea years ago.
 Now that code lands in projects faster than anyone can read it,
-it has become plain stupid,
+it has become negligence,
 at least if you intend to retain any value in your software.
 
 So the 20% is not a nice-to-have anymore.

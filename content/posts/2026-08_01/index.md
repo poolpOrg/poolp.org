@@ -1,6 +1,6 @@
 ---
 title: "Preventive software maintenance"
-date: 2026-08-13 20:00:00 +0200
+date: 2026-08-13 02:00:00 +0200
 authors:
  - "gilles"
 language: en

@@ -1,0 +1,11 @@
+{{/* Copy of the theme's series/series.html with one addition: the top
+   consulting note rides this partial (it renders right before the article
+   content on single pages) so single.html stays upstream. */}}
+{{ partial "consulting-note.html" "top" }}
+{{ if .Params.series }}
+  <details
+    class="mt-2 mb-5 overflow-hidden rounded-lg ms-0 ps-5"
+    {{ if .Params.seriesOpened | default (.Site.Params.article.seriesOpened | default false) }}open{{ end }}>
+    {{ partial "series/series_base.html" . }}
+  </details>
+{{ end }}

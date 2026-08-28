@@ -1,0 +1,17 @@
+{{/* Pointer to the consulting practice, shown at both ends of an article.
+   Invoked with "top" (rides series/series.html, right before the content)
+   or "bottom" (rides sharing-links.html, right after it) so single.html
+   stays upstream; the RSS override (_default/rss.xml) carries its own
+   plain-HTML version. */}}
+{{ $position := . | default "bottom" }}
+<div class="consulting-note {{ if eq $position "top" }}mt-2 mb-8{{ else }}mt-10{{ end }} max-w-prose rounded-md border border-dashed border-neutral-400 px-4 py-3 text-sm text-neutral-600 dark:border-neutral-600 dark:text-neutral-400 print:hidden">
+  {{ if eq site.Language.Lang "fr" }}
+    Je prends des missions de conseil courtes — revue d'architecture, due
+    diligence technique, infrastructure mail — via
+    <a class="text-primary-600 dark:text-primary-400" href="https://aljuna.tech/fr.html">aljuna.tech</a>.
+  {{ else }}
+    I take short consulting engagements — architecture review, technical due
+    diligence, mail infrastructure — through
+    <a class="text-primary-600 dark:text-primary-400" href="https://aljuna.tech">aljuna.tech</a>.
+  {{ end }}
+</div>

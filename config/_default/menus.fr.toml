@@ -16,6 +16,11 @@
   url = "https://github.com/poolpOrg/"
   weight = 10
 
+[[main]]
+  name = "Conseil"
+  url = "https://aljuna.tech/fr.html"
+  weight = 20
+
 
 #[[main]]
 #  name = "Blog"

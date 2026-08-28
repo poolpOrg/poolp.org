@@ -1,5 +1,8 @@
-@charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Neucha|Patrick+Hand+SC);
+/* This file is bundled into the theme's minified main.bundle.css
+   (Blowfish picks up assets/css/custom.css on its own), so it must not
+   carry @charset or @import -- both are invalid mid-bundle.  The old
+   Neucha/Patrick Hand import was referenced by no rule anyway. */
+
 /* Justify the article prose only.  This used to sit on BODY, where it
    inherited into everything -- headings, the TOC, nav, card titles -- and
    stretched short lines out.  .article-content wraps just .Content, and the

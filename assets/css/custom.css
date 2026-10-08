@@ -109,3 +109,25 @@ html.dark blockquote {
 				margin-right: 30px;
 			}
 	}
+
+	/* book pages: cover beside the details, stacked on narrow screens */
+	.book {
+		display: flex;
+		gap: 2rem;
+		align-items: flex-start;
+	}
+	.book .book-cover {
+		width: 240px;
+		max-width: 100%;
+		margin: 0;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+	}
+	.book .book-info p:first-child {
+		margin-top: 0;
+	}
+	@media only screen and (max-width: 600px) {
+		.book {
+			flex-direction: column;
+			align-items: center;
+		}
+	}

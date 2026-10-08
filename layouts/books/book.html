@@ -1,0 +1,26 @@
+{{/* A book's landing page: the theme's list header and content, without
+     the "no articles" note, and a plain list of sub-pages when there are any. */}}
+{{ define "main" }}
+  <header>
+    {{ if site.Params.list.showBreadcrumbs | default false }}
+      {{ partial "breadcrumbs.html" . }}
+    {{ end }}
+    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      {{ .Title | emojify }}
+    </h1>
+  </header>
+
+  <section class="mt-6 prose max-w-full dark:prose-invert mb-10">
+    <div class="min-w-0 max-w-prose w-full">
+      {{ .Content }}
+    </div>
+
+    {{ with .Pages.ByWeight }}
+      <ul>
+        {{ range . }}
+          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      </ul>
+    {{ end }}
+  </section>
+{{ end }}

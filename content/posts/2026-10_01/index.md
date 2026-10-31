@@ -1,7 +1,7 @@
 ---
 title: "OpenBSD 8.0 on a Scaleway Instance"
 date: 2026-10-31 02:00:00 +0100
-draft: true
+draft: false
 authors:
  - "gilles"
 language: en

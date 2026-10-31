@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scaleway on poolp.org</title><link>https://poolp.org/tags/scaleway/</link><description>Recent content in Scaleway on poolp.org</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><copyright>Copyright &amp;copy; Gilles Chehade - poolp.org</copyright><lastBuildDate>Sat, 31 Oct 2026 02:00:00 +0100</lastBuildDate><atom:link href="https://poolp.org/tags/scaleway/index.xml" rel="self" type="application/rss+xml"/><item><title>OpenBSD 8.0 on a Scaleway Instance</title><link>https://poolp.org/posts/2026-10-31/openbsd-8.0-on-a-scaleway-instance/</link><pubDate>Sat, 31 Oct 2026 02:00:00 +0100</pubDate><guid>https://poolp.org/posts/2026-10-31/openbsd-8.0-on-a-scaleway-instance/</guid><description>&lt;blockquote&gt;
+ &lt;b&gt;TL;DR:&lt;/b&gt;
+ &lt;br /&gt;Every few years I want to install OpenBSD at Scaleway&amp;hellip;
+but they don&amp;rsquo;t support OpenBSD and I need to find a way to install regardless.&lt;/blockquote&gt;
+
+
+&lt;h2 class="relative group"&gt;Here we go again&amp;hellip;
+ &lt;div id="here-we-go-again" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#here-we-go-again" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Since early 2010,
+I&amp;rsquo;ve been a regular customer of Dedibox then Scaleway,
+particularly because they&amp;rsquo;re very geeky and also because I&amp;rsquo;ve always personally known people working there which proves helpful at times :-)&lt;/p&gt;&lt;p&gt;&lt;em&gt;I take short consulting engagements — architecture review, technical due diligence, mail infrastructure — through &lt;a href="https://aljuna.tech"&gt;aljuna.tech&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2026-10-31/openbsd-8.0-on-a-scaleway-instance/featured.png"/></item></channel></rss>

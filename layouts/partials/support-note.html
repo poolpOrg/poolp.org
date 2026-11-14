@@ -1,0 +1,82 @@
+{{/* The sponsor shoutout and the share ask, dropped with the single.html
+   override in the blowfish v2.105.0 upgrade.  Same trick as the consulting
+   note: "top" rides series/series.html, right before the content, and
+   "bottom" rides sharing-links.html, right before the sharing icons, so
+   single.html stays upstream.  Articles opt out with shoutout: false and
+   needhelp: false in their front matter, as they always did. */}}
+{{ $position := .position | default "bottom" }}
+{{ $page := .page }}
+{{ if eq $position "top" }}
+  {{ if or ($page.Params.shoutout | default true) ($page.Params.needhelp | default true) }}
+    <div class="support-note mt-2 mb-8 max-w-prose rounded-md bg-primary-100 px-4 py-3 text-sm dark:bg-primary-900 dark:text-neutral-300 print:hidden">
+      {{ if $page.Params.shoutout | default true }}
+        {{ if eq site.Language.Lang "fr" }}
+          Message aux sponsors
+          <u><b><a href="https://github.com/sponsors/poolpOrg">github</a></b></u> et
+          <u><b><a href="https://www.patreon.com/gilles">patreon</a></b></u> :
+          <b>MERCI ❤️</b>
+        {{ else }}
+          Message to
+          <u><b><a href="https://github.com/sponsors/poolpOrg">github</a></b></u> and
+          <u><b><a href="https://www.patreon.com/gilles">patreon</a></b></u> sponsors:
+          <b>THANK YOU ❤️</b>
+        {{ end }}
+      {{ end }}
+      {{ if $page.Params.needhelp | default true }}
+        {{ if $page.Params.shoutout | default true }}<br /><br />{{ end }}
+        {{ if eq site.Language.Lang "fr" }}
+          Si vous aimez lire les articles de ce site,
+          <b>pensez ❤️</b> à les <b>partager sur les réseaux sociaux</b> pour
+          augmenter leur visibilité :
+          <b>cela m'aide à dégager du temps pour de nouveaux articles et projets</b> !
+        {{ else }}
+          If you like reading articles on this website,
+          <b>please ❤️</b> consider <b>sharing on social networks</b> to help increase visibility:
+          <b>this helps buy time for new articles and projects</b> !
+        {{ end }}
+        {{/* The sharing icons, same markup as the theme's sharing-links.html;
+           not the partial itself, since our copy of it carries the bottom
+           notes. */}}
+        {{ with $page.Params.sharingLinks | default (site.Params.article.sharingLinks | default false) }}
+          {{ $links := hugo.Data.sharing }}
+          <section class="flex flex-row flex-wrap justify-center pt-2 text-xl">
+            {{ range . }}
+              {{ with index $links . }}
+                <a
+                  class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+                  target="_blank"
+                  href="{{ printf .url $page.Permalink $page.Title | safeURL }}"
+                  title="{{ i18n .title }}"
+                  aria-label="{{ i18n .title }}">
+                  {{ partial "icon.html" .icon }}
+                </a>
+              {{ end }}
+            {{ end }}
+          </section>
+        {{ end }}
+      {{ end }}
+    </div>
+  {{ end }}
+{{ else }}
+  {{ if $page.Params.needhelp | default true }}
+    <div class="support-note mt-10 max-w-prose rounded-md bg-primary-100 px-4 py-3 text-sm dark:bg-primary-900 dark:text-neutral-300 print:hidden">
+      {{ if eq site.Language.Lang "fr" }}
+        Vous avez atteint la fin de cet article, <b>FÉLICITATIONS</b> !
+        <br /><br />
+        <b>Pensez ❤️</b> à le <b>partager sur les réseaux sociaux</b> pour
+        augmenter sa visibilité, et si vous souhaitez m'aider à dégager du
+        temps pour de nouveaux articles et projets, vous pouvez me soutenir sur
+        <u><b><a href="https://github.com/sponsors/poolpOrg">github sponsors</a></b></u> ou
+        <u><b><a href="https://www.patreon.com/gilles">patreon</a></b></u>.
+      {{ else }}
+        You reached the end of this article, <b>CONGRATULATIONS</b> !
+        <br /><br />
+        <b>Please ❤️</b> consider <b>sharing on social networks</b> to increase
+        its visibility, and if you want to help buy time for new articles and
+        projects, you can support me on
+        <u><b><a href="https://github.com/sponsors/poolpOrg">github sponsors</a></b></u> or
+        <u><b><a href="https://www.patreon.com/gilles">patreon</a></b></u>.
+      {{ end }}
+    </div>
+  {{ end }}
+{{ end }}

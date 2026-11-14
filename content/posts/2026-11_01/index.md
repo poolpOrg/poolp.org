@@ -20,6 +20,8 @@ For those who haven't followed, [plakar](https://plakar.io) is an open-source ba
 It backs up from a lot of sources, stores on a lot of storages, and restores to a lot of destinations: a filesystem, an S3 bucket, an SFTP server and many more...
 These sources and destinations are not baked into plakar: they're connectors, packaged as integrations that anyone can write and install.
 
+Don't forget to [star the project on Github](https://github.com/PlakarKorp/plakar) and [join the Plakar discord](https://discord.com/invite/uuegtnF2Q5).
+
 ## What's this article about ?
 
 For the last few years,

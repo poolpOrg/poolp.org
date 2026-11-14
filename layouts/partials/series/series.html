@@ -1,6 +1,8 @@
-{{/* Copy of the theme's series/series.html with one addition: the top
-   consulting note rides this partial (it renders right before the article
-   content on single pages) so single.html stays upstream. */}}
+{{/* Copy of the theme's series/series.html with one addition: the sponsor
+   shoutout and the top consulting note ride this partial (it renders right
+   before the article content on single pages) so single.html stays
+   upstream. */}}
+{{ partial "support-note.html" (dict "position" "top" "page" .) }}
 {{ partial "consulting-note.html" "top" }}
 {{ if .Params.series }}
   <details

@@ -1,7 +1,9 @@
 {{/* Copy of the theme's sharing-links.html with one addition: the consulting
-   note rides this partial so single.html stays upstream. The note renders
-   before the sharing icons, and even when sharing links are disabled. */}}
+   note and the share ask ride this partial so single.html stays upstream.
+   They render before the sharing icons, and even when sharing links are
+   disabled. */}}
 {{ partial "consulting-note.html" "bottom" }}
+{{ partial "support-note.html" (dict "position" "bottom" "page" .) }}
 {{ with .Params.sharingLinks | default (.Site.Params.article.sharingLinks | default false) }}
   {{ $links := hugo.Data.sharing }}
   <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">

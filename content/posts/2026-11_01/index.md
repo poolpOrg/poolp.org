@@ -16,7 +16,7 @@ tags:
 
 ## First, what's plakar ?
 
-For those who haven't followed, [plakar](https://plakar.io) is an open-source backup solution, ISC-licensed, written in Go and built on top of kloset, a content-addressed storage engine that deduplicates, compresses and encrypts everything it stores and keeps snapshots immutable.
+For those who haven't followed, [plakar](https://plakar.io) is an open-source backup solution that I started in 2015, free to use, ISC-licensed, written in Go and built on top of kloset, a content-addressed storage engine that deduplicates, compresses and encrypts everything it stores and keeps snapshots immutable.
 It backs up from a lot of sources, stores on a lot of storages, and restores to a lot of destinations: a filesystem, an S3 bucket, an SFTP server and many more...
 These sources and destinations are not baked into plakar: they're connectors, packaged as integrations that anyone can write and install.
 

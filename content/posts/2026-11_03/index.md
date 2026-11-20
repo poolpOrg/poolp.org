@@ -35,6 +35,8 @@ Not because the machine arrived broken,
 this happens and I've been around hardware long enough to know it,
 but because of how unprofessional and useless the support has been from the first email to the last.
 
+OH and feel free to share, friends don't let friends enter hell.
+
 Day one: broken out of the box
 --
 The laptop arrives early August.

@@ -75,7 +75,7 @@ Each reply came from a different agent who clearly hadn't read the thread,
 and asked for something we had already provided.
 
 On August 24th I lost patience and wrote that this was a 3000 EUR laptop that didn't work,
-that my co-worker had been without a usable machine for over a week,
+that my co-worker had been without a usable machine of his own for over a week,
 and asked them to either send replacement parts or take it back and refund us.
 I even went all Karen and asked to involve a manager.
 

@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on poolp.org</title><link>https://poolp.org/posts/</link><description>Recent content in Posts on poolp.org</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><copyright>Copyright &amp;copy; Gilles Chehade - poolp.org</copyright><lastBuildDate>Fri, 20 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://poolp.org/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>I'll never buy Framework hardware again</title><link>https://poolp.org/posts/2026-11-20/ill-never-buy-framework-hardware-again/</link><pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate><guid>https://poolp.org/posts/2026-11-20/ill-never-buy-framework-hardware-again/</guid><description>&lt;blockquote&gt;
  &lt;b&gt;TL;DR:&lt;/b&gt;
- &lt;br /&gt;We bought a 3000 EUR Framework Laptop 16 for one of our developers.
-It was broken out of the box.
-Three months, around thirty support emails, two replacement parts and a trip to their repair center later,
-Framework concluded &amp;ldquo;No Fault Found&amp;rdquo; and blamed the keyboard layout of an OS that wasn&amp;rsquo;t even installed when the problem first showed up.
-I&amp;rsquo;m done with them.&lt;/blockquote&gt;
+ &lt;br /&gt;This post ended up on Hacker News and got a lot more attention than I expected.
+I&amp;rsquo;m not trying to hurt Framework; I want them to fix their support.
+I want them to give us what we paid for, a working laptop.&lt;/blockquote&gt;
 
-
-&lt;h2 class="relative group"&gt;Some context first
- &lt;div id="some-context-first" class="anchor"&gt;&lt;/div&gt;
- 
- &lt;span
- class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
- &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#some-context-first" aria-label="Anchor"&gt;#&lt;/a&gt;
- &lt;/span&gt;
- 
-&lt;/h2&gt;
-&lt;p&gt;I have been a Framework fan for a while.
-At my company, developers pick the machine of their choice and several work on Framework laptops or desktops,
-we have about quite a few of them around,
-and I have been recommending them to pretty much anyone who asked me what laptop to buy so far.
-Repairable hardware, Linux-friendly, a company that seemed to care about the people using its products:
-it was an easy recommendation to make.&lt;/p&gt;&lt;p&gt;&lt;em&gt;I take short consulting engagements — architecture review, technical due diligence, mail infrastructure — through &lt;a href="https://aljuna.tech"&gt;aljuna.tech&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2026-11-20/ill-never-buy-framework-hardware-again/featured.png"/></item><item><title>Flipper Zero, Plakar one</title><link>https://poolp.org/posts/2026-11-16/flipper-zero-plakar-one/</link><pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate><guid>https://poolp.org/posts/2026-11-16/flipper-zero-plakar-one/</guid><description>&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt;
+&lt;p&gt;ENODRAMA. Move along, there&amp;rsquo;s nothing to see here anymore.&lt;/p&gt;&lt;p&gt;&lt;em&gt;I take short consulting engagements — architecture review, technical due diligence, mail infrastructure — through &lt;a href="https://aljuna.tech"&gt;aljuna.tech&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://poolp.org/posts/2026-11-20/ill-never-buy-framework-hardware-again/featured.png"/></item><item><title>Flipper Zero, Plakar one</title><link>https://poolp.org/posts/2026-11-16/flipper-zero-plakar-one/</link><pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate><guid>https://poolp.org/posts/2026-11-16/flipper-zero-plakar-one/</guid><description>&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt;
 I had an AI write a plakar integration for the Flipper Zero.
 It talks to the stock firmware over USB, backs up the SD card and the internal flash,
 restores onto the same device or another one,

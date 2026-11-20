@@ -10,7 +10,7 @@ categories:
 
 {{< tldr >}}
 This post ended up on Hacker News and got a lot more attention than I expected.
-I'm not trying to hurt Framework; I want them to fix their support.
+I'm not trying to hurt Framework beyond repaid (pun intended); I want them to fix their support.
 I want them to give us what we paid for, a working laptop.
 {{< /tldr >}}
 
